@@ -28,7 +28,7 @@
 	*/
 	
 	/* class Question {
-			"jlpt": "",
+			"setName": "",
 			"amount": ##,
 			"conjugatedEnglish": "",	// noun only. ie "person" or "people"
 			"answers": [] // array of Answer objects
@@ -493,8 +493,11 @@
 	
 	// -------------------------------------------- COUNTERS
 	window.Counters = {};
-	window.Counters.load = function (set) {
+	window.Counters.load = function (set, callback) {
 		if (LOADED_COUNTER_SETS.indexOf(set) >= 0) {
+			if (typeof callback === "function") {
+				callback(false); // wasn't loaded
+			}
 			return;
 		}
 		
@@ -584,6 +587,9 @@
 			});
 			
 			LOADED_COUNTER_SETS.push(set);
+			if (typeof callback === "function") {
+				callback(true); // wasloaded
+			}
 		});
 	};
 	window.Counters.getAllItems = function () {
@@ -595,16 +601,26 @@
 	
 	// -------------------------------------------- QUIZMASTER
 	window.QuizMaster = {};
-	window.QuizMaster.toggleSet = function (set) {
-		Counters.load(set);
-		if (LOADED_COUNTER_SETS.indexOf(set) >= 0) {
-			var indexOfDisabled = DISABLED_COUNTER_SETS.indexOf(set);
-			if (indexOfDisabled < 0) {
-				DISABLED_COUNTER_SETS.push(set);
-			} else {
-				DISABLED_COUNTER_SETS.splice(indexOfDisabled, 1);
+	window.QuizMaster.toggleSet = function (set, callback) {
+		Counters.load(set, function (wasLoaded) {
+			if (!wasLoaded) {
+				if (LOADED_COUNTER_SETS.indexOf(set) >= 0) {
+					var indexOfDisabled = DISABLED_COUNTER_SETS.indexOf(set);
+					if (indexOfDisabled < 0) {
+						DISABLED_COUNTER_SETS.push(set);
+					} else {
+						DISABLED_COUNTER_SETS.splice(indexOfDisabled, 1);
+					}
+				}
 			}
-		}
+			
+			if (typeof callback === "function") {
+				callback();
+			}
+		});
+	}
+	window.QuizMaster.hasEnabledSets = function () {
+		return (LOADED_COUNTER_SETS.length - DISABLED_COUNTER_SETS.length > 0);
 	}
 	window.QuizMaster.getRandomQuestion = function () {
 		var randomItem = ITEMS[Math.floor(Math.random() * ITEMS.length)],
@@ -642,263 +658,10 @@
 		});
 			
 		return {
-			"jlpt": randomItem["jlpt"],
+			"setName": randomItem["setName"],
 			"amount": randomAmount,
 			"conjugatedEnglish": (randomAmount == 1 ? randomItem["singular"] : randomItem["plural"]),
 			"answers": allAnswers
 		};
 	};
 })();
-/*
-// ---------------------------- Japanese data
-
-// determineAnswer(counter, amount)
-// 		- counter: json object for the desired counter, from COUNTERS
-//		- amount: numeric amount to use with the counter
-// 	Returns: an array of the format [ kanji, romaji ]
-// 	Assumptions: This function only works for nonzero positive numbersr
-function determineAnswer(counter, amount) {
-	if (amount <= 0) {
-		return ["", ""];
-	}
-	// Does special case exist?
-	if (counter["special"] && counter["special"][amount.toString()] !== undefined) {
-		return counter["special"][amount.toString()];
-	}
-	
-	function _determineAnswerAsRomaji() {
-		// Determine the sound change for the counter
-		var counterDefaultRomaji = hiraganaToRomaji(counter["hiragana"]),
-			lastAmountDigit = amount % 10,
-			prefixNumber,
-			prefixAmount;
-		if (amount % 10000 === 0) {
-			prefixAmount = getNumber(Math.floor(amount / 10000), false);
-			switch (counterDefaultRomaji[0]) {
-				case "h": {
-					return prefixAmount[1] + "manb" + counterDefaultRomaji.substr(1);
-				}
-				case "f": {
-					return prefixAmount[1] + "manp" + counterDefaultRomaji.substr(1);
-				}
-				default: {
-					return prefixAmount[1] + "man" + counterDefaultRomaji;
-				}
-			}
-		} else if (amount % 1000 === 0) {
-			prefixAmount = getNumber(Math.floor(amount / 1000), false);
-			switch (counterDefaultRomaji[0]) {
-				case "h": {
-					return prefixAmount[1] + "senb" + counterDefaultRomaji.substr(1);
-				}
-				case "f": {
-					return prefixAmount[1] + "senp" + counterDefaultRomaji.substr(1);
-				}
-				default: {
-					return prefixAmount[1] + "sen" + counterDefaultRomaji;
-				}
-			}
-		} else if (amount % 100 === 0) {
-			prefixAmount = getNumber(Math.floor(amount / 100), false);
-			switch (counterDefaultRomaji[0]) {
-				case "k": {
-					return prefixAmount[1] + "hyak" + counterDefaultRomaji;
-				}
-				case "h":
-				case "f":
-				case "p": {
-					return prefixAmount[1] + "hyapp" + counterDefaultRomaji.substr(1);
-				}
-				default: {
-					return prefixAmount[1] + "hyaku" + counterDefaultRomaji;
-				}
-			}
-		} else if (amount % 10 === 0) {
-			// we need to transform 1020 into 1002
-			var numberTens = Math.floor(amount % 100);
-			prefixNumber = amount - (amount % 100); // Get rid of everything less than 1000 (1020 -> 1000)
-			prefixNumber += Math.floor(numberTens / 10); // Add a trailing 2 that we get from the 20 part of 1020
-			prefixAmount = getNumber(prefixNumber, false);
-			return prefixAmount[1] + "jyuu" + counterDefaultRomaji;
-		} else if (lastAmountDigit == 1) {
-			prefixAmount = getNumber(Math.floor(amount - 1), false);
-			switch (counterDefaultRomaji[0]) {
-				case "k":
-				case "s":
-				case "t":
-				case "c": {
-					return prefixAmount[1] + "i" + counterDefaultRomaji[0] + counterDefaultRomaji;
-				}
-				case "h":
-				case "f":
-				case "b":
-				case "p": {
-					return prefixAmount[1] + "ipp" + counterDefaultRomaji.substr(1);
-				}
-				default: {
-					return prefixAmount[1] + "ichi" + counterDefaultRomaji;
-				}
-			}
-		} else if (lastAmountDigit == 2) {
-			prefixAmount = getNumber(Math.floor(amount - 2), false);
-			return prefixAmount[1] + "ni" + counterDefaultRomaji;
-		} else if (lastAmountDigit == 3) {
-			prefixAmount = getNumber(Math.floor(amount - 3), false);
-			switch (counterDefaultRomaji[0]) {
-				case "h":
-				case "w": {
-					return prefixAmount[1] + "sanb" + counterDefaultRomaji.substr(1);
-				}
-				case "f": {
-					return prefixAmount[1] + "sanp" + counterDefaultRomaji.substr(1);
-				}
-				default: {
-					return prefixAmount[1] + "san" + counterDefaultRomaji;
-				}
-			}
-		} else if (lastAmountDigit == 4) {
-			prefixAmount = getNumber(Math.floor(amount - 4), false);
-			switch (counterDefaultRomaji[0]) {
-				case "h":
-				case "f": {
-					return prefixAmount[1] + "yonh" + counterDefaultRomaji.substr(1);
-				}
-				case "w": {
-					return "????";
-				}
-				default: {
-					return prefixAmount[1] + "yon" + counterDefaultRomaji;
-				}
-			}
-		} else if (lastAmountDigit == 5) {
-			prefixAmount = getNumber(Math.floor(amount - 5), false);
-			return prefixAmount[1] + "go" + counterDefaultRomaji;
-		} else if (lastAmountDigit == 6) {
-			prefixAmount = getNumber(Math.floor(amount - 6), false);
-			switch (counterDefaultRomaji[0]) {
-				case "k": {
-					return prefixAmount[1] + "rokk" + counterDefaultRomaji.substr(1);
-				}
-				case "h":
-				case "f":
-				case "p": {
-					return prefixAmount[1] + "ropp" + counterDefaultRomaji.substr(1);
-				}
-				default: {
-					return prefixAmount[1] + "roku" + counterDefaultRomaji;
-				}
-			}
-		} else if (lastAmountDigit == 7) {
-			prefixAmount = getNumber(Math.floor(amount - 7), false);
-			return prefixAmount[1] + "nana" + counterDefaultRomaji;
-		} else if (lastAmountDigit == 8) {
-			prefixAmount = getNumber(Math.floor(amount - 8), false);
-			switch (counterDefaultRomaji[0]) {
-				case "k":
-				case "s": {
-					return prefixAmount[1] + "hak" + counterDefaultRomaji;
-				}
-				case "t":
-				case "c": {
-					return prefixAmount[1] + "hatt" + counterDefaultRomaji.substr(1);
-				}
-				case "h":
-				case "f":
-				case "p": {
-					return prefixAmount[1] + "happ" + counterDefaultRomaji.substr(1);
-				}
-				default: {
-					return prefixAmount[1] + "hachi" + counterDefaultRomaji;
-				}
-			}
-		} else if (lastAmountDigit == 9) {
-			prefixAmount = getNumber(Math.floor(amount - 9), false);
-			return prefixAmount[1] + "kyuu" + counterDefaultRomaji;
-		}
-	}
-	
-	return [ getNumber(amount)[0] + counter["kanji"], _determineAnswerAsRomaji() ];
-}
-
-
-// ------------------------------------ Questions/UI
-var CORRECT_ANSWERS = 0,
-	INCORRECT_ANSWERS = 0,
-	TOTAL_ANSWERS = 0;
-			
-function setupNextQuestion() {
-	var randomCounter = COUNTERS[Math.floor(Math.random() * COUNTERS.length)],
-		randomObject = randomCounter["objects"][Math.floor(Math.random() * randomCounter["objects"].length)],
-		randomAmount,
-		counterEnglish;
-		
-	do {
-		randomAmount = Math.floor(Math.random() * 100)
-	} while (randomAmount === 0);
-		
-	if (typeof randomObject === "object") {
-		counterEnglish = (randomAmount === 1 ? randomObject[0] : randomObject[1]);
-	} else {
-		counterEnglish = (randomAmount === 1 ? randomObject : randomObject + "s");
-	}
-			
-	$("#question").html(randomAmount.toString() + " " + counterEnglish);
-	$("#answer").val("");
-	$("#answer").data("question", {
-		amount: randomAmount,
-		counter: randomCounter,
-		object: counterEnglish
-	});
-}
-
-function submitAnswer() {
-	var question = $("#answer").data("question"),
-		answerRaw = $("#answer").val(),
-		userInputAnswer,
-		userInputRomaji,
-		correctAnswer = determineAnswer(question["counter"], question["amount"]);
-		
-	// Clean up the user's input answer
-	userInputAnswer = answerRaw;
-	if (typeof userInputAnswer === undefined || userInputAnswer === null) {
-		userInputAnswer = "";
-	}
-	if (userInputAnswer.endsWith("n") || userInputAnswer.endsWith("N")) {
-		userInputAnswer = userInputAnswer.substr(0, userInputAnswer.length - 1) + "ん";
-		$("#answer").val(userInputAnswer);
-	}
-	userInputRomaji = hiraganaToRomaji(userInputAnswer);
-	
-	// Compare
-	if (userInputRomaji == correctAnswer[1]) {
-		alert("you did it!");
-		++CORRECT_ANSWERS;
-	} else {
-		alert(":(\nThe correct answer was:\n" + correctAnswer[1] + "\n(" + correctAnswer[0] + ")\n\nYou entered:\n" + userInputRomaji);
-		++INCORRECT_ANSWERS;
-	}
-	++TOTAL_ANSWERS;
-	
-	// Update tally
-	$("#tally").html(CORRECT_ANSWERS.toString() + " correct | " + TOTAL_ANSWERS.toString() + " total (" + Math.floor(CORRECT_ANSWERS / TOTAL_ANSWERS * 100) + "%)");
-	
-	// Add to history
-	var historyRow = $(document.createElement('tr'));
-	if (userInputRomaji == correctAnswer[1]) {
-		historyRow.addClass("correct");
-	} else {
-		historyRow.addClass("incorrect");
-	}
-		
-	$(document.createElement('td')).addClass('question').html(question["amount"]).appendTo(historyRow);
-	$(document.createElement('td')).addClass('question').html(question["object"]).appendTo(historyRow);
-	$(document.createElement('td')).addClass('you').html(userInputAnswer).appendTo(historyRow);
-	$(document.createElement('td')).addClass('answer').html(correctAnswer[1] + " (" + correctAnswer[0] + ")").appendTo(historyRow);
-	$(document.createElement('td')).addClass('answer').html(question["counter"]["hiragana"] + " (" + question["counter"]["kanji"] + ")").appendTo(historyRow);
-	$(document.createElement('td')).addClass('answer').html(question["counter"]["rule"]).appendTo(historyRow);
-	
-	$("#history tr:nth-child(2)").after(historyRow);
-	
-	// Next question
-	setupNextQuestion();
-}*/

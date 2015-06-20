@@ -1,12 +1,20 @@
-* {
+.japanese {
 	font-family: Meiryo;
 }
 
 body {
 	margin: 0px;
-	background-color: #B6C9C6;
-	min-width: 900px;
-	overflow: hidden;
+	background-color: #FCF9FF;
+	min-width: 1000px;
+	font-family: 'Roboto', sans-serif;
+}
+
+a, a:visited {
+	color: #AE84DE;
+}
+
+a:hover {
+	color: #C298F2;
 }
 
 h1, h4 {
@@ -15,50 +23,115 @@ h1, h4 {
 
 hr {
 	margin: 10px;
-	border-color: purple;
 	border: 0px;
-	border-top: 1px dashed #B6C9C6;
+	border-top: 1px dashed #A6D8FF;
 }
 
+/** ------------------ Side Panel ------------------ **/
 div.sidePanel {
 	display: inline-block;
-	width: 25%;
-	float: left;
-	height: 100vh;
-	position: relative;
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	background-color: #BAECFF;
+	border-right: 10px solid #A3B6FF;
+	width: 400px;
 }
 
 div.sidePanel h5 {
 	text-align: center;
 	display: block;
 	width: 50%;
-	margin: 0px auto 6px auto;
+	margin: 30px auto 6px auto;
 	border-bottom: 1px solid black;
+}
+
+div.sidePanel h5:first-of-type {
+	margin-top: 0px;
 }
 
 div.sidePanel div.inner {
 	padding: 10px;
 }
 
-div.sidePanel div.credit {
-	position: absolute;
-	bottom: 80px;
-	text-align:center;
-	font-size: 9px;
-	width: 25vw;
+div.sidePanel div.inner.small {
+	font-size: 15px;
 }
 
+div.sidePanel div.credit {
+	position: absolute;
+	bottom: 30px;
+	text-align:center;
+	font-size: 9px;
+	width: 400px;
+}
+
+/** ------------------ Quiz Room ------------------ **/
 div.quizRoom {
-	display: inline-block;
+	display: block;
 	height: 100vh;
-	width: 75%;
 	text-align: center;
-	background-color: #F4F7F6;
-	overflow-y: scroll;
+	background-color: #FCF9FF;
+	margin-left: 410px;
 }
 
 div.quizRoom h1 {
 	font-size: 48px;
+}
+
+div.quizRoom h1 rt {
+	font-size: 12px;
+}
+
+div.quizRoom div.subheader {
+	width: 47%;
+	display: inline-block;
+	font-size: 16px;
+}
+
+div.quizRoom div.subheader.left {
+	text-align: right;
+}
+
+div.quizRoom div.subheader.right {
+	text-align: left;
+}
+
+div.quizRoom div.subheaderDivider {
+	display: inline-block;
+	height: 20px;
+	border: 1px solid #A3B6FF;
+	background-color: #A6D8FF;
+	width: 1px;
+	position: relative;
+	top: 5px;
+}
+
+div.quizRoom div.letsBegin {
+	width: 75%;
+	min-width: 500px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 100px;
+}
+
+div.quizRoom div.letsBegin h3 {
+	margin: 0px;
+}
+
+div.quizRoom div.question {
+	font-size: 11px;
+	text-align: left;
+}
+
+div.quizRoom div.question.first {
+	margin-top: 10px;
+}
+
+div.quizRoom div.letsBegin button {
+	margin-top: 50px;
+	font-size: 32px;
 }
 
 div.quizRoom table.input {

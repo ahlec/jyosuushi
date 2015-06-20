@@ -5,17 +5,76 @@
 		<script src="jquery.js"></script>
 		<script src="counters.js"></script>
 		<script src="jquery.kana.js"></script>
+		<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 		<link href="style.css" rel="stylesheet" />
 		<script>
+			function toggleSet(setName) {
+				QuizMaster.toggleSet(setName, function () {
+					$("#beginButton").prop('disabled', !QuizMaster.hasEnabledSets());
+				});
+			}
 			
+			$(document.body).ready(function () {
+				$("#beginButton").prop('disabled', !QuizMaster.hasEnabledSets());
+			});
+			
+			function letsBegin() {
+				$('#letsBegin').hide();
+			}
 		</script>
 	</head>
 	<body>
 		<div class="sidePanel">
 			<h5>Counter Sets</h5>
-			<input type="checkbox" id="set_n5" onchange="QuizMaster.toggleSet('counters_n5');" /> <label for="set_n5">JLPT N5</label>
+			<div class="inner">
+				<input type="checkbox" id="set_n5" onchange="toggleSet('counters_n5');" /> <label for="set_n5">JLPT N5</label>
+				<div style="text-align:center;"><small>(A lot more are coming soon)</small></div>
+			</div>
+			
+			<h5>Instructions</h5>
+			<div class="inner small">
+			This tool was designed to be easy to use and super straightforward! Select one or more sets from the list above, and then hit the 'Begin!' button. You'll then have an English sentence (such as "12 people") and you'll need to type in the correct <strong>HIRAGANA</strong> for it (it'd be too simple if it were Kanji!). You don't need to worry about switching your input language into Japanese &mdash; just type into the textbox and watch it turn into Hiragana! When you're done, hit the enter key or press the "Let's check!" button, and then you'll get to see your results. Move on to the next question by hitting the right arrow key or clicking the "Next!" button. Good luck!
+			</div>
+			
+			<h5>Contact Me (Alec)!</h5>
+			<div class="inner small">
+			This is absolutely a tool still in <strong>beta</strong>. I have a lot more counters I want to add, as well as more features. I wrote this in one afternoon just to see if I could and if it'd be helpful. I think it is, so I'll work on it some more in the coming days. But in the meantime, I hope that you find this tool helpful. It's probably littered with mistakes, so if you find any, please send me an ask on my Japanese Tumblr: <a href="http://konkon-no-nakigoe.tumblr.com/ask" target="_blank" class="japanese">コンコンの鳴き声</a>.<br /><br />
+				Please send me the following kinds of messages:
+				<ul>
+					<li>"I found a mistake!"</li>
+					<li>"I want to try out X counter!"</li>
+					<li>"I have a feature suggestion!"</li>
+					<li>"Thank you for this tool!</li>
+				</ul>
+			</div>
+			
+			<div class="credit">I want to thank Andreas Argelius for <a href="https://github.com/argelius/jquery-kana-input" target="_blank">his jQuery library</a> to enable Japanese IME in any textbox.</div>
 		</div>
 		<div class="quizRoom">
+			<h1 class="japanese">
+				<ruby>
+					<rb>助数詞</rb>
+					<rt>じょすうし</rt>
+				</ruby>
+				を
+				<ruby>
+					<rb>練習</rb>
+					<rt>れんしゅう</rt>
+				</ruby>
+			</h1>
+			<div class="subheader left japanese"><ruby><rb>一緒</rb><rt>いっしょ</rt></ruby>に<ruby><rb>助数詞</rb><rt>じょすうし</rt></ruby>を<ruby><rb>練習</rb><rt>れんしゅう</rt></ruby>しようね！</div>
+			<div class="subheaderDivider"></div>
+			<div class="subheader right">Let's study Japanese counters together!</div>
+			<hr />
+			<div class="letsBegin" id="letsBegin">
+				<h3>Let's begin!</h3>
+				<div>To start this up, select (at least) one set from the panel on the left.</div>
+				<div class="question first">
+					<strong>What's a set?</strong> There are many, many different types of <span class="japanese">助数詞</span> ("counters" in Japanese). Some of them are easy, some of them are difficult; some of them are really common, some of them are exceedingly rare. It'd be unfair to put all of them in the same group, wouldn't it? If you're just starting out, asking you how to count small plants would probably be a lot more difficult than how to count days, don't you think? And so we have different sets of them! Think of them like flashcard groups! And in fact, some of the sets we have are based off of what you could expect at each level of studying for the <a href="http://www.jlpt.jp/e/index.html" target="_blank">JLPT (Japanese Language Proficiency Test)</a>. Try out some different sets and see how you do!
+				</div>
+				
+				<button id="beginButton" disabled="disabled" onclick="letsBegin();">Begin!</button>
+			</div>
 		</div>
 	</body>
 </html>
