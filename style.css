@@ -4,7 +4,7 @@
 
 body {
 	margin: 0px;
-	background-color: #FCF9FF;
+	background-color: #F5FFFF;
 	min-width: 1000px;
 	font-family: 'Roboto', sans-serif;
 }
@@ -32,7 +32,6 @@ div.sidePanel {
 	display: inline-block;
 	position: absolute;
 	top: 0px;
-	bottom: 0px;
 	left: 0px;
 	background-color: #BAECFF;
 	border-right: 10px solid #A3B6FF;
@@ -72,7 +71,6 @@ div.quizRoom {
 	display: block;
 	height: 100vh;
 	text-align: center;
-	background-color: #FCF9FF;
 	margin-left: 410px;
 }
 
@@ -120,13 +118,10 @@ div.quizRoom div.letsBegin h3 {
 	margin: 0px;
 }
 
-div.quizRoom div.question {
-	font-size: 11px;
+div.quizRoom div.letsBegin div.explanation {
 	text-align: left;
-}
-
-div.quizRoom div.question.first {
-	margin-top: 10px;
+	font-size: 13px;
+	margin-top: 20px;
 }
 
 div.quizRoom div.letsBegin button {
@@ -134,86 +129,63 @@ div.quizRoom div.letsBegin button {
 	font-size: 32px;
 }
 
-div.quizRoom table.input {
-	margin-left:auto;
-	margin-right:auto;
-	margin-bottom: 30px;
+div.quizRoom div.quiz div.superheader {
+	font-size: 16px;
 }
 
-div.quizRoom table.input td {
-	vertical-align: middle;
-}
-
-div.quizRoom input[type=text] {
-	border: 1px solid #E0B783;
-	border-radius: 3px;
-	font-size: 24px;
-	font-family: Meiryo;
-	vertical-align:center;
-	text-align:center;
-	width: 400px;
-	background-color: #FAF1D0;
-}
-
-div.quizRoom input[type=type] {
-	border: 1px solid black;
-	border-radius: 3px;
-	width: 30px;
-	height: 40px;
-	cursor: pointer;
-}
-
-div.quizRoom table.history {
-	width: 100%;
-	border-collapse: collapse;
-	font-size: 11px;
-	margin-top: 20px;
-}
-
-div.quizRoom table.history th, div.quizRoom table.history td {
-	width:16.667px;
-	max-width:16.667px;
-	min-width:16.667px;
-}
-
-div.quizRoom table.history th.question,
-div.quizRoom table.history th.answer {
-	background-color:#E7A746;
-}
-
-div.quizRoom table.history  .sub.question,
-div.quizRoom table.history  .sub.answer,
-div.quizRoom table.history  .sub.you {
-	background-color: #E0B783;
-	border-top: 1px dashed #E7A746;
-}
-
-div.quizRoom table.history   th.question:not(.sub),
-div.quizRoom table.history   th.answer:not(.sub),
-div.quizRoom table.history   th.sub.you {
-	border-top: 1px solid black;
-}
-
-div.quizRoom table.history   .question {
-	border-right: 1px solid black;
-}
-
-div.quizRoom table.history   .answer {
-	border-left: 1px solid black;
-}
-
-div.quizRoom table.history th.sub {
+div.quizRoom div.quiz div.questionText {
+	font-weight: bold;
+	font-size: 60px;
 	border-bottom: 1px solid black;
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
 }
 
-div.quizRoom table.history td {
-	border-bottom: 1px dotted black;
+div.quizRoom div.quiz input.answerInput {
+	font-size: 32px;
+	width: 40%;
+	margin: 20px auto 0px auto;
+	border: 2px solid #C298F2;
+	color: black;
+	border-radius: 5px;
+	padding: 5px;
+	text-align: center;
 }
 
-div.quizRoom table.history tr.correct td {
-	background-color: #CFFFC7;
+div.quizRoom div.quiz div.encouragement {
+	font-size: 13px;
+	margin-top: 10px;
 }
 
-div.quizRoom table.history tr.incorrect td {
-	background-color: #FFD1D1;
+div.quizRoom div.quiz button.letsCheck {
+	margin: 40px auto 0px auto;
+	font-size: 24px;
+	padding: 2px 12px;
+}
+
+div.quizRoom div.quiz div.answerPanel {
+	padding: 20px 50px;
+}
+
+div.quizRoom div.quiz div.answerPanel div.grade {
+	border: 15px solid black;
+	width: 200px;
+	height: 140px;
+	font-size: 60px;
+	border-radius: 200px;
+	text-align: center;
+	padding-top: 60px;
+}
+
+div.quizRoom div.quiz div.answerPanel div.grade.correct {
+	color: #397D02;
+	border-color: #629632;
+	background-color: #BCED91;
+}
+
+div.quizRoom div.quiz div.answerPanel div.grade.incorrect {
+	color: #A02422;
+	border-color: #EE6363;
+	background-color: #FFCCCC;
 }

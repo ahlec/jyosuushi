@@ -31,7 +31,8 @@
 			"setName": "",
 			"amount": ##,
 			"conjugatedEnglish": "",	// noun only. ie "person" or "people"
-			"answers": [] // array of Answer objects
+			"answers": [], // array of Answer objects
+			"encouragement": ""
 		}
 	*/
 	
@@ -41,7 +42,8 @@
 		KANA_CHART,
 		LOADED_COUNTER_SETS = [],
 		DISABLED_COUNTER_SETS = [],
-		POSTKANA_MODIFIERS = [ "ぁ", "ぃ", "ぅ", "ぇ", "ぉ", "ゃ", "ゅ", "ょ", "っ" ];
+		POSTKANA_MODIFIERS = [ "ぁ", "ぃ", "ぅ", "ぇ", "ぉ", "ゃ", "ゅ", "ょ", "っ" ],
+		ENCOURAGEMENTS;
 		
 	KANA_CHART = [
 		"あ", "い", "う", "え", "お",
@@ -59,6 +61,19 @@
 		"や", "", "ゆ", "", "よ",
 		"ら", "り", "る", "れ", "ろ",
 		"わ", "", "", "", "を"
+	];
+	
+	ENCOURAGEMENTS = [
+		"Come on! I know you've got this!",
+		"I'm sure you gonna get this, first try!",
+		"This is a piece of cake for you, isn't it?",
+		"Oh man, knock this one out easy!",
+		"Don't overthink it! You're smart; your first guess was probably right!",
+		"Believe in the me that believes in you!",
+		"This is hard stuff, but man are you aceing this!",
+		"Ah crud, you're putting me to shame! I'll have to try harder!",
+		"You don't even need my encouragement, do you?",
+		"Dang you're smart!!"
 	];
 	
 	// -------------------------------------------- JAPANESE
@@ -661,7 +676,8 @@
 			"setName": randomItem["setName"],
 			"amount": randomAmount,
 			"conjugatedEnglish": (randomAmount == 1 ? randomItem["singular"] : randomItem["plural"]),
-			"answers": allAnswers
+			"answers": allAnswers,
+			"encouragement": ENCOURAGEMENTS[Math.floor(Math.random() * ENCOURAGEMENTS.length)]
 		};
 	};
 })();
