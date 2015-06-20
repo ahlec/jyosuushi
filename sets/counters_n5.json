@@ -1,0 +1,54 @@
+{
+	"setName": "JLPT n5",
+    "items": {
+        "day": { "max": 31, "counters": [ "日" ] },
+        "hour": { "max": 23, "counters": [ "時" ] },
+        "person": { "plural": "people", "counters": [ "人" ] },
+        "pencil": [ "本" ],
+        "pen": [ "本" ],
+        "rod": [ "本" ],
+        "line": [ "本" ]
+    },
+    "counters": {
+        "日": {
+            "kana": "にち",
+            "rule": "counter for days",
+            "irregulars": {
+                "1": "ついたち",
+                "2": "ふつか",
+                "3": "みっか",
+                "4": "よっか",
+                "5": "いつか",
+                "6": "むいか",
+                "7": "なのか",
+                "8": "ようか",
+                "9": "ここのか",
+                "10": "とうか",
+                "14": "じゅうよっか",
+                "20": "はつか",
+                "24": "にじゅうよっか"
+            }
+        },
+        "時": {
+            "kana": "じ",
+            "rule": "counter for hours",
+            "irregulars": {
+                "4": "よじ",
+                "7": "しちじ",
+                "9": "くじ"
+            }
+        },
+        "人": {
+            "kana": "にん",
+            "rule": "counter for people",
+            "irregulars": {
+                "1": "ひとり",
+                "2": "ふたり"
+            }
+        },
+        "本": {
+            "kana": "ほん",
+            "rule": "counter for long, thin objects"
+        }
+    }
+}

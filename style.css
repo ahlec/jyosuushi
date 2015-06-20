@@ -1,0 +1,146 @@
+* {
+	font-family: Meiryo;
+}
+
+body {
+	margin: 0px;
+	background-color: #B6C9C6;
+	min-width: 900px;
+	overflow: hidden;
+}
+
+h1, h4 {
+	margin: 0px;
+}
+
+hr {
+	margin: 10px;
+	border-color: purple;
+	border: 0px;
+	border-top: 1px dashed #B6C9C6;
+}
+
+div.sidePanel {
+	display: inline-block;
+	width: 25%;
+	float: left;
+	height: 100vh;
+	position: relative;
+}
+
+div.sidePanel h5 {
+	text-align: center;
+	display: block;
+	width: 50%;
+	margin: 0px auto 6px auto;
+	border-bottom: 1px solid black;
+}
+
+div.sidePanel div.inner {
+	padding: 10px;
+}
+
+div.sidePanel div.credit {
+	position: absolute;
+	bottom: 80px;
+	text-align:center;
+	font-size: 9px;
+	width: 25vw;
+}
+
+div.quizRoom {
+	display: inline-block;
+	height: 100vh;
+	width: 75%;
+	text-align: center;
+	background-color: #F4F7F6;
+	overflow-y: scroll;
+}
+
+div.quizRoom h1 {
+	font-size: 48px;
+}
+
+div.quizRoom table.input {
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom: 30px;
+}
+
+div.quizRoom table.input td {
+	vertical-align: middle;
+}
+
+div.quizRoom input[type=text] {
+	border: 1px solid #E0B783;
+	border-radius: 3px;
+	font-size: 24px;
+	font-family: Meiryo;
+	vertical-align:center;
+	text-align:center;
+	width: 400px;
+	background-color: #FAF1D0;
+}
+
+div.quizRoom input[type=type] {
+	border: 1px solid black;
+	border-radius: 3px;
+	width: 30px;
+	height: 40px;
+	cursor: pointer;
+}
+
+div.quizRoom table.history {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 11px;
+	margin-top: 20px;
+}
+
+div.quizRoom table.history th, div.quizRoom table.history td {
+	width:16.667px;
+	max-width:16.667px;
+	min-width:16.667px;
+}
+
+div.quizRoom table.history th.question,
+div.quizRoom table.history th.answer {
+	background-color:#E7A746;
+}
+
+div.quizRoom table.history  .sub.question,
+div.quizRoom table.history  .sub.answer,
+div.quizRoom table.history  .sub.you {
+	background-color: #E0B783;
+	border-top: 1px dashed #E7A746;
+}
+
+div.quizRoom table.history   th.question:not(.sub),
+div.quizRoom table.history   th.answer:not(.sub),
+div.quizRoom table.history   th.sub.you {
+	border-top: 1px solid black;
+}
+
+div.quizRoom table.history   .question {
+	border-right: 1px solid black;
+}
+
+div.quizRoom table.history   .answer {
+	border-left: 1px solid black;
+}
+
+div.quizRoom table.history th.sub {
+	border-bottom: 1px solid black;
+}
+
+div.quizRoom table.history td {
+	border-bottom: 1px dotted black;
+}
+
+div.quizRoom table.history tr.correct td {
+	background-color: #CFFFC7;
+}
+
+div.quizRoom table.history tr.incorrect td {
+	background-color: #FFD1D1;
+}
