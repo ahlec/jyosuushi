@@ -695,7 +695,7 @@
 							"setName": item["setName"],
 							"isIrregular": false,
 							"kana": kanaAnswer,
-							"kanji": number[0] + counterKanji
+							"kanji": number[0][0] + counterKanji
 						});
 					});
 				}

@@ -154,12 +154,14 @@
 						// Set
 						tempCell = $(document.createElement('td'));
 						tempCell.text(CURRENT_QUESTION.answers[index].setName);
+						tempCell.attr('rowspan', rowspan);
 						tempRow.append(tempCell);
 						
 						// Rule
 						tempCell = $(document.createElement('td'));
 						tempCell.text(CURRENT_QUESTION.answers[index].counterRule);
 						tempCell.addClass('rule');
+						tempCell.attr('rowspan', rowspan);
 						tempRow.append(tempCell);
 						
 						// Kanji Reading
