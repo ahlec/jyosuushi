@@ -548,6 +548,7 @@
                 }
                 case "h":
                 case "f":
+                case "b":
                 case "p": {
                     return appendToNumberArray( prefixAmount, [ "はっ" + Japanese.changeFirstKanaSound(kana[0], "p") + kana.substr(1) ] );
                 }
