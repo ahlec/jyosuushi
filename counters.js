@@ -21,6 +21,7 @@
 			"counterKanji: "",
 			"counterKana": "",
 			"counterRule": "",
+			"setName": "",
 			"isIrregular": (true | false),
 			"kana": "", // complete answer in kana
 			"kanji": "" // complete answer in kanji
@@ -28,7 +29,6 @@
 	*/
 	
 	/* class Question {
-			"setName": "",
 			"amount": ##,
 			"conjugatedEnglish": "",	// noun only. ie "person" or "people"
 			"answers": [], // array of Answer objects
@@ -78,7 +78,7 @@
 	
 	// -------------------------------------------- JAPANESE
 	window.Japanese = {};
-	window.Japanese.getNumber = function (number, includeIchi) { // returns [ KANJI, KANA ]
+	window.Japanese.getNumber = function (number, includeIchi) { // returns [ [ KANJI, KANA ] ]
 		var MILLION = Math.pow(10, 6),
 			TEN_THOUSAND = 10000,
 			THOUSAND = 1000;
@@ -90,40 +90,92 @@
 			includeIchi = true;
 		}
 		
+		function permutateArray(prefixArray, suffixArray, subindex) {
+			var results = [],
+				prefixIndex,
+				suffixIndex;
+			for (prefixIndex = 0; prefixIndex < prefixArray.length; ++prefixIndex) {
+				for (suffixIndex = 0; suffixIndex < suffixArray.length; ++suffixIndex) {
+					results.push(prefixArray[prefixIndex][subindex] + suffixArray[suffixIndex][subindex]);
+				}
+			}
+			return results;
+		}
+		
+		function invertArray(array1, array2) { // [ [ "hi", "1"] ] + [ [ "yo", "2" ] ] = [ ["hi", "yo"], ["1", "2" ] ]
+			var results = [],
+				index,
+				array1Index,
+				array2Index;
+			//for (index = 0; index < array1[0].length; ++index) {
+				for (array1Index = 0; array1Index < array1.length; ++array1Index) {
+					for (array2Index = 0; array2Index < array2.length; ++array2Index) {
+						results.push([ array1[array1Index], array2[array2Index] ]);
+					}
+				}
+			//}
+			
+			return results;
+		}
+		
+		function stripKanaDuplicates(array1) {
+			var encountered = [],
+				index,
+				results = [];
+			
+			for (index = 0; index < array1.length; ++index) {
+				if (encountered.indexOf(array1[index][1]) < 0) {
+					results.push(array1[index]);
+					encountered.push(array1[index][1]);
+				}
+			}
+			return results;
+		}
+		
+		function conjoinThreeNumberArrays(prefixArray, thisArray, suffixArray) {
+			var afterKanji = permutateArray(thisArray, suffixArray, 0),
+				afterKana = permutateArray(thisArray, suffixArray, 1),
+				after = stripKanaDuplicates(invertArray(afterKanji, afterKana)),
+				totalKanji = permutateArray(prefixArray, after, 0),
+				totalKana = permutateArray(prefixArray, after, 1),
+				total = stripKanaDuplicates(invertArray(totalKanji, totalKana));
+			return total;
+		}
+		
 		// Base cases
 		switch (number) {
 			case 1: {
 				if (includeIchi) {
-					return ["一", "いち"];
+					return [ ["一", "いち"] ];
 				}
-				return ["", ""];
+				return [ ["", ""] ];
 			}
 			case 2: {
-				return ["二", "に"];
+				return [ ["二", "に"] ];
 			}
 			case 3: {
-				return ["三", "さん"];
+				return [ ["三", "さん"] ];
 			}
 			case 4: {
-				return ["四", "よん"];
+				return [ ["四", "よん"], ["四", "し"] ];
 			}
 			case 5: {
-				return ["五", "ご"];
+				return [ ["五", "ご"] ];
 			}
 			case 6: {
-				return ["六", "ろく"];
+				return [ ["六", "ろく"] ];
 			}
 			case 7: {
-				return ["七", "なな"];
+				return [ ["七", "なな"], ["七", "しち"] ];
 			}
 			case 8: {
-				return ["八", "はち"];
+				return [ ["八", "はち"] ];
 			}
 			case 9: {
-				return ["九", "きゅう"];
+				return [ ["九", "きゅう"] ];
 			}
 			case 0: {
-				return ["", ""];
+				return [ ["", ""] ];
 			}
 		}
 			
@@ -134,10 +186,7 @@
 				before = Japanese.getNumber(beforeMan, false),
 				afterMan = number - (beforeMan * 10000),
 				after = Japanese.getNumber(afterMan);
-			return [
-						before[0] + "万" + after[0],
-						before[1] + "まん" + after[1]
-					];
+			return conjoinThreeNumberArrays(before, [ [ "万", "まん" ] ], after);
 		}
 		
 		// 1,000 (sen)
@@ -147,10 +196,7 @@
 				before = Japanese.getNumber(beforeSen, false),
 				afterSen = number - (beforeSen * 1000),
 				after = Japanese.getNumber(afterSen);
-			return [
-						before[0] + "千" + after[0],
-						before[1] + "せん" + after[1]
-					];
+			return conjoinThreeNumberArrays(before, [ [ "千", "せん" ] ], after);
 		}
 		
 		// 100 (hyaku)
@@ -160,10 +206,7 @@
 				before = Japanese.getNumber(beforeHyaku, false),
 				afterHyaku = number - (beforeHyaku * 100),
 				after = Japanese.getNumber(afterHyaku);
-			return [
-						before[0] + "百" + after[0],
-						before[1] + "ひゃく" + after[1]
-					];
+			return conjoinThreeNumberArrays(before, [ [ "百", "ひゃく" ] ], after);
 		}
 		
 		// 10 (jyuu)
@@ -173,10 +216,7 @@
 				before = Japanese.getNumber(beforeJyuu, false),
 				afterJyuu = number - (beforeJyuu * 10),
 				after = Japanese.getNumber(afterJyuu);
-			return [
-						before[0] + "十" + after[0],
-						before[1] + "じゅう" + after[1]
-					];
+			return conjoinThreeNumberArrays(before, [ [ "十", "じゅう" ] ], after);
 		}
 		
 		return "????";
@@ -359,45 +399,57 @@
 			prefixNumber,
 			prefixAmount;
 			
+		function appendToNumberArray(kanjiKanaArray, suffix) {
+			var results = [],
+				kkaIndex,
+				sIndex;
+			for (kkaIndex = 0; kkaIndex < kanjiKanaArray.length; ++kkaIndex) {
+				for (sIndex = 0; sIndex < suffix.length; ++sIndex) {
+					results.push(kanjiKanaArray[kkaIndex][1] + suffix[sIndex]);
+				}
+			}
+			return results;
+		}
+			
 		if (amount % 10000 === 0) {
 			prefixAmount = Japanese.getNumber(Math.floor(amount / 10000), false);
 			switch (counterDefaultRomaji[0]) {
 				case "h": {
-					return [ prefixAmount[1] + "まん" + Japanese.changeFirstKanaSound(kana[0], "b") + kana.substr(1) ];
+					return appendToNumberArray( prefixAmount, [ "まん" + Japanese.changeFirstKanaSound(kana[0], "b") + kana.substr(1) ] );
 				}
 				case "f": {
-					return [ prefixAmount[1] + "ばん" + Japanese.changeFirstKanaSound(kana[0], "p") + kana.substr(1) ];
+					return appendToNumberArray( prefixAmount, [ "ばん" + Japanese.changeFirstKanaSound(kana[0], "p") + kana.substr(1) ] );
 				}
 				default: {
-					return [ prefixAmount[1] + "まん" + kana ];
+					return appendToNumberArray( prefixAmount, [ "まん" + kana ] );
 				}
 			}
 		} else if (amount % 1000 === 0) {
 			prefixAmount = Japanese.getNumber(Math.floor(amount / 1000), false);
 			switch (counterDefaultRomaji[0]) {
 				case "h": {
-					return [ prefixAmount[1] + "せん" + Japanese.changeFirstKanaSound(kana[0], "b") + kana.substr(1) ];
+					return appendToNumberArray( prefixAmount, [ "せん" + Japanese.changeFirstKanaSound(kana[0], "b") + kana.substr(1) ] );
 				}
 				case "f": {
-					return [ prefixAmount[1] + "せん" + Japanese.changeFirstKanaSound(kana[0], "p") + kana.substr(1) ];
+					return appendToNumberArray( prefixAmount, [ "せん" + Japanese.changeFirstKanaSound(kana[0], "p") + kana.substr(1) ] );
 				}
 				default: {
-					return [ prefixAmount[1] + "せん" + kana ];
+					return appendToNumberArray( prefixAmount, [ "せん" + kana ] );
 				}
 			}
 		} else if (amount % 100 === 0) {
 			prefixAmount = Japanese.getNumber(Math.floor(amount / 100), false);
 			switch (counterDefaultRomaji[0]) {
 				case "k": {
-					return [ prefixAmount[1] + "ひゃっ" + kana ];
+					return appendToNumberArray( prefixAmount, [ "ひゃっ" + kana ] );
 				}
 				case "h":
 				case "f":
 				case "p": {
-					return [ prefixAmount[1] + "ひゃっ" + Japanese.changeFirstKanaSound(kana[0], "p") + kana.substr(1) ];
+					return appendToNumberArray( prefixAmount, [ "ひゃっ" + Japanese.changeFirstKanaSound(kana[0], "p") + kana.substr(1) ] );
 				}
 				default: {
-					return [ prefixAmount[1] + "ひゃく" + kana ];
+					return appendToNumberArray( prefixAmount, [ "ひゃく" + kana ] );
 				}
 			}
 		} else if (amount % 10 === 0) {
@@ -406,7 +458,7 @@
 			prefixNumber = amount - (amount % 100); // Get rid of everything less than 1000 (1020 -> 1000)
 			prefixNumber += Math.floor(numberTens / 10); // Add a trailing 2 that we get from the 20 part of 1020
 			prefixAmount = Japanese.getNumber(prefixNumber, false);
-			return [ prefixAmount[1] + "じゅう" + kana ];
+			return appendToNumberArray( prefixAmount, [ "じゅう" + kana ] );
 		}
 			
 		if (lastAmountDigit == 1) {
@@ -416,33 +468,33 @@
 				case "s":
 				case "t":
 				case "c": {
-					return [ prefixAmount[1] + "いっ" + kana ];
+					return appendToNumberArray( prefixAmount, [ "いっ" + kana ] );
 				}
 				case "h":
 				case "f":
 				case "b":
 				case "p": {
-					return [ prefixAmount[1] + "いっ" + Japanese.changeFirstKanaSound(kana[0], "p") + kana.substr(1) ];
+					return appendToNumberArray( prefixAmount, [ "いっ" + Japanese.changeFirstKanaSound(kana[0], "p") + kana.substr(1) ] );
 				}
 				default: {
-					return [ prefixAmount[1] + "いち" + kana ];
+					return appendToNumberArray( prefixAmount, [ "いち" + kana ] );
 				}
 			}
 		} else if (lastAmountDigit == 2) {
 			prefixAmount = Japanese.getNumber(Math.floor(amount - 2), false);
-			return [ prefixAmount[1] + "に" + kana ];
+			return appendToNumberArray( prefixAmount, [ "に" + kana ] );
 		} else if (lastAmountDigit == 3) {
 			prefixAmount = Japanese.getNumber(Math.floor(amount - 3), false);
 			switch (counterDefaultRomaji[0]) {
 				case "h":
 				case "w": {
-					return [ prefixAmount[1] + "さん" + Japanese.changeFirstKanaSound(kana[0], "b") + kana.substr(1) ];
+					return appendToNumberArray( prefixAmount, [ "さん" + Japanese.changeFirstKanaSound(kana[0], "b") + kana.substr(1) ] );
 				}
 				case "f": {
-					return [ prefixAmount[1] + "さん" + Japanese.changeFirstKanaSound(kana[0], "p") + kana.substr(1) ];
+					return appendToNumberArray( prefixAmount, [ "さん" + Japanese.changeFirstKanaSound(kana[0], "p") + kana.substr(1) ] );
 				}
 				default: {
-					return [ prefixAmount[1] + "さん" + kana ];
+					return appendToNumberArray( prefixAmount, [ "さん" + kana ] );
 				}
 			}
 		} else if (lastAmountDigit == 4) {
@@ -450,59 +502,59 @@
 			switch (counterDefaultRomaji[0]) {
 				case "h":
 				case "f": {
-					return [ prefixAmount[1] + "よん" + Japanese.changeFirstKanaSound(kana[0], "h") + kana.substr(1) ];
+					return appendToNumberArray( prefixAmount, [ "よん" + Japanese.changeFirstKanaSound(kana[0], "h") + kana.substr(1) ] );
 				}
 				case "w": {
 					return [ "????" ];
 				}
 				default: {
-					return [ prefixAmount[1] + "よん" + kana ];
+					return appendToNumberArray( prefixAmount, [ "よん" + kana ] );
 				}
 			}
 		} else if (lastAmountDigit == 5) {
 			prefixAmount = Japanese.getNumber(Math.floor(amount - 5), false);
-			return [ prefixAmount[1] + "ご" + kana ];
+			return appendToNumberArray( prefixAmount, [ "ご" + kana ] );
 		} else if (lastAmountDigit == 6) {
 			prefixAmount = Japanese.getNumber(Math.floor(amount - 6), false);
 			switch (counterDefaultRomaji[0]) {
 				case "k": {
-					return [ prefixAmount[1] + "ろっ" + kana ];
+					return appendToNumberArray( prefixAmount,  [ "ろっ" + kana ] );
 				}
 				case "h":
 				case "f":
 				case "p": {
-					return [ prefixAmount[1] + "ろっ" + Japanese.changeFirstKanaSound(kana[0], "p") + kana.substr(1) ];
+					return appendToNumberArray( prefixAmount, [ "ろっ" + Japanese.changeFirstKanaSound(kana[0], "p") + kana.substr(1) ] );
 				}
 				default: {
-					return [ prefixAmount[1] + "ろく" + kana ];
+					return appendToNumberArray( prefixAmount, [ "ろく" + kana ] );
 				}
 			}
 		} else if (lastAmountDigit == 7) {
 			prefixAmount = Japanese.getNumber(Math.floor(amount - 7), false);
-			return [ prefixAmount[1] + "なな" + kana, prefixAmount[1] + "しち" + kana ];
+			return appendToNumberArray( prefixAmount, [ "なな" + kana, "しち" + kana ] );
 		} else if (lastAmountDigit == 8) {
 			prefixAmount = Japanese.getNumber(Math.floor(amount - 8), false);
 			switch (counterDefaultRomaji[0]) {
 				case "k":
 				case "s": {
-					return [ prefixAmount[1] + "はっ" + Japanese.changeFirstKanaSound(kana[0], "k") + kana.substr(1) ];
+					return appendToNumberArray( prefixAmount, [ "はっ" + Japanese.changeFirstKanaSound(kana[0], "k") + kana.substr(1) ] );
 				}
 				case "t":
 				case "c": {
-					return [ prefixAmount[1] + "はっ" + Japanese.changeFirstKanaSound(kana[0], "t") + kana.substr(1) ];
+					return appendToNumberArray( prefixAmount, [ "はっ" + Japanese.changeFirstKanaSound(kana[0], "t") + kana.substr(1) ] );
 				}
 				case "h":
 				case "f":
 				case "p": {
-					return [ prefixAmount[1] + "はっ" + Japanese.changeFirstKanaSound(kana[0], "p") + kana.substr(1) ];
+					return appendToNumberArray( prefixAmount, [ "はっ" + Japanese.changeFirstKanaSound(kana[0], "p") + kana.substr(1) ] );
 				}
 				default: {
-					return [ prefixAmount[1] + "はち" + kana ];
+					return appendToNumberArray( prefixAmount, [ "はち" + kana ] );
 				}
 			}
 		} else if (lastAmountDigit == 9) {
 			prefixAmount = Japanese.getNumber(Math.floor(amount - 9), false);
-			return [ prefixAmount[1] + "きゅう" + kana ];
+			return appendToNumberArray( prefixAmount, [ "きゅう" + kana ] );
 		}
 	}
 	
@@ -570,7 +622,7 @@
 						max = (value["max"] ? Number.parseInt(value["max"]) : DEFAULT_MAX);
 						counters = value["counters"];
 						if (min == NaN) {
-							min = 0;
+							min = 1;
 						}
 						if (max == NaN) {
 							max = DEFAULT_MAX;
@@ -615,6 +667,55 @@
 	};
 	
 	// -------------------------------------------- QUIZMASTER
+	function createQuestion (item, amount) {
+		var allAnswers = [],
+			localAnswers,
+			number;
+			
+		$.each(item["counters"], function (index, counterKanji) {
+			if (COUNTERS[counterKanji]) {
+				number = Japanese.getNumber(amount, false);
+				if (COUNTERS[counterKanji]["irregulars"][amount.toString()]) {
+					allAnswers.push({
+						"counterKanji": counterKanji,
+						"counterKana": COUNTERS[counterKanji]["kana"],
+						"counterRule": COUNTERS[counterKanji]["rule"],
+						"setName": item["setName"],
+						"isIrregular": true,
+						"kana": COUNTERS[counterKanji]["irregulars"][amount.toString()],
+						"kanji": number[0] + counterKanji
+					});
+				} else {
+					localAnswers = Japanese.conjugateKanaForCounter(amount, COUNTERS[counterKanji]["kana"]);
+					$.each(localAnswers, function (index, kanaAnswer) {
+						allAnswers.push({
+							"counterKanji": counterKanji,
+							"counterKana": COUNTERS[counterKanji]["kana"],
+							"counterRule": COUNTERS[counterKanji]["rule"],
+							"setName": item["setName"],
+							"isIrregular": false,
+							"kana": kanaAnswer,
+							"kanji": number[0] + counterKanji
+						});
+					});
+				}
+			}
+		});
+			
+		return {
+			"amount": amount,
+			"conjugatedEnglish": (amount == 1 ? item["singular"] : item["plural"]),
+			"answers": allAnswers,
+			"encouragement": ENCOURAGEMENTS[Math.floor(Math.random() * ENCOURAGEMENTS.length)]
+		};
+	}
+	function getRandomItem() {
+		return ITEMS[Math.floor(Math.random() * ITEMS.length)];
+	}
+	function getRandomAmountForItem(item) {
+		return item["min"] + Math.floor(Math.random() * (item["max"] - item["min"]));
+	}
+	
 	window.QuizMaster = {};
 	window.QuizMaster.toggleSet = function (set, callback) {
 		Counters.load(set, function (wasLoaded) {
@@ -637,47 +738,25 @@
 	window.QuizMaster.hasEnabledSets = function () {
 		return (LOADED_COUNTER_SETS.length - DISABLED_COUNTER_SETS.length > 0);
 	}
+	
+	window.QuizMaster.getRandomQuestionForAmount = function (amount) {
+		var randomItem;
+		
+		if (amount > DEFAULT_MAX) {
+			console.error("You cannot ask for an amount greater than " + amount.toString() + "! Returning totally random question.");
+			return QuizMaster.getRandomQuestion();
+		}
+			
+		do {
+			randomItem = getRandomItem();
+		} while (randomItem.max < amount);
+		
+		return createQuestion(randomItem, amount);
+	}
+	
 	window.QuizMaster.getRandomQuestion = function () {
-		var randomItem = ITEMS[Math.floor(Math.random() * ITEMS.length)],
-			randomAmount = randomItem["min"] + Math.floor(Math.random() * (randomItem["max"] - randomItem["min"])),
-			allAnswers = [],
-			localAnswers,
-			number;
-			
-		$.each(randomItem["counters"], function (index, counterKanji) {
-			if (COUNTERS[counterKanji]) {
-				number = Japanese.getNumber(randomAmount, false);
-				if (COUNTERS[counterKanji]["irregulars"][randomAmount.toString()]) {
-					allAnswers.push({
-						"counterKanji": counterKanji,
-						"counterKana": COUNTERS[counterKanji]["kana"],
-						"counterRule": COUNTERS[counterKanji]["rule"],
-						"isIrregular": true,
-						"kana": COUNTERS[counterKanji]["irregulars"][randomAmount.toString()],
-						"kanji": number[0] + counterKanji
-					});
-				} else {
-					localAnswers = Japanese.conjugateKanaForCounter(randomAmount, COUNTERS[counterKanji]["kana"]);
-					$.each(localAnswers, function (index, kanaAnswer) {
-						allAnswers.push({
-							"counterKanji": counterKanji,
-							"counterKana": COUNTERS[counterKanji]["kana"],
-							"counterRule": COUNTERS[counterKanji]["rule"],
-							"isIrregular": false,
-							"kana": kanaAnswer,
-							"kanji": number[0] + counterKanji
-						});
-					});
-				}
-			}
-		});
-			
-		return {
-			"setName": randomItem["setName"],
-			"amount": randomAmount,
-			"conjugatedEnglish": (randomAmount == 1 ? randomItem["singular"] : randomItem["plural"]),
-			"answers": allAnswers,
-			"encouragement": ENCOURAGEMENTS[Math.floor(Math.random() * ENCOURAGEMENTS.length)]
-		};
+		var randomItem = getRandomItem(),
+			randomAmount = getRandomAmountForItem(randomItem);
+		return createQuestion(randomItem, randomAmount);
 	};
 })();

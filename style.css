@@ -82,6 +82,11 @@ div.quizRoom h1 rt {
 	font-size: 12px;
 }
 
+div.quizRoom button {
+	margin-top: 50px;
+	font-size: 32px;
+}
+
 div.quizRoom div.subheader {
 	width: 47%;
 	display: inline-block;
@@ -124,9 +129,22 @@ div.quizRoom div.letsBegin div.explanation {
 	margin-top: 20px;
 }
 
-div.quizRoom div.letsBegin button {
-	margin-top: 50px;
-	font-size: 32px;
+div.quizRoom div.quiz {
+	position: relative;
+}
+
+div.quizRoom div.quiz div.score {
+	margin: 20px;
+	border: 3px solid #CDAD00;
+	border-radius: 3px;
+	background-color: #FFF8DC;
+	position: absolute;
+	padding: 10px 40px;
+	font-size: 13px;
+}
+
+div.quizRoom div.quiz div.score  div.scorePercent {
+	font-size: 36px;
 }
 
 div.quizRoom div.quiz div.superheader {
@@ -151,6 +169,7 @@ div.quizRoom div.quiz input.answerInput {
 	border-radius: 5px;
 	padding: 5px;
 	text-align: center;
+	background-color: #FFF4FF;
 }
 
 div.quizRoom div.quiz div.encouragement {
@@ -176,6 +195,7 @@ div.quizRoom div.quiz div.answerPanel div.grade {
 	border-radius: 200px;
 	text-align: center;
 	padding-top: 60px;
+	float: left;
 }
 
 div.quizRoom div.quiz div.answerPanel div.grade.correct {
@@ -188,4 +208,78 @@ div.quizRoom div.quiz div.answerPanel div.grade.incorrect {
 	color: #A02422;
 	border-color: #EE6363;
 	background-color: #FFCCCC;
+}
+
+div.quizRoom div.quiz div.answerPanel div.grade rt {
+	font-size: 20%;
+}
+
+div.quizRoom div.quiz div.answerPanel div.answerHeader {
+	font-weight: bold;
+	font-size: 40px;
+	text-align: left;
+	margin-top: 20px;
+	margin-left: 250px; /* we have to take care about the float:left 200px width grade circle */
+	border-bottom: 1px solid black;
+}
+
+div.quizRoom div.quiz div.answerPanel div.answerHeader.correct {
+	color: #397D02;
+	border-bottom-color: #629632;
+}
+
+div.quizRoom div.quiz div.answerPanel div.answerHeader.incorrect {
+	color: #A02422;
+	border-bottom-color: #EE6363;
+}
+
+div.quizRoom div.quiz div.answerPanel div.answerText {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+div.quizRoom div.quiz div.answerPanel table.possibleAnswers {
+	margin-left: 250px;
+	margin-top: 10px;
+	border-collapse: collapse;
+}
+
+div.quizRoom div.quiz div.answerPanel table.possibleAnswers th {
+	width: 200px;
+	border-bottom: 1px solid #5C328C;
+	min-width: 200px;
+}
+
+div.quizRoom div.quiz div.answerPanel table.possibleAnswers td {
+	padding: 10px;
+	border-left: 1px solid #E3B9FF;
+}
+
+div.quizRoom div.quiz div.answerPanel table.possibleAnswers td:first-of-type {
+	border-left: none;
+}
+
+div.quizRoom div.quiz div.answerPanel table.possibleAnswers td.counter {
+	font-size: 20px;
+}
+
+div.quizRoom div.quiz div.answerPanel table.possibleAnswers td.rule {
+	font-size: 11px;
+}
+
+div.quizRoom div.quiz div.answerPanel table.possibleAnswers td.usersInput {
+	color: green;
+}
+
+div.quizRoom div.quiz div.answerPanel table.possibleAnswers td.usersInput span.tick {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	background: url('tick.png') no-repeat;
+	margin-right: 10px;
+}
+
+div.quizRoom div.quiz div.answerPanel table.possibleAnswers td div.irregular {
+	font-size: 11px;
+	color: red;
 }

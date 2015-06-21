@@ -26,12 +26,19 @@
 				$("#sidePanel").height(Math.max(documentHeight, windowHeight));
 			}
 			
+			function refreshScorePanel() {
+				$("#score").show();
+				$('#scorePercent').text(Math.round((CORRECT_ANSWERS / TOTAL_QUESTIONS) * 100).toString() + "%");
+				$("#scoreBreakdown").text(CORRECT_ANSWERS.toString() + " / " + TOTAL_QUESTIONS.toString());
+			}
+			
 			$(document.body).ready(function () {
 				$("#beginButton").prop('disabled', !QuizMaster.hasEnabledSets());
 				$("#answerInput").kana({mode: "hiragana"});
 				$("#answerInput").keypress(function(e) {
 					refreshLetsCheckButton();
 					if (e.which === 13) {
+						JUST_HIT_ENTER_TO_SUBMIT = true;
 						submitAnswer();
 					}
 				}).keyup(function () {
@@ -44,14 +51,31 @@
 				}).resize();
 			});
 			
-			var CURRENT_QUESTION;
+			$(window).keypress(function(e) {
+				if (READY_TO_CONTINUE && e.which === 13) {
+					if (JUST_HIT_ENTER_TO_SUBMIT) {
+						JUST_HIT_ENTER_TO_SUBMIT = false;
+					} else {
+						startQuestion();
+					}
+				}
+			});
+			
+			var CURRENT_QUESTION,
+				TOTAL_QUESTIONS = 0,
+				CORRECT_ANSWERS = 0,
+				JUST_HIT_ENTER_TO_SUBMIT = false,
+				READY_TO_CONTINUE = false;
+			
+			
 			function startQuestion() {
 				CURRENT_QUESTION = QuizMaster.getRandomQuestion();
 				$('#questionText').text(CURRENT_QUESTION["amount"].toString() + " " + CURRENT_QUESTION["conjugatedEnglish"]);
 				$('#encouragement').text(CURRENT_QUESTION["encouragement"]);
-				$('#answerInput').val("").prop('disabled', false);
+				$('#answerInput').val("").prop('disabled', false).focus();
 				$('#letsCheck').prop('disabled', true);
 				$('#answerPanel').hide();
+				READY_TO_CONTINUE = false;
 			}
 			
 			function submitAnswer() {
@@ -59,23 +83,112 @@
 					isInputCorrect = false,
 					index;
 			
+				if (inputAnswer.toLowerCase().endsWith('n')) {
+					inputAnswer = inputAnswer.substr(0, inputAnswer.length - 1) + 'ん';
+					$('#answerInput').val(inputAnswer);
+				}
+			
 				$('#answerInput').prop('disabled', true);
 				$('#letsCheck').prop('disabled', true);
 				$('#answerPanel').show();
 				
 				for (index = 0; index < CURRENT_QUESTION.answers.length; ++index) {
-					if (inputAnswer == CURRENT_QUESTION.answers.kana) {
+					if (inputAnswer == CURRENT_QUESTION.answers[index].kana) {
 						isInputCorrect = true;
 					}
 				}
 				
-				debugger;
+				++TOTAL_QUESTIONS;
 				
 				if (isInputCorrect) {
-					$('#grade').removeClass('incorrect').addClass('correct').text('正解');
+					$('#grade').removeClass('incorrect').addClass('correct');
+					$('#answerHeader').removeClass('incorrect').addClass('correct').text('CORRECT!!');
+					$('#gradeKanji').text('正解');
+					$('#gradeFurigana').text('せいかい');
+					
+					++CORRECT_ANSWERS;
+					
 				} else {
-					$('#grade').removeClass('correct').addClass('incorrect').text('不正解');
+					$('#grade').removeClass('correct').addClass('incorrect');
+					$('#answerHeader').removeClass('correct').addClass('incorrect').text('Not quite right...');
+					$('#gradeKanji').text('不正解');
+					$('#gradeFurigana').text('ふせいかい');
 				}
+				
+				refreshScorePanel();
+				
+				$('#possibleAnswers tr').slice(1).remove();
+				var answersTable = $('#possibleAnswers'),
+					subindex,
+					previousCounterKanji,
+					tempCell,
+					tempHiragana,
+					rowspan,
+					tempRow;
+				for (index = 0; index < CURRENT_QUESTION.answers.length; ++index) {
+					tempRow = $(document.createElement('tr'));
+					
+					if (CURRENT_QUESTION.answers[index].counterKanji !== previousCounterKanji) {
+						rowspan = 1;
+						for (subindex = index + 1; subindex < CURRENT_QUESTION.answers.length; ++subindex) {
+							if (CURRENT_QUESTION.answers[subindex].counterKanji !== CURRENT_QUESTION.answers[index].counterKanji) {
+								break;
+							}
+							++rowspan;
+						}
+						previousCounterKanji = CURRENT_QUESTION.answers[index].counterKanji;
+						
+						// Counter
+						tempCell = $(document.createElement('td'));
+						tempCell.attr('rowspan', rowspan);
+						tempCell.addClass('japanese').addClass('counter');
+						tempCell.append(
+							$(document.createElement('ruby')).append(
+								$(document.createElement('rb')).text(CURRENT_QUESTION.answers[index].counterKanji)
+							).append(
+								$(document.createElement('rt')).text(CURRENT_QUESTION.answers[index].counterKana)
+							)
+						);
+						tempRow.append(tempCell);
+						
+						// Set
+						tempCell = $(document.createElement('td'));
+						tempCell.text(CURRENT_QUESTION.answers[index].setName);
+						tempRow.append(tempCell);
+						
+						// Rule
+						tempCell = $(document.createElement('td'));
+						tempCell.text(CURRENT_QUESTION.answers[index].counterRule);
+						tempCell.addClass('rule');
+						tempRow.append(tempCell);
+						
+						// Kanji Reading
+						tempCell = $(document.createElement('td'));
+						tempCell.append(CURRENT_QUESTION.answers[index].kanji);
+						tempCell.attr('rowspan', rowspan);
+						tempCell.addClass('japanese');
+						tempRow.append(tempCell);
+					}
+										
+					// Kana Reading
+					tempCell = $(document.createElement('td'));
+					tempCell.addClass('japanese');
+					tempHiragana = $(document.createElement('span'));
+					tempHiragana.text(CURRENT_QUESTION.answers[index].kana);
+					if (CURRENT_QUESTION.answers[index].kana === inputAnswer) {
+						tempCell.addClass('usersInput');
+						tempCell.append($(document.createElement('span')).addClass('tick'));
+					}
+					tempCell.append(tempHiragana);
+					if (CURRENT_QUESTION.answers[index].isIrregular) {
+						tempCell.append($(document.createElement('div')).text('(IRREGULAR!)').addClass('irregular'));
+					}
+					tempRow.append(tempCell);
+					
+					answersTable.append(tempRow);
+				}
+				
+				READY_TO_CONTINUE = true;
 			}
 			
 			function letsBegin() {
@@ -89,7 +202,7 @@
 		<div class="sidePanel" id="sidePanel">
 			<h5>Counter Sets</h5>
 			<div class="inner">
-				<input type="checkbox" id="set_n5" onchange="toggleSet('counters_n5');" /> <label for="set_n5">JLPT N5</label>
+				<input type="checkbox" id="set_n5" onchange="toggleSet('counters_n5');" /> <label for="set_n5">JLPT n5</label>
 				<div style="text-align:center;"><small>(A lot more are coming soon)</small></div>
 			</div>
 			
@@ -138,6 +251,12 @@
 				<button id="beginButton" disabled="disabled" onclick="letsBegin();">Begin!</button>
 			</div>
 			<div class="quiz" id="quiz" style="display: none;">
+				<div class="score" id="score" style="display:none;">
+					Current Score:
+					<div id="scorePercent" class="scorePercent"></div>
+					<div id="scoreBreakdown" class="scoreBreakdown"></div>
+				</div>
+			
 				<div class="superheader">In Japanese, how would you count:</div>
 				<div class="questionText" id="questionText"></div>
 				<input type="text" id="answerInput" class="answerInput" />
@@ -145,7 +264,25 @@
 				<button id="letsCheck" class="letsCheck" onclick="submitAnswer()">Let's Check!</button>
 				
 				<div class="answerPanel" id="answerPanel" style="display: none;">
-					<div class="grade japanese" id="grade">成功</div>
+					<div class="grade japanese" id="grade">
+						<ruby>
+							<rb id="gradeKanji">成功</rb>
+							<rt id="gradeFurigana"></rt>
+						</ruby>
+					</div>
+					<div class="answerHeader" id="answerHeader"></div>
+					<div class="answerText">Here are all of the possible answers that I know of at the moment from the sets that you've got enabled:</div>
+					<table id="possibleAnswers" class="possibleAnswers">
+						<tr>
+							<th>Counter</th>
+							<th>Set</th>
+							<th>Rule</th>
+							<th>Kanji Reading</th>
+							<th>Hiragana Reading</th>
+						</tr>
+					</table>
+					
+					<button onclick="startQuestion();">Next!</button>
 				</div>
 			</div>
 		</div>
