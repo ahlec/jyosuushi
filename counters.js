@@ -689,14 +689,17 @@
         return LOADED_COUNTER_SETS;
     };
     window.Counters.getNumberSetCounters = function (set) {
-        var total = 0,
+        return Counters.getSet(set).length;
+    };
+    window.Counters.getSet = function (set) {
+        var counters = [],
             index;
         $.each(COUNTERS, function (counterKanji, counter) {
             if (counter.set === set) {
-                ++total;
+                counters.push(counter);
             }
         });
-        return total;
+        return counters;
     };
     
     // -------------------------------------------- QUIZMASTER

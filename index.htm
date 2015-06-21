@@ -30,10 +30,13 @@
                 button.prop('disabled', (currentValue.length === 0));
             }
             
-            function refreshSidePanelHeight() {
+            function refreshHeights() {
                 var documentHeight = $(document).height(),
-                    windowHeight = $(window).height();
-                $("#sidePanel").height(Math.max(documentHeight, windowHeight));
+                    windowHeight = $(window).height(),
+                    newHeight = Math.max(documentHeight, windowHeight);
+                $("#sidePanel").height(newHeight);
+                $('div.counterBackground').height(newHeight);
+                $('#loadingScreen').height(newHeight);
             }
             
             function refreshScorePanel() {
@@ -57,7 +60,8 @@
                     refreshLetsCheckButton();
                 });
                 $(window).resize(function () {
-                    refreshSidePanelHeight();
+                    refreshHeights();
+                    
                 }).resize();
                 
                 Counters.loadAll(ALL_SETS, function () {
@@ -67,16 +71,73 @@
                         var container = $(document.createElement("span")),
                             checkbox = $(document.createElement("input")),
                             label = $(document.createElement("label")),
+                            viewSpan = $(document.createElement("span")),
                             numberCountersThisSet = Counters.getNumberSetCounters(set);
                         checkbox.attr('type', 'checkbox');
                         checkbox.attr('id', 'checkboxSet-' + set);
                         checkbox.click(function () {
                             toggleSet(set);
                         });
-                        label.text(setName + ' (' + numberCountersThisSet.toString() + ' counter' + (numberCountersThisSet != 1 ? 's' : '') + ')');
+                        label.text(setName);
                         label.attr('for', 'checkboxSet-' + set);
+                        viewSpan.append('(');
+                        viewSpan.append($(document.createElement('span')).text(numberCountersThisSet.toString() + ' counter' + (numberCountersThisSet != 1 ? 's' : '')));
+                        viewSpan.append(')');
+                        viewSpan.addClass('viewCounters');
+                        viewSpan.click(function () {
+                            var background = $(document.createElement('div')).addClass('counterBackground'),
+                                container = $(document.createElement('div')).addClass('container'),
+                                header = $(document.createElement('div')).addClass('setName'),
+                                table = $(document.createElement('table')),
+                                tempRow,
+                                tempCell,
+                                counters = Counters.getSet(set),
+                                closeButton = $(document.createElement('button')),
+                                index;
+                            header.text(setName);
+                            
+                            for (index = 0; index < counters.length; ++index) {
+                                tempRow = $(document.createElement('tr'));
+                                
+                                tempCell = $(document.createElement('td'));
+                                tempCell.append($(document.createElement('ruby')).append(
+                                        $(document.createElement('rb')).text(counters[index].kanji)
+                                   ).append(
+                                        $(document.createElement('rt')).text(counters[index].kana)
+                                ));
+                                tempCell.addClass('japanese').addClass('counter');
+                                tempRow.append(tempCell);
+                                
+                                tempCell = $(document.createElement('td'));
+                                tempCell.addClass('rule');
+                                tempCell.text(counters[index].rule);
+                                tempRow.append(tempCell);
+                                
+                                table.append(tempRow);
+                            }
+                            
+                            closeButton.text('Close');
+                            
+                            container.append(header).append(table).append(closeButton);
+                            background.append(container);
+                            $(document.body).append(background);
+                            
+                            container.click(function (e) {
+                                e.stopPropagation();
+                            });
+                            
+                            closeButton.click(function () {
+                                background.remove();
+                            });
+                            
+                            background.click(function () {
+                                background.remove();
+                            });
+                        });
                         container.append(checkbox);
                         container.append(label);
+                        container.append(viewSpan);
+                        container.addClass('set');
                         setsPanel.append(container);
                     });
                 });
@@ -89,6 +150,10 @@
                     } else {
                         startQuestion();
                     }
+                }
+            }).keyup(function(e) {
+                if (e.which === 27) {
+                    $('div.counterBackground').remove();
                 }
             });
             
