@@ -1,6 +1,7 @@
 (function () {
 	/* class Item {
 			"setName": "",
+			"set": "",
 			"singular": "",
 			"plural": "",
 			"min": ##,
@@ -10,6 +11,8 @@
 	*/
 	
 	/* class Counter {
+			"setName": "",
+			"set": "",
 			"kanji": "",
 			"kana": "",
 			"rule": "",
@@ -40,8 +43,8 @@
 		COUNTERS = {}, // dictionay where the format is KANJI:Counter object
 		DEFAULT_MAX = 100,
 		KANA_CHART,
-		LOADED_COUNTER_SETS = [],
-		DISABLED_COUNTER_SETS = [],
+		LOADED_COUNTER_SETS = {}, // dictionary where format is SET:Set name (ie, "counters_n5":"JLPT n5")
+		ENABLED_COUNTER_SETS = [], // array of SETS (ie, [ "counters_n5" ])
 		POSTKANA_MODIFIERS = [ "ぁ", "ぃ", "ぅ", "ぇ", "ぉ", "ゃ", "ゅ", "ょ", "っ" ],
 		ENCOURAGEMENTS;
 		
@@ -561,7 +564,7 @@
 	// -------------------------------------------- COUNTERS
 	window.Counters = {};
 	window.Counters.load = function (set, callback) {
-		if (LOADED_COUNTER_SETS.indexOf(set) >= 0) {
+		if (LOADED_COUNTER_SETS[set]) {
 			if (typeof callback === "function") {
 				callback(false); // wasn't loaded
 			}
@@ -631,6 +634,7 @@
 					
 					ITEMS.push({
 						"setName": data["setName"],
+						"set": set,
 						"singular": key,
 						"plural": plural,
 						"min": min,
@@ -645,6 +649,8 @@
 				
 				if (counterIndex < 0) {
 					COUNTERS[key] = {
+						"set": set,
+						"setName": data["setName"],
 						"kanji": key,
 						"kana": value["kana"],
 						"rule": value["rule"],
@@ -653,10 +659,24 @@
 				}
 			});
 			
-			LOADED_COUNTER_SETS.push(set);
+			LOADED_COUNTER_SETS[set] = data["setName"];
 			if (typeof callback === "function") {
 				callback(true); // wasloaded
 			}
+		});
+	};
+	window.Counters.loadAll = function (listOfSetNames, callback) {
+		var setsLoaded = 0;
+		
+		function setLoadedCallback() {
+			++setsLoaded;
+			if (setsLoaded === listOfSetNames.length && typeof callback === "function") {
+				callback();
+			}
+		}
+		
+		$.each(listOfSetNames, function (index, setName) {
+			Counters.load(setName, setLoadedCallback);
 		});
 	};
 	window.Counters.getAllItems = function () {
@@ -664,6 +684,19 @@
 	};
 	window.Counters.getAllCounters = function () {
 		return COUNTERS;
+	};
+	window.Counters.getAllSets = function () {
+		return LOADED_COUNTER_SETS;
+	};
+	window.Counters.getNumberSetCounters = function (set) {
+		var total = 0,
+			index;
+		$.each(COUNTERS, function (counterKanji, counter) {
+			if (counter.set === set) {
+				++total;
+			}
+		});
+		return total;
 	};
 	
 	// -------------------------------------------- QUIZMASTER
@@ -673,7 +706,7 @@
 			number;
 			
 		$.each(item["counters"], function (index, counterKanji) {
-			if (COUNTERS[counterKanji]) {
+			if (COUNTERS[counterKanji] && ENABLED_COUNTER_SETS.indexOf(COUNTERS[counterKanji]["set"]) >= 0) {
 				number = Japanese.getNumber(amount, false);
 				if (COUNTERS[counterKanji]["irregulars"][amount.toString()]) {
 					allAnswers.push({
@@ -701,6 +734,10 @@
 				}
 			}
 		});
+		
+		if (allAnswers.length === 0) {
+			return undefined;
+		}
 			
 		return {
 			"amount": amount,
@@ -710,37 +747,45 @@
 		};
 	}
 	function getRandomItem() {
+		if (!QuizMaster.hasEnabledSets()) {
+			return undefined;
+		}
 		return ITEMS[Math.floor(Math.random() * ITEMS.length)];
 	}
 	function getRandomAmountForItem(item) {
+		if (ENABLED_COUNTER_SETS.indexOf(item["set"]) < 0) {
+			return undefined;
+		}
 		return item["min"] + Math.floor(Math.random() * (item["max"] - item["min"]));
 	}
 	
 	window.QuizMaster = {};
 	window.QuizMaster.toggleSet = function (set, callback) {
-		Counters.load(set, function (wasLoaded) {
-			if (!wasLoaded) {
-				if (LOADED_COUNTER_SETS.indexOf(set) >= 0) {
-					var indexOfDisabled = DISABLED_COUNTER_SETS.indexOf(set);
-					if (indexOfDisabled < 0) {
-						DISABLED_COUNTER_SETS.push(set);
-					} else {
-						DISABLED_COUNTER_SETS.splice(indexOfDisabled, 1);
-					}
+		Counters.load(set, function (wasAlreadyLoaded) {
+			if (LOADED_COUNTER_SETS[set]) {
+				var indexOfEnabled = ENABLED_COUNTER_SETS.indexOf(set);
+				if (indexOfEnabled < 0) {
+					ENABLED_COUNTER_SETS.push(set);
+				} else {
+					ENABLED_COUNTER_SETS.splice(indexOfEnabled, 1);
 				}
 			}
-			
+		
 			if (typeof callback === "function") {
 				callback();
 			}
 		});
 	}
 	window.QuizMaster.hasEnabledSets = function () {
-		return (LOADED_COUNTER_SETS.length - DISABLED_COUNTER_SETS.length > 0);
+		return (ENABLED_COUNTER_SETS.length !== 0);
 	}
 	
 	window.QuizMaster.getRandomQuestionForAmount = function (amount) {
 		var randomItem;
+		
+		if (!QuizMaster.hasEnabledSets()) {
+			return undefined;
+		}
 		
 		if (amount > DEFAULT_MAX) {
 			console.error("You cannot ask for an amount greater than " + amount.toString() + "! Returning totally random question.");
@@ -749,12 +794,16 @@
 			
 		do {
 			randomItem = getRandomItem();
-		} while (randomItem.max < amount);
+		} while (randomItem && randomItem.max < amount);
 		
 		return createQuestion(randomItem, amount);
 	}
 	
 	window.QuizMaster.getRandomQuestion = function () {
+		if (!QuizMaster.hasEnabledSets()) {
+			return undefined;
+		}
+		
 		var randomItem = getRandomItem(),
 			randomAmount = getRandomAmountForItem(randomItem);
 		return createQuestion(randomItem, randomAmount);

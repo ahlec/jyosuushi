@@ -3,14 +3,24 @@
 	<head>
 		<title>Japanese Counter Testing</title>
 		<script src="jquery.js"></script>
+		<script src="setsList.js"></script>
 		<script src="counters.js"></script>
 		<script src="jquery.kana.js"></script>
 		<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 		<link href="style.css" rel="stylesheet" />
 		<script>
 			function toggleSet(setName) {
+				var originallyHadEnabledSets = QuizMaster.hasEnabledSets();
 				QuizMaster.toggleSet(setName, function () {
-					$("#beginButton").prop('disabled', !QuizMaster.hasEnabledSets());
+					var nowHasEnabledSets = QuizMaster.hasEnabledSets();
+					$("#beginButton").prop('disabled', !nowHasEnabledSets);
+					if (originallyHadEnabledSets != nowHasEnabledSets) {
+						TOTAL_QUESTIONS = 0;
+						CORRECT_ANSWERS = 0;
+						$('#score').hide();
+						$('#letsBegin').show();
+						$('#quiz').hide();
+					}
 				});
 			}
 			
@@ -49,6 +59,27 @@
 				$(window).resize(function () {
 					refreshSidePanelHeight();
 				}).resize();
+				
+				Counters.loadAll(ALL_SETS, function () {
+					$('#loadingScreen').remove();
+					var setsPanel = $("#setsPanel");
+					$.each(Counters.getAllSets(), function (set, setName) {
+						var container = $(document.createElement("span")),
+							checkbox = $(document.createElement("input")),
+							label = $(document.createElement("label")),
+							numberCountersThisSet = Counters.getNumberSetCounters(set);
+						checkbox.attr('type', 'checkbox');
+						checkbox.attr('id', 'checkboxSet-' + set);
+						checkbox.click(function () {
+							toggleSet(set);
+						});
+						label.text(setName + ' (' + numberCountersThisSet.toString() + ' counter' + (numberCountersThisSet != 1 ? 's' : '') + ')');
+						label.attr('for', 'checkboxSet-' + set);
+						container.append(checkbox);
+						container.append(label);
+						setsPanel.append(container);
+					});
+				});
 			});
 			
 			$(window).keypress(function(e) {
@@ -204,7 +235,8 @@
 		<div class="sidePanel" id="sidePanel">
 			<h5>Counter Sets</h5>
 			<div class="inner">
-				<input type="checkbox" id="set_n5" onchange="toggleSet('counters_n5');" /> <label for="set_n5">JLPT n5</label>
+				<div class="setsPanel" id="setsPanel">
+				</div>
 				<div style="text-align:center;"><small>(A lot more are coming soon)</small></div>
 			</div>
 			
@@ -288,5 +320,6 @@
 				</div>
 			</div>
 		</div>
+		<div class="loadingScreen" id="loadingScreen"></div>
 	</body>
 </html>

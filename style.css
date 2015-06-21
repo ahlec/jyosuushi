@@ -58,6 +58,11 @@ div.sidePanel div.inner.small {
 	font-size: 15px;
 }
 
+div.sidePanel div.inner div.setsPanel {
+	font-size: 13px;
+	margin-bottom: 15px;
+}
+
 div.sidePanel div.credit {
 	position: absolute;
 	bottom: 30px;
@@ -282,4 +287,15 @@ div.quizRoom div.quiz div.answerPanel table.possibleAnswers td.usersInput span.t
 div.quizRoom div.quiz div.answerPanel table.possibleAnswers td div.irregular {
 	font-size: 11px;
 	color: red;
+}
+
+/****************** Loading Screen *******************/
+div.loadingScreen {
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	right: 0px;
+	left: 0px;
+	background-color: black;
+	opacity: 0.8;
 }
