@@ -1,0 +1,17 @@
+{
+  "name": "react-kana-input",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Alec Jacob Deitloff <alec.deitloff@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/react": "^16.8.9",
+    "@types/react-dom": "^16.8.3",
+    "prettier": "^1.16.4",
+    "react": "^16.8.5",
+    "react-dom": "^16.8.5",
+    "tslint": "^5.14.0",
+    "tslint-react": "^4.0.0",
+    "typescript": "^3.3.4000"
+  }
+}
