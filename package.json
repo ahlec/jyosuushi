@@ -4,13 +4,18 @@
   "main": "index.js",
   "author": "Alec Jacob Deitloff <alec.deitloff@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "clean": "rimraf ./build"
+  },
   "devDependencies": {
     "@types/react": "^16.8.9",
     "@types/react-dom": "^16.8.3",
     "prettier": "^1.16.4",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
+    "rimraf": "^2.6.3",
     "tslint": "^5.14.0",
+    "tslint-config-prettier": "^1.18.0",
     "tslint-react": "^4.0.0",
     "typescript": "^3.3.4000"
   }
