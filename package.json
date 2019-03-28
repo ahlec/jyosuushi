@@ -5,18 +5,26 @@
   "author": "Alec Jacob Deitloff <alec.deitloff@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "start": "webpack-dev-server",
+    "build": "webpack",
     "clean": "rimraf ./build"
   },
   "devDependencies": {
     "@types/react": "^16.8.9",
     "@types/react-dom": "^16.8.3",
+    "html-webpack-plugin": "^3.2.0",
     "prettier": "^1.16.4",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
     "rimraf": "^2.6.3",
+    "ts-loader": "^5.3.3",
     "tslint": "^5.14.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-react": "^4.0.0",
-    "typescript": "^3.3.4000"
+    "typescript": "^3.3.4000",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.2.1",
+    "webpack-hot-middleware": "^2.24.3"
   }
 }
