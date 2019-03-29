@@ -1,0 +1,9 @@
+@import "../palette.scss";
+
+.ScoreBar {
+  background-color: $palette-score-bar-background;
+  border-bottom: 3px solid $palette-score-bar-border;
+  padding: 4px;
+  font-size: 14px;
+  text-align: center;
+}
