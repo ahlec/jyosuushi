@@ -30,5 +30,8 @@
     "webpack-cli": "^3.3.0",
     "webpack-dev-server": "^3.2.1",
     "webpack-hot-middleware": "^2.24.3"
+  },
+  "dependencies": {
+    "meyer-reset-scss": "^2.0.4"
   }
 }

@@ -2434,6 +2434,10 @@ methods@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/methods/-/methods-1.1.2.tgz#5529a4d67654134edcc5266656835b0f851afcee"
 
+meyer-reset-scss@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/meyer-reset-scss/-/meyer-reset-scss-2.0.4.tgz#22d4eb7c4125e6efa6401dd1d91ba4389c0614bd"
+
 micromatch@^3.0.4, micromatch@^3.1.10, micromatch@^3.1.4, micromatch@^3.1.8:
   version "3.1.10"
   resolved "https://registry.yarnpkg.com/micromatch/-/micromatch-3.1.10.tgz#70859bc95c9840952f359a068a3fc49f9ecfac23"
