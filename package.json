@@ -5,8 +5,8 @@
   "author": "Alec Jacob Deitloff <alec.deitloff@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server",
-    "build": "webpack",
+    "start": "webpack-dev-server --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js",
     "clean": "rimraf ./build"
   },
   "devDependencies": {
@@ -29,7 +29,8 @@
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",
     "webpack-dev-server": "^3.2.1",
-    "webpack-hot-middleware": "^2.24.3"
+    "webpack-hot-middleware": "^2.24.3",
+    "webpack-merge": "^4.2.1"
   },
   "dependencies": {
     "meyer-reset-scss": "^2.0.4"

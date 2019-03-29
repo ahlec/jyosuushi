@@ -12,9 +12,8 @@ module.exports = {
   },
   output: {
     path: BUILD_DIRECTORY,
-    filename: "js/[name].bundle.js"
+    filename: "[name].js"
   },
-  devtool: "source-map",
   resolve: {
     extensions: [".js", ".jsx", ".json", ".ts", ".tsx", ".scss"]
   },
@@ -34,17 +33,13 @@ module.exports = {
             loader: "css-loader"
           },
           {
-            loader: "sass-loader",
-            options: {
-              sourceMap: true
-            }
+            loader: "sass-loader"
           }
         ]
       }
     ]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       template: path.resolve(SOURCE_DIRECTORY, "index.html")
     })
