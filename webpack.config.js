@@ -16,13 +16,30 @@ module.exports = {
   },
   devtool: "source-map",
   resolve: {
-    extensions: [".js", ".jsx", ".json", ".ts", ".tsx"]
+    extensions: [".js", ".jsx", ".json", ".ts", ".tsx", ".scss"]
   },
   module: {
     rules: [
       {
         test: /\.(ts|tsx)$/,
         loader: "ts-loader"
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          {
+            loader: "style-loader"
+          },
+          {
+            loader: "css-loader"
+          },
+          {
+            loader: "sass-loader",
+            options: {
+              sourceMap: true
+            }
+          }
+        ]
       }
     ]
   },
