@@ -12,6 +12,7 @@
   "devDependencies": {
     "@types/react": "^16.8.9",
     "@types/react-dom": "^16.8.3",
+    "@types/react-redux": "^7.0.5",
     "css-loader": "^2.1.1",
     "html-webpack-plugin": "^3.2.0",
     "node-sass": "^4.11.0",
@@ -33,6 +34,9 @@
     "webpack-merge": "^4.2.1"
   },
   "dependencies": {
-    "meyer-reset-scss": "^2.0.4"
+    "meyer-reset-scss": "^2.0.4",
+    "react-redux": "^6.0.1",
+    "redux": "^4.0.1",
+    "redux-devtools-extension": "^2.13.8"
   }
 }
