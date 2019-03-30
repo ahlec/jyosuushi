@@ -227,6 +227,7 @@ const Hiragana = new KanaDefinition(
     cc: "っc",
     vv: "っv",
     bb: "っb",
+    ww: "っw",
     nn: "ん",
     mm: "っm",
     nq: "んq",

@@ -1,0 +1,15 @@
+@import "../../palette.scss";
+
+.AnswerInput {
+  display: flex;
+
+  input {
+    flex: 1;
+    font-size: 48px;
+    text-align: center;
+    outline: none;
+    color: $palette-answer-input-color;
+    background-color: $palette-answer-input-background;
+    border: 3px solid $palette-answer-input-border;
+  }
+}

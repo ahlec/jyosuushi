@@ -11,4 +11,6 @@ body,
   position: relative;
   height: 100%;
   background-color: $palette-background-color;
+  display: flex;
+  flex-direction: column;
 }

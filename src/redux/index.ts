@@ -11,18 +11,32 @@ export interface Scorecard {
 
 export interface Counter {
   counterId: string;
+  name: string;
+  kana: string;
+  kanji: string | null;
+  irregulars: ReadonlyMap<number, string>;
 }
 
 export interface Item {
   itemId: string;
+  counters: ReadonlyArray<string>;
   singular: string;
   plural: string;
+  minQuantity: number;
+  maxQuantity: number;
+}
+
+export interface Answer {
+  counterId: string;
+  isIrregular: boolean;
+  kana: string;
+  kanji: string;
 }
 
 export interface Question {
   amount: number;
-  counterId: string;
   itemId: string;
+  validAnswers: ReadonlyArray<Answer>;
 }
 
 export interface State {
