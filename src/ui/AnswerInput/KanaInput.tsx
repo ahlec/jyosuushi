@@ -1,9 +1,10 @@
 import * as React from "react";
 
-import { HIRAGANA_LOOKUP } from "./kana-lookups";
+import { KanaDefinition } from "../../data/kana";
 
 interface ComponentProps {
-  onChange?: (value: string, isValid: boolean) => void;
+  kana: KanaDefinition;
+  onChange?: (value: string) => void;
 }
 
 interface ComponentState {
@@ -68,6 +69,7 @@ export default class KanaInput extends React.PureComponent<
   }
 
   private handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { kana, onChange } = this.props;
     const currentPosition = event.target.selectionStart || 0;
     let buffer = this.applyChangeEventToBuffer(event, currentPosition);
 
@@ -75,18 +77,18 @@ export default class KanaInput extends React.PureComponent<
     let temp = buffer;
     let rawValue = event.target.value;
     while (temp) {
-      const kana = HIRAGANA_LOOKUP[temp];
-      if (kana) {
+      const converted = kana.conversionChart[temp];
+      if (converted) {
         rawValue =
           rawValue.slice(0, currentPosition - temp.length) +
-          kana +
+          converted +
           rawValue.slice(currentPosition);
 
-        const newPosition = currentPosition - temp.length + kana.length;
+        const newPosition = currentPosition - temp.length + converted.length;
         lastPosition = newPosition;
         this.setCursor(newPosition);
 
-        buffer = getResetBufferForKana(kana);
+        buffer = getResetBufferForKana(converted);
         break;
       }
 
@@ -94,6 +96,9 @@ export default class KanaInput extends React.PureComponent<
     }
 
     this.setState({ buffer, lastPosition, rawValue });
+    if (onChange) {
+      onChange(rawValue);
+    }
   };
 
   private applyChangeEventToBuffer(
