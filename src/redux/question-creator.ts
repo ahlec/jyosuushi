@@ -1,10 +1,10 @@
 import { random } from "lodash";
 import { randomFromArray } from "../utils";
 import { ActionCreateQuestion } from "./actions";
-import { Answer, Counter, Item, Question, State } from "./index";
+import { Answer, Item, State } from "./index";
 
 export function createQuestion(
-  state: State,
+  _: State,
   item: Item,
   amount: number
 ): ActionCreateQuestion {
@@ -12,19 +12,19 @@ export function createQuestion(
     throw new Error(`Invalid question amount of: ${amount}`);
   }
 
-  const counters = item.counters.map(counterId => state.counters[counterId]);
+  // const counters = item.counters.map(counterId => state.counters[counterId]);
   const validAnswers: Answer[] = [];
-  for (const counter of counters) {
-    if (counter.irregulars.has(amount)) {
-      validAnswers.push({
-        counterId: counter.counterId,
-        isIrregular: true,
-        kana: counter.irregulars.get(amount)!,
-        kanji: ""
-      });
-    } else {
-    }
-  }
+  // for (const counter of counters) {
+  //   if (counter.irregulars.has(amount)) {
+  //     validAnswers.push({
+  //       counterId: counter.counterId,
+  //       isIrregular: true,
+  //       kana: counter.irregulars.get(amount)!,
+  //       kanji: ""
+  //     });
+  //   } else {
+  //   }
+  // }
 
   return {
     amount,
