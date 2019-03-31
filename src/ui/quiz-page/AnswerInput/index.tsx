@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import { HIRAGANA } from "../../../japanese/kana";
 import { AskNewQuestion } from "../../../QuestionManager";
-import { Question } from "../../../redux";
+import { Answer, Question } from "../../../redux";
 import { markCorrectAnswer, markIncorrectAnswer } from "../../../redux/actions";
 import { Dispatch } from "../../../redux/store";
 import KanaInput from "./KanaInput";
@@ -16,6 +16,7 @@ interface ProvidedProps {
   askNewQuestion: AskNewQuestion;
   currentQuestion: Question;
   enabled: boolean;
+  onAnswerSubmitted: (usersCorrectAnswer: Answer | null) => void;
 }
 
 type ComponentProps = ProvidedProps & { dispatch: Dispatch };
@@ -32,9 +33,15 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
   };
 
   public render() {
+    const { currentQuestion, enabled } = this.props;
     return (
       <div className="AnswerInput" onKeyDown={this.onKeyDown}>
-        <KanaInput kana={HIRAGANA} onChange={this.onChange} />
+        <KanaInput
+          currentQuestion={currentQuestion}
+          enabled={enabled}
+          kana={HIRAGANA}
+          onChange={this.onChange}
+        />
       </div>
     );
   }
@@ -53,25 +60,27 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
   };
 
   private submit() {
-    const { dispatch } = this.props;
+    const { dispatch, onAnswerSubmitted } = this.props;
     const { value } = this.state;
 
-    if (this.isCorrectAnswer(value)) {
+    const correct = this.getCorrectAnswer(value);
+    onAnswerSubmitted(correct);
+    if (correct) {
       dispatch(markCorrectAnswer());
     } else {
       dispatch(markIncorrectAnswer());
     }
   }
 
-  private isCorrectAnswer(value: string): boolean {
+  private getCorrectAnswer(value: string): Answer | null {
     const { currentQuestion } = this.props;
-    for (const { kana, kanji } of currentQuestion.validAnswers) {
-      if (kana === value || kanji === value) {
-        return true;
+    for (const answer of currentQuestion.validAnswers) {
+      if (answer.kana === value || answer.kanji === value) {
+        return answer;
       }
     }
 
-    return false;
+    return null;
   }
 }
 

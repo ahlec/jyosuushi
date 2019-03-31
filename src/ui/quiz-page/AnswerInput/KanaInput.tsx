@@ -1,8 +1,11 @@
 import * as React from "react";
 
 import { KanaDefinition } from "../../../japanese/kana";
+import { Question } from "../../../redux";
 
 interface ComponentProps {
+  currentQuestion: Question;
+  enabled: boolean;
   kana: KanaDefinition;
   onChange?: (value: string) => void;
 }
@@ -43,12 +46,21 @@ export default class KanaInput extends React.PureComponent<
   };
   private inputRef = React.createRef<HTMLInputElement>();
 
+  public componentDidUpdate({ currentQuestion: prevQuestion }: ComponentProps) {
+    const { currentQuestion } = this.props;
+    if (currentQuestion !== prevQuestion) {
+      this.reset();
+    }
+  }
+
   public render() {
+    const { enabled } = this.props;
     const { rawValue } = this.state;
     return (
       <input
         ref={this.inputRef}
         type="text"
+        disabled={!enabled}
         value={rawValue}
         onChange={this.handleChange}
       />
@@ -141,5 +153,17 @@ export default class KanaInput extends React.PureComponent<
     }
 
     return newCharacter;
+  }
+
+  private reset() {
+    const { onChange } = this.props;
+    this.setState({
+      buffer: "",
+      lastPosition: 0,
+      rawValue: ""
+    });
+    if (onChange) {
+      onChange("");
+    }
   }
 }

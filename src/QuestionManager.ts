@@ -51,11 +51,11 @@ class QuestionManager extends React.PureComponent<ComponentProps> {
     return children(this.next);
   }
 
-  private next() {
+  private next = () => {
     const { dispatch } = this.props;
     const action = this.createRandomQuestion();
     dispatch(action);
-  }
+  };
 
   private createRandomQuestion(): ActionCreateQuestion {
     const { items } = this.props;

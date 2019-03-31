@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 
 import { Item, Question, State } from "../../redux";
 
+import "./QuestionDisplay.scss";
+
 interface ProvidedProps {
   currentQuestion: Question;
 }
@@ -27,7 +29,7 @@ class QuestionPanel extends React.PureComponent<ComponentProps> {
     const { item, currentQuestion } = this.props;
     const name = currentQuestion.amount === 1 ? item.singular : item.plural;
     return (
-      <div className="QuestionPanel">
+      <div className="QuestionDisplay">
         {currentQuestion.amount} {name}
       </div>
     );

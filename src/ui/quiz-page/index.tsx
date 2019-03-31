@@ -2,12 +2,11 @@ import * as React from "react";
 import { connect } from "react-redux";
 
 import { AskNewQuestion } from "../../QuestionManager";
-import { Question, QuizState, State } from "../../redux";
+import { Answer, Question, QuizState, State } from "../../redux";
 
-import HistoryPanel from "../HistoryPanel";
-import PackSelection from "../shared/PackSelection";
 import AnswerInput from "./AnswerInput";
 import QuestionDisplay from "./QuestionDisplay";
+import ResultsView from "./ResultsView";
 import ScoreBar from "./ScoreBar";
 
 import "./index.scss";
@@ -29,9 +28,18 @@ function mapStateToProps(state: State): ReduxProps {
 
 type ComponentProps = ProvidedProps & ReduxProps;
 
-class QuizPage extends React.PureComponent<ComponentProps> {
+interface ComponentState {
+  lastQuestionCorrectAnswer: Answer | null;
+}
+
+class QuizPage extends React.PureComponent<ComponentProps, ComponentState> {
+  public state: ComponentState = {
+    lastQuestionCorrectAnswer: null
+  };
+
   public render() {
     const { askNewQuestion, currentQuestion, quizState } = this.props;
+    const { lastQuestionCorrectAnswer } = this.state;
     if (quizState === "not-in-quiz") {
       return null;
     }
@@ -44,12 +52,25 @@ class QuizPage extends React.PureComponent<ComponentProps> {
           askNewQuestion={askNewQuestion}
           currentQuestion={currentQuestion}
           enabled={quizState === "waiting-for-answer"}
+          onAnswerSubmitted={this.onAnswerSubmitted}
         />
-        <HistoryPanel />
-        <PackSelection />
+        {quizState === "reviewing-answer" && (
+          <React.Fragment>
+            <ResultsView
+              currentQuestion={currentQuestion}
+              usersCorrectAnswer={lastQuestionCorrectAnswer}
+            />
+            <button className="next-question" onClick={askNewQuestion}>
+              Next Question!
+            </button>
+          </React.Fragment>
+        )}
       </div>
     );
   }
+
+  private onAnswerSubmitted = (usersCorrectAnswer: Answer | null) =>
+    this.setState({ lastQuestionCorrectAnswer: usersCorrectAnswer });
 }
 
 export default connect(mapStateToProps)(QuizPage);
