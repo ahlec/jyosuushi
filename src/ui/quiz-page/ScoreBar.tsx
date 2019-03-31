@@ -1,6 +1,6 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { Scorecard, State } from "../redux";
+import { Scorecard, State } from "../../redux";
 
 import "./ScoreBar.scss";
 

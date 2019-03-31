@@ -15,16 +15,4 @@ body,
   background-color: $palette-background-color;
   display: flex;
   flex-direction: column;
-
-  .intro-page {
-    max-width: 600px;
-    margin: 10px auto;
-
-    p {
-      strong {
-        font-weight: bold;
-        font-size: 120%;
-      }
-    }
-  }
 }

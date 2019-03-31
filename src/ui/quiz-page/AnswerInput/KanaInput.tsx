@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { KanaDefinition } from "../../japanese/kana";
+import { KanaDefinition } from "../../../japanese/kana";
 
 interface ComponentProps {
   kana: KanaDefinition;

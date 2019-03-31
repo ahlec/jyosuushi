@@ -1,11 +1,11 @@
 import * as React from "react";
 import { connect } from "react-redux";
 
-import { HIRAGANA } from "../../japanese/kana";
-import { AskNewQuestion } from "../../QuestionManager";
-import { Question } from "../../redux";
-import { markCorrectAnswer, markIncorrectAnswer } from "../../redux/actions";
-import { Dispatch } from "../../redux/store";
+import { HIRAGANA } from "../../../japanese/kana";
+import { AskNewQuestion } from "../../../QuestionManager";
+import { Question } from "../../../redux";
+import { markCorrectAnswer, markIncorrectAnswer } from "../../../redux/actions";
+import { Dispatch } from "../../../redux/store";
 import KanaInput from "./KanaInput";
 
 import "./index.scss";
@@ -15,6 +15,7 @@ const KEY_ENTER = 13;
 interface ProvidedProps {
   askNewQuestion: AskNewQuestion;
   currentQuestion: Question;
+  enabled: boolean;
 }
 
 type ComponentProps = ProvidedProps & { dispatch: Dispatch };

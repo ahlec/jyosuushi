@@ -2,11 +2,11 @@ import { memoize } from "lodash";
 import * as React from "react";
 import { connect } from "react-redux";
 
-import { State } from "../redux";
-import { changeStudyPacks } from "../redux/actions";
-import { Dispatch } from "../redux/store";
+import { State } from "../../redux";
+import { changeStudyPacks } from "../../redux/actions";
+import { Dispatch } from "../../redux/store";
 
-import { STUDY_PACKS, StudyPack } from "../data/study-packs";
+import { STUDY_PACKS, StudyPack } from "../../data/study-packs";
 
 import "./PackSelection.scss";
 

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 
-import { Item, Question, State } from "../redux";
+import { Item, Question, State } from "../../redux";
 
 interface ProvidedProps {
   currentQuestion: Question;
