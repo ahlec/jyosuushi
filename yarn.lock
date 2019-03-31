@@ -47,6 +47,11 @@
     "@types/prop-types" "*"
     csstype "^2.2.0"
 
+"@types/shallow-equals@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@types/shallow-equals/-/shallow-equals-1.0.0.tgz#5b66fb397e7f3fc8300a7b4f4350ce8567687ea4"
+  integrity sha512-XtGSj7GYPfJwaklDtMEONj+kmpyCP8OLYoPqp/ROM8BL1VaF2IgYbxiEKfLvOyHN7c2d1KAFYzy6EIu8CSFt1A==
+
 "@webassemblyjs/ast@1.8.5":
   version "1.8.5"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.8.5.tgz#51b1c5fe6576a34953bf4b253df9f0d490d9e359"
@@ -3701,6 +3706,11 @@ shallow-clone@^1.0.0:
     is-extendable "^0.1.1"
     kind-of "^5.0.0"
     mixin-object "^2.0.1"
+
+shallow-equals@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/shallow-equals/-/shallow-equals-1.0.0.tgz#24b74bf1c634c11ed4c7182a6df6fb300dce4390"
+  integrity sha1-JLdL8cY0wR7Uxxgqbfb7MA3OQ5A=
 
 shebang-command@^1.2.0:
   version "1.2.0"

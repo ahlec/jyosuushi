@@ -25,7 +25,6 @@ function japaneseNumberCombiner(
   first: TaggableJapaneseWord,
   second: TaggableJapaneseWord
 ): TaggableJapaneseWord | null {
-  console.log("combine:", first, second);
   // Require matching tags, if there are tags
   if (!areTagsCompatible(first.tags, second.tags)) {
     return null;
@@ -49,7 +48,6 @@ function japaneseNumberCombiner(
 export function permutateTaggableWords(
   chunks: ReadonlyArray<ReadonlyArray<TaggableJapaneseWord>>
 ): ReadonlyArray<TaggableJapaneseWord> {
-  console.log("permute:", chunks);
   return permutate(chunks, japaneseNumberCombiner);
 }
 

@@ -1,26 +1,26 @@
 import { ITEMS_FROM_COUNTER } from "../../data/items";
 import { ActionChangeStudyPacks } from "../actions";
-import { Item } from "../index";
+import { ItemsState } from "../index";
 
 type ReducerAction = ActionChangeStudyPacks;
 
 export default function itemsReducer(
-  state: ReadonlyArray<Item> | undefined = [],
+  state: ItemsState | undefined = {},
   action: ReducerAction
-): ReadonlyArray<Item> {
+): ItemsState {
   switch (action.type) {
     case "change-study-packs": {
-      const next = new Set<Item>();
+      const next: ItemsState = {};
       for (const { counters } of action.enabledPacks) {
         for (const { counterId } of counters) {
           const items = ITEMS_FROM_COUNTER[counterId];
           for (const item of items) {
-            next.add(item);
+            next[item.itemId] = item;
           }
         }
       }
 
-      return Array.from(next);
+      return next;
     }
     default:
       return state;

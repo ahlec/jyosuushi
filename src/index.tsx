@@ -3,17 +3,18 @@ import * as ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 
 import App from "./App";
-import QuestionCreator from "./QuestionCreator";
+import QuestionManager from "./QuestionManager";
 import { createReduxStore } from "./redux/store";
 
 import "meyer-reset-scss/reset.scss";
 
 const store = createReduxStore();
-const questionCreator = new QuestionCreator(store);
 
 ReactDOM.render(
   <Provider store={store}>
-    <App questionCreator={questionCreator} />
+    <QuestionManager>
+      {askNewQuestion => <App askNewQuestion={askNewQuestion} />}
+    </QuestionManager>
   </Provider>,
   document.getElementById("root")
 );

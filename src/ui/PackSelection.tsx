@@ -53,34 +53,32 @@ class PackSelection extends React.PureComponent<
     toEnable: new Set()
   };
 
-  private onTogglePack = memoize(
-    (pack: StudyPack) => (event: React.ChangeEvent<HTMLInputElement>) => {
-      const { enabledPacks } = this.props;
-      let { numChanges, toDisable, toEnable } = this.state;
+  private onTogglePack = memoize((pack: StudyPack) => () => {
+    const { enabledPacks } = this.props;
+    let { numChanges, toDisable, toEnable } = this.state;
 
-      if (enabledPacks.has(pack.packId)) {
-        const mutableToDisable = new Set<string>(toDisable);
-        toDisable = mutableToDisable;
-        if (mutableToDisable.delete(pack.packId)) {
-          numChanges--;
-        } else {
-          mutableToDisable.add(pack.packId);
-          numChanges++;
-        }
+    if (enabledPacks.has(pack.packId)) {
+      const mutableToDisable = new Set<string>(toDisable);
+      toDisable = mutableToDisable;
+      if (mutableToDisable.delete(pack.packId)) {
+        numChanges--;
       } else {
-        const mutableToEnable = new Set<string>(toEnable);
-        toEnable = mutableToEnable;
-        if (mutableToEnable.delete(pack.packId)) {
-          numChanges--;
-        } else {
-          mutableToEnable.add(pack.packId);
-          numChanges++;
-        }
+        mutableToDisable.add(pack.packId);
+        numChanges++;
       }
-
-      this.setState({ numChanges, toDisable, toEnable });
+    } else {
+      const mutableToEnable = new Set<string>(toEnable);
+      toEnable = mutableToEnable;
+      if (mutableToEnable.delete(pack.packId)) {
+        numChanges--;
+      } else {
+        mutableToEnable.add(pack.packId);
+        numChanges++;
+      }
     }
-  );
+
+    this.setState({ numChanges, toDisable, toEnable });
+  });
 
   public componentDidUpdate({
     enabledPacks: prevEnabledPacks

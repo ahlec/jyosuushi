@@ -26,6 +26,10 @@ export interface Item {
   maxQuantity: number;
 }
 
+export interface ItemsState {
+  [itemId: string]: Item;
+}
+
 export interface Answer {
   counterId: string;
   isIrregular: boolean;
@@ -44,11 +48,15 @@ export interface CountersStateItem {
   counter: Counter;
 }
 
+export interface CountersState {
+  [counterId: string]: CountersStateItem;
+}
+
 export interface State {
-  counters: { [counterId: string]: CountersStateItem };
+  counters: CountersState;
   currentQuestion: Question | null;
   enabledPacks: ReadonlyArray<string>;
-  items: ReadonlyArray<Item>;
+  items: ItemsState;
   scorecard: Scorecard;
   settings: Settings;
 }

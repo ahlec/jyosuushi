@@ -1,7 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 
-import QuestionCreator from "./QuestionCreator";
+import { AskNewQuestion } from "./QuestionManager";
 import { State } from "./redux";
 
 import AnswerInput from "./ui/AnswerInput";
@@ -19,11 +19,11 @@ import { JapaneseWord } from "./japanese/words";
 import "./App.scss";
 
 interface ProvidedProps {
-  questionCreator: QuestionCreator;
+  askNewQuestion: AskNewQuestion;
 }
 
 interface ReduxProps {
-  hasStudyPacksEnabled: boolean;
+  isQuizActive: boolean;
 }
 
 type ComponentProps = ProvidedProps & ReduxProps;
@@ -46,7 +46,7 @@ const COUNTER_WA: JapaneseWord = {
 
 function mapStateToProps(state: State): ReduxProps {
   return {
-    hasStudyPacksEnabled: !!state.enabledPacks.length
+    isQuizActive: !!state.enabledPacks.length && !!state.currentQuestion
   };
 }
 
@@ -58,42 +58,49 @@ class App extends React.PureComponent<ComponentProps, ComponentState> {
   };
 
   public render() {
-    const { hasStudyPacksEnabled } = this.props;
+    const { isQuizActive } = this.props;
+    return (
+      <div className="App">
+        <Header />
+        {isQuizActive ? this.renderQuestionPage() : this.renderIntroPage()}
+      </div>
+    );
+  }
+
+  private renderIntroPage() {
+    return (
+      <div className="intro-page">
+        <p>
+          Welcome to <strong>助数詞を練習</strong>! This is a tool that's meant
+          to help you study{" "}
+          <a
+            href="https://en.wikipedia.org/wiki/Japanese_counter_word"
+            target="_blank"
+          >
+            Japanese counters
+          </a>
+          . It's simple! We take a random type of item and a random number, and
+          then you tell us what the proper conjugation of the number + counter
+          is!
+        </p>
+        <p>
+          To start, choose one or more study pack below. Don't worry, you can
+          change this at any time:
+        </p>
+        <PackSelection />
+      </div>
+    );
+  }
+
+  private renderQuestionPage() {
     const {
       conjugationsNumbers,
       conjugationsNumberAndCounters,
       value
     } = this.state;
 
-    if (!hasStudyPacksEnabled) {
-      return (
-        <div className="App">
-          <Header />
-          <p>
-            Welcome to <strong>助数詞を練習</strong>! This is a tool that's
-            meant to help you study{" "}
-            <a
-              href="https://en.wikipedia.org/wiki/Japanese_counter_word"
-              target="_blank"
-            >
-              Japanese counters
-            </a>
-            . It's simple! We take a random type of item and a random number,
-            and then you tell us what the proper conjugation of the number +
-            counter is!
-          </p>
-          <p>
-            To start, choose one or more study pack below. Don't worry, you can
-            change this at any time:
-          </p>
-          <PackSelection />
-        </div>
-      );
-    }
-
     return (
-      <div className="App">
-        <Header />
+      <div className="question-page">
         <ScoreBar />
         <QuestionDisplay />
         <AnswerInput />

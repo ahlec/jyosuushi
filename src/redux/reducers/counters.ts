@@ -1,19 +1,15 @@
 import { ActionChangeStudyPacks } from "../actions";
-import { CountersStateItem } from "../index";
-
-interface State {
-  [counterId: string]: CountersStateItem;
-}
+import { CountersState } from "../index";
 
 type ReducerAction = ActionChangeStudyPacks;
 
 export default function countersReducer(
-  state: State | undefined = {},
+  state: CountersState | undefined = {},
   action: ReducerAction
-): State {
+): CountersState {
   switch (action.type) {
     case "change-study-packs": {
-      const next: State = {};
+      const next: CountersState = {};
       for (const { counters, packId } of action.enabledPacks) {
         for (const counter of counters) {
           if (next[counter.counterId]) {

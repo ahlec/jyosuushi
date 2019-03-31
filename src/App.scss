@@ -16,13 +16,15 @@ body,
   display: flex;
   flex-direction: column;
 
-  p {
+  .intro-page {
     max-width: 600px;
     margin: 10px auto;
 
-    strong {
-      font-weight: bold;
-      font-size: 120%;
+    p {
+      strong {
+        font-weight: bold;
+        font-size: 120%;
+      }
     }
   }
 }
