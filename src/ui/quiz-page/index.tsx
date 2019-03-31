@@ -11,6 +11,8 @@ import ScoreBar from "./ScoreBar";
 
 import "./index.scss";
 
+const KEY_ENTER = 13;
+
 interface ProvidedProps {
   askNewQuestion: AskNewQuestion;
   currentQuestion: Question;
@@ -37,8 +39,16 @@ class QuizPage extends React.PureComponent<ComponentProps, ComponentState> {
     lastQuestionCorrectAnswer: null
   };
 
+  public componentDidMount() {
+    window.addEventListener("keydown", this.onKeyDown);
+  }
+
+  public componentWillUnmount() {
+    window.removeEventListener("keydown", this.onKeyDown);
+  }
+
   public render() {
-    const { askNewQuestion, currentQuestion, quizState } = this.props;
+    const { currentQuestion, quizState } = this.props;
     const { lastQuestionCorrectAnswer } = this.state;
     if (quizState === "not-in-quiz") {
       return null;
@@ -49,7 +59,6 @@ class QuizPage extends React.PureComponent<ComponentProps, ComponentState> {
         <ScoreBar />
         <QuestionDisplay currentQuestion={currentQuestion} />
         <AnswerInput
-          askNewQuestion={askNewQuestion}
           currentQuestion={currentQuestion}
           enabled={quizState === "waiting-for-answer"}
           onAnswerSubmitted={this.onAnswerSubmitted}
@@ -60,7 +69,10 @@ class QuizPage extends React.PureComponent<ComponentProps, ComponentState> {
               currentQuestion={currentQuestion}
               usersCorrectAnswer={lastQuestionCorrectAnswer}
             />
-            <button className="next-question" onClick={askNewQuestion}>
+            <button
+              className="next-question"
+              onClick={this.onClickNextQuestion}
+            >
               Next Question!
             </button>
           </React.Fragment>
@@ -68,6 +80,23 @@ class QuizPage extends React.PureComponent<ComponentProps, ComponentState> {
       </div>
     );
   }
+
+  private onClickNextQuestion = (event: React.MouseEvent) => {
+    const { askNewQuestion } = this.props;
+    askNewQuestion();
+    event.stopPropagation();
+  };
+
+  private onKeyDown = (event: KeyboardEvent) => {
+    const { askNewQuestion, quizState } = this.props;
+    if (quizState !== "reviewing-answer") {
+      return;
+    }
+
+    if (event.keyCode === KEY_ENTER) {
+      askNewQuestion();
+    }
+  };
 
   private onAnswerSubmitted = (usersCorrectAnswer: Answer | null) =>
     this.setState({ lastQuestionCorrectAnswer: usersCorrectAnswer });

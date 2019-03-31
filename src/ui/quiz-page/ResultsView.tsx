@@ -100,7 +100,7 @@ class ResultsView extends React.PureComponent<ComponentProps> {
       counter: { kana, kanji, name },
       studyPacks
     } = counters[counterId];
-    const kanjiAnswers = uniq(answers.map(getKanjiFromAnswer).filter(x => !!x));
+    const kanjiAnswers = uniq(answers.map(getKanjiFromAnswer).filter(x => x));
     const kanaAnswers = uniq(answers.map(getKanaFromAnswer));
     return (
       <tr key={counterId}>

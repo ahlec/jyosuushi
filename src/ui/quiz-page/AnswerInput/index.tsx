@@ -2,7 +2,6 @@ import * as React from "react";
 import { connect } from "react-redux";
 
 import { HIRAGANA } from "../../../japanese/kana";
-import { AskNewQuestion } from "../../../QuestionManager";
 import { Answer, Question } from "../../../redux";
 import { markCorrectAnswer, markIncorrectAnswer } from "../../../redux/actions";
 import { Dispatch } from "../../../redux/store";
@@ -13,7 +12,6 @@ import "./index.scss";
 const KEY_ENTER = 13;
 
 interface ProvidedProps {
-  askNewQuestion: AskNewQuestion;
   currentQuestion: Question;
   enabled: boolean;
   onAnswerSubmitted: (usersCorrectAnswer: Answer | null) => void;
@@ -56,6 +54,7 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
   private onKeyDown = (event: React.KeyboardEvent) => {
     if (event.keyCode === KEY_ENTER) {
       this.submit();
+      event.stopPropagation();
     }
   };
 
