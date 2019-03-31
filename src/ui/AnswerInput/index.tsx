@@ -2,26 +2,26 @@ import * as React from "react";
 import { connect } from "react-redux";
 
 import { HIRAGANA } from "../../japanese/kana";
-import { Question, State } from "../../redux";
+import { AskNewQuestion } from "../../QuestionManager";
+import { Question } from "../../redux";
+import { markCorrectAnswer, markIncorrectAnswer } from "../../redux/actions";
+import { Dispatch } from "../../redux/store";
 import KanaInput from "./KanaInput";
 
 import "./index.scss";
 
 const KEY_ENTER = 13;
 
-interface ComponentProps {
+interface ProvidedProps {
+  askNewQuestion: AskNewQuestion;
   currentQuestion: Question;
 }
+
+type ComponentProps = ProvidedProps & { dispatch: Dispatch };
 
 interface ComponentState {
   value: string;
   isValid: boolean;
-}
-
-function mapStateToProps(state: State): ComponentProps {
-  return {
-    currentQuestion: state.currentQuestion!
-  };
 }
 
 class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
@@ -52,8 +52,26 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
   };
 
   private submit() {
-    console.log("attempting submit of", this.state.value);
+    const { dispatch } = this.props;
+    const { value } = this.state;
+
+    if (this.isCorrectAnswer(value)) {
+      dispatch(markCorrectAnswer());
+    } else {
+      dispatch(markIncorrectAnswer());
+    }
+  }
+
+  private isCorrectAnswer(value: string): boolean {
+    const { currentQuestion } = this.props;
+    for (const { kana, kanji } of currentQuestion.validAnswers) {
+      if (kana === value || kanji === value) {
+        return true;
+      }
+    }
+
+    return false;
   }
 }
 
-export default connect(mapStateToProps)(AnswerInput);
+export default connect()(AnswerInput);

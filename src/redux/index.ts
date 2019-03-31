@@ -52,11 +52,17 @@ export interface CountersState {
   [counterId: string]: CountersStateItem;
 }
 
+export type QuizState =
+  | "not-in-quiz"
+  | "waiting-for-answer"
+  | "reviewing-answer";
+
 export interface State {
   counters: CountersState;
   currentQuestion: Question | null;
   enabledPacks: ReadonlyArray<string>;
   items: ItemsState;
+  quizState: QuizState;
   scorecard: Scorecard;
   settings: Settings;
 }

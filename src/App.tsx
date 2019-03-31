@@ -2,7 +2,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 
 import { AskNewQuestion } from "./QuestionManager";
-import { State } from "./redux";
+import { Question, State } from "./redux";
 
 import AnswerInput from "./ui/AnswerInput";
 import Header from "./ui/Header";
@@ -23,7 +23,8 @@ interface ProvidedProps {
 }
 
 interface ReduxProps {
-  isQuizActive: boolean;
+  currentQuestion: Question | null;
+  hasStudyPacksEnabled: boolean;
 }
 
 type ComponentProps = ProvidedProps & ReduxProps;
@@ -46,7 +47,8 @@ const COUNTER_WA: JapaneseWord = {
 
 function mapStateToProps(state: State): ReduxProps {
   return {
-    isQuizActive: !!state.enabledPacks.length && !!state.currentQuestion
+    currentQuestion: state.currentQuestion,
+    hasStudyPacksEnabled: !!state.enabledPacks.length
   };
 }
 
@@ -58,11 +60,13 @@ class App extends React.PureComponent<ComponentProps, ComponentState> {
   };
 
   public render() {
-    const { isQuizActive } = this.props;
+    const { currentQuestion, hasStudyPacksEnabled } = this.props;
     return (
       <div className="App">
         <Header />
-        {isQuizActive ? this.renderQuestionPage() : this.renderIntroPage()}
+        {currentQuestion && hasStudyPacksEnabled
+          ? this.renderQuestionPage(currentQuestion)
+          : this.renderIntroPage()}
       </div>
     );
   }
@@ -92,7 +96,8 @@ class App extends React.PureComponent<ComponentProps, ComponentState> {
     );
   }
 
-  private renderQuestionPage() {
+  private renderQuestionPage(currentQuestion: Question) {
+    const { askNewQuestion } = this.props;
     const {
       conjugationsNumbers,
       conjugationsNumberAndCounters,
@@ -102,8 +107,11 @@ class App extends React.PureComponent<ComponentProps, ComponentState> {
     return (
       <div className="question-page">
         <ScoreBar />
-        <QuestionDisplay />
-        <AnswerInput />
+        <QuestionDisplay currentQuestion={currentQuestion} />
+        <AnswerInput
+          askNewQuestion={askNewQuestion}
+          currentQuestion={currentQuestion}
+        />
         <HistoryPanel />
         <PackSelection />
         Conjugate:

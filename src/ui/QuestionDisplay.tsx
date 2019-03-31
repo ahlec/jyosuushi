@@ -3,18 +3,24 @@ import { connect } from "react-redux";
 
 import { Item, Question, State } from "../redux";
 
-interface ComponentProps {
-  item: Item;
+interface ProvidedProps {
   currentQuestion: Question;
 }
 
-function mapStateToProps(state: State): ComponentProps {
-  const currentQuestion = state.currentQuestion!;
+interface ReduxProps {
+  item: Item;
+}
+
+function mapStateToProps(
+  state: State,
+  { currentQuestion }: ProvidedProps
+): ReduxProps {
   return {
-    item: state.items[currentQuestion.itemId],
-    currentQuestion
+    item: state.items[currentQuestion.itemId]
   };
 }
+
+type ComponentProps = ProvidedProps & ReduxProps;
 
 class QuestionPanel extends React.PureComponent<ComponentProps> {
   public render() {

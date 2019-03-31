@@ -21,5 +21,28 @@ export interface ActionChangeStudyPacks {
 export function changeStudyPacks(
   enabledPacks: ReadonlyArray<StudyPack>
 ): ActionChangeStudyPacks {
-  return { enabledPacks, type: "change-study-packs" };
+  return {
+    enabledPacks,
+    type: "change-study-packs"
+  };
+}
+
+export interface ActionMarkCorrectAnswer {
+  type: "mark-correct-answer";
+}
+
+export function markCorrectAnswer(): ActionMarkCorrectAnswer {
+  return {
+    type: "mark-correct-answer"
+  };
+}
+
+export interface ActionMarkIncorrectAnswer {
+  type: "mark-incorrect-answer";
+}
+
+export function markIncorrectAnswer(): ActionMarkIncorrectAnswer {
+  return {
+    type: "mark-incorrect-answer"
+  };
 }
