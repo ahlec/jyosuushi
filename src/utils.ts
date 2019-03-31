@@ -5,7 +5,7 @@ export function randomFromArray<T>(arr: ReadonlyArray<T>): T {
 // from [["a", "b"], ["c", "d"]], get ["ac", "ad", "bc", "bd"]
 export function permutate<T>(
   arrays: ReadonlyArray<ReadonlyArray<T>>,
-  combiner: (first: T, second: T) => T
+  combiner: (first: T, second: T) => T | null
 ): ReadonlyArray<T> {
   if (arrays.length === 0) {
     return [];
@@ -29,7 +29,7 @@ export function permutate<T>(
 function permutateTwoArrays<T>(
   first: ReadonlyArray<T>,
   second: ReadonlyArray<T>,
-  combiner: (first: T, second: T) => T
+  combiner: (first: T, second: T) => T | null
 ): ReadonlyArray<T> {
   if (!first.length) {
     return second;
@@ -42,7 +42,10 @@ function permutateTwoArrays<T>(
   const permutations: T[] = [];
   for (const a of first) {
     for (const b of second) {
-      permutations.push(combiner(a, b));
+      const combined = combiner(a, b);
+      if (combined !== null) {
+        permutations.push(combined);
+      }
     }
   }
 

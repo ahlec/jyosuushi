@@ -1,5 +1,11 @@
 import { flatten, memoize, uniqueId } from "lodash";
-import { JapaneseWord, permutateWords, uniqueWords } from "./words";
+import { Tag } from "./tags";
+import {
+  castToTaggable,
+  JapaneseWord,
+  permutateTaggableWords,
+  TaggableJapaneseWord
+} from "./words";
 
 export const OKU = Math.pow(10, 8);
 export const MAN = 10000;
@@ -61,7 +67,9 @@ export const breakDownNumber: (value: number) => NumberBreakdown = memoize(
   }
 );
 
-const FIRST_TEN_NUMBERS: ReadonlyArray<ReadonlyArray<JapaneseWord>> = [
+const FIRST_TEN_NUMBERS: ReadonlyArray<
+  ReadonlyArray<Readonly<JapaneseWord>>
+> = [
   [
     {
       kana: "ゼロ",
@@ -136,28 +144,28 @@ const FIRST_TEN_NUMBERS: ReadonlyArray<ReadonlyArray<JapaneseWord>> = [
   ]
 ];
 
-const OKU_NUMBER: ReadonlyArray<JapaneseWord> = [
+const OKU_NUMBER: ReadonlyArray<Readonly<JapaneseWord>> = [
   {
     kana: "おく",
     kanji: "億"
   }
 ];
 
-const MAN_NUMBER: ReadonlyArray<JapaneseWord> = [
+const MAN_NUMBER: ReadonlyArray<Readonly<JapaneseWord>> = [
   {
     kana: "まん",
     kanji: "万"
   }
 ];
 
-const SEN_NUMBER: ReadonlyArray<JapaneseWord> = [
+const SEN_NUMBER: ReadonlyArray<Readonly<JapaneseWord>> = [
   {
     kana: "せん",
     kanji: "千"
   }
 ];
 
-const ZEN_NUMBER: ReadonlyArray<JapaneseWord> = [
+const ZEN_NUMBER: ReadonlyArray<Readonly<JapaneseWord>> = [
   {
     kana: "ぜん",
     kanji: "千"
@@ -165,32 +173,45 @@ const ZEN_NUMBER: ReadonlyArray<JapaneseWord> = [
 ];
 
 const SEN_CHANGES: FinalNumberChanges = {
-  1: ["omit", "trailing-small-tsu"],
-  8: ["trailing-small-tsu"]
+  1: [[{ type: "omit" }], [{ type: "trailing-small-tsu" }]],
+  8: [[{ type: "trailing-small-tsu" }]]
 };
 
-const HYAKU_NUMBER: ReadonlyArray<JapaneseWord> = [
+const HYAKU_NUMBER: ReadonlyArray<Readonly<JapaneseWord>> = [
   {
     kana: "ひゃく",
     kanji: "百"
   }
 ];
 
-const BYAKU_NUMBER: ReadonlyArray<JapaneseWord> = [
+const IPPYAKU_NUMBER: ReadonlyArray<TaggableJapaneseWord> = [
+  {
+    kana: "ひゃく",
+    kanji: "百",
+    tags: new Set<Tag>(["hyaku"])
+  },
+  {
+    kana: "ぴゃく",
+    kanji: "百",
+    tags: new Set<Tag>(["ippyaku"])
+  }
+];
+
+const BYAKU_NUMBER: ReadonlyArray<Readonly<JapaneseWord>> = [
   {
     kana: "びゃく",
     kanji: "百"
   }
 ];
 
-const PYAKU_NUMBER: ReadonlyArray<JapaneseWord> = [
+const PYAKU_NUMBER: ReadonlyArray<Readonly<JapaneseWord>> = [
   {
     kana: "ぴゃく",
     kanji: "百"
   }
 ];
 
-const JYUU_NUMBER: ReadonlyArray<JapaneseWord> = [
+const JYUU_NUMBER: ReadonlyArray<Readonly<JapaneseWord>> = [
   {
     kana: "じゅう",
     kanji: "十"
@@ -198,54 +219,89 @@ const JYUU_NUMBER: ReadonlyArray<JapaneseWord> = [
 ];
 
 const HYAKU_CHANGES: FinalNumberChanges = {
-  1: ["omit", "trailing-small-tsu"],
-  6: ["trailing-small-tsu"],
-  8: ["trailing-small-tsu"]
+  1: [
+    [{ type: "omit" }, { type: "tag", tag: "hyaku" }],
+    [{ type: "trailing-small-tsu" }, { type: "tag", tag: "ippyaku" }]
+  ],
+  6: [[{ type: "trailing-small-tsu" }]],
+  8: [[{ type: "trailing-small-tsu" }]]
 };
 
 const OMIT_ONE: FinalNumberChanges = {
-  1: ["omit"]
+  1: [[{ type: "omit" }]]
 };
 
-type NumberChange = "omit" | "trailing-small-tsu";
+type NumberChange =
+  | { type: "omit" }
+  | { type: "replace"; kana: string; kanji: string }
+  | { type: "trailing-small-tsu" }
+  | { type: "tag"; tag: Tag };
 
 export interface FinalNumberChanges {
-  [amount: number]: ReadonlyArray<NumberChange>;
+  [amount: number]: ReadonlyArray<ReadonlyArray<NumberChange>>;
 }
 
 function applySingleChange(
-  words: ReadonlyArray<JapaneseWord>,
+  words: ReadonlyArray<TaggableJapaneseWord>,
   change: NumberChange
-): ReadonlyArray<JapaneseWord> {
-  switch (change) {
+): ReadonlyArray<TaggableJapaneseWord> {
+  switch (change.type) {
     case "trailing-small-tsu": {
-      return words.map(({ kana, kanji }) => ({
+      return words.map(({ kana, kanji, tags }) => ({
         kana: kana.slice(0, -1) + "っ",
-        kanji
+        kanji,
+        tags
       }));
     }
     case "omit": {
-      return [{ kana: "", kanji: null }];
+      return [{ kana: "", kanji: "", tags: new Set() }];
+    }
+    case "replace": {
+      return [
+        {
+          kana: change.kana,
+          kanji: change.kanji,
+          tags: new Set()
+        }
+      ];
+    }
+    case "tag": {
+      return words.map(word => ({
+        ...word,
+        tags: new Set(word.tags).add(change.tag)
+      }));
     }
   }
 }
 
 function applyUniqueChanges(
-  words: ReadonlyArray<JapaneseWord>,
-  changes: ReadonlyArray<NumberChange> | false | undefined
-): ReadonlyArray<JapaneseWord> {
+  words: ReadonlyArray<JapaneseWord | TaggableJapaneseWord>,
+  changes: ReadonlyArray<ReadonlyArray<NumberChange>> | false | undefined
+): ReadonlyArray<TaggableJapaneseWord> {
   if (!changes) {
-    return words;
+    return castToTaggable(words);
   }
 
-  return flatten(changes.map(change => applySingleChange(words, change)));
+  const results: Array<ReadonlyArray<TaggableJapaneseWord>> = [];
+  for (const changeSet of changes) {
+    let currentPermutation: ReadonlyArray<
+      TaggableJapaneseWord
+    > = castToTaggable(words);
+    for (const change of changeSet) {
+      currentPermutation = applySingleChange(currentPermutation, change);
+    }
+
+    results.push(currentPermutation);
+  }
+
+  return flatten(results);
 }
 
 function conjugateNumberInternal(
   breakdown: NumberBreakdown,
   finalNumberChanges?: FinalNumberChanges
-): ReadonlyArray<JapaneseWord> {
-  const chunks: Array<ReadonlyArray<JapaneseWord>> = [];
+): ReadonlyArray<TaggableJapaneseWord> {
+  const chunks: Array<ReadonlyArray<TaggableJapaneseWord>> = [];
 
   if (breakdown.oku) {
     chunks.push(conjugateNumber(breakdown.oku, OMIT_ONE));
@@ -294,6 +350,10 @@ function conjugateNumberInternal(
     let hyaku = HYAKU_NUMBER;
     if (hyakuBreakdown.lowestUnit === "solo") {
       switch (hyakuBreakdown.solo) {
+        case 1: {
+          hyaku = IPPYAKU_NUMBER;
+          break;
+        }
         case 3: {
           hyaku = BYAKU_NUMBER;
           break;
@@ -327,7 +387,7 @@ function conjugateNumberInternal(
     chunks.push(applyUniqueChanges(FIRST_TEN_NUMBERS[breakdown.solo], change));
   }
 
-  return uniqueWords(permutateWords(chunks));
+  return permutateTaggableWords(chunks);
 }
 
 const UNDEFINED_FINAL_CHANGES: FinalNumberChanges = {};
@@ -336,7 +396,7 @@ const MEMOIZE_RESOLVER = new Map<FinalNumberChanges, Map<number, string>>();
 export const conjugateNumber: (
   amount: number,
   finalNumberChanges?: FinalNumberChanges
-) => ReadonlyArray<JapaneseWord> = memoize(
+) => ReadonlyArray<TaggableJapaneseWord> = memoize(
   (amount: number, finalNumberChanges?: FinalNumberChanges) =>
     conjugateNumberInternal(breakDownNumber(amount), finalNumberChanges),
   (
@@ -355,7 +415,6 @@ export const conjugateNumber: (
       fncMap.set(amount, id);
     }
 
-    console.log("conjugateNumber id", id);
     return id;
   }
 );

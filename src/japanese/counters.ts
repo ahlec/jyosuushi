@@ -5,59 +5,85 @@ import {
   breakDownNumber,
   conjugateNumber,
   FinalNumberChanges,
-  HYAKU
+  HYAKU,
+  JYUU
 } from "./numbers";
-import { JapaneseWord, permutateWords } from "./words";
+import {
+  castAwayTaggable,
+  JapaneseWord,
+  permutateTaggableWords,
+  TaggableJapaneseWord,
+  uniqueWords
+} from "./words";
 
 const COUNTER_K_P_CHANGES: FinalNumberChanges = {
-  1: ["trailing-small-tsu"],
-  6: ["trailing-small-tsu"],
-  8: ["trailing-small-tsu"],
-  // [JYUU]: JI_JYU_SMALLTSU,
-  [HYAKU]: ["trailing-small-tsu"]
+  1: [[{ type: "trailing-small-tsu" }]],
+  6: [[{ type: "trailing-small-tsu" }]],
+  8: [[{ type: "trailing-small-tsu" }]],
+  [JYUU]: [
+    [{ type: "trailing-small-tsu" }],
+    [{ type: "replace", kana: "じっ", kanji: "十" }]
+  ],
+  [HYAKU]: [[{ type: "trailing-small-tsu" }]]
 };
 
 const COUNTER_S_T_CHANGES: FinalNumberChanges = {
-  1: ["trailing-small-tsu"],
-  8: ["trailing-small-tsu"]
-  // [JYUU]: JI_JYU_SMALLTSU
+  1: [[{ type: "trailing-small-tsu" }]],
+  8: [[{ type: "trailing-small-tsu" }]],
+  [JYUU]: [
+    [{ type: "trailing-small-tsu" }],
+    [{ type: "replace", kana: "じっ", kanji: "十" }]
+  ]
 };
 
 const COUNTER_H_CHANGES: FinalNumberChanges = {
-  1: ["trailing-small-tsu"],
-  6: ["trailing-small-tsu"],
-  8: ["trailing-small-tsu"],
-  // [JYUU]: JI_JYU_SMALLTSU,
-  [HYAKU]: ["trailing-small-tsu"]
+  1: [[{ type: "trailing-small-tsu" }]],
+  6: [[{ type: "trailing-small-tsu" }]],
+  8: [[{ type: "trailing-small-tsu" }]],
+  [JYUU]: [
+    [{ type: "trailing-small-tsu" }],
+    [{ type: "replace", kana: "じっ", kanji: "十" }]
+  ],
+  [HYAKU]: [[{ type: "trailing-small-tsu" }]]
 };
 
-// const COUNTER_W_OVERRIDES: FinalNumberOverrides = {
-//   4: [
-//     {
-//       kana: "よ",
-//       kanji: "四"
-//     },
-//     {
-//       kana: "よん",
-//       kanji: "四"
-//     }
-//   ],
-//   6: [
-//     ...RO_SMALLTSU,
-//     {
-//       kana: "ろく",
-//       kanji: "六"
-//     }
-//   ],
-//   8: [
-//     ...HA_SMALLTSU,
-//     {
-//       kana: "はち",
-//       kanji: "八"
-//     }
-//   ],
-//   10: JI_SMALLTSU
-// };
+const COUNTER_W_CHANGES: FinalNumberChanges = {
+  // 4: [
+  //   {
+  //     kana: "よ",
+  //     kanji: "四"
+  //   },
+  //   {
+  //     kana: "よん",
+  //     kanji: "四"
+  //   }
+  // ],
+  6: [
+    [
+      {
+        type: "trailing-small-tsu"
+      }
+    ],
+    [
+      {
+        type: "replace",
+        kana: "ろく",
+        kanji: "六"
+      }
+    ]
+  ],
+  8: [
+    [{ type: "trailing-small-tsu" }],
+    [
+      {
+        type: "replace",
+        kana: "はち",
+        kanji: "八"
+      }
+    ]
+  ],
+  [JYUU]: [[{ type: "replace", kana: "じっ", kanji: "十" }]]
+};
 
 function conjugateNumberAndCounterInternal(
   amount: number,
@@ -117,45 +143,47 @@ function conjugateNumberAndCounterInternal(
       }
       break;
     }
-    // case "w": {
-    //   overrides = COUNTER_W_OVERRIDES;
-    //
-    //   switch (amountBreakdown.lowestUnit) {
-    //     case "jyuu": {
-    //       changedCounterGyou = ["pa"];
-    //       break;
-    //     }
-    //     case "solo": {
-    //       switch (amountBreakdown.solo) {
-    //         case 3: {
-    //           changedCounterGyou = ["ba"];
-    //           break;
-    //         }
-    //         // TODO: Special cases for 4, 6, 8
-    //       }
-    //       break;
-    //     }
-    //   }
-    //   break;
-    // }
+    case "w": {
+      numberChanges = COUNTER_W_CHANGES;
+
+      switch (amountBreakdown.lowestUnit) {
+        case "jyuu": {
+          changedCounterGyou = ["pa"];
+          break;
+        }
+        case "solo": {
+          switch (amountBreakdown.solo) {
+            case 3: {
+              changedCounterGyou = ["ba"];
+              break;
+            }
+            // TODO: Special cases for 4, 6, 8
+          }
+          break;
+        }
+      }
+      break;
+    }
   }
 
-  let finalizedCounter: JapaneseWord[];
+  let finalizedCounter: TaggableJapaneseWord[];
   if (changedCounterGyou) {
     const firstKana = counter.kana[0];
     const followingKana = counter.kana.slice(1);
     finalizedCounter = changedCounterGyou.map(gyou => ({
       kana: HIRAGANA.changeGyou(firstKana, gyou) + followingKana,
-      kanji: counter.kanji
+      kanji: counter.kanji,
+      tags: new Set()
     }));
   } else {
-    finalizedCounter = [counter];
+    finalizedCounter = [{ ...counter, tags: new Set() }];
   }
 
-  return permutateWords([
+  const words = permutateTaggableWords([
     conjugateNumber(amount, numberChanges),
     finalizedCounter
   ]);
+  return uniqueWords(castAwayTaggable(words));
 }
 
 export const conjugateNumberAndCounter: (
