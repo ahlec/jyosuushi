@@ -1,0 +1,11 @@
+@import "../palette.scss";
+
+.Header {
+  font-size: 48px;
+  background-color: $palette-header-background;
+  border-bottom: 6px solid $palette-header-border;
+  color: $palette-header-color;
+  text-align: center;
+  padding: 4px 0px 12px;
+  text-shadow: 1px 1px darken($palette-header-color, 35%);
+}

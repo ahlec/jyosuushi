@@ -5,6 +5,8 @@ body,
 #root {
   height: 100%;
   background-color: $palette-background-color;
+  font-family: "Noto Sans JP", sans-serif;
+  overflow: hidden;
 }
 
 .App {
@@ -13,4 +15,14 @@ body,
   background-color: $palette-background-color;
   display: flex;
   flex-direction: column;
+
+  p {
+    max-width: 600px;
+    margin: 10px auto;
+
+    strong {
+      font-weight: bold;
+      font-size: 120%;
+    }
+  }
 }
