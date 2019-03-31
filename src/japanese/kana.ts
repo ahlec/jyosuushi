@@ -384,3 +384,27 @@ export const Katakana = new KanaDefinition(
   CODEPOINT_KATAKANA_LAST,
   katakanaConversionChart
 );
+
+export function getAsHiragana(kana: string): string {
+  const characters: string[] = [];
+  for (let index = 0; index < kana.length; ++index) {
+    const codepoint = kana.codePointAt(index)!;
+    if (
+      codepoint >= Hiragana.codepointStart &&
+      codepoint <= Hiragana.codepointEnd
+    ) {
+      characters.push(kana[index]);
+    } else if (
+      codepoint >= Katakana.codepointStart &&
+      codepoint <= Katakana.codepointEnd
+    ) {
+      characters.push(
+        String.fromCharCode(codepoint - DELTA_HIRAGANA_TO_KATAKANA)
+      );
+    } else {
+      throw new Error(`'${kana[index]}' is not kana!`);
+    }
+  }
+
+  return characters.join("");
+}

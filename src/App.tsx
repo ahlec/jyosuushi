@@ -6,6 +6,7 @@ import QuestionDisplay from "./ui/QuestionDisplay";
 import ScoreBar from "./ui/ScoreBar";
 
 import { conjugateNumber, JapaneseNumber } from "./japanese/numbers";
+import { getHepburnRoomaji } from "./japanese/hepburn";
 
 import "./App.scss";
 
@@ -34,7 +35,9 @@ export default class App extends React.PureComponent<{}, ComponentState> {
         <ul>
           {conjugations.map(({ kana, kanji }) => (
             <React.Fragment key={kana + (kanji || "")}>
-              <li>{kana}</li>
+              <li>
+                {kana} ({getHepburnRoomaji(kana)})
+              </li>
               {kanji && <li>{kanji}</li>}
             </React.Fragment>
           ))}
