@@ -5,24 +5,37 @@ import HistoryPanel from "./ui/HistoryPanel";
 import QuestionDisplay from "./ui/QuestionDisplay";
 import ScoreBar from "./ui/ScoreBar";
 
-import { conjugateNumber, JapaneseNumber } from "./japanese/numbers";
+import { conjugateNumberAndCounter } from "./japanese/counters";
 import { getHepburnRoomaji } from "./japanese/hepburn";
+import { conjugateNumber } from "./japanese/numbers";
+import { JapaneseWord } from "./japanese/words";
 
 import "./App.scss";
 
 interface ComponentState {
   value: string;
-  conjugations: ReadonlyArray<JapaneseNumber>;
+  conjugationsNumbers: ReadonlyArray<JapaneseWord>;
+  conjugationsNumberAndCounters: ReadonlyArray<JapaneseWord>;
 }
+
+const COUNTER_HON: JapaneseWord = {
+  kana: "ほん",
+  kanji: "本"
+};
 
 export default class App extends React.PureComponent<{}, ComponentState> {
   public state: ComponentState = {
-    conjugations: [],
+    conjugationsNumbers: [],
+    conjugationsNumberAndCounters: [],
     value: ""
   };
 
   public render() {
-    const { conjugations, value } = this.state;
+    const {
+      conjugationsNumbers,
+      conjugationsNumberAndCounters,
+      value
+    } = this.state;
 
     return (
       <div className="App">
@@ -32,24 +45,35 @@ export default class App extends React.PureComponent<{}, ComponentState> {
         <HistoryPanel />
         Conjugate:
         <input value={value} onChange={this.onChange} />
-        <ul>
-          {conjugations.map(({ kana, kanji }) => (
-            <React.Fragment key={kana + (kanji || "")}>
-              <li>
-                {kana} ({getHepburnRoomaji(kana)})
-              </li>
-              {kanji && <li>{kanji}</li>}
-            </React.Fragment>
-          ))}
-        </ul>
+        {this.renderConjugationList(conjugationsNumbers)}
+        {this.renderConjugationList(conjugationsNumberAndCounters)}
       </div>
+    );
+  }
+
+  private renderConjugationList(list: ReadonlyArray<JapaneseWord>) {
+    return (
+      <ul>
+        {list.map(({ kana, kanji }) => (
+          <React.Fragment key={kana + (kanji || "")}>
+            <li>
+              {kana} ({getHepburnRoomaji(kana)})
+            </li>
+            {kanji && <li>{kanji}</li>}
+          </React.Fragment>
+        ))}
+      </ul>
     );
   }
 
   private onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const num = parseInt(event.target.value, 10);
     this.setState({
-      conjugations: conjugateNumber(num),
+      conjugationsNumbers: conjugateNumber(num),
+      conjugationsNumberAndCounters: conjugateNumberAndCounter(
+        num,
+        COUNTER_HON
+      ),
       value: event.target.value
     });
   };

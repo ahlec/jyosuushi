@@ -1,11 +1,13 @@
-import { memoize, uniqBy } from "lodash";
-import { permutate } from "../utils";
+import { memoize } from "lodash";
+import { JapaneseWord, permutateWords, uniqueWords } from "./words";
 
-const OKU = Math.pow(10, 8);
-const MAN = 10000;
-const SEN = 1000;
-const HYAKU = 100;
-const JYUU = 10;
+export const OKU = Math.pow(10, 8);
+export const MAN = 10000;
+export const SEN = 1000;
+export const HYAKU = 100;
+export const JYUU = 10;
+
+type Unit = "oku" | "man" | "sen" | "hyaku" | "jyuu" | "solo";
 
 interface NumberBreakdown {
   oku: number;
@@ -14,6 +16,7 @@ interface NumberBreakdown {
   hyaku: number;
   jyuu: number;
   solo: number;
+  lowestUnit: Unit;
 }
 
 function breakDownNumber(value: number): NumberBreakdown {
@@ -39,16 +42,24 @@ function breakDownNumber(value: number): NumberBreakdown {
     sen,
     hyaku,
     jyuu,
-    solo: remainder
+    solo: remainder,
+    lowestUnit: remainder
+      ? "solo"
+      : jyuu
+      ? "jyuu"
+      : hyaku
+      ? "hyaku"
+      : sen
+      ? "sen"
+      : man
+      ? "man"
+      : oku
+      ? "oku"
+      : "solo"
   };
 }
 
-export interface JapaneseNumber {
-  kana: string;
-  kanji: string | null;
-}
-
-const FIRST_TEN_NUMBERS: ReadonlyArray<ReadonlyArray<JapaneseNumber>> = [
+const FIRST_TEN_NUMBERS: ReadonlyArray<ReadonlyArray<JapaneseWord>> = [
   [
     {
       kana: "ゼロ",
@@ -123,69 +134,70 @@ const FIRST_TEN_NUMBERS: ReadonlyArray<ReadonlyArray<JapaneseNumber>> = [
   ]
 ];
 
-const OKU_NUMBER: ReadonlyArray<JapaneseNumber> = [
+const OKU_NUMBER: ReadonlyArray<JapaneseWord> = [
   {
     kana: "おく",
     kanji: "億"
   }
 ];
 
-const MAN_NUMBER: ReadonlyArray<JapaneseNumber> = [
+const MAN_NUMBER: ReadonlyArray<JapaneseWord> = [
   {
     kana: "まん",
     kanji: "万"
   }
 ];
 
-const SEN_NUMBER: ReadonlyArray<JapaneseNumber> = [
+const SEN_NUMBER: ReadonlyArray<JapaneseWord> = [
   {
     kana: "せん",
     kanji: "千"
   }
 ];
 
-const HYAKU_NUMBER: ReadonlyArray<JapaneseNumber> = [
+const HYAKU_NUMBER: ReadonlyArray<JapaneseWord> = [
   {
     kana: "ひゃく",
     kanji: "百"
   }
 ];
 
-const JYUU_NUMBER: ReadonlyArray<JapaneseNumber> = [
+const JYUU_NUMBER: ReadonlyArray<JapaneseWord> = [
   {
     kana: "じゅう",
     kanji: "十"
   }
 ];
 
-function japaneseNumberCombiner(
-  first: JapaneseNumber,
-  second: JapaneseNumber
-): JapaneseNumber {
-  return {
-    kana: first.kana + second.kana,
-    kanji: first.kanji && second.kanji ? first.kanji + second.kanji : null
-  };
+export interface FinalNumberOverrides {
+  [amount: number]: ReadonlyArray<JapaneseWord>;
 }
 
-function japaneseNumberIteratee(num: JapaneseNumber): string {
-  return num.kana + "-" + num.kanji;
-}
-
-function conjugate(amount: number): ReadonlyArray<JapaneseNumber> {
+export function conjugateNumberInternal(
+  amount: number,
+  finalNumberOverrides?: FinalNumberOverrides
+): ReadonlyArray<JapaneseWord> {
   if (amount < JYUU) {
     return FIRST_TEN_NUMBERS[amount];
   }
 
   const breakdown = breakDownNumber(amount);
-  const chunks: Array<ReadonlyArray<JapaneseNumber>> = [];
+  const chunks: Array<ReadonlyArray<JapaneseWord>> = [];
 
   if (breakdown.oku) {
     if (breakdown.oku > 1) {
       chunks.push(conjugateNumber(breakdown.oku));
     }
 
-    chunks.push(OKU_NUMBER);
+    if (
+      finalNumberOverrides &&
+      breakdown.lowestUnit === "oku" &&
+      finalNumberOverrides[OKU]
+    ) {
+      chunks.push(finalNumberOverrides[OKU]);
+    } else {
+      chunks.push(OKU_NUMBER);
+    }
   }
 
   if (breakdown.man) {
@@ -193,7 +205,15 @@ function conjugate(amount: number): ReadonlyArray<JapaneseNumber> {
       chunks.push(conjugateNumber(breakdown.man));
     }
 
-    chunks.push(MAN_NUMBER);
+    if (
+      finalNumberOverrides &&
+      breakdown.lowestUnit === "man" &&
+      finalNumberOverrides[MAN]
+    ) {
+      chunks.push(finalNumberOverrides[MAN]);
+    } else {
+      chunks.push(MAN_NUMBER);
+    }
   }
 
   if (breakdown.sen) {
@@ -201,7 +221,15 @@ function conjugate(amount: number): ReadonlyArray<JapaneseNumber> {
       chunks.push(conjugateNumber(breakdown.sen));
     }
 
-    chunks.push(SEN_NUMBER);
+    if (
+      finalNumberOverrides &&
+      breakdown.lowestUnit === "sen" &&
+      finalNumberOverrides[SEN]
+    ) {
+      chunks.push(finalNumberOverrides[SEN]);
+    } else {
+      chunks.push(SEN_NUMBER);
+    }
   }
 
   if (breakdown.hyaku) {
@@ -209,7 +237,15 @@ function conjugate(amount: number): ReadonlyArray<JapaneseNumber> {
       chunks.push(conjugateNumber(breakdown.hyaku));
     }
 
-    chunks.push(HYAKU_NUMBER);
+    if (
+      finalNumberOverrides &&
+      breakdown.lowestUnit === "hyaku" &&
+      finalNumberOverrides[HYAKU]
+    ) {
+      chunks.push(finalNumberOverrides[HYAKU]);
+    } else {
+      chunks.push(HYAKU_NUMBER);
+    }
   }
 
   if (breakdown.jyuu) {
@@ -217,19 +253,32 @@ function conjugate(amount: number): ReadonlyArray<JapaneseNumber> {
       chunks.push(conjugateNumber(breakdown.jyuu));
     }
 
-    chunks.push(JYUU_NUMBER);
+    if (
+      finalNumberOverrides &&
+      breakdown.lowestUnit === "jyuu" &&
+      finalNumberOverrides[JYUU]
+    ) {
+      chunks.push(finalNumberOverrides[JYUU]);
+    } else {
+      chunks.push(JYUU_NUMBER);
+    }
   }
 
   if (breakdown.solo) {
-    chunks.push(conjugateNumber(breakdown.solo));
+    if (
+      finalNumberOverrides &&
+      breakdown.lowestUnit === "solo" &&
+      finalNumberOverrides[breakdown.solo]
+    ) {
+      chunks.push(finalNumberOverrides[breakdown.solo]);
+    } else {
+      chunks.push(conjugateNumber(breakdown.solo));
+    }
   }
 
-  return uniqBy(
-    permutate(chunks, japaneseNumberCombiner),
-    japaneseNumberIteratee
-  );
+  return uniqueWords(permutateWords(chunks));
 }
 
 export const conjugateNumber: (
   amount: number
-) => ReadonlyArray<JapaneseNumber> = memoize(conjugate);
+) => ReadonlyArray<JapaneseWord> = memoize(conjugateNumberInternal);

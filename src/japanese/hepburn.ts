@@ -1,7 +1,7 @@
 import { memoize } from "lodash";
 import { getAsHiragana } from "./kana";
 
-const VOWELS_ENGLISH: ReadonlySet<string> = new Set(["a", "e", "i", "o", "u"]);
+const VOWELS_HEPBURN: ReadonlySet<string> = new Set(["a", "e", "i", "o", "u"]);
 const SMALL_YS: { [kana: string]: { withY: string; withoutY: string } } = {
   ゃ: { withY: "ya", withoutY: "a" },
   ゅ: { withY: "yu", withoutY: "u" },
@@ -151,7 +151,7 @@ class HepburnConverter {
   }
 
   private pushEnglish(english: string) {
-    if (this.precedingN && VOWELS_ENGLISH.has(english)) {
+    if (this.precedingN && VOWELS_HEPBURN.has(english)) {
       this.englishCharacters.push("-");
       this.precedingN = false;
     }
@@ -177,3 +177,35 @@ function hepburn(inputKana: string): string {
 }
 
 export const getHepburnRoomaji: (kana: string) => string = memoize(hepburn);
+
+/**
+ * Gets the consonant of the word, if it begins with a consonant.
+ * @example
+ * // returns 'k'
+ * getLeadingConsonant('かな');
+ * @example
+ * // returns null
+ * getLeadingConsonant('いなり');
+ */
+export function getLeadingConsonant(inputKana: string): string | null {
+  const hiragana = getAsHiragana(inputKana);
+  if (!hiragana) {
+    return null;
+  }
+
+  const first = hiragana[0];
+  if (SMALL_YS[first]) {
+    throw new Error("Word began with a small Y-kana");
+  }
+
+  const firstHepburn = HepburnChart[first];
+  if (!firstHepburn) {
+    throw new Error(`Could not find '${first}' in the Hepburn chart!`);
+  }
+
+  if (VOWELS_HEPBURN.has(firstHepburn)) {
+    return null;
+  }
+
+  return firstHepburn[0];
+}
