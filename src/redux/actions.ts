@@ -6,11 +6,6 @@ export interface ActionSetLocalizationLanguage {
   language: LocalizationLanguage;
 }
 
-export interface ActionDefineSet {
-  type: "define-set";
-  items: ReadonlyArray<Item>;
-}
-
 export interface ActionCreateQuestion {
   type: "create-question";
   item: Item;

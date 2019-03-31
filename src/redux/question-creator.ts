@@ -51,14 +51,13 @@ export function createQuestion(
 }
 
 export function createRandomQuestion(state: State): ActionCreateQuestion {
-  const itemIds = Object.keys(state.items);
-  if (!itemIds.length) {
+  if (!state.items.length) {
     throw new Error("There are no defined items");
   }
 
   let item;
   do {
-    item = state.items[randomFromArray(itemIds)];
+    item = randomFromArray(state.items);
   } while (!item.counters.length);
   const amount = random(item.minQuantity, item.maxQuantity);
   return createQuestion(state, item, amount);

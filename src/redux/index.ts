@@ -48,7 +48,7 @@ export interface State {
   counters: { [counterId: string]: CountersStateItem };
   currentQuestion: Question | null;
   enabledPacks: ReadonlyArray<string>;
-  items: { [itemId: string]: Item };
+  items: ReadonlyArray<Item>;
   scorecard: Scorecard;
   settings: Settings;
 }

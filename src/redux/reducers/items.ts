@@ -1,34 +1,26 @@
-import { ActionDefineSet } from "../actions";
+import { ITEMS_FROM_COUNTER } from "../../data/items";
+import { ActionChangeStudyPacks } from "../actions";
 import { Item } from "../index";
 
-interface State {
-  [itemId: string]: Item;
-}
-
-type ReducerAction = ActionDefineSet;
+type ReducerAction = ActionChangeStudyPacks;
 
 export default function itemsReducer(
-  state: State | undefined = {},
+  state: ReadonlyArray<Item> | undefined = [],
   action: ReducerAction
-): State {
+): ReadonlyArray<Item> {
   switch (action.type) {
-    case "define-set": {
-      const next: State = { ...state };
-      let madeChange = false;
-      for (const item of action.items) {
-        if (next.hasOwnProperty(item.itemId)) {
-          continue;
+    case "change-study-packs": {
+      const next = new Set<Item>();
+      for (const { counters } of action.enabledPacks) {
+        for (const { counterId } of counters) {
+          const items = ITEMS_FROM_COUNTER[counterId];
+          for (const item of items) {
+            next.add(item);
+          }
         }
-
-        next[item.itemId] = item;
-        madeChange = true;
       }
 
-      if (!madeChange) {
-        return state;
-      }
-
-      return next;
+      return Array.from(next);
     }
     default:
       return state;
