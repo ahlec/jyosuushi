@@ -9,7 +9,7 @@ export const JYUU = 10;
 
 type Unit = "oku" | "man" | "sen" | "hyaku" | "jyuu" | "solo";
 
-interface NumberBreakdown {
+export interface NumberBreakdown {
   oku: number;
   man: number;
   sen: number;
@@ -19,7 +19,7 @@ interface NumberBreakdown {
   lowestUnit: Unit;
 }
 
-function breakDownNumber(value: number): NumberBreakdown {
+export function breakDownNumber(value: number): NumberBreakdown {
   let remainder = value;
   const oku = Math.floor(remainder / OKU);
   remainder -= oku * OKU;
@@ -174,14 +174,9 @@ export interface FinalNumberOverrides {
 }
 
 export function conjugateNumberInternal(
-  amount: number,
+  breakdown: NumberBreakdown,
   finalNumberOverrides?: FinalNumberOverrides
 ): ReadonlyArray<JapaneseWord> {
-  if (amount < JYUU) {
-    return FIRST_TEN_NUMBERS[amount];
-  }
-
-  const breakdown = breakDownNumber(amount);
   const chunks: Array<ReadonlyArray<JapaneseWord>> = [];
 
   if (breakdown.oku) {
@@ -272,7 +267,7 @@ export function conjugateNumberInternal(
     ) {
       chunks.push(finalNumberOverrides[breakdown.solo]);
     } else {
-      chunks.push(conjugateNumber(breakdown.solo));
+      chunks.push(FIRST_TEN_NUMBERS[breakdown.solo]);
     }
   }
 
@@ -281,4 +276,6 @@ export function conjugateNumberInternal(
 
 export const conjugateNumber: (
   amount: number
-) => ReadonlyArray<JapaneseWord> = memoize(conjugateNumberInternal);
+) => ReadonlyArray<JapaneseWord> = memoize((amount: number) =>
+  conjugateNumberInternal(breakDownNumber(amount))
+);

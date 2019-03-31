@@ -1,15 +1,166 @@
-/* tslint:disable object-literal-sort-keys */
-
 export interface ConversionChart {
   [romaji: string]: string;
 }
 
+export type Gyou =
+  | "a"
+  | "ka"
+  | "ga"
+  | "sa"
+  | "za"
+  | "ta"
+  | "da"
+  | "na"
+  | "ha"
+  | "ba"
+  | "pa"
+  | "ma"
+  | "ya"
+  | "ra"
+  | "wa";
+
+export type Dan = "a" | "i" | "u" | "e" | "o";
+
+type GoJyuuOn<T> = { [gyou in Gyou]: { [dan in Dan]: T | null } };
+
+const GOJYUUON_HIRAGANA_CODEPOINTS: GoJyuuOn<number> = {
+  a: {
+    a: 0x3042,
+    i: 0x3044,
+    u: 0x3046,
+    e: 0x3048,
+    o: 0x304a
+  },
+  ka: {
+    a: 0x304b,
+    i: 0x304d,
+    u: 0x304f,
+    e: 0x3051,
+    o: 0x3053
+  },
+  ga: {
+    a: 0x304c,
+    i: 0x304e,
+    u: 0x3050,
+    e: 0x3052,
+    o: 0x3054
+  },
+  sa: {
+    a: 0x3055,
+    i: 0x3057,
+    u: 0x3059,
+    e: 0x305b,
+    o: 0x305d
+  },
+  za: {
+    a: 0x3056,
+    i: 0x3058,
+    u: 0x305a,
+    e: 0x305c,
+    o: 0x305e
+  },
+  ta: {
+    a: 0x305f,
+    i: 0x3061,
+    u: 0x3064, // Deviation from previous pattern! Small TSU to blame!
+    e: 0x3066,
+    o: 0x3068
+  },
+  da: {
+    a: 0x3060,
+    i: 0x3062,
+    u: 0x3065,
+    e: 0x3067,
+    o: 0x3069
+  },
+  na: {
+    a: 0x306a,
+    i: 0x306b,
+    u: 0x306c,
+    e: 0x306d,
+    o: 0x306e
+  },
+  ha: {
+    a: 0x306f,
+    i: 0x3072,
+    u: 0x3075,
+    e: 0x3078,
+    o: 0x307b
+  },
+  ba: {
+    a: 0x3070,
+    i: 0x3073,
+    u: 0x3076,
+    e: 0x3079,
+    o: 0x307c
+  },
+  pa: {
+    a: 0x3071,
+    i: 0x3074,
+    u: 0x3077,
+    e: 0x307a,
+    o: 0x307d
+  },
+  ma: {
+    a: 0x307e,
+    i: 0x307f,
+    u: 0x3080,
+    e: 0x3081,
+    o: 0x3082
+  },
+  ya: {
+    a: 0x3084,
+    i: null,
+    u: 0x3086,
+    e: null,
+    o: 0x3088
+  },
+  ra: {
+    a: 0x3089,
+    i: 0x308a,
+    u: 0x308b,
+    e: 0x308c,
+    o: 0x308d
+  },
+  wa: {
+    a: 0x308f,
+    i: null,
+    u: null,
+    e: null,
+    o: 0x3092
+  }
+};
+
+interface GoJyuuOnLookup {
+  [codepoint: number]: { dan: Dan; gyou: Gyou };
+}
+const GOJYUUON_FROM_CODEPOINTS: GoJyuuOnLookup = Object.keys(
+  GOJYUUON_HIRAGANA_CODEPOINTS
+).reduce((lookup: GoJyuuOnLookup, gyou: Gyou) => {
+  Object.keys(GOJYUUON_HIRAGANA_CODEPOINTS[gyou]).map((dan: Dan) => {
+    const codepoint = GOJYUUON_HIRAGANA_CODEPOINTS[gyou][dan];
+    if (codepoint) {
+      lookup[codepoint] = {
+        dan,
+        gyou
+      };
+    }
+  });
+  return lookup;
+}, {});
+
+const HIRAGANA_CODEPOINT_START = 0x3041;
+
 export class KanaDefinition {
+  private deltaFromHiragana: number;
+
   public constructor(
     public readonly codepointStart: number,
     public readonly codepointEnd: number,
     public readonly conversionChart: ConversionChart
-  ) {}
+  ) {
+    this.deltaFromHiragana = this.codepointStart - HIRAGANA_CODEPOINT_START;
+  }
 
   public isOnlyKana(str: string): boolean {
     for (let index = 0; index < str.length; ++index) {
@@ -21,9 +172,24 @@ export class KanaDefinition {
 
     return true;
   }
+
+  public changeGyou(kana: string, gyou: Gyou): string {
+    if (!kana || kana.length !== 1) {
+      throw new Error("Provided kana must be exactly one character");
+    }
+
+    const info = GOJYUUON_FROM_CODEPOINTS[kana.codePointAt(0)!];
+    if (!info) {
+      throw new Error(`Could not find '${kana}' in gojyuuon`);
+    }
+
+    const newCodepoint =
+      GOJYUUON_HIRAGANA_CODEPOINTS[gyou][info.dan]! + this.deltaFromHiragana;
+    return String.fromCodePoint(newCodepoint);
+  }
 }
 
-export const Hiragana = new KanaDefinition(0x3041, 0x309f, {
+export const HIRAGANA = new KanaDefinition(HIRAGANA_CODEPOINT_START, 0x309f, {
   a: "あ",
   i: "い",
   u: "う",
@@ -359,16 +525,16 @@ export const Hiragana = new KanaDefinition(0x3041, 0x309f, {
 const CODEPOINT_KATAKANA_FIRST = 0x30a1;
 const CODEPOINT_KATAKANA_LAST = 0x30ff;
 const DELTA_HIRAGANA_TO_KATAKANA =
-  CODEPOINT_KATAKANA_FIRST - Hiragana.codepointStart;
+  CODEPOINT_KATAKANA_FIRST - HIRAGANA.codepointStart;
 
 const katakanaConversionChart: ConversionChart = Object.keys(
-  Hiragana.conversionChart
+  HIRAGANA.conversionChart
 ).reduce((katakana: ConversionChart, romaji: string) => {
   const characters: string[] = [];
-  const hiragana = Hiragana.conversionChart[romaji];
+  const hiragana = HIRAGANA.conversionChart[romaji];
   for (let index = 0; index < hiragana.length; ++index) {
     const code = hiragana.charCodeAt(index);
-    if (code >= Hiragana.codepointStart && code <= Hiragana.codepointEnd) {
+    if (code >= HIRAGANA.codepointStart && code <= HIRAGANA.codepointEnd) {
       characters.push(String.fromCharCode(code + DELTA_HIRAGANA_TO_KATAKANA));
     } else {
       characters.push(hiragana[index]);
@@ -390,8 +556,8 @@ export function getAsHiragana(kana: string): string {
   for (let index = 0; index < kana.length; ++index) {
     const codepoint = kana.codePointAt(index)!;
     if (
-      codepoint >= Hiragana.codepointStart &&
-      codepoint <= Hiragana.codepointEnd
+      codepoint >= HIRAGANA.codepointStart &&
+      codepoint <= HIRAGANA.codepointEnd
     ) {
       characters.push(kana[index]);
     } else if (

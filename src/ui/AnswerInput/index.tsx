@@ -1,7 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 
-import { Hiragana } from "../../japanese/kana";
+import { HIRAGANA } from "../../japanese/kana";
 import { Question, State } from "../../redux";
 import KanaInput from "./KanaInput";
 
@@ -33,14 +33,14 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
   public render() {
     return (
       <div className="AnswerInput" onKeyDown={this.onKeyDown}>
-        <KanaInput kana={Hiragana} onChange={this.onChange} />
+        <KanaInput kana={HIRAGANA} onChange={this.onChange} />
       </div>
     );
   }
 
   private onChange = (value: string) => {
     this.setState({
-      isValid: !!value && Hiragana.isOnlyKana(value),
+      isValid: !!value && HIRAGANA.isOnlyKana(value),
       value
     });
   };
