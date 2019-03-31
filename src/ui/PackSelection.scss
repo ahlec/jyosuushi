@@ -1,0 +1,12 @@
+.PackSelection {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border: 3px solid black;
+
+  .pack-option {
+    .currently-enabled {
+      font-size: 80%;
+      font-style: italic;
+    }
+  }
+}

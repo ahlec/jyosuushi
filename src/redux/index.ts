@@ -47,7 +47,7 @@ export interface CountersStateItem {
 export interface State {
   counters: { [counterId: string]: CountersStateItem };
   currentQuestion: Question | null;
-  enabledPacks: { [packId: string]: boolean };
+  enabledPacks: ReadonlyArray<string>;
   items: { [itemId: string]: Item };
   scorecard: Scorecard;
   settings: Settings;

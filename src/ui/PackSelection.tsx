@@ -3,49 +3,158 @@ import * as React from "react";
 import { connect } from "react-redux";
 
 import { State } from "../redux";
-import { disableStudyPack, enableStudyPack } from "../redux/actions";
+import { changeStudyPacks } from "../redux/actions";
 import { Dispatch } from "../redux/store";
 
 import { STUDY_PACKS, StudyPack } from "../data/study-packs";
 
+import "./PackSelection.scss";
+
+interface StudyPackLookup {
+  [packId: string]: StudyPack;
+}
+const STUDY_PACK_LOOKUP: StudyPackLookup = STUDY_PACKS.reduce(
+  (lookup: StudyPackLookup, studyPack: StudyPack) => {
+    lookup[studyPack.packId] = studyPack;
+    return lookup;
+  },
+  {}
+);
+
 interface ReduxProps {
-  enabledPacks: { [packId: string]: boolean };
+  enabledPacks: ReadonlySet<string>;
 }
 
 type ComponentProps = ReduxProps & { dispatch: Dispatch };
 
+const getEnabledPacksSet = memoize(
+  (enabledPacks: ReadonlyArray<string>) => new Set(enabledPacks)
+);
+
 function mapStateToProps(state: State): ReduxProps {
   return {
-    enabledPacks: state.enabledPacks
+    enabledPacks: getEnabledPacksSet(state.enabledPacks)
   };
 }
 
-class PackSelection extends React.PureComponent<ComponentProps> {
-  private onSelect = memoize(
+interface ComponentState {
+  numChanges: number;
+  toDisable: ReadonlySet<string>;
+  toEnable: ReadonlySet<string>;
+}
+
+class PackSelection extends React.PureComponent<
+  ComponentProps,
+  ComponentState
+> {
+  public state: ComponentState = {
+    numChanges: 0,
+    toDisable: new Set(),
+    toEnable: new Set()
+  };
+
+  private onTogglePack = memoize(
     (pack: StudyPack) => (event: React.ChangeEvent<HTMLInputElement>) => {
-      const { dispatch, enabledPacks } = this.props;
-      const isEnabled = enabledPacks[pack.packId];
-      dispatch(isEnabled ? disableStudyPack(pack) : enableStudyPack(pack));
+      const { enabledPacks } = this.props;
+      let { numChanges, toDisable, toEnable } = this.state;
+
+      if (enabledPacks.has(pack.packId)) {
+        const mutableToDisable = new Set<string>(toDisable);
+        toDisable = mutableToDisable;
+        if (mutableToDisable.delete(pack.packId)) {
+          numChanges--;
+        } else {
+          mutableToDisable.add(pack.packId);
+          numChanges++;
+        }
+      } else {
+        const mutableToEnable = new Set<string>(toEnable);
+        toEnable = mutableToEnable;
+        if (mutableToEnable.delete(pack.packId)) {
+          numChanges--;
+        } else {
+          mutableToEnable.add(pack.packId);
+          numChanges++;
+        }
+      }
+
+      this.setState({ numChanges, toDisable, toEnable });
     }
   );
 
+  public componentDidUpdate({
+    enabledPacks: prevEnabledPacks
+  }: ComponentProps) {
+    const { enabledPacks } = this.props;
+    if (enabledPacks !== prevEnabledPacks) {
+      this.setState({
+        numChanges: 0,
+        toDisable: new Set(),
+        toEnable: new Set()
+      });
+    }
+  }
+
   public render() {
+    const { numChanges } = this.state;
     return (
-      <div className="PackSelection">{STUDY_PACKS.map(this.renderPack)}</div>
+      <div className="PackSelection">
+        {STUDY_PACKS.map(this.renderPack)}
+        <button disabled={!numChanges} onClick={this.onClickApply}>
+          Apply Changes {!!numChanges && `(${numChanges})`}
+        </button>
+      </div>
     );
+  }
+
+  private onClickApply = () => {
+    const { dispatch, enabledPacks } = this.props;
+    const { toDisable, toEnable } = this.state;
+
+    const next = new Set(enabledPacks);
+    for (const packId of toDisable) {
+      next.delete(packId);
+    }
+
+    for (const packId of toEnable) {
+      next.add(packId);
+    }
+
+    dispatch(
+      changeStudyPacks(
+        Array.from(next).map(packId => STUDY_PACK_LOOKUP[packId])
+      )
+    );
+  };
+
+  private isPackEnabled(pack: StudyPack): boolean {
+    const { enabledPacks } = this.props;
+    const { toDisable, toEnable } = this.state;
+    if (enabledPacks.has(pack.packId)) {
+      return !toDisable.has(pack.packId);
+    }
+
+    return toEnable.has(pack.packId);
   }
 
   private renderPack = (pack: StudyPack) => {
     const { enabledPacks } = this.props;
-    const enabled = enabledPacks[pack.packId];
+    const currentlyEnabled = enabledPacks.has(pack.packId);
+    const enabled = this.isPackEnabled(pack);
     return (
-      <label key={pack.name}>
+      <label key={pack.name} className="pack-option">
         <input
           type="checkbox"
           checked={enabled}
-          onChange={this.onSelect(pack)}
+          onChange={this.onTogglePack(pack)}
         />{" "}
         {pack.name}
+        {currentlyEnabled && (
+          <React.Fragment>
+            {" "}
+            <span className="currently-enabled">(currently enabled)</span>
+          </React.Fragment>
+        )}
       </label>
     );
   };

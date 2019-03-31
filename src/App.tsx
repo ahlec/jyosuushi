@@ -1,6 +1,10 @@
 import * as React from "react";
+import { connect } from "react-redux";
+
+import { State } from "./redux";
 
 import AnswerInput from "./ui/AnswerInput";
+import Header from "./ui/Header";
 import HistoryPanel from "./ui/HistoryPanel";
 import PackSelection from "./ui/PackSelection";
 import QuestionDisplay from "./ui/QuestionDisplay";
@@ -12,6 +16,10 @@ import { conjugateNumber } from "./japanese/numbers";
 import { JapaneseWord } from "./japanese/words";
 
 import "./App.scss";
+
+interface ComponentProps {
+  hasStudyPacksEnabled: boolean;
+}
 
 interface ComponentState {
   value: string;
@@ -29,7 +37,13 @@ const COUNTER_WA: JapaneseWord = {
   kanji: "話"
 };
 
-export default class App extends React.PureComponent<{}, ComponentState> {
+function mapStateToProps(state: State): ComponentProps {
+  return {
+    hasStudyPacksEnabled: !!state.enabledPacks.length
+  };
+}
+
+class App extends React.PureComponent<ComponentProps, ComponentState> {
   public state: ComponentState = {
     conjugationsNumbers: [],
     conjugationsNumberAndCounters: [],
@@ -37,14 +51,42 @@ export default class App extends React.PureComponent<{}, ComponentState> {
   };
 
   public render() {
+    const { hasStudyPacksEnabled } = this.props;
     const {
       conjugationsNumbers,
       conjugationsNumberAndCounters,
       value
     } = this.state;
 
+    if (!hasStudyPacksEnabled) {
+      return (
+        <div className="App">
+          <Header />
+          <p>
+            Welcome to <strong>助数詞を練習</strong>! This is a tool that's
+            meant to help you study{" "}
+            <a
+              href="https://en.wikipedia.org/wiki/Japanese_counter_word"
+              target="_blank"
+            >
+              Japanese counters
+            </a>
+            . It's simple! We take a random type of item and a random number,
+            and then you tell us what the proper conjugation of the number +
+            counter is!
+          </p>
+          <p>
+            To start, choose one or more study pack below. Don't worry, you can
+            change this at any time:
+          </p>
+          <PackSelection />
+        </div>
+      );
+    }
+
     return (
       <div className="App">
+        <Header />
         <ScoreBar />
         <QuestionDisplay />
         <AnswerInput />
@@ -82,3 +124,5 @@ export default class App extends React.PureComponent<{}, ComponentState> {
     });
   };
 }
+
+export default connect(mapStateToProps)(App);

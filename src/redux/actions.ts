@@ -18,26 +18,13 @@ export interface ActionCreateQuestion {
   validAnswers: ReadonlyArray<Answer>;
 }
 
-export interface ActionEnableStudyPack {
-  type: "enable-study-pack";
-  studyPack: StudyPack;
+export interface ActionChangeStudyPacks {
+  type: "change-study-packs";
+  enabledPacks: ReadonlyArray<StudyPack>;
 }
 
-export function enableStudyPack(studyPack: StudyPack): ActionEnableStudyPack {
-  return {
-    type: "enable-study-pack",
-    studyPack
-  };
-}
-
-export interface ActionDisableStudyPack {
-  type: "disable-study-pack";
-  studyPack: StudyPack;
-}
-
-export function disableStudyPack(studyPack: StudyPack): ActionDisableStudyPack {
-  return {
-    type: "disable-study-pack",
-    studyPack
-  };
+export function changeStudyPacks(
+  enabledPacks: ReadonlyArray<StudyPack>
+): ActionChangeStudyPacks {
+  return { enabledPacks, type: "change-study-packs" };
 }

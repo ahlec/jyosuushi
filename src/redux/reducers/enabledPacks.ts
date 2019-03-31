@@ -1,45 +1,14 @@
-import { STUDY_PACKS, StudyPack } from "../../data/study-packs";
-import { ActionDisableStudyPack, ActionEnableStudyPack } from "../actions";
+import { ActionChangeStudyPacks } from "../actions";
 
-interface State {
-  [packId: string]: boolean;
-}
-
-type ReducerAction = ActionDisableStudyPack | ActionEnableStudyPack;
-
-const DEFAULT_STATE: State = STUDY_PACKS.reduce(
-  (state: State, pack: StudyPack) => {
-    state[pack.packId] = false;
-    return state;
-  },
-  {}
-);
+type ReducerAction = ActionChangeStudyPacks;
 
 export default function countersReducer(
-  state: State | undefined = DEFAULT_STATE,
+  state: ReadonlyArray<string> | undefined = [],
   action: ReducerAction
-): State {
+): ReadonlyArray<string> {
   switch (action.type) {
-    case "disable-study-pack": {
-      if (!state[action.studyPack.packId]) {
-        return state;
-      }
-
-      return {
-        ...state,
-        [action.studyPack.packId]: false
-      };
-    }
-    case "enable-study-pack": {
-      if (state[action.studyPack.packId]) {
-        return state;
-      }
-
-      return {
-        ...state,
-        [action.studyPack.packId]: true
-      };
-    }
+    case "change-study-packs":
+      return action.enabledPacks.map(({ packId }) => packId);
     default:
       return state;
   }

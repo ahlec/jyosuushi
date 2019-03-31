@@ -1,60 +1,33 @@
-import { without } from "lodash";
-import { ActionDisableStudyPack, ActionEnableStudyPack } from "../actions";
+import { ActionChangeStudyPacks } from "../actions";
 import { CountersStateItem } from "../index";
 
 interface State {
   [counterId: string]: CountersStateItem;
 }
 
-type ReducerAction = ActionDisableStudyPack | ActionEnableStudyPack;
+type ReducerAction = ActionChangeStudyPacks;
 
 export default function countersReducer(
   state: State | undefined = {},
   action: ReducerAction
 ): State {
   switch (action.type) {
-    case "disable-study-pack": {
+    case "change-study-packs": {
       const next: State = {};
-      for (const counterId of Object.keys(state)) {
-        const current = state[counterId];
-        if (
-          current.studyPacks.length === 0 ||
-          (current.studyPacks.length === 1 &&
-            current.studyPacks[0] === action.studyPack.packId)
-        ) {
-          continue;
+      for (const { counters, packId } of action.enabledPacks) {
+        for (const counter of counters) {
+          if (next[counter.counterId]) {
+            next[counter.counterId] = {
+              studyPacks: [...next[counter.counterId].studyPacks, packId],
+              counter
+            };
+          } else {
+            next[counter.counterId] = {
+              studyPacks: [packId],
+              counter
+            };
+          }
         }
-
-        if (current.studyPacks.indexOf(action.studyPack.packId) < 0) {
-          next[counterId] = current;
-          continue;
-        }
-
-        next[counterId] = {
-          studyPacks: without(current.studyPacks, action.studyPack.packId),
-          counter: current.counter
-        };
-      }
-
-      return next;
-    }
-    case "enable-study-pack": {
-      const next = { ...state };
-      for (const counter of action.studyPack.counters) {
-        const current = next[counter.counterId];
-        if (
-          current &&
-          current.studyPacks.indexOf(action.studyPack.packId) >= 0
-        ) {
-          continue;
-        }
-
-        next[counter.counterId] = {
-          studyPacks: current
-            ? [...current.studyPacks, action.studyPack.packId]
-            : [action.studyPack.packId],
-          counter
-        };
       }
 
       return next;
