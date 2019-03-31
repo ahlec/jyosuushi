@@ -8,6 +8,7 @@ import {
   HYAKU,
   JYUU
 } from "./numbers";
+import { Tag } from "./tags";
 import {
   castAwayTaggable,
   JapaneseWord,
@@ -48,41 +49,73 @@ const COUNTER_H_CHANGES: FinalNumberChanges = {
 };
 
 const COUNTER_W_CHANGES: FinalNumberChanges = {
-  // 4: [
-  //   {
-  //     kana: "よ",
-  //     kanji: "四"
-  //   },
-  //   {
-  //     kana: "よん",
-  //     kanji: "四"
-  //   }
-  // ],
+  4: [
+    [
+      {
+        type: "replace",
+        kana: "よ",
+        kanji: "四"
+      },
+      { type: "tag", tag: "counter-wa-4-yo" }
+    ],
+    [
+      {
+        type: "replace",
+        kana: "よん",
+        kanji: "四"
+      }
+    ]
+  ],
   6: [
     [
       {
         type: "trailing-small-tsu"
-      }
+      },
+      { type: "tag", tag: "counter-wa-6-8-small-tsu" }
     ],
     [
       {
         type: "replace",
         kana: "ろく",
         kanji: "六"
+      },
+      {
+        type: "tag",
+        tag: "counter-wa-6-8-full-num"
       }
     ]
   ],
   8: [
-    [{ type: "trailing-small-tsu" }],
+    [
+      { type: "trailing-small-tsu" },
+      { type: "tag", tag: "counter-wa-6-8-small-tsu" }
+    ],
     [
       {
         type: "replace",
         kana: "はち",
         kanji: "八"
+      },
+      {
+        type: "tag",
+        tag: "counter-wa-6-8-full-num"
       }
     ]
   ],
   [JYUU]: [[{ type: "replace", kana: "じっ", kanji: "十" }]]
+};
+
+interface CounterChange {
+  gyou?: Gyou;
+  tag?: Tag;
+}
+
+const COUNTER_BA_GYOU: Readonly<CounterChange> = {
+  gyou: "ba"
+};
+
+const COUNTER_PA_GYOU: Readonly<CounterChange> = {
+  gyou: "pa"
 };
 
 function conjugateNumberAndCounterInternal(
@@ -92,7 +125,7 @@ function conjugateNumberAndCounterInternal(
   const counterFirstConsonant = getLeadingConsonant(counter.kana);
   const amountBreakdown = breakDownNumber(amount);
   let numberChanges: FinalNumberChanges | undefined;
-  let changedCounterGyou: Gyou[] | undefined;
+  let counterChanges: CounterChange[] | undefined;
   switch (counterFirstConsonant) {
     case "k":
     case "p": {
@@ -111,12 +144,15 @@ function conjugateNumberAndCounterInternal(
       switch (amountBreakdown.lowestUnit) {
         case "man":
         case "sen": {
-          changedCounterGyou = counterFirstConsonant === "h" ? ["ba"] : ["pa"];
+          counterChanges =
+            counterFirstConsonant === "h"
+              ? [COUNTER_BA_GYOU]
+              : [COUNTER_PA_GYOU];
           break;
         }
         case "hyaku":
         case "jyuu": {
-          changedCounterGyou = ["pa"];
+          counterChanges = [COUNTER_PA_GYOU];
           break;
         }
         case "solo": {
@@ -124,16 +160,18 @@ function conjugateNumberAndCounterInternal(
             case 1:
             case 6:
             case 8: {
-              changedCounterGyou = ["pa"];
+              counterChanges = [COUNTER_PA_GYOU];
               break;
             }
             case 3: {
-              changedCounterGyou =
-                counterFirstConsonant === "h" ? ["ba"] : ["pa"];
+              counterChanges =
+                counterFirstConsonant === "h"
+                  ? [COUNTER_BA_GYOU]
+                  : [COUNTER_PA_GYOU];
               break;
             }
             case 4: {
-              changedCounterGyou = ["ha", "pa"];
+              counterChanges = [{}, COUNTER_PA_GYOU];
               break;
             }
           }
@@ -148,16 +186,27 @@ function conjugateNumberAndCounterInternal(
 
       switch (amountBreakdown.lowestUnit) {
         case "jyuu": {
-          changedCounterGyou = ["pa"];
+          counterChanges = [COUNTER_PA_GYOU];
           break;
         }
         case "solo": {
           switch (amountBreakdown.solo) {
             case 3: {
-              changedCounterGyou = ["ba"];
+              counterChanges = [COUNTER_BA_GYOU];
               break;
             }
-            // TODO: Special cases for 4, 6, 8
+            case 4: {
+              counterChanges = [{}, { gyou: "ba", tag: "counter-wa-4-ba" }];
+              break;
+            }
+            case 6:
+            case 8: {
+              counterChanges = [
+                { tag: "counter-wa-6-8-wa" },
+                { gyou: "pa", tag: "counter-wa-6-8-pa" }
+              ];
+              break;
+            }
           }
           break;
         }
@@ -167,13 +216,15 @@ function conjugateNumberAndCounterInternal(
   }
 
   let finalizedCounter: TaggableJapaneseWord[];
-  if (changedCounterGyou) {
+  if (counterChanges) {
     const firstKana = counter.kana[0];
     const followingKana = counter.kana.slice(1);
-    finalizedCounter = changedCounterGyou.map(gyou => ({
-      kana: HIRAGANA.changeGyou(firstKana, gyou) + followingKana,
+    finalizedCounter = counterChanges.map(({ gyou, tag }) => ({
+      kana: gyou
+        ? HIRAGANA.changeGyou(firstKana, gyou) + followingKana
+        : counter.kana,
       kanji: counter.kanji,
-      tags: new Set()
+      tags: tag ? new Set([tag]) : new Set()
     }));
   } else {
     finalizedCounter = [{ ...counter, tags: new Set() }];

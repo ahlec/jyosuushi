@@ -18,9 +18,14 @@ interface ComponentState {
   conjugationsNumberAndCounters: ReadonlyArray<JapaneseWord>;
 }
 
-const COUNTER_HON: JapaneseWord = {
-  kana: "ほん",
-  kanji: "本"
+// const COUNTER_HON: JapaneseWord = {
+//   kana: "ほん",
+//   kanji: "本"
+// };
+
+const COUNTER_WA: JapaneseWord = {
+  kana: "わ",
+  kanji: "話"
 };
 
 export default class App extends React.PureComponent<{}, ComponentState> {
@@ -70,10 +75,7 @@ export default class App extends React.PureComponent<{}, ComponentState> {
     const num = parseInt(event.target.value, 10);
     this.setState({
       conjugationsNumbers: conjugateNumber(num),
-      conjugationsNumberAndCounters: conjugateNumberAndCounter(
-        num,
-        COUNTER_HON
-      ),
+      conjugationsNumberAndCounters: conjugateNumberAndCounter(num, COUNTER_WA),
       value: event.target.value
     });
   };
