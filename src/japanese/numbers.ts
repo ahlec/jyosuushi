@@ -1,4 +1,4 @@
-import { memoize, uniqueId } from "lodash";
+import { flatten, memoize, uniqueId } from "lodash";
 import { JapaneseWord, permutateWords, uniqueWords } from "./words";
 
 export const OKU = Math.pow(10, 8);
@@ -19,45 +19,47 @@ export interface NumberBreakdown {
   lowestUnit: Unit;
 }
 
-export function breakDownNumber(value: number): NumberBreakdown {
-  let remainder = value;
-  const oku = Math.floor(remainder / OKU);
-  remainder -= oku * OKU;
+export const breakDownNumber: (value: number) => NumberBreakdown = memoize(
+  (value: number): NumberBreakdown => {
+    let remainder = value;
+    const oku = Math.floor(remainder / OKU);
+    remainder -= oku * OKU;
 
-  const man = Math.floor(remainder / MAN);
-  remainder -= man * MAN;
+    const man = Math.floor(remainder / MAN);
+    remainder -= man * MAN;
 
-  const sen = Math.floor(remainder / SEN);
-  remainder -= sen * SEN;
+    const sen = Math.floor(remainder / SEN);
+    remainder -= sen * SEN;
 
-  const hyaku = Math.floor(remainder / HYAKU);
-  remainder -= hyaku * HYAKU;
+    const hyaku = Math.floor(remainder / HYAKU);
+    remainder -= hyaku * HYAKU;
 
-  const jyuu = Math.floor(remainder / JYUU);
-  remainder -= jyuu * JYUU;
+    const jyuu = Math.floor(remainder / JYUU);
+    remainder -= jyuu * JYUU;
 
-  return {
-    oku,
-    man,
-    sen,
-    hyaku,
-    jyuu,
-    solo: remainder,
-    lowestUnit: remainder
-      ? "solo"
-      : jyuu
-      ? "jyuu"
-      : hyaku
-      ? "hyaku"
-      : sen
-      ? "sen"
-      : man
-      ? "man"
-      : oku
-      ? "oku"
-      : "solo"
-  };
-}
+    return {
+      oku,
+      man,
+      sen,
+      hyaku,
+      jyuu,
+      solo: remainder,
+      lowestUnit: remainder
+        ? "solo"
+        : jyuu
+        ? "jyuu"
+        : hyaku
+        ? "hyaku"
+        : sen
+        ? "sen"
+        : man
+        ? "man"
+        : oku
+        ? "oku"
+        : "solo"
+    };
+  }
+);
 
 const FIRST_TEN_NUMBERS: ReadonlyArray<ReadonlyArray<JapaneseWord>> = [
   [
@@ -162,6 +164,11 @@ const ZEN_NUMBER: ReadonlyArray<JapaneseWord> = [
   }
 ];
 
+const SEN_CHANGES: FinalNumberChanges = {
+  1: ["omit", "trailing-small-tsu"],
+  8: ["trailing-small-tsu"]
+};
+
 const HYAKU_NUMBER: ReadonlyArray<JapaneseWord> = [
   {
     kana: "ひゃく",
@@ -190,183 +197,162 @@ const JYUU_NUMBER: ReadonlyArray<JapaneseWord> = [
   }
 ];
 
-export interface FinalNumberOverrides {
-  [amount: number]: ReadonlyArray<JapaneseWord>;
-}
-
-const HYAKU_OVERRIDES: FinalNumberOverrides = {
-  1: [
-    {
-      kana: "",
-      kanji: null
-    },
-    {
-      kana: "いっ",
-      kanji: "一"
-    }
-  ],
-  6: [
-    {
-      kana: "ろっ",
-      kanji: "六"
-    }
-  ],
-  8: [
-    {
-      kana: "はっ",
-      kanji: "八"
-    }
-  ]
+const HYAKU_CHANGES: FinalNumberChanges = {
+  1: ["omit", "trailing-small-tsu"],
+  6: ["trailing-small-tsu"],
+  8: ["trailing-small-tsu"]
 };
 
-export function conjugateNumberInternal(
+const OMIT_ONE: FinalNumberChanges = {
+  1: ["omit"]
+};
+
+type NumberChange = "omit" | "trailing-small-tsu";
+
+export interface FinalNumberChanges {
+  [amount: number]: ReadonlyArray<NumberChange>;
+}
+
+function applySingleChange(
+  words: ReadonlyArray<JapaneseWord>,
+  change: NumberChange
+): ReadonlyArray<JapaneseWord> {
+  switch (change) {
+    case "trailing-small-tsu": {
+      return words.map(({ kana, kanji }) => ({
+        kana: kana.slice(0, -1) + "っ",
+        kanji
+      }));
+    }
+    case "omit": {
+      return [{ kana: "", kanji: null }];
+    }
+  }
+}
+
+function applyUniqueChanges(
+  words: ReadonlyArray<JapaneseWord>,
+  changes: ReadonlyArray<NumberChange> | false | undefined
+): ReadonlyArray<JapaneseWord> {
+  if (!changes) {
+    return words;
+  }
+
+  return flatten(changes.map(change => applySingleChange(words, change)));
+}
+
+function conjugateNumberInternal(
   breakdown: NumberBreakdown,
-  finalNumberOverrides?: FinalNumberOverrides
+  finalNumberChanges?: FinalNumberChanges
 ): ReadonlyArray<JapaneseWord> {
   const chunks: Array<ReadonlyArray<JapaneseWord>> = [];
 
   if (breakdown.oku) {
-    if (breakdown.oku > 1) {
-      chunks.push(conjugateNumber(breakdown.oku));
-    }
+    chunks.push(conjugateNumber(breakdown.oku, OMIT_ONE));
 
-    if (
-      finalNumberOverrides &&
+    const change =
+      finalNumberChanges &&
       breakdown.lowestUnit === "oku" &&
-      finalNumberOverrides[OKU]
-    ) {
-      chunks.push(finalNumberOverrides[OKU]);
-    } else {
-      chunks.push(OKU_NUMBER);
-    }
+      finalNumberChanges[OKU];
+    chunks.push(applyUniqueChanges(OKU_NUMBER, change));
   }
 
   if (breakdown.man) {
-    if (breakdown.man > 1) {
-      chunks.push(conjugateNumber(breakdown.man));
-    }
+    chunks.push(conjugateNumber(breakdown.man, OMIT_ONE));
 
-    if (
-      finalNumberOverrides &&
+    const change =
+      finalNumberChanges &&
       breakdown.lowestUnit === "man" &&
-      finalNumberOverrides[MAN]
-    ) {
-      chunks.push(finalNumberOverrides[MAN]);
-    } else {
-      chunks.push(MAN_NUMBER);
-    }
+      finalNumberChanges[MAN];
+    chunks.push(applyUniqueChanges(MAN_NUMBER, change));
   }
 
   if (breakdown.sen) {
+    chunks.push(conjugateNumber(breakdown.sen, SEN_CHANGES));
+
     const senBreakdown = breakDownNumber(breakdown.sen);
-    if (breakdown.sen > 1) {
-      chunks.push(conjugateNumberInternal(senBreakdown));
-    }
-
-    if (
-      finalNumberOverrides &&
+    const change =
+      finalNumberChanges &&
       breakdown.lowestUnit === "sen" &&
-      finalNumberOverrides[SEN]
-    ) {
-      chunks.push(finalNumberOverrides[SEN]);
-    } else {
-      let sen = SEN_NUMBER;
-      if (senBreakdown.lowestUnit === "solo" && senBreakdown.solo === 3) {
-        sen = ZEN_NUMBER;
-      }
-
-      chunks.push(sen);
+      finalNumberChanges[SEN];
+    let sen = SEN_NUMBER;
+    if (senBreakdown.lowestUnit === "solo" && senBreakdown.solo === 3) {
+      sen = ZEN_NUMBER;
     }
+
+    chunks.push(applyUniqueChanges(sen, change));
   }
 
   if (breakdown.hyaku) {
-    const hyakuBreakdown = breakDownNumber(breakdown.hyaku);
-    if (breakdown.hyaku > 1) {
-      chunks.push(conjugateNumberInternal(hyakuBreakdown, HYAKU_OVERRIDES));
-    }
+    chunks.push(conjugateNumber(breakdown.hyaku, HYAKU_CHANGES));
 
-    if (
-      finalNumberOverrides &&
+    const hyakuBreakdown = breakDownNumber(breakdown.hyaku);
+    const change =
+      finalNumberChanges &&
       breakdown.lowestUnit === "hyaku" &&
-      finalNumberOverrides[HYAKU]
-    ) {
-      chunks.push(finalNumberOverrides[HYAKU]);
-    } else {
-      let hyaku = HYAKU_NUMBER;
-      if (hyakuBreakdown.lowestUnit === "solo") {
-        switch (hyakuBreakdown.solo) {
-          case 3: {
-            hyaku = BYAKU_NUMBER;
-            break;
-          }
-          case 6:
-          case 8: {
-            hyaku = PYAKU_NUMBER;
-            break;
-          }
+      finalNumberChanges[HYAKU];
+    let hyaku = HYAKU_NUMBER;
+    if (hyakuBreakdown.lowestUnit === "solo") {
+      switch (hyakuBreakdown.solo) {
+        case 3: {
+          hyaku = BYAKU_NUMBER;
+          break;
+        }
+        case 6:
+        case 8: {
+          hyaku = PYAKU_NUMBER;
+          break;
         }
       }
-
-      chunks.push(hyaku);
     }
+
+    chunks.push(applyUniqueChanges(hyaku, change));
   }
 
   if (breakdown.jyuu) {
-    if (breakdown.jyuu > 1) {
-      chunks.push(conjugateNumber(breakdown.jyuu));
-    }
+    chunks.push(conjugateNumber(breakdown.jyuu, OMIT_ONE));
 
-    if (
-      finalNumberOverrides &&
+    const change =
+      finalNumberChanges &&
       breakdown.lowestUnit === "jyuu" &&
-      finalNumberOverrides[JYUU]
-    ) {
-      chunks.push(finalNumberOverrides[JYUU]);
-    } else {
-      chunks.push(JYUU_NUMBER);
-    }
+      finalNumberChanges[JYUU];
+    chunks.push(applyUniqueChanges(JYUU_NUMBER, change));
   }
 
   if (breakdown.solo) {
-    if (
-      finalNumberOverrides &&
+    const change =
+      finalNumberChanges &&
       breakdown.lowestUnit === "solo" &&
-      finalNumberOverrides[breakdown.solo]
-    ) {
-      chunks.push(finalNumberOverrides[breakdown.solo]);
-    } else {
-      chunks.push(FIRST_TEN_NUMBERS[breakdown.solo]);
-    }
+      finalNumberChanges[breakdown.solo];
+    chunks.push(applyUniqueChanges(FIRST_TEN_NUMBERS[breakdown.solo], change));
   }
 
   return uniqueWords(permutateWords(chunks));
 }
 
-const UNDEFINED_FINAL_OVERRIDES: FinalNumberOverrides = {};
-const MEMOIZE_RESOLVER = new Map<FinalNumberOverrides, Map<number, string>>();
+const UNDEFINED_FINAL_CHANGES: FinalNumberChanges = {};
+const MEMOIZE_RESOLVER = new Map<FinalNumberChanges, Map<number, string>>();
 
 export const conjugateNumber: (
   amount: number,
-  finalNumberOverrides?: FinalNumberOverrides
+  finalNumberChanges?: FinalNumberChanges
 ) => ReadonlyArray<JapaneseWord> = memoize(
-  (amount: number, finalNumberOverrides?: FinalNumberOverrides) =>
-    conjugateNumberInternal(breakDownNumber(amount), finalNumberOverrides),
+  (amount: number, finalNumberChanges?: FinalNumberChanges) =>
+    conjugateNumberInternal(breakDownNumber(amount), finalNumberChanges),
   (
     amount: number,
-    finalNumberOverrides:
-      | FinalNumberOverrides
-      | undefined = UNDEFINED_FINAL_OVERRIDES
+    finalNumberChanges: FinalNumberChanges | undefined = UNDEFINED_FINAL_CHANGES
   ) => {
-    let fnoMap = MEMOIZE_RESOLVER.get(finalNumberOverrides);
-    if (!fnoMap) {
-      fnoMap = new Map();
-      MEMOIZE_RESOLVER.set(finalNumberOverrides, fnoMap);
+    let fncMap = MEMOIZE_RESOLVER.get(finalNumberChanges);
+    if (!fncMap) {
+      fncMap = new Map();
+      MEMOIZE_RESOLVER.set(finalNumberChanges, fncMap);
     }
 
-    let id = fnoMap.get(amount);
+    let id = fncMap.get(amount);
     if (!id) {
       id = uniqueId();
-      fnoMap.set(amount, id);
+      fncMap.set(amount, id);
     }
 
     console.log("conjugateNumber id", id);

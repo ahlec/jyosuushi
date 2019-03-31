@@ -3,106 +3,61 @@ import { getLeadingConsonant } from "./hepburn";
 import { Gyou, HIRAGANA } from "./kana";
 import {
   breakDownNumber,
-  conjugateNumberInternal,
-  FinalNumberOverrides,
-  HYAKU,
-  JYUU
+  conjugateNumber,
+  FinalNumberChanges,
+  HYAKU
 } from "./numbers";
 import { JapaneseWord, permutateWords } from "./words";
 
-const I_SMALLTSU: ReadonlyArray<JapaneseWord> = [
-  {
-    kana: "いっ",
-    kanji: "一"
-  }
-];
-
-const RO_SMALLTSU: ReadonlyArray<JapaneseWord> = [
-  {
-    kana: "ろっ",
-    kanji: "六"
-  }
-];
-
-const HA_SMALLTSU: ReadonlyArray<JapaneseWord> = [
-  { kana: "はっ", kanji: "八" }
-];
-
-const JI_SMALLTSU: ReadonlyArray<JapaneseWord> = [
-  {
-    kana: "じっ",
-    kanji: "十"
-  }
-];
-
-const JYU_SMALLTSU: ReadonlyArray<JapaneseWord> = [
-  {
-    kana: "じゅっ",
-    kanji: "十"
-  }
-];
-
-const HYA_SMALLTSU: ReadonlyArray<JapaneseWord> = [
-  {
-    kana: "ひゃっ",
-    kanji: "百"
-  }
-];
-
-const JI_JYU_SMALLTSU: ReadonlyArray<JapaneseWord> = [
-  ...JI_SMALLTSU,
-  ...JYU_SMALLTSU
-];
-
-const COUNTER_K_P_OVERRIDES: FinalNumberOverrides = {
-  1: I_SMALLTSU,
-  6: RO_SMALLTSU,
-  8: HA_SMALLTSU,
-  [JYUU]: JI_JYU_SMALLTSU,
-  [HYAKU]: HYA_SMALLTSU
+const COUNTER_K_P_CHANGES: FinalNumberChanges = {
+  1: ["trailing-small-tsu"],
+  6: ["trailing-small-tsu"],
+  8: ["trailing-small-tsu"],
+  // [JYUU]: JI_JYU_SMALLTSU,
+  [HYAKU]: ["trailing-small-tsu"]
 };
 
-const COUNTER_S_T_OVERRIDES: FinalNumberOverrides = {
-  1: I_SMALLTSU,
-  8: HA_SMALLTSU,
-  [JYUU]: JI_JYU_SMALLTSU
+const COUNTER_S_T_CHANGES: FinalNumberChanges = {
+  1: ["trailing-small-tsu"],
+  8: ["trailing-small-tsu"]
+  // [JYUU]: JI_JYU_SMALLTSU
 };
 
-const COUNTER_H_OVERRIDES: FinalNumberOverrides = {
-  1: I_SMALLTSU,
-  6: RO_SMALLTSU,
-  8: HA_SMALLTSU,
-  [JYUU]: JI_JYU_SMALLTSU,
-  [HYAKU]: HYA_SMALLTSU
+const COUNTER_H_CHANGES: FinalNumberChanges = {
+  1: ["trailing-small-tsu"],
+  6: ["trailing-small-tsu"],
+  8: ["trailing-small-tsu"],
+  // [JYUU]: JI_JYU_SMALLTSU,
+  [HYAKU]: ["trailing-small-tsu"]
 };
 
-const COUNTER_W_OVERRIDES: FinalNumberOverrides = {
-  4: [
-    {
-      kana: "よ",
-      kanji: "四"
-    },
-    {
-      kana: "よん",
-      kanji: "四"
-    }
-  ],
-  6: [
-    ...RO_SMALLTSU,
-    {
-      kana: "ろく",
-      kanji: "六"
-    }
-  ],
-  8: [
-    ...HA_SMALLTSU,
-    {
-      kana: "はち",
-      kanji: "八"
-    }
-  ],
-  10: JI_SMALLTSU
-};
+// const COUNTER_W_OVERRIDES: FinalNumberOverrides = {
+//   4: [
+//     {
+//       kana: "よ",
+//       kanji: "四"
+//     },
+//     {
+//       kana: "よん",
+//       kanji: "四"
+//     }
+//   ],
+//   6: [
+//     ...RO_SMALLTSU,
+//     {
+//       kana: "ろく",
+//       kanji: "六"
+//     }
+//   ],
+//   8: [
+//     ...HA_SMALLTSU,
+//     {
+//       kana: "はち",
+//       kanji: "八"
+//     }
+//   ],
+//   10: JI_SMALLTSU
+// };
 
 function conjugateNumberAndCounterInternal(
   amount: number,
@@ -110,22 +65,22 @@ function conjugateNumberAndCounterInternal(
 ): ReadonlyArray<JapaneseWord> {
   const counterFirstConsonant = getLeadingConsonant(counter.kana);
   const amountBreakdown = breakDownNumber(amount);
-  let overrides: FinalNumberOverrides | undefined;
+  let numberChanges: FinalNumberChanges | undefined;
   let changedCounterGyou: Gyou[] | undefined;
   switch (counterFirstConsonant) {
     case "k":
     case "p": {
-      overrides = COUNTER_K_P_OVERRIDES;
+      numberChanges = COUNTER_K_P_CHANGES;
       break;
     }
     case "s":
     case "t": {
-      overrides = COUNTER_S_T_OVERRIDES;
+      numberChanges = COUNTER_S_T_CHANGES;
       break;
     }
     case "h":
     case "f": {
-      overrides = COUNTER_H_OVERRIDES;
+      numberChanges = COUNTER_H_CHANGES;
 
       switch (amountBreakdown.lowestUnit) {
         case "man":
@@ -162,27 +117,27 @@ function conjugateNumberAndCounterInternal(
       }
       break;
     }
-    case "w": {
-      overrides = COUNTER_W_OVERRIDES;
-
-      switch (amountBreakdown.lowestUnit) {
-        case "jyuu": {
-          changedCounterGyou = ["pa"];
-          break;
-        }
-        case "solo": {
-          switch (amountBreakdown.solo) {
-            case 3: {
-              changedCounterGyou = ["ba"];
-              break;
-            }
-            // TODO: Special cases for 4, 6, 8
-          }
-          break;
-        }
-      }
-      break;
-    }
+    // case "w": {
+    //   overrides = COUNTER_W_OVERRIDES;
+    //
+    //   switch (amountBreakdown.lowestUnit) {
+    //     case "jyuu": {
+    //       changedCounterGyou = ["pa"];
+    //       break;
+    //     }
+    //     case "solo": {
+    //       switch (amountBreakdown.solo) {
+    //         case 3: {
+    //           changedCounterGyou = ["ba"];
+    //           break;
+    //         }
+    //         // TODO: Special cases for 4, 6, 8
+    //       }
+    //       break;
+    //     }
+    //   }
+    //   break;
+    // }
   }
 
   let finalizedCounter: JapaneseWord[];
@@ -198,7 +153,7 @@ function conjugateNumberAndCounterInternal(
   }
 
   return permutateWords([
-    conjugateNumberInternal(amountBreakdown, overrides),
+    conjugateNumber(amount, numberChanges),
     finalizedCounter
   ]);
 }
