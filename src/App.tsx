@@ -1,6 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 
+import QuestionCreator from "./QuestionCreator";
 import { State } from "./redux";
 
 import AnswerInput from "./ui/AnswerInput";
@@ -17,9 +18,15 @@ import { JapaneseWord } from "./japanese/words";
 
 import "./App.scss";
 
-interface ComponentProps {
+interface ProvidedProps {
+  questionCreator: QuestionCreator;
+}
+
+interface ReduxProps {
   hasStudyPacksEnabled: boolean;
 }
+
+type ComponentProps = ProvidedProps & ReduxProps;
 
 interface ComponentState {
   value: string;
@@ -37,7 +44,7 @@ const COUNTER_WA: JapaneseWord = {
   kanji: "話"
 };
 
-function mapStateToProps(state: State): ComponentProps {
+function mapStateToProps(state: State): ReduxProps {
   return {
     hasStudyPacksEnabled: !!state.enabledPacks.length
   };

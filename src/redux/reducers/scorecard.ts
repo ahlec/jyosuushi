@@ -1,7 +1,7 @@
-import { ActionSetLocalizationLanguage } from "../actions";
+import { ActionChangeStudyPacks } from "../actions";
 import { Scorecard } from "../index";
 
-type ReducerAction = ActionSetLocalizationLanguage;
+type ReducerAction = ActionChangeStudyPacks;
 
 const DEFAULT_SCORECARD: Scorecard = {
   numCorrectAnswers: 0,
@@ -13,6 +13,8 @@ export default function scorecardReducer(
   action: ReducerAction
 ): Scorecard {
   switch (action.type) {
+    case "change-study-packs":
+      return DEFAULT_SCORECARD;
     default:
       return state;
   }
