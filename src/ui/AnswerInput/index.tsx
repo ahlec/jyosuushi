@@ -1,7 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 
-import { Hiragana } from "../../data/kana";
+import { Hiragana } from "../../japanese/kana";
 import { Question, State } from "../../redux";
 import KanaInput from "./KanaInput";
 
