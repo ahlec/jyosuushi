@@ -12,3 +12,15 @@ export const STUDY_PACKS: ReadonlyArray<StudyPack> = [
   STUDY_PACK_N4,
   STUDY_PACK_N5
 ];
+
+interface StudyPackLookup {
+  [packId: string]: StudyPack;
+}
+
+export const STUDY_PACK_LOOKUP: StudyPackLookup = STUDY_PACKS.reduce(
+  (lookup: StudyPackLookup, studyPack: StudyPack) => {
+    lookup[studyPack.packId] = studyPack;
+    return lookup;
+  },
+  {}
+);
