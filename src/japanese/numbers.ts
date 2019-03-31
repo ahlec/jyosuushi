@@ -1,4 +1,4 @@
-import { memoize } from "lodash";
+import { memoize, uniqueId } from "lodash";
 import { JapaneseWord, permutateWords, uniqueWords } from "./words";
 
 export const OKU = Math.pow(10, 8);
@@ -155,9 +155,30 @@ const SEN_NUMBER: ReadonlyArray<JapaneseWord> = [
   }
 ];
 
+const ZEN_NUMBER: ReadonlyArray<JapaneseWord> = [
+  {
+    kana: "ぜん",
+    kanji: "千"
+  }
+];
+
 const HYAKU_NUMBER: ReadonlyArray<JapaneseWord> = [
   {
     kana: "ひゃく",
+    kanji: "百"
+  }
+];
+
+const BYAKU_NUMBER: ReadonlyArray<JapaneseWord> = [
+  {
+    kana: "びゃく",
+    kanji: "百"
+  }
+];
+
+const PYAKU_NUMBER: ReadonlyArray<JapaneseWord> = [
+  {
+    kana: "ぴゃく",
     kanji: "百"
   }
 ];
@@ -172,6 +193,31 @@ const JYUU_NUMBER: ReadonlyArray<JapaneseWord> = [
 export interface FinalNumberOverrides {
   [amount: number]: ReadonlyArray<JapaneseWord>;
 }
+
+const HYAKU_OVERRIDES: FinalNumberOverrides = {
+  1: [
+    {
+      kana: "",
+      kanji: null
+    },
+    {
+      kana: "いっ",
+      kanji: "一"
+    }
+  ],
+  6: [
+    {
+      kana: "ろっ",
+      kanji: "六"
+    }
+  ],
+  8: [
+    {
+      kana: "はっ",
+      kanji: "八"
+    }
+  ]
+};
 
 export function conjugateNumberInternal(
   breakdown: NumberBreakdown,
@@ -212,8 +258,9 @@ export function conjugateNumberInternal(
   }
 
   if (breakdown.sen) {
+    const senBreakdown = breakDownNumber(breakdown.sen);
     if (breakdown.sen > 1) {
-      chunks.push(conjugateNumber(breakdown.sen));
+      chunks.push(conjugateNumberInternal(senBreakdown));
     }
 
     if (
@@ -223,13 +270,19 @@ export function conjugateNumberInternal(
     ) {
       chunks.push(finalNumberOverrides[SEN]);
     } else {
-      chunks.push(SEN_NUMBER);
+      let sen = SEN_NUMBER;
+      if (senBreakdown.lowestUnit === "solo" && senBreakdown.solo === 3) {
+        sen = ZEN_NUMBER;
+      }
+
+      chunks.push(sen);
     }
   }
 
   if (breakdown.hyaku) {
+    const hyakuBreakdown = breakDownNumber(breakdown.hyaku);
     if (breakdown.hyaku > 1) {
-      chunks.push(conjugateNumber(breakdown.hyaku));
+      chunks.push(conjugateNumberInternal(hyakuBreakdown, HYAKU_OVERRIDES));
     }
 
     if (
@@ -239,7 +292,22 @@ export function conjugateNumberInternal(
     ) {
       chunks.push(finalNumberOverrides[HYAKU]);
     } else {
-      chunks.push(HYAKU_NUMBER);
+      let hyaku = HYAKU_NUMBER;
+      if (hyakuBreakdown.lowestUnit === "solo") {
+        switch (hyakuBreakdown.solo) {
+          case 3: {
+            hyaku = BYAKU_NUMBER;
+            break;
+          }
+          case 6:
+          case 8: {
+            hyaku = PYAKU_NUMBER;
+            break;
+          }
+        }
+      }
+
+      chunks.push(hyaku);
     }
   }
 
@@ -274,8 +342,34 @@ export function conjugateNumberInternal(
   return uniqueWords(permutateWords(chunks));
 }
 
+const UNDEFINED_FINAL_OVERRIDES: FinalNumberOverrides = {};
+const MEMOIZE_RESOLVER = new Map<FinalNumberOverrides, Map<number, string>>();
+
 export const conjugateNumber: (
-  amount: number
-) => ReadonlyArray<JapaneseWord> = memoize((amount: number) =>
-  conjugateNumberInternal(breakDownNumber(amount))
+  amount: number,
+  finalNumberOverrides?: FinalNumberOverrides
+) => ReadonlyArray<JapaneseWord> = memoize(
+  (amount: number, finalNumberOverrides?: FinalNumberOverrides) =>
+    conjugateNumberInternal(breakDownNumber(amount), finalNumberOverrides),
+  (
+    amount: number,
+    finalNumberOverrides:
+      | FinalNumberOverrides
+      | undefined = UNDEFINED_FINAL_OVERRIDES
+  ) => {
+    let fnoMap = MEMOIZE_RESOLVER.get(finalNumberOverrides);
+    if (!fnoMap) {
+      fnoMap = new Map();
+      MEMOIZE_RESOLVER.set(finalNumberOverrides, fnoMap);
+    }
+
+    let id = fnoMap.get(amount);
+    if (!id) {
+      id = uniqueId();
+      fnoMap.set(amount, id);
+    }
+
+    console.log("conjugateNumber id", id);
+    return id;
+  }
 );
