@@ -2,6 +2,7 @@ import * as React from "react";
 
 import AnswerInput from "./ui/AnswerInput";
 import HistoryPanel from "./ui/HistoryPanel";
+import PackSelection from "./ui/PackSelection";
 import QuestionDisplay from "./ui/QuestionDisplay";
 import ScoreBar from "./ui/ScoreBar";
 
@@ -48,6 +49,7 @@ export default class App extends React.PureComponent<{}, ComponentState> {
         <QuestionDisplay />
         <AnswerInput />
         <HistoryPanel />
+        <PackSelection />
         Conjugate:
         <input value={value} onChange={this.onChange} />
         {this.renderConjugationList(conjugationsNumbers)}

@@ -14,7 +14,7 @@ export interface Counter {
   name: string;
   kana: string;
   kanji: string | null;
-  irregulars: ReadonlyMap<number, string>;
+  irregulars: { [amount: number]: string };
 }
 
 export interface Item {
@@ -30,7 +30,7 @@ export interface Answer {
   counterId: string;
   isIrregular: boolean;
   kana: string;
-  kanji: string;
+  kanji: string | null;
 }
 
 export interface Question {
@@ -39,9 +39,15 @@ export interface Question {
   validAnswers: ReadonlyArray<Answer>;
 }
 
+export interface CountersStateItem {
+  studyPacks: ReadonlyArray<string>;
+  counter: Counter;
+}
+
 export interface State {
-  counters: { [counterId: string]: Counter };
+  counters: { [counterId: string]: CountersStateItem };
   currentQuestion: Question | null;
+  enabledPacks: { [packId: string]: boolean };
   items: { [itemId: string]: Item };
   scorecard: Scorecard;
   settings: Settings;

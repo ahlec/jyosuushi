@@ -1,10 +1,11 @@
 import { random } from "lodash";
+import { conjugateNumberAndCounter } from "../japanese/counters";
 import { randomFromArray } from "../utils";
 import { ActionCreateQuestion } from "./actions";
 import { Answer, Item, State } from "./index";
 
 export function createQuestion(
-  _: State,
+  state: State,
   item: Item,
   amount: number
 ): ActionCreateQuestion {
@@ -12,19 +13,34 @@ export function createQuestion(
     throw new Error(`Invalid question amount of: ${amount}`);
   }
 
-  // const counters = item.counters.map(counterId => state.counters[counterId]);
+  const counters = item.counters.map(
+    counterId => state.counters[counterId].counter
+  );
   const validAnswers: Answer[] = [];
-  // for (const counter of counters) {
-  //   if (counter.irregulars.has(amount)) {
-  //     validAnswers.push({
-  //       counterId: counter.counterId,
-  //       isIrregular: true,
-  //       kana: counter.irregulars.get(amount)!,
-  //       kanji: ""
-  //     });
-  //   } else {
-  //   }
-  // }
+  for (const counter of counters) {
+    if (counter.irregulars[amount]) {
+      validAnswers.push({
+        counterId: counter.counterId,
+        isIrregular: true,
+        kana: counter.irregulars[amount],
+        kanji: ""
+      });
+    } else {
+      const answers: Answer[] = conjugateNumberAndCounter(amount, {
+        kana: counter.kana,
+        kanji: counter.kanji
+      }).map(({ kana, kanji }) => ({
+        counterId: counter.counterId,
+        isIrregular: false,
+        kana,
+        kanji
+      }));
+
+      for (const answer of answers) {
+        validAnswers.push(answer);
+      }
+    }
+  }
 
   return {
     amount,
