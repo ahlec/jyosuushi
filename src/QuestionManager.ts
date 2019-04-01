@@ -4,7 +4,14 @@ import { connect } from "react-redux";
 import shallowequals from "shallow-equals";
 
 import { conjugateNumberAndCounter } from "./japanese/counters";
-import { Answer, CountersState, Item, ItemsState, State } from "./redux";
+import {
+  Answer,
+  CountersState,
+  Item,
+  ItemsState,
+  Question,
+  State
+} from "./redux";
 import { ActionCreateQuestion } from "./redux/actions";
 import { Dispatch } from "./redux/store";
 import { randomFromArray } from "./utils";
@@ -17,6 +24,7 @@ interface ProvidedProps {
 
 interface ReduxProps {
   counters: CountersState;
+  currentQuestion: Question | null;
   enabledPacks: ReadonlyArray<string>;
   items: ItemsState;
 }
@@ -24,6 +32,7 @@ interface ReduxProps {
 function mapStateToProps(state: State): ReduxProps {
   return {
     counters: state.counters,
+    currentQuestion: state.currentQuestion,
     enabledPacks: state.enabledPacks,
     items: state.items
   };
@@ -58,17 +67,31 @@ class QuestionManager extends React.PureComponent<ComponentProps> {
   };
 
   private createRandomQuestion(): ActionCreateQuestion {
-    const { items } = this.props;
+    const { currentQuestion, items } = this.props;
     const itemIds = Object.keys(items);
     if (!itemIds.length) {
       throw new Error("There are no defined items");
     }
 
-    let item;
+    let item: Item;
     do {
       item = items[randomFromArray(itemIds)];
-    } while (!item.counters.length);
-    const amount = random(item.minQuantity, item.maxQuantity);
+    } while (
+      !item.counters.length ||
+      (currentQuestion &&
+        itemIds.length > 1 &&
+        currentQuestion.itemId === item.itemId)
+    );
+
+    let amount: number;
+    do {
+      amount = random(item.minQuantity, item.maxQuantity);
+    } while (
+      currentQuestion &&
+      currentQuestion.itemId === item.itemId &&
+      currentQuestion.amount === amount
+    );
+
     return this.createQuestion(item, amount);
   }
 
