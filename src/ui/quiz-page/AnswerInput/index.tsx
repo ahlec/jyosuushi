@@ -1,3 +1,4 @@
+import classnames from "classnames";
 import { uniq } from "lodash";
 import * as React from "react";
 import { connect } from "react-redux";
@@ -37,6 +38,7 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
 
   public render() {
     const { currentQuestion, enabled } = this.props;
+    const { isValid, value } = this.state;
     return (
       <div className="AnswerInput" onKeyDown={this.onKeyDown}>
         <KanaInput
@@ -44,7 +46,22 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
           enabled={enabled}
           kana={HIRAGANA}
           onChange={this.onChange}
-        />
+        >
+          <button
+            className={classnames("submit-button", !!value && "show")}
+            onClick={this.onClickSubmitButton}
+          />
+        </KanaInput>
+        <div
+          className={classnames(
+            "submit-instructions",
+            !!value && "has-value",
+            !isValid && "invalid"
+          )}
+        >
+          Press the [enter] key when you're finished, or click the arrow button
+          to submit.
+        </div>
       </div>
     );
   }
@@ -54,6 +71,11 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
       isValid: !!value && HIRAGANA.isOnlyKana(value),
       value
     });
+  };
+
+  private onClickSubmitButton = (event: React.MouseEvent) => {
+    this.submit();
+    event.preventDefault();
   };
 
   private onKeyDown = (event: React.KeyboardEvent) => {
@@ -66,7 +88,11 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
 
   private submit() {
     const { currentQuestion, dispatch, onAnswerSubmitted } = this.props;
-    const { value } = this.state;
+    const { isValid, value } = this.state;
+
+    if (!isValid) {
+      return;
+    }
 
     const correct = this.getCorrectAnswer(value);
     onAnswerSubmitted(correct);

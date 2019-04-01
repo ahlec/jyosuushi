@@ -4,6 +4,7 @@ import { KanaDefinition } from "../../../japanese/kana";
 import { Question } from "../../../redux";
 
 interface ComponentProps {
+  children?: React.ReactNode;
   currentQuestion: Question;
   enabled: boolean;
   kana: KanaDefinition;
@@ -73,16 +74,19 @@ export default class KanaInput extends React.PureComponent<
   }
 
   public render() {
-    const { enabled } = this.props;
+    const { children, enabled } = this.props;
     const { rawValue } = this.state;
     return (
-      <input
-        ref={this.inputRef}
-        type="text"
-        disabled={!enabled}
-        value={rawValue}
-        onChange={this.handleChange}
-      />
+      <div className="KanaInput">
+        <input
+          ref={this.inputRef}
+          type="text"
+          disabled={!enabled}
+          value={rawValue}
+          onChange={this.handleChange}
+        />
+        {children}
+      </div>
     );
   }
 
