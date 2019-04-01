@@ -1,3 +1,4 @@
+import { uniq } from "lodash";
 import * as React from "react";
 import { connect } from "react-redux";
 
@@ -22,6 +23,10 @@ type ComponentProps = ProvidedProps & { dispatch: Dispatch };
 interface ComponentState {
   value: string;
   isValid: boolean;
+}
+
+function getCounterId(answer: Answer): string {
+  return answer.counterId;
 }
 
 class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
@@ -52,14 +57,15 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
   };
 
   private onKeyDown = (event: React.KeyboardEvent) => {
-    if (event.keyCode === KEY_ENTER) {
+    const { enabled } = this.props;
+    if (enabled && event.keyCode === KEY_ENTER) {
       this.submit();
       event.stopPropagation();
     }
   };
 
   private submit() {
-    const { dispatch, onAnswerSubmitted } = this.props;
+    const { currentQuestion, dispatch, onAnswerSubmitted } = this.props;
     const { value } = this.state;
 
     const correct = this.getCorrectAnswer(value);
@@ -67,7 +73,11 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
     if (correct) {
       dispatch(markCorrectAnswer());
     } else {
-      dispatch(markIncorrectAnswer());
+      dispatch(
+        markIncorrectAnswer(
+          uniq(currentQuestion.validAnswers.map(getCounterId))
+        )
+      );
     }
   }
 

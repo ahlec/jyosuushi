@@ -8,4 +8,14 @@
   text-align: center;
   padding: 4px 0px 12px;
   text-shadow: 1px 1px darken($palette-header-color, 35%);
+
+  .subheader,
+  rt {
+    font-size: 14px;
+    text-shadow: none;
+  }
+
+  .subheader {
+    margin-top: 6px;
+  }
 }

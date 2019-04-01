@@ -5,6 +5,8 @@ export interface Settings {
 }
 
 export interface Scorecard {
+  missedCounterTallies: { [counterId: string]: number };
+  mostMissedCounterId: string | null;
   numQuestionsAsked: number;
   numCorrectAnswers: number;
 }

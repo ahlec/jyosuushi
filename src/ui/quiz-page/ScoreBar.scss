@@ -2,8 +2,28 @@
 
 .ScoreBar {
   background-color: $palette-score-bar-background;
-  border-bottom: 3px solid $palette-score-bar-border;
+  margin: 10px 0px;
   padding: 4px;
   font-size: 14px;
-  text-align: center;
+  display: flex;
+
+  div.item {
+    flex: 1;
+    text-align: center;
+
+    &.left {
+      text-align: right;
+    }
+
+    &.right {
+      text-align: left;
+      border-left: 1px solid black;
+      padding-left: 10px;
+      margin-left: 10px;
+    }
+
+    strong {
+      font-weight: bold;
+    }
+  }
 }

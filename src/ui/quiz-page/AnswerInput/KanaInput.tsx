@@ -46,10 +46,29 @@ export default class KanaInput extends React.PureComponent<
   };
   private inputRef = React.createRef<HTMLInputElement>();
 
-  public componentDidUpdate({ currentQuestion: prevQuestion }: ComponentProps) {
-    const { currentQuestion } = this.props;
+  public componentDidMount() {
+    const { enabled } = this.props;
+    const { current: input } = this.inputRef;
+
+    if (enabled && input) {
+      input.focus();
+    }
+  }
+
+  public componentDidUpdate({
+    currentQuestion: prevQuestion,
+    enabled: wasEnabled
+  }: ComponentProps) {
+    const { currentQuestion, enabled } = this.props;
     if (currentQuestion !== prevQuestion) {
       this.reset();
+    }
+
+    if (enabled !== wasEnabled) {
+      const { current: input } = this.inputRef;
+      if (input) {
+        input.focus();
+      }
     }
   }
 

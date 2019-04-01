@@ -39,10 +39,14 @@ export function markCorrectAnswer(): ActionMarkCorrectAnswer {
 
 export interface ActionMarkIncorrectAnswer {
   type: "mark-incorrect-answer";
+  possibleCounters: ReadonlyArray<string>;
 }
 
-export function markIncorrectAnswer(): ActionMarkIncorrectAnswer {
+export function markIncorrectAnswer(
+  possibleCounters: ReadonlyArray<string>
+): ActionMarkIncorrectAnswer {
   return {
-    type: "mark-incorrect-answer"
+    type: "mark-incorrect-answer",
+    possibleCounters
   };
 }
