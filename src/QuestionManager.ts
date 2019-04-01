@@ -67,17 +67,21 @@ class QuestionManager extends React.PureComponent<ComponentProps> {
   };
 
   private createRandomQuestion(): ActionCreateQuestion {
-    const { currentQuestion, items } = this.props;
+    const { counters, currentQuestion, items } = this.props;
     const itemIds = Object.keys(items);
     if (!itemIds.length) {
       throw new Error("There are no defined items");
     }
 
     let item: Item;
+    let numAvailableCounters: number;
     do {
       item = items[randomFromArray(itemIds)];
+      numAvailableCounters = item.counters.filter(
+        counterId => !!counters[counterId]
+      ).length;
     } while (
-      !item.counters.length ||
+      !numAvailableCounters ||
       (currentQuestion &&
         itemIds.length > 1 &&
         currentQuestion.itemId === item.itemId)
@@ -101,9 +105,9 @@ class QuestionManager extends React.PureComponent<ComponentProps> {
       throw new Error(`Invalid question amount of: ${amount}`);
     }
 
-    const itemCounters = item.counters.map(
-      counterId => counters[counterId].counter
-    );
+    const itemCounters = item.counters
+      .filter(counterId => !!counters[counterId])
+      .map(counterId => counters[counterId].counter);
     const validAnswers: Answer[] = [];
     for (const counter of itemCounters) {
       if (counter.irregulars[amount]) {
