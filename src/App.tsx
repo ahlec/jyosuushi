@@ -28,15 +28,25 @@ function mapStateToProps(state: State): ReduxProps {
   };
 }
 
-class App extends React.PureComponent<ComponentProps> {
+interface ComponentState {
+  headerQuiz: boolean;
+}
+
+class App extends React.PureComponent<ComponentProps, ComponentState> {
+  public state: ComponentState = {
+    headerQuiz: false
+  };
+
   public render() {
     const { currentQuestion, hasStudyPacksEnabled } = this.props;
+    const { headerQuiz } = this.state;
     return (
       <div className="App">
-        <Header />
+        <Header isQuizActive={headerQuiz} />
         {currentQuestion && hasStudyPacksEnabled
           ? this.renderQuizPage(currentQuestion)
           : this.renderIntroPage()}
+        <input type="checkbox" checked={headerQuiz} onChange={this.onChange} />
       </div>
     );
   }
@@ -55,6 +65,9 @@ class App extends React.PureComponent<ComponentProps> {
       />
     );
   }
+
+  private onChange = (event: React.ChangeEvent<HTMLInputElement>) =>
+    this.setState({ headerQuiz: event.target.checked });
 }
 
 export default connect(mapStateToProps)(App);
