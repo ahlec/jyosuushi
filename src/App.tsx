@@ -1,3 +1,4 @@
+import classnames from "classnames";
 import * as React from "react";
 import { connect } from "react-redux";
 
@@ -40,9 +41,10 @@ class App extends React.PureComponent<ComponentProps, ComponentState> {
   public render() {
     const { currentQuestion, hasStudyPacksEnabled } = this.props;
     const { headerQuiz } = this.state;
+    const isQuizActive = headerQuiz; // !!(currentQuestion && hasStudyPacksEnabled);
     return (
-      <div className="App">
-        <Header isQuizActive={headerQuiz} />
+      <div className={classnames("App", isQuizActive && "quiz-active")}>
+        <Header isQuizActive={isQuizActive} />
         {currentQuestion && hasStudyPacksEnabled
           ? this.renderQuizPage(currentQuestion)
           : this.renderIntroPage()}

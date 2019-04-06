@@ -80,6 +80,8 @@ $font-size-quiz: 20px;
   border-bottom: 6px solid $palette-header-border;
   color: $palette-header-color;
   padding: $header-vertical-padding $header-horizontal-padding;
+  box-shadow: 0px 5px 5px 3px black;
+  margin-bottom: 5px;
 
   &.home {
     text-align: center;
@@ -143,18 +145,18 @@ $font-size-quiz: 20px;
   }
 
   &.transitioning-from-home {
-    animation: 0.7s transitioning-from-home;
+    animation: 0.4s transitioning-from-home;
 
     .main {
-      @include animateElement(home-main-shrink);
+      @include animateElement(home-main-shrink, 0.25s);
     }
 
     .subheader {
-      @include animateElement(home-subheader-disappear);
+      @include animateElement(home-subheader-disappear, 0.25s);
     }
 
     rt {
-      @include animateElement(home-rt-disappear);
+      @include animateElement(home-rt-disappear, 0.25s);
     }
   }
 

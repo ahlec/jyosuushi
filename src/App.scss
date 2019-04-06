@@ -1,11 +1,16 @@
 @import "palette.scss";
 
 html,
-body,
+body {
+  height: 100%;
+  background-color: green;
+  overflow: hidden;
+}
+
 #root {
   height: 100%;
-  background-color: $palette-background-color;
   overflow: hidden;
+  background: url("diag.png");
 }
 
 .App {
@@ -14,4 +19,12 @@ body,
   background-color: $palette-background-color;
   display: flex;
   flex-direction: column;
+  max-width: 800px;
+  transition: max-width 0.25s ease-in;
+  margin: auto;
+  overflow: hidden;
+
+  &.quiz-active {
+    max-width: 1200px;
+  }
 }
