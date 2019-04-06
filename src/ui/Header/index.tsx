@@ -144,7 +144,6 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
       return;
     }
 
-    console.log(animationName, "->", nextStage);
     this.setState({ stage: nextStage });
   };
 

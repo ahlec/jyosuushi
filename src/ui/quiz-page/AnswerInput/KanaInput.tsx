@@ -96,7 +96,6 @@ export default class KanaInput extends React.PureComponent<
       return;
     }
 
-    console.log("set cursor:", position);
     input.selectionEnd = position;
     input.selectionStart = position;
 
