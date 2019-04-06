@@ -68,6 +68,12 @@ $font-size-quiz: 20px;
 @keyframes transitioning-to-quiz {
 }
 
+@keyframes transitioning-from-quiz {
+}
+
+@keyframes transitioning-to-home {
+}
+
 // CSS
 .Header {
   background-color: $palette-header-background;
@@ -97,7 +103,8 @@ $font-size-quiz: 20px;
   &.quiz {
     font-size: $font-size-quiz;
 
-    &.transitioning-to-quiz {
+    &.transitioning-to-quiz,
+    &.transitioning-from-quiz {
       position: relative;
 
       .site-name {
@@ -129,8 +136,8 @@ $font-size-quiz: 20px;
   }
 
   // Animations
-  @mixin animateElement($keyframe) {
-    animation-duration: 0.5s;
+  @mixin animateElement($keyframe, $duration: 0.5s) {
+    animation-duration: $duration;
     animation-fill-mode: forwards;
     animation-name: $keyframe;
   }
@@ -163,6 +170,41 @@ $font-size-quiz: 20px;
       animation-fill-mode: forwards;
       animation-name: scorecard-fade-in;
       animation-delay: 0.1s;
+    }
+  }
+
+  &.transitioning-from-quiz {
+    @include animateElement(transitioning-from-quiz, 0.25s);
+
+    .site-name {
+      @include animateElement(sliding-site-name-left, 0.25s);
+      animation-direction: reverse;
+    }
+
+    .scorecard {
+      animation-duration: 0.15s;
+      animation-fill-mode: forwards;
+      animation-name: scorecard-fade-in;
+      animation-direction: reverse;
+    }
+  }
+
+  &.transitioning-to-home {
+    animation: 0.5s transitioning-to-home;
+
+    .main {
+      @include animateElement(home-main-shrink, 0.3s);
+      animation-direction: reverse;
+    }
+
+    .subheader {
+      @include animateElement(home-subheader-disappear, 0.3s);
+      animation-direction: reverse;
+    }
+
+    rt {
+      @include animateElement(home-rt-disappear, 0.3s);
+      animation-direction: reverse;
     }
   }
 }
