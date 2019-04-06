@@ -1,11 +1,24 @@
 .IntroPage {
   max-width: 600px;
   margin: 10px auto;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 
   p {
     strong {
       font-weight: bold;
       font-size: 120%;
     }
+  }
+
+  .flex {
+    flex: 1;
+  }
+
+  .credits {
+    text-align: center;
+    font-size: 12px;
+    margin-bottom: 8px;
   }
 }

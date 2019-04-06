@@ -8,9 +8,9 @@ import { LocalizationLanguage, Question, State } from "./redux";
 import Localization from "./localization";
 import ENGLISH from "./localization/english";
 
+import Header from "./ui/Header";
 import IntroPage from "./ui/intro-page";
 import QuizPage from "./ui/quiz-page";
-import Header from "./ui/shared/Header";
 
 import "./App.scss";
 
@@ -50,13 +50,13 @@ class App extends React.PureComponent<ComponentProps> {
         <Header isQuizActive={isQuizActive} localization={localization} />
         {currentQuestion && hasStudyPacksEnabled
           ? this.renderQuizPage(currentQuestion)
-          : this.renderIntroPage()}
+          : this.renderIntroPage(localization)}
       </div>
     );
   }
 
-  private renderIntroPage() {
-    return <IntroPage />;
+  private renderIntroPage(localization: Localization) {
+    return <IntroPage localization={localization} />;
   }
 
   private renderQuizPage(currentQuestion: Question) {

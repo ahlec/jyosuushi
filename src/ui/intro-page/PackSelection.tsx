@@ -2,6 +2,8 @@ import { memoize } from "lodash";
 import * as React from "react";
 import { connect } from "react-redux";
 
+import Localization from "../../localization";
+
 import { State } from "../../redux";
 import { changeStudyPacks } from "../../redux/actions";
 import { Dispatch } from "../../redux/store";
@@ -21,11 +23,15 @@ const STUDY_PACK_LOOKUP: StudyPackLookup = STUDY_PACKS.reduce(
   {}
 );
 
+interface ProvidedProps {
+  localization: Localization;
+}
+
 interface ReduxProps {
   enabledPacks: ReadonlySet<string>;
 }
 
-type ComponentProps = ReduxProps & { dispatch: Dispatch };
+type ComponentProps = ProvidedProps & ReduxProps & { dispatch: Dispatch };
 
 const getEnabledPacksSet = memoize(
   (enabledPacks: ReadonlyArray<string>) => new Set(enabledPacks)
@@ -94,12 +100,13 @@ class PackSelection extends React.PureComponent<
   }
 
   public render() {
+    const { localization } = this.props;
     const { numChanges } = this.state;
     return (
       <div className="PackSelection">
         {STUDY_PACKS.map(this.renderPack)}
         <button disabled={!numChanges} onClick={this.onClickApply}>
-          Apply Changes {!!numChanges && `(${numChanges})`}
+          {localization.startQuiz} {!!numChanges && `(${numChanges})`}
         </button>
       </div>
     );

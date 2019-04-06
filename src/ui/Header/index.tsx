@@ -2,20 +2,17 @@ import classnames from "classnames";
 import * as React from "react";
 import { connect } from "react-redux";
 
-import Localization from "../../../localization";
+import Localization from "../../localization";
 
-import { Scorecard, State } from "../../../redux";
-import { endQuiz } from "../../../redux/actions";
-import { Dispatch } from "../../../redux/store";
+import { Scorecard, State } from "../../redux";
+import { endQuiz } from "../../redux/actions";
+import { Dispatch } from "../../redux/store";
 
 import TooltipButton from "./TooltipButton";
 
 import HistoryIcon from "./history.svg";
 import HomeIcon from "./home.svg";
 import "./index.scss";
-
-console.log(HistoryIcon);
-console.log(typeof HistoryIcon);
 
 interface ProvidedProps {
   isQuizActive: boolean;
