@@ -1,0 +1,26 @@
+@import "../../../palette.scss";
+
+.TooltipButton {
+  display: inline-block;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+
+  &:hover {
+    svg {
+      opacity: 1;
+
+      path {
+        fill: $palette-header-icons-hover;
+      }
+    }
+  }
+
+  svg {
+    opacity: 0.7;
+
+    path {
+      fill: $palette-header-icons;
+    }
+  }
+}

@@ -10,6 +10,7 @@
     "clean": "rimraf ./build"
   },
   "devDependencies": {
+    "@svgr/webpack": "^4.1.0",
     "@types/classnames": "^2.2.7",
     "@types/lodash": "^4.14.123",
     "@types/react": "^16.8.9",
@@ -24,6 +25,7 @@
     "rimraf": "^2.6.3",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
+    "svgo": "^1.2.1",
     "ts-loader": "^5.3.3",
     "tslint": "^5.14.0",
     "tslint-config-prettier": "^1.18.0",

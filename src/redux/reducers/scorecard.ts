@@ -1,13 +1,15 @@
 import { maxBy } from "lodash";
 import {
   ActionChangeStudyPacks,
+  ActionEndQuiz,
   ActionMarkCorrectAnswer,
   ActionMarkIncorrectAnswer
 } from "../actions";
 import { Scorecard } from "../index";
 
-type ReducerAction =
+type ReducerAction = 
   | ActionChangeStudyPacks
+  | ActionEndQuiz
   | ActionMarkCorrectAnswer
   | ActionMarkIncorrectAnswer;
 
@@ -24,6 +26,7 @@ export default function scorecardReducer(
 ): Scorecard {
   switch (action.type) {
     case "change-study-packs":
+    case "end-quiz":
       return DEFAULT_SCORECARD;
     case "mark-correct-answer": {
       return {

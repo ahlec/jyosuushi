@@ -50,3 +50,11 @@ export function markIncorrectAnswer(
     possibleCounters
   };
 }
+
+export interface ActionEndQuiz {
+  type: "end-quiz";
+}
+
+export function endQuiz(): ActionEndQuiz {
+  return { type: "end-quiz" };
+}

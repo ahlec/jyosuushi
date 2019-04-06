@@ -1,7 +1,14 @@
-import { ActionChangeStudyPacks, ActionCreateQuestion } from "../actions";
+import {
+  ActionChangeStudyPacks,
+  ActionCreateQuestion,
+  ActionEndQuiz
+} from "../actions";
 import { Question } from "../index";
 
-type ReducerAction = ActionChangeStudyPacks | ActionCreateQuestion;
+type ReducerAction =
+  | ActionChangeStudyPacks
+  | ActionCreateQuestion
+  | ActionEndQuiz;
 
 export default function currentQuestionReducer(
   state: Question | null | undefined = null,
@@ -9,6 +16,7 @@ export default function currentQuestionReducer(
 ): Question | null {
   switch (action.type) {
     case "change-study-packs":
+    case "end-quiz":
       return null;
     case "create-question": {
       return {

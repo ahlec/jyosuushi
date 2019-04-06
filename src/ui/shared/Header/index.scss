@@ -1,4 +1,4 @@
-@import "../../palette.scss";
+@import "../../../palette.scss";
 
 // Constants
 $header-vertical-padding: 12px;
@@ -132,8 +132,13 @@ $font-size-quiz: 20px;
 
       .scorecard {
         flex: 1;
-        text-align: right;
       }
+    }
+
+    .scorecard {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
     }
   }
 

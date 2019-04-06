@@ -1,6 +1,7 @@
 import {
   ActionChangeStudyPacks,
   ActionCreateQuestion,
+  ActionEndQuiz,
   ActionMarkCorrectAnswer,
   ActionMarkIncorrectAnswer
 } from "../actions";
@@ -9,6 +10,7 @@ import { QuizState } from "../index";
 type ReducerAction =
   | ActionChangeStudyPacks
   | ActionCreateQuestion
+  | ActionEndQuiz
   | ActionMarkCorrectAnswer
   | ActionMarkIncorrectAnswer;
 
@@ -24,6 +26,8 @@ export default function quizStateReducer(
     case "mark-correct-answer":
     case "mark-incorrect-answer":
       return "reviewing-answer";
+    case "end-quiz":
+      return "not-in-quiz";
     default:
       return state;
   }

@@ -7,7 +7,6 @@ import { Answer, Question, QuizState, State } from "../../redux";
 import AnswerInput from "./AnswerInput";
 import QuestionDisplay from "./QuestionDisplay";
 import ResultsView from "./ResultsView";
-import ScoreBar from "./ScoreBar";
 
 import "./index.scss";
 
@@ -56,7 +55,6 @@ class QuizPage extends React.PureComponent<ComponentProps, ComponentState> {
 
     return (
       <div className="QuestionPage">
-        <ScoreBar />
         <QuestionDisplay currentQuestion={currentQuestion} />
         <AnswerInput
           currentQuestion={currentQuestion}

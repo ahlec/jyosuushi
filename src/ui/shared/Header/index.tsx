@@ -2,12 +2,24 @@ import classnames from "classnames";
 import * as React from "react";
 import { connect } from "react-redux";
 
-import { Scorecard, State } from "../../redux";
+import Localization from "../../../localization";
 
-import "./Header.scss";
+import { Scorecard, State } from "../../../redux";
+import { endQuiz } from "../../../redux/actions";
+import { Dispatch } from "../../../redux/store";
+
+import TooltipButton from "./TooltipButton";
+
+import HistoryIcon from "./history.svg";
+import HomeIcon from "./home.svg";
+import "./index.scss";
+
+console.log(HistoryIcon);
+console.log(typeof HistoryIcon);
 
 interface ProvidedProps {
   isQuizActive: boolean;
+  localization: Localization;
 }
 
 interface ReduxProps {
@@ -20,7 +32,7 @@ function mapStateToProps(state: State): ReduxProps {
   };
 }
 
-type ComponentProps = ProvidedProps & ReduxProps;
+type ComponentProps = ProvidedProps & ReduxProps & { dispatch: Dispatch };
 
 type Stage =
   | "resting-home"
@@ -86,6 +98,7 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
   }
 
   private renderHomeLayout() {
+    const { localization } = this.props;
     return (
       <React.Fragment>
         <div className="main">
@@ -97,16 +110,32 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
             練習<rt>れんしゅう</rt>
           </ruby>
         </div>
-        <div className="subheader">Let's review Japanese counters!</div>
+        <div className="subheader">{localization.siteTagline}</div>
       </React.Fragment>
     );
   }
 
   private renderQuizLayout() {
+    const { stage } = this.state;
+    const enabled = stage === "resting-quiz";
     return (
       <React.Fragment>
         <div className="site-name">助数詞を練習</div>
-        <div className="scorecard">your score:</div>
+        <div className="scorecard">
+          your score:
+          <TooltipButton
+            enabled={enabled}
+            icon={HistoryIcon}
+            onClick={this.onClickHistory}
+            text="History"
+          />
+          <TooltipButton
+            enabled={enabled}
+            icon={HomeIcon}
+            onClick={this.onClickHome}
+            text="Home"
+          />
+        </div>
       </React.Fragment>
     );
   }
@@ -120,6 +149,20 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
 
     console.log(animationName, "->", nextStage);
     this.setState({ stage: nextStage });
+  };
+
+  private onClickHistory = () => {
+    alert("yeh");
+  };
+
+  private onClickHome = () => {
+    const { dispatch, scorecard } = this.props;
+    if (!scorecard.numQuestionsAsked) {
+      dispatch(endQuiz());
+      return;
+    }
+
+    alert("yeh");
   };
 }
 
