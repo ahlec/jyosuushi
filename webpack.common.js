@@ -18,7 +18,7 @@ module.exports = {
   },
   output: {
     path: BUILD_DIRECTORY,
-    filename: "[name].[contenthash].js"
+    filename: "[name].[hash].js"
   },
   resolve: {
     extensions: [".js", ".jsx", ".json", ".ts", ".tsx", ".scss"]
