@@ -1,0 +1,48 @@
+.PackDetails {
+  height: 500px;
+  max-height: 500px;
+  overflow-y: auto;
+
+  p {
+    margin: 8px 0px;
+    text-align: center;
+
+    strong {
+      font-weight: 600;
+    }
+  }
+
+  .counter {
+    background-color: yellow;
+    display: flex;
+    padding: 10px;
+    align-items: center;
+
+    &:hover {
+      cursor: pointer;
+
+      svg {
+        opacity: 1;
+
+        path {
+          fill: red;
+        }
+      }
+    }
+
+    .jp {
+      font-size: 32px;
+      margin-right: 20px;
+    }
+
+    .name {
+      flex: 1;
+    }
+
+    svg {
+      width: 32px;
+      height: 32px;
+      opacity: 0.4;
+    }
+  }
+}

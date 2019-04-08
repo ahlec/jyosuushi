@@ -5,7 +5,7 @@ import "./TooltipButton.scss";
 interface ComponentProps {
   enabled: boolean;
   icon: React.ComponentClass<React.SVGProps<SVGSVGElement>>;
-  onClick: () => void;
+  onClick: (event: React.MouseEvent) => void;
   text: string;
 }
 
@@ -44,9 +44,9 @@ export default class TooltipButton extends React.PureComponent<
     this.setState({ tooltipVisible: true });
   };
   private onMouseOut = () => this.setState({ tooltipVisible: false });
-  private onClick = () => {
+  private onClick = (event: React.MouseEvent) => {
     const { onClick } = this.props;
     this.setState({ tooltipVisible: false });
-    onClick();
+    onClick(event);
   };
 }

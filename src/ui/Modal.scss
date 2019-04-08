@@ -1,0 +1,48 @@
+.Modal {
+  background-color: red;
+  flex: 0 0 600px;
+  max-width: 600px;
+  border: 1px solid black;
+  border-radius: 0px 0px 6px 6px;
+  outline: none;
+
+  header {
+    position: relative;
+    padding: 6px 0px;
+    background-color: blue;
+    border-bottom: 1px solid black;
+    text-align: center;
+    font-size: 28px;
+    font-weight: 600;
+
+    .close-button {
+      position: absolute;
+      cursor: pointer;
+      background-color: green;
+      top: 0px;
+      height: 100%;
+      right: 0px;
+      width: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &:hover {
+        path {
+          fill: red;
+        }
+      }
+
+      svg {
+        width: 32px;
+        height: 32px;
+      }
+    }
+  }
+}
+
+.ReactModal__Overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

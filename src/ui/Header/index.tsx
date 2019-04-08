@@ -8,7 +8,7 @@ import { Scorecard, State } from "../../redux";
 import { endQuiz } from "../../redux/actions";
 import { Dispatch } from "../../redux/store";
 
-import TooltipButton from "./TooltipButton";
+import TooltipButton from "../TooltipButton";
 
 import HistoryIcon from "./history.svg";
 import HomeIcon from "./home.svg";
