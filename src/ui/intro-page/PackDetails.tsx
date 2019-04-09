@@ -9,24 +9,16 @@ import RightIcon from "../right.svg";
 import "./PackDetails.scss";
 
 interface ComponentProps {
+  enabled: boolean;
+  onInvestigateCounter: (counter: Counter) => void;
   pack: StudyPack;
 }
 
-interface ComponentState {
-  currentCounter: Counter | null;
-}
-
-export default class PackDetails extends React.PureComponent<
-  ComponentProps,
-  ComponentState
-> {
-  public state: ComponentState = {
-    currentCounter: null
-  };
-
-  private onClickInvestigate = memoize((counter: Counter) => () =>
-    this.setState({ currentCounter: counter })
-  );
+export default class PackDetails extends React.PureComponent<ComponentProps> {
+  private onClickInvestigate = memoize((counter: Counter) => () => {
+    const { onInvestigateCounter } = this.props;
+    onInvestigateCounter(counter);
+  });
 
   public render() {
     const {

@@ -9,9 +9,8 @@ import { State } from "../../redux";
 import { changeStudyPacks } from "../../redux/actions";
 import { Dispatch } from "../../redux/store";
 
-import Modal from "../Modal";
 import TooltipButton from "../TooltipButton";
-import PackDetails from "./PackDetails";
+import PackDetailsModal from "./PackDetailsModal";
 
 import InfoIcon from "./info.svg";
 
@@ -108,13 +107,10 @@ class PackSelection extends React.PureComponent<
         <button disabled={!packs.size} onClick={this.onClickApply}>
           {localization.startQuiz} {!!packs.size && `(${packs.size})`}
         </button>
-        <Modal
-          header={(detailsPack && detailsPack.name) || "-"}
-          isOpen={!!detailsPack}
+        <PackDetailsModal
           onRequestClose={this.onRequestCloseDetails}
-        >
-          {detailsPack && <PackDetails pack={detailsPack} />}
-        </Modal>
+          pack={detailsPack}
+        />
       </div>
     );
   }
