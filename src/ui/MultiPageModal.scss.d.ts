@@ -1,1 +1,1 @@
-export const PAGE_TRANSITION_DURATION: string;
+export const PAGE_TRANSITION_DURATION_RAW: string;

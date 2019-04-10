@@ -5,8 +5,9 @@ import ReactModal from "react-modal";
 import CloseIcon from "./close.svg";
 import LeftIcon from "./left.svg";
 
-import { PAGE_TRANSITION_DURATION } from "./MultiPageModal.scss";
-console.log(PAGE_TRANSITION_DURATION);
+import { PAGE_TRANSITION_DURATION_RAW } from "./MultiPageModal.scss";
+
+const PAGE_TRANSITION_DURATION = parseInt(PAGE_TRANSITION_DURATION_RAW, 10);
 
 interface ComponentProps<TSubpageData> {
   getSubpageHeader: (data: TSubpageData) => string;
@@ -24,6 +25,8 @@ interface ComponentProps<TSubpageData> {
 }
 
 interface ComponentState<TSubpageData> {
+  displaySubpage: boolean;
+  isTransitioning: boolean;
   subpageData: TSubpageData | null;
 }
 
@@ -32,8 +35,15 @@ export default class MultiPageModal<TSubpageData> extends React.Component<
   ComponentState<TSubpageData>
 > {
   public state: ComponentState<TSubpageData> = {
+    displaySubpage: false,
+    isTransitioning: false,
     subpageData: null
   };
+  private transitionTimeout = 0;
+
+  public componentWillUnmount() {
+    clearTimeout(this.transitionTimeout);
+  }
 
   public render() {
     const {
@@ -43,46 +53,100 @@ export default class MultiPageModal<TSubpageData> extends React.Component<
       mainPageRenderer,
       subpageRenderer
     } = this.props;
-    const { subpageData } = this.state;
+    const { displaySubpage, isTransitioning, subpageData } = this.state;
     return (
       <ReactModal
-        className={classnames("MultiPageModal", subpageData && "subpage-open")}
+        className={classnames(
+          "MultiPageModal",
+          displaySubpage && subpageData && "subpage-open",
+          isTransitioning && "transitioning"
+        )}
         isOpen={isOpen}
         onRequestClose={this.onRequestClose}
       >
         <header>
           <div className="main-page">
-            <div className="button left" onClick={this.onRequestClose}>
+            <div
+              className={classnames(
+                "button left",
+                isTransitioning && "disabled"
+              )}
+              onClick={isTransitioning ? undefined : this.onRequestClose}
+            >
               <CloseIcon />
             </div>
             {mainPageHeader}
           </div>
           <div className="sub-page">
-            <div className="button right" onClick={this.onLeaveSubpage}>
+            <div
+              className={classnames(
+                "button right",
+                isTransitioning && "disabled"
+              )}
+              onClick={isTransitioning ? undefined : this.onLeaveSubpage}
+            >
               <LeftIcon />
             </div>
             {subpageData ? getSubpageHeader(subpageData) : "-"}
-            <div className="button left" onClick={this.onRequestClose}>
+            <div
+              className={classnames(
+                "button left",
+                isTransitioning && "disabled"
+              )}
+              onClick={isTransitioning ? undefined : this.onRequestClose}
+            >
               <CloseIcon />
             </div>
           </div>
         </header>
         <div className="content">
           <div className="main-page">
-            {mainPageRenderer(!subpageData, this.openSubpage)}
+            {mainPageRenderer(
+              !isTransitioning && !subpageData,
+              this.openSubpage
+            )}
           </div>
           <div className="sub-page">
-            {subpageRenderer(!!subpageData, subpageData)}
+            {subpageRenderer(!isTransitioning && !!subpageData, subpageData)}
           </div>
         </div>
       </ReactModal>
     );
   }
 
-  private openSubpage = (data: TSubpageData) =>
-    this.setState({ subpageData: data });
+  private openSubpage = (data: TSubpageData) => {
+    window.clearTimeout(this.transitionTimeout);
+    this.transitionTimeout = 0;
+    this.setState({
+      displaySubpage: true,
+      isTransitioning: true,
+      subpageData: data
+    });
+    this.transitionTimeout = window.setTimeout(
+      this.stopTransitioning,
+      PAGE_TRANSITION_DURATION
+    );
+  };
 
-  private onLeaveSubpage = () => this.setState({ subpageData: null });
+  private onLeaveSubpage = () => {
+    window.clearTimeout(this.transitionTimeout);
+    this.transitionTimeout = 0;
+
+    this.setState({ displaySubpage: false, isTransitioning: true });
+    this.transitionTimeout = window.setTimeout(
+      this.clearSubpageData,
+      PAGE_TRANSITION_DURATION
+    );
+  };
+
+  private stopTransitioning = () => this.setState({ isTransitioning: false });
+
+  private clearSubpageData = () =>
+    this.setState({
+      displaySubpage: false,
+      isTransitioning: false,
+      subpageData: null
+    });
 
   private onRequestClose = () => {
     const { isOpen, onRequestClose } = this.props;
@@ -90,7 +154,14 @@ export default class MultiPageModal<TSubpageData> extends React.Component<
       return;
     }
 
-    this.setState({ subpageData: null });
+    window.clearTimeout(this.transitionTimeout);
+    this.transitionTimeout = 0;
+
+    this.setState({
+      displaySubpage: false,
+      isTransitioning: false,
+      subpageData: null
+    });
     onRequestClose();
   };
 }

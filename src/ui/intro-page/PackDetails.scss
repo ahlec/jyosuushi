@@ -16,7 +16,7 @@
     padding: 10px;
     align-items: center;
 
-    &:hover {
+    &:hover:not(.disabled) {
       cursor: pointer;
 
       svg {

@@ -1,3 +1,4 @@
+import classnames from "classnames";
 import { memoize } from "lodash";
 import * as React from "react";
 
@@ -16,7 +17,11 @@ interface ComponentProps {
 
 export default class PackDetails extends React.PureComponent<ComponentProps> {
   private onClickInvestigate = memoize((counter: Counter) => () => {
-    const { onInvestigateCounter } = this.props;
+    const { enabled, onInvestigateCounter } = this.props;
+    if (!enabled) {
+      return;
+    }
+
     onInvestigateCounter(counter);
   });
 
@@ -39,10 +44,11 @@ export default class PackDetails extends React.PureComponent<ComponentProps> {
   }
 
   private renderCounter = (counter: Counter) => {
+    const { enabled } = this.props;
     return (
       <div
         key={counter.counterId}
-        className="counter"
+        className={classnames("counter", !enabled && "disabled")}
         onClick={this.onClickInvestigate(counter)}
       >
         <ruby className="jp">

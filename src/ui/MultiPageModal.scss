@@ -1,6 +1,8 @@
-$page-transition-duration: 0.1s;
+$page-transition-duration: 0.2s;
 
-@value PAGE_TRANSITION_DURATION: 0.1s;
+:export {
+  PAGE_TRANSITION_DURATION_RAW: $page-transition-duration / 1s * 1000;
+}
 
 .MultiPageModal {
   background-color: red;
@@ -9,6 +11,10 @@ $page-transition-duration: 0.1s;
   border: 1px solid black;
   border-radius: 0px 0px 6px 6px;
   outline: none;
+
+  &.transitioning {
+    user-select: none;
+  }
 
   &.subpage-open {
     .main-page {
@@ -29,6 +35,7 @@ $page-transition-duration: 0.1s;
     font-size: 28px;
     font-weight: 600;
     overflow: hidden;
+    user-select: none;
 
     .main-page,
     .sub-page {
@@ -56,7 +63,11 @@ $page-transition-duration: 0.1s;
         left: 0px;
       }
 
-      &:hover {
+      &.disabled {
+        cursor: default;
+      }
+
+      &:hover:not(.disabled) {
         path {
           fill: red;
         }
@@ -75,7 +86,7 @@ $page-transition-duration: 0.1s;
     left: 0px;
     width: 100%;
     height: 100%;
-    transition: $page-transition-duration left;
+    transition: $page-transition-duration left ease-in;
   }
 
   .sub-page {
@@ -84,7 +95,7 @@ $page-transition-duration: 0.1s;
     left: 100%;
     width: 100%;
     height: 100%;
-    transition: $page-transition-duration left;
+    transition: $page-transition-duration left ease-in;
   }
 
   .content {
