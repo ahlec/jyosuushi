@@ -240,4 +240,8 @@ function conjugateNumberAndCounterInternal(
 export const conjugateNumberAndCounter: (
   amount: number,
   counter: JapaneseWord
-) => ReadonlyArray<JapaneseWord> = memoize(conjugateNumberAndCounterInternal);
+) => ReadonlyArray<JapaneseWord> = memoize(
+  conjugateNumberAndCounterInternal,
+  (amount: number, counter: JapaneseWord) =>
+    [amount, counter.kana, counter.kanji].join("-")
+);

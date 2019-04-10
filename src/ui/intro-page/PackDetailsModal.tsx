@@ -3,6 +3,7 @@ import * as React from "react";
 import { StudyPack } from "../../data/study-packs";
 import { Counter } from "../../redux";
 
+import CounterDetails from "../CounterDetails";
 import MultiPageModal from "../MultiPageModal";
 import PackDetails from "./PackDetails";
 
@@ -56,6 +57,6 @@ export default class PackDetailsModal extends React.PureComponent<
       return null;
     }
 
-    return <div>{counter.kanji}</div>;
+    return <CounterDetails counter={counter} />;
   };
 }
