@@ -1,3 +1,4 @@
+import classnames from "classnames";
 import { memoize } from "lodash";
 import * as React from "react";
 import { connect } from "react-redux";
@@ -12,6 +13,7 @@ import { Dispatch } from "../../redux/store";
 import TooltipButton from "../TooltipButton";
 import PackDetailsModal from "./PackDetailsModal";
 
+import CheckIcon from "./check.svg";
 import InfoIcon from "./info.svg";
 
 import "./PackSelection.scss";
@@ -103,7 +105,7 @@ class PackSelection extends React.PureComponent<
     const { detailsPack, packs } = this.state;
     return (
       <div className="PackSelection">
-        {STUDY_PACKS.map(this.renderPack)}
+        <div className="packs">{STUDY_PACKS.map(this.renderPack)}</div>
         <button disabled={!packs.size} onClick={this.onClickApply}>
           {localization.startQuiz} {!!packs.size && `(${packs.size})`}
         </button>
@@ -131,20 +133,20 @@ class PackSelection extends React.PureComponent<
     const { packs } = this.state;
     const enabled = packs.has(pack.packId);
     return (
-      <label key={pack.name} className="pack-option">
-        <input
-          type="checkbox"
-          checked={enabled}
-          onChange={this.onTogglePack(pack)}
-        />{" "}
-        {pack.name}
+      <div
+        key={pack.name}
+        className={classnames("option", enabled && "checked")}
+        onClick={this.onTogglePack(pack)}
+      >
+        <CheckIcon className="check" />
+        <div className="name">{pack.name}</div>
         <TooltipButton
           enabled={true}
           icon={InfoIcon}
           onClick={this.onClickViewPack(pack)}
           text="View Pack"
         />
-      </label>
+      </div>
     );
   };
 }

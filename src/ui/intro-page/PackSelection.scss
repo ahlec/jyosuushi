@@ -1,12 +1,45 @@
 .PackSelection {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  border: 3px solid black;
+  width: 70%;
+  margin: auto;
 
-  .pack-option {
-    .currently-enabled {
-      font-size: 80%;
-      font-style: italic;
+  .packs {
+    .option {
+      background-color: blue;
+      cursor: pointer;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 130px;
+      height: 70px;
+      position: relative;
+
+      &.checked {
+        background-color: red;
+
+        .check {
+          opacity: 0.7;
+        }
+      }
+
+      &:hover {
+        .check {
+          opacity: 1 !important;
+        }
+      }
+
+      .check {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        opacity: 0;
+        width: 36px;
+        height: 36px;
+      }
+
+      .name {
+        font-size: 30px;
+      }
     }
   }
 }
