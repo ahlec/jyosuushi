@@ -9,11 +9,31 @@ $sakura-water-blueish: #c8d8e6;
 $sakura-water-blue: #89adcc;
 $sakura-water-black: #170301;
 
-$palette-background-color: $kyoto-pinkish;
+$ukiyoe-beige: #efe8cb;
+$ukiyoe-tan: #c7bca0;
+$ukiyoe-slate: #6f7f72;
+$ukiyoe-black: #322b21;
+$ukiyoe-salmon: #d8936c;
 
-$palette-header-background: $sakura-water-blue;
-$palette-header-border: $sakura-water-blueish;
-$palette-header-color: #234766;
+$cherry-blossoms-black: #3a3a3a;
+$cherry-blossoms-light-pink: #ffecf1;
+$cherry-blossoms-white: #fafafa;
+$cherry-blossoms-hot-pink: #d6748b;
+$cherry-blossoms-pink: #fab2c3;
+
+// ----------------------------------------------------
+
+$palette-page-background-color: $cherry-blossoms-light-pink; // $ukiyoe-tan;
+$palette-app-background-color: $cherry-blossoms-white; // $ukiyoe-beige;
+$palette-app-border: $cherry-blossoms-pink; //$ukiyoe-black;
+
+$palette-link-color: $cherry-blossoms-hot-pink;
+$palette-link-color-hover: $cherry-blossoms-black;
+
+$palette-header-background: $cherry-blossoms-hot-pink; // $ukiyoe-slate;
+$palette-header-border: $cherry-blossoms-pink; // $ukiyoe-black;
+$palette-header-color: $cherry-blossoms-black; //$ukiyoe-black;
+$palette-header-text-shadow: darken($cherry-blossoms-hot-pink, 15%);
 $palette-header-icons: white;
 $palette-header-icons-hover: red;
 

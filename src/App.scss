@@ -3,7 +3,7 @@
 html,
 body {
   height: 100%;
-  background-color: green;
+  background-color: $palette-page-background-color;
   overflow: hidden;
 }
 
@@ -17,15 +17,29 @@ body {
   font-family: "Ubuntu", sans-serif;
   position: relative;
   height: 100%;
-  background-color: $palette-background-color;
+  background-color: $palette-app-background-color;
   display: flex;
   flex-direction: column;
   max-width: 800px;
   transition: max-width 0.25s ease-in;
   margin: auto;
   overflow: hidden;
+  border-left: 1px solid $palette-app-border;
+  border-right: 1px solid $palette-app-border;
 
   &.quiz-active {
     max-width: 1200px;
   }
+}
+
+a,
+a:visited {
+  text-decoration: underline;
+  color: $palette-link-color;
+  font-weight: 600;
+}
+
+a:hover {
+  text-decoration: none;
+  color: $palette-link-color-hover;
 }

@@ -1,15 +1,22 @@
 .IntroPage {
   max-width: 600px;
-  margin: 10px auto;
+  margin: 20px auto 10px;
   display: flex;
   flex-direction: column;
   height: 100%;
 
   p {
+    margin-bottom: 10px;
+    text-indent: 10px;
+
     strong {
       font-weight: bold;
       font-size: 120%;
     }
+  }
+
+  .PackSelection {
+    margin-top: 15px;
   }
 
   .flex {

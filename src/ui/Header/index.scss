@@ -32,7 +32,7 @@ $font-size-quiz: 20px;
 @keyframes home-main-shrink {
   from {
     font-size: $font-size-main-home;
-    text-shadow: 1px 1px darken($palette-header-color, 35%);
+    text-shadow: 1px 1px $palette-header-text-shadow;
   }
 
   to {
@@ -88,7 +88,7 @@ $font-size-quiz: 20px;
 
     .main {
       font-size: $font-size-main-home;
-      text-shadow: 1px 1px darken($palette-header-color, 35%);
+      text-shadow: 1px 1px $palette-header-text-shadow;
     }
 
     .subheader,
