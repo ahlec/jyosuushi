@@ -5,7 +5,7 @@ $font-family: "Ubuntu", sans-serif;
 html,
 body {
   height: 100%;
-  background-color: $palette-page-background-color;
+  background-color: $pink-light;
   overflow: hidden;
 }
 
@@ -19,15 +19,16 @@ body {
   font-family: $font-family;
   position: relative;
   height: 100%;
-  background-color: $palette-app-background-color;
+  background-color: white;
   display: flex;
   flex-direction: column;
   max-width: 800px;
   transition: max-width 0.25s ease-in;
   margin: auto;
   overflow: hidden;
-  border-left: 1px solid $palette-app-border;
-  border-right: 1px solid $palette-app-border;
+  border-left: 1px solid $pink-base;
+  border-right: 1px solid $pink-base;
+  color: $black-darkest;
 
   &.quiz-active {
     max-width: 1200px;
@@ -37,18 +38,18 @@ body {
 a,
 a:visited {
   text-decoration: underline;
-  color: $palette-link-color;
+  color: $pink-darkest;
   font-weight: 600;
 }
 
 a:hover {
   text-decoration: none;
-  color: $palette-link-color-hover;
+  color: $pink-dark;
 }
 
 button {
-  background-color: $palette-button-background;
-  border: 1px solid $palette-button-border;
+  background-color: $pink-light;
+  border: 1px solid $pink-base;
   border-radius: 4px;
   padding: 6px;
   cursor: pointer;
@@ -60,8 +61,9 @@ button {
   }
 
   &:disabled {
-    background-color: $palette-button-background-disabled;
-    border-color: $palette-button-border-disabled;
+    background-color: $black-lightest;
+    border-color: $black-base;
     cursor: default;
+    color: white;
   }
 }

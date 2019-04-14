@@ -32,7 +32,7 @@ $font-size-quiz: 20px;
 @keyframes home-main-shrink {
   from {
     font-size: $font-size-main-home;
-    text-shadow: 1px 1px $palette-header-text-shadow;
+    text-shadow: 1px 1px $pink-darkest;
   }
 
   to {
@@ -76,11 +76,11 @@ $font-size-quiz: 20px;
 
 // CSS
 .Header {
-  background-color: $palette-header-background;
-  border-bottom: 6px solid $palette-header-border;
-  color: $palette-header-color;
+  background-color: $pink-dark;
+  border-bottom: 6px solid $pink-darkest;
+  color: $black-dark;
   padding: $header-vertical-padding $header-horizontal-padding;
-  box-shadow: 0px 5px 5px 3px black;
+  box-shadow: 0px 5px 5px 3px $black-darkest;
   margin-bottom: 5px;
 
   &.home {
@@ -88,7 +88,7 @@ $font-size-quiz: 20px;
 
     .main {
       font-size: $font-size-main-home;
-      text-shadow: 1px 1px $palette-header-text-shadow;
+      text-shadow: 1px 1px $pink-darkest;
     }
 
     .subheader,

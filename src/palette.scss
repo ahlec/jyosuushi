@@ -1,63 +1,23 @@
-// current theme: https://www.colourlovers.com/palette/64569/Kyoto
-$kyoto-black: #50484e;
-$kyoto-blackish: #8a7985;
-$kyoto-medium: #c0acb9;
-$kyoto-pinkish: #e6cddd;
-$kyoto-pink: #f08bcb;
+$pink-lightest: #fcccd7;
+$pink-light: #ffb7c8;
+$pink-base: #fab2c3;
+$pink-dark: #f9a7ba;
+$pink-darkest: #f7809c;
 
-$sakura-water-blueish: #c8d8e6;
-$sakura-water-blue: #89adcc;
-$sakura-water-black: #170301;
+$blue-lightest: #91b7d9;
+$blue-light: #7897b3;
+$blue-base: #89adcc;
+$blue-dark: #5e778c;
+$blue-darkest: #33414d;
 
-$ukiyoe-beige: #efe8cb;
-$ukiyoe-tan: #c7bca0;
-$ukiyoe-slate: #6f7f72;
-$ukiyoe-black: #322b21;
-$ukiyoe-salmon: #d8936c;
+$green-lightest: #83de6a;
+$green-light: #5e9e4c;
+$green-base: #569146;
+$green-dark: #47783a;
+$green-darkest: #305227;
 
-$cherry-blossoms-black: #3a3a3a;
-$cherry-blossoms-light-pink: #ffecf1;
-$cherry-blossoms-white: #fafafa;
-$cherry-blossoms-hot-pink: #d6748b;
-$cherry-blossoms-pink: #fab2c3;
-
-// ----------------------------------------------------
-
-$palette-page-background-color: $cherry-blossoms-light-pink; // $ukiyoe-tan;
-$palette-app-background-color: $cherry-blossoms-white; // $ukiyoe-beige;
-$palette-app-border: $cherry-blossoms-pink; //$ukiyoe-black;
-
-$palette-button-background: $cherry-blossoms-light-pink;
-$palette-button-border: $cherry-blossoms-pink;
-$palette-button-background-disabled: desaturate(
-  $palette-button-background,
-  60%
-);
-$palette-button-border-disabled: desaturate($palette-button-border, 60%);
-
-$palette-link-color: $cherry-blossoms-hot-pink;
-$palette-link-color-hover: $cherry-blossoms-black;
-
-$palette-header-background: $cherry-blossoms-hot-pink; // $ukiyoe-slate;
-$palette-header-border: $cherry-blossoms-pink; // $ukiyoe-black;
-$palette-header-color: $cherry-blossoms-black; //$ukiyoe-black;
-$palette-header-text-shadow: darken($cherry-blossoms-hot-pink, 15%);
-$palette-header-icons: white;
-$palette-header-icons-hover: red;
-
-$palette-fieldset-background: $ukiyoe-beige;
-$palette-fieldset-header-background: $ukiyoe-tan;
-$palette-fieldset-border: $ukiyoe-slate;
-
-$palette-answer-input-background: $kyoto-blackish;
-$palette-answer-input-border: $kyoto-black;
-$palette-answer-input-color: white;
-
-$palette-study-pack-background: $kyoto-pinkish;
-$palette-study-pack-border: $kyoto-blackish;
-$palette-study-pack-color: $kyoto-black;
-$palette-study-pack-selected-background: $kyoto-pink;
-$palette-study-pack-selected-color: $kyoto-medium;
-
-$palette-view-details-background: $kyoto-pink;
-$palette-view-details-color: $kyoto-black;
+$black-lightest: #3a3a3a;
+$black-light: #303030;
+$black-base: #202020;
+$black-dark: #101010;
+$black-darkest: #060606;

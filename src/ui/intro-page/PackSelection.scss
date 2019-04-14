@@ -7,9 +7,9 @@ $hover-darken-amount: 25%;
   margin: auto;
 
   .fieldset {
-    border-top: 1px solid $palette-fieldset-border;
-    border-bottom: 1px solid $palette-fieldset-border;
-    background-color: $palette-fieldset-background;
+    border-top: 1px solid $black-dark;
+    border-bottom: 1px solid $black-dark;
+    background-color: $pink-light;
     padding: 15px 30px 10px;
     position: relative;
     margin-top: 20px;
@@ -21,8 +21,8 @@ $hover-darken-amount: 25%;
 
     .header {
       position: absolute;
-      border: 1px solid $palette-fieldset-border;
-      background-color: $palette-fieldset-header-background;
+      border: 1px solid $black-dark;
+      background-color: $pink-base;
       left: 20px;
       top: -15px;
       padding: 5px;
@@ -45,11 +45,11 @@ $hover-darken-amount: 25%;
     flex-direction: column;
     overflow: hidden;
     min-height: 120px;
-    border: 1px solid $palette-study-pack-border;
+    border: 1px solid $black-dark;
 
     .front {
-      background-color: $palette-study-pack-background;
-      color: $palette-study-pack-color;
+      background-color: $blue-light;
+      color: $black-dark;
       flex: 1;
       position: relative;
       width: 100%;
@@ -59,31 +59,18 @@ $hover-darken-amount: 25%;
       justify-content: center;
 
       &:hover {
-        background-color: darken(
-          $palette-study-pack-background,
-          $hover-darken-amount
-        );
-        color: darken($palette-study-pack-color, $hover-darken-amount);
+        background-color: $blue-lightest;
 
         &.checked {
-          background-color: darken(
-            $palette-study-pack-selected-background,
-            $hover-darken-amount
-          );
-          color: darken($palette-study-pack-color, $hover-darken-amount);
+          background-color: $blue-light;
         }
       }
 
       &.checked {
-        background-color: $palette-study-pack-selected-background;
-        color: $palette-study-pack-selected-color;
+        background-color: $blue-base;
 
         .check {
           opacity: 0.7;
-
-          path {
-            fill: $palette-study-pack-selected-color;
-          }
         }
       }
 
@@ -96,7 +83,7 @@ $hover-darken-amount: 25%;
         height: 45px;
 
         path {
-          fill: $palette-study-pack-color;
+          fill: white;
         }
       }
 
@@ -106,20 +93,16 @@ $hover-darken-amount: 25%;
     }
 
     .view-details {
-      border-top: 1px solid $palette-study-pack-border;
+      border-top: 1px solid $black-dark;
       text-align: center;
       padding: 3px;
       font-size: 14px;
       width: 100%;
-      background-color: $palette-view-details-background;
-      color: $palette-view-details-color;
+      background-color: $blue-darkest;
+      color: white;
 
       &:hover {
-        background-color: darken(
-          $palette-view-details-background,
-          $hover-darken-amount
-        );
-        color: darken($palette-view-details-color, $hover-darken-amount);
+        background-color: $blue-dark;
       }
     }
   }
