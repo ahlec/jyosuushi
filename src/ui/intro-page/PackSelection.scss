@@ -2,17 +2,54 @@
   width: 70%;
   margin: auto;
 
-  .packs {
-    .option {
-      background-color: blue;
-      cursor: pointer;
-      display: inline-flex;
+  .fieldset {
+    border: 1px solid black;
+    padding: 15px 10px 10px;
+    position: relative;
+    margin-top: 20px;
+    user-select: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+
+    .header {
+      position: absolute;
+      border: 1px solid black;
+      background-color: white;
+      left: 20px;
+      top: -15px;
+      padding: 5px;
+      font-size: 14px;
+
+      strong {
+        font-weight: bold;
+      }
+
+      .subheader {
+        font-style: italic;
+        font-size: 80%;
+      }
+    }
+  }
+
+  .pack {
+    background-color: blue;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-height: 120px;
+    border: 1px solid black;
+
+    .front {
+      flex: 1;
+      position: relative;
+      width: 100%;
+      display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      width: 130px;
-      height: 70px;
-      position: relative;
 
       &.checked {
         background-color: red;
@@ -30,15 +67,36 @@
 
       .check {
         position: absolute;
-        top: 10px;
-        left: 10px;
-        opacity: 0;
-        width: 36px;
-        height: 36px;
+        top: -7px;
+        left: -7px;
+        opacity: 0.5;
+        width: 45px;
+        height: 45px;
       }
 
       .name {
-        font-size: 30px;
+        font-size: 48px;
+      }
+    }
+
+    .view-details {
+      border-top: 1px solid black;
+      text-align: center;
+      padding: 3px;
+      font-size: 14px;
+      width: 100%;
+    }
+  }
+
+  .start {
+    margin: 5px 0px;
+    text-align: center;
+
+    button {
+      font-size: 22px;
+
+      &:disabled {
+        font-size: 18px;
       }
     }
   }

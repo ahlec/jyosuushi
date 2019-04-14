@@ -6,15 +6,13 @@ import { connect } from "react-redux";
 import { STUDY_PACKS, StudyPack } from "../../data/study-packs";
 import Localization from "../../localization";
 
-import { State } from "../../redux";
+import { Counter, State } from "../../redux";
 import { changeStudyPacks } from "../../redux/actions";
 import { Dispatch } from "../../redux/store";
 
-import TooltipButton from "../TooltipButton";
 import PackDetailsModal from "./PackDetailsModal";
 
 import CheckIcon from "./check.svg";
-import InfoIcon from "./info.svg";
 
 import "./PackSelection.scss";
 
@@ -43,6 +41,31 @@ const getEnabledPacksSet = memoize(
   (enabledPacks: ReadonlyArray<string>) => new Set(enabledPacks)
 );
 
+function compareCounters(a: Counter, b: Counter): number {
+  return a.kana.localeCompare(b.kana);
+}
+
+function getDistinctCounters(
+  enabledPacks: ReadonlySet<string>
+): ReadonlyArray<Counter> {
+  const counters: Counter[] = [];
+  const encountered = new Set<string>();
+  for (const packId of enabledPacks) {
+    const pack = STUDY_PACK_LOOKUP[packId];
+    for (const counter of pack.counters) {
+      if (encountered.has(counter.counterId)) {
+        continue;
+      }
+
+      encountered.add(counter.counterId);
+      counters.push(counter);
+    }
+  }
+
+  counters.sort(compareCounters);
+  return counters;
+}
+
 function mapStateToProps(state: State): ReduxProps {
   return {
     enabledPacks: getEnabledPacksSet(state.enabledPacks)
@@ -50,6 +73,7 @@ function mapStateToProps(state: State): ReduxProps {
 }
 
 interface ComponentState {
+  counters: ReadonlyArray<Counter>;
   detailsPack: StudyPack | null;
   packs: ReadonlySet<string>;
 }
@@ -69,7 +93,7 @@ class PackSelection extends React.PureComponent<
       packs.add(pack.packId);
     }
 
-    this.setState({ packs });
+    this.setState({ counters: getDistinctCounters(packs), packs });
   });
 
   private onClickViewPack = memoize(
@@ -83,6 +107,7 @@ class PackSelection extends React.PureComponent<
   public constructor(props: ComponentProps) {
     super(props);
     this.state = {
+      counters: getDistinctCounters(props.enabledPacks),
       detailsPack: null,
       packs: props.enabledPacks
     };
@@ -94,6 +119,7 @@ class PackSelection extends React.PureComponent<
     const { enabledPacks } = this.props;
     if (enabledPacks !== prevEnabledPacks) {
       this.setState({
+        counters: getDistinctCounters(enabledPacks),
         detailsPack: null,
         packs: new Set(enabledPacks)
       });
@@ -102,13 +128,29 @@ class PackSelection extends React.PureComponent<
 
   public render() {
     const { localization } = this.props;
-    const { detailsPack, packs } = this.state;
+    const { counters, detailsPack, packs } = this.state;
     return (
       <div className="PackSelection">
-        <div className="packs">{STUDY_PACKS.map(this.renderPack)}</div>
-        <button disabled={!packs.size} onClick={this.onClickApply}>
-          {localization.startQuiz} {!!packs.size && `(${packs.size})`}
-        </button>
+        <div className="fieldset">
+          <div className="header">
+            <strong>{localization.studyPackSelectionHeader}</strong>{" "}
+            <span className="subheader">
+              {localization.studyPackSelectionSubheader}
+            </span>
+          </div>
+          {STUDY_PACKS.map(this.renderPack)}
+        </div>
+        <div className="start">
+          <button disabled={!packs.size} onClick={this.onClickApply}>
+            {localization.startQuiz}
+          </button>
+        </div>
+        {!!counters.length && (
+          <div className="counters">
+            <div className="header">{localization.countersDisplayHeader}</div>
+            {counters.map(this.renderCounter)}
+          </div>
+        )}
         <PackDetailsModal
           onRequestClose={this.onRequestCloseDetails}
           pack={detailsPack}
@@ -130,24 +172,30 @@ class PackSelection extends React.PureComponent<
   private onRequestCloseDetails = () => this.setState({ detailsPack: null });
 
   private renderPack = (pack: StudyPack) => {
+    const { localization } = this.props;
     const { packs } = this.state;
     const enabled = packs.has(pack.packId);
     return (
-      <div
-        key={pack.name}
-        className={classnames("option", enabled && "checked")}
-        onClick={this.onTogglePack(pack)}
-      >
-        <CheckIcon className="check" />
-        <div className="name">{pack.name}</div>
-        <TooltipButton
-          enabled={true}
-          icon={InfoIcon}
-          onClick={this.onClickViewPack(pack)}
-          text="View Pack"
-        />
+      <div key={pack.name} className="pack">
+        <div
+          className={classnames("front", enabled && "checked")}
+          onClick={this.onTogglePack(pack)}
+        >
+          <CheckIcon className="check" />
+          <div className="name">{pack.name}</div>
+          <div className="count">
+            {localization.studyPackSize(pack.counters.length)}
+          </div>
+        </div>
+        <div className="view-details" onClick={this.onClickViewPack(pack)}>
+          View Details
+        </div>
       </div>
     );
+  };
+
+  private renderCounter = (counter: Counter) => {
+    return <div key={counter.counterId}>{counter.kana}</div>;
   };
 }
 

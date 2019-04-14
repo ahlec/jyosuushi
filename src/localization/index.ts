@@ -8,7 +8,11 @@ export type CreditsPiece =
 
 export default interface Localization {
   alecDeitloff: string;
+  countersDisplayHeader: string;
   credits: ReadonlyArray<CreditsPiece>;
   siteTagline: string;
   startQuiz: string;
+  studyPackSelectionHeader: string;
+  studyPackSelectionSubheader: string;
+  studyPackSize(size: number): string;
 }

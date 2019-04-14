@@ -1,5 +1,7 @@
 @import "palette.scss";
 
+$font-family: "Ubuntu", sans-serif;
+
 html,
 body {
   height: 100%;
@@ -14,7 +16,7 @@ body {
 }
 
 .App {
-  font-family: "Ubuntu", sans-serif;
+  font-family: $font-family;
   position: relative;
   height: 100%;
   background-color: $palette-app-background-color;
@@ -42,4 +44,24 @@ a:visited {
 a:hover {
   text-decoration: none;
   color: $palette-link-color-hover;
+}
+
+button {
+  background-color: $palette-button-background;
+  border: 1px solid $palette-button-border;
+  border-radius: 4px;
+  padding: 6px;
+  cursor: pointer;
+  font-family: $font-family;
+
+  &:hover:not(:disabled) {
+    border-width: 2px;
+    padding: 5px;
+  }
+
+  &:disabled {
+    background-color: $palette-button-background-disabled;
+    border-color: $palette-button-border-disabled;
+    cursor: default;
+  }
 }

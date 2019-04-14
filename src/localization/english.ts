@@ -5,6 +5,7 @@ import Localization, {
 
 const ENGLISH: Localization = {
   alecDeitloff: "Alec Deitloff",
+  countersDisplayHeader: "Counters",
   credits: [
     "Application designed and coded by ",
     VARIABLE_ALEC_DEITLOFF,
@@ -13,7 +14,11 @@ const ENGLISH: Localization = {
     " collection."
   ],
   siteTagline: "Let's review Japanese counters!",
-  startQuiz: "Start Quiz!"
+  startQuiz: "Start Quiz!",
+  studyPackSelectionHeader: "Study Packs",
+  studyPackSelectionSubheader: "(select 1 or more)",
+  studyPackSize: (size: number) =>
+    size === 1 ? "1 counter" : `${size} counters`
 };
 
 export default ENGLISH;

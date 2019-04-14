@@ -27,6 +27,14 @@ $palette-page-background-color: $cherry-blossoms-light-pink; // $ukiyoe-tan;
 $palette-app-background-color: $cherry-blossoms-white; // $ukiyoe-beige;
 $palette-app-border: $cherry-blossoms-pink; //$ukiyoe-black;
 
+$palette-button-background: $cherry-blossoms-light-pink;
+$palette-button-border: $cherry-blossoms-pink;
+$palette-button-background-disabled: desaturate(
+  $palette-button-background,
+  60%
+);
+$palette-button-border-disabled: desaturate($palette-button-border, 60%);
+
 $palette-link-color: $cherry-blossoms-hot-pink;
 $palette-link-color-hover: $cherry-blossoms-black;
 
