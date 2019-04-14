@@ -45,12 +45,19 @@ $palette-header-text-shadow: darken($cherry-blossoms-hot-pink, 15%);
 $palette-header-icons: white;
 $palette-header-icons-hover: red;
 
-$palette-history-panel-background: $kyoto-medium;
-$palette-history-panel-border: $kyoto-blackish;
-
-$palette-score-bar-background: $kyoto-medium;
-$palette-score-bar-border: $kyoto-pink;
+$palette-fieldset-background: $ukiyoe-beige;
+$palette-fieldset-header-background: $ukiyoe-tan;
+$palette-fieldset-border: $ukiyoe-slate;
 
 $palette-answer-input-background: $kyoto-blackish;
 $palette-answer-input-border: $kyoto-black;
 $palette-answer-input-color: white;
+
+$palette-study-pack-background: $kyoto-pinkish;
+$palette-study-pack-border: $kyoto-blackish;
+$palette-study-pack-color: $kyoto-black;
+$palette-study-pack-selected-background: $kyoto-pink;
+$palette-study-pack-selected-color: $kyoto-medium;
+
+$palette-view-details-background: $kyoto-pink;
+$palette-view-details-color: $kyoto-black;

@@ -1,10 +1,16 @@
+@import "../../palette.scss";
+
+$hover-darken-amount: 10%;
+
 .PackSelection {
   width: 70%;
   margin: auto;
 
   .fieldset {
-    border: 1px solid black;
-    padding: 15px 10px 10px;
+    border-top: 1px solid $palette-fieldset-border;
+    border-bottom: 1px solid $palette-fieldset-border;
+    background-color: $palette-fieldset-background;
+    padding: 15px 30px 10px;
     position: relative;
     margin-top: 20px;
     user-select: none;
@@ -15,8 +21,8 @@
 
     .header {
       position: absolute;
-      border: 1px solid black;
-      background-color: white;
+      border: 1px solid $palette-fieldset-border;
+      background-color: $palette-fieldset-header-background;
       left: 20px;
       top: -15px;
       padding: 5px;
@@ -34,15 +40,16 @@
   }
 
   .pack {
-    background-color: blue;
     cursor: pointer;
     display: flex;
     flex-direction: column;
     overflow: hidden;
     min-height: 120px;
-    border: 1px solid black;
+    border: 1px solid $palette-study-pack-border;
 
     .front {
+      background-color: $palette-study-pack-background;
+      color: $palette-study-pack-color;
       flex: 1;
       position: relative;
       width: 100%;
@@ -51,17 +58,36 @@
       align-items: center;
       justify-content: center;
 
-      &.checked {
-        background-color: red;
+      &:hover {
+        background-color: darken(
+          $palette-study-pack-background,
+          $hover-darken-amount
+        );
+        color: darken($palette-study-pack-color, $hover-darken-amount);
+
+        &.checked {
+          background-color: darken(
+            $palette-study-pack-selected-background,
+            $hover-darken-amount
+          );
+          color: darken($palette-study-pack-color, $hover-darken-amount);
+        }
 
         .check {
-          opacity: 0.7;
+          opacity: 1 !important;
         }
       }
 
-      &:hover {
+      &.checked {
+        background-color: $palette-study-pack-selected-background;
+        color: $palette-study-pack-selected-color;
+
         .check {
-          opacity: 1 !important;
+          opacity: 0.7;
+
+          path {
+            fill: $palette-study-pack-selected-color;
+          }
         }
       }
 
@@ -72,6 +98,10 @@
         opacity: 0.5;
         width: 45px;
         height: 45px;
+
+        path {
+          fill: $palette-study-pack-color;
+        }
       }
 
       .name {
@@ -80,11 +110,21 @@
     }
 
     .view-details {
-      border-top: 1px solid black;
+      border-top: 1px solid $palette-study-pack-border;
       text-align: center;
       padding: 3px;
       font-size: 14px;
       width: 100%;
+      background-color: $palette-view-details-background;
+      color: $palette-view-details-color;
+
+      &:hover {
+        background-color: darken(
+          $palette-view-details-background,
+          $hover-darken-amount
+        );
+        color: darken($palette-view-details-color, $hover-darken-amount);
+      }
     }
   }
 
