@@ -1,26 +1,28 @@
 import {
-  ActionChangeStudyPacks,
   ActionCreateQuestion,
   ActionEndQuiz,
   ActionMarkCorrectAnswer,
-  ActionMarkIncorrectAnswer
+  ActionMarkIncorrectAnswer,
+  ActionRestartQuiz,
+  ActionStartQuiz
 } from "../actions";
 import { QuizState } from "../index";
 
 type ReducerAction =
-  | ActionChangeStudyPacks
   | ActionCreateQuestion
   | ActionEndQuiz
   | ActionMarkCorrectAnswer
-  | ActionMarkIncorrectAnswer;
+  | ActionMarkIncorrectAnswer
+  | ActionStartQuiz
+  | ActionRestartQuiz;
 
 export default function quizStateReducer(
   state: QuizState | undefined = "not-in-quiz",
   action: ReducerAction
 ): QuizState {
   switch (action.type) {
-    case "change-study-packs":
-      return "not-in-quiz";
+    case "start-quiz":
+    case "restart-quiz":
     case "create-question":
       return "waiting-for-answer";
     case "mark-correct-answer":

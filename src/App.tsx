@@ -2,7 +2,7 @@ import classnames from "classnames";
 import * as React from "react";
 import { connect } from "react-redux";
 
-import { AskNewQuestion } from "./QuestionManager";
+import QuizManager from "./QuizManager";
 import { LocalizationLanguage, Question, State } from "./redux";
 
 import Localization from "./localization";
@@ -21,7 +21,7 @@ const LOCALIZATION_LOOKUP: {
 };
 
 interface ProvidedProps {
-  askNewQuestion: AskNewQuestion;
+  quizManager: QuizManager;
 }
 
 interface ReduxProps {
@@ -56,17 +56,15 @@ class App extends React.PureComponent<ComponentProps> {
   }
 
   private renderIntroPage(localization: Localization) {
-    return <IntroPage localization={localization} />;
+    const { quizManager } = this.props;
+    return <IntroPage localization={localization} quizManager={quizManager} />;
   }
 
   private renderQuizPage(currentQuestion: Question) {
-    const { askNewQuestion } = this.props;
+    const { quizManager } = this.props;
 
     return (
-      <QuizPage
-        askNewQuestion={askNewQuestion}
-        currentQuestion={currentQuestion}
-      />
+      <QuizPage currentQuestion={currentQuestion} quizManager={quizManager} />
     );
   }
 }

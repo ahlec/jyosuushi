@@ -1,7 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 
-import { AskNewQuestion } from "../../QuestionManager";
+import QuizManager from "../../QuizManager";
 import { Answer, Question, QuizState, State } from "../../redux";
 
 import AnswerInput from "./AnswerInput";
@@ -13,8 +13,8 @@ import "./index.scss";
 const KEY_ENTER = 13;
 
 interface ProvidedProps {
-  askNewQuestion: AskNewQuestion;
   currentQuestion: Question;
+  quizManager: QuizManager;
 }
 
 interface ReduxProps {
@@ -80,19 +80,19 @@ class QuizPage extends React.PureComponent<ComponentProps, ComponentState> {
   }
 
   private onClickNextQuestion = (event: React.MouseEvent) => {
-    const { askNewQuestion } = this.props;
-    askNewQuestion();
+    const { quizManager } = this.props;
+    quizManager.nextQuestion();
     event.stopPropagation();
   };
 
   private onKeyDown = (event: KeyboardEvent) => {
-    const { askNewQuestion, quizState } = this.props;
+    const { quizManager, quizState } = this.props;
     if (quizState !== "reviewing-answer") {
       return;
     }
 
     if (event.keyCode === KEY_ENTER) {
-      askNewQuestion();
+      quizManager.nextQuestion();
     }
   };
 

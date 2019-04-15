@@ -5,6 +5,7 @@ import Localization, {
   VARIABLE_ALEC_DEITLOFF,
   VARIABLE_ICON_CREDIT_LINK
 } from "../../localization";
+import QuizManager from "../../QuizManager";
 
 import PackSelection from "./PackSelection";
 
@@ -12,11 +13,12 @@ import "./index.scss";
 
 interface ComponentProps {
   localization: Localization;
+  quizManager: QuizManager;
 }
 
 export default class IntroPage extends React.PureComponent<ComponentProps> {
   public render() {
-    const { localization } = this.props;
+    const { localization, quizManager } = this.props;
     return (
       <div className="IntroPage">
         <p>
@@ -28,15 +30,14 @@ export default class IntroPage extends React.PureComponent<ComponentProps> {
           >
             Japanese counters
           </a>
-          . It's simple! We take a random type of item and a random number, and
-          then you tell us what the proper conjugation of the number + counter
-          is!
+          . You'll be given a random item and a random number, and then you tell
+          us how you'd count that in Japanese.
         </p>
         <p>
-          To start, choose one or more study pack below. Don't worry, you can
-          change this at any time:
+          To begin, select one or more study pack below. These will determine
+          which counters you'll be asked.
         </p>
-        <PackSelection localization={localization} />
+        <PackSelection localization={localization} quizManager={quizManager} />
         <div className="flex" />
         <div className="credits">
           {localization.credits.map(this.renderCredit)}

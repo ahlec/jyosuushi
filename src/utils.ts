@@ -1,3 +1,6 @@
+import { StudyPack } from "./data/study-packs";
+import { Counter } from "./redux";
+
 export function randomFromArray<T>(arr: ReadonlyArray<T>): T {
   return arr[Math.floor(Math.random() * arr.length)];
 }
@@ -50,4 +53,28 @@ function permutateTwoArrays<T>(
   }
 
   return permutations;
+}
+
+function compareCounters(a: Counter, b: Counter): number {
+  return a.kana.localeCompare(b.kana);
+}
+
+export function getDistinctCounters(
+  packs: Iterable<StudyPack>
+): ReadonlyArray<Counter> {
+  const counters: Counter[] = [];
+  const encountered = new Set<string>();
+  for (const pack of packs) {
+    for (const counter of pack.counters) {
+      if (encountered.has(counter.counterId)) {
+        continue;
+      }
+
+      encountered.add(counter.counterId);
+      counters.push(counter);
+    }
+  }
+
+  counters.sort(compareCounters);
+  return counters;
 }

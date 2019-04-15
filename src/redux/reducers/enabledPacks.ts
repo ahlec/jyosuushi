@@ -1,13 +1,13 @@
-import { ActionChangeStudyPacks } from "../actions";
+import { ActionStartQuiz } from "../actions";
 
-type ReducerAction = ActionChangeStudyPacks;
+type ReducerAction = ActionStartQuiz;
 
 export default function countersReducer(
   state: ReadonlyArray<string> | undefined = [],
   action: ReducerAction
 ): ReadonlyArray<string> {
   switch (action.type) {
-    case "change-study-packs":
+    case "start-quiz":
       return action.enabledPacks.map(({ packId }) => packId);
     default:
       return state;

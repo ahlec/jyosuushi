@@ -3,12 +3,16 @@ import { memoize } from "lodash";
 import * as React from "react";
 import { connect } from "react-redux";
 
-import { STUDY_PACKS, StudyPack } from "../../data/study-packs";
+import {
+  STUDY_PACK_LOOKUP,
+  STUDY_PACKS,
+  StudyPack
+} from "../../data/study-packs";
 import Localization from "../../localization";
+import QuizManager from "../../QuizManager";
+import { getDistinctCounters } from "../../utils";
 
 import { Counter, State } from "../../redux";
-import { changeStudyPacks } from "../../redux/actions";
-import { Dispatch } from "../../redux/store";
 
 import PackDetailsModal from "./PackDetailsModal";
 
@@ -16,59 +20,20 @@ import CheckIcon from "./check.svg";
 
 import "./PackSelection.scss";
 
-interface StudyPackLookup {
-  [packId: string]: StudyPack;
-}
-const STUDY_PACK_LOOKUP: StudyPackLookup = STUDY_PACKS.reduce(
-  (lookup: StudyPackLookup, studyPack: StudyPack) => {
-    lookup[studyPack.packId] = studyPack;
-    return lookup;
-  },
-  {}
-);
-
 interface ProvidedProps {
   localization: Localization;
+  quizManager: QuizManager;
 }
 
 interface ReduxProps {
-  enabledPacks: ReadonlySet<string>;
+  enabledPacks: ReadonlyArray<string>;
 }
 
-type ComponentProps = ProvidedProps & ReduxProps & { dispatch: Dispatch };
-
-const getEnabledPacksSet = memoize(
-  (enabledPacks: ReadonlyArray<string>) => new Set(enabledPacks)
-);
-
-function compareCounters(a: Counter, b: Counter): number {
-  return a.kana.localeCompare(b.kana);
-}
-
-function getDistinctCounters(
-  enabledPacks: ReadonlySet<string>
-): ReadonlyArray<Counter> {
-  const counters: Counter[] = [];
-  const encountered = new Set<string>();
-  for (const packId of enabledPacks) {
-    const pack = STUDY_PACK_LOOKUP[packId];
-    for (const counter of pack.counters) {
-      if (encountered.has(counter.counterId)) {
-        continue;
-      }
-
-      encountered.add(counter.counterId);
-      counters.push(counter);
-    }
-  }
-
-  counters.sort(compareCounters);
-  return counters;
-}
+type ComponentProps = ProvidedProps & ReduxProps;
 
 function mapStateToProps(state: State): ReduxProps {
   return {
-    enabledPacks: getEnabledPacksSet(state.enabledPacks)
+    enabledPacks: state.enabledPacks
   };
 }
 
@@ -76,6 +41,14 @@ interface ComponentState {
   counters: ReadonlyArray<Counter>;
   detailsPack: StudyPack | null;
   packs: ReadonlySet<string>;
+}
+
+function getPacksFromArray(packs: ReadonlyArray<string>) {
+  return packs.map(packId => STUDY_PACK_LOOKUP[packId]);
+}
+
+function getPacksFromSet(packs: ReadonlySet<string>): ReadonlyArray<StudyPack> {
+  return getPacksFromArray(Array.from(packs));
 }
 
 class PackSelection extends React.PureComponent<
@@ -93,7 +66,10 @@ class PackSelection extends React.PureComponent<
       packs.add(pack.packId);
     }
 
-    this.setState({ counters: getDistinctCounters(packs), packs });
+    this.setState({
+      counters: getDistinctCounters(getPacksFromSet(packs)),
+      packs
+    });
   });
 
   private onClickViewPack = memoize(
@@ -107,9 +83,9 @@ class PackSelection extends React.PureComponent<
   public constructor(props: ComponentProps) {
     super(props);
     this.state = {
-      counters: getDistinctCounters(props.enabledPacks),
+      counters: getDistinctCounters(getPacksFromArray(props.enabledPacks)),
       detailsPack: null,
-      packs: props.enabledPacks
+      packs: new Set(props.enabledPacks)
     };
   }
 
@@ -119,7 +95,7 @@ class PackSelection extends React.PureComponent<
     const { enabledPacks } = this.props;
     if (enabledPacks !== prevEnabledPacks) {
       this.setState({
-        counters: getDistinctCounters(enabledPacks),
+        counters: getDistinctCounters(getPacksFromArray(enabledPacks)),
         detailsPack: null,
         packs: new Set(enabledPacks)
       });
@@ -160,13 +136,9 @@ class PackSelection extends React.PureComponent<
   }
 
   private onClickApply = () => {
-    const { dispatch } = this.props;
+    const { quizManager } = this.props;
     const { packs } = this.state;
-    dispatch(
-      changeStudyPacks(
-        Array.from(packs).map(packId => STUDY_PACK_LOOKUP[packId])
-      )
-    );
+    quizManager.startNewQuiz(getPacksFromSet(packs));
   };
 
   private onRequestCloseDetails = () => this.setState({ detailsPack: null });

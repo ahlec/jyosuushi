@@ -64,6 +64,7 @@ export interface State {
   currentQuestion: Question | null;
   enabledPacks: ReadonlyArray<string>;
   items: ItemsState;
+  questions: ReadonlyArray<Question>;
   quizState: QuizState;
   scorecard: Scorecard;
   settings: Settings;

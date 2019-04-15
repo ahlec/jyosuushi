@@ -11,6 +11,7 @@ import countersReducer from "./reducers/counters";
 import currentQuestionReducer from "./reducers/currentQuestion";
 import enabledPacksReducer from "./reducers/enabledPacks";
 import itemsReducer from "./reducers/items";
+import questionsReducer from "./reducers/questions";
 import quizStateReducer from "./reducers/quizState";
 import scorecardReducer from "./reducers/scorecard";
 import settingsReducer from "./reducers/settings";
@@ -27,6 +28,7 @@ export function createReduxStore(): Store {
       currentQuestion: currentQuestionReducer,
       enabledPacks: enabledPacksReducer,
       items: itemsReducer,
+      questions: questionsReducer,
       quizState: quizStateReducer,
       scorecard: scorecardReducer,
       settings: settingsReducer

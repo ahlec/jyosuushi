@@ -1,5 +1,5 @@
 import { StudyPack } from "../data/study-packs";
-import { Answer, Item, LocalizationLanguage } from "./index";
+import { Answer, Item, LocalizationLanguage, Question } from "./index";
 
 export interface ActionSetLocalizationLanguage {
   type: "set-localization";
@@ -13,17 +13,34 @@ export interface ActionCreateQuestion {
   validAnswers: ReadonlyArray<Answer>;
 }
 
-export interface ActionChangeStudyPacks {
-  type: "change-study-packs";
+export interface ActionStartQuiz {
+  type: "start-quiz";
   enabledPacks: ReadonlyArray<StudyPack>;
+  questions: ReadonlyArray<Question>;
 }
 
-export function changeStudyPacks(
-  enabledPacks: ReadonlyArray<StudyPack>
-): ActionChangeStudyPacks {
+export function startQuiz(
+  enabledPacks: ReadonlyArray<StudyPack>,
+  questions: ReadonlyArray<Question>
+): ActionStartQuiz {
   return {
     enabledPacks,
-    type: "change-study-packs"
+    questions,
+    type: "start-quiz"
+  };
+}
+
+export interface ActionRestartQuiz {
+  type: "restart-quiz";
+  questions: ReadonlyArray<Question>;
+}
+
+export function restartQuiz(
+  questions: ReadonlyArray<Question>
+): ActionRestartQuiz {
+  return {
+    questions,
+    type: "restart-quiz"
   };
 }
 
