@@ -45,6 +45,11 @@ export interface Question {
   validAnswers: ReadonlyArray<Answer>;
 }
 
+export interface QuestionsState {
+  currentQuestion: number;
+  questions: ReadonlyArray<Question>;
+}
+
 export interface CountersStateItem {
   studyPacks: ReadonlyArray<string>;
   counter: Counter;
@@ -57,14 +62,14 @@ export interface CountersState {
 export type QuizState =
   | "not-in-quiz"
   | "waiting-for-answer"
-  | "reviewing-answer";
+  | "reviewing-answer"
+  | "quiz-wrapup";
 
 export interface State {
   counters: CountersState;
-  currentQuestion: Question | null;
   enabledPacks: ReadonlyArray<string>;
   items: ItemsState;
-  questions: ReadonlyArray<Question>;
+  questions: QuestionsState;
   quizState: QuizState;
   scorecard: Scorecard;
   settings: Settings;

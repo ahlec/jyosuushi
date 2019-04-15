@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import Localization from "../../localization";
 
 import { Scorecard, State } from "../../redux";
-import { endQuiz } from "../../redux/actions";
+import { leaveQuiz } from "../../redux/actions";
 import { Dispatch } from "../../redux/store";
 
 import TooltipButton from "../TooltipButton";
@@ -154,7 +154,7 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
   private onClickHome = () => {
     const { dispatch, scorecard } = this.props;
     if (!scorecard.numQuestionsAsked) {
-      dispatch(endQuiz());
+      dispatch(leaveQuiz());
       return;
     }
 

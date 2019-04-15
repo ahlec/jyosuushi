@@ -1,16 +1,9 @@
 import { StudyPack } from "../data/study-packs";
-import { Answer, Item, LocalizationLanguage, Question } from "./index";
+import { LocalizationLanguage, Question } from "./index";
 
 export interface ActionSetLocalizationLanguage {
   type: "set-localization";
   language: LocalizationLanguage;
-}
-
-export interface ActionCreateQuestion {
-  type: "create-question";
-  item: Item;
-  amount: number;
-  validAnswers: ReadonlyArray<Answer>;
 }
 
 export interface ActionStartQuiz {
@@ -68,10 +61,30 @@ export function markIncorrectAnswer(
   };
 }
 
+export interface ActionNextQuestion {
+  type: "next-question";
+}
+
+export function nextQuestion(): ActionNextQuestion {
+  return {
+    type: "next-question"
+  };
+}
+
 export interface ActionEndQuiz {
   type: "end-quiz";
 }
 
 export function endQuiz(): ActionEndQuiz {
   return { type: "end-quiz" };
+}
+
+export interface ActionLeaveQuiz {
+  type: "leave-quiz";
+}
+
+export function leaveQuiz(): ActionLeaveQuiz {
+  return {
+    type: "leave-quiz"
+  };
 }

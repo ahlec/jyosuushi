@@ -1,16 +1,33 @@
-import { ActionRestartQuiz, ActionStartQuiz } from "../actions";
-import { Question } from "../index";
+import {
+  ActionNextQuestion,
+  ActionRestartQuiz,
+  ActionStartQuiz
+} from "../actions";
+import { QuestionsState } from "../index";
 
-type ReducerAction = ActionStartQuiz | ActionRestartQuiz;
+type ReducerAction = ActionStartQuiz | ActionRestartQuiz | ActionNextQuestion;
+
+const DEFAULT_STATE: QuestionsState = {
+  currentQuestion: 0,
+  questions: []
+};
 
 export default function questionsReducer(
-  state: ReadonlyArray<Question> | undefined = [],
+  state: QuestionsState | undefined = DEFAULT_STATE,
   action: ReducerAction
-): ReadonlyArray<Question> {
+): QuestionsState {
   switch (action.type) {
     case "start-quiz":
     case "restart-quiz":
-      return action.questions;
+      return {
+        currentQuestion: 0,
+        questions: action.questions
+      };
+    case "next-question":
+      return {
+        currentQuestion: state.currentQuestion + 1,
+        questions: state.questions
+      };
     default:
       return state;
   }

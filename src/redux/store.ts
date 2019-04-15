@@ -8,7 +8,6 @@ import { composeWithDevTools } from "redux-devtools-extension/developmentOnly";
 import { State } from "./index";
 
 import countersReducer from "./reducers/counters";
-import currentQuestionReducer from "./reducers/currentQuestion";
 import enabledPacksReducer from "./reducers/enabledPacks";
 import itemsReducer from "./reducers/items";
 import questionsReducer from "./reducers/questions";
@@ -25,7 +24,6 @@ export function createReduxStore(): Store {
   return createStore<State, Action, any, any>(
     combineReducers<State>({
       counters: countersReducer,
-      currentQuestion: currentQuestionReducer,
       enabledPacks: enabledPacksReducer,
       items: itemsReducer,
       questions: questionsReducer,

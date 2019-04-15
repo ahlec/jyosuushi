@@ -6,6 +6,7 @@ import { Answer, Question, QuizState, State } from "../../redux";
 
 import AnswerInput from "./AnswerInput";
 import QuestionDisplay from "./QuestionDisplay";
+import QuizWrapup from "./QuizWrapup";
 import ResultsView from "./ResultsView";
 
 import "./index.scss";
@@ -13,16 +14,17 @@ import "./index.scss";
 const KEY_ENTER = 13;
 
 interface ProvidedProps {
-  currentQuestion: Question;
   quizManager: QuizManager;
 }
 
 interface ReduxProps {
+  currentQuestion: Question;
   quizState: QuizState;
 }
 
 function mapStateToProps(state: State): ReduxProps {
   return {
+    currentQuestion: state.questions.questions[state.questions.currentQuestion],
     quizState: state.quizState
   };
 }
@@ -47,10 +49,14 @@ class QuizPage extends React.PureComponent<ComponentProps, ComponentState> {
   }
 
   public render() {
-    const { currentQuestion, quizState } = this.props;
+    const { currentQuestion, quizManager, quizState } = this.props;
     const { lastQuestionCorrectAnswer } = this.state;
     if (quizState === "not-in-quiz") {
       return null;
+    }
+
+    if (quizState === "quiz-wrapup") {
+      return <QuizWrapup quizManager={quizManager} />;
     }
 
     return (
@@ -79,20 +85,28 @@ class QuizPage extends React.PureComponent<ComponentProps, ComponentState> {
     );
   }
 
-  private onClickNextQuestion = (event: React.MouseEvent) => {
+  private advance() {
     const { quizManager } = this.props;
-    quizManager.nextQuestion();
+    if (quizManager.hasNextQuestion) {
+      quizManager.nextQuestion();
+    } else {
+      quizManager.endQuiz();
+    }
+  }
+
+  private onClickNextQuestion = (event: React.MouseEvent) => {
+    this.advance();
     event.stopPropagation();
   };
 
   private onKeyDown = (event: KeyboardEvent) => {
-    const { quizManager, quizState } = this.props;
+    const { quizState } = this.props;
     if (quizState !== "reviewing-answer") {
       return;
     }
 
     if (event.keyCode === KEY_ENTER) {
-      quizManager.nextQuestion();
+      this.advance();
     }
   };
 

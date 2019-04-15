@@ -1,6 +1,6 @@
 import { STUDY_PACK_LOOKUP, StudyPack } from "./data/study-packs";
 import makeQuiz from "./QuizMaker";
-import { restartQuiz, startQuiz } from "./redux/actions";
+import { endQuiz, nextQuestion, restartQuiz, startQuiz } from "./redux/actions";
 import { Store } from "./redux/store";
 
 export default class QuizManager {
@@ -8,7 +8,9 @@ export default class QuizManager {
 
   public get hasNextQuestion(): boolean {
     const state = this.store.getState();
-    return !!state.questions.length;
+    return (
+      state.questions.currentQuestion < state.questions.questions.length - 1
+    );
   }
 
   public startNewQuiz(studyPacks: ReadonlyArray<StudyPack>) {
@@ -18,6 +20,10 @@ export default class QuizManager {
 
     const questions = makeQuiz(studyPacks);
     this.store.dispatch(startQuiz(studyPacks, questions));
+  }
+
+  public endQuiz() {
+    this.store.dispatch(endQuiz());
   }
 
   public restart() {
@@ -31,5 +37,7 @@ export default class QuizManager {
     if (!this.hasNextQuestion) {
       throw new Error("No more questions in this quiz");
     }
+
+    this.store.dispatch(nextQuestion());
   }
 }
