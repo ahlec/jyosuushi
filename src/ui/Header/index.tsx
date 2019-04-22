@@ -153,7 +153,9 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
 
   private onClickHome = () => {
     const { dispatch, scorecard } = this.props;
-    if (!scorecard.numQuestionsAsked) {
+    const numQuestionsAnswered =
+      scorecard.numCorrectAnswers + scorecard.numIncorrectAnswers;
+    if (!numQuestionsAnswered) {
       dispatch(leaveQuiz());
       return;
     }

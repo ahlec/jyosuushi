@@ -37,27 +37,58 @@ export function restartQuiz(
   };
 }
 
-export interface ActionMarkCorrectAnswer {
-  type: "mark-correct-answer";
+export interface ActionSubmitCorrectAnswer {
+  type: "submit-correct-answer";
+  providedAnswer: string;
 }
 
-export function markCorrectAnswer(): ActionMarkCorrectAnswer {
+export function submitCorrectAnswer(
+  providedAnswer: string
+): ActionSubmitCorrectAnswer {
   return {
-    type: "mark-correct-answer"
+    providedAnswer,
+    type: "submit-correct-answer"
   };
 }
 
-export interface ActionMarkIncorrectAnswer {
-  type: "mark-incorrect-answer";
+export interface ActionSubmitIncorrectAnswer {
+  type: "submit-incorrect-answer";
+  providedAnswer: string;
   possibleCounters: ReadonlyArray<string>;
 }
 
-export function markIncorrectAnswer(
+export function submitIncorrectAnswer(
+  providedAnswer: string,
   possibleCounters: ReadonlyArray<string>
-): ActionMarkIncorrectAnswer {
+): ActionSubmitIncorrectAnswer {
   return {
-    type: "mark-incorrect-answer",
+    possibleCounters,
+    providedAnswer,
+    type: "submit-incorrect-answer"
+  };
+}
+
+export interface ActionIgnoreLastAnswer {
+  type: "ignore-last-answer";
+  possibleCounters: ReadonlyArray<string>;
+}
+
+export function ignoreLastAnswer(
+  possibleCounters: ReadonlyArray<string>
+): ActionIgnoreLastAnswer {
+  return {
+    type: "ignore-last-answer",
     possibleCounters
+  };
+}
+
+export interface ActionSkipQuestion {
+  type: "skip-question";
+}
+
+export function skipQuestion(): ActionSkipQuestion {
+  return {
+    type: "skip-question"
   };
 }
 

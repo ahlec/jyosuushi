@@ -1,10 +1,12 @@
 import { maxBy } from "lodash";
 import {
+  ActionIgnoreLastAnswer,
   ActionLeaveQuiz,
-  ActionMarkCorrectAnswer,
-  ActionMarkIncorrectAnswer,
   ActionRestartQuiz,
-  ActionStartQuiz
+  ActionSkipQuestion,
+  ActionStartQuiz,
+  ActionSubmitCorrectAnswer,
+  ActionSubmitIncorrectAnswer
 } from "../actions";
 import { Scorecard } from "../index";
 
@@ -12,14 +14,17 @@ type ReducerAction =
   | ActionStartQuiz
   | ActionRestartQuiz
   | ActionLeaveQuiz
-  | ActionMarkCorrectAnswer
-  | ActionMarkIncorrectAnswer;
+  | ActionSubmitCorrectAnswer
+  | ActionSubmitIncorrectAnswer
+  | ActionIgnoreLastAnswer
+  | ActionSkipQuestion;
 
 const DEFAULT_SCORECARD: Scorecard = {
   missedCounterTallies: {},
   mostMissedCounterId: null,
   numCorrectAnswers: 0,
-  numQuestionsAsked: 0
+  numIncorrectAnswers: 0,
+  numSkippedQuestions: 0
 };
 
 export default function scorecardReducer(
@@ -31,15 +36,13 @@ export default function scorecardReducer(
     case "restart-quiz":
     case "leave-quiz":
       return DEFAULT_SCORECARD;
-    case "mark-correct-answer": {
+    case "submit-correct-answer": {
       return {
-        missedCounterTallies: state.missedCounterTallies,
-        mostMissedCounterId: state.mostMissedCounterId,
-        numCorrectAnswers: state.numCorrectAnswers + 1,
-        numQuestionsAsked: state.numQuestionsAsked + 1
+        ...state,
+        numCorrectAnswers: state.numCorrectAnswers + 1
       };
     }
-    case "mark-incorrect-answer": {
+    case "submit-incorrect-answer": {
       const nextCounterTallies = { ...state.missedCounterTallies };
       for (const counterId of action.possibleCounters) {
         nextCounterTallies[counterId] =
@@ -50,10 +53,37 @@ export default function scorecardReducer(
         (counterId: string) => nextCounterTallies[counterId]
       )!;
       return {
+        ...state,
         missedCounterTallies: nextCounterTallies,
         mostMissedCounterId,
-        numCorrectAnswers: state.numCorrectAnswers,
-        numQuestionsAsked: state.numQuestionsAsked + 1
+        numIncorrectAnswers: state.numIncorrectAnswers + 1
+      };
+    }
+    case "ignore-last-answer": {
+      const nextCounterTallies = { ...state.missedCounterTallies };
+      for (const counterId of action.possibleCounters) {
+        const newCount = (nextCounterTallies[counterId] || 0) - 1;
+        if (newCount <= 0) {
+          delete nextCounterTallies[counterId];
+        } else {
+          nextCounterTallies[counterId] = newCount;
+        }
+      }
+      const mostMissedCounterId = maxBy(
+        Object.keys(nextCounterTallies),
+        (counterId: string) => nextCounterTallies[counterId]
+      )!;
+      return {
+        ...state,
+        missedCounterTallies: nextCounterTallies,
+        mostMissedCounterId,
+        numIncorrectAnswers: Math.max(0, state.numIncorrectAnswers - 1)
+      };
+    }
+    case "skip-question": {
+      return {
+        ...state,
+        numSkippedQuestions: state.numSkippedQuestions + 1
       };
     }
     default:

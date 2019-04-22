@@ -14,6 +14,7 @@ import questionsReducer from "./reducers/questions";
 import quizStateReducer from "./reducers/quizState";
 import scorecardReducer from "./reducers/scorecard";
 import settingsReducer from "./reducers/settings";
+import userAnswersReducer from "./reducers/userAnswers";
 
 type Action = any;
 
@@ -29,7 +30,8 @@ export function createReduxStore(): Store {
       questions: questionsReducer,
       quizState: quizStateReducer,
       scorecard: scorecardReducer,
-      settings: settingsReducer
+      settings: settingsReducer,
+      userAnswers: userAnswersReducer
     }),
     composeWithDevTools()
   );

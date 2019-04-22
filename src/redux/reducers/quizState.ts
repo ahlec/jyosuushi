@@ -1,17 +1,21 @@
 import {
   ActionEndQuiz,
   ActionLeaveQuiz,
-  ActionMarkCorrectAnswer,
-  ActionMarkIncorrectAnswer,
+  ActionNextQuestion,
   ActionRestartQuiz,
-  ActionStartQuiz
+  ActionSkipQuestion,
+  ActionStartQuiz,
+  ActionSubmitCorrectAnswer,
+  ActionSubmitIncorrectAnswer
 } from "../actions";
 import { QuizState } from "../index";
 
 type ReducerAction =
   | ActionEndQuiz
-  | ActionMarkCorrectAnswer
-  | ActionMarkIncorrectAnswer
+  | ActionSubmitCorrectAnswer
+  | ActionSubmitIncorrectAnswer
+  | ActionNextQuestion
+  | ActionSkipQuestion
   | ActionStartQuiz
   | ActionRestartQuiz
   | ActionLeaveQuiz;
@@ -23,9 +27,11 @@ export default function quizStateReducer(
   switch (action.type) {
     case "start-quiz":
     case "restart-quiz":
+    case "next-question":
       return "waiting-for-answer";
-    case "mark-correct-answer":
-    case "mark-incorrect-answer":
+    case "skip-question":
+    case "submit-correct-answer":
+    case "submit-incorrect-answer":
       return "reviewing-answer";
     case "end-quiz":
       return "quiz-wrapup";

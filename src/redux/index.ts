@@ -7,8 +7,9 @@ export interface Settings {
 export interface Scorecard {
   missedCounterTallies: { [counterId: string]: number };
   mostMissedCounterId: string | null;
-  numQuestionsAsked: number;
   numCorrectAnswers: number;
+  numIncorrectAnswers: number;
+  numSkippedQuestions: number;
 }
 
 export interface Counter {
@@ -59,6 +60,17 @@ export interface CountersState {
   [counterId: string]: CountersStateItem;
 }
 
+export type UserActionJudgment =
+  | "incorrect"
+  | "correct"
+  | "ignored"
+  | "skipped";
+
+export interface UserAnswer {
+  input: string | null;
+  judgment: UserActionJudgment;
+}
+
 export type QuizState =
   | "not-in-quiz"
   | "waiting-for-answer"
@@ -73,4 +85,5 @@ export interface State {
   quizState: QuizState;
   scorecard: Scorecard;
   settings: Settings;
+  userAnswers: ReadonlyArray<UserAnswer>;
 }

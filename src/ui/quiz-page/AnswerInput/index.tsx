@@ -5,7 +5,11 @@ import { connect } from "react-redux";
 
 import { HIRAGANA } from "../../../japanese/kana";
 import { Answer, Question } from "../../../redux";
-import { markCorrectAnswer, markIncorrectAnswer } from "../../../redux/actions";
+import {
+  skipQuestion,
+  submitCorrectAnswer,
+  submitIncorrectAnswer
+} from "../../../redux/actions";
 import { Dispatch } from "../../../redux/store";
 import KanaInput from "./KanaInput";
 
@@ -62,6 +66,9 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
           Press the [enter] key when you're finished, or click the arrow button
           to submit.
         </div>
+        {enabled && (
+          <button onClick={this.onSkipClicked}>Skip this question</button>
+        )}
       </div>
     );
   }
@@ -97,10 +104,11 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
     const correct = this.getCorrectAnswer(value);
     onAnswerSubmitted(correct);
     if (correct) {
-      dispatch(markCorrectAnswer());
+      dispatch(submitCorrectAnswer(value));
     } else {
       dispatch(
-        markIncorrectAnswer(
+        submitIncorrectAnswer(
+          value,
           uniq(currentQuestion.validAnswers.map(getCounterId))
         )
       );
@@ -117,6 +125,8 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
 
     return null;
   }
+
+  private onSkipClicked = () => this.props.dispatch(skipQuestion());
 }
 
 export default connect()(AnswerInput);

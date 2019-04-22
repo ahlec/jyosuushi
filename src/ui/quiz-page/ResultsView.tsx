@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 
 import { STUDY_PACK_LOOKUP } from "../../data/study-packs";
 import { Answer, CountersState, Question, State } from "../../redux";
+import { ignoreLastAnswer } from "../../redux/actions";
+import { Dispatch } from "../../redux/store";
 
 import "./ResultsView.scss";
 
@@ -23,7 +25,7 @@ function mapStateToProps(state: State): ReduxProps {
   };
 }
 
-type ComponentProps = ProvidedProps & ReduxProps;
+type ComponentProps = ProvidedProps & ReduxProps & { dispatch: Dispatch };
 
 function getKanjiFromAnswer(answer: Answer): string | null {
   return answer.kanji;
@@ -86,6 +88,9 @@ class ResultsView extends React.PureComponent<ComponentProps> {
               )}
             </tbody>
           </table>
+          {!isCorrectAnswer && (
+            <button onClick={this.onIgnoreClicked}>ignore answer</button>
+          )}
         </div>
       </div>
     );
@@ -147,6 +152,14 @@ class ResultsView extends React.PureComponent<ComponentProps> {
         {kana}
       </div>
     );
+  };
+
+  private onIgnoreClicked = () => {
+    const { currentQuestion, dispatch } = this.props;
+    const counters = uniq(
+      currentQuestion.validAnswers.map(({ counterId }: Answer) => counterId)
+    );
+    dispatch(ignoreLastAnswer(counters));
   };
 }
 
