@@ -26,7 +26,10 @@ function updateJudgmentOnLast(
   }
 
   const next = [...state];
-  next[next.length - 1].judgment = judgment;
+  next[next.length - 1] = {
+    input: next[next.length - 1].input,
+    judgment
+  };
   return next;
 }
 
