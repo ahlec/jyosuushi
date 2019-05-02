@@ -1,16 +1,24 @@
+import classnames from "classnames";
 import { groupBy, uniq } from "lodash";
 import * as React from "react";
 import { connect } from "react-redux";
 
 import { STUDY_PACK_LOOKUP } from "../../../data/study-packs";
 import Localization from "../../../localization";
-import { Answer, CountersState, Question, State } from "../../../redux";
+import {
+  Answer,
+  CountersState,
+  Question,
+  State,
+  UserAnswer
+} from "../../../redux";
 
 import "./AnswersTable.scss";
 
 interface ProvidedProps {
   currentQuestion: Question;
   localization: Localization;
+  usersAnswer: UserAnswer;
 }
 
 interface ReduxProps {
@@ -27,10 +35,6 @@ type ComponentProps = ProvidedProps & ReduxProps;
 
 function getKanjiFromAnswer(answer: Answer): string | null {
   return answer.kanji;
-}
-
-function getKanaFromAnswer(answer: Answer): string {
-  return answer.kana;
 }
 
 class AnswersTable extends React.PureComponent<ComponentProps> {
@@ -51,29 +55,26 @@ class AnswersTable extends React.PureComponent<ComponentProps> {
             <th>{localization.resultColumnHeaderHiragana}</th>
           </tr>
           {Object.keys(answersByCounterId).map(counterId =>
-            this.renderCounterAnswerRow(
-              counterId,
-              answersByCounterId[counterId]
-            )
+            this.renderCounter(counterId, answersByCounterId[counterId])
           )}
         </tbody>
       </table>
     );
   }
 
-  private renderCounterAnswerRow(
-    counterId: string,
-    answers: ReadonlyArray<Answer>
-  ) {
-    const { counters } = this.props;
+  private renderCounter(counterId: string, answers: ReadonlyArray<Answer>) {
+    const { counters, usersAnswer } = this.props;
     const {
       counter: { kana, kanji, name },
       studyPacks
     } = counters[counterId];
     const kanjiAnswers = uniq(answers.map(getKanjiFromAnswer).filter(x => x));
-    const kanaAnswers = uniq(answers.map(getKanaFromAnswer));
+    const correctAnswer =
+      usersAnswer.judgment === "correct"
+        ? answers.find(answer => answer.kana === usersAnswer.input)
+        : undefined;
     return (
-      <tr key={counterId}>
+      <tr key={counterId} className={classnames(correctAnswer && "correct")}>
         <td className="cell-counter">
           {kanji ? (
             <ruby>
@@ -91,7 +92,7 @@ class AnswersTable extends React.PureComponent<ComponentProps> {
         <td className="cell-kanji">
           {kanjiAnswers.length ? kanjiAnswers.map(this.renderKanji) : "(none)"}
         </td>
-        <td className="cell-hiragana">{kanaAnswers.map(this.renderKana)}</td>
+        <td className="cell-hiragana">{answers.map(this.renderKana)}</td>
       </tr>
     );
   }
@@ -113,10 +114,24 @@ class AnswersTable extends React.PureComponent<ComponentProps> {
     );
   };
 
-  private renderKana = (kana: string) => {
+  private renderKana = ({ kana, isIrregular }: Answer) => {
+    const { localization, usersAnswer } = this.props;
     return (
-      <div key={kana} className="kana">
+      <div
+        key={kana}
+        className={classnames(
+          "kana",
+          usersAnswer.judgment === "correct" &&
+            usersAnswer.input === kana &&
+            "correct"
+        )}
+      >
         {kana}
+        {isIrregular && (
+          <span className="irregular">
+            {localization.resultsTableIrregularLabel}
+          </span>
+        )}
       </div>
     );
   };

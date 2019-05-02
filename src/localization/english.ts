@@ -23,6 +23,7 @@ const ENGLISH: Localization = {
   resultSkippedHeader: "Skipped",
   resultTableIntro:
     "Here are all of the possible answers based on the sets you have enabled:",
+  resultsTableIrregularLabel: "(irregular)",
   siteTagline: "Let's review Japanese counters!",
   skippedQuestionResult: "Alright! You'll see this question later in the quiz!",
   startQuiz: "Start Quiz!",

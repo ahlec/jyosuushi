@@ -1,18 +1,43 @@
+@import "../../../palette.scss";
+
 .AnswersTable {
   width: 100%;
+  border-bottom: 1px solid $black-dark;
 
   th {
-    border-bottom: 1px solid #5c328c;
+    border-bottom: 1px solid $black-dark;
     padding-bottom: 4px;
   }
 
+  tr.correct {
+    background-color: $green-light;
+
+    .cell-rule,
+    .cell-study-pack,
+    .cell-kanji,
+    .cell-hiragana .kana.correct {
+      font-weight: bold;
+    }
+  }
+
   td {
-    border-left: 1px solid #e3b9ff;
+    border-left: 1px solid $black-lightest;
     vertical-align: middle;
     text-align: center;
+    padding: 20px 0px;
+    font-size: 18px;
 
-    &:first-of-type {
+    &.cell-counter {
       border-left: 0px;
+      font-size: 36px;
+    }
+
+    &.cell-hiragana {
+      .irregular {
+        font-style: italic;
+        margin-left: 6px;
+        font-size: 14px;
+      }
     }
   }
 }

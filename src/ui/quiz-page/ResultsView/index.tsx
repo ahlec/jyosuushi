@@ -87,6 +87,7 @@ class ResultsView extends React.PureComponent<ComponentProps> {
               <AnswersTable
                 currentQuestion={currentQuestion}
                 localization={localization}
+                usersAnswer={usersAnswer}
               />
             </React.Fragment>
           ) : (
