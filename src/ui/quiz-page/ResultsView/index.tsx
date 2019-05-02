@@ -1,11 +1,10 @@
 import classnames from "classnames";
-import { groupBy, uniq } from "lodash";
+import { uniq } from "lodash";
 import * as React from "react";
 import { connect } from "react-redux";
 
 import Localization from "../../../localization";
 
-import { STUDY_PACK_LOOKUP } from "../../../data/study-packs";
 import {
   Answer,
   CountersState,
@@ -17,6 +16,7 @@ import {
 import { ignoreLastAnswer } from "../../../redux/actions";
 import { Dispatch } from "../../../redux/store";
 
+import AnswersTable from "./AnswersTable";
 import "./index.scss";
 
 interface ProvidedProps {
@@ -37,14 +37,6 @@ function mapStateToProps(state: State): ReduxProps {
 }
 
 type ComponentProps = ProvidedProps & ReduxProps & { dispatch: Dispatch };
-
-function getKanjiFromAnswer(answer: Answer): string | null {
-  return answer.kanji;
-}
-
-function getKanaFromAnswer(answer: Answer): string {
-  return answer.kana;
-}
 
 const RESULT_BUBBLE_CONTENTS: {
   [judgment in UserAnswerJudgment]: { kanji: string; kana: string }
@@ -79,10 +71,6 @@ const HEADERS: {
 class ResultsView extends React.PureComponent<ComponentProps> {
   public render() {
     const { currentQuestion, localization, usersAnswer } = this.props;
-    const answersByCounterId = groupBy(
-      currentQuestion.validAnswers,
-      (answer: Answer) => answer.counterId
-    );
     return (
       <div className="ResultsView">
         <div className={classnames("result-bubble", usersAnswer.judgment)}>
@@ -96,23 +84,10 @@ class ResultsView extends React.PureComponent<ComponentProps> {
           {usersAnswer.judgment !== "skipped" ? (
             <React.Fragment>
               <p>{localization.resultTableIntro}</p>
-              <table>
-                <tbody>
-                  <tr>
-                    <th>{localization.resultColumnHeaderCounter}</th>
-                    <th>{localization.resultColumnHeaderRule}</th>
-                    <th>{localization.resultColumnHeaderStudyPack}</th>
-                    <th>{localization.resultColumnHeaderKanji}</th>
-                    <th>{localization.resultColumnHeaderHiragana}</th>
-                  </tr>
-                  {Object.keys(answersByCounterId).map(counterId =>
-                    this.renderCounterAnswerRow(
-                      counterId,
-                      answersByCounterId[counterId]
-                    )
-                  )}
-                </tbody>
-              </table>
+              <AnswersTable
+                currentQuestion={currentQuestion}
+                localization={localization}
+              />
             </React.Fragment>
           ) : (
             <p>{localization.skippedQuestionResult}</p>
@@ -124,66 +99,6 @@ class ResultsView extends React.PureComponent<ComponentProps> {
       </div>
     );
   }
-
-  private renderCounterAnswerRow(
-    counterId: string,
-    answers: ReadonlyArray<Answer>
-  ) {
-    const { counters } = this.props;
-    const {
-      counter: { kana, kanji, name },
-      studyPacks
-    } = counters[counterId];
-    const kanjiAnswers = uniq(answers.map(getKanjiFromAnswer).filter(x => x));
-    const kanaAnswers = uniq(answers.map(getKanaFromAnswer));
-    return (
-      <tr key={counterId}>
-        <td className="cell-counter">
-          {kanji ? (
-            <ruby>
-              {kanji}
-              <rt>{kana}</rt>
-            </ruby>
-          ) : (
-            <ruby>{kana}</ruby>
-          )}
-        </td>
-        <td className="cell-rule">{name}</td>
-        <td className="cell-study-pack">
-          {studyPacks.map(this.renderStudyPack)}
-        </td>
-        <td className="cell-kanji">
-          {kanjiAnswers.length ? kanjiAnswers.map(this.renderKanji) : "(none)"}
-        </td>
-        <td className="cell-hiragana">{kanaAnswers.map(this.renderKana)}</td>
-      </tr>
-    );
-  }
-
-  private renderStudyPack = (packId: string) => {
-    const { name } = STUDY_PACK_LOOKUP[packId];
-    return (
-      <div key={packId} className="study-pack">
-        {name}
-      </div>
-    );
-  };
-
-  private renderKanji = (kanji: string) => {
-    return (
-      <div key={kanji} className="kanji">
-        {kanji}
-      </div>
-    );
-  };
-
-  private renderKana = (kana: string) => {
-    return (
-      <div key={kana} className="kana">
-        {kana}
-      </div>
-    );
-  };
 
   private onIgnoreClicked = () => {
     const { currentQuestion, dispatch } = this.props;

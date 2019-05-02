@@ -60,24 +60,5 @@ $correct-dark: #397d02;
     p {
       margin: 20px 0px;
     }
-
-    table {
-      width: 100%;
-
-      th {
-        border-bottom: 1px solid #5c328c;
-        padding-bottom: 4px;
-      }
-
-      td {
-        border-left: 1px solid #e3b9ff;
-        vertical-align: middle;
-        text-align: center;
-
-        &:first-of-type {
-          border-left: 0px;
-        }
-      }
-    }
   }
 }
