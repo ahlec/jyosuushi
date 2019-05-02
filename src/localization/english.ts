@@ -13,9 +13,16 @@ const ENGLISH: Localization = {
     VARIABLE_ICON_CREDIT_LINK,
     " collection."
   ],
+  resultColumnHeaderCounter: "Counter",
+  resultColumnHeaderHiragana: "Hiragana",
+  resultColumnHeaderKanji: "Kanji",
+  resultColumnHeaderRule: "Rule",
+  resultColumnHeaderStudyPack: "Study Pack",
   resultCorrectHeader: "Correct!",
   resultIncorrectHeader: "Not quite right...",
   resultSkippedHeader: "Skipped",
+  resultTableIntro:
+    "Here are all of the possible answers based on the sets you have enabled:",
   siteTagline: "Let's review Japanese counters!",
   skippedQuestionResult: "Alright! You'll see this question later in the quiz!",
   startQuiz: "Start Quiz!",

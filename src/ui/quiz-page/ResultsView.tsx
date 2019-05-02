@@ -54,8 +54,8 @@ const RESULT_BUBBLE_CONTENTS: {
     kanji: "正解"
   },
   ignored: {
-    kana: "",
-    kanji: ""
+    kana: "むし",
+    kanji: "無視"
   },
   incorrect: {
     kana: "ふせいかい",
@@ -95,18 +95,15 @@ class ResultsView extends React.PureComponent<ComponentProps> {
           <h3>{HEADERS[usersAnswer.judgment](localization)}</h3>
           {usersAnswer.judgment !== "skipped" ? (
             <React.Fragment>
-              <p>
-                Here are all of the possible answers based on the sets you have
-                enabled:
-              </p>
+              <p>{localization.resultTableIntro}</p>
               <table>
                 <tbody>
                   <tr>
-                    <th>Counter</th>
-                    <th>Study Pack</th>
-                    <th>Rule</th>
-                    <th>Kanji Reading</th>
-                    <th>Hiragana Reading</th>
+                    <th>{localization.resultColumnHeaderCounter}</th>
+                    <th>{localization.resultColumnHeaderRule}</th>
+                    <th>{localization.resultColumnHeaderStudyPack}</th>
+                    <th>{localization.resultColumnHeaderKanji}</th>
+                    <th>{localization.resultColumnHeaderHiragana}</th>
                   </tr>
                   {Object.keys(answersByCounterId).map(counterId =>
                     this.renderCounterAnswerRow(
@@ -141,7 +138,7 @@ class ResultsView extends React.PureComponent<ComponentProps> {
     const kanaAnswers = uniq(answers.map(getKanaFromAnswer));
     return (
       <tr key={counterId}>
-        <td>
+        <td className="cell-counter">
           {kanji ? (
             <ruby>
               {kanji}
@@ -151,12 +148,14 @@ class ResultsView extends React.PureComponent<ComponentProps> {
             <ruby>{kana}</ruby>
           )}
         </td>
-        <td>{studyPacks.map(this.renderStudyPack)}</td>
-        <td>{name}</td>
-        <td>
+        <td className="cell-rule">{name}</td>
+        <td className="cell-study-pack">
+          {studyPacks.map(this.renderStudyPack)}
+        </td>
+        <td className="cell-kanji">
           {kanjiAnswers.length ? kanjiAnswers.map(this.renderKanji) : "(none)"}
         </td>
-        <td>{kanaAnswers.map(this.renderKana)}</td>
+        <td className="cell-hiragana">{kanaAnswers.map(this.renderKana)}</td>
       </tr>
     );
   }
