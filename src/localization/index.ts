@@ -10,7 +10,11 @@ export default interface Localization {
   alecDeitloff: string;
   countersDisplayHeader: string;
   credits: ReadonlyArray<CreditsPiece>;
+  resultCorrectHeader: string;
+  resultIncorrectHeader: string;
+  resultSkippedHeader: string;
   siteTagline: string;
+  skippedQuestionResult: string;
   startQuiz: string;
   studyPackSelectionHeader: string;
   studyPackSelectionSubheader: string;

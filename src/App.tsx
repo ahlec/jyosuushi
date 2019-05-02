@@ -46,7 +46,7 @@ class App extends React.PureComponent<ComponentProps> {
       <div className={classnames("App", isQuizActive && "quiz-active")}>
         <Header isQuizActive={isQuizActive} localization={localization} />
         {isQuizActive
-          ? this.renderQuizPage()
+          ? this.renderQuizPage(localization)
           : this.renderIntroPage(localization)}
       </div>
     );
@@ -57,10 +57,9 @@ class App extends React.PureComponent<ComponentProps> {
     return <IntroPage localization={localization} quizManager={quizManager} />;
   }
 
-  private renderQuizPage() {
+  private renderQuizPage(localization: Localization) {
     const { quizManager } = this.props;
-
-    return <QuizPage quizManager={quizManager} />;
+    return <QuizPage localization={localization} quizManager={quizManager} />;
   }
 }
 

@@ -1,6 +1,10 @@
 @import "../../../palette.scss";
 
 .AnswerInput {
+  &.disabled {
+    opacity: 0.4;
+  }
+
   .KanaInput {
     position: relative;
     display: flex;

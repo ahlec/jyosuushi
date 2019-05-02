@@ -13,7 +13,11 @@ const ENGLISH: Localization = {
     VARIABLE_ICON_CREDIT_LINK,
     " collection."
   ],
+  resultCorrectHeader: "Correct!",
+  resultIncorrectHeader: "Not quite right...",
+  resultSkippedHeader: "Skipped",
   siteTagline: "Let's review Japanese counters!",
+  skippedQuestionResult: "Alright! You'll see this question later in the quiz!",
   startQuiz: "Start Quiz!",
   studyPackSelectionHeader: "Study Packs",
   studyPackSelectionSubheader: "(select 1 or more)",

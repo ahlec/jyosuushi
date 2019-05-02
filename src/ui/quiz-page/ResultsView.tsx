@@ -3,8 +3,17 @@ import { groupBy, uniq } from "lodash";
 import * as React from "react";
 import { connect } from "react-redux";
 
+import Localization from "../../localization";
+
 import { STUDY_PACK_LOOKUP } from "../../data/study-packs";
-import { Answer, CountersState, Question, State } from "../../redux";
+import {
+  Answer,
+  CountersState,
+  Question,
+  State,
+  UserAnswer,
+  UserAnswerJudgment
+} from "../../redux";
 import { ignoreLastAnswer } from "../../redux/actions";
 import { Dispatch } from "../../redux/store";
 
@@ -12,16 +21,18 @@ import "./ResultsView.scss";
 
 interface ProvidedProps {
   currentQuestion: Question;
-  usersCorrectAnswer: Answer | null;
+  localization: Localization;
 }
 
 interface ReduxProps {
   counters: CountersState;
+  usersAnswer: UserAnswer;
 }
 
 function mapStateToProps(state: State): ReduxProps {
   return {
-    counters: state.counters
+    counters: state.counters,
+    usersAnswer: state.userAnswers[state.questions.currentQuestion]
   };
 }
 
@@ -35,60 +46,81 @@ function getKanaFromAnswer(answer: Answer): string {
   return answer.kana;
 }
 
+const RESULT_BUBBLE_CONTENTS: {
+  [judgment in UserAnswerJudgment]: { kanji: string; kana: string }
+} = {
+  correct: {
+    kana: "せいかい",
+    kanji: "正解"
+  },
+  ignored: {
+    kana: "",
+    kanji: ""
+  },
+  incorrect: {
+    kana: "ふせいかい",
+    kanji: "不正解"
+  },
+  skipped: {
+    kana: "みかいとう",
+    kanji: "未回答"
+  }
+};
+
+const HEADERS: {
+  [judgment in UserAnswerJudgment]: (localization: Localization) => string
+} = {
+  correct: localization => localization.resultCorrectHeader,
+  ignored: localization => localization.resultIncorrectHeader,
+  incorrect: localization => localization.resultIncorrectHeader,
+  skipped: localization => localization.resultSkippedHeader
+};
+
 class ResultsView extends React.PureComponent<ComponentProps> {
   public render() {
-    const { currentQuestion, usersCorrectAnswer } = this.props;
-    const isCorrectAnswer = !!usersCorrectAnswer;
+    const { currentQuestion, localization, usersAnswer } = this.props;
     const answersByCounterId = groupBy(
       currentQuestion.validAnswers,
       (answer: Answer) => answer.counterId
     );
     return (
       <div className="ResultsView">
-        <div
-          className={classnames(
-            "result-bubble",
-            isCorrectAnswer ? "correct" : "incorrect"
-          )}
-        >
-          {isCorrectAnswer ? (
-            <ruby>
-              正解
-              <rt>せいかい</rt>
-            </ruby>
-          ) : (
-            <ruby>
-              不正解
-              <rt>ふせいかい</rt>
-            </ruby>
-          )}
+        <div className={classnames("result-bubble", usersAnswer.judgment)}>
+          <ruby>
+            {RESULT_BUBBLE_CONTENTS[usersAnswer.judgment].kanji}
+            <rt>{RESULT_BUBBLE_CONTENTS[usersAnswer.judgment].kana}</rt>
+          </ruby>
         </div>
         <div className="info">
-          <h3 className={isCorrectAnswer ? "correct" : "incorrect"}>
-            {isCorrectAnswer ? "Correct!" : "Not quite right..."}
-          </h3>
-          <p>
-            Here are all of the possible answers based on the sets you have
-            enabled:
-          </p>
-          <table>
-            <tbody>
-              <tr>
-                <th>Counter</th>
-                <th>Study Pack</th>
-                <th>Rule</th>
-                <th>Kanji Reading</th>
-                <th>Hiragana Reading</th>
-              </tr>
-              {Object.keys(answersByCounterId).map(counterId =>
-                this.renderCounterAnswerRow(
-                  counterId,
-                  answersByCounterId[counterId]
-                )
-              )}
-            </tbody>
-          </table>
-          {!isCorrectAnswer && (
+          <h3>{HEADERS[usersAnswer.judgment](localization)}</h3>
+          {usersAnswer.judgment !== "skipped" ? (
+            <React.Fragment>
+              <p>
+                Here are all of the possible answers based on the sets you have
+                enabled:
+              </p>
+              <table>
+                <tbody>
+                  <tr>
+                    <th>Counter</th>
+                    <th>Study Pack</th>
+                    <th>Rule</th>
+                    <th>Kanji Reading</th>
+                    <th>Hiragana Reading</th>
+                  </tr>
+                  {Object.keys(answersByCounterId).map(counterId =>
+                    this.renderCounterAnswerRow(
+                      counterId,
+                      answersByCounterId[counterId]
+                    )
+                  )}
+                </tbody>
+              </table>
+            </React.Fragment>
+          ) : (
+            <p>{localization.skippedQuestionResult}</p>
+          )}
+          {usersAnswer.judgment === "incorrect" && (
             <button onClick={this.onIgnoreClicked}>ignore answer</button>
           )}
         </div>

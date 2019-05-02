@@ -22,7 +22,7 @@ const KEY_ENTER = 13;
 interface ProvidedProps {
   currentQuestion: Question;
   enabled: boolean;
-  onAnswerSubmitted: (usersCorrectAnswer: Answer | null) => void;
+  onAnswerSubmitted?: (usersCorrectAnswer: Answer | null) => void;
 }
 
 type ComponentProps = ProvidedProps & { dispatch: Dispatch };
@@ -46,7 +46,10 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
     const { currentQuestion, enabled } = this.props;
     const { isValid, value } = this.state;
     return (
-      <div className="AnswerInput" onKeyDown={this.onKeyDown}>
+      <div
+        className={classnames("AnswerInput", !enabled && "disabled")}
+        onKeyDown={this.onKeyDown}
+      >
         <KanaInput
           currentQuestion={currentQuestion}
           enabled={enabled}
@@ -55,8 +58,12 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
         >
           <div className="submit-button-container">
             <button
-              className={classnames("submit-button", !!value && "show")}
+              className={classnames(
+                "submit-button",
+                !!value && enabled && "show"
+              )}
               onClick={this.onClickSubmitButton}
+              disabled={!enabled}
             >
               <RightIcon />
             </button>
@@ -65,8 +72,8 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
         <div
           className={classnames(
             "submit-instructions",
-            !!value && "has-value",
-            !isValid && "invalid"
+            !!value && enabled && "has-value",
+            !isValid && enabled && "invalid"
           )}
         >
           Press the [enter] key when you're finished, or click the arrow button
@@ -108,7 +115,10 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
     }
 
     const correct = this.getCorrectAnswer(value);
-    onAnswerSubmitted(correct);
+    if (onAnswerSubmitted) {
+      onAnswerSubmitted(correct);
+    }
+
     if (correct) {
       dispatch(submitCorrectAnswer(value));
     } else {
