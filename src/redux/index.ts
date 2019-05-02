@@ -60,7 +60,7 @@ export interface CountersState {
   [counterId: string]: CountersStateItem;
 }
 
-export type UserActionJudgment =
+export type UserAnswerJudgment =
   | "incorrect"
   | "correct"
   | "ignored"
@@ -68,7 +68,7 @@ export type UserActionJudgment =
 
 export interface UserAnswer {
   input: string | null;
-  judgment: UserActionJudgment;
+  judgment: UserAnswerJudgment;
 }
 
 export type QuizState =

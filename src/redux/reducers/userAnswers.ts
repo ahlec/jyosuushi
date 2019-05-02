@@ -6,7 +6,7 @@ import {
   ActionSubmitCorrectAnswer,
   ActionSubmitIncorrectAnswer
 } from "../actions";
-import { UserActionJudgment, UserAnswer } from "../index";
+import { UserAnswer, UserAnswerJudgment } from "../index";
 
 type ReducerAction =
   | ActionIgnoreLastAnswer
@@ -18,7 +18,7 @@ type ReducerAction =
 
 function updateJudgmentOnLast(
   state: ReadonlyArray<UserAnswer>,
-  judgment: UserActionJudgment
+  judgment: UserAnswerJudgment
 ): ReadonlyArray<UserAnswer> {
   if (!state || !state.length) {
     // shouldn't happen, but let's just check
