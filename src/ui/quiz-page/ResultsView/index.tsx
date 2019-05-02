@@ -3,9 +3,9 @@ import { groupBy, uniq } from "lodash";
 import * as React from "react";
 import { connect } from "react-redux";
 
-import Localization from "../../localization";
+import Localization from "../../../localization";
 
-import { STUDY_PACK_LOOKUP } from "../../data/study-packs";
+import { STUDY_PACK_LOOKUP } from "../../../data/study-packs";
 import {
   Answer,
   CountersState,
@@ -13,11 +13,11 @@ import {
   State,
   UserAnswer,
   UserAnswerJudgment
-} from "../../redux";
-import { ignoreLastAnswer } from "../../redux/actions";
-import { Dispatch } from "../../redux/store";
+} from "../../../redux";
+import { ignoreLastAnswer } from "../../../redux/actions";
+import { Dispatch } from "../../../redux/store";
 
-import "./ResultsView.scss";
+import "./index.scss";
 
 interface ProvidedProps {
   currentQuestion: Question;
