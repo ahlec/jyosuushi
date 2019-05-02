@@ -13,6 +13,8 @@ import {
 import { Dispatch } from "../../../redux/store";
 import KanaInput from "./KanaInput";
 
+import RightIcon from "../../right.svg";
+
 import "./index.scss";
 
 const KEY_ENTER = 13;
@@ -51,10 +53,14 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
           kana={HIRAGANA}
           onChange={this.onChange}
         >
-          <button
-            className={classnames("submit-button", !!value && "show")}
-            onClick={this.onClickSubmitButton}
-          />
+          <div className="submit-button-container">
+            <button
+              className={classnames("submit-button", !!value && "show")}
+              onClick={this.onClickSubmitButton}
+            >
+              <RightIcon />
+            </button>
+          </div>
         </KanaInput>
         <div
           className={classnames(

@@ -10,28 +10,45 @@
       font-size: 48px;
       text-align: center;
       outline: none;
-      color: white;
-      background-color: black;
-      border: 3px solid orange;
+      color: $black-base;
+      background-color: $blue-light;
+      border: 3px solid $blue-dark;
+      border-left: 0px;
+      border-right: 0px;
+      padding: 10px 0px;
     }
 
-    .submit-button {
+    .submit-button-container {
       position: absolute;
-      top: 10px;
+      top: 0px;
+      bottom: 0px;
       right: 10px;
-      width: 32px;
-      height: 32px;
-      background-color: blue;
-      transition: opacity 0.2s, transform 0.2s;
-      opacity: 0;
-      transform: translateX(10px);
-      border: 0px;
-      pointer-events: none;
+      width: 48px;
+      touch-events: none;
+      display: flex;
+      align-items: center;
 
-      &.show {
-        opacity: 1;
-        transform: none;
-        pointer-events: auto;
+      .submit-button {
+        right: 10px;
+        width: 48px;
+        height: 48px;
+        background-color: $blue-base;
+        transition: opacity 0.2s, transform 0.2s;
+        opacity: 0;
+        transform: translateX(10px);
+        border: 0px;
+        pointer-events: none;
+        outline-color: $black-dark;
+
+        &.show {
+          opacity: 1;
+          transform: none;
+          pointer-events: auto;
+        }
+
+        &:hover {
+          background-color: $blue-dark;
+        }
       }
     }
   }
