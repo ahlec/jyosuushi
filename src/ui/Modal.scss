@@ -1,0 +1,55 @@
+.Modal {
+  background-color: red;
+  flex: 0 0 600px;
+  max-width: 600px;
+  border: 1px solid black;
+  border-radius: 0px 0px 6px 6px;
+  outline: none;
+
+  header {
+    position: relative;
+    height: 40px;
+    background-color: blue;
+    border-bottom: 1px solid black;
+    text-align: center;
+    font-size: 28px;
+    font-weight: 600;
+    overflow: hidden;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .button {
+      position: absolute;
+      cursor: pointer;
+      background-color: green;
+      top: 0px;
+      right: 0px;
+      height: 100%;
+      width: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &:hover:not(.disabled) {
+        path {
+          fill: red;
+        }
+      }
+
+      svg {
+        width: 32px;
+        height: 32px;
+      }
+    }
+  }
+
+  .content {
+    position: relative;
+    height: 500px;
+    max-height: 500px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
