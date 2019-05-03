@@ -10,7 +10,7 @@ import { Dispatch } from "../../redux/store";
 
 import TooltipButton from "../TooltipButton";
 
-import HistoryModal from "./HistoryModal";
+import HistoryModal, { hasSufficientData } from "./HistoryModal";
 
 import HistoryIcon from "./history.svg";
 import HomeIcon from "./home.svg";
@@ -28,7 +28,7 @@ interface ReduxProps {
 
 function mapStateToProps(state: State): ReduxProps {
   return {
-    hasHistoryData: !!state.questions.currentQuestion,
+    hasHistoryData: hasSufficientData(state),
     scorecard: state.scorecard
   };
 }

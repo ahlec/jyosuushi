@@ -20,9 +20,19 @@ interface ReduxProps {
   userAnswers: ReadonlyArray<UserAnswer>;
 }
 
+export function hasSufficientData(state: State): boolean {
+  if (state.quizState === "reviewing-answer") {
+    return true;
+  }
+
+  return state.questions.currentQuestion > 0;
+}
+
 function mapStateToProps(state: State): ReduxProps {
   return {
-    currentQuestion: state.questions.currentQuestion,
+    currentQuestion:
+      state.questions.currentQuestion +
+      (state.quizState === "reviewing-answer" ? 1 : 0),
     questions: state.questions.questions,
     userAnswers: state.userAnswers
   };
