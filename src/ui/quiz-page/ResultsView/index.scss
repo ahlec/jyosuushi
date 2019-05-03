@@ -6,6 +6,10 @@ $correct-light: #bcde91;
 $correct-medium: #629632;
 $correct-dark: #397d02;
 
+$skipped-light: #cfd5e1;
+$skipped-medium: #a6aec1;
+$skipped-dark: #6c788e;
+
 .ResultsView {
   display: flex;
 
@@ -31,6 +35,12 @@ $correct-dark: #397d02;
       background-color: $correct-light;
     }
 
+    &.skipped {
+      color: $skipped-dark;
+      border-color: $skipped-medium;
+      background-color: $skipped-light;
+    }
+
     rt {
       font-size: 20%;
     }
@@ -54,6 +64,11 @@ $correct-dark: #397d02;
       &.correct {
         color: $correct-dark;
         border-color: $correct-medium;
+      }
+
+      &.skipped {
+        color: $skipped-dark;
+        border-color: $skipped-medium;
       }
     }
 
