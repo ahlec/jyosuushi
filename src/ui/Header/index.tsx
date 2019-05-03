@@ -11,6 +11,7 @@ import { Dispatch } from "../../redux/store";
 import TooltipButton from "../TooltipButton";
 
 import HistoryModal, { hasSufficientData } from "./HistoryModal";
+import Score from "./Score";
 
 import HistoryIcon from "./history.svg";
 import HomeIcon from "./home.svg";
@@ -129,11 +130,12 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
   private renderQuizLayout() {
     const { showHistoryModal, stage } = this.state;
     const enabled = stage === "resting-quiz";
+
     return (
       <React.Fragment>
         <div className="site-name">助数詞を練習</div>
         <div className="scorecard">
-          your score:
+          <Score />
           <TooltipButton
             enabled={enabled}
             icon={HistoryIcon}
