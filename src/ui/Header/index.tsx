@@ -10,6 +10,8 @@ import { Dispatch } from "../../redux/store";
 
 import TooltipButton from "../TooltipButton";
 
+import HistoryModal from "./HistoryModal";
+
 import HistoryIcon from "./history.svg";
 import HomeIcon from "./home.svg";
 import "./index.scss";
@@ -20,11 +22,13 @@ interface ProvidedProps {
 }
 
 interface ReduxProps {
+  hasHistoryData: boolean;
   scorecard: Scorecard;
 }
 
 function mapStateToProps(state: State): ReduxProps {
   return {
+    hasHistoryData: !!state.questions.currentQuestion,
     scorecard: state.scorecard
   };
 }
@@ -42,6 +46,7 @@ type Stage =
 type Layout = "home" | "quiz";
 
 interface ComponentState {
+  showHistoryModal: boolean;
   stage: Stage;
 }
 
@@ -60,17 +65,24 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
   public constructor(props: ComponentProps) {
     super(props);
     this.state = {
+      showHistoryModal: false,
       stage: props.isQuizActive ? "resting-quiz" : "resting-home"
     };
   }
 
   public componentDidUpdate({ isQuizActive: wasQuizActive }: ComponentProps) {
-    const { isQuizActive } = this.props;
+    const { hasHistoryData, isQuizActive } = this.props;
     if (wasQuizActive !== isQuizActive) {
       this.setState({
         stage: isQuizActive
           ? "transitioning-from-home"
           : "transitioning-from-quiz"
+      });
+    }
+
+    if (!hasHistoryData && this.state.showHistoryModal) {
+      this.setState({
+        showHistoryModal: false
       });
     }
   }
@@ -113,7 +125,7 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
   }
 
   private renderQuizLayout() {
-    const { stage } = this.state;
+    const { showHistoryModal, stage } = this.state;
     const enabled = stage === "resting-quiz";
     return (
       <React.Fragment>
@@ -133,6 +145,10 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
             text="Home"
           />
         </div>
+        <HistoryModal
+          isOpen={showHistoryModal}
+          onRequestClose={this.onCloseHistory}
+        />
       </React.Fragment>
     );
   }
@@ -148,8 +164,14 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
   };
 
   private onClickHistory = () => {
-    alert("yeh");
+    const { hasHistoryData } = this.props;
+    if (!hasHistoryData) {
+      return;
+    }
+
+    this.setState({ showHistoryModal: true });
   };
+  private onCloseHistory = () => this.setState({ showHistoryModal: false });
 
   private onClickHome = () => {
     const { dispatch, scorecard } = this.props;
