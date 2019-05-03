@@ -8,11 +8,13 @@ import HistoryRow from "./HistoryRow";
 import "./index.scss";
 
 export function hasSufficientData(state: State): boolean {
-  if (state.quizState === "reviewing-answer") {
-    return true;
+  switch (state.quizState) {
+    case "reviewing-answer":
+    case "quiz-wrapup":
+      return true;
+    default:
+      return state.questions.currentQuestion > 0;
   }
-
-  return state.questions.currentQuestion > 0;
 }
 
 interface ComponentProps {
@@ -22,10 +24,24 @@ interface ComponentProps {
 }
 
 function mapStateToProps(state: State): ComponentProps {
+  let currentQuestion: number;
+  switch (state.quizState) {
+    case "reviewing-answer": {
+      currentQuestion = state.questions.currentQuestion + 1;
+      break;
+    }
+    case "quiz-wrapup": {
+      currentQuestion = state.questions.questions.length;
+      break;
+    }
+    default: {
+      currentQuestion = state.questions.currentQuestion;
+      break;
+    }
+  }
+
   return {
-    currentQuestion:
-      state.questions.currentQuestion +
-      (state.quizState === "reviewing-answer" ? 1 : 0),
+    currentQuestion,
     questions: state.questions.questions,
     userAnswers: state.userAnswers
   };
