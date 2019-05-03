@@ -38,13 +38,25 @@ function mapStateToProps(state: State): ReduxProps {
   };
 }
 
-class App extends React.PureComponent<ComponentProps> {
+interface ComponentState {
+  isModalOpen: boolean;
+}
+
+class App extends React.PureComponent<ComponentProps, ComponentState> {
+  public state: ComponentState = {
+    isModalOpen: false
+  };
+
   public render() {
     const { isQuizActive, language } = this.props;
     const localization = LOCALIZATION_LOOKUP[language];
     return (
       <div className={classnames("App", isQuizActive && "quiz-active")}>
-        <Header isQuizActive={isQuizActive} localization={localization} />
+        <Header
+          isQuizActive={isQuizActive}
+          localization={localization}
+          onModalOpened={this.onHeaderModalOpened}
+        />
         {isQuizActive
           ? this.renderQuizPage(localization)
           : this.renderIntroPage(localization)}
@@ -59,8 +71,18 @@ class App extends React.PureComponent<ComponentProps> {
 
   private renderQuizPage(localization: Localization) {
     const { quizManager } = this.props;
-    return <QuizPage localization={localization} quizManager={quizManager} />;
+    const { isModalOpen } = this.state;
+    return (
+      <QuizPage
+        enabled={!isModalOpen}
+        localization={localization}
+        quizManager={quizManager}
+      />
+    );
   }
+
+  private onHeaderModalOpened = (isModalOpen: boolean) =>
+    this.setState({ isModalOpen });
 }
 
 export default connect(mapStateToProps)(App);

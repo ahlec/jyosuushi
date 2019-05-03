@@ -16,6 +16,7 @@ import "./index.scss";
 const KEY_ENTER = 13;
 
 interface ProvidedProps {
+  enabled: boolean;
   localization: Localization;
   quizManager: QuizManager;
 }
@@ -46,6 +47,7 @@ class QuizPage extends React.PureComponent<ComponentProps> {
   public render() {
     const {
       currentQuestion,
+      enabled,
       localization,
       quizManager,
       quizState
@@ -63,7 +65,7 @@ class QuizPage extends React.PureComponent<ComponentProps> {
         <QuestionDisplay currentQuestion={currentQuestion} />
         <AnswerInput
           currentQuestion={currentQuestion}
-          enabled={quizState === "waiting-for-answer"}
+          enabled={enabled && quizState === "waiting-for-answer"}
         />
         {quizState === "reviewing-answer" && (
           <React.Fragment>
@@ -73,6 +75,7 @@ class QuizPage extends React.PureComponent<ComponentProps> {
             />
             <button
               className="next-question"
+              disabled={!enabled}
               onClick={this.onClickNextQuestion}
             >
               Next Question!
@@ -84,7 +87,11 @@ class QuizPage extends React.PureComponent<ComponentProps> {
   }
 
   private advance() {
-    const { quizManager } = this.props;
+    const { enabled, quizManager } = this.props;
+    if (!enabled) {
+      return;
+    }
+
     if (quizManager.hasNextQuestion) {
       quizManager.nextQuestion();
     } else {

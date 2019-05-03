@@ -19,6 +19,7 @@ import "./index.scss";
 interface ProvidedProps {
   isQuizActive: boolean;
   localization: Localization;
+  onModalOpened: (isOpen: boolean) => void;
 }
 
 interface ReduxProps {
@@ -71,7 +72,7 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
   }
 
   public componentDidUpdate({ isQuizActive: wasQuizActive }: ComponentProps) {
-    const { hasHistoryData, isQuizActive } = this.props;
+    const { hasHistoryData, isQuizActive, onModalOpened } = this.props;
     if (wasQuizActive !== isQuizActive) {
       this.setState({
         stage: isQuizActive
@@ -84,6 +85,7 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
       this.setState({
         showHistoryModal: false
       });
+      onModalOpened(false);
     }
   }
 
@@ -164,14 +166,19 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
   };
 
   private onClickHistory = () => {
-    const { hasHistoryData } = this.props;
+    const { hasHistoryData, onModalOpened } = this.props;
     if (!hasHistoryData) {
       return;
     }
 
     this.setState({ showHistoryModal: true });
+    onModalOpened(true);
   };
-  private onCloseHistory = () => this.setState({ showHistoryModal: false });
+  private onCloseHistory = () => {
+    const { onModalOpened } = this.props;
+    this.setState({ showHistoryModal: false });
+    onModalOpened(false);
+  };
 
   private onClickHome = () => {
     const { dispatch, scorecard } = this.props;
