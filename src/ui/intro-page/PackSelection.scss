@@ -62,12 +62,12 @@ $hover-darken-amount: 25%;
         background-color: $blue-lightest;
 
         &.checked {
-          background-color: $blue-light;
+          background-color: $blue-base;
         }
       }
 
       &.checked {
-        background-color: $blue-base;
+        background-color: $blue-dark;
 
         .check {
           opacity: 0.7;
