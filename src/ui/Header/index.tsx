@@ -8,9 +8,10 @@ import { Scorecard, State } from "../../redux";
 import { leaveQuiz } from "../../redux/actions";
 import { Dispatch } from "../../redux/store";
 
+import Modal from "../Modal";
+import QuizHistory, { hasSufficientData } from "../QuizHistory";
 import TooltipButton from "../TooltipButton";
 
-import HistoryModal, { hasSufficientData } from "./HistoryModal";
 import Score from "./Score";
 
 import HistoryIcon from "./history.svg";
@@ -149,10 +150,14 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
             text="Home"
           />
         </div>
-        <HistoryModal
+        <Modal
+          className="HistoryModal"
+          header="History"
           isOpen={showHistoryModal}
           onRequestClose={this.onCloseHistory}
-        />
+        >
+          <QuizHistory />
+        </Modal>
       </React.Fragment>
     );
   }

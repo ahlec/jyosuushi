@@ -2,7 +2,7 @@ import classnames from "classnames";
 import * as React from "react";
 import { connect } from "react-redux";
 
-import { Item, Question, State, UserAnswer } from "../../../redux";
+import { Item, Question, State, UserAnswer } from "../../redux";
 
 import "./HistoryRow.scss";
 
