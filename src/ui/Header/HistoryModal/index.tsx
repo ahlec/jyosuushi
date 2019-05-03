@@ -5,6 +5,10 @@ import { Question, State, UserAnswer } from "../../../redux";
 
 import Modal from "../../Modal";
 
+import HistoryRow from "./HistoryRow";
+
+import "./index.scss";
+
 interface ProvidedProps {
   isOpen: boolean;
   onRequestClose: () => void;
@@ -38,21 +42,28 @@ class HistoryModal extends React.PureComponent<ComponentProps> {
     }
 
     return (
-      <Modal isOpen={isOpen} header="History" onRequestClose={onRequestClose}>
-        {rows}
+      <Modal
+        className="HistoryModal"
+        isOpen={isOpen}
+        header="History"
+        onRequestClose={onRequestClose}
+      >
+        <table className="rows">
+          <tbody>{rows}</tbody>
+        </table>
       </Modal>
     );
   }
 
   private renderQuestionRow = (index: number) => {
     const { questions, userAnswers } = this.props;
-    const question = questions[index];
-    const usersAnswer = userAnswers[index];
-
     return (
-      <div key={index}>
-        {question.amount} of {question.itemId}: {usersAnswer.judgment}
-      </div>
+      <HistoryRow
+        key={index}
+        question={questions[index]}
+        questionNo={index + 1}
+        usersAnswer={userAnswers[index]}
+      />
     );
   };
 }
