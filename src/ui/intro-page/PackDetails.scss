@@ -1,3 +1,6 @@
+@import "../../palette.scss";
+@import "../ModalShared.scss";
+
 .PackDetails {
   overflow-y: auto;
 
@@ -11,19 +14,19 @@
   }
 
   .counter {
-    background-color: yellow;
     display: flex;
-    padding: 10px;
+    padding: 10px 20px;
     align-items: center;
 
     &:hover:not(.disabled) {
       cursor: pointer;
+      background-color: $green-light;
 
       svg {
         opacity: 1;
 
         path {
-          fill: red;
+          fill: $modal-button-hover;
         }
       }
     }
@@ -40,7 +43,11 @@
     svg {
       width: 32px;
       height: 32px;
-      opacity: 0.4;
+      opacity: 0.65;
+
+      path {
+        fill: $modal-button;
+      }
     }
   }
 }

@@ -6,6 +6,8 @@ import * as React from "react";
 import { conjugateNumberAndCounter } from "../japanese/counters";
 import { Counter } from "../redux";
 
+import "./CounterDetails.scss";
+
 const AMOUNTS_TO_DISPLAY = 17;
 
 interface ComponentProps {
@@ -82,13 +84,24 @@ export default class CounterDetails extends React.PureComponent<
     const conjugations = getConjugations(counter);
     const furtherIrregulars = getFurtherIrregulars(counter);
     return (
-      <div>
-        {counter.kanji}
-        {conjugations.map(this.renderAmountTile)}
+      <div className="CounterDetails">
+        <div className="kanji">{counter.kanji}</div>
+        <p className="examples-prefix">
+          Here are the first {AMOUNTS_TO_DISPLAY} numbers. Make note of any{" "}
+          <span className="irregular">irregular conjugations</span>.
+        </p>
+        <div className="examples-table">
+          {conjugations.map(this.renderAmountTile)}
+          <div className="etc">... and so forth</div>
+        </div>
         {!!furtherIrregulars.length && (
           <React.Fragment>
-            <h3>Further Irregulars</h3>
-            {furtherIrregulars.map(this.renderFurtherIrregular)}
+            <p className="further-irregulars">
+              There are some more irregulars later on as well though:
+            </p>
+            <div className="examples-table">
+              {furtherIrregulars.map(this.renderFurtherIrregular)}
+            </div>
           </React.Fragment>
         )}
       </div>
@@ -123,8 +136,11 @@ export default class CounterDetails extends React.PureComponent<
 
   private renderFurtherIrregular = ({ amount, conjugation }: Irregular) => {
     return (
-      <div key={amount}>
-        {amount}. {conjugation}
+      <div className="conjugation-container" key={amount}>
+        <div className="amount">{amount}</div>
+        <div className="conjugations">
+          <div className="irregular">{conjugation}</div>
+        </div>
       </div>
     );
   };
