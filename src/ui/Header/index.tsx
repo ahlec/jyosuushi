@@ -9,7 +9,7 @@ import { leaveQuiz } from "../../redux/actions";
 import { Dispatch } from "../../redux/store";
 
 import Modal from "../Modal";
-import QuizHistory, { hasSufficientData } from "../QuizHistory";
+import QuizHistory from "../QuizHistory";
 import TooltipButton from "../TooltipButton";
 
 import Score from "./Score";
@@ -25,13 +25,26 @@ interface ProvidedProps {
 }
 
 interface ReduxProps {
-  hasHistoryData: boolean;
+  hasAnsweredQuestion: boolean;
   scorecard: Scorecard;
 }
 
 function mapStateToProps(state: State): ReduxProps {
+  let hasAnsweredQuestion: boolean;
+  switch (state.quizState) {
+    case "reviewing-answer":
+    case "quiz-wrapup": {
+      hasAnsweredQuestion = true;
+      break;
+    }
+    default: {
+      hasAnsweredQuestion = state.questions.currentQuestion > 0;
+      break;
+    }
+  }
+
   return {
-    hasHistoryData: hasSufficientData(state),
+    hasAnsweredQuestion,
     scorecard: state.scorecard
   };
 }
@@ -74,7 +87,7 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
   }
 
   public componentDidUpdate({ isQuizActive: wasQuizActive }: ComponentProps) {
-    const { hasHistoryData, isQuizActive, onModalOpened } = this.props;
+    const { hasAnsweredQuestion, isQuizActive, onModalOpened } = this.props;
     if (wasQuizActive !== isQuizActive) {
       this.setState({
         stage: isQuizActive
@@ -83,7 +96,7 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
       });
     }
 
-    if (!hasHistoryData && this.state.showHistoryModal) {
+    if (!hasAnsweredQuestion && this.state.showHistoryModal) {
       this.setState({
         showHistoryModal: false
       });
@@ -129,20 +142,28 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
   }
 
   private renderQuizLayout() {
+    const { hasAnsweredQuestion } = this.props;
     const { showHistoryModal, stage } = this.state;
     const enabled = stage === "resting-quiz";
 
     return (
       <React.Fragment>
         <div className="site-name">助数詞を練習</div>
-        <div className="scorecard">
-          <Score />
-          <TooltipButton
-            enabled={enabled}
-            icon={HistoryIcon}
-            onClick={this.onClickHistory}
-            text="History"
-          />
+        <div
+          className={classnames(
+            "scorecard",
+            hasAnsweredQuestion && "has-answered-question"
+          )}
+        >
+          <div className="only-if-answered">
+            <Score />
+            <TooltipButton
+              enabled={enabled}
+              icon={HistoryIcon}
+              onClick={this.onClickHistory}
+              text="History"
+            />
+          </div>
           <TooltipButton
             enabled={enabled}
             icon={HomeIcon}
@@ -173,8 +194,8 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
   };
 
   private onClickHistory = () => {
-    const { hasHistoryData, onModalOpened } = this.props;
-    if (!hasHistoryData) {
+    const { hasAnsweredQuestion, onModalOpened } = this.props;
+    if (!hasAnsweredQuestion) {
       return;
     }
 

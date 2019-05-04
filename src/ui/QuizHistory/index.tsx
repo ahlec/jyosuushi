@@ -7,16 +7,6 @@ import HistoryRow from "./HistoryRow";
 
 import "./index.scss";
 
-export function hasSufficientData(state: State): boolean {
-  switch (state.quizState) {
-    case "reviewing-answer":
-    case "quiz-wrapup":
-      return true;
-    default:
-      return state.questions.currentQuestion > 0;
-  }
-}
-
 interface ComponentProps {
   currentQuestion: number;
   questions: ReadonlyArray<Question>;

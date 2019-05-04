@@ -22,8 +22,11 @@ class Score extends React.PureComponent<ComponentProps> {
       scorecard: { numCorrectAnswers, numIncorrectAnswers }
     } = this.props;
     const numAnswered = numCorrectAnswers + numIncorrectAnswers;
-    const grade = round((numCorrectAnswers / numAnswered) * 100, 2);
+    if (numAnswered <= 0) {
+      return <div className="score" />;
+    }
 
+    const grade = round((numCorrectAnswers / numAnswered) * 100, 2);
     return (
       <div className="score">
         {numCorrectAnswers} / {numAnswered} ({grade}%)

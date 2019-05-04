@@ -215,6 +215,20 @@ $font-size-quiz: 20px;
     }
   }
 
+  .scorecard {
+    &.has-answered-question {
+      .only-if-answered {
+        opacity: 1;
+      }
+    }
+
+    .only-if-answered {
+      opacity: 0;
+      transition: opacity 0.3s;
+      display: flex;
+    }
+  }
+
   .HistoryModal {
     .rows {
       margin: 10px 20px 0px;
