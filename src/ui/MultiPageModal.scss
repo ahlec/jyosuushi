@@ -1,3 +1,5 @@
+@import "./ModalShared.scss";
+
 $page-transition-duration: 0.2s;
 
 :export {
@@ -5,10 +7,10 @@ $page-transition-duration: 0.2s;
 }
 
 .MultiPageModal {
-  background-color: red;
+  background-color: $modal-background;
   flex: 0 0 600px;
   max-width: 600px;
-  border: 1px solid black;
+  border: 1px solid $modal-border;
   border-radius: 0px 0px 6px 6px;
   outline: none;
 
@@ -29,8 +31,8 @@ $page-transition-duration: 0.2s;
   header {
     position: relative;
     height: 40px;
-    background-color: blue;
-    border-bottom: 1px solid black;
+    background-color: $modal-header;
+    border-bottom: 1px solid $modal-border;
     text-align: center;
     font-size: 28px;
     font-weight: 600;
@@ -47,7 +49,6 @@ $page-transition-duration: 0.2s;
     .button {
       position: absolute;
       cursor: pointer;
-      background-color: green;
       top: 0px;
       height: 100%;
       width: 40px;
@@ -69,13 +70,17 @@ $page-transition-duration: 0.2s;
 
       &:hover:not(.disabled) {
         path {
-          fill: red;
+          fill: $modal-button-hover;
         }
       }
 
       svg {
         width: 32px;
         height: 32px;
+
+        path {
+          fill: $modal-button;
+        }
       }
     }
   }
