@@ -1,6 +1,8 @@
 @import "palette.scss";
 
 $font-family: "Ubuntu", sans-serif;
+$intro-app-width: 800px;
+$quiz-app-width: 1200px;
 
 html,
 body {
@@ -22,7 +24,7 @@ body {
   background-color: white;
   display: flex;
   flex-direction: column;
-  max-width: 800px;
+  max-width: $intro-app-width;
   transition: max-width 0.25s ease-in;
   margin: auto;
   overflow: hidden;
@@ -31,7 +33,19 @@ body {
   color: $black-darkest;
 
   &.quiz-active {
-    max-width: 1200px;
+    max-width: $quiz-app-width;
+  }
+
+  @media (max-width: $intro-app-width) {
+    &:not(.quiz-active) {
+      border: 0px;
+    }
+  }
+
+  @media (max-width: $quiz-app-width) {
+    &.quiz-active {
+      border: 0px;
+    }
   }
 }
 
