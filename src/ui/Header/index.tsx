@@ -12,6 +12,7 @@ import Modal from "../Modal";
 import QuizHistory from "../QuizHistory";
 import TooltipButton from "../TooltipButton";
 
+import AbortConfirmationModal from "./AbortConfirmationModal";
 import Score from "./Score";
 
 import HistoryIcon from "./history.svg";
@@ -62,6 +63,7 @@ type Stage =
 type Layout = "home" | "quiz";
 
 interface ComponentState {
+  isPromptingToLeave: boolean;
   showHistoryModal: boolean;
   stage: Stage;
 }
@@ -81,6 +83,7 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
   public constructor(props: ComponentProps) {
     super(props);
     this.state = {
+      isPromptingToLeave: false,
       showHistoryModal: false,
       stage: props.isQuizActive ? "resting-quiz" : "resting-home"
     };
@@ -143,7 +146,7 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
 
   private renderQuizLayout() {
     const { hasAnsweredQuestion } = this.props;
-    const { showHistoryModal, stage } = this.state;
+    const { isPromptingToLeave, showHistoryModal, stage } = this.state;
     const enabled = stage === "resting-quiz";
 
     return (
@@ -179,6 +182,11 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
         >
           <QuizHistory />
         </Modal>
+        <AbortConfirmationModal
+          isOpen={isPromptingToLeave}
+          onConfirm={this.onConfirmLeaveEarly}
+          onRequestClose={this.onRequestCloseLeaveEarly}
+        />
       </React.Fragment>
     );
   }
@@ -209,7 +217,7 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
   };
 
   private onClickHome = () => {
-    const { dispatch, scorecard } = this.props;
+    const { dispatch, onModalOpened, scorecard } = this.props;
     const numQuestionsAnswered =
       scorecard.numCorrectAnswers + scorecard.numIncorrectAnswers;
     if (!numQuestionsAnswered) {
@@ -217,7 +225,19 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
       return;
     }
 
-    alert("yeh");
+    this.setState({ isPromptingToLeave: true });
+    onModalOpened(true);
+  };
+
+  private onConfirmLeaveEarly = () => {
+    const { dispatch } = this.props;
+    dispatch(leaveQuiz());
+  };
+
+  private onRequestCloseLeaveEarly = () => {
+    const { onModalOpened } = this.props;
+    this.setState({ isPromptingToLeave: false });
+    onModalOpened(false);
   };
 }
 
