@@ -1,11 +1,17 @@
+import { random } from "lodash";
 import {
+  ActionIgnoreLastAnswer,
   ActionNextQuestion,
   ActionRestartQuiz,
   ActionStartQuiz
 } from "../actions";
 import { QuestionsState } from "../index";
 
-type ReducerAction = ActionStartQuiz | ActionRestartQuiz | ActionNextQuestion;
+type ReducerAction =
+  | ActionStartQuiz
+  | ActionRestartQuiz
+  | ActionNextQuestion
+  | ActionIgnoreLastAnswer;
 
 const DEFAULT_STATE: QuestionsState = {
   currentQuestion: 0,
@@ -28,6 +34,24 @@ export default function questionsReducer(
         currentQuestion: state.currentQuestion + 1,
         questions: state.questions
       };
+    case "ignore-last-answer": {
+      const question = state.questions[state.currentQuestion];
+      const randomIndex = random(
+        state.currentQuestion + 1,
+        state.questions.length - 1
+      );
+      const nextQuestions = [...state.questions];
+      if (randomIndex >= nextQuestions.length - 1) {
+        nextQuestions.push(question);
+      } else {
+        nextQuestions.splice(randomIndex, 0, question);
+      }
+
+      return {
+        currentQuestion: state.currentQuestion,
+        questions: nextQuestions
+      };
+    }
     default:
       return state;
   }
