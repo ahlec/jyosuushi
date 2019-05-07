@@ -87,8 +87,8 @@ export default class CounterDetails extends React.PureComponent<
       <div className="CounterDetails">
         <div className="kanji">{counter.kanji}</div>
         <p className="examples-prefix">
-          Here are the first {AMOUNTS_TO_DISPLAY} numbers. Make note of any{" "}
-          <span className="irregular">irregular conjugations</span>.
+          Here are the first {AMOUNTS_TO_DISPLAY} numbers.{" "}
+          {this.renderIrregularsWarning()}
         </p>
         <div className="examples-table">
           {conjugations.map(this.renderAmountTile)}
@@ -105,6 +105,33 @@ export default class CounterDetails extends React.PureComponent<
           </React.Fragment>
         )}
       </div>
+    );
+  }
+
+  private renderIrregularsWarning() {
+    const { counter } = this.props;
+    const numIrregulars = Object.keys(counter.irregulars).length;
+    if (!numIrregulars) {
+      return "Luckily, there are no irregular conjugations with this counter!";
+    }
+
+    if (numIrregulars === 1) {
+      return (
+        <React.Fragment>
+          Make note of the{" "}
+          <span className="irregular">irregular conjugation</span>.
+        </React.Fragment>
+      );
+    }
+
+    return (
+      <React.Fragment>
+        Make note of the{" "}
+        <span className="irregular">
+          {numIrregulars} irregular conjugations
+        </span>
+        .
+      </React.Fragment>
     );
   }
 
