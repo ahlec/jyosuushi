@@ -1,6 +1,6 @@
 @import "palette.scss";
 
-$font-family: "Ubuntu", sans-serif;
+$font-family: "Ubuntu", Meiryo, sans-serif;
 $intro-app-width: 800px;
 $quiz-app-width: 1200px;
 
@@ -47,6 +47,10 @@ body {
       border: 0px;
     }
   }
+}
+
+.ReactModalPortal {
+  font-family: $font-family;
 }
 
 a,
