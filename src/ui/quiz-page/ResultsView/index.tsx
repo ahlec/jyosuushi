@@ -1,4 +1,3 @@
-import classnames from "classnames";
 import { uniq } from "lodash";
 import * as React from "react";
 import { connect } from "react-redux";
@@ -15,6 +14,8 @@ import {
 } from "../../../redux";
 import { ignoreLastAnswer } from "../../../redux/actions";
 import { Dispatch } from "../../../redux/store";
+
+import JudgmentBubble from "../../JudgmentBubble";
 
 import AnswersTable from "./AnswersTable";
 import "./index.scss";
@@ -38,27 +39,6 @@ function mapStateToProps(state: State): ReduxProps {
 
 type ComponentProps = ProvidedProps & ReduxProps & { dispatch: Dispatch };
 
-const RESULT_BUBBLE_CONTENTS: {
-  [judgment in UserAnswerJudgment]: { kanji: string; kana: string }
-} = {
-  correct: {
-    kana: "せいかい",
-    kanji: "正解"
-  },
-  ignored: {
-    kana: "むし",
-    kanji: "無視"
-  },
-  incorrect: {
-    kana: "ふせいかい",
-    kanji: "不正解"
-  },
-  skipped: {
-    kana: "みかいとう",
-    kanji: "未回答"
-  }
-};
-
 const HEADERS: {
   [judgment in UserAnswerJudgment]: (localization: Localization) => string
 } = {
@@ -73,12 +53,7 @@ class ResultsView extends React.PureComponent<ComponentProps> {
     const { currentQuestion, localization, usersAnswer } = this.props;
     return (
       <div className="ResultsView">
-        <div className={classnames("result-bubble", usersAnswer.judgment)}>
-          <ruby>
-            {RESULT_BUBBLE_CONTENTS[usersAnswer.judgment].kanji}
-            <rt>{RESULT_BUBBLE_CONTENTS[usersAnswer.judgment].kana}</rt>
-          </ruby>
-        </div>
+        <JudgmentBubble judgment={usersAnswer.judgment} shape="block-circle" />
         <div className="info">
           <h3>{HEADERS[usersAnswer.judgment](localization)}</h3>
           {usersAnswer.judgment !== "skipped" ? (

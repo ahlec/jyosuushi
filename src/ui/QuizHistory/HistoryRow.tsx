@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 import Localization from "../../localization";
 import { Item, Question, State, UserAnswer } from "../../redux";
 
+import JudgmentBubble from "../JudgmentBubble";
+
 import "./HistoryRow.scss";
 
 interface ProvidedProps {
@@ -44,6 +46,9 @@ class HistoryRow extends React.PureComponent<ComponentProps> {
         : localization.itemPlural(item);
     return (
       <tr className={classnames("HistoryRow", judgment)}>
+        <td className="judgment">
+          <JudgmentBubble judgment={judgment} shape="inline" />
+        </td>
         <td className="number">{questionNo}</td>
         <td className="details">
           <div className="question">
