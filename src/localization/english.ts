@@ -1,3 +1,5 @@
+import * as React from "react";
+
 import { StudyPack } from "../data/study-packs";
 import { Counter, Item } from "../redux";
 import Localization, {
@@ -7,6 +9,7 @@ import Localization, {
 
 const ENGLISH: Localization = {
   alecDeitloff: "Alec Deitloff",
+  andSoForth: "... and so forth",
   counterName: (counter: Counter) => counter.englishName,
   countersDisplayHeader: (numCounters: number) =>
     `${numCounters} ${numCounters === 1 ? "Counter" : "Counters"} Included`,
@@ -17,6 +20,27 @@ const ENGLISH: Localization = {
     VARIABLE_ICON_CREDIT_LINK,
     " collection."
   ],
+  furtherIrregulars: "There are some more irregulars later on as well though:",
+  hereAreTheFirstXNumbers: (amountToDisplay: number) =>
+    `Here ${
+      amountToDisplay === 1 ? "is" : "are"
+    } the first ${amountToDisplay} ${
+      amountToDisplay === 1 ? "number" : "numbers"
+    }.`,
+  irregularsWarning: (
+    numIrregulars: number,
+    highlightIrregular: (contents: string) => React.ReactNode
+  ) => [
+    "Make note of the ",
+    highlightIrregular(
+      `${numIrregulars} irregular ${
+        numIrregulars === 1 ? "conjugation" : "conjugations"
+      }`
+    ),
+    "."
+  ],
+  irregularsWarningNoIrregulars:
+    "Luckily, there are no irregular conjugations with this counter!",
   itemPlural: (item: Item) => item.englishPlural,
   itemSingular: (item: Item) => item.englishSingular,
   resultColumnHeaderCounter: "Counter",

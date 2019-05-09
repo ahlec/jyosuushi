@@ -1,3 +1,5 @@
+import * as React from "react";
+
 import { StudyPack } from "../data/study-packs";
 import { Counter, Item } from "../redux";
 
@@ -11,9 +13,17 @@ export type CreditsPiece =
 
 export default interface Localization {
   alecDeitloff: string;
+  andSoForth: string;
   counterName: (counter: Counter) => string;
   countersDisplayHeader: (numCounters: number) => string;
   credits: ReadonlyArray<CreditsPiece>;
+  furtherIrregulars: string;
+  hereAreTheFirstXNumbers: (amountToDisplay: number) => string;
+  irregularsWarning: (
+    numIrregulars: number,
+    highlightIrregular: (contents: string) => React.ReactNode
+  ) => React.ReactNode[];
+  irregularsWarningNoIrregulars: string;
   itemPlural: (item: Item) => string;
   itemSingular: (item: Item) => string;
   resultColumnHeaderCounter: string;

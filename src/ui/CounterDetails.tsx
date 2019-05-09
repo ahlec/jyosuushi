@@ -4,6 +4,7 @@ import * as React from "react";
 
 // import { ITEMS_FROM_COUNTER } from "../data/items";
 import { conjugateNumberAndCounter } from "../japanese/counters";
+import Localization from "../localization";
 import { Counter } from "../redux";
 
 import "./CounterDetails.scss";
@@ -12,6 +13,7 @@ const AMOUNTS_TO_DISPLAY = 17;
 
 interface ComponentProps {
   counter: Counter;
+  localization: Localization;
 }
 
 interface Conjugation {
@@ -76,28 +78,36 @@ const getFurtherIrregulars = memoize(
   (counter: Counter) => counter.counterId
 );
 
+function highlightIrregular(contents: string) {
+  return (
+    <span className="irregular" key={contents}>
+      {contents}
+    </span>
+  );
+}
+
 export default class CounterDetails extends React.PureComponent<
   ComponentProps
 > {
   public render() {
-    const { counter } = this.props;
+    const { counter, localization } = this.props;
     const conjugations = getConjugations(counter);
     const furtherIrregulars = getFurtherIrregulars(counter);
     return (
       <div className="CounterDetails">
         <div className="kanji">{counter.kanji}</div>
         <p className="examples-prefix">
-          Here are the first {AMOUNTS_TO_DISPLAY} numbers.{" "}
+          {localization.hereAreTheFirstXNumbers(AMOUNTS_TO_DISPLAY)}{" "}
           {this.renderIrregularsWarning()}
         </p>
         <div className="examples-table">
           {conjugations.map(this.renderAmountTile)}
-          <div className="etc">... and so forth</div>
+          <div className="etc">{localization.andSoForth}</div>
         </div>
         {!!furtherIrregulars.length && (
           <React.Fragment>
             <p className="further-irregulars">
-              There are some more irregulars later on as well though:
+              {localization.furtherIrregulars}
             </p>
             <div className="examples-table">
               {furtherIrregulars.map(this.renderFurtherIrregular)}
@@ -109,30 +119,13 @@ export default class CounterDetails extends React.PureComponent<
   }
 
   private renderIrregularsWarning() {
-    const { counter } = this.props;
+    const { counter, localization } = this.props;
     const numIrregulars = Object.keys(counter.irregulars).length;
     if (!numIrregulars) {
-      return "Luckily, there are no irregular conjugations with this counter!";
+      return localization.irregularsWarningNoIrregulars;
     }
 
-    if (numIrregulars === 1) {
-      return (
-        <React.Fragment>
-          Make note of the{" "}
-          <span className="irregular">irregular conjugation</span>.
-        </React.Fragment>
-      );
-    }
-
-    return (
-      <React.Fragment>
-        Make note of the{" "}
-        <span className="irregular">
-          {numIrregulars} irregular conjugations
-        </span>
-        .
-      </React.Fragment>
-    );
+    return localization.irregularsWarning(numIrregulars, highlightIrregular);
   }
 
   private renderAmountTile = (

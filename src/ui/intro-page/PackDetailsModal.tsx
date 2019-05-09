@@ -61,6 +61,7 @@ export default class PackDetailsModal extends React.PureComponent<
       return null;
     }
 
-    return <CounterDetails counter={counter} />;
+    const { localization } = this.props;
+    return <CounterDetails counter={counter} localization={localization} />;
   };
 }
