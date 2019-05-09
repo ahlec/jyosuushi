@@ -1,24 +1,79 @@
+import { memoize } from "lodash";
 import * as React from "react";
+import { connect } from "react-redux";
 
+import { STUDY_PACK_LOOKUP, StudyPack } from "../../data/study-packs";
 import Localization, {
   CreditsPiece,
   VARIABLE_ALEC_DEITLOFF,
   VARIABLE_ICON_CREDIT_LINK
 } from "../../localization";
 import QuizManager from "../../QuizManager";
+import { Counter, State } from "../../redux";
+import { getDistinctCounters } from "../../utils";
 
 import PackSelection from "./PackSelection";
 
 import "./index.scss";
 
-interface ComponentProps {
+function getPacksFromArray(packs: ReadonlyArray<string>) {
+  return packs.map(packId => STUDY_PACK_LOOKUP[packId]);
+}
+
+const getPacksFromSet = memoize(
+  (packs: ReadonlyArray<string>) => getPacksFromArray(Array.from(packs)),
+  (packs: ReadonlyArray<string>) => JSON.stringify(packs)
+);
+
+interface ProvidedProps {
   localization: Localization;
   quizManager: QuizManager;
 }
 
-export default class IntroPage extends React.PureComponent<ComponentProps> {
+interface ReduxProps {
+  enabledPacks: ReadonlyArray<StudyPack>;
+}
+
+function mapStateToProps(state: State): ReduxProps {
+  return {
+    enabledPacks: getPacksFromSet(state.enabledPacks)
+  };
+}
+
+type ComponentProps = ProvidedProps & ReduxProps;
+
+interface ComponentState {
+  selectedCounters: ReadonlyArray<Counter>;
+  selection: ReadonlyArray<StudyPack>;
+}
+
+class IntroPage extends React.PureComponent<ComponentProps, ComponentState> {
+  public state: ComponentState;
+
+  public constructor(props: ComponentProps) {
+    super(props);
+
+    this.state = {
+      selectedCounters: getDistinctCounters(props.enabledPacks),
+      selection: props.enabledPacks
+    };
+  }
+
+  public componentDidUpdate({
+    enabledPacks: prevEnabledPacks
+  }: ComponentProps) {
+    const { enabledPacks } = this.props;
+    if (enabledPacks !== prevEnabledPacks) {
+      this.setState({
+        selectedCounters: getDistinctCounters(enabledPacks),
+        selection: enabledPacks
+      });
+    }
+  }
+
   public render() {
-    const { localization, quizManager } = this.props;
+    const { localization } = this.props;
+    const { selectedCounters, selection } = this.state;
     return (
       <div className="IntroPage">
         <p>
@@ -37,7 +92,22 @@ export default class IntroPage extends React.PureComponent<ComponentProps> {
           To begin, select one or more study pack below. These will determine
           which counters you'll be asked.
         </p>
-        <PackSelection localization={localization} quizManager={quizManager} />
+        <PackSelection
+          localization={localization}
+          onSelectionChanged={this.onSelectionChanged}
+          selection={selection}
+        />
+        <div className="start">
+          <button disabled={!selection.length} onClick={this.onStartQuiz}>
+            {localization.startQuiz}
+          </button>
+        </div>
+        {!!selectedCounters.length && (
+          <div className="counters">
+            <div className="header">{localization.countersDisplayHeader}</div>
+            {selectedCounters.map(this.renderCounter)}
+          </div>
+        )}
         <div className="flex" />
         <div className="credits">
           {localization.credits.map(this.renderCredit)}
@@ -73,4 +143,22 @@ export default class IntroPage extends React.PureComponent<ComponentProps> {
         return piece;
     }
   };
+
+  private renderCounter = (counter: Counter) => {
+    return <div key={counter.counterId}>{counter.kana}</div>;
+  };
+
+  private onSelectionChanged = (selection: ReadonlyArray<StudyPack>) =>
+    this.setState({
+      selectedCounters: getDistinctCounters(selection),
+      selection
+    });
+
+  private onStartQuiz = () => {
+    const { quizManager } = this.props;
+    const { selection } = this.state;
+    quizManager.startNewQuiz(selection);
+  };
 }
+
+export default connect(mapStateToProps)(IntroPage);

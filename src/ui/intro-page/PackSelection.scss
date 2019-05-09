@@ -106,17 +106,4 @@ $hover-darken-amount: 25%;
       }
     }
   }
-
-  .start {
-    margin: 5px 0px;
-    text-align: center;
-
-    button {
-      font-size: 22px;
-
-      &:disabled {
-        font-size: 18px;
-      }
-    }
-  }
 }
