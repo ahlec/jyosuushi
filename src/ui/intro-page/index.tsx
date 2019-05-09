@@ -9,9 +9,9 @@ import Localization, {
   VARIABLE_ICON_CREDIT_LINK
 } from "../../localization";
 import QuizManager from "../../QuizManager";
-import { Counter, State } from "../../redux";
-import { getDistinctCounters } from "../../utils";
+import { State } from "../../redux";
 
+import CounterPreview from "./CounterPreview";
 import PackSelection from "./PackSelection";
 
 import "./index.scss";
@@ -43,7 +43,6 @@ function mapStateToProps(state: State): ReduxProps {
 type ComponentProps = ProvidedProps & ReduxProps;
 
 interface ComponentState {
-  selectedCounters: ReadonlyArray<Counter>;
   selection: ReadonlyArray<StudyPack>;
 }
 
@@ -54,7 +53,6 @@ class IntroPage extends React.PureComponent<ComponentProps, ComponentState> {
     super(props);
 
     this.state = {
-      selectedCounters: getDistinctCounters(props.enabledPacks),
       selection: props.enabledPacks
     };
   }
@@ -65,7 +63,6 @@ class IntroPage extends React.PureComponent<ComponentProps, ComponentState> {
     const { enabledPacks } = this.props;
     if (enabledPacks !== prevEnabledPacks) {
       this.setState({
-        selectedCounters: getDistinctCounters(enabledPacks),
         selection: enabledPacks
       });
     }
@@ -73,7 +70,7 @@ class IntroPage extends React.PureComponent<ComponentProps, ComponentState> {
 
   public render() {
     const { localization } = this.props;
-    const { selectedCounters, selection } = this.state;
+    const { selection } = this.state;
     return (
       <div className="IntroPage">
         <p>
@@ -102,12 +99,7 @@ class IntroPage extends React.PureComponent<ComponentProps, ComponentState> {
             {localization.startQuiz}
           </button>
         </div>
-        {!!selectedCounters.length && (
-          <div className="counters">
-            <div className="header">{localization.countersDisplayHeader}</div>
-            {selectedCounters.map(this.renderCounter)}
-          </div>
-        )}
+        <CounterPreview localization={localization} packs={selection} />
         <div className="flex" />
         <div className="credits">
           {localization.credits.map(this.renderCredit)}
@@ -144,13 +136,8 @@ class IntroPage extends React.PureComponent<ComponentProps, ComponentState> {
     }
   };
 
-  private renderCounter = (counter: Counter) => {
-    return <div key={counter.counterId}>{counter.kana}</div>;
-  };
-
   private onSelectionChanged = (selection: ReadonlyArray<StudyPack>) =>
     this.setState({
-      selectedCounters: getDistinctCounters(selection),
       selection
     });
 

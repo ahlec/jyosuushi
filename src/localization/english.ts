@@ -8,7 +8,8 @@ import Localization, {
 const ENGLISH: Localization = {
   alecDeitloff: "Alec Deitloff",
   counterName: (counter: Counter) => counter.englishName,
-  countersDisplayHeader: "Counters",
+  countersDisplayHeader: (numCounters: number) =>
+    `${numCounters} ${numCounters === 1 ? "Counter" : "Counters"} Included`,
   credits: [
     "Application designed and coded by ",
     VARIABLE_ALEC_DEITLOFF,

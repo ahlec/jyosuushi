@@ -12,7 +12,7 @@ export type CreditsPiece =
 export default interface Localization {
   alecDeitloff: string;
   counterName: (counter: Counter) => string;
-  countersDisplayHeader: string;
+  countersDisplayHeader: (numCounters: number) => string;
   credits: ReadonlyArray<CreditsPiece>;
   itemPlural: (item: Item) => string;
   itemSingular: (item: Item) => string;
