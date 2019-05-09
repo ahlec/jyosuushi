@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import { StudyPack } from "../../data/study-packs";
+import Localization from "../../localization";
 import { Counter } from "../../redux";
 
 import CounterDetails from "../CounterDetails";
@@ -8,6 +9,7 @@ import MultiPageModal from "../MultiPageModal";
 import PackDetails from "./PackDetails";
 
 interface ComponentProps {
+  localization: Localization;
   onRequestClose: () => void;
   pack: StudyPack | null;
 }
@@ -16,12 +18,12 @@ export default class PackDetailsModal extends React.PureComponent<
   ComponentProps
 > {
   public render() {
-    const { onRequestClose, pack } = this.props;
+    const { localization, onRequestClose, pack } = this.props;
     return (
       <MultiPageModal
         getSubpageHeader={this.getSubpageHeader}
         isOpen={!!pack}
-        mainPageHeader={pack ? pack.name : ""}
+        mainPageHeader={pack ? localization.studyPackName(pack) : ""}
         mainPageRenderer={this.renderMainPage}
         onRequestClose={onRequestClose}
         subpageRenderer={this.renderSubpage}
@@ -29,13 +31,14 @@ export default class PackDetailsModal extends React.PureComponent<
     );
   }
 
-  private getSubpageHeader = (counter: Counter) => counter.name;
+  private getSubpageHeader = (counter: Counter) =>
+    this.props.localization.counterName(counter);
 
   private renderMainPage = (
     isActive: boolean,
     openSubpage: (data: Counter) => void
   ): React.ReactNode => {
-    const { pack } = this.props;
+    const { localization, pack } = this.props;
     if (!pack) {
       return null;
     }
@@ -43,6 +46,7 @@ export default class PackDetailsModal extends React.PureComponent<
     return (
       <PackDetails
         enabled={isActive}
+        localization={localization}
         onInvestigateCounter={openSubpage}
         pack={pack}
       />

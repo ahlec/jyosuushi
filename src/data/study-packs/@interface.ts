@@ -4,6 +4,6 @@ export { Counter, Item };
 
 export interface StudyPack {
   packId: string;
-  name: string;
+  englishName: string;
   counters: ReadonlyArray<Counter>;
 }

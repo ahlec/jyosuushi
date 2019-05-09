@@ -10,7 +10,7 @@ import {
 
 const STUDY_PACK_N5: StudyPack = {
   packId: "n5",
-  name: "N5",
+  englishName: "N5",
   counters: [
     COUNTER_DAYS_OF_MONTH,
     COUNTER_HOURS,

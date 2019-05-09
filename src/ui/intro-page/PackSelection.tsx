@@ -128,6 +128,7 @@ class PackSelection extends React.PureComponent<
           </div>
         )}
         <PackDetailsModal
+          localization={localization}
           onRequestClose={this.onRequestCloseDetails}
           pack={detailsPack}
         />
@@ -148,13 +149,13 @@ class PackSelection extends React.PureComponent<
     const { packs } = this.state;
     const enabled = packs.has(pack.packId);
     return (
-      <div key={pack.name} className="pack">
+      <div key={pack.packId} className="pack">
         <div
           className={classnames("front", enabled && "checked")}
           onClick={this.onTogglePack(pack)}
         >
           <CheckIcon className="check" />
-          <div className="name">{pack.name}</div>
+          <div className="name">{localization.studyPackName(pack)}</div>
           <div className="count">
             {localization.studyPackSize(pack.counters.length)}
           </div>

@@ -2,11 +2,13 @@ import classnames from "classnames";
 import * as React from "react";
 import { connect } from "react-redux";
 
+import Localization from "../../localization";
 import { Item, Question, State, UserAnswer } from "../../redux";
 
 import "./HistoryRow.scss";
 
 interface ProvidedProps {
+  localization: Localization;
   question: Question;
   questionNo: number;
   usersAnswer: UserAnswer;
@@ -31,11 +33,15 @@ class HistoryRow extends React.PureComponent<ComponentProps> {
   public render() {
     const {
       item,
+      localization,
       question: { amount },
       questionNo,
       usersAnswer: { input, judgment }
     } = this.props;
-    const itemName = amount === 1 ? item.singular : item.plural;
+    const itemName =
+      amount === 1
+        ? localization.itemSingular(item)
+        : localization.itemPlural(item);
     return (
       <tr className={classnames("HistoryRow", judgment)}>
         <td className="number">{questionNo}</td>

@@ -1,19 +1,24 @@
 import * as React from "react";
 import { connect } from "react-redux";
 
+import Localization from "../../localization";
 import { Question, State, UserAnswer } from "../../redux";
 
 import HistoryRow from "./HistoryRow";
 
 import "./index.scss";
 
-interface ComponentProps {
+interface ProvidedProps {
+  localization: Localization;
+}
+
+interface ReduxProps {
   currentQuestion: number;
   questions: ReadonlyArray<Question>;
   userAnswers: ReadonlyArray<UserAnswer>;
 }
 
-function mapStateToProps(state: State): ComponentProps {
+function mapStateToProps(state: State): ReduxProps {
   let currentQuestion: number;
   switch (state.quizState) {
     case "reviewing-answer": {
@@ -37,6 +42,8 @@ function mapStateToProps(state: State): ComponentProps {
   };
 }
 
+type ComponentProps = ProvidedProps & ReduxProps;
+
 class QuizHistory extends React.PureComponent<ComponentProps> {
   public render() {
     const { currentQuestion } = this.props;
@@ -54,10 +61,11 @@ class QuizHistory extends React.PureComponent<ComponentProps> {
   }
 
   private renderQuestionRow = (index: number) => {
-    const { questions, userAnswers } = this.props;
+    const { localization, questions, userAnswers } = this.props;
     return (
       <HistoryRow
         key={index}
+        localization={localization}
         question={questions[index]}
         questionNo={index + 1}
         usersAnswer={userAnswers[index]}

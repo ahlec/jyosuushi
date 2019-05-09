@@ -14,7 +14,7 @@ export interface Scorecard {
 
 export interface Counter {
   counterId: string;
-  name: string;
+  englishName: string;
   kana: string;
   kanji: string | null;
   irregulars: { [amount: number]: string };
@@ -23,8 +23,8 @@ export interface Counter {
 export interface Item {
   itemId: string;
   counters: ReadonlyArray<string>;
-  singular: string;
-  plural: string;
+  englishSingular: string;
+  englishPlural: string;
   minQuantity: number;
   maxQuantity: number;
 }

@@ -1,3 +1,5 @@
+import { StudyPack } from "../data/study-packs";
+import { Counter, Item } from "../redux";
 import Localization, {
   VARIABLE_ALEC_DEITLOFF,
   VARIABLE_ICON_CREDIT_LINK
@@ -5,6 +7,7 @@ import Localization, {
 
 const ENGLISH: Localization = {
   alecDeitloff: "Alec Deitloff",
+  counterName: (counter: Counter) => counter.englishName,
   countersDisplayHeader: "Counters",
   credits: [
     "Application designed and coded by ",
@@ -13,6 +16,8 @@ const ENGLISH: Localization = {
     VARIABLE_ICON_CREDIT_LINK,
     " collection."
   ],
+  itemPlural: (item: Item) => item.englishPlural,
+  itemSingular: (item: Item) => item.englishSingular,
   resultColumnHeaderCounter: "Counter",
   resultColumnHeaderHiragana: "Hiragana",
   resultColumnHeaderKanji: "Kanji",
@@ -27,6 +32,7 @@ const ENGLISH: Localization = {
   siteTagline: "Let's review Japanese counters!",
   skippedQuestionResult: "Alright! You'll see this question later in the quiz!",
   startQuiz: "Start Quiz!",
+  studyPackName: (studyPack: StudyPack) => studyPack.englishName,
   studyPackSelectionHeader: "Study Packs",
   studyPackSelectionSubheader: "(select 1 or more)",
   studyPackSize: (size: number) =>

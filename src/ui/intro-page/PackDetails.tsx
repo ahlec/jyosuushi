@@ -3,6 +3,7 @@ import { memoize } from "lodash";
 import * as React from "react";
 
 import { StudyPack } from "../../data/study-packs";
+import Localization from "../../localization";
 import { Counter } from "../../redux";
 
 import RightIcon from "../right.svg";
@@ -11,6 +12,7 @@ import "./PackDetails.scss";
 
 interface ComponentProps {
   enabled: boolean;
+  localization: Localization;
   onInvestigateCounter: (counter: Counter) => void;
   pack: StudyPack;
 }
@@ -44,7 +46,7 @@ export default class PackDetails extends React.PureComponent<ComponentProps> {
   }
 
   private renderCounter = (counter: Counter) => {
-    const { enabled } = this.props;
+    const { enabled, localization } = this.props;
     return (
       <div
         key={counter.counterId}
@@ -55,7 +57,7 @@ export default class PackDetails extends React.PureComponent<ComponentProps> {
           {counter.kanji || counter.kana}
           {counter.kanji && <rt>{counter.kana}</rt>}
         </ruby>
-        <div className="name">{counter.name}</div>
+        <div className="name">{localization.counterName(counter)}</div>
         <RightIcon />
       </div>
     );

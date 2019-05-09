@@ -4,7 +4,7 @@ import { COUNTER_DAYS_OF_MONTH } from "../counters";
 
 const STUDY_PACK_N2: StudyPack = {
   packId: "n2",
-  name: "N2",
+  englishName: "N2",
   counters: [COUNTER_DAYS_OF_MONTH]
 };
 

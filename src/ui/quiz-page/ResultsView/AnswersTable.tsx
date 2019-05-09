@@ -63,11 +63,8 @@ class AnswersTable extends React.PureComponent<ComponentProps> {
   }
 
   private renderCounter(counterId: string, answers: ReadonlyArray<Answer>) {
-    const { counters, usersAnswer } = this.props;
-    const {
-      counter: { kana, kanji, name },
-      studyPacks
-    } = counters[counterId];
+    const { counters, localization, usersAnswer } = this.props;
+    const { counter, studyPacks } = counters[counterId];
     const kanjiAnswers = uniq(answers.map(getKanjiFromAnswer).filter(x => x));
     const correctAnswer =
       usersAnswer.judgment === "correct"
@@ -76,16 +73,16 @@ class AnswersTable extends React.PureComponent<ComponentProps> {
     return (
       <tr key={counterId} className={classnames(correctAnswer && "correct")}>
         <td className="cell-counter">
-          {kanji ? (
+          {counter.kanji ? (
             <ruby>
-              {kanji}
-              <rt>{kana}</rt>
+              {counter.kanji}
+              <rt>{counter.kana}</rt>
             </ruby>
           ) : (
-            <ruby>{kana}</ruby>
+            <ruby>{counter.kana}</ruby>
           )}
         </td>
-        <td className="cell-rule">{name}</td>
+        <td className="cell-rule">{localization.counterName(counter)}</td>
         <td className="cell-study-pack">
           {studyPacks.map(this.renderStudyPack)}
         </td>
@@ -98,10 +95,11 @@ class AnswersTable extends React.PureComponent<ComponentProps> {
   }
 
   private renderStudyPack = (packId: string) => {
-    const { name } = STUDY_PACK_LOOKUP[packId];
+    const { localization } = this.props;
+    const pack = STUDY_PACK_LOOKUP[packId];
     return (
       <div key={packId} className="study-pack">
-        {name}
+        {localization.studyPackName(pack)}
       </div>
     );
   };

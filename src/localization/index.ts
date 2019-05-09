@@ -1,3 +1,6 @@
+import { StudyPack } from "../data/study-packs";
+import { Counter, Item } from "../redux";
+
 export const VARIABLE_ALEC_DEITLOFF = 17;
 export const VARIABLE_ICON_CREDIT_LINK = 18;
 
@@ -8,8 +11,11 @@ export type CreditsPiece =
 
 export default interface Localization {
   alecDeitloff: string;
+  counterName: (counter: Counter) => string;
   countersDisplayHeader: string;
   credits: ReadonlyArray<CreditsPiece>;
+  itemPlural: (item: Item) => string;
+  itemSingular: (item: Item) => string;
   resultColumnHeaderCounter: string;
   resultColumnHeaderRule: string;
   resultColumnHeaderStudyPack: string;
@@ -23,6 +29,7 @@ export default interface Localization {
   siteTagline: string;
   skippedQuestionResult: string;
   startQuiz: string;
+  studyPackName: (studyPack: StudyPack) => string;
   studyPackSelectionHeader: string;
   studyPackSelectionSubheader: string;
   studyPackSize(size: number): string;

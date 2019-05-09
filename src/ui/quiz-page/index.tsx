@@ -57,12 +57,17 @@ class QuizPage extends React.PureComponent<ComponentProps> {
     }
 
     if (quizState === "quiz-wrapup") {
-      return <QuizWrapup quizManager={quizManager} />;
+      return (
+        <QuizWrapup localization={localization} quizManager={quizManager} />
+      );
     }
 
     return (
       <div className="QuestionPage">
-        <QuestionDisplay currentQuestion={currentQuestion} />
+        <QuestionDisplay
+          currentQuestion={currentQuestion}
+          localization={localization}
+        />
         <AnswerInput
           currentQuestion={currentQuestion}
           enabled={enabled && quizState === "waiting-for-answer"}

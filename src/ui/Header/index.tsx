@@ -145,7 +145,7 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
   }
 
   private renderQuizLayout() {
-    const { hasAnsweredQuestion } = this.props;
+    const { hasAnsweredQuestion, localization } = this.props;
     const { isPromptingToLeave, showHistoryModal, stage } = this.state;
     const enabled = stage === "resting-quiz";
 
@@ -180,7 +180,7 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
           isOpen={showHistoryModal}
           onRequestClose={this.onCloseHistory}
         >
-          <QuizHistory />
+          <QuizHistory localization={localization} />
         </Modal>
         <AbortConfirmationModal
           isOpen={isPromptingToLeave}
