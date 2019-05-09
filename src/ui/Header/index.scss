@@ -226,6 +226,10 @@ $font-size-quiz: 20px;
       opacity: 0;
       transition: opacity 0.3s;
       display: flex;
+
+      .TooltipButton {
+        cursor: default;
+      }
     }
   }
 
