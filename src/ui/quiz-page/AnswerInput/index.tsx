@@ -86,9 +86,28 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
     );
   }
 
-  private onChange = (value: string) => {
+  private onChange = (changedValue: string) => {
+    let isValid = !!changedValue && HIRAGANA.isOnlyKana(changedValue);
+    let value = changedValue;
+    if (!isValid && changedValue && changedValue.toLowerCase().endsWith("n")) {
+      // Check to see if we end with "n" like "じｎ"
+      // If we hit enter with that, then we know that's still valid
+      if (changedValue.length === 1) {
+        // The input is just "n"
+        isValid = true;
+        value = "ん";
+      } else {
+        const withoutUnconvertedFinalN = changedValue.substr(
+          0,
+          changedValue.length - 1
+        );
+        value = withoutUnconvertedFinalN + "ん";
+        isValid = HIRAGANA.isOnlyKana(withoutUnconvertedFinalN);
+      }
+    }
+
     this.setState({
-      isValid: !!value && HIRAGANA.isOnlyKana(value),
+      isValid,
       value
     });
   };
