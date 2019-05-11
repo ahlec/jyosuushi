@@ -219,6 +219,10 @@ $font-size-quiz: 20px;
     &.has-answered-question {
       .only-if-answered {
         opacity: 1;
+
+        .TooltipButton {
+          cursor: pointer;
+        }
       }
     }
 
