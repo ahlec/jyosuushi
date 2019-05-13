@@ -6,6 +6,7 @@ import { STUDY_PACK_LOOKUP, StudyPack } from "../../data/study-packs";
 import Localization, {
   CreditsPiece,
   VARIABLE_ALEC_DEITLOFF,
+  VARIABLE_FAVICON_CREDIT_LINK,
   VARIABLE_ICON_CREDIT_LINK
 } from "../../localization";
 import QuizManager from "../../QuizManager";
@@ -130,6 +131,16 @@ class IntroPage extends React.PureComponent<ComponentProps, ComponentState> {
               Core - UI - Outlined
             </a>
           </React.Fragment>
+        );
+      case VARIABLE_FAVICON_CREDIT_LINK:
+        return (
+          <a
+            key={VARIABLE_FAVICON_CREDIT_LINK}
+            href="https://www.flaticon.com/packs/chinese-new-year-12"
+            target="_blank"
+          >
+            Freepik
+          </a>
         );
       default:
         return piece;

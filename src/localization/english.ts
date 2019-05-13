@@ -4,6 +4,7 @@ import { StudyPack } from "../data/study-packs";
 import { Counter, Item } from "../redux";
 import Localization, {
   VARIABLE_ALEC_DEITLOFF,
+  VARIABLE_FAVICON_CREDIT_LINK,
   VARIABLE_ICON_CREDIT_LINK
 } from "./index";
 
@@ -18,7 +19,9 @@ const ENGLISH: Localization = {
     VARIABLE_ALEC_DEITLOFF,
     ". Vector icons were taken from the ",
     VARIABLE_ICON_CREDIT_LINK,
-    " collection."
+    " collection. Sakura icon was made by ",
+    VARIABLE_FAVICON_CREDIT_LINK,
+    "."
   ],
   furtherIrregulars: "There are some more irregulars later on as well though:",
   hereAreTheFirstXNumbers: (amountToDisplay: number) =>
