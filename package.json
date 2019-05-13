@@ -5,8 +5,9 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js",
-    "clean": "rimraf ./build"
+    "build": "real-favicon generate faviconDescription.json webpack --config webpack.prod.js",
+    "clean": "rimraf ./build",
+    "favicon": "rimraf ./favicons && real-favicon generate faviconDescription.json faviconData.json favicons"
   },
   "devDependencies": {
     "@svgr/webpack": "^4.1.0",
@@ -17,6 +18,8 @@
     "@types/react-modal": "^3.8.1",
     "@types/react-redux": "^7.0.5",
     "autoprefixer": "^9.5.1",
+    "cli-real-favicon": "^0.0.7",
+    "copy-webpack-plugin": "^5.0.3",
     "css-loader": "^2.1.1",
     "html-webpack-plugin": "^3.2.0",
     "node-sass": "^4.11.0",

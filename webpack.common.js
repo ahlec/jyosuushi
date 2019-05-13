@@ -1,9 +1,11 @@
 const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const ROOT_DIRECTORY = __dirname;
 const BUILD_DIRECTORY = path.resolve(ROOT_DIRECTORY, "build");
+const FAVICON_DIRECTORY = path.resolve(ROOT_DIRECTORY, "favicons");
 const SOURCE_DIRECTORY = path.resolve(ROOT_DIRECTORY, "src");
 const DATA_DIRECTORY = path.resolve(SOURCE_DIRECTORY, "data");
 
@@ -64,6 +66,12 @@ module.exports = {
   },
   plugins: [
     new webpack.HashedModuleIdsPlugin(),
+    new CopyWebpackPlugin([
+      {
+        from: FAVICON_DIRECTORY,
+        to: BUILD_DIRECTORY
+      }
+    ]),
     new HtmlWebpackPlugin({
       template: path.resolve(SOURCE_DIRECTORY, "index.html")
     })

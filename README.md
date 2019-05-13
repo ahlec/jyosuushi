@@ -1,4 +1,4 @@
-# 助数詞を練習: Let's Study Counters!
+# 助数詞を練習: Let's Review Japanese Counters!
 
 A browser-based webapp to facilitate studying [Japanese counters](https://en.wikipedia.org/wiki/Japanese_counter_word). A lightweight app inspired by the simplicity of [WaniKani](https://www.wanikani.com/), this application allows the user to select packs of counters they would like to study, and then presents a quiz with random amounts of random items, requiring the user to correctly count the specified item in Japanese.
 
@@ -9,6 +9,14 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 The project uses [Yarn](https://yarnpkg.com/) for package management.
+
+Additionally, if you're going to be changing the favicon, make sure to globally install `cli-real-favicon`.
+
+```
+yarn global add cli-real-favicon
+```
+
+I haven't found a way to get this to work without being a global installation.
 
 ### Installing
 
@@ -41,6 +49,14 @@ yarn build
 ```
 
 This will create the `build/` directory. On a successful build execution, copy the `build/` directory to a web directory on your server.
+
+## Changing the favicon
+
+If you find yourself needing to change the favicon, export the full-resolution file to the root `favicon.png` file. After that, use the package script to generate the various favicon files.
+
+```
+yarn favicon
+```
 
 ## Built With
 
