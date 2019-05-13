@@ -72,6 +72,7 @@ button {
   padding: 6px;
   cursor: pointer;
   font-family: $font-family;
+  color: $black-lightest;
 
   &:hover:not(:disabled) {
     border-width: 2px;
@@ -79,9 +80,10 @@ button {
   }
 
   &:disabled {
-    background-color: $black-lightest;
-    border-color: $black-base;
+    background-color: $pink-lightest;
+    border-color: $pink-light;
     cursor: default;
-    color: white;
+    color: $pink-dark;
+    opacity: 0.5;
   }
 }
