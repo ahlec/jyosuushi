@@ -16,6 +16,8 @@ export type CreditsPiece =
 export default interface Localization {
   alecDeitloff: string;
   andSoForth: string;
+  buttonIgnoreAnswer: string;
+  buttonNextQuestion: string;
   counterName: (counter: Counter) => string;
   countersDisplayHeader: (numCounters: number) => string;
   credits: ReadonlyArray<CreditsPiece>;

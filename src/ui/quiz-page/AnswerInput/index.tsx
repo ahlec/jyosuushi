@@ -79,9 +79,11 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
           Press the [enter] key when you're finished, or click the arrow button
           to submit.
         </div>
-        {enabled && (
-          <button onClick={this.onSkipClicked}>Skip this question</button>
-        )}
+        <div className="buttons">
+          {enabled && (
+            <button onClick={this.onSkipClicked}>Skip this question</button>
+          )}
+        </div>
       </div>
     );
   }

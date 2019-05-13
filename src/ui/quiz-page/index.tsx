@@ -73,19 +73,11 @@ class QuizPage extends React.PureComponent<ComponentProps> {
           enabled={enabled && quizState === "waiting-for-answer"}
         />
         {quizState === "reviewing-answer" && (
-          <React.Fragment>
-            <ResultsView
-              currentQuestion={currentQuestion}
-              localization={localization}
-            />
-            <button
-              className="next-question"
-              disabled={!enabled}
-              onClick={this.onClickNextQuestion}
-            >
-              Next Question!
-            </button>
-          </React.Fragment>
+          <ResultsView
+            currentQuestion={currentQuestion}
+            localization={localization}
+            onClickNextQuestion={this.onClickNextQuestion}
+          />
         )}
       </div>
     );
@@ -104,9 +96,8 @@ class QuizPage extends React.PureComponent<ComponentProps> {
     }
   }
 
-  private onClickNextQuestion = (event: React.MouseEvent) => {
+  private onClickNextQuestion = () => {
     this.advance();
-    event.stopPropagation();
   };
 
   private onKeyDown = (event: KeyboardEvent) => {

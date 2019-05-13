@@ -23,6 +23,7 @@ import "./index.scss";
 interface ProvidedProps {
   currentQuestion: Question;
   localization: Localization;
+  onClickNextQuestion: () => void;
 }
 
 interface ReduxProps {
@@ -53,24 +54,36 @@ class ResultsView extends React.PureComponent<ComponentProps> {
     const { currentQuestion, localization, usersAnswer } = this.props;
     return (
       <div className="ResultsView">
-        <JudgmentBubble judgment={usersAnswer.judgment} shape="block-circle" />
-        <div className="info">
-          <h3>{HEADERS[usersAnswer.judgment](localization)}</h3>
-          {usersAnswer.judgment !== "skipped" ? (
-            <React.Fragment>
-              <p>{localization.resultTableIntro}</p>
-              <AnswersTable
-                currentQuestion={currentQuestion}
-                localization={localization}
-                usersAnswer={usersAnswer}
-              />
-            </React.Fragment>
-          ) : (
-            <p>{localization.skippedQuestionResult}</p>
-          )}
+        <div className="results">
+          <JudgmentBubble
+            judgment={usersAnswer.judgment}
+            shape="block-circle"
+          />
+          <div className="info">
+            <h3>{HEADERS[usersAnswer.judgment](localization)}</h3>
+            {usersAnswer.judgment !== "skipped" ? (
+              <React.Fragment>
+                <p>{localization.resultTableIntro}</p>
+                <AnswersTable
+                  currentQuestion={currentQuestion}
+                  localization={localization}
+                  usersAnswer={usersAnswer}
+                />
+              </React.Fragment>
+            ) : (
+              <p>{localization.skippedQuestionResult}</p>
+            )}
+          </div>
+        </div>
+        <div className="buttons">
           {usersAnswer.judgment === "incorrect" && (
-            <button onClick={this.onIgnoreClicked}>ignore answer</button>
+            <button className="ignore-answer" onClick={this.onIgnoreClicked}>
+              {localization.buttonIgnoreAnswer}
+            </button>
           )}
+          <button className="next-question" onClick={this.onClickNextQuestion}>
+            {localization.buttonNextQuestion}
+          </button>
         </div>
       </div>
     );
@@ -82,6 +95,12 @@ class ResultsView extends React.PureComponent<ComponentProps> {
       currentQuestion.validAnswers.map(({ counterId }: Answer) => counterId)
     );
     dispatch(ignoreLastAnswer(counters));
+  };
+
+  private onClickNextQuestion = (event: React.MouseEvent) => {
+    const { onClickNextQuestion } = this.props;
+    onClickNextQuestion();
+    event.stopPropagation();
   };
 }
 

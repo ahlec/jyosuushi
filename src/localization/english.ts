@@ -11,6 +11,8 @@ import Localization, {
 const ENGLISH: Localization = {
   alecDeitloff: "Alec Deitloff",
   andSoForth: "... and so forth",
+  buttonIgnoreAnswer: "Ignore Answer",
+  buttonNextQuestion: "Next Question",
   counterName: (counter: Counter) => counter.englishName,
   countersDisplayHeader: (numCounters: number) =>
     `${numCounters} ${numCounters === 1 ? "Counter" : "Counters"} Included`,
