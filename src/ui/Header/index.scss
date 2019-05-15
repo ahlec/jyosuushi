@@ -82,9 +82,17 @@ $font-size-quiz: 20px;
   padding: $header-vertical-padding $header-horizontal-padding;
   box-shadow: 0px 5px 5px 3px $black-darkest;
   margin-bottom: 5px;
+  position: relative;
+  overflow: hidden;
 
   &.home {
     text-align: center;
+
+    &.resting-home {
+      .sakura {
+        opacity: 0.5;
+      }
+    }
 
     .main {
       font-size: $font-size-main-home;
@@ -98,7 +106,18 @@ $font-size-quiz: 20px;
     }
 
     .subheader {
+      margin-bottom: 14px;
+    }
+
+    .subheader {
       margin-top: 6px;
+    }
+
+    .sakura {
+      width: 250px;
+      top: -80px;
+      left: -45px;
+      transform: rotateZ(55deg);
     }
   }
 
@@ -112,6 +131,7 @@ $font-size-quiz: 20px;
       .site-name {
         text-align: center;
         white-space: nowrap;
+        padding-left: 30px;
       }
 
       .scorecard {
@@ -128,10 +148,15 @@ $font-size-quiz: 20px;
 
       .site-name {
         flex: 1;
+        padding-left: 30px;
       }
 
       .scorecard {
         flex: 1;
+      }
+
+      .sakura {
+        opacity: 1;
       }
     }
 
@@ -139,6 +164,12 @@ $font-size-quiz: 20px;
       display: flex;
       justify-content: flex-end;
       align-items: center;
+    }
+
+    .sakura {
+      height: 90%;
+      top: 5%;
+      left: 5px;
     }
   }
 
@@ -241,5 +272,11 @@ $font-size-quiz: 20px;
     .rows {
       margin: 10px 20px 0px;
     }
+  }
+
+  .sakura {
+    position: absolute;
+    transition: opacity 0.2s;
+    opacity: 0;
   }
 }

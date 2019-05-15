@@ -17,6 +17,8 @@ import Score from "./Score";
 
 import HistoryIcon from "./history.svg";
 import HomeIcon from "./home.svg";
+import SakuraIcon from "./sakura.svg";
+
 import "./index.scss";
 
 interface ProvidedProps {
@@ -121,6 +123,7 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
         className={classnames("Header", layout, stage)}
         onAnimationEnd={this.onAnimationEnd}
       >
+        <SakuraIcon className="sakura" />
         {layout === "home" ? this.renderHomeLayout() : this.renderQuizLayout()}
       </div>
     );
