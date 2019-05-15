@@ -2,11 +2,14 @@
 
 .AnswersTable {
   width: 100%;
-  border-bottom: 1px solid $black-dark;
 
   th {
     border-bottom: 1px solid $black-dark;
     padding-bottom: 4px;
+  }
+
+  tr {
+    border-bottom: 1px solid $black-dark;
   }
 
   tr.correct {
@@ -29,7 +32,7 @@
 
     &.cell-counter {
       border-left: 0px;
-      font-size: 36px;
+      font-size: 28px;
     }
 
     &.cell-hiragana {
