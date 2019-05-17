@@ -13,6 +13,7 @@ import itemsReducer from "./reducers/items";
 import questionsReducer from "./reducers/questions";
 import quizStateReducer from "./reducers/quizState";
 import scorecardReducer from "./reducers/scorecard";
+import sessionReducer from "./reducers/session";
 import settingsReducer from "./reducers/settings";
 import userAnswersReducer from "./reducers/userAnswers";
 
@@ -30,6 +31,7 @@ export function createReduxStore(): Store {
       questions: questionsReducer,
       quizState: quizStateReducer,
       scorecard: scorecardReducer,
+      session: sessionReducer,
       settings: settingsReducer,
       userAnswers: userAnswersReducer
     }),
