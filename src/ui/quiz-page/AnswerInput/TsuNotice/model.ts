@@ -1,7 +1,7 @@
-import { ONE_MONTH } from "../../../constants";
+import { ONE_MONTH } from "../../../../constants";
 
 const LOCAL_STORAGE_KEY = "tsu-warning";
-const NUM_DEFAULT_WARNINGS = 10;
+export const NUM_DEFAULT_WARNINGS = 3;
 // How long to go without ACCESSING site before redisplaying. We don't want to
 // redisplay to users unless we displayed the warning before and they haven't
 // accessed the site in a while, possibly forgetting.
@@ -50,7 +50,12 @@ export default class TsuWarningModel {
 
   private constructor(public numWarnings: number) {}
 
-  public save() {
+  public reduce() {
+    this.numWarnings--;
+    this.save();
+  }
+
+  private save() {
     const storageFormat: LocalStorageFormat = {
       lastAccessedTimestamp: Date.now(),
       numWarningsRemaining: this.numWarnings

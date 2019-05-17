@@ -71,6 +71,7 @@ class QuizPage extends React.PureComponent<ComponentProps> {
         <AnswerInput
           currentQuestion={currentQuestion}
           enabled={enabled && quizState === "waiting-for-answer"}
+          localization={localization}
         />
         {quizState === "reviewing-answer" && (
           <ResultsView
