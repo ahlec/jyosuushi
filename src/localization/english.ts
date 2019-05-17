@@ -66,7 +66,9 @@ const ENGLISH: Localization = {
   studyPackSelectionHeader: "Study Packs",
   studyPackSelectionSubheader: "(select 1 or more)",
   studyPackSize: (size: number) =>
-    size === 1 ? "1 counter" : `${size} counters`
+    size === 1 ? "1 counter" : `${size} counters`,
+  tsuNotice:
+    "While 〜つ is always a valid counter, you can't use it here. You'll have to be more specific!"
 };
 
 export default ENGLISH;

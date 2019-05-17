@@ -4,6 +4,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 
 import { HIRAGANA } from "../../../japanese/kana";
+import Localization from "../../../localization";
 import { Answer, Question } from "../../../redux";
 import {
   skipQuestion,
@@ -15,6 +16,8 @@ import KanaInput from "./KanaInput";
 
 import RightIcon from "../../right.svg";
 
+import TsuNotice from "./TsuNotice";
+
 import "./index.scss";
 
 const KEY_ENTER = 13;
@@ -22,6 +25,7 @@ const KEY_ENTER = 13;
 interface ProvidedProps {
   currentQuestion: Question;
   enabled: boolean;
+  localization: Localization;
   onAnswerSubmitted?: (usersCorrectAnswer: Answer | null) => void;
 }
 
@@ -43,7 +47,7 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
   };
 
   public render() {
-    const { currentQuestion, enabled } = this.props;
+    const { currentQuestion, enabled, localization } = this.props;
     const { isValid, value } = this.state;
     return (
       <div
@@ -79,6 +83,7 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
           Press the [enter] key when you're finished, or click the arrow button
           to submit.
         </div>
+        <TsuNotice localization={localization} />
         <div className="buttons">
           {enabled && (
             <button onClick={this.onSkipClicked}>Skip this question</button>

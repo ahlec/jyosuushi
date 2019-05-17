@@ -77,6 +77,10 @@ export type QuizState =
   | "reviewing-answer"
   | "quiz-wrapup";
 
+export interface Session {
+  numQuestionsAsked: number;
+}
+
 export interface State {
   counters: CountersState;
   enabledPacks: ReadonlyArray<string>;
@@ -84,6 +88,7 @@ export interface State {
   questions: QuestionsState;
   quizState: QuizState;
   scorecard: Scorecard;
+  session: Session;
   settings: Settings;
   userAnswers: ReadonlyArray<UserAnswer>;
 }

@@ -46,5 +46,6 @@ export default interface Localization {
   studyPackName: (studyPack: StudyPack) => string;
   studyPackSelectionHeader: string;
   studyPackSelectionSubheader: string;
-  studyPackSize(size: number): string;
+  studyPackSize: (size: number) => string;
+  tsuNotice: string;
 }
