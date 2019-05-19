@@ -18,6 +18,7 @@ export default interface Localization {
   andSoForth: string;
   buttonIgnoreAnswer: string;
   buttonNextQuestion: string;
+  counterItemsPrefix: (numCounters: number) => string;
   counterName: (counter: Counter) => string;
   countersDisplayHeader: (numCounters: number) => string;
   credits: ReadonlyArray<CreditsPiece>;

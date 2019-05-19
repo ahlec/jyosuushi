@@ -13,6 +13,10 @@ const ENGLISH: Localization = {
   andSoForth: "... and so forth",
   buttonIgnoreAnswer: "Ignore Answer",
   buttonNextQuestion: "Next Question",
+  counterItemsPrefix: numCounters =>
+    `The following ${
+      numCounters === 1 ? "is an example" : "are examples"
+    } of what this is used to count:`,
   counterName: (counter: Counter) => counter.englishName,
   countersDisplayHeader: (numCounters: number) =>
     `${numCounters} ${numCounters === 1 ? "Counter" : "Counters"} Included`,

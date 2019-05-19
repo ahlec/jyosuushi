@@ -2,10 +2,10 @@ import classnames from "classnames";
 import { memoize } from "lodash";
 import * as React from "react";
 
-// import { ITEMS_FROM_COUNTER } from "../data/items";
+import { ITEMS_FROM_COUNTER } from "../data/items";
 import { conjugateNumberAndCounter } from "../japanese/counters";
 import Localization from "../localization";
-import { Counter } from "../redux";
+import { Counter, Item } from "../redux";
 
 import "./CounterDetails.scss";
 
@@ -93,6 +93,7 @@ export default class CounterDetails extends React.PureComponent<
     const { counter, localization } = this.props;
     const conjugations = getConjugations(counter);
     const furtherIrregulars = getFurtherIrregulars(counter);
+    const items = ITEMS_FROM_COUNTER[counter.counterId];
     return (
       <div className="CounterDetails">
         <div className="kanji">{counter.kanji}</div>
@@ -112,6 +113,14 @@ export default class CounterDetails extends React.PureComponent<
             <div className="examples-table">
               {furtherIrregulars.map(this.renderFurtherIrregular)}
             </div>
+          </React.Fragment>
+        )}
+        {items.length > 1 && ( // don't show list if only one item, will be rule
+          <React.Fragment>
+            <p className="items-prefix">
+              {localization.counterItemsPrefix(items.length)}
+            </p>
+            <div className="items-list">{items.map(this.renderItem)}</div>
           </React.Fragment>
         )}
       </div>
@@ -163,5 +172,10 @@ export default class CounterDetails extends React.PureComponent<
         </div>
       </div>
     );
+  };
+
+  private renderItem = (item: Item) => {
+    const { localization } = this.props;
+    return <div key={item.itemId}>{localization.itemPlural(item)}</div>;
   };
 }
