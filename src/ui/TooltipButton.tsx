@@ -1,4 +1,5 @@
 import * as React from "react";
+import ReactTooltip from "react-tooltip";
 
 import "./TooltipButton.scss";
 
@@ -22,7 +23,8 @@ export default class TooltipButton extends React.PureComponent<
   };
 
   public render() {
-    const { icon: Icon } = this.props;
+    const { icon: Icon, text } = this.props;
+    const id = `tb-${text}`;
     return (
       <div
         className="TooltipButton"
@@ -30,7 +32,10 @@ export default class TooltipButton extends React.PureComponent<
         onMouseOut={this.onMouseOut}
         onClick={this.onClick}
       >
-        <Icon />
+        <Icon data-tip data-for={id} />
+        <ReactTooltip id={id} place="bottom" type="dark" effect="solid">
+          {text}
+        </ReactTooltip>
       </div>
     );
   }
