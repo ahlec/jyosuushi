@@ -1,20 +1,23 @@
 import * as React from "react";
 
 import { KanaDefinition } from "../../../japanese/kana";
-import { Question } from "../../../redux";
+
+export interface KanaInputValue {
+  conversionBuffer: string;
+  rawValue: string;
+  validValue: string | null;
+}
 
 interface ComponentProps {
   children?: React.ReactNode;
-  currentQuestion: Question;
   enabled: boolean;
   kana: KanaDefinition;
-  onChange?: (value: string) => void;
+  onChange?: (value: KanaInputValue) => void;
+  value: KanaInputValue | null | undefined;
 }
 
 interface ComponentState {
-  buffer: string;
   lastPosition: number;
-  rawValue: string;
 }
 
 function getResetBufferForKana(kana: string): string {
@@ -41,9 +44,7 @@ export default class KanaInput extends React.PureComponent<
   ComponentState
 > {
   public state: ComponentState = {
-    buffer: "",
-    lastPosition: 0,
-    rawValue: ""
+    lastPosition: 0
   };
   private inputRef = React.createRef<HTMLInputElement>();
 
@@ -56,15 +57,8 @@ export default class KanaInput extends React.PureComponent<
     }
   }
 
-  public componentDidUpdate({
-    currentQuestion: prevQuestion,
-    enabled: wasEnabled
-  }: ComponentProps) {
-    const { currentQuestion, enabled } = this.props;
-    if (currentQuestion !== prevQuestion) {
-      this.reset();
-    }
-
+  public componentDidUpdate({ enabled: wasEnabled }: ComponentProps) {
+    const { enabled } = this.props;
     if (enabled !== wasEnabled) {
       const { current: input } = this.inputRef;
       if (input) {
@@ -74,15 +68,14 @@ export default class KanaInput extends React.PureComponent<
   }
 
   public render() {
-    const { children, enabled } = this.props;
-    const { rawValue } = this.state;
+    const { children, enabled, value } = this.props;
     return (
       <div className="KanaInput">
         <input
           ref={this.inputRef}
           type="text"
           disabled={!enabled}
-          value={rawValue}
+          value={value ? value.rawValue : ""}
           onChange={this.handleChange}
         />
         {children}
@@ -129,9 +122,32 @@ export default class KanaInput extends React.PureComponent<
       temp = temp.slice(1);
     }
 
-    this.setState({ buffer, lastPosition, rawValue });
+    this.setState({ lastPosition });
     if (onChange) {
-      onChange(rawValue);
+      let isValid = !!rawValue && kana.isOnlyKana(rawValue);
+      let validValue: string | null = rawValue;
+      if (!isValid && rawValue && rawValue.toLowerCase().endsWith("n")) {
+        // Check to see if we end with "n" like "じｎ"
+        // If we hit enter with that, then we know that's still valid
+        if (rawValue.length === 1) {
+          // The input is just "n"
+          isValid = true;
+          validValue = "ん";
+        } else {
+          const withoutUnconvertedFinalN = rawValue.substr(
+            0,
+            rawValue.length - 1
+          );
+          validValue = withoutUnconvertedFinalN + "ん";
+          isValid = kana.isOnlyKana(withoutUnconvertedFinalN);
+        }
+      }
+
+      onChange({
+        conversionBuffer: buffer,
+        rawValue,
+        validValue: isValid ? validValue : null
+      });
     }
   };
 
@@ -139,11 +155,14 @@ export default class KanaInput extends React.PureComponent<
     event: React.ChangeEvent<HTMLInputElement>,
     currentPosition: number
   ): string {
+    const { conversionBuffer, rawValue } = this.props.value
+      ? this.props.value
+      : { conversionBuffer: "", rawValue: "" };
     const positionDelta = currentPosition - this.state.lastPosition;
 
     const newCharacter = event.target.value[currentPosition - 1] || "";
     if (positionDelta === 1) {
-      return this.state.buffer + newCharacter;
+      return conversionBuffer + newCharacter;
     }
 
     if (positionDelta < 0) {
@@ -159,14 +178,13 @@ export default class KanaInput extends React.PureComponent<
       // new: orvald
       // buffer: 'vald'
 
-      const prevValue = this.state.rawValue;
       const newValue = event.target.value;
       for (let index = 0; index < newValue.length; ++index) {
-        if (index >= prevValue.length) {
+        if (index >= rawValue.length) {
           break;
         }
 
-        if (prevValue[index] !== newValue[index]) {
+        if (rawValue[index] !== newValue[index]) {
           return newValue.slice(index);
         }
       }
@@ -175,17 +193,5 @@ export default class KanaInput extends React.PureComponent<
     }
 
     return newCharacter;
-  }
-
-  private reset() {
-    const { onChange } = this.props;
-    this.setState({
-      buffer: "",
-      lastPosition: 0,
-      rawValue: ""
-    });
-    if (onChange) {
-      onChange("");
-    }
   }
 }

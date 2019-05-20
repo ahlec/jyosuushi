@@ -5,14 +5,14 @@ import { connect } from "react-redux";
 
 import { HIRAGANA } from "../../../japanese/kana";
 import Localization from "../../../localization";
-import { Answer, Question } from "../../../redux";
+import { Answer, Question, State } from "../../../redux";
 import {
   skipQuestion,
   submitCorrectAnswer,
   submitIncorrectAnswer
 } from "../../../redux/actions";
 import { Dispatch } from "../../../redux/store";
-import KanaInput from "./KanaInput";
+import KanaInput, { KanaInputValue } from "./KanaInput";
 
 import RightIcon from "../../right.svg";
 
@@ -29,11 +29,20 @@ interface ProvidedProps {
   onAnswerSubmitted?: (usersCorrectAnswer: Answer | null) => void;
 }
 
-type ComponentProps = ProvidedProps & { dispatch: Dispatch };
+interface ReduxProps {
+  numQuestionsAsked: number;
+}
+
+function mapStateToProps(state: State): ReduxProps {
+  return {
+    numQuestionsAsked: state.session.numQuestionsAsked
+  };
+}
+
+type ComponentProps = ProvidedProps & ReduxProps & { dispatch: Dispatch };
 
 interface ComponentState {
-  value: string;
-  isValid: boolean;
+  value: KanaInputValue | null;
 }
 
 function getCounterId(answer: Answer): string {
@@ -42,23 +51,31 @@ function getCounterId(answer: Answer): string {
 
 class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
   public state: ComponentState = {
-    isValid: false,
-    value: ""
+    value: null
   };
 
+  public componentDidUpdate({
+    numQuestionsAsked: prevNumQuestionsAsked
+  }: ComponentProps) {
+    const { numQuestionsAsked } = this.props;
+    if (numQuestionsAsked !== prevNumQuestionsAsked) {
+      this.setState({ value: null });
+    }
+  }
+
   public render() {
-    const { currentQuestion, enabled, localization } = this.props;
-    const { isValid, value } = this.state;
+    const { enabled, localization } = this.props;
+    const { value } = this.state;
     return (
       <div
         className={classnames("AnswerInput", !enabled && "disabled")}
         onKeyDown={this.onKeyDown}
       >
         <KanaInput
-          currentQuestion={currentQuestion}
           enabled={enabled}
           kana={HIRAGANA}
           onChange={this.onChange}
+          value={value}
         >
           <div className="submit-button-container">
             <button
@@ -77,7 +94,7 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
           className={classnames(
             "submit-instructions",
             !!value && enabled && "has-value",
-            !isValid && enabled && "invalid"
+            !!value && !value.validValue && enabled && "invalid"
           )}
         >
           Press the [enter] key when you're finished, or click the arrow button
@@ -93,31 +110,10 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
     );
   }
 
-  private onChange = (changedValue: string) => {
-    let isValid = !!changedValue && HIRAGANA.isOnlyKana(changedValue);
-    let value = changedValue;
-    if (!isValid && changedValue && changedValue.toLowerCase().endsWith("n")) {
-      // Check to see if we end with "n" like "じｎ"
-      // If we hit enter with that, then we know that's still valid
-      if (changedValue.length === 1) {
-        // The input is just "n"
-        isValid = true;
-        value = "ん";
-      } else {
-        const withoutUnconvertedFinalN = changedValue.substr(
-          0,
-          changedValue.length - 1
-        );
-        value = withoutUnconvertedFinalN + "ん";
-        isValid = HIRAGANA.isOnlyKana(withoutUnconvertedFinalN);
-      }
-    }
-
+  private onChange = (value: KanaInputValue) =>
     this.setState({
-      isValid,
       value
     });
-  };
 
   private onClickSubmitButton = (event: React.MouseEvent) => {
     this.submit();
@@ -134,23 +130,23 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
 
   private submit() {
     const { currentQuestion, dispatch, onAnswerSubmitted } = this.props;
-    const { isValid, value } = this.state;
+    const { value } = this.state;
 
-    if (!isValid) {
+    if (!value || !value.validValue) {
       return;
     }
 
-    const correct = this.getCorrectAnswer(value);
+    const correct = this.getCorrectAnswer(value.validValue);
     if (onAnswerSubmitted) {
       onAnswerSubmitted(correct);
     }
 
     if (correct) {
-      dispatch(submitCorrectAnswer(value));
+      dispatch(submitCorrectAnswer(value.validValue));
     } else {
       dispatch(
         submitIncorrectAnswer(
-          value,
+          value.validValue,
           uniq(currentQuestion.validAnswers.map(getCounterId))
         )
       );
@@ -171,4 +167,4 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
   private onSkipClicked = () => this.props.dispatch(skipQuestion());
 }
 
-export default connect()(AnswerInput);
+export default connect(mapStateToProps)(AnswerInput);
