@@ -4,6 +4,7 @@ import { KanaDefinition } from "../../../japanese/kana";
 
 export interface KanaInputValue {
   conversionBuffer: string;
+  lastPosition: number;
   rawValue: string;
   validValue: string | null;
 }
@@ -14,10 +15,6 @@ interface ComponentProps {
   kana: KanaDefinition;
   onChange?: (value: KanaInputValue) => void;
   value: KanaInputValue | null | undefined;
-}
-
-interface ComponentState {
-  lastPosition: number;
 }
 
 function getResetBufferForKana(kana: string): string {
@@ -39,13 +36,7 @@ function getResetBufferForKana(kana: string): string {
   }
 }
 
-export default class KanaInput extends React.PureComponent<
-  ComponentProps,
-  ComponentState
-> {
-  public state: ComponentState = {
-    lastPosition: 0
-  };
+export default class KanaInput extends React.PureComponent<ComponentProps> {
   private inputRef = React.createRef<HTMLInputElement>();
 
   public componentDidMount() {
@@ -122,7 +113,6 @@ export default class KanaInput extends React.PureComponent<
       temp = temp.slice(1);
     }
 
-    this.setState({ lastPosition });
     if (onChange) {
       let isValid = !!rawValue && kana.isOnlyKana(rawValue);
       let validValue: string | null = rawValue;
@@ -145,6 +135,7 @@ export default class KanaInput extends React.PureComponent<
 
       onChange({
         conversionBuffer: buffer,
+        lastPosition,
         rawValue,
         validValue: isValid ? validValue : null
       });
@@ -155,10 +146,10 @@ export default class KanaInput extends React.PureComponent<
     event: React.ChangeEvent<HTMLInputElement>,
     currentPosition: number
   ): string {
-    const { conversionBuffer, rawValue } = this.props.value
+    const { conversionBuffer, lastPosition, rawValue } = this.props.value
       ? this.props.value
-      : { conversionBuffer: "", rawValue: "" };
-    const positionDelta = currentPosition - this.state.lastPosition;
+      : { conversionBuffer: "", lastPosition: 0, rawValue: "" };
+    const positionDelta = currentPosition - lastPosition;
 
     const newCharacter = event.target.value[currentPosition - 1] || "";
     if (positionDelta === 1) {
