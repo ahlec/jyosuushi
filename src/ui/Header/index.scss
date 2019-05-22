@@ -248,12 +248,20 @@ $font-size-quiz: 20px;
 
   .scorecard {
     &.has-answered-question {
+      &:not(.has-score) .only-if-answered .button-wrapper {
+        border-left-color: transparent;
+      }
+
       .only-if-answered {
         opacity: 1;
 
         .TooltipButton {
           cursor: pointer;
         }
+      }
+
+      .button-wrapper {
+        border-left-color: black;
       }
     }
 
@@ -265,6 +273,16 @@ $font-size-quiz: 20px;
       .TooltipButton {
         cursor: default;
       }
+    }
+
+    .button-wrapper {
+      padding: 0px 8px;
+      border-left: 1px solid transparent;
+      height: 20px;
+    }
+
+    .Score {
+      margin-right: 8px;
     }
   }
 

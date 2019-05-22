@@ -1,5 +1,3 @@
-@import "../palette.scss";
-
 .TooltipButton {
   display: inline-block;
   cursor: pointer;
@@ -21,30 +19,6 @@
 
     path {
       fill: black;
-    }
-  }
-
-  .__react_component_tooltip.type-dark {
-    background-color: $black-dark;
-
-    &.place-left::after {
-      border-left-color: $black-dark;
-    }
-
-    &.place-bottom::after {
-      border-bottom-color: $black-dark;
-    }
-
-    &.place-right::after {
-      border-right-color: $black-dark;
-    }
-
-    &.place-top::after {
-      border-top-color: $black-dark;
-    }
-
-    &.show {
-      opacity: 1;
     }
   }
 }

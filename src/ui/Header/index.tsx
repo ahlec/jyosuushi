@@ -148,9 +148,14 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
   }
 
   private renderQuizLayout() {
-    const { hasAnsweredQuestion, localization } = this.props;
+    const {
+      hasAnsweredQuestion,
+      localization,
+      scorecard: { numCorrectAnswers, numIncorrectAnswers }
+    } = this.props;
     const { isPromptingToLeave, showHistoryModal, stage } = this.state;
     const enabled = stage === "resting-quiz";
+    const numAnswered = numCorrectAnswers + numIncorrectAnswers;
 
     return (
       <React.Fragment>
@@ -158,24 +163,29 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
         <div
           className={classnames(
             "scorecard",
-            hasAnsweredQuestion && "has-answered-question"
+            hasAnsweredQuestion && "has-answered-question",
+            numAnswered > 0 && "has-score"
           )}
         >
           <div className="only-if-answered">
-            <Score />
+            <Score localization={localization} />
+            <span className="button-wrapper">
+              <TooltipButton
+                enabled={enabled}
+                icon={HistoryIcon}
+                onClick={this.onClickHistory}
+                text="History"
+              />
+            </span>
+          </div>
+          <span className="button-wrapper">
             <TooltipButton
               enabled={enabled}
-              icon={HistoryIcon}
-              onClick={this.onClickHistory}
-              text="History"
+              icon={HomeIcon}
+              onClick={this.onClickHome}
+              text="Home"
             />
-          </div>
-          <TooltipButton
-            enabled={enabled}
-            icon={HomeIcon}
-            onClick={this.onClickHome}
-            text="Home"
-          />
+          </span>
         </div>
         <Modal
           className="HistoryModal"

@@ -72,7 +72,8 @@ const ENGLISH: Localization = {
   studyPackSize: (size: number) =>
     size === 1 ? "1 counter" : `${size} counters`,
   tsuNotice:
-    "While 〜つ is always a valid counter, you can't use it here. You'll have to be more specific!"
+    "While 〜つ is always a valid counter, you can't use it here. You'll have to be more specific!",
+  xOfYCorrect: (x, y) => `${x} / ${y} correct`
 };
 
 export default ENGLISH;
