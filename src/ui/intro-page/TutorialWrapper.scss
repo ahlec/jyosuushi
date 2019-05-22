@@ -1,0 +1,41 @@
+.TutorialWrapper {
+  .content {
+    background-color: blue;
+    display: flex;
+
+    .left,
+    .right {
+      flex: 0 0 100px;
+      background-color: red;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &.enabled {
+        cursor: pointer;
+      }
+    }
+
+    .viewport {
+      flex: 1;
+      background-color: green;
+      position: relative;
+
+      .current,
+      .previous {
+        position: absolute;
+        top: 0px;
+        height: 100%;
+        width: 100%;
+      }
+
+      .current {
+        background-color: yellow;
+      }
+
+      .previous {
+        background-color: purple;
+      }
+    }
+  }
+}

@@ -49,5 +49,6 @@ export default interface Localization {
   studyPackSelectionSubheader: string;
   studyPackSize: (size: number) => string;
   tsuNotice: string;
+  tutorial: string;
   xOfYCorrect: (x: number, y: number) => string;
 }

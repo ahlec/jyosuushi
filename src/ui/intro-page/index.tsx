@@ -12,6 +12,8 @@ import Localization, {
 import QuizManager from "../../QuizManager";
 import { State } from "../../redux";
 
+import TutorialModal from "./TutorialModal";
+
 import CounterPreview from "./CounterPreview";
 import PackSelection from "./PackSelection";
 
@@ -45,6 +47,7 @@ type ComponentProps = ProvidedProps & ReduxProps;
 
 interface ComponentState {
   selection: ReadonlyArray<StudyPack>;
+  showingTutorial: boolean;
 }
 
 class IntroPage extends React.PureComponent<ComponentProps, ComponentState> {
@@ -54,7 +57,8 @@ class IntroPage extends React.PureComponent<ComponentProps, ComponentState> {
     super(props);
 
     this.state = {
-      selection: props.enabledPacks
+      selection: props.enabledPacks,
+      showingTutorial: false
     };
   }
 
@@ -71,7 +75,7 @@ class IntroPage extends React.PureComponent<ComponentProps, ComponentState> {
 
   public render() {
     const { localization } = this.props;
-    const { selection } = this.state;
+    const { selection, showingTutorial } = this.state;
     return (
       <div className="IntroPage">
         <p>
@@ -84,7 +88,10 @@ class IntroPage extends React.PureComponent<ComponentProps, ComponentState> {
             Japanese counters
           </a>
           . You'll be given a random item and a random number, and then you tell
-          us how you'd count that in Japanese.
+          us how you'd count that in Japanese.{" "}
+          <span className="link" onClick={this.showTutorialModal}>
+            Click here to read the tutorial.
+          </span>
         </p>
         <p>
           To begin, select one or more study pack below. These will determine
@@ -105,6 +112,11 @@ class IntroPage extends React.PureComponent<ComponentProps, ComponentState> {
         <div className="credits">
           {localization.credits.map(this.renderCredit)}
         </div>
+        <TutorialModal
+          isOpen={showingTutorial}
+          localization={localization}
+          onRequestClose={this.hideTutorialModal}
+        />
       </div>
     );
   }
@@ -146,6 +158,9 @@ class IntroPage extends React.PureComponent<ComponentProps, ComponentState> {
         return piece;
     }
   };
+
+  private showTutorialModal = () => this.setState({ showingTutorial: true });
+  private hideTutorialModal = () => this.setState({ showingTutorial: false });
 
   private onSelectionChanged = (selection: ReadonlyArray<StudyPack>) =>
     this.setState({

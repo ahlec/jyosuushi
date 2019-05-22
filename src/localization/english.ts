@@ -73,6 +73,7 @@ const ENGLISH: Localization = {
     size === 1 ? "1 counter" : `${size} counters`,
   tsuNotice:
     "While 〜つ is always a valid counter, you can't use it here. You'll have to be more specific!",
+  tutorial: "Tutorial",
   xOfYCorrect: (x, y) => `${x} / ${y} correct`
 };
 
