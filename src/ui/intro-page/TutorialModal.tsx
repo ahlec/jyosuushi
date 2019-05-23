@@ -1,4 +1,5 @@
 import classnames from "classnames";
+import { memoize } from "lodash";
 import * as React from "react";
 
 import Localization from "../../localization";
@@ -23,7 +24,8 @@ interface ComponentProps {
 
 interface ComponentState {
   currentPage: number;
-  transitionDirection: "left" | "right" | null;
+  previousPage: number;
+  transition: "left" | "right" | "replace" | null;
 }
 
 export default class TutorialModal extends React.PureComponent<
@@ -32,8 +34,26 @@ export default class TutorialModal extends React.PureComponent<
 > {
   public state: ComponentState = {
     currentPage: 0,
-    transitionDirection: null
+    previousPage: 0,
+    transition: null
   };
+  private onClickPageLink = memoize(pageNumber => () => {
+    const { currentPage, transition } = this.state;
+    if (
+      transition !== null ||
+      pageNumber < 0 ||
+      pageNumber >= TUTORIAL_PAGES.length ||
+      pageNumber === currentPage
+    ) {
+      return;
+    }
+
+    this.setState({
+      currentPage: pageNumber,
+      previousPage: currentPage,
+      transition: "replace"
+    });
+  });
 
   public componentDidMount() {
     window.addEventListener("keydown", this.onKeyDown);
@@ -45,14 +65,14 @@ export default class TutorialModal extends React.PureComponent<
 
   public render() {
     const { isOpen, localization } = this.props;
-    const { currentPage, transitionDirection } = this.state;
-    const isChangingPage = transitionDirection !== null;
+    const { currentPage, previousPage, transition } = this.state;
+    const isChangingPage = transition !== null;
 
     return (
       <Modal
         className={classnames(
           "TutorialModal",
-          transitionDirection && `transitioning-${transitionDirection}`
+          transition && `transitioning-${transition}`
         )}
         header={localization.tutorial}
         isOpen={isOpen}
@@ -68,14 +88,8 @@ export default class TutorialModal extends React.PureComponent<
           <LeftIcon />
         </div>
         <div className="viewport">
-          {transitionDirection && (
-            <div className="previous">
-              {this.renderPage(
-                transitionDirection === "left"
-                  ? currentPage + 1
-                  : currentPage - 1
-              )}
-            </div>
+          {transition && (
+            <div className="previous">{this.renderPage(previousPage)}</div>
           )}
           <div className="current" onAnimationEnd={this.onAnimationEnd}>
             {this.renderPage(currentPage)}
@@ -105,7 +119,31 @@ export default class TutorialModal extends React.PureComponent<
           <img src={page.image} />
         </div>
         <div className="text">{page.getText(localization)}</div>
+        <div className="navigation">
+          {TUTORIAL_PAGES.map((_, index) =>
+            this.renderNavigationLink(pageNumber, index)
+          )}
+        </div>
       </React.Fragment>
+    );
+  };
+
+  private renderNavigationLink = (
+    onPageNumber: number,
+    linkedPageNumber: number
+  ) => {
+    return (
+      <svg
+        key={linkedPageNumber}
+        className={classnames(
+          "navigation-link",
+          linkedPageNumber === onPageNumber && "active"
+        )}
+        viewBox="0 0 10 10"
+        onClick={this.onClickPageLink(linkedPageNumber)}
+      >
+        <circle cx="5" cy="5" r="5" />{" "}
+      </svg>
     );
   };
 
@@ -123,56 +161,59 @@ export default class TutorialModal extends React.PureComponent<
   };
 
   private onClickLeft = () => {
-    const { currentPage, transitionDirection } = this.state;
-    if (transitionDirection !== null || currentPage <= 0) {
+    const { currentPage, transition } = this.state;
+    if (transition !== null || currentPage <= 0) {
       return;
     }
 
     this.setState({
       currentPage: currentPage - 1,
-      transitionDirection: "left"
+      previousPage: currentPage,
+      transition: "left"
     });
   };
 
   private onAnimationEnd = ({ animationName }: React.AnimationEvent) => {
-    const { transitionDirection } = this.state;
+    const { transition } = this.state;
     let finishesTransition = false;
     switch (animationName) {
       case "transition-left-current": {
-        finishesTransition = transitionDirection === "left";
+        finishesTransition = transition === "left";
         break;
       }
       case "transition-right-current": {
-        finishesTransition = transitionDirection === "right";
+        finishesTransition = transition === "right";
+        break;
+      }
+      case "transition-replace-current": {
+        finishesTransition = transition === "replace";
         break;
       }
     }
 
     if (finishesTransition) {
       this.setState({
-        transitionDirection: null
+        transition: null
       });
     }
   };
 
   private onRequestClose = () => {
     const { onRequestClose } = this.props;
-    this.setState({ currentPage: 0, transitionDirection: null });
+    this.setState({ currentPage: 0, previousPage: 0, transition: null });
     onRequestClose();
   };
 
   private onClickRight = () => {
-    const { currentPage, transitionDirection } = this.state;
-    if (
-      transitionDirection !== null ||
-      currentPage >= TUTORIAL_PAGES.length - 1
-    ) {
+    const { currentPage, transition } = this.state;
+    if (transition !== null || currentPage >= TUTORIAL_PAGES.length - 1) {
       return;
     }
 
     this.setState({
       currentPage: currentPage + 1,
-      transitionDirection: "right"
+      previousPage: currentPage,
+      transition: "right"
     });
   };
 }

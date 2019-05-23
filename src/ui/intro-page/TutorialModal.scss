@@ -46,6 +46,26 @@
   }
 }
 
+@keyframes transition-replace-current {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes transition-replace-previous {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
 .TutorialModal {
   &.transitioning-right {
     .content {
@@ -70,6 +90,20 @@
 
         .previous {
           @include animateElement(transition-left-previous);
+        }
+      }
+    }
+  }
+
+  &.transitioning-replace {
+    .content {
+      .viewport {
+        .current {
+          @include animateElement(transition-replace-current);
+        }
+
+        .previous {
+          @include animateElement(transition-replace-previous);
         }
       }
     }
@@ -156,6 +190,36 @@
           border-top: 1px solid $modal-border;
           width: 80%;
           text-align: center;
+        }
+
+        .navigation {
+          margin: 10px 0px;
+
+          .navigation-link {
+            width: 12px;
+            height: 12px;
+            margin: 0px 3px;
+            cursor: pointer;
+            transition: opacity 0.1s;
+            opacity: 0.8;
+
+            &.active {
+              cursor: default;
+              opacity: 1;
+
+              circle {
+                fill: $modal-button-hover;
+              }
+            }
+
+            &:hover {
+              opacity: 1;
+            }
+
+            circle {
+              fill: $modal-button;
+            }
+          }
         }
       }
     }
