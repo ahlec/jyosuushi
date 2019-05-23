@@ -8,32 +8,12 @@ import Modal from "../Modal";
 import LeftIcon from "../left.svg";
 import RightIcon from "../right.svg";
 
-import KyotoJpg from "./tutorial/kyoto.jpg";
+import { TUTORIAL_PAGES } from "./tutorial";
 
-import "./TutorialWrapper.scss";
+import "./TutorialModal.scss";
 
 const KEYCODE_LEFT_ARROW = 37;
 const KEYCODE_RIGHT_ARROW = 39;
-
-interface TutorialPage {
-  image: string;
-  text: string;
-}
-
-const PAGES: ReadonlyArray<TutorialPage> = [
-  {
-    image: KyotoJpg,
-    text: "hello world"
-  },
-  {
-    image: KyotoJpg,
-    text: "then some more"
-  },
-  {
-    image: KyotoJpg,
-    text: "thanks for reading!"
-  }
-];
 
 interface ComponentProps {
   isOpen: boolean;
@@ -46,7 +26,7 @@ interface ComponentState {
   transitionDirection: "left" | "right" | null;
 }
 
-export default class TutorialWrapper extends React.PureComponent<
+export default class TutorialModal extends React.PureComponent<
   ComponentProps,
   ComponentState
 > {
@@ -71,7 +51,7 @@ export default class TutorialWrapper extends React.PureComponent<
     return (
       <Modal
         className={classnames(
-          "TutorialWrapper",
+          "TutorialModal",
           transitionDirection && `transitioning-${transitionDirection}`
         )}
         header={localization.tutorial}
@@ -104,7 +84,9 @@ export default class TutorialWrapper extends React.PureComponent<
         <div
           className={classnames(
             "right",
-            !isChangingPage && currentPage < PAGES.length - 1 && "enabled"
+            !isChangingPage &&
+              currentPage < TUTORIAL_PAGES.length - 1 &&
+              "enabled"
           )}
           onClick={this.onClickRight}
         >
@@ -115,13 +97,14 @@ export default class TutorialWrapper extends React.PureComponent<
   }
 
   private renderPage = (pageNumber: number) => {
-    const { image, text } = PAGES[pageNumber];
+    const { localization } = this.props;
+    const page = TUTORIAL_PAGES[pageNumber];
     return (
       <React.Fragment>
         <div className="picture">
-          <img src={image} />
+          <img src={page.image} />
         </div>
-        <div className="text">{text}</div>
+        <div className="text">{page.getText(localization)}</div>
       </React.Fragment>
     );
   };
@@ -180,7 +163,10 @@ export default class TutorialWrapper extends React.PureComponent<
 
   private onClickRight = () => {
     const { currentPage, transitionDirection } = this.state;
-    if (transitionDirection !== null || currentPage >= PAGES.length - 1) {
+    if (
+      transitionDirection !== null ||
+      currentPage >= TUTORIAL_PAGES.length - 1
+    ) {
       return;
     }
 

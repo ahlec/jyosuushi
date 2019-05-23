@@ -46,7 +46,7 @@
   }
 }
 
-.TutorialWrapper {
+.TutorialModal {
   &.transitioning-right {
     .content {
       .viewport {
@@ -77,6 +77,7 @@
 
   .content {
     display: flex;
+    $button-inset-margin: 5px;
 
     .left,
     .right {
@@ -85,8 +86,9 @@
       align-items: center;
       justify-content: center;
       user-select: none;
-      margin: 10px 0px;
+      margin: $button-inset-margin 0px;
       transition: background-color 0.2s;
+      border-radius: 5px;
 
       &.enabled {
         cursor: pointer;
@@ -110,6 +112,14 @@
       }
     }
 
+    .left {
+      margin-left: $button-inset-margin;
+    }
+
+    .right {
+      margin-right: $button-inset-margin;
+    }
+
     .viewport {
       flex: 1;
       position: relative;
@@ -130,7 +140,7 @@
         .picture {
           flex: 1;
           display: flex;
-          justify-content: end;
+          justify-content: flex-end;
           padding-bottom: $separation-padding;
 
           img {
