@@ -8,23 +8,29 @@ import Modal from "../Modal";
 import LeftIcon from "../left.svg";
 import RightIcon from "../right.svg";
 
+import KyotoJpg from "./tutorial/kyoto.jpg";
+
 import "./TutorialWrapper.scss";
 
 const KEYCODE_LEFT_ARROW = 37;
 const KEYCODE_RIGHT_ARROW = 39;
 
 interface TutorialPage {
+  image: string;
   text: string;
 }
 
 const PAGES: ReadonlyArray<TutorialPage> = [
   {
+    image: KyotoJpg,
     text: "hello world"
   },
   {
+    image: KyotoJpg,
     text: "then some more"
   },
   {
+    image: KyotoJpg,
     text: "thanks for reading!"
   }
 ];
@@ -109,7 +115,15 @@ export default class TutorialWrapper extends React.PureComponent<
   }
 
   private renderPage = (pageNumber: number) => {
-    return pageNumber;
+    const { image, text } = PAGES[pageNumber];
+    return (
+      <React.Fragment>
+        <div className="picture">
+          <img src={image} />
+        </div>
+        <div className="text">{text}</div>
+      </React.Fragment>
+    );
   };
 
   private onKeyDown = (event: KeyboardEvent) => {
