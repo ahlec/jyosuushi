@@ -5,7 +5,13 @@ import Localization from "../../localization";
 
 import Modal from "../Modal";
 
+import LeftIcon from "../left.svg";
+import RightIcon from "../right.svg";
+
 import "./TutorialWrapper.scss";
+
+const KEYCODE_LEFT_ARROW = 37;
+const KEYCODE_RIGHT_ARROW = 39;
 
 interface TutorialPage {
   text: string;
@@ -43,6 +49,14 @@ export default class TutorialWrapper extends React.PureComponent<
     transitionDirection: null
   };
 
+  public componentDidMount() {
+    window.addEventListener("keydown", this.onKeyDown);
+  }
+
+  public componentWillUnmount() {
+    window.removeEventListener("keydown", this.onKeyDown);
+  }
+
   public render() {
     const { isOpen, localization } = this.props;
     const { currentPage, transitionDirection } = this.state;
@@ -65,7 +79,7 @@ export default class TutorialWrapper extends React.PureComponent<
           )}
           onClick={this.onClickLeft}
         >
-          {!isChangingPage && currentPage > 0 && "<"}
+          <LeftIcon />
         </div>
         <div className="viewport">
           {transitionDirection && (
@@ -77,7 +91,9 @@ export default class TutorialWrapper extends React.PureComponent<
               )}
             </div>
           )}
-          <div className="current">{this.renderPage(currentPage)}</div>
+          <div className="current" onAnimationEnd={this.onAnimationEnd}>
+            {this.renderPage(currentPage)}
+          </div>
         </div>
         <div
           className={classnames(
@@ -86,7 +102,7 @@ export default class TutorialWrapper extends React.PureComponent<
           )}
           onClick={this.onClickRight}
         >
-          {!isChangingPage && currentPage < PAGES.length - 1 && ">"}
+          <RightIcon />
         </div>
       </Modal>
     );
@@ -94,6 +110,19 @@ export default class TutorialWrapper extends React.PureComponent<
 
   private renderPage = (pageNumber: number) => {
     return pageNumber;
+  };
+
+  private onKeyDown = (event: KeyboardEvent) => {
+    switch (event.keyCode) {
+      case KEYCODE_LEFT_ARROW: {
+        this.onClickLeft();
+        break;
+      }
+      case KEYCODE_RIGHT_ARROW: {
+        this.onClickRight();
+        break;
+      }
+    }
   };
 
   private onClickLeft = () => {
@@ -106,6 +135,27 @@ export default class TutorialWrapper extends React.PureComponent<
       currentPage: currentPage - 1,
       transitionDirection: "left"
     });
+  };
+
+  private onAnimationEnd = ({ animationName }: React.AnimationEvent) => {
+    const { transitionDirection } = this.state;
+    let finishesTransition = false;
+    switch (animationName) {
+      case "transition-left-current": {
+        finishesTransition = transitionDirection === "left";
+        break;
+      }
+      case "transition-right-current": {
+        finishesTransition = transitionDirection === "right";
+        break;
+      }
+    }
+
+    if (finishesTransition) {
+      this.setState({
+        transitionDirection: null
+      });
+    }
   };
 
   private onRequestClose = () => {

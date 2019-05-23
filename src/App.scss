@@ -54,13 +54,15 @@ body {
 }
 
 a,
-a:visited {
+a:visited,
+.link {
   text-decoration: underline;
   color: $pink-darkest;
   font-weight: 600;
 }
 
-a:hover {
+a:hover,
+.link:hover {
   text-decoration: none;
   color: $pink-dark;
 }
