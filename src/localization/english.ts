@@ -74,6 +74,18 @@ const ENGLISH: Localization = {
   tsuNotice:
     "While 〜つ is always a valid counter, you can't use it here. You'll have to be more specific!",
   tutorial: "Tutorial",
+  tutorialPage1:
+    "On the main screen, find conveniently made packs of counters. Explore each of their details, and then choose the ones that contain the counters you want to study.",
+  tutorialPage2:
+    "When you hit 'Start Quiz', you'll be prompted with random items of random amounts. Determine the appropriate counter for the item, and then put in your answer.\n\nEven though it's valid, ～つ isn't an accepted answer!",
+  tutorialPage3:
+    "If you don't want to answer, hit 'Skip this question'. It won't penalize you and will remove the question from the quiz.",
+  tutorialPage4:
+    "You can then check your accuracy! It will show you all of the correct answers at this stage, so you can take note if you made a mistake.",
+  tutorialPage5:
+    "If you made a typo or a genuine mistake, hit 'Ignore Answer'. It won't penalize you, and it will shuffle that question in for later to try again. It's up to you to stay honest!",
+  tutorialPage6:
+    "When you've gone through all of your questions, you'll have a chance to see your overall results. From there, you can choose to change your study packs, or try this quiz again with new numbers and items.",
   xOfYCorrect: (x, y) => `${x} / ${y} correct`
 };
 

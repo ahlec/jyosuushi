@@ -169,7 +169,7 @@ export default class TutorialModal extends React.PureComponent<
     this.setState({
       currentPage: currentPage - 1,
       previousPage: currentPage,
-      transition: "left"
+      transition: "right"
     });
   };
 
@@ -213,7 +213,7 @@ export default class TutorialModal extends React.PureComponent<
     this.setState({
       currentPage: currentPage + 1,
       previousPage: currentPage,
-      transition: "right"
+      transition: "left"
     });
   };
 }

@@ -50,5 +50,11 @@ export default interface Localization {
   studyPackSize: (size: number) => string;
   tsuNotice: string;
   tutorial: string;
+  tutorialPage1: string;
+  tutorialPage2: string;
+  tutorialPage3: string;
+  tutorialPage4: string;
+  tutorialPage5: string;
+  tutorialPage6: string;
   xOfYCorrect: (x: number, y: number) => string;
 }

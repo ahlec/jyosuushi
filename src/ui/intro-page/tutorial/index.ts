@@ -9,15 +9,27 @@ export interface TutorialPage {
 
 export const TUTORIAL_PAGES: ReadonlyArray<TutorialPage> = [
   {
-    getText: localization => "hello world",
+    getText: localization => localization.tutorialPage1,
     image: KyotoJpg
   },
   {
-    getText: localization => "then some more",
+    getText: localization => localization.tutorialPage2,
     image: KyotoJpg
   },
   {
-    getText: localization => "thanks for reading!",
+    getText: localization => localization.tutorialPage3,
+    image: KyotoJpg
+  },
+  {
+    getText: localization => localization.tutorialPage4,
+    image: KyotoJpg
+  },
+  {
+    getText: localization => localization.tutorialPage5,
+    image: KyotoJpg
+  },
+  {
+    getText: localization => localization.tutorialPage6,
     image: KyotoJpg
   }
 ];
