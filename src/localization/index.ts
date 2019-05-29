@@ -24,6 +24,7 @@ export default interface Localization {
   credits: ReadonlyArray<CreditsPiece>;
   furtherIrregulars: string;
   hereAreTheFirstXNumbers: (amountToDisplay: number) => string;
+  highScoreEncouragements: ReadonlyArray<string>;
   irregularsWarning: (
     numIrregulars: number,
     highlightIrregular: (contents: string) => React.ReactNode
@@ -31,6 +32,7 @@ export default interface Localization {
   irregularsWarningNoIrregulars: string;
   itemPlural: (item: Item) => string;
   itemSingular: (item: Item) => string;
+  lowScoreEncouragements: ReadonlyArray<string>;
   resultColumnHeaderCounter: string;
   resultColumnHeaderRule: string;
   resultColumnHeaderStudyPack: string;

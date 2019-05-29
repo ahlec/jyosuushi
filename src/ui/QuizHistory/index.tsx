@@ -54,7 +54,7 @@ class QuizHistory extends React.PureComponent<ComponentProps> {
     }
 
     return (
-      <table className="rows">
+      <table className="QuizHistory">
         <tbody>{rows}</tbody>
       </table>
     );

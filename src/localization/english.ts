@@ -36,6 +36,12 @@ const ENGLISH: Localization = {
     } the first ${amountToDisplay} ${
       amountToDisplay === 1 ? "number" : "numbers"
     }.`,
+  highScoreEncouragements: [
+    "That was astounding, really.",
+    "Look at how far you've come on your journey!",
+    "This stuff isn't easy, and you're aceing it!",
+    "It's taken a lot of work to get here; pat yourself on the back."
+  ],
   irregularsWarning: (
     numIrregulars: number,
     highlightIrregular: (contents: string) => React.ReactNode
@@ -52,6 +58,11 @@ const ENGLISH: Localization = {
     "Luckily, there are no irregular conjugations with this counter!",
   itemPlural: (item: Item) => item.englishPlural,
   itemSingular: (item: Item) => item.englishSingular,
+  lowScoreEncouragements: [
+    "You're trying your best, and that's the key to success!",
+    "You've learned so much to get here, I know you'll get to where you want to go!",
+    "This stuff isn't easy; practice WILL make perfect."
+  ],
   resultColumnHeaderCounter: "Counter",
   resultColumnHeaderHiragana: "Hiragana",
   resultColumnHeaderKanji: "Kanji",
