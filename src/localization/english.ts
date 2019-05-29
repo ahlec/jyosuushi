@@ -71,6 +71,7 @@ const ENGLISH: Localization = {
   studyPackSelectionSubheader: "(select 1 or more)",
   studyPackSize: (size: number) =>
     size === 1 ? "1 counter" : `${size} counters`,
+  submittedLabel: "Submitted:",
   tsuNotice:
     "While 〜つ is always a valid counter, you can't use it here. You'll have to be more specific!",
   tutorial: "Tutorial",

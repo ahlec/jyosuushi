@@ -1,13 +1,34 @@
 .HistoryRow {
+  margin-bottom: 5px;
+
   td {
     vertical-align: middle;
   }
 
   .number {
-    font-size: 36px;
+    font-size: 16px;
+    vertical-align: top;
+    padding-top: 4px;
+
+    .pound {
+      font-size: 12px;
+    }
+  }
+
+  .judgment {
+    width: 80px;
+    height: 44px;
+
+    .JudgmentBubble {
+      display: flex;
+      height: 100%;
+    }
   }
 
   .details {
-    padding-left: 10px;
+    .question {
+      font-weight: bold;
+      font-size: 20px;
+    }
   }
 }

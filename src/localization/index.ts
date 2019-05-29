@@ -48,6 +48,7 @@ export default interface Localization {
   studyPackSelectionHeader: string;
   studyPackSelectionSubheader: string;
   studyPackSize: (size: number) => string;
+  submittedLabel: string;
   tsuNotice: string;
   tutorial: string;
   tutorialPage1: string;

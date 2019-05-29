@@ -46,15 +46,23 @@ class HistoryRow extends React.PureComponent<ComponentProps> {
         : localization.itemPlural(item);
     return (
       <tr className={classnames("HistoryRow", judgment)}>
+        <td className="number">
+          <span className="pound">#</span>
+          {questionNo}
+        </td>
         <td className="judgment">
           <JudgmentBubble judgment={judgment} shape="inline" />
         </td>
-        <td className="number">{questionNo}</td>
         <td className="details">
           <div className="question">
             {amount} {itemName}
           </div>
-          <div className="users-answer">{input}</div>
+          {input && (
+            <div className="users-answer">
+              <span className="label">{localization.submittedLabel}</span> 『
+              {input}』
+            </div>
+          )}
         </td>
       </tr>
     );
