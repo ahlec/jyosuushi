@@ -5,6 +5,8 @@ import {
   Store as ReduxStore
 } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension/developmentOnly";
+import { Persistor, persistReducer, persistStore } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 import { State } from "./index";
 
 import countersReducer from "./reducers/counters";
@@ -22,19 +24,36 @@ type Action = any;
 export type Store = ReduxStore<State, Action>;
 export type Dispatch = ReduxDispatch<Action>;
 
-export function createReduxStore(): Store {
-  return createStore<State, Action, any, any>(
-    combineReducers<State>({
-      counters: countersReducer,
-      enabledPacks: enabledPacksReducer,
-      items: itemsReducer,
-      questions: questionsReducer,
-      quizState: quizStateReducer,
-      scorecard: scorecardReducer,
-      session: sessionReducer,
-      settings: settingsReducer,
-      userAnswers: userAnswersReducer
-    }),
+interface Redux {
+  store: Store;
+  persistor: Persistor;
+}
+
+export function createRedux(): Redux {
+  const reducers = combineReducers<State>({
+    counters: countersReducer,
+    enabledPacks: enabledPacksReducer,
+    items: itemsReducer,
+    questions: questionsReducer,
+    quizState: quizStateReducer,
+    scorecard: scorecardReducer,
+    session: sessionReducer,
+    settings: settingsReducer,
+    userAnswers: userAnswersReducer
+  });
+  const store = createStore<State, Action, any, any>(
+    persistReducer(
+      {
+        key: "root",
+        storage
+      },
+      reducers
+    ),
     composeWithDevTools()
   );
+  const persistor = persistStore(store);
+  return {
+    persistor,
+    store
+  };
 }
