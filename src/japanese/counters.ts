@@ -4,6 +4,7 @@ import { Gyou, HIRAGANA } from "./kana";
 import {
   breakDownNumber,
   conjugateNumber,
+  ConjugationOptions,
   FinalNumberChanges,
   HYAKU,
   JYUU
@@ -116,6 +117,11 @@ const COUNTER_BA_GYOU: Readonly<CounterChange> = {
 
 const COUNTER_PA_GYOU: Readonly<CounterChange> = {
   gyou: "pa"
+};
+
+const CONJUGATION_OPTIONS: ConjugationOptions = {
+  allowShiForSoloFour: false,
+  allowShichiForSoloSeven: false
 };
 
 function conjugateNumberAndCounterInternal(
@@ -231,7 +237,7 @@ function conjugateNumberAndCounterInternal(
   }
 
   const words = permutateTaggableWords([
-    conjugateNumber(amount, numberChanges),
+    conjugateNumber(amount, numberChanges, CONJUGATION_OPTIONS),
     finalizedCounter
   ]);
   return uniqueWords(castAwayTaggable(words));

@@ -67,8 +67,12 @@ export const breakDownNumber: (value: number) => NumberBreakdown = memoize(
   }
 );
 
+interface FirstTenWords extends JapaneseWord {
+  isValid?: (options?: ConjugationOptions) => boolean;
+}
+
 const FIRST_TEN_NUMBERS: ReadonlyArray<
-  ReadonlyArray<Readonly<JapaneseWord>>
+  ReadonlyArray<Readonly<FirstTenWords>>
 > = [
   [
     {
@@ -104,6 +108,8 @@ const FIRST_TEN_NUMBERS: ReadonlyArray<
       kanji: "四"
     },
     {
+      isValid: (options?: ConjugationOptions) =>
+        !!options && options.allowShiForSoloFour,
       kana: "し",
       kanji: "四"
     }
@@ -122,6 +128,8 @@ const FIRST_TEN_NUMBERS: ReadonlyArray<
   ],
   [
     {
+      isValid: (options?: ConjugationOptions) =>
+        !!options && options.allowShichiForSoloSeven,
       kana: "しち",
       kanji: "七"
     },
@@ -241,6 +249,11 @@ export interface FinalNumberChanges {
   [amount: number]: ReadonlyArray<ReadonlyArray<NumberChange>>;
 }
 
+export interface ConjugationOptions {
+  allowShiForSoloFour: boolean;
+  allowShichiForSoloSeven: boolean;
+}
+
 function applySingleChange(
   words: ReadonlyArray<TaggableJapaneseWord>,
   change: NumberChange
@@ -299,7 +312,8 @@ function applyUniqueChanges(
 
 function conjugateNumberInternal(
   breakdown: NumberBreakdown,
-  finalNumberChanges?: FinalNumberChanges
+  finalNumberChanges?: FinalNumberChanges,
+  options?: ConjugationOptions
 ): ReadonlyArray<TaggableJapaneseWord> {
   const chunks: Array<ReadonlyArray<TaggableJapaneseWord>> = [];
 
@@ -384,7 +398,14 @@ function conjugateNumberInternal(
       finalNumberChanges &&
       breakdown.lowestUnit === "solo" &&
       finalNumberChanges[breakdown.solo];
-    chunks.push(applyUniqueChanges(FIRST_TEN_NUMBERS[breakdown.solo], change));
+    chunks.push(
+      applyUniqueChanges(
+        FIRST_TEN_NUMBERS[breakdown.solo].filter(
+          word => !word.isValid || word.isValid(options)
+        ),
+        change
+      )
+    );
   }
 
   return permutateTaggableWords(chunks);
@@ -395,13 +416,25 @@ const MEMOIZE_RESOLVER = new Map<FinalNumberChanges, Map<number, string>>();
 
 export const conjugateNumber: (
   amount: number,
-  finalNumberChanges?: FinalNumberChanges
+  finalNumberChanges?: FinalNumberChanges,
+  options?: ConjugationOptions
 ) => ReadonlyArray<TaggableJapaneseWord> = memoize(
-  (amount: number, finalNumberChanges?: FinalNumberChanges) =>
-    conjugateNumberInternal(breakDownNumber(amount), finalNumberChanges),
   (
     amount: number,
-    finalNumberChanges: FinalNumberChanges | undefined = UNDEFINED_FINAL_CHANGES
+    finalNumberChanges?: FinalNumberChanges,
+    options?: ConjugationOptions
+  ) =>
+    conjugateNumberInternal(
+      breakDownNumber(amount),
+      finalNumberChanges,
+      options
+    ),
+  (
+    amount: number,
+    finalNumberChanges:
+      | FinalNumberChanges
+      | undefined = UNDEFINED_FINAL_CHANGES,
+    options?: ConjugationOptions
   ) => {
     let fncMap = MEMOIZE_RESOLVER.get(finalNumberChanges);
     if (!fncMap) {
@@ -413,6 +446,11 @@ export const conjugateNumber: (
     if (!id) {
       id = uniqueId();
       fncMap.set(amount, id);
+    }
+
+    if (options) {
+      id += `-${Number(options.allowShiForSoloFour) +
+        Number(options.allowShichiForSoloSeven)}`;
     }
 
     return id;
