@@ -1,5 +1,4 @@
-import { StudyPack } from "./data/study-packs";
-import { Counter } from "./redux";
+import { Counter, StudyPack } from "./redux";
 
 export function randomFromArray<T>(arr: ReadonlyArray<T>): T {
   return arr[Math.floor(Math.random() * arr.length)];

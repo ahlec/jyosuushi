@@ -2,8 +2,9 @@ import classnames from "classnames";
 import { memoize } from "lodash";
 import * as React from "react";
 
-import { STUDY_PACKS, StudyPack } from "../../data/study-packs";
+import { STUDY_PACKS } from "../../data/study-packs";
 import Localization from "../../localization";
+import { StudyPack } from "../../redux";
 
 import PackDetailsModal from "./PackDetailsModal";
 

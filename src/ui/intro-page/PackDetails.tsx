@@ -2,9 +2,8 @@ import classnames from "classnames";
 import { memoize } from "lodash";
 import * as React from "react";
 
-import { StudyPack } from "../../data/study-packs";
 import Localization from "../../localization";
-import { Counter } from "../../redux";
+import { Counter, StudyPack } from "../../redux";
 
 import RightIcon from "../right.svg";
 

@@ -1,8 +1,7 @@
 import * as React from "react";
 
-import { StudyPack } from "../../data/study-packs";
 import Localization from "../../localization";
-import { Counter } from "../../redux";
+import { Counter, StudyPack } from "../../redux";
 
 import CounterDetails from "../CounterDetails";
 import MultiPageModal from "../MultiPageModal";

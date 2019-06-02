@@ -1,5 +1,6 @@
-import { STUDY_PACK_LOOKUP, StudyPack } from "./data/study-packs";
+import { STUDY_PACK_LOOKUP } from "./data/study-packs";
 import makeQuiz from "./QuizMaker";
+import { StudyPack } from "./redux";
 import { endQuiz, nextQuestion, restartQuiz, startQuiz } from "./redux/actions";
 import { Store } from "./redux/store";
 

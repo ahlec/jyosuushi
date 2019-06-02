@@ -1,4 +1,4 @@
-import { StudyPack } from "./@interface";
+import { StudyPack } from "../../redux";
 
 import { COUNTER_DAYS_OF_MONTH } from "../counters";
 

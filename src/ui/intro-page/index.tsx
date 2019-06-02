@@ -2,7 +2,7 @@ import { memoize } from "lodash";
 import * as React from "react";
 import { connect } from "react-redux";
 
-import { STUDY_PACK_LOOKUP, StudyPack } from "../../data/study-packs";
+import { STUDY_PACK_LOOKUP } from "../../data/study-packs";
 import Localization, {
   CreditsPiece,
   VARIABLE_ALEC_DEITLOFF,
@@ -10,7 +10,7 @@ import Localization, {
   VARIABLE_ICON_CREDIT_LINK
 } from "../../localization";
 import QuizManager from "../../QuizManager";
-import { State } from "../../redux";
+import { State, StudyPack } from "../../redux";
 
 import TutorialModal from "./TutorialModal";
 
