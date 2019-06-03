@@ -1,3 +1,7 @@
+// DO NOT HAND-MODIFY THIS FILE!!
+// This file was built using `yarn build-data` from the SQLite database.
+// Modifications will be lost if they are made manually and not through the database.
+
 import { Counter } from "../src/redux";
 
 export const COUNTER_DAYS_OF_THE_MONTH: Counter = {

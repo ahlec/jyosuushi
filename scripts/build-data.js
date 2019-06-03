@@ -209,9 +209,19 @@ async function writeStudyPacksFile(db) {
     "SELECT * FROM study_packs ORDER BY pack_id ASC"
   );
   const contents = await db.all("SELECT * FROM study_pack_contents");
+  const itemCounters = await db.all("SELECT * FROM item_counters");
+
+  const hasItem = new Set();
+  for (const itemCounter of itemCounters) {
+    hasItem.add(itemCounter.counter_id);
+  }
 
   const countersLookup = {};
   for (const content of contents) {
+    if (!hasItem.has(content.counter_id)) {
+      continue;
+    }
+
     if (!countersLookup[content.pack_id]) {
       countersLookup[content.pack_id] = [];
     }
