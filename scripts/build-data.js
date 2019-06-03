@@ -7,6 +7,7 @@ const DATABASE_FILE = path.resolve(ROOT_DIRECTORY, "jyosuushi.sqlite");
 const DATA_DIRECTORY = path.resolve(ROOT_DIRECTORY, "data");
 const COUNTERS_FILE = path.resolve(DATA_DIRECTORY, "counters.ts");
 const ITEMS_FILE = path.resolve(DATA_DIRECTORY, "items.ts");
+const STUDY_PACKS_FILE = path.resolve(DATA_DIRECTORY, "studyPacks.ts");
 
 function getVariableFromId(prefix, id) {
   return prefix + id.toUpperCase().replace(/[^A-Z0-9]+/g, "_");
@@ -18,6 +19,10 @@ function getCounterId(id) {
 
 function getItemId(id) {
   return getVariableFromId("ITEM_", id);
+}
+
+function getStudyPackId(id) {
+  return getVariableFromId("STUDY_PACK_", id);
 }
 
 // Counters
@@ -81,7 +86,7 @@ async function writeCountersFile(db) {
 }
 
 // Items
-async function writeItemData(file, item, counters) {
+function writeItemData(file, item, counters) {
   const variableName = getItemId(item.item_id);
   let countersStr = "[\n";
   for (let index = 0; index < counters.length; ++index) {
@@ -168,10 +173,112 @@ async function writeItemsFile(db) {
   fs.closeSync(file);
 }
 
+// study packs
+function writeStudyPackData(file, studyPack, counters) {
+  counters.sort();
+
+  const variableName = getStudyPackId(studyPack.pack_id);
+  let countersStr = "[\n";
+  for (let index = 0; index < counters.length; ++index) {
+    countersStr += `    COUNTERS.${getCounterId(counters[index])}`;
+    if (index < counters.length - 1) {
+      countersStr += ",\n";
+    }
+  }
+
+  countersStr += "\n  ]";
+
+  fs.writeSync(
+    file,
+    `\n\nconst ${variableName}: StudyPack = {
+  counters: ${countersStr},
+  englishName: "${studyPack.english_name}",
+  packId: "${studyPack.pack_id}"
+};`
+  );
+}
+
+async function writeStudyPacksFile(db) {
+  const studyPacks = await db.all(
+    "SELECT * FROM study_packs ORDER BY pack_id ASC"
+  );
+  const contents = await db.all("SELECT * FROM study_pack_contents");
+
+  const countersLookup = {};
+  for (const content of contents) {
+    if (!countersLookup[content.pack_id]) {
+      countersLookup[content.pack_id] = [];
+    }
+
+    countersLookup[content.pack_id].push(content.counter_id);
+  }
+
+  const file = fs.openSync(STUDY_PACKS_FILE, "w");
+
+  fs.writeSync(file, 'import { StudyPack } from "../src/redux";\n');
+  fs.writeSync(file, 'import * as COUNTERS from "./counters";');
+  for (const studyPack of studyPacks) {
+    if (!countersLookup[studyPack.pack_id]) {
+      continue;
+    }
+
+    writeStudyPackData(file, studyPack, countersLookup[studyPack.pack_id]);
+  }
+
+  fs.writeSync(
+    file,
+    "\n\nexport const STUDY_PACKS: ReadonlyArray<StudyPack> = [\n"
+  );
+  let hasWrittenFirst = false;
+  for (const studyPack of studyPacks) {
+    if (!countersLookup[studyPack.pack_id]) {
+      continue;
+    }
+
+    if (hasWrittenFirst) {
+      fs.writeSync(file, ",\n");
+    } else {
+      hasWrittenFirst = true;
+    }
+
+    fs.writeSync(file, `  ${getStudyPackId(studyPack.pack_id)}`);
+  }
+  fs.writeSync(file, "\n];");
+
+  fs.writeSync(file, "\n\nexport const STUDY_PACK_LOOKUP: {\n");
+  fs.writeSync(file, "  [packId: string]: StudyPack;\n");
+  fs.writeSync(file, "} = {\n");
+  hasWrittenFirst = false;
+  for (const studyPack of studyPacks) {
+    if (!countersLookup[studyPack.pack_id]) {
+      continue;
+    }
+
+    if (hasWrittenFirst) {
+      fs.writeSync(file, ",\n");
+    } else {
+      hasWrittenFirst = true;
+    }
+
+    let entryKey;
+    if (/^[a-zA-Z0-9]*$/.test(studyPack.pack_id)) {
+      entryKey = studyPack.pack_id;
+    } else {
+      entryKey = `"${studyPack.pack_id}"`;
+    }
+
+    fs.writeSync(file, `  ${entryKey}: ${getStudyPackId(studyPack.pack_id)}`);
+  }
+
+  fs.writeSync(file, "\n};\n");
+  fs.closeSync(file);
+}
+
 async function main() {
   const db = await sqlite.open(DATABASE_FILE, { Promise });
   await writeCountersFile(db);
   await writeItemsFile(db);
+  await writeStudyPacksFile(db);
   await db.close();
 }
 
