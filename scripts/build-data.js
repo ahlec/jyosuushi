@@ -153,7 +153,9 @@ async function writeItemsFile(db) {
   fs.writeSync(file, "  [counterId: string]: ReadonlyArray<Item>;\n");
   fs.writeSync(file, "} = {\n");
   let hasWrittenFirst = false;
-  for (const counterId in countersToItems) {
+  const orderedCounters = Object.keys(countersToItems);
+  orderedCounters.sort();
+  for (const counterId of orderedCounters) {
     if (hasWrittenFirst) {
       fs.writeSync(file, ",\n");
     } else {

@@ -26,6 +26,18 @@ export const COUNTER_DAYS_OF_THE_MONTH: Counter = {
   kanji: "日"
 };
 
+export const COUNTER_HOUR: Counter = {
+  counterId: "hour",
+  englishName: "hours",
+  irregulars: {
+    4: "よじ",
+    7: "しちじ",
+    9: "くじ"
+  },
+  kana: "じ",
+  kanji: "時"
+};
+
 export const COUNTER_LONG_THIN_OBJECT: Counter = {
   counterId: "long, thin object",
   englishName: "long, thin objects",
@@ -53,7 +65,10 @@ export const COUNTER_PEOPLE_MEI: Counter = {
 export const COUNTER_PEOPLE_NIN: Counter = {
   counterId: "people-nin",
   englishName: "people",
-  irregulars: {},
+  irregulars: {
+    1: "ひとり",
+    2: "ふたり"
+  },
   kana: "にん",
   kanji: "人"
 };
