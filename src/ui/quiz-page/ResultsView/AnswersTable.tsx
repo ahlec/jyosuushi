@@ -3,7 +3,7 @@ import { groupBy, uniq } from "lodash";
 import * as React from "react";
 import { connect } from "react-redux";
 
-import { STUDY_PACK_LOOKUP } from "../../../data/study-packs";
+import { STUDY_PACK_LOOKUP } from "../../../data/studyPacks";
 import Localization from "../../../localization";
 import {
   Answer,
