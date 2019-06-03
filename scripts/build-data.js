@@ -4,7 +4,7 @@ const sqlite = require("sqlite");
 
 const ROOT_DIRECTORY = path.resolve(__dirname, "..");
 const DATABASE_FILE = path.resolve(ROOT_DIRECTORY, "jyosuushi.sqlite");
-const DATA_DIRECTORY = path.resolve(ROOT_DIRECTORY, "src/data");
+const DATA_DIRECTORY = path.resolve(ROOT_DIRECTORY, "data");
 const COUNTERS_FILE = path.resolve(DATA_DIRECTORY, "counters.ts");
 const ITEMS_FILE = path.resolve(DATA_DIRECTORY, "items.ts");
 const STUDY_PACKS_FILE = path.resolve(DATA_DIRECTORY, "studyPacks.ts");
@@ -81,7 +81,7 @@ async function writeCountersFile(db) {
   const file = fs.openSync(COUNTERS_FILE, "w");
   fs.writeSync(file, FILE_HEADER_COMMENT);
 
-  fs.writeSync(file, 'import { Counter } from "../redux";');
+  fs.writeSync(file, 'import { Counter } from "../src/redux";');
   for (const counter of counters) {
     writeCounterData(file, counter, irregularsLookup[counter.counter_id]);
   }
@@ -139,7 +139,7 @@ async function writeItemsFile(db) {
   const file = fs.openSync(ITEMS_FILE, "w");
   fs.writeSync(file, FILE_HEADER_COMMENT);
 
-  fs.writeSync(file, 'import { Item } from "../redux";');
+  fs.writeSync(file, 'import { Item } from "../src/redux";');
 
   for (const item of items) {
     if (!itemsToCounters[item.item_id]) {
@@ -222,7 +222,7 @@ async function writeStudyPacksFile(db) {
   const file = fs.openSync(STUDY_PACKS_FILE, "w");
   fs.writeSync(file, FILE_HEADER_COMMENT);
 
-  fs.writeSync(file, 'import { StudyPack } from "../redux";\n');
+  fs.writeSync(file, 'import { StudyPack } from "../src/redux";\n');
   fs.writeSync(file, 'import * as COUNTERS from "./counters";');
   for (const studyPack of studyPacks) {
     if (!countersLookup[studyPack.pack_id]) {
