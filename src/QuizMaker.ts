@@ -1,9 +1,8 @@
 import { random, shuffle } from "lodash";
 
-import { ITEMS_FROM_COUNTER } from "./data/items";
-import { StudyPack } from "./data/study-packs";
+import { ITEMS_FROM_COUNTER } from "../data/items";
 import { conjugateNumberAndCounter } from "./japanese/counters";
-import { Answer, Counter, Item, Question } from "./redux";
+import { Answer, Counter, Item, Question, StudyPack } from "./redux";
 import { getDistinctCounters, randomFromArray } from "./utils";
 
 const MAX_NUMBER_QUESTIONS_PER_ITEM = 20;

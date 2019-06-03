@@ -7,7 +7,7 @@ const ROOT_DIRECTORY = __dirname;
 const BUILD_DIRECTORY = path.resolve(ROOT_DIRECTORY, "build");
 const FAVICON_DIRECTORY = path.resolve(ROOT_DIRECTORY, "favicons");
 const SOURCE_DIRECTORY = path.resolve(ROOT_DIRECTORY, "src");
-const DATA_DIRECTORY = path.resolve(SOURCE_DIRECTORY, "data");
+const DATA_DIRECTORY = path.resolve(ROOT_DIRECTORY, "data");
 
 module.exports = {
   entry: {
@@ -15,7 +15,7 @@ module.exports = {
     data: [
       path.resolve(DATA_DIRECTORY, "counters.ts"),
       path.resolve(DATA_DIRECTORY, "items.ts"),
-      path.resolve(DATA_DIRECTORY, "study-packs")
+      path.resolve(DATA_DIRECTORY, "studyPacks.ts")
     ]
   },
   output: {

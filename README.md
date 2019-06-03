@@ -58,6 +58,16 @@ If you find yourself needing to change the favicon, export the full-resolution f
 yarn favicon
 ```
 
+## Updating data
+
+When you want to make changes to the data that's used in the quiz, you can modify the SQLite database `jyosuushi.sqlite` in the root directory. When you have made your changes, you'll then need to run the script to export the data from there into TypeScript.
+
+```
+yarn build-data
+```
+
+When this is done, it will update the files in the `./data` directory. Subsequent builds or development servers will build against these updated files. Additionally, these files are tracked in the repository to allow for painlessly building after cloning the repository.
+
 ## Built With
 
 - [TypeScript](https://www.typescriptlang.org/)
@@ -65,6 +75,7 @@ yarn favicon
 - [Redux](https://redux.js.org/) - State management for the application
 - [webpack](https://webpack.js.org/) - Module bundler and build system
 - [Yarn](https://yarnpkg.com/) - Package management
+- [SQLite](https://www.sqlite.org/index.html) - Pre-build database for quiz data
 
 ## Versioning
 

@@ -1,4 +1,4 @@
-import { ITEMS_FROM_COUNTER } from "../../data/items";
+import { ITEMS_FROM_COUNTER } from "../../../data/items";
 import { ActionStartQuiz } from "../actions";
 import { ItemsState } from "../index";
 

@@ -12,6 +12,12 @@ export interface Scorecard {
   numSkippedQuestions: number;
 }
 
+export interface StudyPack {
+  packId: string;
+  englishName: string;
+  counters: ReadonlyArray<Counter>;
+}
+
 export interface Counter {
   counterId: string;
   englishName: string;
