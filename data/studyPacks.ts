@@ -23,7 +23,9 @@ const STUDY_PACK_N3: StudyPack = {
 
 const STUDY_PACK_N4: StudyPack = {
   counters: [
-    COUNTERS.COUNTER_PEOPLE_MEI
+    COUNTERS.COUNTER_冊,
+    COUNTERS.COUNTER_羽,
+    COUNTERS.COUNTER_頭
   ],
   englishName: "JLPT N4",
   packId: "n4"
@@ -35,7 +37,10 @@ const STUDY_PACK_N5: StudyPack = {
     COUNTERS.COUNTER_HOUR,
     COUNTERS.COUNTER_LONG_THIN_OBJECT,
     COUNTERS.COUNTER_MINUTE,
-    COUNTERS.COUNTER_PEOPLE_NIN
+    COUNTERS.COUNTER_PEOPLE_NIN,
+    COUNTERS.COUNTER_匹,
+    COUNTERS.COUNTER_台,
+    COUNTERS.COUNTER_枚
   ],
   englishName: "JLPT N5",
   packId: "n5"
