@@ -1,3 +1,4 @@
+const fs = require("fs");
 const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -8,6 +9,14 @@ const BUILD_DIRECTORY = path.resolve(ROOT_DIRECTORY, "build");
 const FAVICON_DIRECTORY = path.resolve(ROOT_DIRECTORY, "favicons");
 const SOURCE_DIRECTORY = path.resolve(ROOT_DIRECTORY, "src");
 const DATA_DIRECTORY = path.resolve(ROOT_DIRECTORY, "data");
+const CONFIG_JSON_FILE = path.resolve(ROOT_DIRECTORY, "config.json");
+
+if (!fs.existsSync(CONFIG_JSON_FILE)) {
+  throw new Error(`${CONFIG_JSON_FILE} does not exist.`);
+}
+
+const configJson = JSON.parse(fs.readFileSync(CONFIG_JSON_FILE));
+console.log(configJson);
 
 module.exports = {
   entry: {
@@ -66,6 +75,11 @@ module.exports = {
   },
   plugins: [
     new webpack.HashedModuleIdsPlugin(),
+    new webpack.DefinePlugin({
+      CONFIG_GOOGLE_ANALYTICS_TRACKING_ID: JSON.stringify(
+        configJson.GOOGLE_ANALYTICS_TRACKING_ID
+      )
+    }),
     new CopyWebpackPlugin([
       {
         from: FAVICON_DIRECTORY,

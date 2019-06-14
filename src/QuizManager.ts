@@ -1,8 +1,12 @@
+import * as ReactGA from "react-ga";
+
 import { STUDY_PACK_LOOKUP } from "../data/studyPacks";
 import makeQuiz from "./QuizMaker";
 import { StudyPack } from "./redux";
 import { endQuiz, nextQuestion, restartQuiz, startQuiz } from "./redux/actions";
 import { Store } from "./redux/store";
+
+const GOOGLE_ANALYTICS_CATEGORY = "Quiz";
 
 export default class QuizManager {
   public constructor(private readonly store: Store) {}
@@ -21,6 +25,12 @@ export default class QuizManager {
 
     const questions = makeQuiz(studyPacks);
     this.store.dispatch(startQuiz(studyPacks, questions));
+
+    ReactGA.event({
+      action: "New Quiz Began",
+      category: GOOGLE_ANALYTICS_CATEGORY,
+      label: studyPacks.map(({ packId }) => packId).join(", ")
+    });
   }
 
   public endQuiz() {
@@ -32,6 +42,12 @@ export default class QuizManager {
     const packs = state.enabledPacks.map(packId => STUDY_PACK_LOOKUP[packId]);
     const questions = makeQuiz(packs);
     this.store.dispatch(restartQuiz(questions));
+
+    ReactGA.event({
+      action: "Quiz Restarted",
+      category: GOOGLE_ANALYTICS_CATEGORY,
+      label: packs.map(({ packId }) => packId).join(", ")
+    });
   }
 
   public nextQuestion() {

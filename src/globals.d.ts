@@ -4,3 +4,5 @@ declare module "*.svg" {
 }
 
 declare module "*.jpg";
+
+declare const CONFIG_GOOGLE_ANALYTICS_TRACKING_ID: string;

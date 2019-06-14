@@ -829,6 +829,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-ga@^2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@types/react-ga/-/react-ga-2.3.0.tgz#dbd56dd622cabb5baebc896e3ee67dfdc29babc1"
+  integrity sha512-7Vkv6wH1Kem4vkjuJxRYxDgLfokm0shugDk0W5p9C28POrsPAXezLbgP5C2tyFZ7lKARdyrCxwkdRTC1UV0dHg==
+  dependencies:
+    react-ga "*"
+
 "@types/react-modal@^3.8.1":
   version "3.8.1"
   resolved "https://registry.yarnpkg.com/@types/react-modal/-/react-modal-3.8.1.tgz#232a8fb99103e13f35bb1604a67ab32e9d938d98"
@@ -4834,6 +4841,11 @@ react-dom@^16.8.5:
     object-assign "^4.1.1"
     prop-types "^15.6.2"
     scheduler "^0.13.5"
+
+react-ga@*, react-ga@^2.5.7:
+  version "2.5.7"
+  resolved "https://registry.yarnpkg.com/react-ga/-/react-ga-2.5.7.tgz#1c80a289004bf84f84c26d46f3a6a6513081bf2e"
+  integrity sha512-UmATFaZpEQDO96KFjB5FRLcT6hFcwaxOmAJZnjrSiFN/msTqylq9G+z5Z8TYzN/dbamDTiWf92m6MnXXJkAivQ==
 
 react-is@^16.7.0, react-is@^16.8.2:
   version "16.8.6"

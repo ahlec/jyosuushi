@@ -12,3 +12,6 @@ Dockerfile
 
 # TypeScript
 build/
+
+# Configuration files
+config.json
