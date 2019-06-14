@@ -40,6 +40,8 @@ export default class MultiPageModal<TSubpageData> extends React.Component<
     subpageData: null
   };
   private transitionTimeout = 0;
+  private contentRef = React.createRef<HTMLDivElement>();
+  private mainPageScrollTop = 0;
 
   public componentWillUnmount() {
     clearTimeout(this.transitionTimeout);
@@ -99,7 +101,7 @@ export default class MultiPageModal<TSubpageData> extends React.Component<
             </div>
           </div>
         </header>
-        <div className="content">
+        <div ref={this.contentRef} className="content">
           <div className="main-page">
             {mainPageRenderer(
               !isTransitioning && !subpageData,
@@ -115,6 +117,11 @@ export default class MultiPageModal<TSubpageData> extends React.Component<
   }
 
   private openSubpage = (data: TSubpageData) => {
+    if (this.contentRef.current) {
+      this.mainPageScrollTop = this.contentRef.current.scrollTop;
+      this.contentRef.current.scrollTop = 0;
+    }
+
     window.clearTimeout(this.transitionTimeout);
     this.transitionTimeout = 0;
     this.setState({
@@ -129,6 +136,10 @@ export default class MultiPageModal<TSubpageData> extends React.Component<
   };
 
   private onLeaveSubpage = () => {
+    if (this.contentRef.current) {
+      this.contentRef.current.scrollTop = this.mainPageScrollTop;
+    }
+
     window.clearTimeout(this.transitionTimeout);
     this.transitionTimeout = 0;
 
