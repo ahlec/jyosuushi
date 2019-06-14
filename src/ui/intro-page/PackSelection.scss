@@ -57,6 +57,7 @@ $hover-darken-amount: 25%;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      padding-top: 15px;
 
       &:hover {
         background-color: $blue-lightest;
@@ -88,7 +89,8 @@ $hover-darken-amount: 25%;
       }
 
       .name {
-        font-size: 48px;
+        font-size: 24px;
+        text-align: center;
       }
     }
 
