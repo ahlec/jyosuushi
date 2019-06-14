@@ -40,6 +40,12 @@
     background-color: $skipped-light;
   }
 
+  &.ignored {
+    color: $ignored-dark;
+    border-color: $ignored-medium;
+    background-color: $ignored-light;
+  }
+
   rt {
     font-size: 20%;
   }
