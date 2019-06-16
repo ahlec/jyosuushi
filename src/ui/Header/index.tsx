@@ -70,6 +70,8 @@ interface ComponentState {
   stage: Stage;
 }
 
+/* tslint:disable:object-literal-sort-keys */
+// JUSTIFICATION: Allows the object to follow a linear progression through animations.
 const SUBSEQUENT_LAYOUT_STAGE: { [stage in Stage]: Stage | null } = {
   "resting-home": null,
   "transitioning-from-home": "transitioning-to-quiz",
@@ -78,6 +80,7 @@ const SUBSEQUENT_LAYOUT_STAGE: { [stage in Stage]: Stage | null } = {
   "transitioning-from-quiz": "transitioning-to-home",
   "transitioning-to-home": "resting-home"
 };
+/* tslint:enable:object-literal-sort-keys */
 
 class Header extends React.PureComponent<ComponentProps, ComponentState> {
   public state: ComponentState;

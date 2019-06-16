@@ -8,7 +8,7 @@
     "build": "webpack --config webpack.prod.js",
     "build-data": "node ./scripts/build-data.js",
     "clean": "rimraf ./build",
-    "lint": "tslint src/**/*.ts{,x}",
+    "lint": "tslint 'src/**/*.ts?(x)'",
     "favicon": "rimraf ./favicons && real-favicon generate faviconDescription.json faviconData.json favicons"
   },
   "devDependencies": {

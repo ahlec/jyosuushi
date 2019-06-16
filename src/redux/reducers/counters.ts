@@ -14,13 +14,13 @@ export default function countersReducer(
         for (const counter of counters) {
           if (next[counter.counterId]) {
             next[counter.counterId] = {
-              studyPacks: [...next[counter.counterId].studyPacks, packId],
-              counter
+              counter,
+              studyPacks: [...next[counter.counterId].studyPacks, packId]
             };
           } else {
             next[counter.counterId] = {
-              studyPacks: [packId],
-              counter
+              counter,
+              studyPacks: [packId]
             };
           }
         }
