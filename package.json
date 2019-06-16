@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.js",
-    "build": "real-favicon generate faviconDescription.json webpack --config webpack.prod.js",
+    "build": "webpack --config webpack.prod.js",
     "build-data": "node ./scripts/build-data.js",
     "clean": "rimraf ./build",
     "lint": "tslint src/**/*.ts{,x}",
