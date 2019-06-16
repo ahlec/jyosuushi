@@ -20,6 +20,12 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - run:
+          name: Build and verify data
+          command: yarn build-data
+      - run:
+          name: Ensure repository data files are up to date
+          command: git diff --exit-code data/*
+      - run:
           name: Lint code
           command: yarn lint
       - run:
