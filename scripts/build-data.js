@@ -1,3 +1,4 @@
+const chalk = require("chalk");
 const fs = require("fs");
 const path = require("path");
 const sqlite = require("sqlite");
@@ -88,6 +89,8 @@ async function writeCountersFile(db) {
 
   fs.writeSync(file, "\n");
   fs.closeSync(file);
+
+  return true;
 }
 
 // Items
@@ -141,8 +144,15 @@ async function writeItemsFile(db) {
 
   fs.writeSync(file, 'import { Item } from "../src/redux";');
 
+  let hasItemsWithoutCounters = false;
   for (const item of items) {
     if (!itemsToCounters[item.item_id]) {
+      hasItemsWithoutCounters = true;
+      console.warn(
+        `[${chalk.yellow("ITEM")}][${chalk.bold(
+          item.item_id
+        )}] No counters defined, so not added to export.`
+      );
       continue;
     }
 
@@ -179,6 +189,8 @@ async function writeItemsFile(db) {
 
   fs.writeSync(file, "\n};\n");
   fs.closeSync(file);
+
+  return !hasItemsWithoutCounters;
 }
 
 // study packs
@@ -236,8 +248,16 @@ async function writeStudyPacksFile(db) {
 
   fs.writeSync(file, 'import { StudyPack } from "../src/redux";\n');
   fs.writeSync(file, 'import * as COUNTERS from "./counters";');
+
+  let hasStudyPacksWithoutItems = false;
   for (const studyPack of studyPacks) {
     if (!countersLookup[studyPack.pack_id]) {
+      hasStudyPacksWithoutItems = true;
+      console.warn(
+        `[${chalk.yellow("STUDY PACK")}][${chalk.bold(
+          studyPack.pack_id
+        )}] No items added to pack, so not exported.`
+      );
       continue;
     }
 
@@ -291,14 +311,20 @@ async function writeStudyPacksFile(db) {
 
   fs.writeSync(file, "\n};\n");
   fs.closeSync(file);
+
+  return !hasStudyPacksWithoutItems;
 }
 
 async function main() {
   const db = await sqlite.open(DATABASE_FILE, { Promise });
-  await writeCountersFile(db);
-  await writeItemsFile(db);
-  await writeStudyPacksFile(db);
+  const countersSuccess = await writeCountersFile(db);
+  const itemsSuccess = await writeItemsFile(db);
+  const studyPacksSuccess = await writeStudyPacksFile(db);
   await db.close();
+
+  if (!countersSuccess || !itemsSuccess || !studyPacksSuccess) {
+    process.exit(1);
+  }
 }
 
 main();
