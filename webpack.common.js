@@ -11,12 +11,18 @@ const SOURCE_DIRECTORY = path.resolve(ROOT_DIRECTORY, "src");
 const DATA_DIRECTORY = path.resolve(ROOT_DIRECTORY, "data");
 const CONFIG_JSON_FILE = path.resolve(ROOT_DIRECTORY, "config.json");
 
-if (!fs.existsSync(CONFIG_JSON_FILE)) {
-  throw new Error(`${CONFIG_JSON_FILE} does not exist.`);
-}
+let configJson;
+if (!process.env.CI) {
+  if (!fs.existsSync(CONFIG_JSON_FILE)) {
+    throw new Error(`${CONFIG_JSON_FILE} does not exist.`);
+  }
 
-const configJson = JSON.parse(fs.readFileSync(CONFIG_JSON_FILE));
-console.log(configJson);
+  configJson = JSON.parse(fs.readFileSync(CONFIG_JSON_FILE));
+} else {
+  configJson = JSON.parse(
+    fs.readFileSync(path.resolve(ROOT_DIRECTORY, "config.json-template"))
+  );
+}
 
 module.exports = {
   entry: {
