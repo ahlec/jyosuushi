@@ -23,6 +23,9 @@ export type Dan = "a" | "i" | "u" | "e" | "o";
 
 type GoJyuuOn<T> = { [gyou in Gyou]: { [dan in Dan]: T | null } };
 
+/* tslint:disable:object-literal-sort-keys */
+// JUSTIFICATION: This allows us to match the expected vowel pattern of Japanese and
+// keeps our codepoints in ascending order rather than jumping around.
 const GOJYUUON_HIRAGANA_CODEPOINTS: GoJyuuOn<number> = {
   a: {
     a: 0x3042,
@@ -130,6 +133,7 @@ const GOJYUUON_HIRAGANA_CODEPOINTS: GoJyuuOn<number> = {
     o: 0x3092
   }
 };
+/* tslint:enable:object-literal-sort-keys */
 
 interface GoJyuuOnLookup {
   [codepoint: number]: { dan: Dan; gyou: Gyou };
@@ -189,6 +193,8 @@ export class KanaDefinition {
   }
 }
 
+/* tslint:disable:object-literal-sort-keys */
+// JUSTIFICATION: Allows us to match the pattern of Japanese vowels better.
 export const HIRAGANA = new KanaDefinition(HIRAGANA_CODEPOINT_START, 0x309f, {
   a: "あ",
   i: "い",
@@ -521,6 +527,7 @@ export const HIRAGANA = new KanaDefinition(HIRAGANA_CODEPOINT_START, 0x309f, {
   nø: "んø",
   næ: "んæ"
 });
+/* tslint:enable:object-literal-sort-keys */
 
 const CODEPOINT_KATAKANA_FIRST = 0x30a1;
 const CODEPOINT_KATAKANA_LAST = 0x30ff;

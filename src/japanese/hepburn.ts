@@ -24,6 +24,8 @@ const N_CONSONANT_IS: {
   り: { consonant: "r", includeY: true }
 };
 
+/* tslint:disable:object-literal-sort-keys */
+// JUSTIFICATION: Allows us to maintain traditional/expected ordering of Japanese.
 const HepburnChart: { [kana: string]: string } = {
   あ: "a",
   い: "i",
@@ -97,6 +99,7 @@ const HepburnChart: { [kana: string]: string } = {
   を: "wo",
   ん: "n"
 };
+/* tslint:enable:object-literal-sort-keys */
 
 class HepburnConverter {
   private readonly englishCharacters: string[] = [];

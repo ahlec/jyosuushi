@@ -43,6 +43,8 @@ export const breakDownNumber: (value: number) => NumberBreakdown = memoize(
     const jyuu = Math.floor(remainder / JYUU);
     remainder -= jyuu * JYUU;
 
+    /* tslint:disable:object-literal-sort-keys */
+    // JUSTIFICATION: It's much easier to reason about this in numeric descending order.
     return {
       oku,
       man,
@@ -64,6 +66,7 @@ export const breakDownNumber: (value: number) => NumberBreakdown = memoize(
         ? "oku"
         : "solo"
     };
+    /* tslint:enable:object-literal-sort-keys */
   }
 );
 

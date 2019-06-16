@@ -53,17 +53,17 @@ const COUNTER_W_CHANGES: FinalNumberChanges = {
   4: [
     [
       {
-        type: "replace",
         kana: "よ",
-        kanji: "四"
+        kanji: "四",
+        type: "replace"
       },
       { type: "tag", tag: "counter-wa-4-yo" }
     ],
     [
       {
-        type: "replace",
         kana: "よん",
-        kanji: "四"
+        kanji: "四",
+        type: "replace"
       }
     ]
   ],
@@ -76,13 +76,13 @@ const COUNTER_W_CHANGES: FinalNumberChanges = {
     ],
     [
       {
-        type: "replace",
         kana: "ろく",
-        kanji: "六"
+        kanji: "六",
+        type: "replace"
       },
       {
-        type: "tag",
-        tag: "counter-wa-6-8-full-num"
+        tag: "counter-wa-6-8-full-num",
+        type: "tag"
       }
     ]
   ],
@@ -93,13 +93,13 @@ const COUNTER_W_CHANGES: FinalNumberChanges = {
     ],
     [
       {
-        type: "replace",
         kana: "はち",
-        kanji: "八"
+        kanji: "八",
+        type: "replace"
       },
       {
-        type: "tag",
-        tag: "counter-wa-6-8-full-num"
+        tag: "counter-wa-6-8-full-num",
+        type: "tag"
       }
     ]
   ],

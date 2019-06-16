@@ -76,8 +76,8 @@ export function ignoreLastAnswer(
   possibleCounters: ReadonlyArray<string>
 ): ActionIgnoreLastAnswer {
   return {
-    type: "ignore-last-answer",
-    possibleCounters
+    possibleCounters,
+    type: "ignore-last-answer"
   };
 }
 
