@@ -83,12 +83,12 @@ const ENGLISH: Localization = {
     size === 1 ? "1 counter" : `${size} counters`,
   submittedLabel: "Submitted:",
   tsuNotice:
-    "While 〜つ is always a valid counter, you can't use it here. You'll have to be more specific!",
+    "While 〜つ and 〜個 are always valid counters, you can't use them here. You'll have to be more specific!",
   tutorial: "Tutorial",
   tutorialPage1:
     "On the main screen, find conveniently made packs of counters. Explore each of their details, and then choose the ones that contain the counters you want to study.",
   tutorialPage2:
-    "When you hit 'Start Quiz', you'll be prompted with random items of random amounts. Determine the appropriate counter for the item, and then put in your answer.\n\nEven though it's valid, ～つ isn't an accepted answer!",
+    "When you hit 'Start Quiz', you'll be prompted with random items of random amounts. Determine the appropriate counter for the item, and then put in your answer.\n\nEven though they're valid, 〜つ and 〜個 aren't accepted answers!",
   tutorialPage3:
     "If you don't want to answer, hit 'Skip this question'. It won't penalize you and will remove the question from the quiz.",
   tutorialPage4:
