@@ -4,7 +4,9 @@ import { Counter, Item, StudyPack } from "../redux";
 import Localization, {
   VARIABLE_ALEC_DEITLOFF,
   VARIABLE_FAVICON_CREDIT_LINK,
-  VARIABLE_ICON_CREDIT_LINK
+  VARIABLE_ICON_CREDIT_LINK,
+  VARIABLE_REPORT_BUG_LINK,
+  VARIABLE_SUBMIT_FEEDBACK_LINK
 } from "./index";
 
 const ENGLISH: Localization = {
@@ -26,6 +28,13 @@ const ENGLISH: Localization = {
     VARIABLE_ICON_CREDIT_LINK,
     " collection. Sakura icon was made by ",
     VARIABLE_FAVICON_CREDIT_LINK,
+    "."
+  ],
+  feedbackFooter: [
+    "Your thoughts are super appreciated! Click here to ",
+    VARIABLE_REPORT_BUG_LINK,
+    " or ",
+    VARIABLE_SUBMIT_FEEDBACK_LINK,
     "."
   ],
   furtherIrregulars: "There are some more irregulars later on as well though:",
@@ -62,6 +71,7 @@ const ENGLISH: Localization = {
     "You've learned so much to get here, I know you'll get to where you want to go!",
     "This stuff isn't easy; practice WILL make perfect."
   ],
+  reportABug: "Report a Bug",
   resultColumnHeaderCounter: "Counter",
   resultColumnHeaderHiragana: "Hiragana",
   resultColumnHeaderKanji: "Kanji",
@@ -81,6 +91,7 @@ const ENGLISH: Localization = {
   studyPackSelectionSubheader: "(select 1 or more)",
   studyPackSize: (size: number) =>
     size === 1 ? "1 counter" : `${size} counters`,
+  submitFeedback: "Submit Feedback",
   submittedLabel: "Submitted:",
   tsuNotice:
     "While 〜つ and 〜個 are always valid counters, you can't use them here. You'll have to be more specific!",

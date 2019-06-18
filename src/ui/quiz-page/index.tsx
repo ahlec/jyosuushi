@@ -6,6 +6,7 @@ import Localization from "../../localization";
 import QuizManager from "../../QuizManager";
 import { Question, QuizState, State } from "../../redux";
 
+import FeedbackFooter from "../FeedbackFooter";
 import AnswerInput from "./AnswerInput";
 import QuestionDisplay from "./QuestionDisplay";
 import QuizWrapup from "./QuizWrapup";
@@ -80,6 +81,8 @@ class QuizPage extends React.PureComponent<ComponentProps> {
             onClickNextQuestion={this.onClickNextQuestion}
           />
         )}
+        <div className="flex" />
+        <FeedbackFooter localization={localization} />
       </div>
     );
   }

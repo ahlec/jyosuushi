@@ -4,5 +4,7 @@ declare module "*.svg" {
 }
 
 declare module "*.jpg";
+declare module "*.png";
 
+declare const CONFIG_FEEDBACK_FORM_LINK: string;
 declare const CONFIG_GOOGLE_ANALYTICS_TRACKING_ID: string;

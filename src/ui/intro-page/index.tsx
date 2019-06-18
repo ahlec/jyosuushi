@@ -14,6 +14,7 @@ import { State, StudyPack } from "../../redux";
 
 import TutorialModal from "./TutorialModal";
 
+import FeedbackFooter from "../FeedbackFooter";
 import CounterPreview from "./CounterPreview";
 import PackSelection from "./PackSelection";
 
@@ -93,10 +94,6 @@ class IntroPage extends React.PureComponent<ComponentProps, ComponentState> {
             Click here to read the tutorial.
           </span>
         </p>
-        <p>
-          To begin, select one or more study pack below. These will determine
-          which counters you'll be asked.
-        </p>
         <PackSelection
           localization={localization}
           onSelectionChanged={this.onSelectionChanged}
@@ -109,6 +106,7 @@ class IntroPage extends React.PureComponent<ComponentProps, ComponentState> {
         </div>
         <CounterPreview localization={localization} packs={selection} />
         <div className="flex" />
+        <FeedbackFooter localization={localization} />
         <div className="credits">
           {localization.credits.map(this.renderCredit)}
         </div>

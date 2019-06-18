@@ -1,4 +1,8 @@
 .QuestionPage {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
   .ResultsView {
     margin: 20px;
   }

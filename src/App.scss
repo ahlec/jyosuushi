@@ -59,6 +59,7 @@ a:visited,
   text-decoration: underline;
   color: $pink-darkest;
   font-weight: 600;
+  cursor: pointer;
 }
 
 a:hover,
@@ -112,4 +113,8 @@ button {
   &.show {
     opacity: 1;
   }
+}
+
+.flex {
+  flex: 1;
 }
