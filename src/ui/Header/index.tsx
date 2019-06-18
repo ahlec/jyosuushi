@@ -29,6 +29,7 @@ interface ProvidedProps {
 
 interface ReduxProps {
   hasAnsweredQuestion: boolean;
+  isOnQuizWrapup: boolean;
   scorecard: Scorecard;
 }
 
@@ -48,6 +49,7 @@ function mapStateToProps(state: State): ReduxProps {
 
   return {
     hasAnsweredQuestion,
+    isOnQuizWrapup: state.quizState === "quiz-wrapup",
     scorecard: state.scorecard
   };
 }
@@ -233,10 +235,10 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
   };
 
   private onClickHome = () => {
-    const { dispatch, onModalOpened, scorecard } = this.props;
+    const { dispatch, isOnQuizWrapup, onModalOpened, scorecard } = this.props;
     const numQuestionsAnswered =
       scorecard.numCorrectAnswers + scorecard.numIncorrectAnswers;
-    if (!numQuestionsAnswered) {
+    if (isOnQuizWrapup || !numQuestionsAnswered) {
       dispatch(leaveQuiz());
       return;
     }
