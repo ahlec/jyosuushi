@@ -13,6 +13,7 @@ import Localization, {
 const ENGLISH: Localization = {
   alecDeitloff: "Alec Deitloff",
   andSoForth: "... and so forth",
+  beta: "Beta",
   buttonIgnoreAnswer: "Ignore Answer",
   buttonNextQuestion: "Next Question",
   counterItemsPrefix: numCounters =>

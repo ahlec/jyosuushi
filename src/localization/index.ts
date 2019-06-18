@@ -24,6 +24,7 @@ export type FeedbackFooterPiece =
 export default interface Localization {
   alecDeitloff: string;
   andSoForth: string;
+  beta: string;
   buttonIgnoreAnswer: string;
   buttonNextQuestion: string;
   counterItemsPrefix: (numCounters: number) => string;

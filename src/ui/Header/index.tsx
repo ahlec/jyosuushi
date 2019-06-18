@@ -13,6 +13,7 @@ import QuizHistory from "../QuizHistory";
 import TooltipButton from "../TooltipButton";
 
 import AbortConfirmationModal from "./AbortConfirmationModal";
+import BetaBanner from "./BetaBanner";
 import Score from "./Score";
 
 import HistoryIcon from "./history.svg";
@@ -148,6 +149,7 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
           </ruby>
         </div>
         <div className="subheader">{localization.siteTagline}</div>
+        <BetaBanner localization={localization} />
       </React.Fragment>
     );
   }
