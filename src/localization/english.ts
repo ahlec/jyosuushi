@@ -6,6 +6,7 @@ import Localization, {
   VARIABLE_FAVICON_CREDIT_LINK,
   VARIABLE_ICON_CREDIT_LINK,
   VARIABLE_REPORT_BUG_LINK,
+  VARIABLE_SILK_ICONS_CREDIT_LINK,
   VARIABLE_SUBMIT_FEEDBACK_LINK
 } from "./index";
 
@@ -28,7 +29,9 @@ const ENGLISH: Localization = {
     VARIABLE_ICON_CREDIT_LINK,
     " collection. Sakura icon was made by ",
     VARIABLE_FAVICON_CREDIT_LINK,
-    "."
+    ". Small icons are part of the ",
+    VARIABLE_SILK_ICONS_CREDIT_LINK,
+    " collection."
   ],
   feedbackFooter: [
     "Your thoughts are super appreciated! Click here to ",

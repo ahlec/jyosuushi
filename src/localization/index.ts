@@ -5,14 +5,16 @@ import { Counter, Item, StudyPack } from "../redux";
 export const VARIABLE_ALEC_DEITLOFF = 17;
 export const VARIABLE_ICON_CREDIT_LINK = 18;
 export const VARIABLE_FAVICON_CREDIT_LINK = 19;
-export const VARIABLE_REPORT_BUG_LINK = 20;
-export const VARIABLE_SUBMIT_FEEDBACK_LINK = 21;
+export const VARIABLE_SILK_ICONS_CREDIT_LINK = 20;
+export const VARIABLE_REPORT_BUG_LINK = 21;
+export const VARIABLE_SUBMIT_FEEDBACK_LINK = 22;
 
 export type CreditsPiece =
   | string
   | typeof VARIABLE_ALEC_DEITLOFF
   | typeof VARIABLE_ICON_CREDIT_LINK
-  | typeof VARIABLE_FAVICON_CREDIT_LINK;
+  | typeof VARIABLE_FAVICON_CREDIT_LINK
+  | typeof VARIABLE_SILK_ICONS_CREDIT_LINK;
 
 export type FeedbackFooterPiece =
   | string

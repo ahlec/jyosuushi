@@ -7,7 +7,8 @@ import Localization, {
   CreditsPiece,
   VARIABLE_ALEC_DEITLOFF,
   VARIABLE_FAVICON_CREDIT_LINK,
-  VARIABLE_ICON_CREDIT_LINK
+  VARIABLE_ICON_CREDIT_LINK,
+  VARIABLE_SILK_ICONS_CREDIT_LINK
 } from "../../localization";
 import QuizManager from "../../QuizManager";
 import { State, StudyPack } from "../../redux";
@@ -150,6 +151,16 @@ class IntroPage extends React.PureComponent<ComponentProps, ComponentState> {
             target="_blank"
           >
             Freepik
+          </a>
+        );
+      case VARIABLE_SILK_ICONS_CREDIT_LINK:
+        return (
+          <a
+            key={VARIABLE_SILK_ICONS_CREDIT_LINK}
+            href="http://www.famfamfam.com/lab/icons/silk/"
+            target="_blank"
+          >
+            Silk
           </a>
         );
       default:
