@@ -87,7 +87,8 @@ const ENGLISH: Localization = {
     "Here are all of the possible answers based on the sets you have enabled:",
   resultsTableIrregularLabel: "(irregular)",
   siteTagline: "Let's review Japanese counters!",
-  skippedQuestionResult: "Alright! You'll see this question later in the quiz!",
+  skippedQuestionResult:
+    "Alright! You don't need to worry about this question!",
   startQuiz: "Start Quiz!",
   studyPackName: (studyPack: StudyPack) => studyPack.englishName,
   studyPackSelectionHeader: "Study Packs",
