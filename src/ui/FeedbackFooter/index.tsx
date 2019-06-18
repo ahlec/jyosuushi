@@ -31,13 +31,13 @@ export default class FeedbackFooter extends React.PureComponent<
     switch (piece) {
       case VARIABLE_REPORT_BUG_LINK:
         return (
-          <span
+          <a
             key={VARIABLE_REPORT_BUG_LINK}
-            className="link"
-            onClick={this.onClickBug}
+            href={CONFIG_BUG_REPORT_FORM_LINK}
+            target="_blank"
           >
             <img src={BugIcon} /> {localization.reportABug}
-          </span>
+          </a>
         );
       case VARIABLE_SUBMIT_FEEDBACK_LINK:
         return (
@@ -52,11 +52,5 @@ export default class FeedbackFooter extends React.PureComponent<
       default:
         return piece;
     }
-  };
-
-  /* tslint:disable */
-
-  private onClickBug = () => {
-    console.log("x");
   };
 }

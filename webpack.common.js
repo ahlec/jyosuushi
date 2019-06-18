@@ -82,6 +82,9 @@ module.exports = {
   plugins: [
     new webpack.HashedModuleIdsPlugin(),
     new webpack.DefinePlugin({
+      CONFIG_BUG_REPORT_FORM_LINK: JSON.stringify(
+        configJson.BUG_REPORT_FORM_LINK
+      ),
       CONFIG_FEEDBACK_FORM_LINK: JSON.stringify(configJson.FEEDBACK_FORM_LINK),
       CONFIG_GOOGLE_ANALYTICS_TRACKING_ID: JSON.stringify(
         configJson.GOOGLE_ANALYTICS_TRACKING_ID
