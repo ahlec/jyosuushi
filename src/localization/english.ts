@@ -103,11 +103,11 @@ const ENGLISH: Localization = {
   tutorialPage1:
     "On the main screen, find conveniently made packs of counters. Explore each of their details, and then choose the ones that contain the counters you want to study.",
   tutorialPage2:
-    "When you hit 'Start Quiz', you'll be prompted with random items of random amounts. Determine the appropriate counter for the item, and then put in your answer.\n\nEven though they're valid, 〜つ and 〜個 aren't accepted answers!",
+    "When you hit 'Start Quiz', you'll be prompted with random nouns of random amounts. Determine the appropriate counter for the noun, and then put in your answer.\n\nEven though they're valid, 〜つ and 〜個 aren't accepted answers!",
   tutorialPage3:
     "If you don't want to answer, hit 'Skip this question'. It won't penalize you and will remove the question from the quiz.",
   tutorialPage4:
-    "You can then check your accuracy! It will show you all of the correct answers at this stage, so you can take note if you made a mistake.",
+    "Once you submit your answer, check your accuracy! It will show you all of the correct answers at this stage, so you can take note if you made a mistake.",
   tutorialPage5:
     "If you made a typo or a genuine mistake, hit 'Ignore Answer'. It won't penalize you, and it will shuffle that question in for later to try again. It's up to you to stay honest!",
   tutorialPage6:

@@ -1,6 +1,11 @@
 import Localization from "../../../localization";
 
-import KyotoJpg from "./kyoto.jpg";
+import IgnoreAnswerPng from "./ignore-answer.png";
+import QuizWrapupPng from "./quiz-wrapup.png";
+import ReviewAnswersPng from "./review-answers.png";
+import SkipQuestionsPng from "./skip-questions.png";
+import StudyPacksPng from "./study-packs.png";
+import SubmitAnswerPng from "./submit-answer.png";
 
 export interface TutorialPage {
   getText: (localization: Localization) => string;
@@ -10,26 +15,26 @@ export interface TutorialPage {
 export const TUTORIAL_PAGES: ReadonlyArray<TutorialPage> = [
   {
     getText: localization => localization.tutorialPage1,
-    image: KyotoJpg
+    image: StudyPacksPng
   },
   {
     getText: localization => localization.tutorialPage2,
-    image: KyotoJpg
+    image: SubmitAnswerPng
   },
   {
     getText: localization => localization.tutorialPage3,
-    image: KyotoJpg
+    image: SkipQuestionsPng
   },
   {
     getText: localization => localization.tutorialPage4,
-    image: KyotoJpg
+    image: ReviewAnswersPng
   },
   {
     getText: localization => localization.tutorialPage5,
-    image: KyotoJpg
+    image: IgnoreAnswerPng
   },
   {
     getText: localization => localization.tutorialPage6,
-    image: KyotoJpg
+    image: QuizWrapupPng
   }
 ];

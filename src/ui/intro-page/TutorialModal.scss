@@ -175,19 +175,17 @@
           flex: 1;
           display: flex;
           justify-content: flex-end;
-          padding-bottom: $separation-padding;
+          margin: 15px 0px;
 
           img {
-            max-width: 300px;
-            max-height: 300px;
             border: 1px solid $modal-border;
+            width: 400px;
+            height: 307px;
           }
         }
 
         .text {
           flex: 1;
-          padding-top: $separation-padding;
-          border-top: 1px solid $modal-border;
           width: 80%;
           text-align: center;
           white-space: pre-wrap;
