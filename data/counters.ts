@@ -107,8 +107,10 @@ export const COUNTER_台: Counter = {
 
 export const COUNTER_回: Counter = {
   counterId: "回",
-  englishName: "times (occurances)",
-  irregulars: {},
+  englishName: "times (occurrences)",
+  irregulars: {
+    8: ["はっかい", "はちかい"]
+  },
   kana: "かい",
   kanji: "回"
 };
@@ -118,8 +120,8 @@ export const COUNTER_年: Counter = {
   englishName: "years",
   irregulars: {
     4: ["よねん"],
-    7: ["しちねん"],
-    9: ["くねん"]
+    7: ["しちねん", "ななねん"],
+    9: ["くねん", "きゅうねん"]
   },
   kana: "ねん",
   kanji: "年"
@@ -160,7 +162,9 @@ export const COUNTER_羽: Counter = {
 export const COUNTER_階: Counter = {
   counterId: "階",
   englishName: "floors",
-  irregulars: {},
+  irregulars: {
+    8: ["はちかい", "はっかい"]
+  },
   kana: "かい",
   kanji: "階"
 };

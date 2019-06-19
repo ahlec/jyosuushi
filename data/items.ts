@@ -238,6 +238,15 @@ const ITEM_NOTEBOOK: Item = {
   minQuantity: 1
 };
 
+const ITEM_OCCURRENCE: Item = {
+  counters: ["回"],
+  englishPlural: "occurrences",
+  englishSingular: "occurrence",
+  itemId: "occurrence",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
 const ITEM_ORIGAMI_CRANE: Item = {
   counters: ["羽"],
   englishPlural: "origami cranes",
@@ -382,6 +391,15 @@ const ITEM_TEXTBOOK: Item = {
   minQuantity: 1
 };
 
+const ITEM_TIME_OCCURRENCES_: Item = {
+  counters: ["回"],
+  englishPlural: "times",
+  englishSingular: "time",
+  itemId: "time (occurrences)",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
 const ITEM_TREE: Item = {
   counters: ["long, thin object"],
   englishPlural: "trees",
@@ -427,6 +445,15 @@ const ITEM_YEAR: Item = {
   minQuantity: 1
 };
 
+const ITEM_YEARS_OLD: Item = {
+  counters: ["歳"],
+  englishPlural: "years old",
+  englishSingular: "year old",
+  itemId: "years old",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
 export const ITEMS_FROM_COUNTER: {
   [counterId: string]: ReadonlyArray<Item>;
 } = {
@@ -440,9 +467,11 @@ export const ITEMS_FROM_COUNTER: {
   "冊": [ITEM_TEXTBOOK, ITEM_DICTIONARY, ITEM_NOTEBOOK, ITEM_MAGAZINE, ITEM_BOOK],
   "匹": [ITEM_RABBIT, ITEM_DOG, ITEM_CAT, ITEM_SHEEP, ITEM_DEER, ITEM_OTTER],
   "台": [ITEM_WASHING_MACHINE, ITEM_OVEN, ITEM_MICROWAVE, ITEM_CAR, ITEM_BED],
+  "回": [ITEM_TIME_OCCURRENCES_, ITEM_OCCURRENCE],
   "年": [ITEM_YEAR],
   "月": [ITEM_MONTH],
   "枚": [ITEM_CREDIT_CARD, ITEM_PLAYING_CARD, ITEM_PAPER, ITEM_PHOTO],
+  "歳": [ITEM_YEARS_OLD],
   "羽": [ITEM_CHICKEN, ITEM_PENGUIN, ITEM_RABBIT, ITEM_ORIGAMI_CRANE, ITEM_BAT],
   "階": [ITEM_FLOOR_BUILDING_, ITEM_STOREY],
   "頭": [ITEM_COW, ITEM_HORSE, ITEM_GORILLA, ITEM_WHALE, ITEM_ELEPHANT]
