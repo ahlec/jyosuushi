@@ -1,3 +1,4 @@
+import { conjugateNumberAndCounter as regularConjugateNumberAndCounter } from "./japanese/counters";
 import { Counter, StudyPack } from "./redux";
 
 export function randomFromArray<T>(arr: ReadonlyArray<T>): T {
@@ -76,4 +77,44 @@ export function getDistinctCounters(
 
   counters.sort(compareCounters);
   return counters;
+}
+
+interface ConjugatedInfo {
+  isIrregular: boolean;
+  kana: string;
+  kanji: string;
+}
+
+export function conjugateCounter(
+  amount: number,
+  counter: Counter
+): ReadonlyArray<ConjugatedInfo> {
+  const regulars = regularConjugateNumberAndCounter(amount, {
+    kana: counter.kana,
+    kanji: counter.kanji
+  });
+
+  if (!counter.irregulars[amount]) {
+    return regulars.map(({ kana, kanji }) => ({
+      isIrregular: false,
+      kana,
+      kanji: kanji || ""
+    }));
+  }
+
+  const results: ConjugatedInfo[] = [];
+  for (const irregular of counter.irregulars[amount]) {
+    // Because defining a single irregular means that we don't display the
+    // conjugations, we need to define regular conjugations alongside irregular
+    // ones if there is even a single irregular. However, let's not display
+    // them as irregular on the frontend.
+    const isIrregular = !regulars.find(({ kana }) => irregular === kana);
+    results.push({
+      isIrregular,
+      kana: irregular,
+      kanji: ""
+    });
+  }
+
+  return results;
 }

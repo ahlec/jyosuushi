@@ -39,8 +39,9 @@ async function writeCounterData(file, counter, irregulars) {
     const amounts = Object.keys(irregulars);
     for (let index = 0; index < amounts.length; ++index) {
       const amount = amounts[index];
-      const kana = irregulars[amount];
-      irregularsStr += `    ${amount}: "${kana}"`;
+      irregularsStr += `    ${amount}: [${irregulars[amount]
+        .map(kana => `"${kana}"`)
+        .join(", ")}]`;
       if (index < amounts.length - 1) {
         irregularsStr += ",\n";
       }
@@ -75,8 +76,12 @@ async function writeCountersFile(db) {
       irregularsLookup[irregular.counter_id] = {};
     }
 
-    irregularsLookup[irregular.counter_id][parseInt(irregular.number)] =
-      irregular.kana;
+    const amount = parseInt(irregular.number);
+    if (!irregularsLookup[irregular.counter_id][amount]) {
+      irregularsLookup[irregular.counter_id][amount] = [];
+    }
+
+    irregularsLookup[irregular.counter_id][amount].push(irregular.kana);
   }
 
   const file = fs.openSync(COUNTERS_FILE, "w");

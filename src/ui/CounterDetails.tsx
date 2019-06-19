@@ -3,9 +3,9 @@ import { memoize } from "lodash";
 import * as React from "react";
 
 import { ITEMS_FROM_COUNTER } from "../../data/items";
-import { conjugateNumberAndCounter } from "../japanese/counters";
 import Localization from "../localization";
 import { Counter, Item } from "../redux";
+import { conjugateCounter } from "../utils";
 
 import "./CounterDetails.scss";
 
@@ -30,27 +30,24 @@ const getConjugations = memoize(
   (counter: Counter): ReadonlyArray<ReadonlyArray<Conjugation>> => {
     const results: Array<ReadonlyArray<Conjugation>> = [];
     for (let amount = 1; amount <= AMOUNTS_TO_DISPLAY; ++amount) {
-      if (counter.irregulars[amount]) {
-        results[amount - 1] = [
-          {
-            conjugation: counter.irregulars[amount],
-            irregular: true
-          }
-        ];
-      } else {
-        results[amount - 1] = conjugateNumberAndCounter(amount, {
-          kana: counter.kana,
-          kanji: counter.kanji
-        }).map(({ kana }) => ({
+      results[amount - 1] = conjugateCounter(amount, counter).map(
+        ({ kana, isIrregular }) => ({
           conjugation: kana,
-          irregular: false
-        }));
-      }
+          irregular: isIrregular
+        })
+      );
     }
 
     return results;
   },
   (counter: Counter) => counter.counterId
+);
+
+const countIrregulars = memoize(
+  (conjugations: ReadonlyArray<ReadonlyArray<Conjugation>>) =>
+    conjugations.reduce((total: number, nested: ReadonlyArray<Conjugation>) => {
+      return total + nested.filter(({ irregular }) => irregular).length;
+    }, 0)
 );
 
 function compareIrregulars(a: Irregular, b: Irregular): number {
@@ -66,10 +63,15 @@ const getFurtherIrregulars = memoize(
         return;
       }
 
-      results.push({
-        amount,
-        conjugation: counter.irregulars[amount]
-      });
+      // TODO: This won't group multiple irregulars of the same amount so
+      // they'll appear on different lines.
+      const conjugations = conjugateCounter(amount, counter);
+      for (const conjugation of conjugations) {
+        results.push({
+          amount,
+          conjugation: conjugation.kana
+        });
+      }
     });
 
     results.sort(compareIrregulars);
@@ -129,7 +131,8 @@ export default class CounterDetails extends React.PureComponent<
 
   private renderIrregularsWarning() {
     const { counter, localization } = this.props;
-    const numIrregulars = Object.keys(counter.irregulars).length;
+    const conjugations = getConjugations(counter);
+    const numIrregulars = countIrregulars(conjugations);
     if (!numIrregulars) {
       return localization.irregularsWarningNoIrregulars;
     }

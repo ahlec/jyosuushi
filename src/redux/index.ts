@@ -23,7 +23,7 @@ export interface Counter {
   englishName: string;
   kana: string;
   kanji: string | null;
-  irregulars: { [amount: number]: string };
+  irregulars: { [amount: number]: ReadonlyArray<string> };
 }
 
 export interface Item {

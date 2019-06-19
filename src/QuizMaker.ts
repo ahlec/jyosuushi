@@ -1,9 +1,12 @@
 import { random, shuffle } from "lodash";
 
 import { ITEMS_FROM_COUNTER } from "../data/items";
-import { conjugateNumberAndCounter } from "./japanese/counters";
 import { Answer, Counter, Item, Question, StudyPack } from "./redux";
-import { getDistinctCounters, randomFromArray } from "./utils";
+import {
+  conjugateCounter,
+  getDistinctCounters,
+  randomFromArray
+} from "./utils";
 
 const MAX_NUMBER_QUESTIONS_PER_ITEM = 20;
 const MAX_NUMBER_QUESTIONS_PER_COUNTER = 40;
@@ -70,27 +73,12 @@ function createQuestion(
     .filter(itemId => !!itemId);
   const validAnswers: Answer[] = [];
   for (const counter of itemCounters) {
-    if (counter.irregulars[amount]) {
+    const answers = conjugateCounter(amount, counter);
+    for (const answer of answers) {
       validAnswers.push({
-        counterId: counter.counterId,
-        isIrregular: true,
-        kana: counter.irregulars[amount],
-        kanji: ""
+        ...answer,
+        counterId: counter.counterId
       });
-    } else {
-      const answers: Answer[] = conjugateNumberAndCounter(amount, {
-        kana: counter.kana,
-        kanji: counter.kanji
-      }).map(({ kana, kanji }) => ({
-        counterId: counter.counterId,
-        isIrregular: false,
-        kana,
-        kanji
-      }));
-
-      for (const answer of answers) {
-        validAnswers.push(answer);
-      }
     }
   }
 
