@@ -139,6 +139,15 @@ const ITEM_ELEPHANT: Item = {
   minQuantity: 1
 };
 
+const ITEM_FLOOR_BUILDING_: Item = {
+  counters: ["階"],
+  englishPlural: "floors",
+  englishSingular: "floor",
+  itemId: "floor (building)",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
 const ITEM_GORILLA: Item = {
   counters: ["頭"],
   englishPlural: "gorillas",
@@ -207,6 +216,15 @@ const ITEM_MINUTE: Item = {
   englishPlural: "minutes",
   englishSingular: "minute",
   itemId: "minute",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
+const ITEM_MONTH: Item = {
+  counters: ["月","ヶ月"],
+  englishPlural: "months",
+  englishSingular: "month",
+  itemId: "month",
   maxQuantity: 100,
   minQuantity: 1
 };
@@ -346,6 +364,15 @@ const ITEM_SHEEP: Item = {
   minQuantity: 1
 };
 
+const ITEM_STOREY: Item = {
+  counters: ["階"],
+  englishPlural: "stories",
+  englishSingular: "storey",
+  itemId: "storey",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
 const ITEM_TEXTBOOK: Item = {
   counters: ["冊"],
   englishPlural: "textbooks",
@@ -391,6 +418,15 @@ const ITEM_WOMAN: Item = {
   minQuantity: 1
 };
 
+const ITEM_YEAR: Item = {
+  counters: ["年"],
+  englishPlural: "years",
+  englishSingular: "year",
+  itemId: "year",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
 export const ITEMS_FROM_COUNTER: {
   [counterId: string]: ReadonlyArray<Item>;
 } = {
@@ -400,10 +436,14 @@ export const ITEMS_FROM_COUNTER: {
   minute: [ITEM_MINUTE],
   "people-mei": [ITEM_PERSON],
   "people-nin": [ITEM_PERSON, ITEM_ROOMMATE, ITEM_COWORKER, ITEM_WOMAN, ITEM_MAN],
+  "ヶ月": [ITEM_MONTH],
   "冊": [ITEM_TEXTBOOK, ITEM_DICTIONARY, ITEM_NOTEBOOK, ITEM_MAGAZINE, ITEM_BOOK],
   "匹": [ITEM_RABBIT, ITEM_DOG, ITEM_CAT, ITEM_SHEEP, ITEM_DEER, ITEM_OTTER],
   "台": [ITEM_WASHING_MACHINE, ITEM_OVEN, ITEM_MICROWAVE, ITEM_CAR, ITEM_BED],
+  "年": [ITEM_YEAR],
+  "月": [ITEM_MONTH],
   "枚": [ITEM_CREDIT_CARD, ITEM_PLAYING_CARD, ITEM_PAPER, ITEM_PHOTO],
   "羽": [ITEM_CHICKEN, ITEM_PENGUIN, ITEM_RABBIT, ITEM_ORIGAMI_CRANE, ITEM_BAT],
+  "階": [ITEM_FLOOR_BUILDING_, ITEM_STOREY],
   "頭": [ITEM_COW, ITEM_HORSE, ITEM_GORILLA, ITEM_WHALE, ITEM_ELEPHANT]
 };

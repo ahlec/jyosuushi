@@ -8,19 +8,19 @@ export const COUNTER_DAYS_OF_THE_MONTH: Counter = {
   counterId: "days of the month",
   englishName: "days of the month",
   irregulars: {
-    1: "ついたち",
-    2: "ふつか",
-    3: "みっか",
-    4: "よっか",
-    5: "いつか",
-    6: "むいか",
-    7: "なのか",
-    8: "ようか",
-    9: "ここのか",
-    10: "とうか",
-    14: "じゅうよっか",
-    20: "はつか",
-    24: "にじゅうよっか"
+    1: ["ついたち"],
+    2: ["ふつか"],
+    3: ["みっか"],
+    4: ["よっか"],
+    5: ["いつか"],
+    6: ["むいか"],
+    7: ["なのか"],
+    8: ["ようか"],
+    9: ["ここのか"],
+    10: ["とうか"],
+    14: ["じゅうよっか"],
+    20: ["はつか"],
+    24: ["にじゅうよっか"]
   },
   kana: "にち",
   kanji: "日"
@@ -30,9 +30,9 @@ export const COUNTER_HOUR: Counter = {
   counterId: "hour",
   englishName: "hours",
   irregulars: {
-    4: "よじ",
-    7: "しちじ",
-    9: "くじ"
+    4: ["よじ"],
+    7: ["しちじ"],
+    9: ["くじ"]
   },
   kana: "じ",
   kanji: "時"
@@ -66,11 +66,19 @@ export const COUNTER_PEOPLE_NIN: Counter = {
   counterId: "people-nin",
   englishName: "people",
   irregulars: {
-    1: "ひとり",
-    2: "ふたり"
+    1: ["ひとり"],
+    2: ["ふたり"]
   },
   kana: "にん",
   kanji: "人"
+};
+
+export const COUNTER_ヶ月: Counter = {
+  counterId: "ヶ月",
+  englishName: "months",
+  irregulars: {},
+  kana: "かげつ",
+  kanji: "ヶ月"
 };
 
 export const COUNTER_冊: Counter = {
@@ -97,6 +105,34 @@ export const COUNTER_台: Counter = {
   kanji: "台"
 };
 
+export const COUNTER_回: Counter = {
+  counterId: "回",
+  englishName: "times (occurances)",
+  irregulars: {},
+  kana: "かい",
+  kanji: "回"
+};
+
+export const COUNTER_年: Counter = {
+  counterId: "年",
+  englishName: "years",
+  irregulars: {
+    4: ["よねん"],
+    7: ["しちねん"],
+    9: ["くねん"]
+  },
+  kana: "ねん",
+  kanji: "年"
+};
+
+export const COUNTER_月: Counter = {
+  counterId: "月",
+  englishName: "months (wago)",
+  irregulars: {},
+  kana: "つき",
+  kanji: "月"
+};
+
 export const COUNTER_枚: Counter = {
   counterId: "枚",
   englishName: "flat objects",
@@ -105,12 +141,28 @@ export const COUNTER_枚: Counter = {
   kanji: "枚"
 };
 
+export const COUNTER_歳: Counter = {
+  counterId: "歳",
+  englishName: "age",
+  irregulars: {},
+  kana: "さい",
+  kanji: "歳"
+};
+
 export const COUNTER_羽: Counter = {
   counterId: "羽",
   englishName: "birds and rabbits",
   irregulars: {},
   kana: "わ",
   kanji: "羽"
+};
+
+export const COUNTER_階: Counter = {
+  counterId: "階",
+  englishName: "floors",
+  irregulars: {},
+  kana: "かい",
+  kanji: "階"
 };
 
 export const COUNTER_頭: Counter = {
