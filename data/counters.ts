@@ -40,15 +40,15 @@ export const COUNTER_HOUR: Counter = {
     allowsKyuuFor9: false,
     allowsNanaFor7: true,
     allowsShiFor4: false,
-    allowsShichiFor7: false,
+    allowsShichiFor7: true,
     allowsYonFor4: true
   },
   counterId: "hour",
   englishName: "hours",
   irregulars: {
     4: ["よじ"],
-    7: ["しちじ"],
-    9: ["くじ"]
+    14: ["じゅうよじ"],
+    24: ["にじゅうよじ"]
   },
   kana: "じ",
   kanji: "時"
@@ -205,19 +205,17 @@ export const COUNTER_回: Counter = {
 
 export const COUNTER_年: Counter = {
   conjugationOptions: {
-    allowsKuFor9: false,
+    allowsKuFor9: true,
     allowsKyuuFor9: true,
     allowsNanaFor7: true,
     allowsShiFor4: false,
-    allowsShichiFor7: false,
+    allowsShichiFor7: true,
     allowsYonFor4: true
   },
   counterId: "年",
   englishName: "years",
   irregulars: {
-    4: ["よねん"],
-    7: ["しちねん", "ななねん"],
-    9: ["くねん", "きゅうねん"]
+    4: ["よねん"]
   },
   kana: "ねん",
   kanji: "年"
