@@ -1,5 +1,6 @@
 import classnames from "classnames";
 import * as React from "react";
+import * as ReactGA from "react-ga";
 import { connect } from "react-redux";
 
 import Localization from "../../localization";
@@ -32,6 +33,7 @@ interface ReduxProps {
   hasAnsweredQuestion: boolean;
   isOnQuizWrapup: boolean;
   scorecard: Scorecard;
+  totalNumberQuestions: number;
 }
 
 function mapStateToProps(state: State): ReduxProps {
@@ -51,7 +53,8 @@ function mapStateToProps(state: State): ReduxProps {
   return {
     hasAnsweredQuestion,
     isOnQuizWrapup: state.quizState === "quiz-wrapup",
-    scorecard: state.scorecard
+    scorecard: state.scorecard,
+    totalNumberQuestions: state.questions.questions.length
   };
 }
 
@@ -241,6 +244,10 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
     const numQuestionsAnswered =
       scorecard.numCorrectAnswers + scorecard.numIncorrectAnswers;
     if (isOnQuizWrapup || !numQuestionsAnswered) {
+      if (!isOnQuizWrapup) {
+        this.trackLeavingQuizEarly();
+      }
+
       dispatch(leaveQuiz());
       return;
     }
@@ -251,6 +258,7 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
 
   private onConfirmLeaveEarly = () => {
     const { dispatch } = this.props;
+    this.trackLeavingQuizEarly();
     dispatch(leaveQuiz());
   };
 
@@ -259,6 +267,21 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
     this.setState({ isPromptingToLeave: false });
     onModalOpened(false);
   };
+
+  private trackLeavingQuizEarly() {
+    const { scorecard, totalNumberQuestions } = this.props;
+    const numQuestionsAnswered =
+      scorecard.numCorrectAnswers + scorecard.numIncorrectAnswers;
+    ReactGA.event({
+      action: "Quiz Aborted",
+      category: "Quiz",
+      label: `Answered: ${numQuestionsAnswered}, Skipped: ${
+        scorecard.numSkippedQuestions
+      }, Ignored: ${
+        scorecard.numIgnoredAnswers
+      }, Total: ${totalNumberQuestions}`
+    });
+  }
 }
 
 export default connect(mapStateToProps)(Header);

@@ -12,6 +12,7 @@ export interface Scorecard {
   numCorrectAnswers: number;
   numIncorrectAnswers: number;
   numSkippedQuestions: number;
+  numIgnoredAnswers: number;
 }
 
 export interface StudyPack {

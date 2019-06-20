@@ -23,6 +23,7 @@ const DEFAULT_SCORECARD: Scorecard = {
   missedCounterTallies: {},
   mostMissedCounterId: null,
   numCorrectAnswers: 0,
+  numIgnoredAnswers: 0,
   numIncorrectAnswers: 0,
   numSkippedQuestions: 0
 };
@@ -77,6 +78,7 @@ export default function scorecardReducer(
         ...state,
         missedCounterTallies: nextCounterTallies,
         mostMissedCounterId,
+        numIgnoredAnswers: state.numIgnoredAnswers + 1,
         numIncorrectAnswers: Math.max(0, state.numIncorrectAnswers - 1)
       };
     }
