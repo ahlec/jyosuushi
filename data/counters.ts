@@ -8,7 +8,7 @@ export const COUNTER_DAYS_OF_THE_MONTH: Counter = {
   counterId: "days of the month",
   englishName: "days of the month",
   irregulars: {
-    1: ["ついたち"],
+    1: ["ついたち", "いちにち"],
     2: ["ふつか"],
     3: ["みっか"],
     4: ["よっか"],
