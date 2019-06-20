@@ -88,11 +88,36 @@ function isValidTr(tr) {
   return true;
 }
 
+function parseRows(rows) {
+  const parsed = [];
+  for (const row of rows) {
+    // We can't rely on the rowspan attribute here because some of them
+    // apply to the sakuhin rows we stripped out already. This works just fine
+    // though.
+    const tds = row.querySelectorAll("td");
+    if (tds.length === 2) {
+      parsed.push({
+        kana: parsed[parsed.length - 1].kana,
+        kanji: tds[0].innerHTML,
+        counters: tds[1].innerHTML
+      });
+    } else {
+      parsed.push({
+        kana: tds[0].innerHTML,
+        kanji: tds[1].innerHTML,
+        counters: tds[2].innerHTML
+      });
+    }
+  }
+
+  return parsed;
+}
+
 async function scrubPage(page) {
   const root = await getPageRoot(page);
-  const table = root.querySelectorAll("tr");
-  const filtered = table.filter(isValidTr);
-  console.log(`[${page}] total:`, table.length, "filtered:", filtered.length);
+  const rows = root.querySelectorAll("tr").filter(isValidTr);
+  const data = parseRows(rows);
+  console.log(`[${page}] data:`, data);
 }
 
 async function main() {
