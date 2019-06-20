@@ -37,7 +37,9 @@ class QuizWrapup extends React.PureComponent<ComponentProps> {
       scorecard: { numCorrectAnswers, numIncorrectAnswers }
     } = this.props;
     const numAnswered = numCorrectAnswers + numIncorrectAnswers;
-    const grade = round((numCorrectAnswers / numAnswered) * 100, 2);
+    const grade = numAnswered
+      ? round((numCorrectAnswers / numAnswered) * 100, 2)
+      : 0;
 
     return (
       <div className="QuizWrapup">
