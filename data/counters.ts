@@ -11,6 +11,7 @@ export const COUNTER_DAYS_OF_THE_MONTH: Counter = {
     allowsNanaFor7: true,
     allowsShiFor4: false,
     allowsShichiFor7: false,
+    allowsYoFor4: false,
     allowsYonFor4: true
   },
   counterId: "days of the month",
@@ -41,15 +42,12 @@ export const COUNTER_HOUR: Counter = {
     allowsNanaFor7: true,
     allowsShiFor4: false,
     allowsShichiFor7: true,
-    allowsYonFor4: true
+    allowsYoFor4: true,
+    allowsYonFor4: false
   },
   counterId: "hour",
   englishName: "hours",
-  irregulars: {
-    4: ["よじ"],
-    14: ["じゅうよじ"],
-    24: ["にじゅうよじ"]
-  },
+  irregulars: {},
   kana: "じ",
   kanji: "時"
 };
@@ -61,6 +59,7 @@ export const COUNTER_LONG_THIN_OBJECT: Counter = {
     allowsNanaFor7: true,
     allowsShiFor4: false,
     allowsShichiFor7: false,
+    allowsYoFor4: false,
     allowsYonFor4: true
   },
   counterId: "long, thin object",
@@ -77,6 +76,7 @@ export const COUNTER_MINUTE: Counter = {
     allowsNanaFor7: true,
     allowsShiFor4: false,
     allowsShichiFor7: false,
+    allowsYoFor4: false,
     allowsYonFor4: true
   },
   counterId: "minute",
@@ -93,6 +93,7 @@ export const COUNTER_PEOPLE_MEI: Counter = {
     allowsNanaFor7: true,
     allowsShiFor4: false,
     allowsShichiFor7: false,
+    allowsYoFor4: false,
     allowsYonFor4: true
   },
   counterId: "people-mei",
@@ -109,6 +110,7 @@ export const COUNTER_PEOPLE_NIN: Counter = {
     allowsNanaFor7: true,
     allowsShiFor4: false,
     allowsShichiFor7: false,
+    allowsYoFor4: false,
     allowsYonFor4: true
   },
   counterId: "people-nin",
@@ -128,6 +130,7 @@ export const COUNTER_ヶ月: Counter = {
     allowsNanaFor7: true,
     allowsShiFor4: false,
     allowsShichiFor7: false,
+    allowsYoFor4: false,
     allowsYonFor4: true
   },
   counterId: "ヶ月",
@@ -144,6 +147,7 @@ export const COUNTER_冊: Counter = {
     allowsNanaFor7: true,
     allowsShiFor4: false,
     allowsShichiFor7: false,
+    allowsYoFor4: false,
     allowsYonFor4: true
   },
   counterId: "冊",
@@ -160,6 +164,7 @@ export const COUNTER_匹: Counter = {
     allowsNanaFor7: true,
     allowsShiFor4: false,
     allowsShichiFor7: false,
+    allowsYoFor4: false,
     allowsYonFor4: true
   },
   counterId: "匹",
@@ -176,6 +181,7 @@ export const COUNTER_台: Counter = {
     allowsNanaFor7: true,
     allowsShiFor4: false,
     allowsShichiFor7: false,
+    allowsYoFor4: false,
     allowsYonFor4: true
   },
   counterId: "台",
@@ -192,6 +198,7 @@ export const COUNTER_回: Counter = {
     allowsNanaFor7: true,
     allowsShiFor4: false,
     allowsShichiFor7: false,
+    allowsYoFor4: false,
     allowsYonFor4: true
   },
   counterId: "回",
@@ -210,13 +217,12 @@ export const COUNTER_年: Counter = {
     allowsNanaFor7: true,
     allowsShiFor4: false,
     allowsShichiFor7: true,
-    allowsYonFor4: true
+    allowsYoFor4: true,
+    allowsYonFor4: false
   },
   counterId: "年",
   englishName: "years",
-  irregulars: {
-    4: ["よねん"]
-  },
+  irregulars: {},
   kana: "ねん",
   kanji: "年"
 };
@@ -228,6 +234,7 @@ export const COUNTER_月: Counter = {
     allowsNanaFor7: true,
     allowsShiFor4: false,
     allowsShichiFor7: false,
+    allowsYoFor4: false,
     allowsYonFor4: true
   },
   counterId: "月",
@@ -244,6 +251,7 @@ export const COUNTER_枚: Counter = {
     allowsNanaFor7: true,
     allowsShiFor4: false,
     allowsShichiFor7: false,
+    allowsYoFor4: false,
     allowsYonFor4: true
   },
   counterId: "枚",
@@ -260,6 +268,7 @@ export const COUNTER_歳: Counter = {
     allowsNanaFor7: true,
     allowsShiFor4: false,
     allowsShichiFor7: false,
+    allowsYoFor4: false,
     allowsYonFor4: true
   },
   counterId: "歳",
@@ -276,6 +285,7 @@ export const COUNTER_羽: Counter = {
     allowsNanaFor7: true,
     allowsShiFor4: false,
     allowsShichiFor7: false,
+    allowsYoFor4: false,
     allowsYonFor4: true
   },
   counterId: "羽",
@@ -292,6 +302,7 @@ export const COUNTER_階: Counter = {
     allowsNanaFor7: true,
     allowsShiFor4: false,
     allowsShichiFor7: false,
+    allowsYoFor4: false,
     allowsYonFor4: true
   },
   counterId: "階",
@@ -310,6 +321,7 @@ export const COUNTER_頭: Counter = {
     allowsNanaFor7: true,
     allowsShiFor4: false,
     allowsShichiFor7: false,
+    allowsYoFor4: false,
     allowsYonFor4: true
   },
   counterId: "頭",

@@ -1,5 +1,6 @@
 export interface NumericConjugationOptions {
   allowsYonFor4: boolean;
+  allowsYoFor4: boolean;
   allowsShiFor4: boolean;
   allowsNanaFor7: boolean;
   allowsShichiFor7: boolean;

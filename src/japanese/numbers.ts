@@ -113,6 +113,11 @@ const FIRST_TEN_NUMBERS: ReadonlyArray<
       kanji: "四"
     },
     {
+      isValid: options => options.allowsYoFor4,
+      kana: "よ",
+      kanji: "四"
+    },
+    {
       isValid: options => options.allowsShiFor4,
       kana: "し",
       kanji: "四"
@@ -453,6 +458,7 @@ export const conjugateNumber: (
 
     id += `-${[
       Number(options.allowsYonFor4),
+      Number(options.allowsYoFor4),
       Number(options.allowsShiFor4),
       Number(options.allowsNanaFor7),
       Number(options.allowsShichiFor7),

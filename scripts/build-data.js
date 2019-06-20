@@ -61,6 +61,7 @@ async function writeCounterData(file, counter, irregulars) {
     allowsNanaFor7: ${counter.uses_nana ? "true" : "false"},
     allowsShiFor4: ${counter.uses_shi ? "true" : "false"},
     allowsShichiFor7: ${counter.uses_shichi ? "true" : "false"},
+    allowsYoFor4: ${counter.uses_yo ? "true" : "false"},
     allowsYonFor4: ${counter.uses_yon ? "true" : "false"}
   },
   counterId: "${counter.counter_id}",
@@ -98,12 +99,12 @@ async function writeCountersFile(db) {
   fs.writeSync(file, 'import { Counter } from "../src/redux";');
   let hasInvalidCounter = false;
   for (const counter of counters) {
-    if (!counter.uses_yon && !counter.uses_shi) {
+    if (!counter.uses_yon && !counter.uses_yo && !counter.uses_shi) {
       hasInvalidCounter = true;
       console.log(
         `[${chalk.yellow("COUNTER")}][${chalk.bold(
           counter.counter_id
-        )}] Counter defined to use neither 'yon' nor 'shi'.`
+        )}] Counter doesn't use 'yon', 'yo', or 'shi'.`
       );
     }
 
@@ -112,7 +113,7 @@ async function writeCountersFile(db) {
       console.log(
         `[${chalk.yellow("COUNTER")}][${chalk.bold(
           counter.counter_id
-        )}] Counter defined to use neither 'nana' nor 'shichi'.`
+        )}] Counter doesn't use either 'nana' or 'shichi'.`
       );
     }
 
@@ -121,7 +122,7 @@ async function writeCountersFile(db) {
       console.log(
         `[${chalk.yellow("COUNTER")}][${chalk.bold(
           counter.counter_id
-        )}] Counter defined to use neither 'kyuu' nor 'ku'.`
+        )}] Counter doesn't use either 'kyuu' or 'ku'.`
       );
     }
 
