@@ -89,6 +89,18 @@ function isValidTr(tr) {
   return numberCells.length >= 2;
 }
 
+function getCounters(text) {
+  return text
+    .replace(/ *（[^）]*）*/g, "")
+    .split(/、|・/)
+    .map(raw => {
+      const text = raw.trim();
+      const startIndex = Math.max(text.indexOf("一"), text.indexOf(" ")) + 1;
+      return text.substr(startIndex);
+    })
+    .filter(x => !!x);
+}
+
 function parseRows(rows) {
   const parsed = [];
   for (const row of rows) {
@@ -100,13 +112,13 @@ function parseRows(rows) {
       parsed.push({
         kana: parsed[parsed.length - 1].kana,
         kanji: tds[0].innerHTML,
-        counters: tds[1].innerHTML
+        counters: getCounters(tds[1].firstChild.rawText)
       });
     } else {
       parsed.push({
         kana: tds[0].innerHTML,
         kanji: tds[1].innerHTML,
-        counters: tds[2].innerHTML
+        counters: getCounters(tds[2].firstChild.rawText)
       });
     }
   }
@@ -117,7 +129,7 @@ function parseRows(rows) {
 async function scrubPage(page) {
   const root = await getPageRoot(page);
   const rows = root.querySelectorAll("tr").filter(isValidTr);
-  const data = parseRows(rows);
+  const data = parseRows(rows).filter(({ counters }) => !!counters.length);
   console.log(`[${page}] data:`, data);
 }
 
