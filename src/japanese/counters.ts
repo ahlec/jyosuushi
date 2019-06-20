@@ -1,10 +1,10 @@
 import { memoize } from "lodash";
+import { Counter } from "../redux"; // TODO: Should we be importing that here?
 import { getLeadingConsonant } from "./hepburn";
 import { Gyou, HIRAGANA } from "./kana";
 import {
   breakDownNumber,
   conjugateNumber,
-  ConjugationOptions,
   FinalNumberChanges,
   HYAKU,
   JYUU
@@ -119,14 +119,9 @@ const COUNTER_PA_GYOU: Readonly<CounterChange> = {
   gyou: "pa"
 };
 
-const CONJUGATION_OPTIONS: ConjugationOptions = {
-  allowShiForSoloFour: false,
-  allowShichiForSoloSeven: false
-};
-
-function conjugateNumberAndCounterInternal(
+function conjugateCounterRegularsInternal(
   amount: number,
-  counter: JapaneseWord
+  counter: Counter
 ): ReadonlyArray<JapaneseWord> {
   const counterFirstConsonant = getLeadingConsonant(counter.kana);
   const amountBreakdown = breakDownNumber(amount);
@@ -233,21 +228,22 @@ function conjugateNumberAndCounterInternal(
       tags: tag ? new Set([tag]) : new Set()
     }));
   } else {
-    finalizedCounter = [{ ...counter, tags: new Set() }];
+    finalizedCounter = [
+      { kana: counter.kana, kanji: counter.kanji, tags: new Set() }
+    ];
   }
 
   const words = permutateTaggableWords([
-    conjugateNumber(amount, numberChanges, CONJUGATION_OPTIONS),
+    conjugateNumber(amount, counter.conjugationOptions, numberChanges),
     finalizedCounter
   ]);
   return uniqueWords(castAwayTaggable(words));
 }
 
-export const conjugateNumberAndCounter: (
+export const conjugateCounterRegulars: (
   amount: number,
-  counter: JapaneseWord
+  counter: Counter
 ) => ReadonlyArray<JapaneseWord> = memoize(
-  conjugateNumberAndCounterInternal,
-  (amount: number, counter: JapaneseWord) =>
-    [amount, counter.kana, counter.kanji].join("-")
+  conjugateCounterRegularsInternal,
+  (amount: number, counter: Counter) => [amount, counter.counterId].join("-")
 );

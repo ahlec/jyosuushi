@@ -1,3 +1,5 @@
+import { NumericConjugationOptions } from "../japanese/interfaces";
+
 export type LocalizationLanguage = "english";
 
 export interface Settings {
@@ -23,6 +25,7 @@ export interface Counter {
   englishName: string;
   kana: string;
   kanji: string | null;
+  conjugationOptions: NumericConjugationOptions;
   irregulars: { [amount: number]: ReadonlyArray<string> };
 }
 

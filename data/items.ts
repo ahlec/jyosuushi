@@ -166,15 +166,6 @@ const ITEM_HORSE: Item = {
   minQuantity: 1
 };
 
-const ITEM_HOUR: Item = {
-  counters: ["hour"],
-  englishPlural: "hours",
-  englishSingular: "hour",
-  itemId: "hour",
-  maxQuantity: 100,
-  minQuantity: 1
-};
-
 const ITEM_LINE: Item = {
   counters: ["long, thin object"],
   englishPlural: "lines",
@@ -235,6 +226,15 @@ const ITEM_NOTEBOOK: Item = {
   englishSingular: "notebook",
   itemId: "notebook",
   maxQuantity: 100,
+  minQuantity: 1
+};
+
+const ITEM_O_CLOCK: Item = {
+  counters: ["hour"],
+  englishPlural: "o'clock",
+  englishSingular: "o'clock",
+  itemId: "o'clock",
+  maxQuantity: 24,
   minQuantity: 1
 };
 
@@ -458,7 +458,7 @@ export const ITEMS_FROM_COUNTER: {
   [counterId: string]: ReadonlyArray<Item>;
 } = {
   "days of the month": [ITEM_DAY_OF_THE_MONTH],
-  hour: [ITEM_HOUR],
+  hour: [ITEM_O_CLOCK],
   "long, thin object": [ITEM_LINE, ITEM_PEN, ITEM_RIVER, ITEM_ROD, ITEM_TREE, ITEM_BOTTLE],
   minute: [ITEM_MINUTE],
   "people-mei": [ITEM_PERSON],

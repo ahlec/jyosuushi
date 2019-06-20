@@ -1,4 +1,4 @@
-import { conjugateNumberAndCounter as regularConjugateNumberAndCounter } from "./japanese/counters";
+import { conjugateCounterRegulars } from "./japanese/counters";
 import { Counter, StudyPack } from "./redux";
 
 export function randomFromArray<T>(arr: ReadonlyArray<T>): T {
@@ -89,10 +89,7 @@ export function conjugateCounter(
   amount: number,
   counter: Counter
 ): ReadonlyArray<ConjugatedInfo> {
-  const regulars = regularConjugateNumberAndCounter(amount, {
-    kana: counter.kana,
-    kanji: counter.kanji
-  });
+  const regulars = conjugateCounterRegulars(amount, counter);
 
   if (!counter.irregulars[amount]) {
     return regulars.map(({ kana, kanji }) => ({

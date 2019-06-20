@@ -15,7 +15,7 @@ const FILE_HEADER_COMMENT = `// DO NOT HAND-MODIFY THIS FILE!!
 // Modifications will be lost if they are made manually and not through the database.\n\n`;
 
 function getVariableFromId(prefix, id) {
-  return prefix + id.toUpperCase().replace(/[-\s,&._\(\)]+/g, "_");
+  return prefix + id.toUpperCase().replace(/[-\s,&._\(\)']+/g, "_");
 }
 
 function getCounterId(id) {
@@ -55,6 +55,14 @@ async function writeCounterData(file, counter, irregulars) {
   fs.writeSync(
     file,
     `\n\nexport const ${variableName}: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: ${counter.uses_ku ? "true" : "false"},
+    allowsKyuuFor9: ${counter.uses_kyuu ? "true" : "false"},
+    allowsNanaFor7: ${counter.uses_nana ? "true" : "false"},
+    allowsShiFor4: ${counter.uses_shi ? "true" : "false"},
+    allowsShichiFor7: ${counter.uses_shichi ? "true" : "false"},
+    allowsYonFor4: ${counter.uses_yon ? "true" : "false"}
+  },
   counterId: "${counter.counter_id}",
   englishName: "${counter.english_name}",
   irregulars: ${irregularsStr},
@@ -88,14 +96,42 @@ async function writeCountersFile(db) {
   fs.writeSync(file, FILE_HEADER_COMMENT);
 
   fs.writeSync(file, 'import { Counter } from "../src/redux";');
+  let hasInvalidCounter = false;
   for (const counter of counters) {
+    if (!counter.uses_yon && !counter.uses_shi) {
+      hasInvalidCounter = true;
+      console.log(
+        `[${chalk.yellow("COUNTER")}][${chalk.bold(
+          counter.counter_id
+        )}] Counter defined to use neither 'yon' nor 'shi'.`
+      );
+    }
+
+    if (!counter.uses_nana && !counter.uses_shichi) {
+      hasInvalidCounter = true;
+      console.log(
+        `[${chalk.yellow("COUNTER")}][${chalk.bold(
+          counter.counter_id
+        )}] Counter defined to use neither 'nana' nor 'shichi'.`
+      );
+    }
+
+    if (!counter.uses_kyuu && !counter.uses_ku) {
+      hasInvalidCounter = true;
+      console.log(
+        `[${chalk.yellow("COUNTER")}][${chalk.bold(
+          counter.counter_id
+        )}] Counter defined to use neither 'kyuu' nor 'ku'.`
+      );
+    }
+
     writeCounterData(file, counter, irregularsLookup[counter.counter_id]);
   }
 
   fs.writeSync(file, "\n");
   fs.closeSync(file);
 
-  return true;
+  return !hasInvalidCounter;
 }
 
 // Items

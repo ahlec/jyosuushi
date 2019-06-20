@@ -5,6 +5,14 @@
 import { Counter } from "../src/redux";
 
 export const COUNTER_DAYS_OF_THE_MONTH: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYonFor4: true
+  },
   counterId: "days of the month",
   englishName: "days of the month",
   irregulars: {
@@ -27,18 +35,34 @@ export const COUNTER_DAYS_OF_THE_MONTH: Counter = {
 };
 
 export const COUNTER_HOUR: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: true,
+    allowsKyuuFor9: false,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: true,
+    allowsYonFor4: true
+  },
   counterId: "hour",
   englishName: "hours",
   irregulars: {
     4: ["よじ"],
-    7: ["しちじ"],
-    9: ["くじ"]
+    14: ["じゅうよじ"],
+    24: ["にじゅうよじ"]
   },
   kana: "じ",
   kanji: "時"
 };
 
 export const COUNTER_LONG_THIN_OBJECT: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYonFor4: true
+  },
   counterId: "long, thin object",
   englishName: "long, thin objects",
   irregulars: {},
@@ -47,6 +71,14 @@ export const COUNTER_LONG_THIN_OBJECT: Counter = {
 };
 
 export const COUNTER_MINUTE: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYonFor4: true
+  },
   counterId: "minute",
   englishName: "minutes",
   irregulars: {},
@@ -55,6 +87,14 @@ export const COUNTER_MINUTE: Counter = {
 };
 
 export const COUNTER_PEOPLE_MEI: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYonFor4: true
+  },
   counterId: "people-mei",
   englishName: "people (formal)",
   irregulars: {},
@@ -63,6 +103,14 @@ export const COUNTER_PEOPLE_MEI: Counter = {
 };
 
 export const COUNTER_PEOPLE_NIN: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYonFor4: true
+  },
   counterId: "people-nin",
   englishName: "people",
   irregulars: {
@@ -74,6 +122,14 @@ export const COUNTER_PEOPLE_NIN: Counter = {
 };
 
 export const COUNTER_ヶ月: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYonFor4: true
+  },
   counterId: "ヶ月",
   englishName: "months",
   irregulars: {},
@@ -82,6 +138,14 @@ export const COUNTER_ヶ月: Counter = {
 };
 
 export const COUNTER_冊: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYonFor4: true
+  },
   counterId: "冊",
   englishName: "books",
   irregulars: {},
@@ -90,6 +154,14 @@ export const COUNTER_冊: Counter = {
 };
 
 export const COUNTER_匹: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYonFor4: true
+  },
   counterId: "匹",
   englishName: "small animals",
   irregulars: {},
@@ -98,6 +170,14 @@ export const COUNTER_匹: Counter = {
 };
 
 export const COUNTER_台: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYonFor4: true
+  },
   counterId: "台",
   englishName: "machines and large objects",
   irregulars: {},
@@ -106,6 +186,14 @@ export const COUNTER_台: Counter = {
 };
 
 export const COUNTER_回: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYonFor4: true
+  },
   counterId: "回",
   englishName: "times (occurrences)",
   irregulars: {
@@ -116,18 +204,32 @@ export const COUNTER_回: Counter = {
 };
 
 export const COUNTER_年: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: true,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: true,
+    allowsYonFor4: true
+  },
   counterId: "年",
   englishName: "years",
   irregulars: {
-    4: ["よねん"],
-    7: ["しちねん", "ななねん"],
-    9: ["くねん", "きゅうねん"]
+    4: ["よねん"]
   },
   kana: "ねん",
   kanji: "年"
 };
 
 export const COUNTER_月: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYonFor4: true
+  },
   counterId: "月",
   englishName: "months (wago)",
   irregulars: {},
@@ -136,6 +238,14 @@ export const COUNTER_月: Counter = {
 };
 
 export const COUNTER_枚: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYonFor4: true
+  },
   counterId: "枚",
   englishName: "flat objects",
   irregulars: {},
@@ -144,6 +254,14 @@ export const COUNTER_枚: Counter = {
 };
 
 export const COUNTER_歳: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYonFor4: true
+  },
   counterId: "歳",
   englishName: "age",
   irregulars: {},
@@ -152,6 +270,14 @@ export const COUNTER_歳: Counter = {
 };
 
 export const COUNTER_羽: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYonFor4: true
+  },
   counterId: "羽",
   englishName: "birds and rabbits",
   irregulars: {},
@@ -160,6 +286,14 @@ export const COUNTER_羽: Counter = {
 };
 
 export const COUNTER_階: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYonFor4: true
+  },
   counterId: "階",
   englishName: "floors",
   irregulars: {
@@ -170,6 +304,14 @@ export const COUNTER_階: Counter = {
 };
 
 export const COUNTER_頭: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYonFor4: true
+  },
   counterId: "頭",
   englishName: "large animals",
   irregulars: {},
