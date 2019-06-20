@@ -22,6 +22,15 @@ const ITEM_BED: Item = {
   minQuantity: 1
 };
 
+const ITEM_BEER_CAN: Item = {
+  counters: ["缶"],
+  englishPlural: "beer cans",
+  englishSingular: "beer can",
+  itemId: "beer can",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
 const ITEM_BOOK: Item = {
   counters: ["冊"],
   englishPlural: "books",
@@ -36,6 +45,33 @@ const ITEM_BOTTLE: Item = {
   englishPlural: "bottles",
   englishSingular: "bottle",
   itemId: "bottle",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
+const ITEM_CAN_OF_BUG_SPRAY: Item = {
+  counters: ["缶"],
+  englishPlural: "cans of bug spray",
+  englishSingular: "can of bug spray",
+  itemId: "can of bug spray",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
+const ITEM_CAN_OF_HAIR_SPRAY: Item = {
+  counters: ["缶"],
+  englishPlural: "cans of hair spray",
+  englishSingular: "can of hair spray",
+  itemId: "can of hair spray",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
+const ITEM_CAN_OF_SOUP: Item = {
+  counters: ["缶"],
+  englishPlural: "cans of soup",
+  englishSingular: "can of soup",
+  itemId: "can of soup",
   maxQuantity: 100,
   minQuantity: 1
 };
@@ -135,6 +171,15 @@ const ITEM_ELEPHANT: Item = {
   englishPlural: "elephants",
   englishSingular: "elephant",
   itemId: "elephant",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
+const ITEM_EMPTY_CAN: Item = {
+  counters: ["缶"],
+  englishPlural: "empty cans",
+  englishSingular: "empty can",
+  itemId: "empty can",
   maxQuantity: 100,
   minQuantity: 1
 };
@@ -373,6 +418,33 @@ const ITEM_SHEEP: Item = {
   minQuantity: 1
 };
 
+const ITEM_SODA_CAN: Item = {
+  counters: ["缶"],
+  englishPlural: "soda cans",
+  englishSingular: "soda can",
+  itemId: "soda can",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
+const ITEM_SONG: Item = {
+  counters: ["曲"],
+  englishPlural: "songs",
+  englishSingular: "song",
+  itemId: "song",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
+const ITEM_SPRAY_PAINT: Item = {
+  counters: ["缶"],
+  englishPlural: "spray paints",
+  englishSingular: "spray paint",
+  itemId: "spray paint",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
 const ITEM_STOREY: Item = {
   counters: ["階"],
   englishPlural: "stories",
@@ -405,6 +477,15 @@ const ITEM_TREE: Item = {
   englishPlural: "trees",
   englishSingular: "tree",
   itemId: "tree",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
+const ITEM_TUNE: Item = {
+  counters: ["曲"],
+  englishPlural: "tunes",
+  englishSingular: "tune",
+  itemId: "tune",
   maxQuantity: 100,
   minQuantity: 1
 };
@@ -469,9 +550,11 @@ export const ITEMS_FROM_COUNTER: {
   "台": [ITEM_WASHING_MACHINE, ITEM_OVEN, ITEM_MICROWAVE, ITEM_CAR, ITEM_BED],
   "回": [ITEM_TIME_OCCURRENCES_, ITEM_OCCURRENCE],
   "年": [ITEM_YEAR],
+  "曲": [ITEM_SONG, ITEM_TUNE],
   "月": [ITEM_MONTH],
   "枚": [ITEM_CREDIT_CARD, ITEM_PLAYING_CARD, ITEM_PAPER, ITEM_PHOTO],
   "歳": [ITEM_YEARS_OLD],
+  "缶": [ITEM_SODA_CAN, ITEM_BEER_CAN, ITEM_EMPTY_CAN, ITEM_CAN_OF_BUG_SPRAY, ITEM_CAN_OF_HAIR_SPRAY, ITEM_SPRAY_PAINT, ITEM_CAN_OF_SOUP],
   "羽": [ITEM_CHICKEN, ITEM_PENGUIN, ITEM_RABBIT, ITEM_ORIGAMI_CRANE, ITEM_BAT],
   "階": [ITEM_FLOOR_BUILDING_, ITEM_STOREY],
   "頭": [ITEM_COW, ITEM_HORSE, ITEM_GORILLA, ITEM_WHALE, ITEM_ELEPHANT]

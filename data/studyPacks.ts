@@ -5,6 +5,15 @@
 import { StudyPack } from "../src/redux";
 import * as COUNTERS from "./counters";
 
+const STUDY_PACK_COMMON: StudyPack = {
+  counters: [
+    COUNTERS.COUNTER_曲,
+    COUNTERS.COUNTER_缶
+  ],
+  englishName: "Common",
+  packId: "common"
+};
+
 const STUDY_PACK_ESSENTIAL: StudyPack = {
   counters: [
     COUNTERS.COUNTER_DAYS_OF_THE_MONTH,
@@ -55,6 +64,7 @@ const STUDY_PACK_N5: StudyPack = {
 };
 
 export const STUDY_PACKS: ReadonlyArray<StudyPack> = [
+  STUDY_PACK_COMMON,
   STUDY_PACK_ESSENTIAL,
   STUDY_PACK_N4,
   STUDY_PACK_N5
@@ -63,6 +73,7 @@ export const STUDY_PACKS: ReadonlyArray<StudyPack> = [
 export const STUDY_PACK_LOOKUP: {
   [packId: string]: StudyPack;
 } = {
+  common: STUDY_PACK_COMMON,
   essential: STUDY_PACK_ESSENTIAL,
   n4: STUDY_PACK_N4,
   n5: STUDY_PACK_N5

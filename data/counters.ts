@@ -123,6 +123,40 @@ export const COUNTER_PEOPLE_NIN: Counter = {
   kanji: "人"
 };
 
+export const COUNTER_ヶ国: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYoFor4: false,
+    allowsYonFor4: true
+  },
+  counterId: "ヶ国",
+  englishName: "countries",
+  irregulars: {},
+  kana: "かこく",
+  kanji: "ヶ国"
+};
+
+export const COUNTER_ヶ所: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYoFor4: false,
+    allowsYonFor4: true
+  },
+  counterId: "ヶ所",
+  englishName: "places",
+  irregulars: {},
+  kana: "かしょ",
+  kanji: "ヶ所"
+};
+
 export const COUNTER_ヶ月: Counter = {
   conjugationOptions: {
     allowsKuFor9: false,
@@ -138,6 +172,23 @@ export const COUNTER_ヶ月: Counter = {
   irregulars: {},
   kana: "かげつ",
   kanji: "ヶ月"
+};
+
+export const COUNTER_円: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYoFor4: false,
+    allowsYonFor4: true
+  },
+  counterId: "円",
+  englishName: "yen",
+  irregulars: {},
+  kana: "えん",
+  kanji: "円"
 };
 
 export const COUNTER_冊: Counter = {
@@ -210,6 +261,23 @@ export const COUNTER_回: Counter = {
   kanji: "回"
 };
 
+export const COUNTER_巻: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYoFor4: false,
+    allowsYonFor4: true
+  },
+  counterId: "巻",
+  englishName: "volumes",
+  irregulars: {},
+  kana: "かん",
+  kanji: "巻"
+};
+
 export const COUNTER_年: Counter = {
   conjugationOptions: {
     allowsKuFor9: true,
@@ -225,6 +293,23 @@ export const COUNTER_年: Counter = {
   irregulars: {},
   kana: "ねん",
   kanji: "年"
+};
+
+export const COUNTER_曲: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYoFor4: false,
+    allowsYonFor4: true
+  },
+  counterId: "曲",
+  englishName: "songs",
+  irregulars: {},
+  kana: "きょく",
+  kanji: "曲"
 };
 
 export const COUNTER_月: Counter = {
@@ -276,6 +361,26 @@ export const COUNTER_歳: Counter = {
   irregulars: {},
   kana: "さい",
   kanji: "歳"
+};
+
+export const COUNTER_缶: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYoFor4: false,
+    allowsYonFor4: true
+  },
+  counterId: "缶",
+  englishName: "cans",
+  irregulars: {
+    1: ["ひとかん", "いっかん"],
+    2: ["ふたかん", "にかん"]
+  },
+  kana: "かん",
+  kanji: "缶"
 };
 
 export const COUNTER_羽: Counter = {
