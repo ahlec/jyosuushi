@@ -85,7 +85,8 @@ function isValidTr(tr) {
     }
   }
 
-  return true;
+  const numberCells = tr.querySelectorAll("td");
+  return numberCells.length >= 2;
 }
 
 function parseRows(rows) {
