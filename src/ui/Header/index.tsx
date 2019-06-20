@@ -30,6 +30,7 @@ interface ProvidedProps {
 }
 
 interface ReduxProps {
+  enabledPacks: ReadonlyArray<string>;
   hasAnsweredQuestion: boolean;
   isOnQuizWrapup: boolean;
   scorecard: Scorecard;
@@ -51,6 +52,7 @@ function mapStateToProps(state: State): ReduxProps {
   }
 
   return {
+    enabledPacks: state.enabledPacks,
     hasAnsweredQuestion,
     isOnQuizWrapup: state.quizState === "quiz-wrapup",
     scorecard: state.scorecard,
@@ -269,13 +271,15 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
   };
 
   private trackLeavingQuizEarly() {
-    const { scorecard, totalNumberQuestions } = this.props;
+    const { enabledPacks, scorecard, totalNumberQuestions } = this.props;
     const numQuestionsAnswered =
       scorecard.numCorrectAnswers + scorecard.numIncorrectAnswers;
     ReactGA.event({
       action: "Quiz Aborted",
       category: "Quiz",
-      label: `Answered: ${numQuestionsAnswered}, Skipped: ${
+      label: `[${enabledPacks.join(
+        ", "
+      )}] Answered: ${numQuestionsAnswered}, Skipped: ${
         scorecard.numSkippedQuestions
       }, Ignored: ${
         scorecard.numIgnoredAnswers

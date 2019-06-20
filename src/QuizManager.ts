@@ -34,6 +34,19 @@ export default class QuizManager {
   }
 
   public endQuiz() {
+    const { enabledPacks, scorecard } = this.store.getState();
+    const numQuestionsAnswered =
+      scorecard.numCorrectAnswers + scorecard.numIncorrectAnswers;
+    ReactGA.event({
+      action: "Quiz Finished",
+      category: GOOGLE_ANALYTICS_CATEGORY,
+      label: `[${enabledPacks.join(
+        ", "
+      )}] Answered: ${numQuestionsAnswered}, Skipped: ${
+        scorecard.numSkippedQuestions
+      }, Ignored: ${scorecard.numIgnoredAnswers}`
+    });
+
     this.store.dispatch(endQuiz());
   }
 
