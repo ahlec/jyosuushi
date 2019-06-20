@@ -67,9 +67,32 @@ async function getPageRoot(page) {
   return parseHtml(response);
 }
 
+const FORBIDDEN_TR_ATTRIBUTES = ["colspan", "bgcolor", "height"];
+
+function isValidTr(tr) {
+  const firstTd = tr.querySelector("td");
+  if (!firstTd) {
+    return false;
+  }
+
+  if (firstTd.attributes.class === "sakuhin") {
+    return false;
+  }
+
+  for (const attr of FORBIDDEN_TR_ATTRIBUTES) {
+    if (firstTd.attributes[attr] !== undefined) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
 async function scrubPage(page) {
   const root = await getPageRoot(page);
-  console.log(`[${page}] firstChild:`, root.firstChild);
+  const table = root.querySelectorAll("tr");
+  const filtered = table.filter(isValidTr);
+  console.log(`[${page}] total:`, table.length, "filtered:", filtered.length);
 }
 
 async function main() {
