@@ -23,6 +23,9 @@ export interface Counter {
   englishName: string;
   kana: string;
   kanji: string | null;
+  validChoices4: ReadonlyArray<"yon" | "shi">;
+  validChoices7: ReadonlyArray<"nana" | "shichi">;
+  validChoices9: ReadonlyArray<"kyuu" | "ku">;
   irregulars: { [amount: number]: ReadonlyArray<string> };
 }
 

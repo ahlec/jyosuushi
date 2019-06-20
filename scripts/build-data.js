@@ -31,6 +31,33 @@ function getStudyPackId(id) {
 }
 
 // Counters
+function buildValidChoicesEntry(
+  counterId,
+  choice1Str,
+  choice1,
+  choice2Str,
+  choice2
+) {
+  if (!choice1 && !choice2) {
+    console.warn(
+      `[${chalk.yellow("COUNTER")}][${chalk.bold(
+        counterId
+      )}] Counter defined to use neither '${choice1Str}' nor '${choice2Str}'.`
+    );
+    return "[]";
+  }
+
+  if (!choice1) {
+    return `["${choice2Str}"]`;
+  }
+
+  if (!choice2) {
+    return `["${choice1Str}"]`;
+  }
+
+  return `["${choice1Str}", "${choice2Str}"]`;
+}
+
 async function writeCounterData(file, counter, irregulars) {
   const variableName = getCounterId(counter.counter_id);
   let irregularsStr;
@@ -52,6 +79,29 @@ async function writeCounterData(file, counter, irregulars) {
     irregularsStr = "{}";
   }
 
+  const validChoices4 = buildValidChoicesEntry(
+    counter.counter_id,
+    "yon",
+    counter.uses_yon,
+    "shi",
+    counter.uses_shi
+  );
+  const validChoices7 = buildValidChoicesEntry(
+    counter.counter_id,
+    "nana",
+    counter.uses_nana,
+    "shichi",
+    counter.uses_shichi
+  );
+  const validChoices9 = buildValidChoicesEntry(
+    counter.counter_id,
+    "kyuu",
+    counter.uses_kyuu,
+    "ku",
+    counter.uses_ku
+  );
+  const valid = !!validChoices4 && !!validChoices7 && !!validChoices9;
+
   fs.writeSync(
     file,
     `\n\nexport const ${variableName}: Counter = {
@@ -59,9 +109,14 @@ async function writeCounterData(file, counter, irregulars) {
   englishName: "${counter.english_name}",
   irregulars: ${irregularsStr},
   kana: "${counter.kana}",
-  kanji: "${counter.kanji}"
+  kanji: "${counter.kanji}",
+  validChoices4: ${validChoices4},
+  validChoices7: ${validChoices7},
+  validChoices9: ${validChoices9}
 };`
   );
+
+  return valid;
 }
 
 async function writeCountersFile(db) {
@@ -88,14 +143,22 @@ async function writeCountersFile(db) {
   fs.writeSync(file, FILE_HEADER_COMMENT);
 
   fs.writeSync(file, 'import { Counter } from "../src/redux";');
+  let hasInvalidCounter = false;
   for (const counter of counters) {
-    writeCounterData(file, counter, irregularsLookup[counter.counter_id]);
+    const isValid = writeCounterData(
+      file,
+      counter,
+      irregularsLookup[counter.counter_id]
+    );
+    if (!isValid) {
+      hasInvalidCounter = true;
+    }
   }
 
   fs.writeSync(file, "\n");
   fs.closeSync(file);
 
-  return true;
+  return !hasInvalidCounter;
 }
 
 // Items

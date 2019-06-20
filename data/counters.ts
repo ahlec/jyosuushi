@@ -23,7 +23,10 @@ export const COUNTER_DAYS_OF_THE_MONTH: Counter = {
     24: ["にじゅうよっか"]
   },
   kana: "にち",
-  kanji: "日"
+  kanji: "日",
+  validChoices4: ["yon"],
+  validChoices7: ["nana"],
+  validChoices9: ["kyuu"]
 };
 
 export const COUNTER_HOUR: Counter = {
@@ -35,7 +38,10 @@ export const COUNTER_HOUR: Counter = {
     9: ["くじ"]
   },
   kana: "じ",
-  kanji: "時"
+  kanji: "時",
+  validChoices4: ["yon"],
+  validChoices7: ["nana"],
+  validChoices9: ["ku"]
 };
 
 export const COUNTER_LONG_THIN_OBJECT: Counter = {
@@ -43,7 +49,10 @@ export const COUNTER_LONG_THIN_OBJECT: Counter = {
   englishName: "long, thin objects",
   irregulars: {},
   kana: "ほん",
-  kanji: "本"
+  kanji: "本",
+  validChoices4: ["yon"],
+  validChoices7: ["nana"],
+  validChoices9: ["kyuu"]
 };
 
 export const COUNTER_MINUTE: Counter = {
@@ -51,7 +60,10 @@ export const COUNTER_MINUTE: Counter = {
   englishName: "minutes",
   irregulars: {},
   kana: "ふん",
-  kanji: "分"
+  kanji: "分",
+  validChoices4: ["yon"],
+  validChoices7: ["nana"],
+  validChoices9: ["kyuu"]
 };
 
 export const COUNTER_PEOPLE_MEI: Counter = {
@@ -59,7 +71,10 @@ export const COUNTER_PEOPLE_MEI: Counter = {
   englishName: "people (formal)",
   irregulars: {},
   kana: "めい",
-  kanji: "名"
+  kanji: "名",
+  validChoices4: ["yon"],
+  validChoices7: ["nana"],
+  validChoices9: ["kyuu"]
 };
 
 export const COUNTER_PEOPLE_NIN: Counter = {
@@ -70,7 +85,10 @@ export const COUNTER_PEOPLE_NIN: Counter = {
     2: ["ふたり"]
   },
   kana: "にん",
-  kanji: "人"
+  kanji: "人",
+  validChoices4: ["yon"],
+  validChoices7: ["nana"],
+  validChoices9: ["kyuu"]
 };
 
 export const COUNTER_ヶ月: Counter = {
@@ -78,7 +96,10 @@ export const COUNTER_ヶ月: Counter = {
   englishName: "months",
   irregulars: {},
   kana: "かげつ",
-  kanji: "ヶ月"
+  kanji: "ヶ月",
+  validChoices4: ["yon"],
+  validChoices7: ["nana"],
+  validChoices9: ["kyuu"]
 };
 
 export const COUNTER_冊: Counter = {
@@ -86,7 +107,10 @@ export const COUNTER_冊: Counter = {
   englishName: "books",
   irregulars: {},
   kana: "さつ",
-  kanji: "冊"
+  kanji: "冊",
+  validChoices4: ["yon"],
+  validChoices7: ["nana"],
+  validChoices9: ["kyuu"]
 };
 
 export const COUNTER_匹: Counter = {
@@ -94,7 +118,10 @@ export const COUNTER_匹: Counter = {
   englishName: "small animals",
   irregulars: {},
   kana: "ひき",
-  kanji: "匹"
+  kanji: "匹",
+  validChoices4: ["yon"],
+  validChoices7: ["nana"],
+  validChoices9: ["kyuu"]
 };
 
 export const COUNTER_台: Counter = {
@@ -102,7 +129,10 @@ export const COUNTER_台: Counter = {
   englishName: "machines and large objects",
   irregulars: {},
   kana: "だい",
-  kanji: "台"
+  kanji: "台",
+  validChoices4: ["yon"],
+  validChoices7: ["nana"],
+  validChoices9: ["kyuu"]
 };
 
 export const COUNTER_回: Counter = {
@@ -112,7 +142,10 @@ export const COUNTER_回: Counter = {
     8: ["はっかい", "はちかい"]
   },
   kana: "かい",
-  kanji: "回"
+  kanji: "回",
+  validChoices4: ["yon"],
+  validChoices7: ["nana"],
+  validChoices9: ["kyuu"]
 };
 
 export const COUNTER_年: Counter = {
@@ -124,7 +157,10 @@ export const COUNTER_年: Counter = {
     9: ["くねん", "きゅうねん"]
   },
   kana: "ねん",
-  kanji: "年"
+  kanji: "年",
+  validChoices4: ["yon"],
+  validChoices7: ["nana"],
+  validChoices9: ["kyuu"]
 };
 
 export const COUNTER_月: Counter = {
@@ -132,7 +168,10 @@ export const COUNTER_月: Counter = {
   englishName: "months (wago)",
   irregulars: {},
   kana: "つき",
-  kanji: "月"
+  kanji: "月",
+  validChoices4: ["yon"],
+  validChoices7: ["nana"],
+  validChoices9: ["kyuu"]
 };
 
 export const COUNTER_枚: Counter = {
@@ -140,7 +179,10 @@ export const COUNTER_枚: Counter = {
   englishName: "flat objects",
   irregulars: {},
   kana: "まい",
-  kanji: "枚"
+  kanji: "枚",
+  validChoices4: ["yon"],
+  validChoices7: ["nana"],
+  validChoices9: ["kyuu"]
 };
 
 export const COUNTER_歳: Counter = {
@@ -148,7 +190,10 @@ export const COUNTER_歳: Counter = {
   englishName: "age",
   irregulars: {},
   kana: "さい",
-  kanji: "歳"
+  kanji: "歳",
+  validChoices4: ["yon"],
+  validChoices7: ["nana"],
+  validChoices9: ["kyuu"]
 };
 
 export const COUNTER_羽: Counter = {
@@ -156,7 +201,10 @@ export const COUNTER_羽: Counter = {
   englishName: "birds and rabbits",
   irregulars: {},
   kana: "わ",
-  kanji: "羽"
+  kanji: "羽",
+  validChoices4: ["yon"],
+  validChoices7: ["nana"],
+  validChoices9: ["kyuu"]
 };
 
 export const COUNTER_階: Counter = {
@@ -166,7 +214,10 @@ export const COUNTER_階: Counter = {
     8: ["はちかい", "はっかい"]
   },
   kana: "かい",
-  kanji: "階"
+  kanji: "階",
+  validChoices4: ["yon"],
+  validChoices7: ["nana"],
+  validChoices9: ["kyuu"]
 };
 
 export const COUNTER_頭: Counter = {
@@ -174,5 +225,8 @@ export const COUNTER_頭: Counter = {
   englishName: "large animals",
   irregulars: {},
   kana: "とう",
-  kanji: "頭"
+  kanji: "頭",
+  validChoices4: ["yon"],
+  validChoices7: ["nana"],
+  validChoices9: ["kyuu"]
 };
