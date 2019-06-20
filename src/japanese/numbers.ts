@@ -477,7 +477,6 @@ export const conjugateNumber: (
       Number(options.allowsKuFor9)
     ].join()}`;
 
-    console.log("<conj>", id); /* tslint:disable-line no-console */
     return id;
   }
 );
