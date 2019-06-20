@@ -31,33 +31,6 @@ function getStudyPackId(id) {
 }
 
 // Counters
-function buildValidChoicesEntry(
-  counterId,
-  choice1Str,
-  choice1,
-  choice2Str,
-  choice2
-) {
-  if (!choice1 && !choice2) {
-    console.warn(
-      `[${chalk.yellow("COUNTER")}][${chalk.bold(
-        counterId
-      )}] Counter defined to use neither '${choice1Str}' nor '${choice2Str}'.`
-    );
-    return "[]";
-  }
-
-  if (!choice1) {
-    return `["${choice2Str}"]`;
-  }
-
-  if (!choice2) {
-    return `["${choice1Str}"]`;
-  }
-
-  return `["${choice1Str}", "${choice2Str}"]`;
-}
-
 async function writeCounterData(file, counter, irregulars) {
   const variableName = getCounterId(counter.counter_id);
   let irregularsStr;
@@ -79,44 +52,24 @@ async function writeCounterData(file, counter, irregulars) {
     irregularsStr = "{}";
   }
 
-  const validChoices4 = buildValidChoicesEntry(
-    counter.counter_id,
-    "yon",
-    counter.uses_yon,
-    "shi",
-    counter.uses_shi
-  );
-  const validChoices7 = buildValidChoicesEntry(
-    counter.counter_id,
-    "nana",
-    counter.uses_nana,
-    "shichi",
-    counter.uses_shichi
-  );
-  const validChoices9 = buildValidChoicesEntry(
-    counter.counter_id,
-    "kyuu",
-    counter.uses_kyuu,
-    "ku",
-    counter.uses_ku
-  );
-  const valid = !!validChoices4 && !!validChoices7 && !!validChoices9;
-
   fs.writeSync(
     file,
     `\n\nexport const ${variableName}: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: ${counter.uses_ku ? "true" : "false"},
+    allowsKyuuFor9: ${counter.uses_kyuu ? "true" : "false"},
+    allowsNanaFor7: ${counter.uses_nana ? "true" : "false"},
+    allowsShiFor4: ${counter.uses_shi ? "true" : "false"},
+    allowsShichiFor7: ${counter.uses_shichi ? "true" : "false"},
+    allowsYonFor4: ${counter.uses_yon ? "true" : "false"}
+  },
   counterId: "${counter.counter_id}",
   englishName: "${counter.english_name}",
   irregulars: ${irregularsStr},
   kana: "${counter.kana}",
-  kanji: "${counter.kanji}",
-  validChoices4: ${validChoices4},
-  validChoices7: ${validChoices7},
-  validChoices9: ${validChoices9}
+  kanji: "${counter.kanji}"
 };`
   );
-
-  return valid;
 }
 
 async function writeCountersFile(db) {
@@ -145,14 +98,34 @@ async function writeCountersFile(db) {
   fs.writeSync(file, 'import { Counter } from "../src/redux";');
   let hasInvalidCounter = false;
   for (const counter of counters) {
-    const isValid = writeCounterData(
-      file,
-      counter,
-      irregularsLookup[counter.counter_id]
-    );
-    if (!isValid) {
+    if (!counter.uses_yon && !counter.uses_shi) {
       hasInvalidCounter = true;
+      console.log(
+        `[${chalk.yellow("COUNTER")}][${chalk.bold(
+          counter.counter_id
+        )}] Counter defined to use neither 'yon' nor 'shi'.`
+      );
     }
+
+    if (!counter.uses_nana && !counter.uses_shichi) {
+      hasInvalidCounter = true;
+      console.log(
+        `[${chalk.yellow("COUNTER")}][${chalk.bold(
+          counter.counter_id
+        )}] Counter defined to use neither 'nana' nor 'shichi'.`
+      );
+    }
+
+    if (!counter.uses_kyuu && !counter.uses_ku) {
+      hasInvalidCounter = true;
+      console.log(
+        `[${chalk.yellow("COUNTER")}][${chalk.bold(
+          counter.counter_id
+        )}] Counter defined to use neither 'kyuu' nor 'ku'.`
+      );
+    }
+
+    writeCounterData(file, counter, irregularsLookup[counter.counter_id]);
   }
 
   fs.writeSync(file, "\n");
