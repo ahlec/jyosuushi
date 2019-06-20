@@ -29,7 +29,9 @@ export default class QuizManager {
     ReactGA.event({
       action: "New Quiz Began",
       category: GOOGLE_ANALYTICS_CATEGORY,
-      label: studyPacks.map(({ packId }) => packId).join(", ")
+      label: `[${studyPacks
+        .map(({ packId }) => packId)
+        .join(", ")}] Questions: ${questions.length}`
     });
   }
 
@@ -59,7 +61,9 @@ export default class QuizManager {
     ReactGA.event({
       action: "Quiz Restarted",
       category: GOOGLE_ANALYTICS_CATEGORY,
-      label: packs.map(({ packId }) => packId).join(", ")
+      label: `[${packs.map(({ packId }) => packId).join(", ")}] Questions: ${
+        questions.length
+      }`
     });
   }
 
