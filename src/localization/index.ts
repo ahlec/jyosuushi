@@ -53,7 +53,8 @@ export default interface Localization {
   resultIncorrectHeader: string;
   resultSkippedHeader: string;
   resultTableIntro: string;
-  resultsTableIrregularLabel: string;
+  resultTableIrregularLabel: string;
+  resultTableStrangeLabel: string;
   siteTagline: string;
   skippedQuestionResult: string;
   startQuiz: string;

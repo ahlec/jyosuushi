@@ -12,7 +12,7 @@ import {
 import { Tag } from "./tags";
 import {
   castAwayTaggable,
-  JapaneseWord,
+  ConjugatedJapaneseWord,
   permutateTaggableWords,
   TaggableJapaneseWord,
   uniqueWords
@@ -122,7 +122,7 @@ const COUNTER_PA_GYOU: Readonly<CounterChange> = {
 function conjugateCounterRegularsInternal(
   amount: number,
   counter: Counter
-): ReadonlyArray<JapaneseWord> {
+): ReadonlyArray<ConjugatedJapaneseWord> {
   const counterFirstConsonant = getLeadingConsonant(counter.kana);
   const amountBreakdown = breakDownNumber(amount);
   let numberChanges: FinalNumberChanges | undefined;
@@ -243,7 +243,7 @@ function conjugateCounterRegularsInternal(
 export const conjugateCounterRegulars: (
   amount: number,
   counter: Counter
-) => ReadonlyArray<JapaneseWord> = memoize(
+) => ReadonlyArray<ConjugatedJapaneseWord> = memoize(
   conjugateCounterRegularsInternal,
   (amount: number, counter: Counter) => [amount, counter.counterId].join("-")
 );

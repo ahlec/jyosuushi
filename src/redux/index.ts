@@ -42,9 +42,15 @@ export interface ItemsState {
   [itemId: string]: Item;
 }
 
+export enum ConjugationCategory {
+  Regular,
+  Strange,
+  Irregular
+}
+
 export interface Answer {
   counterId: string;
-  isIrregular: boolean;
+  category: ConjugationCategory;
   kana: string;
   kanji: string | null;
 }

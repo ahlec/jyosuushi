@@ -36,7 +36,8 @@
     }
 
     &.cell-hiragana {
-      .irregular {
+      .irregular,
+      .strange {
         font-style: italic;
         margin-left: 6px;
         font-size: 14px;

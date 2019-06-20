@@ -7,6 +7,7 @@ import { STUDY_PACK_LOOKUP } from "../../../../data/studyPacks";
 import Localization from "../../../localization";
 import {
   Answer,
+  ConjugationCategory,
   CountersState,
   Question,
   State,
@@ -112,8 +113,8 @@ class AnswersTable extends React.PureComponent<ComponentProps> {
     );
   };
 
-  private renderKana = ({ kana, isIrregular }: Answer) => {
-    const { localization, usersAnswer } = this.props;
+  private renderKana = ({ category, kana }: Answer) => {
+    const { usersAnswer } = this.props;
     return (
       <div
         key={kana}
@@ -125,14 +126,32 @@ class AnswersTable extends React.PureComponent<ComponentProps> {
         )}
       >
         {kana}
-        {isIrregular && (
-          <span className="irregular">
-            {localization.resultsTableIrregularLabel}
-          </span>
-        )}
+        {this.renderConjugationCategory(category)}
       </div>
     );
   };
+
+  private renderConjugationCategory(
+    category: ConjugationCategory
+  ): React.ReactNode {
+    const { localization } = this.props;
+    switch (category) {
+      case ConjugationCategory.Regular:
+        return null;
+      case ConjugationCategory.Strange:
+        return (
+          <span className="strange">
+            {localization.resultTableStrangeLabel}
+          </span>
+        );
+      case ConjugationCategory.Irregular:
+        return (
+          <span className="irregular">
+            {localization.resultTableIrregularLabel}
+          </span>
+        );
+    }
+  }
 }
 
 export default connect(mapStateToProps)(AnswersTable);

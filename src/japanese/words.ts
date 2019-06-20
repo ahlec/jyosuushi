@@ -7,17 +7,21 @@ export interface JapaneseWord {
   kanji: string | null;
 }
 
+export interface ConjugatedJapaneseWord extends JapaneseWord {
+  isStrange: boolean;
+}
+
 export interface TaggableJapaneseWord extends JapaneseWord {
   tags: ReadonlySet<Tag>;
 }
 
-function japaneseNumberIteratee(num: JapaneseWord): string {
+function japaneseNumberIteratee(num: ConjugatedJapaneseWord): string {
   return num.kana + "-" + num.kanji;
 }
 
 export function uniqueWords(
-  words: ReadonlyArray<JapaneseWord>
-): ReadonlyArray<JapaneseWord> {
+  words: ReadonlyArray<ConjugatedJapaneseWord>
+): ReadonlyArray<ConjugatedJapaneseWord> {
   return uniqBy(words, japaneseNumberIteratee);
 }
 
@@ -51,16 +55,19 @@ export function permutateTaggableWords(
   return permutate(chunks, japaneseNumberCombiner);
 }
 
-function castAwayTaggableInternal({
-  kana,
-  kanji
-}: TaggableJapaneseWord): JapaneseWord {
-  return { kana, kanji };
+function castAwayTaggableInternal(
+  word: TaggableJapaneseWord
+): ConjugatedJapaneseWord {
+  return {
+    isStrange: word.tags.has("strange"),
+    kana: word.kana,
+    kanji: word.kanji
+  };
 }
 
 export function castAwayTaggable(
   words: ReadonlyArray<TaggableJapaneseWord>
-): ReadonlyArray<JapaneseWord> {
+): ReadonlyArray<ConjugatedJapaneseWord> {
   return words.map(castAwayTaggableInternal);
 }
 

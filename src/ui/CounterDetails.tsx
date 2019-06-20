@@ -4,8 +4,8 @@ import * as React from "react";
 
 import { ITEMS_FROM_COUNTER } from "../../data/items";
 import Localization from "../localization";
-import { Counter, Item } from "../redux";
-import { conjugateCounter } from "../utils";
+import { ConjugationCategory, Counter, Item } from "../redux";
+import { conjugateCounter, ConjugatedInfo } from "../utils";
 
 import "./CounterDetails.scss";
 
@@ -16,26 +16,16 @@ interface ComponentProps {
   localization: Localization;
 }
 
-interface Conjugation {
-  conjugation: string;
-  irregular: boolean;
-}
-
 interface Irregular {
   conjugation: string;
   amount: number;
 }
 
 const getConjugations = memoize(
-  (counter: Counter): ReadonlyArray<ReadonlyArray<Conjugation>> => {
-    const results: Array<ReadonlyArray<Conjugation>> = [];
+  (counter: Counter): ReadonlyArray<ReadonlyArray<ConjugatedInfo>> => {
+    const results: Array<ReadonlyArray<ConjugatedInfo>> = [];
     for (let amount = 1; amount <= AMOUNTS_TO_DISPLAY; ++amount) {
-      results[amount - 1] = conjugateCounter(amount, counter).map(
-        ({ kana, isIrregular }) => ({
-          conjugation: kana,
-          irregular: isIrregular
-        })
-      );
+      results[amount - 1] = conjugateCounter(amount, counter);
     }
 
     return results;
@@ -44,10 +34,18 @@ const getConjugations = memoize(
 );
 
 const countIrregulars = memoize(
-  (conjugations: ReadonlyArray<ReadonlyArray<Conjugation>>) =>
-    conjugations.reduce((total: number, nested: ReadonlyArray<Conjugation>) => {
-      return total + nested.filter(({ irregular }) => irregular).length;
-    }, 0)
+  (conjugations: ReadonlyArray<ReadonlyArray<ConjugatedInfo>>) =>
+    conjugations.reduce(
+      (total: number, nested: ReadonlyArray<ConjugatedInfo>) => {
+        return (
+          total +
+          nested.filter(
+            ({ category }) => category === ConjugationCategory.Irregular
+          ).length
+        );
+      },
+      0
+    )
 );
 
 function compareIrregulars(a: Irregular, b: Irregular): number {
@@ -141,7 +139,7 @@ export default class CounterDetails extends React.PureComponent<
   }
 
   private renderAmountTile = (
-    conjugations: ReadonlyArray<Conjugation>,
+    conjugations: ReadonlyArray<ConjugatedInfo>,
     index: number
   ) => {
     const amount = index + 1;
@@ -155,13 +153,16 @@ export default class CounterDetails extends React.PureComponent<
     );
   };
 
-  private renderConjugation = (
-    { conjugation, irregular }: Conjugation,
-    index: number
-  ) => {
+  private renderConjugation = ({ category, kana }: ConjugatedInfo) => {
     return (
-      <div key={conjugation} className={classnames(irregular && "irregular")}>
-        {conjugation}
+      <div
+        key={kana}
+        className={classnames(
+          category === ConjugationCategory.Strange && "strange",
+          category === ConjugationCategory.Irregular && "irregular"
+        )}
+      >
+        {kana}
       </div>
     );
   };

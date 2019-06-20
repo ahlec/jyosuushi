@@ -86,7 +86,8 @@ const ENGLISH: Localization = {
   resultSkippedHeader: "Skipped",
   resultTableIntro:
     "Here are all of the possible answers based on the sets you have enabled:",
-  resultsTableIrregularLabel: "(irregular)",
+  resultTableIrregularLabel: "(irregular)",
+  resultTableStrangeLabel: "(strange)",
   siteTagline: "Let's review Japanese counters!",
   skippedQuestionResult:
     "Alright! You don't need to worry about this question!",

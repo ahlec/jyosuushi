@@ -73,6 +73,7 @@ export const breakDownNumber: (value: number) => NumberBreakdown = memoize(
 
 interface FirstTenWords extends JapaneseWord {
   isValid?: (options: NumericConjugationOptions) => boolean;
+  strange?: boolean;
 }
 
 const FIRST_TEN_NUMBERS: ReadonlyArray<
@@ -115,12 +116,14 @@ const FIRST_TEN_NUMBERS: ReadonlyArray<
     {
       isValid: options => options.allowsYoFor4,
       kana: "よ",
-      kanji: "四"
+      kanji: "四",
+      strange: true
     },
     {
       isValid: options => options.allowsShiFor4,
       kana: "し",
-      kanji: "四"
+      kanji: "四",
+      strange: true
     }
   ],
   [
@@ -139,7 +142,8 @@ const FIRST_TEN_NUMBERS: ReadonlyArray<
     {
       isValid: options => options.allowsShichiFor7,
       kana: "しち",
-      kanji: "七"
+      kanji: "七",
+      strange: true
     },
     {
       isValid: options => options.allowsNanaFor7,
@@ -162,7 +166,8 @@ const FIRST_TEN_NUMBERS: ReadonlyArray<
     {
       isValid: options => options.allowsKuFor9,
       kana: "く",
-      kanji: "九"
+      kanji: "九",
+      strange: true
     }
   ]
 ];
@@ -410,9 +415,15 @@ function conjugateNumberInternal(
       finalNumberChanges[breakdown.solo];
     chunks.push(
       applyUniqueChanges(
-        FIRST_TEN_NUMBERS[breakdown.solo].filter(
-          word => !word.isValid || word.isValid(options)
-        ),
+        FIRST_TEN_NUMBERS[breakdown.solo]
+          .filter(word => !word.isValid || word.isValid(options))
+          .map(
+            (word: Readonly<FirstTenWords>): TaggableJapaneseWord => ({
+              kana: word.kana,
+              kanji: word.kanji,
+              tags: word.strange ? new Set<Tag>(["strange"]) : new Set()
+            })
+          ),
         change
       )
     );
