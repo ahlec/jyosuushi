@@ -57,7 +57,7 @@ async function getPageRoot(page) {
   const cachePath = path.resolve(CACHE_DIRECTORY, `${page}.html`);
   if (fs.existsSync(cachePath)) {
     const contents = fs.readFileSync(cachePath);
-    return parseHtml(contents);
+    return parseHtml(contents.toString());
   }
 
   const response = await request({
