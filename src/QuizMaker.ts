@@ -8,8 +8,8 @@ import {
   randomFromArray
 } from "./utils";
 
-const MAX_NUMBER_QUESTIONS_PER_ITEM = 20;
-const MAX_NUMBER_QUESTIONS_PER_COUNTER = 40;
+const MAX_NUMBER_QUESTIONS_PER_ITEM = 3;
+const MAX_NUMBER_QUESTIONS_PER_COUNTER = 10;
 
 interface ItemEntry {
   item: Item;
