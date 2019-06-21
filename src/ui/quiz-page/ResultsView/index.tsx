@@ -1,5 +1,6 @@
 import { uniq } from "lodash";
 import * as React from "react";
+import * as ReactGA from "react-ga";
 import { connect } from "react-redux";
 
 import Localization from "../../../localization";
@@ -94,6 +95,13 @@ class ResultsView extends React.PureComponent<ComponentProps> {
     const counters = uniq(
       currentQuestion.validAnswers.map(({ counterId }: Answer) => counterId)
     );
+
+    ReactGA.event({
+      action: "Answer Ignored",
+      category: "Quiz",
+      label: `${currentQuestion.amount} of '${currentQuestion.itemId}'`
+    });
+
     dispatch(ignoreLastAnswer(counters));
   };
 

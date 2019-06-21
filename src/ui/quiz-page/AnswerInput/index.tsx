@@ -1,6 +1,7 @@
 import classnames from "classnames";
 import { uniq } from "lodash";
 import * as React from "react";
+import * as ReactGA from "react-ga";
 import { connect } from "react-redux";
 
 import { HIRAGANA } from "../../../japanese/kana";
@@ -164,7 +165,16 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
     return null;
   }
 
-  private onSkipClicked = () => this.props.dispatch(skipQuestion());
+  private onSkipClicked = () => {
+    const { currentQuestion } = this.props;
+    ReactGA.event({
+      action: "Question Skipped",
+      category: "Quiz",
+      label: `${currentQuestion.amount} of '${currentQuestion.itemId}'`
+    });
+
+    this.props.dispatch(skipQuestion());
+  };
 }
 
 export default connect(mapStateToProps)(AnswerInput);
