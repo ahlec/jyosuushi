@@ -283,6 +283,15 @@ const ITEM_HORSE: Item = {
   minQuantity: 1
 };
 
+const ITEM_JINGLE: Item = {
+  counters: ["曲"],
+  englishPlural: "jingles",
+  englishSingular: "jingle",
+  itemId: "jingle",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
 const ITEM_LINE: Item = {
   counters: ["long, thin object"],
   englishPlural: "lines",
@@ -315,6 +324,15 @@ const ITEM_MAN: Item = {
   englishPlural: "men",
   englishSingular: "man",
   itemId: "man",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
+const ITEM_MELODY: Item = {
+  counters: ["曲"],
+  englishPlural: "melodies",
+  englishSingular: "melody",
+  itemId: "melody",
   maxQuantity: 100,
   minQuantity: 1
 };
@@ -708,7 +726,7 @@ export const ITEMS_FROM_COUNTER: {
   "台": [ITEM_WASHING_MACHINE, ITEM_OVEN, ITEM_MICROWAVE, ITEM_CAR, ITEM_BED],
   "回": [ITEM_TIME_OCCURRENCES_, ITEM_OCCURRENCE],
   "年": [ITEM_YEAR],
-  "曲": [ITEM_SONG, ITEM_TUNE],
+  "曲": [ITEM_SONG, ITEM_TUNE, ITEM_MELODY, ITEM_JINGLE],
   "月": [ITEM_MONTH],
   "枚": [ITEM_CREDIT_CARD, ITEM_PLAYING_CARD, ITEM_PAPER, ITEM_PHOTO],
   "歳": [ITEM_YEARS_OLD],
