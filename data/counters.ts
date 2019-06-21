@@ -123,6 +123,23 @@ export const COUNTER_PEOPLE_NIN: Counter = {
   kanji: "人"
 };
 
+export const COUNTER_ゲ_ム: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYoFor4: false,
+    allowsYonFor4: true
+  },
+  counterId: "ゲーム",
+  englishName: "games",
+  irregulars: {},
+  kana: "ゲーム",
+  kanji: "ゲーム"
+};
+
 export const COUNTER_ヶ国: Counter = {
   conjugationOptions: {
     allowsKuFor9: false,
@@ -174,6 +191,23 @@ export const COUNTER_ヶ月: Counter = {
   kanji: "ヶ月"
 };
 
+export const COUNTER_件: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYoFor4: false,
+    allowsYonFor4: true
+  },
+  counterId: "件",
+  englishName: "matters",
+  irregulars: {},
+  kana: "けん",
+  kanji: "件"
+};
+
 export const COUNTER_円: Counter = {
   conjugationOptions: {
     allowsKuFor9: false,
@@ -208,6 +242,23 @@ export const COUNTER_冊: Counter = {
   kanji: "冊"
 };
 
+export const COUNTER_切れ: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYoFor4: false,
+    allowsYonFor4: true
+  },
+  counterId: "切れ",
+  englishName: "cuts of meat",
+  irregulars: {},
+  kana: "きれ",
+  kanji: "切れ"
+};
+
 export const COUNTER_匹: Counter = {
   conjugationOptions: {
     allowsKuFor9: false,
@@ -225,6 +276,23 @@ export const COUNTER_匹: Counter = {
   kanji: "匹"
 };
 
+export const COUNTER_口: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYoFor4: false,
+    allowsYonFor4: true
+  },
+  counterId: "口",
+  englishName: "bites",
+  irregulars: {},
+  kana: "くち",
+  kanji: "口"
+};
+
 export const COUNTER_台: Counter = {
   conjugationOptions: {
     allowsKuFor9: false,
@@ -240,6 +308,43 @@ export const COUNTER_台: Counter = {
   irregulars: {},
   kana: "だい",
   kanji: "台"
+};
+
+export const COUNTER_品_しな_: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYoFor4: false,
+    allowsYonFor4: true
+  },
+  counterId: "品（しな）",
+  englishName: "products",
+  irregulars: {
+    1: ["ひとしな"],
+    2: ["ふたしな"]
+  },
+  kana: "しな",
+  kanji: "品"
+};
+
+export const COUNTER_品_ひん_: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYoFor4: false,
+    allowsYonFor4: true
+  },
+  counterId: "品（ひん）",
+  englishName: "products",
+  irregulars: {},
+  kana: "ひん",
+  kanji: "品"
 };
 
 export const COUNTER_回: Counter = {
@@ -323,7 +428,7 @@ export const COUNTER_月: Counter = {
     allowsYonFor4: true
   },
   counterId: "月",
-  englishName: "months (wago)",
+  englishName: "months",
   irregulars: {},
   kana: "つき",
   kanji: "月"
@@ -346,6 +451,23 @@ export const COUNTER_枚: Counter = {
   kanji: "枚"
 };
 
+export const COUNTER_校: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYoFor4: false,
+    allowsYonFor4: true
+  },
+  counterId: "校",
+  englishName: "schools",
+  irregulars: {},
+  kana: "こう",
+  kanji: "校"
+};
+
 export const COUNTER_歳: Counter = {
   conjugationOptions: {
     allowsKuFor9: false,
@@ -361,6 +483,61 @@ export const COUNTER_歳: Counter = {
   irregulars: {},
   kana: "さい",
   kanji: "歳"
+};
+
+export const COUNTER_皿: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYoFor4: false,
+    allowsYonFor4: true
+  },
+  counterId: "皿",
+  englishName: "plates of food",
+  irregulars: {
+    1: ["ひとさら"],
+    2: ["ふたさら"],
+    3: ["さんさら", "みさら"]
+  },
+  kana: "さら",
+  kanji: "皿"
+};
+
+export const COUNTER_社: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYoFor4: false,
+    allowsYonFor4: true
+  },
+  counterId: "社",
+  englishName: "companies and temples",
+  irregulars: {},
+  kana: "しゃ",
+  kanji: "社"
+};
+
+export const COUNTER_組: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYoFor4: false,
+    allowsYonFor4: true
+  },
+  counterId: "組",
+  englishName: "groups and pairs",
+  irregulars: {},
+  kana: "くみ",
+  kanji: "組"
 };
 
 export const COUNTER_缶: Counter = {
@@ -398,6 +575,57 @@ export const COUNTER_羽: Counter = {
   irregulars: {},
   kana: "わ",
   kanji: "羽"
+};
+
+export const COUNTER_試合: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYoFor4: false,
+    allowsYonFor4: true
+  },
+  counterId: "試合",
+  englishName: "games",
+  irregulars: {},
+  kana: "しあい",
+  kanji: "試合"
+};
+
+export const COUNTER_語: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYoFor4: false,
+    allowsYonFor4: true
+  },
+  counterId: "語",
+  englishName: "words",
+  irregulars: {},
+  kana: "ご",
+  kanji: "語"
+};
+
+export const COUNTER_軒: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYoFor4: false,
+    allowsYonFor4: true
+  },
+  counterId: "軒",
+  englishName: "houses",
+  irregulars: {},
+  kana: "けん",
+  kanji: "軒"
 };
 
 export const COUNTER_階: Counter = {

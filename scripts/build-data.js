@@ -15,7 +15,7 @@ const FILE_HEADER_COMMENT = `// DO NOT HAND-MODIFY THIS FILE!!
 // Modifications will be lost if they are made manually and not through the database.\n\n`;
 
 function getVariableFromId(prefix, id) {
-  return prefix + id.toUpperCase().replace(/[-\s,&._\(\)']+/g, "_");
+  return prefix + id.toUpperCase().replace(/[-\s,&._\(\)（）ー']+/g, "_");
 }
 
 function getCounterId(id) {
