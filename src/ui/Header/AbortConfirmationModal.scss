@@ -1,0 +1,26 @@
+@import "../../palette.scss";
+
+.AbortConfirmationModal {
+  .content {
+    height: auto;
+    max-height: auto;
+    padding: 15px;
+    text-align: center;
+
+    .buttons {
+      margin-top: 15px;
+
+      button {
+        width: 70px;
+        font-size: 18px;
+        background-color: $green-base;
+        border-color: $green-dark;
+
+        &.confirm {
+          background-color: $green-dark;
+          margin-left: 8px;
+        }
+      }
+    }
+  }
+}

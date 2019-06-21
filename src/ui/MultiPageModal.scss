@@ -1,0 +1,119 @@
+@import "./ModalShared.scss";
+
+$page-transition-duration: 0.2s;
+
+:export {
+  PAGE_TRANSITION_DURATION_RAW: $page-transition-duration / 1s * 1000;
+}
+
+.MultiPageModal {
+  background-color: $modal-background;
+  flex: 0 0 600px;
+  max-width: 600px;
+  border: 1px solid $modal-border;
+  border-radius: 0px 0px 6px 6px;
+  outline: none;
+
+  &.transitioning {
+    user-select: none;
+  }
+
+  &.subpage-open {
+    .main-page {
+      left: -100%;
+    }
+
+    .sub-page {
+      left: 0px;
+    }
+  }
+
+  header {
+    position: relative;
+    height: 40px;
+    background-color: $modal-header;
+    border-bottom: 1px solid $modal-border;
+    text-align: center;
+    font-size: 28px;
+    font-weight: 600;
+    overflow: hidden;
+    user-select: none;
+
+    .main-page,
+    .sub-page {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .button {
+      position: absolute;
+      cursor: pointer;
+      top: 0px;
+      height: 100%;
+      width: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &.left {
+        right: 0px;
+      }
+
+      &.right {
+        left: 0px;
+      }
+
+      &.disabled {
+        cursor: default;
+      }
+
+      &:hover:not(.disabled) {
+        path {
+          fill: $modal-button-hover;
+        }
+      }
+
+      svg {
+        width: 32px;
+        height: 32px;
+
+        path {
+          fill: $modal-button;
+        }
+      }
+    }
+  }
+
+  .main-page {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    transition: $page-transition-duration left ease-in;
+  }
+
+  .sub-page {
+    position: absolute;
+    top: 0px;
+    left: 100%;
+    width: 100%;
+    height: 100%;
+    transition: $page-transition-duration left ease-in;
+  }
+
+  .content {
+    position: relative;
+    height: 500px;
+    max-height: 500px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
+
+.ReactModal__Overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

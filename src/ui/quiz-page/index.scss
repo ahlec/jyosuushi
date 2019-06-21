@@ -1,0 +1,14 @@
+.QuestionPage {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  .ResultsView {
+    margin: 20px;
+  }
+
+  .buttons {
+    margin-top: 15px;
+    text-align: center;
+  }
+}

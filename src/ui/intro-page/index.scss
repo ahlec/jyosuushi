@@ -1,0 +1,36 @@
+.IntroPage {
+  max-width: 600px;
+  margin: 20px auto 10px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  p {
+    margin-bottom: 10px;
+    text-indent: 10px;
+
+    strong {
+      font-weight: bold;
+      font-size: 120%;
+    }
+  }
+
+  .start {
+    margin: 5px 0px;
+    text-align: center;
+
+    button {
+      font-size: 22px;
+    }
+  }
+
+  .CounterPreview {
+    margin-top: 30px;
+  }
+
+  .credits {
+    text-align: center;
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+}

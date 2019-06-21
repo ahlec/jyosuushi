@@ -1,0 +1,22 @@
+@import "../../palette.scss";
+
+.BetaExplanation {
+  border: 2px solid $blue-darkest;
+  padding: 10px 20px;
+  background-color: $blue-lightest;
+  border-radius: 6px;
+  margin-bottom: 7px;
+
+  a {
+    text-decoration: none;
+
+    img {
+      position: relative;
+      top: 3px;
+    }
+
+    span {
+      text-decoration: underline;
+    }
+  }
+}

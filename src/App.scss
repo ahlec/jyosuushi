@@ -1,0 +1,126 @@
+@import "palette.scss";
+
+$font-family: "Ubuntu", Meiryo, sans-serif;
+$intro-app-width: 800px;
+$quiz-app-width: 1200px;
+
+html,
+body {
+  height: 100%;
+  background-color: $pink-light;
+}
+
+html {
+  overflow: hidden;
+}
+
+body {
+  overflow: auto;
+}
+
+#root {
+  height: 100%;
+  background: url("diag.png");
+}
+
+.App {
+  font-family: $font-family;
+  position: relative;
+  min-height: 100%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  max-width: $intro-app-width;
+  transition: max-width 0.25s ease-in;
+  margin: auto;
+  overflow: hidden;
+  border-left: 1px solid $pink-base;
+  border-right: 1px solid $pink-base;
+  color: $black-darkest;
+
+  &.quiz-active {
+    max-width: $quiz-app-width;
+  }
+
+  @media (max-width: $intro-app-width) {
+    &:not(.quiz-active) {
+      border: 0px;
+    }
+  }
+
+  @media (max-width: $quiz-app-width) {
+    &.quiz-active {
+      border: 0px;
+    }
+  }
+}
+
+.ReactModalPortal {
+  font-family: $font-family;
+}
+
+a,
+a:visited,
+.link {
+  text-decoration: underline;
+  color: $pink-darkest;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+a:hover,
+.link:hover {
+  text-decoration: none;
+  color: $pink-dark;
+}
+
+button {
+  background-color: $pink-light;
+  border: 1px solid $pink-base;
+  border-radius: 4px;
+  padding: 6px;
+  cursor: pointer;
+  font-family: $font-family;
+  color: $black-lightest;
+
+  &:hover:not(:disabled) {
+    border-width: 2px;
+    padding: 5px;
+  }
+
+  &:disabled {
+    background-color: $pink-lightest;
+    border-color: $pink-light;
+    cursor: default;
+    color: $pink-dark;
+    opacity: 0.5;
+  }
+}
+
+.__react_component_tooltip.type-dark {
+  background-color: $black-dark;
+
+  &.place-left::after {
+    border-left-color: $black-dark;
+  }
+
+  &.place-bottom::after {
+    border-bottom-color: $black-dark;
+  }
+
+  &.place-right::after {
+    border-right-color: $black-dark;
+  }
+
+  &.place-top::after {
+    border-top-color: $black-dark;
+  }
+
+  &.show {
+    opacity: 1;
+  }
+}
+
+.flex {
+  flex: 1;
+}

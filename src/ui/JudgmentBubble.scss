@@ -1,0 +1,52 @@
+@import "../palette.scss";
+
+.JudgmentBubble {
+  align-items: center;
+  justify-content: center;
+
+  &.block-circle {
+    width: 200px;
+    height: 200px;
+    font-size: 60px;
+    border-radius: 200px;
+    display: flex;
+    border: 15px solid black;
+  }
+
+  &.inline {
+    border: 2px solid black;
+    padding: 6px;
+    border-radius: 4px;
+    display: inline-flex;
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  &.incorrect {
+    color: $incorrect-dark;
+    border-color: $incorrect-medium;
+    background-color: $incorrect-light;
+  }
+
+  &.correct {
+    color: $correct-dark;
+    border-color: $correct-medium;
+    background-color: $correct-light;
+  }
+
+  &.skipped {
+    color: $skipped-dark;
+    border-color: $skipped-medium;
+    background-color: $skipped-light;
+  }
+
+  &.ignored {
+    color: $ignored-dark;
+    border-color: $ignored-medium;
+    background-color: $ignored-light;
+  }
+
+  rt {
+    font-size: 20%;
+  }
+}

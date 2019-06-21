@@ -1,0 +1,111 @@
+@import "../../palette.scss";
+
+$hover-darken-amount: 25%;
+
+.PackSelection {
+  width: 70%;
+  margin: auto;
+
+  .fieldset {
+    border-top: 1px solid $black-dark;
+    border-bottom: 1px solid $black-dark;
+    background-color: $pink-light;
+    padding: 15px 30px 10px;
+    position: relative;
+    margin-top: 20px;
+    user-select: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+
+    .header {
+      position: absolute;
+      border: 1px solid $black-dark;
+      background-color: $pink-base;
+      left: 20px;
+      top: -15px;
+      padding: 5px;
+      font-size: 14px;
+
+      strong {
+        font-weight: bold;
+      }
+
+      .subheader {
+        font-style: italic;
+        font-size: 80%;
+      }
+    }
+  }
+
+  .pack {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-height: 120px;
+    border: 1px solid $black-dark;
+
+    .front {
+      background-color: $blue-light;
+      color: $black-dark;
+      flex: 1;
+      position: relative;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding-top: 15px;
+
+      &:hover {
+        background-color: $blue-lightest;
+
+        &.checked {
+          background-color: $blue-base;
+        }
+      }
+
+      &.checked {
+        background-color: $blue-dark;
+
+        .check {
+          opacity: 0.7;
+        }
+      }
+
+      .check {
+        position: absolute;
+        top: -7px;
+        left: -7px;
+        opacity: 0;
+        width: 45px;
+        height: 45px;
+
+        path {
+          fill: white;
+        }
+      }
+
+      .name {
+        font-size: 24px;
+        text-align: center;
+      }
+    }
+
+    .view-details {
+      border-top: 1px solid $black-dark;
+      text-align: center;
+      padding: 3px;
+      font-size: 14px;
+      width: 100%;
+      background-color: $blue-darkest;
+      color: white;
+
+      &:hover {
+        background-color: $blue-dark;
+      }
+    }
+  }
+}

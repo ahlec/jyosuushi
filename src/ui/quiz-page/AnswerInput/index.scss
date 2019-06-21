@@ -1,0 +1,73 @@
+@import "../../../palette.scss";
+
+.AnswerInput {
+  &.disabled {
+    opacity: 0.4;
+  }
+
+  .KanaInput {
+    position: relative;
+    display: flex;
+
+    input {
+      flex: 1;
+      font-size: 48px;
+      text-align: center;
+      outline: none;
+      color: $black-base;
+      background-color: $blue-light;
+      border: 3px solid $blue-dark;
+      border-left: 0px;
+      border-right: 0px;
+      padding: 10px 0px;
+    }
+
+    .submit-button-container {
+      position: absolute;
+      top: 0px;
+      bottom: 0px;
+      right: 10px;
+      width: 48px;
+      touch-events: none;
+      display: flex;
+      align-items: center;
+
+      .submit-button {
+        right: 10px;
+        width: 48px;
+        height: 48px;
+        background-color: $blue-base;
+        transition: opacity 0.2s, transform 0.2s;
+        opacity: 0;
+        transform: translateX(10px);
+        border: 0px;
+        pointer-events: none;
+        outline-color: $black-dark;
+
+        &.show {
+          opacity: 1;
+          transform: none;
+          pointer-events: auto;
+        }
+
+        &:hover {
+          background-color: $blue-dark;
+        }
+      }
+    }
+  }
+
+  .submit-instructions {
+    font-size: 12px;
+    transition: opacity 0.2s, transform 0.2s;
+    margin-top: 6px;
+    opacity: 0;
+    transform: translateY(-10px);
+    text-align: center;
+
+    &.has-value {
+      opacity: 0.8;
+      transform: none;
+    }
+  }
+}

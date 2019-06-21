@@ -1,0 +1,53 @@
+@import "../../palette.scss";
+@import "../ModalShared.scss";
+
+.PackDetails {
+  overflow-y: auto;
+
+  p {
+    margin: 8px 0px;
+    text-align: center;
+
+    strong {
+      font-weight: 600;
+    }
+  }
+
+  .counter {
+    display: flex;
+    padding: 10px 20px;
+    align-items: center;
+
+    &:hover:not(.disabled) {
+      cursor: pointer;
+      background-color: $green-light;
+
+      svg {
+        opacity: 1;
+
+        path {
+          fill: $modal-button-hover;
+        }
+      }
+    }
+
+    .jp {
+      font-size: 32px;
+      margin-right: 20px;
+    }
+
+    .name {
+      flex: 1;
+    }
+
+    svg {
+      width: 32px;
+      height: 32px;
+      opacity: 0.65;
+
+      path {
+        fill: $modal-button;
+      }
+    }
+  }
+}

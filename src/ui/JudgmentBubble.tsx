@@ -1,0 +1,63 @@
+import classnames from "classnames";
+import * as React from "react";
+
+import { UserAnswerJudgment } from "../redux";
+
+import "./JudgmentBubble.scss";
+
+const RESULT_BUBBLE_CONTENTS: {
+  [judgment in UserAnswerJudgment]: { kanji: string; kana: string }
+} = {
+  correct: {
+    kana: "せいかい",
+    kanji: "正解"
+  },
+  ignored: {
+    kana: "むし",
+    kanji: "無視"
+  },
+  incorrect: {
+    kana: "ふせいかい",
+    kanji: "不正解"
+  },
+  skipped: {
+    kana: "みかいとう",
+    kanji: "未回答"
+  }
+};
+
+interface ComponentProps {
+  judgment: UserAnswerJudgment;
+  shape: "block-circle" | "inline";
+}
+
+export default class JudgmentBubble extends React.PureComponent<
+  ComponentProps
+> {
+  public render() {
+    const { judgment, shape } = this.props;
+
+    let contents: React.ReactNode;
+    switch (shape) {
+      case "block-circle": {
+        contents = (
+          <ruby>
+            {RESULT_BUBBLE_CONTENTS[judgment].kanji}
+            <rt>{RESULT_BUBBLE_CONTENTS[judgment].kana}</rt>
+          </ruby>
+        );
+        break;
+      }
+      case "inline": {
+        contents = RESULT_BUBBLE_CONTENTS[judgment].kanji;
+        break;
+      }
+    }
+
+    return (
+      <div className={classnames("JudgmentBubble", shape, judgment)}>
+        {contents}
+      </div>
+    );
+  }
+}
