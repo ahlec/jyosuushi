@@ -16,6 +16,7 @@ import { State, StudyPack } from "../../redux";
 import TutorialModal from "./TutorialModal";
 
 import FeedbackFooter from "../FeedbackFooter";
+import BetaExplanation from "./BetaExplanation";
 import CounterPreview from "./CounterPreview";
 import PackSelection from "./PackSelection";
 
@@ -95,6 +96,7 @@ class IntroPage extends React.PureComponent<ComponentProps, ComponentState> {
             Click here to read the tutorial.
           </span>
         </p>
+        <BetaExplanation />
         <PackSelection
           localization={localization}
           onSelectionChanged={this.onSelectionChanged}
