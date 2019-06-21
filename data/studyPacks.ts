@@ -7,7 +7,13 @@ import * as COUNTERS from "./counters";
 
 const STUDY_PACK_COMMON: StudyPack = {
   counters: [
+    COUNTERS.COUNTER_ヶ国,
+    COUNTERS.COUNTER_ヶ所,
+    COUNTERS.COUNTER_円,
+    COUNTERS.COUNTER_切れ,
+    COUNTERS.COUNTER_口,
     COUNTERS.COUNTER_曲,
+    COUNTERS.COUNTER_組,
     COUNTERS.COUNTER_缶
   ],
   englishName: "Common",
