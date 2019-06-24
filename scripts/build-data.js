@@ -68,7 +68,6 @@ async function writeCounterData(file, counter, irregulars) {
   },
   counterId: "${counter.counter_id}",
   englishName: "${counter.english_name}",
-  interestRegions: [], // TODO
   irregulars: ${irregularsStr},
   kana: "${counter.kana}",
   kanji: "${counter.kanji}"

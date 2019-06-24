@@ -121,3 +121,12 @@ export function conjugateCounter(
 
   return results;
 }
+
+export function isConjugationRegular(
+  amount: number,
+  counter: Counter
+): boolean {
+  return conjugateCounter(amount, counter).every(
+    ({ category }) => category === ConjugationCategory.Regular
+  );
+}

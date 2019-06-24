@@ -12,7 +12,6 @@ export interface Counter {
   kanji: string | null;
   conjugationOptions: NumericConjugationOptions;
   irregulars: { [amount: number]: ReadonlyArray<string> };
-  interestRegions: ReadonlyArray<InterestRegion>;
 }
 
 export interface Item {
