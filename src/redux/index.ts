@@ -1,4 +1,4 @@
-import { NumericConjugationOptions } from "../japanese/interfaces";
+import { Counter, Item } from "../interfaces";
 
 export type LocalizationLanguage = "english";
 
@@ -13,30 +13,6 @@ export interface Scorecard {
   numIncorrectAnswers: number;
   numSkippedQuestions: number;
   numIgnoredAnswers: number;
-}
-
-export interface StudyPack {
-  packId: string;
-  englishName: string;
-  counters: ReadonlyArray<Counter>;
-}
-
-export interface Counter {
-  counterId: string;
-  englishName: string;
-  kana: string;
-  kanji: string | null;
-  conjugationOptions: NumericConjugationOptions;
-  irregulars: { [amount: number]: ReadonlyArray<string> };
-}
-
-export interface Item {
-  itemId: string;
-  counters: ReadonlyArray<string>;
-  englishSingular: string;
-  englishPlural: string;
-  minQuantity: number;
-  maxQuantity: number;
 }
 
 export interface ItemsState {

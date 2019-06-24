@@ -3,6 +3,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 
 import { STUDY_PACK_LOOKUP } from "../../../data/studyPacks";
+import { StudyPack } from "../../interfaces";
 import Localization, {
   CreditsPiece,
   VARIABLE_ALEC_DEITLOFF,
@@ -11,7 +12,7 @@ import Localization, {
   VARIABLE_SILK_ICONS_CREDIT_LINK
 } from "../../localization";
 import QuizManager from "../../QuizManager";
-import { State, StudyPack } from "../../redux";
+import { State } from "../../redux";
 
 import TutorialModal from "./TutorialModal";
 

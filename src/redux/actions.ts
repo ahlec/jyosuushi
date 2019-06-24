@@ -1,4 +1,5 @@
-import { LocalizationLanguage, Question, StudyPack } from "./index";
+import { StudyPack } from "../interfaces";
+import { LocalizationLanguage, Question } from "./index";
 
 export interface ActionSetLocalizationLanguage {
   type: "set-localization";

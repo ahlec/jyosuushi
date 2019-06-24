@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Counter, Item, StudyPack } from "../redux";
+import { Counter, Item, StudyPack } from "../interfaces";
 import Localization, {
   VARIABLE_ALEC_DEITLOFF,
   VARIABLE_FAVICON_CREDIT_LINK,

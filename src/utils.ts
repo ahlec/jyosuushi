@@ -1,5 +1,6 @@
+import { Counter, StudyPack } from "./interfaces";
 import { conjugateCounterRegulars } from "./japanese/counters";
-import { ConjugationCategory, Counter, StudyPack } from "./redux";
+import { ConjugationCategory } from "./redux";
 
 export function randomFromArray<T>(arr: ReadonlyArray<T>): T {
   return arr[Math.floor(Math.random() * arr.length)];

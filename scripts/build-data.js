@@ -96,7 +96,7 @@ async function writeCountersFile(db) {
   const file = fs.openSync(COUNTERS_FILE, "w");
   fs.writeSync(file, FILE_HEADER_COMMENT);
 
-  fs.writeSync(file, 'import { Counter } from "../src/redux";');
+  fs.writeSync(file, 'import { Counter } from "../src/interfaces";');
   let hasInvalidCounter = false;
   for (const counter of counters) {
     if (!counter.uses_yon && !counter.uses_yo && !counter.uses_shi) {
@@ -184,7 +184,7 @@ async function writeItemsFile(db) {
   const file = fs.openSync(ITEMS_FILE, "w");
   fs.writeSync(file, FILE_HEADER_COMMENT);
 
-  fs.writeSync(file, 'import { Item } from "../src/redux";');
+  fs.writeSync(file, 'import { Item } from "../src/interfaces";');
 
   let hasItemsWithoutCounters = false;
   for (const item of items) {
@@ -288,7 +288,7 @@ async function writeStudyPacksFile(db) {
   const file = fs.openSync(STUDY_PACKS_FILE, "w");
   fs.writeSync(file, FILE_HEADER_COMMENT);
 
-  fs.writeSync(file, 'import { StudyPack } from "../src/redux";\n');
+  fs.writeSync(file, 'import { StudyPack } from "../src/interfaces";\n');
   fs.writeSync(file, 'import * as COUNTERS from "./counters";');
 
   let hasStudyPacksWithoutItems = false;

@@ -1,8 +1,8 @@
 import { memoize } from "lodash";
 import * as React from "react";
 
+import { Counter, StudyPack } from "../../interfaces";
 import Localization from "../../localization";
-import { Counter, StudyPack } from "../../redux";
 import { getDistinctCounters } from "../../utils";
 
 import "./CounterPreview.scss";

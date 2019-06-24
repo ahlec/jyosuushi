@@ -1,5 +1,5 @@
 import { memoize } from "lodash";
-import { Counter } from "../redux"; // TODO: Should we be importing that here?
+import { Counter } from "../interfaces";
 import { getLeadingConsonant } from "./hepburn";
 import { Gyou, HIRAGANA } from "./kana";
 import {

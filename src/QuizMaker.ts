@@ -1,7 +1,8 @@
 import { random, shuffle } from "lodash";
 
 import { ITEMS_FROM_COUNTER } from "../data/items";
-import { Answer, Counter, Item, Question, StudyPack } from "./redux";
+import { Counter, Item, StudyPack } from "./interfaces";
+import { Answer, Question } from "./redux";
 import {
   conjugateCounter,
   getDistinctCounters,

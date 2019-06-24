@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Counter, Item, StudyPack } from "../redux";
+import { Counter, Item, StudyPack } from "../interfaces";
 
 export const VARIABLE_ALEC_DEITLOFF = 17;
 export const VARIABLE_ICON_CREDIT_LINK = 18;

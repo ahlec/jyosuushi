@@ -1,8 +1,8 @@
 import * as ReactGA from "react-ga";
 
 import { STUDY_PACK_LOOKUP } from "../data/studyPacks";
+import { StudyPack } from "./interfaces";
 import makeQuiz from "./QuizMaker";
-import { StudyPack } from "./redux";
 import { endQuiz, nextQuestion, restartQuiz, startQuiz } from "./redux/actions";
 import { Store } from "./redux/store";
 

@@ -2,7 +2,7 @@
 // This file was built using `yarn build-data` from the SQLite database.
 // Modifications will be lost if they are made manually and not through the database.
 
-import { Item } from "../src/redux";
+import { Item } from "../src/interfaces";
 
 const ITEM_BAT: Item = {
   counters: ["羽"],
