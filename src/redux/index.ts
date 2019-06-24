@@ -1,8 +1,14 @@
 import { Counter, Item, PendingQuestion, Question } from "../interfaces";
 
 export type LocalizationLanguage = "english";
+export enum AmountRange {
+  Small,
+  Medium,
+  Large
+}
 
 export interface Settings {
+  amountRange: AmountRange;
   localization: LocalizationLanguage;
 }
 

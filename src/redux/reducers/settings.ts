@@ -1,9 +1,10 @@
 import { ActionSetLocalizationLanguage } from "../actions";
-import { Settings } from "../index";
+import { AmountRange, Settings } from "../index";
 
 type ReducerAction = ActionSetLocalizationLanguage;
 
 const DEFAULT_SETTINGS: Settings = {
+  amountRange: AmountRange.Medium,
   localization: "english"
 };
 
