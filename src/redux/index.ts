@@ -1,4 +1,4 @@
-import { Counter, Item } from "../interfaces";
+import { Counter, Item, PendingQuestion, Question } from "../interfaces";
 
 export type LocalizationLanguage = "english";
 
@@ -19,28 +19,11 @@ export interface ItemsState {
   [itemId: string]: Item;
 }
 
-export enum ConjugationCategory {
-  Regular,
-  Strange,
-  Irregular
-}
-
-export interface Answer {
-  counterId: string;
-  category: ConjugationCategory;
-  kana: string;
-  kanji: string | null;
-}
-
-export interface Question {
-  amount: number;
-  itemId: string;
-  validAnswers: ReadonlyArray<Answer>;
-}
-
 export interface QuestionsState {
-  currentQuestion: number;
-  questions: ReadonlyArray<Question>;
+  currentQuestion: Question | null;
+  queue: ReadonlyArray<PendingQuestion>;
+  asked: ReadonlyArray<Question>;
+  enabledCounters: ReadonlyArray<string>;
 }
 
 export interface CountersStateItem {

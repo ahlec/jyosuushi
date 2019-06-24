@@ -46,7 +46,7 @@ function mapStateToProps(state: State): ReduxProps {
       break;
     }
     default: {
-      hasAnsweredQuestion = state.questions.currentQuestion > 0;
+      hasAnsweredQuestion = !!state.questions.asked.length;
       break;
     }
   }
@@ -56,7 +56,10 @@ function mapStateToProps(state: State): ReduxProps {
     hasAnsweredQuestion,
     isOnQuizWrapup: state.quizState === "quiz-wrapup",
     scorecard: state.scorecard,
-    totalNumberQuestions: state.questions.questions.length
+    totalNumberQuestions:
+      state.questions.asked.length +
+      (state.questions.currentQuestion ? 1 : 0) +
+      state.questions.queue.length
   };
 }
 

@@ -4,9 +4,10 @@ import * as React from "react";
 import * as ReactGA from "react-ga";
 import { connect } from "react-redux";
 
+import { Answer, Question } from "../../../interfaces";
 import { HIRAGANA } from "../../../japanese/kana";
 import Localization from "../../../localization";
-import { Answer, Question, State } from "../../../redux";
+import { State } from "../../../redux";
 import {
   skipQuestion,
   submitCorrectAnswer,

@@ -4,15 +4,9 @@ import * as React from "react";
 import { connect } from "react-redux";
 
 import { STUDY_PACK_LOOKUP } from "../../../../data/studyPacks";
+import { Answer, ConjugationCategory, Question } from "../../../interfaces";
 import Localization from "../../../localization";
-import {
-  Answer,
-  ConjugationCategory,
-  CountersState,
-  Question,
-  State,
-  UserAnswer
-} from "../../../redux";
+import { CountersState, State, UserAnswer } from "../../../redux";
 
 import "./AnswersTable.scss";
 

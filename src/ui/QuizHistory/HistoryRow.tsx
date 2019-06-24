@@ -2,9 +2,9 @@ import classnames from "classnames";
 import * as React from "react";
 import { connect } from "react-redux";
 
-import { Item } from "../../interfaces";
+import { Item, Question } from "../../interfaces";
 import Localization from "../../localization";
-import { Question, State, UserAnswer } from "../../redux";
+import { State, UserAnswer } from "../../redux";
 
 import JudgmentBubble from "../JudgmentBubble";
 

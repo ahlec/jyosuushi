@@ -1,10 +1,10 @@
 import * as React from "react";
 import { connect } from "react-redux";
 
+import { Question } from "../../interfaces";
 import Localization from "../../localization";
-
 import QuizManager from "../../QuizManager";
-import { Question, QuizState, State } from "../../redux";
+import { QuizState, State } from "../../redux";
 
 import FeedbackFooter from "../FeedbackFooter";
 import AnswerInput from "./AnswerInput";
@@ -29,7 +29,7 @@ interface ReduxProps {
 
 function mapStateToProps(state: State): ReduxProps {
   return {
-    currentQuestion: state.questions.questions[state.questions.currentQuestion],
+    currentQuestion: state.questions.currentQuestion!,
     quizState: state.quizState
   };
 }

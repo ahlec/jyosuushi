@@ -1,5 +1,5 @@
-import { StudyPack } from "../interfaces";
-import { LocalizationLanguage, Question } from "./index";
+import { PendingQuestion, StudyPack } from "../interfaces";
+import { LocalizationLanguage } from "./index";
 
 export interface ActionSetLocalizationLanguage {
   type: "set-localization";
@@ -9,12 +9,12 @@ export interface ActionSetLocalizationLanguage {
 export interface ActionStartQuiz {
   type: "start-quiz";
   enabledPacks: ReadonlyArray<StudyPack>;
-  questions: ReadonlyArray<Question>;
+  questions: ReadonlyArray<PendingQuestion>;
 }
 
 export function startQuiz(
   enabledPacks: ReadonlyArray<StudyPack>,
-  questions: ReadonlyArray<Question>
+  questions: ReadonlyArray<PendingQuestion>
 ): ActionStartQuiz {
   return {
     enabledPacks,
@@ -25,11 +25,11 @@ export function startQuiz(
 
 export interface ActionRestartQuiz {
   type: "restart-quiz";
-  questions: ReadonlyArray<Question>;
+  questions: ReadonlyArray<PendingQuestion>;
 }
 
 export function restartQuiz(
-  questions: ReadonlyArray<Question>
+  questions: ReadonlyArray<PendingQuestion>
 ): ActionRestartQuiz {
   return {
     questions,

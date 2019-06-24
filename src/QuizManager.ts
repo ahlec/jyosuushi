@@ -13,9 +13,7 @@ export default class QuizManager {
 
   public get hasNextQuestion(): boolean {
     const state = this.store.getState();
-    return (
-      state.questions.currentQuestion < state.questions.questions.length - 1
-    );
+    return !!state.questions.queue.length;
   }
 
   public startNewQuiz(studyPacks: ReadonlyArray<StudyPack>) {

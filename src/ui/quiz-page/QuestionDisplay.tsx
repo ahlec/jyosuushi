@@ -1,9 +1,9 @@
 import * as React from "react";
 import { connect } from "react-redux";
 
-import { Item } from "../../interfaces";
+import { Item, Question } from "../../interfaces";
 import Localization from "../../localization";
-import { Question, State } from "../../redux";
+import { State } from "../../redux";
 
 import "./QuestionDisplay.scss";
 

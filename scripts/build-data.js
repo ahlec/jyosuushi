@@ -14,6 +14,8 @@ const FILE_HEADER_COMMENT = `// DO NOT HAND-MODIFY THIS FILE!!
 // This file was built using \`yarn build-data\` from the SQLite database.
 // Modifications will be lost if they are made manually and not through the database.\n\n`;
 
+const INVALID_JAVASCRIPT_IDENTIFIER_REGEX = /^[a-zA-Z0-9]*$/;
+
 function getVariableFromId(prefix, id) {
   return prefix + id.toUpperCase().replace(/[-\s,&._\(\)（）ー']+/g, "_");
 }
@@ -66,6 +68,7 @@ async function writeCounterData(file, counter, irregulars) {
   },
   counterId: "${counter.counter_id}",
   englishName: "${counter.english_name}",
+  interestRegions: [], // TODO
   irregulars: ${irregularsStr},
   kana: "${counter.kana}",
   kanji: "${counter.kanji}"
@@ -129,7 +132,28 @@ async function writeCountersFile(db) {
     writeCounterData(file, counter, irregularsLookup[counter.counter_id]);
   }
 
-  fs.writeSync(file, "\n");
+  fs.writeSync(file, "\n\nexport const COUNTERS_LOOKUP: {\n");
+  fs.writeSync(file, "  [counterId: string]: Counter;\n");
+  fs.writeSync(file, "} = {\n");
+  let hasWrittenFirst = false;
+  for (const counter of counters) {
+    if (hasWrittenFirst) {
+      fs.writeSync(file, ",\n");
+    } else {
+      hasWrittenFirst = true;
+    }
+
+    let entryKey;
+    if (INVALID_JAVASCRIPT_IDENTIFIER_REGEX.test(counter.counter_id)) {
+      entryKey = counter.counter_id;
+    } else {
+      entryKey = `"${counter.counter_id}"`;
+    }
+
+    fs.writeSync(file, `  ${entryKey}: ${getCounterId(counter.counter_id)}`);
+  }
+  fs.writeSync(file, "\n};\n");
+
   fs.closeSync(file);
 
   return !hasInvalidCounter;
@@ -201,10 +225,34 @@ async function writeItemsFile(db) {
     writeItemData(file, item, itemsToCounters[item.item_id]);
   }
 
+  fs.writeSync(file, "\n\nexport const ITEMS_LOOKUP: {\n");
+  fs.writeSync(file, "  [itemId: string]: Item;\n");
+  fs.writeSync(file, "} = {\n");
+  let hasWrittenFirst = false;
+  const orderedItems = Object.keys(itemsToCounters);
+  orderedItems.sort();
+  for (const itemId of orderedItems) {
+    if (hasWrittenFirst) {
+      fs.writeSync(file, ",\n");
+    } else {
+      hasWrittenFirst = true;
+    }
+
+    let entryKey;
+    if (INVALID_JAVASCRIPT_IDENTIFIER_REGEX.test(itemId)) {
+      entryKey = itemId;
+    } else {
+      entryKey = `"${itemId}"`;
+    }
+
+    fs.writeSync(file, `  ${entryKey}: ${getItemId(itemId)}`);
+  }
+  fs.writeSync(file, "\n};");
+
   fs.writeSync(file, "\n\nexport const ITEMS_FROM_COUNTER: {\n");
   fs.writeSync(file, "  [counterId: string]: ReadonlyArray<Item>;\n");
   fs.writeSync(file, "} = {\n");
-  let hasWrittenFirst = false;
+  hasWrittenFirst = false;
   const orderedCounters = Object.keys(countersToItems);
   orderedCounters.sort();
   for (const counterId of orderedCounters) {
@@ -215,7 +263,7 @@ async function writeItemsFile(db) {
     }
 
     let entryKey;
-    if (/^[a-zA-Z0-9]*$/.test(counterId)) {
+    if (INVALID_JAVASCRIPT_IDENTIFIER_REGEX.test(counterId)) {
       entryKey = counterId;
     } else {
       entryKey = `"${counterId}"`;
@@ -342,7 +390,7 @@ async function writeStudyPacksFile(db) {
     }
 
     let entryKey;
-    if (/^[a-zA-Z0-9]*$/.test(studyPack.pack_id)) {
+    if (INVALID_JAVASCRIPT_IDENTIFIER_REGEX.test(studyPack.pack_id)) {
       entryKey = studyPack.pack_id;
     } else {
       entryKey = `"${studyPack.pack_id}"`;

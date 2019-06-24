@@ -3,12 +3,10 @@ import * as React from "react";
 import * as ReactGA from "react-ga";
 import { connect } from "react-redux";
 
+import { Answer, Question } from "../../../interfaces";
 import Localization from "../../../localization";
-
 import {
-  Answer,
   CountersState,
-  Question,
   State,
   UserAnswer,
   UserAnswerJudgment
@@ -35,7 +33,7 @@ interface ReduxProps {
 function mapStateToProps(state: State): ReduxProps {
   return {
     counters: state.counters,
-    usersAnswer: state.userAnswers[state.questions.currentQuestion]
+    usersAnswer: state.userAnswers[state.userAnswers.length - 1]
   };
 }
 

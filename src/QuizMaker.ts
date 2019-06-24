@@ -1,13 +1,14 @@
-import { random, shuffle } from "lodash";
+import { shuffle } from "lodash";
 
 import { ITEMS_FROM_COUNTER } from "../data/items";
-import { Counter, Item, StudyPack } from "./interfaces";
-import { Answer, Question } from "./redux";
 import {
-  conjugateCounter,
-  getDistinctCounters,
-  randomFromArray
-} from "./utils";
+  Counter,
+  InterestRegion,
+  Item,
+  PendingQuestion,
+  StudyPack
+} from "./interfaces";
+import { getDistinctCounters, randomFromArray } from "./utils";
 
 const MAX_NUMBER_QUESTIONS_PER_ITEM = 3;
 const MAX_NUMBER_QUESTIONS_PER_COUNTER = 10;
@@ -15,15 +16,11 @@ const MAX_NUMBER_QUESTIONS_PER_COUNTER = 10;
 interface ItemEntry {
   item: Item;
   numRemaining: number;
-  usedAmounts: Set<number>;
+  usedInterestRegions: Set<string>;
 }
 
 interface QuizItems {
   [itemId: string]: ItemEntry;
-}
-
-interface CountersLookup {
-  [counterId: string]: Counter;
 }
 
 function getDistinctItems(
@@ -57,45 +54,25 @@ function planOutItems(items: ReadonlyArray<Item>): QuizItems {
     quizItems[item.itemId] = {
       item,
       numRemaining: Math.min(maxPossibleItems, MAX_NUMBER_QUESTIONS_PER_ITEM),
-      usedAmounts: new Set()
+      usedInterestRegions: new Set()
     };
   }
 
   return quizItems;
 }
 
-function createQuestion(
-  item: Item,
-  amount: number,
-  countersLookup: CountersLookup
-): Question {
-  const itemCounters = item.counters
-    .map(counterId => countersLookup[counterId])
-    .filter(itemId => !!itemId);
-  const validAnswers: Answer[] = [];
-  for (const counter of itemCounters) {
-    const answers = conjugateCounter(amount, counter);
-    for (const answer of answers) {
-      validAnswers.push({
-        ...answer,
-        counterId: counter.counterId
-      });
-    }
-  }
-
-  return {
-    amount,
-    itemId: item.itemId,
-    validAnswers
-  };
+function getInterestRegionId({
+  endInclusive,
+  startInclusive
+}: InterestRegion): string {
+  return `${startInclusive}-${endInclusive}`;
 }
 
 function makeQuestionsForCounter(
   counter: Counter,
-  quizItems: QuizItems,
-  countersLookup: CountersLookup
-): ReadonlyArray<Question> {
-  const questions: Question[] = [];
+  quizItems: QuizItems
+): ReadonlyArray<PendingQuestion> {
+  const questions: PendingQuestion[] = [];
   const validItems = ITEMS_FROM_COUNTER[counter.counterId].filter(
     ({ itemId }) => quizItems[itemId].numRemaining > 0
   );
@@ -105,14 +82,19 @@ function makeQuestionsForCounter(
     validItems.length
   ) {
     const item = randomFromArray(validItems);
-    let amount: number;
+    let interestRegion: InterestRegion;
+    let interestRegionId: string;
     do {
-      amount = random(item.minQuantity, item.maxQuantity);
-    } while (quizItems[item.itemId].usedAmounts.has(amount));
+      interestRegion = randomFromArray(counter.interestRegions);
+      interestRegionId = getInterestRegionId(interestRegion);
+    } while (quizItems[item.itemId].usedInterestRegions.has(interestRegionId));
 
-    questions.push(createQuestion(item, amount, countersLookup));
+    questions.push({
+      interestRegion,
+      itemId: item.itemId
+    });
 
-    quizItems[item.itemId].usedAmounts.add(amount);
+    quizItems[item.itemId].usedInterestRegions.add(interestRegionId);
     quizItems[item.itemId].numRemaining--;
     if (quizItems[item.itemId].numRemaining <= 0) {
       const index = validItems.indexOf(item);
@@ -125,23 +107,14 @@ function makeQuestionsForCounter(
 
 export default function makeQuiz(
   studyPacks: ReadonlyArray<StudyPack>
-): ReadonlyArray<Question> {
+): ReadonlyArray<PendingQuestion> {
   const counters = getDistinctCounters(studyPacks);
   const items = getDistinctItems(counters);
   const quizItems = planOutItems(items);
 
-  const countersLookup: CountersLookup = {};
+  const questions: PendingQuestion[] = [];
   for (const counter of counters) {
-    countersLookup[counter.counterId] = counter;
-  }
-
-  const questions: Question[] = [];
-  for (const counter of counters) {
-    const counterQuestions = makeQuestionsForCounter(
-      counter,
-      quizItems,
-      countersLookup
-    );
+    const counterQuestions = makeQuestionsForCounter(counter, quizItems);
     questions.push(...counterQuestions);
   }
 

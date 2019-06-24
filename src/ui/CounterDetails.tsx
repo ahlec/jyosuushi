@@ -3,9 +3,8 @@ import { memoize } from "lodash";
 import * as React from "react";
 
 import { ITEMS_FROM_COUNTER } from "../../data/items";
-import { Counter, Item } from "../interfaces";
+import { ConjugationCategory, Counter, Item } from "../interfaces";
 import Localization from "../localization";
-import { ConjugationCategory } from "../redux";
 import { conjugateCounter, ConjugatedInfo } from "../utils";
 
 import "./CounterDetails.scss";

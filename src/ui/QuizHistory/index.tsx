@@ -1,8 +1,9 @@
 import * as React from "react";
 import { connect } from "react-redux";
 
+import { Question } from "../../interfaces";
 import Localization from "../../localization";
-import { Question, State, UserAnswer } from "../../redux";
+import { State, UserAnswer } from "../../redux";
 
 import HistoryRow from "./HistoryRow";
 
@@ -13,31 +14,19 @@ interface ProvidedProps {
 }
 
 interface ReduxProps {
-  currentQuestion: number;
-  questions: ReadonlyArray<Question>;
+  askedQuestions: ReadonlyArray<Question>;
+  currentQuestion: Question | null;
   userAnswers: ReadonlyArray<UserAnswer>;
 }
 
 function mapStateToProps(state: State): ReduxProps {
-  let currentQuestion: number;
-  switch (state.quizState) {
-    case "reviewing-answer": {
-      currentQuestion = state.questions.currentQuestion + 1;
-      break;
-    }
-    case "quiz-wrapup": {
-      currentQuestion = state.questions.questions.length;
-      break;
-    }
-    default: {
-      currentQuestion = state.questions.currentQuestion;
-      break;
-    }
-  }
-
+  const includeCurrentQuestion =
+    state.quizState === "reviewing-answer" || state.quizState === "quiz-wrapup";
   return {
-    currentQuestion,
-    questions: state.questions.questions,
+    askedQuestions: state.questions.asked,
+    currentQuestion: includeCurrentQuestion
+      ? state.questions.currentQuestion
+      : null,
     userAnswers: state.userAnswers
   };
 }
@@ -46,11 +35,15 @@ type ComponentProps = ProvidedProps & ReduxProps;
 
 class QuizHistory extends React.PureComponent<ComponentProps> {
   public render() {
-    const { currentQuestion } = this.props;
+    const { askedQuestions, currentQuestion } = this.props;
 
     const rows: JSX.Element[] = [];
-    for (let index = 0; index < currentQuestion; ++index) {
-      rows.push(this.renderQuestionRow(index));
+    for (let index = 0; index < askedQuestions.length; ++index) {
+      rows.push(this.renderQuestionRow(index, askedQuestions[index]));
+    }
+
+    if (currentQuestion) {
+      rows.push(this.renderQuestionRow(askedQuestions.length, currentQuestion));
     }
 
     return (
@@ -60,18 +53,18 @@ class QuizHistory extends React.PureComponent<ComponentProps> {
     );
   }
 
-  private renderQuestionRow = (index: number) => {
-    const { localization, questions, userAnswers } = this.props;
+  private renderQuestionRow(index: number, question: Question): JSX.Element {
+    const { localization, userAnswers } = this.props;
     return (
       <HistoryRow
         key={index}
         localization={localization}
-        question={questions[index]}
+        question={question}
         questionNo={index + 1}
         usersAnswer={userAnswers[index]}
       />
     );
-  };
+  }
 }
 
 export default connect(mapStateToProps)(QuizHistory);
