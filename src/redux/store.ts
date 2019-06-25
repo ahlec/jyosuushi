@@ -5,7 +5,12 @@ import {
   Store as ReduxStore
 } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension/developmentOnly";
-import { Persistor, persistReducer, persistStore } from "redux-persist";
+import {
+  createMigrate,
+  Persistor,
+  persistReducer,
+  persistStore
+} from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { State } from "./index";
 
@@ -18,6 +23,8 @@ import scorecardReducer from "./reducers/scorecard";
 import sessionReducer from "./reducers/session";
 import settingsReducer from "./reducers/settings";
 import userAnswersReducer from "./reducers/userAnswers";
+
+import migrateV0 from "./migration/v0";
 
 type Action = any;
 
@@ -45,7 +52,11 @@ export function createRedux(): Redux {
     persistReducer(
       {
         key: "root",
-        storage
+        migrate: createMigrate({
+          0: migrateV0
+        }),
+        storage,
+        version: 0
       },
       reducers
     ),
