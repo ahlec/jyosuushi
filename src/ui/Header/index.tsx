@@ -9,6 +9,7 @@ import { Scorecard, State } from "../../redux";
 import { leaveQuiz } from "../../redux/actions";
 import { Dispatch } from "../../redux/store";
 
+import Furigana from "../Furigana";
 import Modal from "../Modal";
 import QuizHistory from "../QuizHistory";
 import TooltipButton from "../TooltipButton";
@@ -148,13 +149,8 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
     return (
       <React.Fragment>
         <div className="main">
-          <ruby>
-            助数詞<rt>じょすうし</rt>
-          </ruby>
-          を
-          <ruby>
-            練習<rt>れんしゅう</rt>
-          </ruby>
+          <Furigana furigana="じょすうし" text="助数詞" />を
+          <Furigana furigana="れんしゅう" text="練習" />
         </div>
         <div className="subheader">{localization.siteTagline}</div>
         <BetaBanner localization={localization} />

@@ -8,6 +8,8 @@ import { Answer, ConjugationCategory, Question } from "../../../interfaces";
 import Localization from "../../../localization";
 import { CountersState, State, UserAnswer } from "../../../redux";
 
+import Furigana from "../../Furigana";
+
 import "./AnswersTable.scss";
 
 interface ProvidedProps {
@@ -68,14 +70,10 @@ class AnswersTable extends React.PureComponent<ComponentProps> {
     return (
       <tr key={counterId} className={classnames(correctAnswer && "correct")}>
         <td className="cell-counter">
-          {counter.kanji ? (
-            <ruby>
-              {counter.kanji}
-              <rt>{counter.kana}</rt>
-            </ruby>
-          ) : (
-            <ruby>{counter.kana}</ruby>
-          )}
+          <Furigana
+            text={counter.kanji || counter.kana}
+            furigana={counter.kanji && counter.kana}
+          />
         </td>
         <td className="cell-rule">{localization.counterName(counter)}</td>
         <td className="cell-study-pack">

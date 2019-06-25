@@ -5,6 +5,7 @@ import * as React from "react";
 import { Counter, StudyPack } from "../../interfaces";
 import Localization from "../../localization";
 
+import Furigana from "../Furigana";
 import RightIcon from "../right.svg";
 
 import "./PackDetails.scss";
@@ -52,10 +53,11 @@ export default class PackDetails extends React.PureComponent<ComponentProps> {
         className={classnames("counter", !enabled && "disabled")}
         onClick={this.onClickInvestigate(counter)}
       >
-        <ruby className="jp">
-          {counter.kanji || counter.kana}
-          {counter.kanji && <rt>{counter.kana}</rt>}
-        </ruby>
+        <Furigana
+          className="jp"
+          text={counter.kanji || counter.kana}
+          furigana={counter.kanji && counter.kana}
+        />
         <div className="name">{localization.counterName(counter)}</div>
         <RightIcon />
       </div>

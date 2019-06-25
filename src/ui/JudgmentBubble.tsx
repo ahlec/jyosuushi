@@ -3,6 +3,8 @@ import * as React from "react";
 
 import { UserAnswerJudgment } from "../redux";
 
+import Furigana from "./Furigana";
+
 import "./JudgmentBubble.scss";
 
 const RESULT_BUBBLE_CONTENTS: {
@@ -41,10 +43,10 @@ export default class JudgmentBubble extends React.PureComponent<
     switch (shape) {
       case "block-circle": {
         contents = (
-          <ruby>
-            {RESULT_BUBBLE_CONTENTS[judgment].kanji}
-            <rt>{RESULT_BUBBLE_CONTENTS[judgment].kana}</rt>
-          </ruby>
+          <Furigana
+            text={RESULT_BUBBLE_CONTENTS[judgment].kanji}
+            furigana={RESULT_BUBBLE_CONTENTS[judgment].kana}
+          />
         );
         break;
       }
