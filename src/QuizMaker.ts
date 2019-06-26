@@ -1,4 +1,4 @@
-import { memoize, shuffle } from "lodash";
+import { memoize, random, shuffle } from "lodash";
 
 import { ITEMS_FROM_COUNTER } from "../data/items";
 import { AMOUNT_RANGES } from "./constants";
@@ -17,6 +17,7 @@ import {
 } from "./utils";
 
 const MAX_NUMBER_QUESTIONS_PER_ITEM = 3;
+const MIN_NUMBER_QUESTIONS_PER_COUNTER = 4;
 const MAX_NUMBER_QUESTIONS_PER_COUNTER = 10;
 
 interface ItemEntry {
@@ -133,10 +134,11 @@ function makeQuestionsForCounter(
     ...getInterestRegions(counter, AMOUNT_RANGES[amountRange].max)
   ];
 
-  while (
-    questions.length < MAX_NUMBER_QUESTIONS_PER_COUNTER &&
-    validItems.length
-  ) {
+  const numCounterQuestions = random(
+    MIN_NUMBER_QUESTIONS_PER_COUNTER,
+    MAX_NUMBER_QUESTIONS_PER_COUNTER
+  );
+  while (questions.length < numCounterQuestions && validItems.length) {
     const item = randomFromArray(validItems);
     let interestRegion: InterestRegion;
     let interestRegionId: string;
