@@ -1,11 +1,16 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { markLatestVersion } from "../../redux/actions";
-import { Dispatch } from "../../redux/store";
+import { markLatestVersion } from "../redux/actions";
+import { Dispatch } from "../redux/store";
 
-import Localization from "../../localization";
+import Localization from "../localization";
 
-import Modal from "../Modal";
+import Markdown from "./Markdown";
+import Modal from "./Modal";
+
+import CHANGELOG from "../../CHANGELOG.md";
+
+import "./ReleaseNotesModal.scss";
 
 interface ProvidedProps {
   localization: Localization;
@@ -29,7 +34,7 @@ class ReleaseNotesModal extends React.PureComponent<ComponentProps> {
         isOpen={true}
         onRequestClose={onRequestClose}
       >
-        Test
+        <Markdown className="changelog" content={CHANGELOG} />
       </Modal>
     );
   }

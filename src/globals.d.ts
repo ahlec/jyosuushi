@@ -5,6 +5,10 @@ declare module "*.svg" {
 
 declare module "*.jpg";
 declare module "*.png";
+declare module "*.md" {
+  const html: string;
+  export default html;
+}
 
 declare const CONFIG_BUG_REPORT_FORM_LINK: string;
 declare const CONFIG_FEEDBACK_FORM_LINK: string;

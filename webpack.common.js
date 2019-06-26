@@ -57,6 +57,10 @@ module.exports = {
       {
         test: /\.svg$/,
         loader: "@svgr/webpack"
+      },
+      {
+        test: /\.md$/,
+        use: ["html-loader", "markdown-loader"]
       }
     ]
   },
