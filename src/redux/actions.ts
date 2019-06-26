@@ -119,3 +119,13 @@ export function leaveQuiz(): ActionLeaveQuiz {
     type: "leave-quiz"
   };
 }
+
+export interface ActionMarkLatestVersion {
+  type: "mark-latest-version";
+}
+
+export function markLatestVersion(): ActionMarkLatestVersion {
+  return {
+    type: "mark-latest-version"
+  };
+}

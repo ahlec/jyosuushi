@@ -43,6 +43,7 @@ export default interface Localization {
   itemPlural: (item: Item) => string;
   itemSingular: (item: Item) => string;
   lowScoreEncouragements: ReadonlyArray<string>;
+  releaseNotes: string;
   reportABug: string;
   resultColumnHeaderCounter: string;
   resultColumnHeaderRule: string;

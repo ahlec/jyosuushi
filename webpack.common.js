@@ -88,7 +88,8 @@ module.exports = {
       CONFIG_FEEDBACK_FORM_LINK: JSON.stringify(configJson.FEEDBACK_FORM_LINK),
       CONFIG_GOOGLE_ANALYTICS_TRACKING_ID: JSON.stringify(
         configJson.GOOGLE_ANALYTICS_TRACKING_ID
-      )
+      ),
+      JYOSUUSHI_CURRENT_SEMVER: JSON.stringify(process.env.npm_package_version)
     }),
     new CopyWebpackPlugin([
       {

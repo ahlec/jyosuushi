@@ -58,7 +58,8 @@ export type QuizState =
   | "reviewing-answer"
   | "quiz-wrapup";
 
-export interface Session {
+export interface User {
+  lastAccessedVersion: string | null;
   numQuestionsAsked: number;
 }
 
@@ -69,7 +70,7 @@ export interface State {
   questions: QuestionsState;
   quizState: QuizState;
   scorecard: Scorecard;
-  session: Session;
   settings: Settings;
+  user: User;
   userAnswers: ReadonlyArray<UserAnswer>;
 }

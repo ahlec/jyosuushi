@@ -11,6 +11,7 @@ import ENGLISH from "./localization/english";
 import Header from "./ui/Header";
 import IntroPage from "./ui/intro-page";
 import QuizPage from "./ui/quiz-page";
+import ReleaseNotesModal from "./ui/ReleaseNotesModal";
 
 import "./App.scss";
 
@@ -27,6 +28,7 @@ interface ProvidedProps {
 interface ReduxProps {
   isQuizActive: boolean;
   language: LocalizationLanguage;
+  lastAccessedVersion: string | null;
 }
 
 type ComponentProps = ProvidedProps & ReduxProps;
@@ -34,21 +36,34 @@ type ComponentProps = ProvidedProps & ReduxProps;
 function mapStateToProps(state: State): ReduxProps {
   return {
     isQuizActive: state.quizState !== "not-in-quiz",
-    language: state.settings.localization
+    language: state.settings.localization,
+    lastAccessedVersion: state.user.lastAccessedVersion
   };
 }
 
 interface ComponentState {
   isModalOpen: boolean;
+  isReleaseNotesModalOpen: boolean;
 }
 
 class App extends React.PureComponent<ComponentProps, ComponentState> {
-  public state: ComponentState = {
-    isModalOpen: false
-  };
+  public state: ComponentState;
+
+  public constructor(props: ComponentProps) {
+    super(props);
+
+    const isReleaseNotesModalOpen =
+      !!props.lastAccessedVersion &&
+      props.lastAccessedVersion !== JYOSUUSHI_CURRENT_SEMVER;
+    this.state = {
+      isModalOpen: isReleaseNotesModalOpen,
+      isReleaseNotesModalOpen
+    };
+  }
 
   public render() {
     const { isQuizActive, language } = this.props;
+    const { isReleaseNotesModalOpen } = this.state;
     const localization = LOCALIZATION_LOOKUP[language];
     return (
       <div className={classnames("App", isQuizActive && "quiz-active")}>
@@ -60,6 +75,12 @@ class App extends React.PureComponent<ComponentProps, ComponentState> {
         {isQuizActive
           ? this.renderQuizPage(localization)
           : this.renderIntroPage(localization)}
+        {isReleaseNotesModalOpen && (
+          <ReleaseNotesModal
+            localization={localization}
+            onRequestClose={this.onReleaseNotesClosed}
+          />
+        )}
       </div>
     );
   }
@@ -83,6 +104,9 @@ class App extends React.PureComponent<ComponentProps, ComponentState> {
 
   private onHeaderModalOpened = (isModalOpen: boolean) =>
     this.setState({ isModalOpen });
+
+  private onReleaseNotesClosed = () =>
+    this.setState({ isModalOpen: false, isReleaseNotesModalOpen: false });
 }
 
 export default connect(mapStateToProps)(App);

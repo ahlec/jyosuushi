@@ -9,3 +9,4 @@ declare module "*.png";
 declare const CONFIG_BUG_REPORT_FORM_LINK: string;
 declare const CONFIG_FEEDBACK_FORM_LINK: string;
 declare const CONFIG_GOOGLE_ANALYTICS_TRACKING_ID: string;
+declare const JYOSUUSHI_CURRENT_SEMVER: string;

@@ -37,7 +37,7 @@ interface ReduxProps {
 
 function mapStateToProps(state: State): ReduxProps {
   return {
-    numQuestionsAsked: state.session.numQuestionsAsked
+    numQuestionsAsked: state.user.numQuestionsAsked
   };
 }
 

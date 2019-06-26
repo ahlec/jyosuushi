@@ -20,8 +20,8 @@ import itemsReducer from "./reducers/items";
 import questionsReducer from "./reducers/questions";
 import quizStateReducer from "./reducers/quizState";
 import scorecardReducer from "./reducers/scorecard";
-import sessionReducer from "./reducers/session";
 import settingsReducer from "./reducers/settings";
+import userReducer from "./reducers/user";
 import userAnswersReducer from "./reducers/userAnswers";
 
 import migrateV0 from "./migration/v0";
@@ -44,8 +44,8 @@ export function createRedux(): Redux {
     questions: questionsReducer,
     quizState: quizStateReducer,
     scorecard: scorecardReducer,
-    session: sessionReducer,
     settings: settingsReducer,
+    user: userReducer,
     userAnswers: userAnswersReducer
   });
   const store = createStore<State, Action, any, any>(
