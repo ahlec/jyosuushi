@@ -21,7 +21,7 @@ import {
 const COUNTER_K_P_CHANGES: FinalNumberChanges = {
   1: [[{ type: "trailing-small-tsu" }]],
   6: [[{ type: "trailing-small-tsu" }]],
-  8: [[{ type: "trailing-small-tsu" }]],
+  8: [[{ type: "trailing-small-tsu" }], [{ type: "preserve" }]],
   [JYUU]: [
     [{ type: "trailing-small-tsu" }],
     [{ type: "replace", kana: "じっ", kanji: "十" }]

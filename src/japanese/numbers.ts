@@ -263,7 +263,8 @@ type NumberChange =
   | { type: "omit" }
   | { type: "replace"; kana: string; kanji: string }
   | { type: "trailing-small-tsu" }
-  | { type: "tag"; tag: Tag };
+  | { type: "tag"; tag: Tag }
+  | { type: "preserve" };
 
 export interface FinalNumberChanges {
   [amount: number]: ReadonlyArray<ReadonlyArray<NumberChange>>;
@@ -298,6 +299,9 @@ function applySingleChange(
         ...word,
         tags: new Set(word.tags).add(change.tag)
       }));
+    }
+    case "preserve": {
+      return words;
     }
   }
 }
