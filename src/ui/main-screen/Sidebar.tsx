@@ -15,6 +15,10 @@ export default class Sidebar extends React.Component {
   }
 
   private renderLink = ({ path }: PageDefinition) => {
-    return <NavLink to={path}>hi</NavLink>;
+    return (
+      <NavLink key={path} to={path}>
+        hi
+      </NavLink>
+    );
   };
 }

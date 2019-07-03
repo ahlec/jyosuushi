@@ -72,8 +72,7 @@ class App extends React.PureComponent<ComponentProps, ComponentState> {
   }
 
   private renderMainScreen = () => {
-    const { quizManager } = this.props;
-    return <MainScreen quizManager={quizManager} />;
+    return <MainScreen />;
   };
 
   private renderQuizPage = () => {
