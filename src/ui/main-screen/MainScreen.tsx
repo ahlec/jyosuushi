@@ -23,11 +23,9 @@ import BetaExplanation from "./BetaExplanation";
 import CounterPreview from "./CounterPreview";
 import PackSelection from "./PackSelection";
 
-import ExplorePage from "./explore/ExplorePage";
-import FeedbackPage from "./feedback/FeedbackPage";
-import PreparePage from "./prepare/PreparePage";
-import ReleaseNotesPage from "./release-notes/ReleaseNotesPage";
-import SettingsPage from "./settings/SettingsPage";
+import Sidebar from "./Sidebar";
+
+import { LANDING_PAGE, PageDefinition, UNORDERED_NESTED_PAGES } from "./pages";
 
 import "./MainScreen.scss";
 
@@ -92,12 +90,10 @@ class MainScreen extends React.PureComponent<ComponentProps, ComponentState> {
     return (
       <div className="MainScreen">
         <Switch>
-          <Route path="/explore" component={ExplorePage} />
-          <Route path="/feedback" component={FeedbackPage} />
-          <Route path="/release-notes" component={ReleaseNotesPage} />
-          <Route path="/settings" component={SettingsPage} />
-          <Route component={PreparePage} />
+          {UNORDERED_NESTED_PAGES.map(this.renderRoute)}
+          {this.renderRoute(LANDING_PAGE)}
         </Switch>
+        <Sidebar />
         <p>
           Welcome to <strong>助数詞を練習</strong>! This is a tool that's meant
           to help you study{" "}
@@ -138,6 +134,10 @@ class MainScreen extends React.PureComponent<ComponentProps, ComponentState> {
       </div>
     );
   }
+
+  private renderRoute = ({ component, path }: PageDefinition) => {
+    return <Route key={path} path={path} component={component} />;
+  };
 
   private renderCredit = (piece: CreditsPiece) => {
     switch (piece) {
