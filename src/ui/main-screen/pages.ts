@@ -8,31 +8,37 @@ import SettingsPage from "./settings/SettingsPage";
 
 export interface PageDefinition {
   component: ComponentClass;
+  name: string;
   path: string;
 }
 
 const PREPARE_PAGE: PageDefinition = {
   component: PreparePage,
+  name: "Prepare",
   path: ""
 };
 
 const EXPLORE_PAGE: PageDefinition = {
   component: ExplorePage,
+  name: "Explore",
   path: "/explore"
 };
 
 const SETTINGS_PAGE: PageDefinition = {
   component: SettingsPage,
+  name: "Settings",
   path: "/settings"
 };
 
 const RELEASE_NOTES_PAGE: PageDefinition = {
   component: ReleaseNotesPage,
+  name: "Release Notes",
   path: "/release-notes"
 };
 
 const FEEDBACK_PAGE: PageDefinition = {
   component: FeedbackPage,
+  name: "Feedback",
   path: "/feedback"
 };
 

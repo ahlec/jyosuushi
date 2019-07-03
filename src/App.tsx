@@ -9,7 +9,6 @@ import { State } from "./redux";
 import Header from "./ui/Header";
 import MainScreen from "./ui/main-screen/MainScreen";
 import QuizPage from "./ui/quiz-page";
-import ReleaseNotesModal from "./ui/ReleaseNotesModal";
 
 import "./App.scss";
 
@@ -33,7 +32,6 @@ function mapStateToProps(state: State): ReduxProps {
 
 interface ComponentState {
   isModalOpen: boolean;
-  isReleaseNotesModalOpen: boolean;
 }
 
 class App extends React.PureComponent<ComponentProps, ComponentState> {
@@ -46,14 +44,12 @@ class App extends React.PureComponent<ComponentProps, ComponentState> {
       !!props.lastAccessedVersion &&
       props.lastAccessedVersion !== JYOSUUSHI_CURRENT_SEMVER;
     this.state = {
-      isModalOpen: isReleaseNotesModalOpen,
-      isReleaseNotesModalOpen
+      isModalOpen: isReleaseNotesModalOpen
     };
   }
 
   public render() {
     const { isQuizActive } = this.props;
-    const { isReleaseNotesModalOpen } = this.state;
     return (
       <div className={classnames("App", isQuizActive && "quiz-active")}>
         <Header
@@ -64,9 +60,6 @@ class App extends React.PureComponent<ComponentProps, ComponentState> {
           <Route path="/quiz" render={this.renderQuizPage} />
           <Route render={this.renderMainScreen} />
         </Switch>
-        {isReleaseNotesModalOpen && (
-          <ReleaseNotesModal onRequestClose={this.onReleaseNotesClosed} />
-        )}
       </div>
     );
   }
@@ -83,9 +76,6 @@ class App extends React.PureComponent<ComponentProps, ComponentState> {
 
   private onHeaderModalOpened = (isModalOpen: boolean) =>
     this.setState({ isModalOpen });
-
-  private onReleaseNotesClosed = () =>
-    this.setState({ isModalOpen: false, isReleaseNotesModalOpen: false });
 }
 
 export default connect(mapStateToProps)(App);

@@ -38,7 +38,7 @@ export default class Sidebar extends React.Component {
         className="entry"
         isActive={isPageActive(page)}
       >
-        hi
+        {page.name}
       </NavLink>
     );
   };
