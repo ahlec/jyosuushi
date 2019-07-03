@@ -13,6 +13,7 @@ import Localization, {
 } from "../../localization";
 import QuizManager from "../../QuizManager";
 import { State } from "../../redux";
+import { getLocalization } from "../../redux/selectors";
 
 import TutorialModal from "./TutorialModal";
 
@@ -33,17 +34,18 @@ const getPacksFromSet = memoize(
 );
 
 interface ProvidedProps {
-  localization: Localization;
   quizManager: QuizManager;
 }
 
 interface ReduxProps {
   enabledPacks: ReadonlyArray<StudyPack>;
+  localization: Localization;
 }
 
 function mapStateToProps(state: State): ReduxProps {
   return {
-    enabledPacks: getPacksFromSet(state.enabledPacks)
+    enabledPacks: getPacksFromSet(state.enabledPacks),
+    localization: getLocalization(state)
   };
 }
 

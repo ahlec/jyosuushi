@@ -5,6 +5,7 @@ import { Question } from "../../interfaces";
 import Localization from "../../localization";
 import QuizManager from "../../QuizManager";
 import { QuizState, State } from "../../redux";
+import { getLocalization } from "../../redux/selectors";
 
 import FeedbackFooter from "../FeedbackFooter";
 import AnswerInput from "./AnswerInput";
@@ -18,18 +19,19 @@ const KEY_ENTER = 13;
 
 interface ProvidedProps {
   enabled: boolean;
-  localization: Localization;
   quizManager: QuizManager;
 }
 
 interface ReduxProps {
   currentQuestion: Question;
+  localization: Localization;
   quizState: QuizState;
 }
 
 function mapStateToProps(state: State): ReduxProps {
   return {
     currentQuestion: state.questions.currentQuestion!,
+    localization: getLocalization(state),
     quizState: state.quizState
   };
 }

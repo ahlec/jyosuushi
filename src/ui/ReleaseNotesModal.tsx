@@ -1,6 +1,8 @@
 import * as React from "react";
 import { connect } from "react-redux";
+import { State } from "../redux";
 import { markLatestVersion } from "../redux/actions";
+import { getLocalization } from "../redux/selectors";
 import { Dispatch } from "../redux/store";
 
 import Localization from "../localization";
@@ -13,11 +15,20 @@ import CHANGELOG from "../../CHANGELOG.md";
 import "./ReleaseNotesModal.scss";
 
 interface ProvidedProps {
-  localization: Localization;
   onRequestClose: () => void;
 }
 
-type ComponentProps = ProvidedProps & { dispatch: Dispatch };
+interface ReduxProps {
+  localization: Localization;
+}
+
+function mapStateToProps(state: State): ReduxProps {
+  return {
+    localization: getLocalization(state)
+  };
+}
+
+type ComponentProps = ProvidedProps & ReduxProps & { dispatch: Dispatch };
 
 class ReleaseNotesModal extends React.PureComponent<ComponentProps> {
   public componentDidMount() {
@@ -40,4 +51,4 @@ class ReleaseNotesModal extends React.PureComponent<ComponentProps> {
   }
 }
 
-export default connect()(ReleaseNotesModal);
+export default connect(mapStateToProps)(ReleaseNotesModal);

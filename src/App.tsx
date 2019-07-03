@@ -3,10 +3,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 
 import QuizManager from "./QuizManager";
-import { LocalizationLanguage, State } from "./redux";
-
-import Localization from "./localization";
-import ENGLISH from "./localization/english";
+import { State } from "./redux";
 
 import Header from "./ui/Header";
 import MainScreen from "./ui/main-screen/MainScreen";
@@ -15,19 +12,12 @@ import ReleaseNotesModal from "./ui/ReleaseNotesModal";
 
 import "./App.scss";
 
-const LOCALIZATION_LOOKUP: {
-  [language in LocalizationLanguage]: Localization
-} = {
-  english: ENGLISH
-};
-
 interface ProvidedProps {
   quizManager: QuizManager;
 }
 
 interface ReduxProps {
   isQuizActive: boolean;
-  language: LocalizationLanguage;
   lastAccessedVersion: string | null;
 }
 
@@ -36,7 +26,6 @@ type ComponentProps = ProvidedProps & ReduxProps;
 function mapStateToProps(state: State): ReduxProps {
   return {
     isQuizActive: state.quizState !== "not-in-quiz",
-    language: state.settings.localization,
     lastAccessedVersion: state.user.lastAccessedVersion
   };
 }
@@ -62,44 +51,31 @@ class App extends React.PureComponent<ComponentProps, ComponentState> {
   }
 
   public render() {
-    const { isQuizActive, language } = this.props;
+    const { isQuizActive } = this.props;
     const { isReleaseNotesModalOpen } = this.state;
-    const localization = LOCALIZATION_LOOKUP[language];
     return (
       <div className={classnames("App", isQuizActive && "quiz-active")}>
         <Header
           isQuizActive={isQuizActive}
-          localization={localization}
           onModalOpened={this.onHeaderModalOpened}
         />
-        {isQuizActive
-          ? this.renderQuizPage(localization)
-          : this.renderMainScreen(localization)}
+        {isQuizActive ? this.renderQuizPage() : this.renderMainScreen()}
         {isReleaseNotesModalOpen && (
-          <ReleaseNotesModal
-            localization={localization}
-            onRequestClose={this.onReleaseNotesClosed}
-          />
+          <ReleaseNotesModal onRequestClose={this.onReleaseNotesClosed} />
         )}
       </div>
     );
   }
 
-  private renderMainScreen(localization: Localization) {
+  private renderMainScreen() {
     const { quizManager } = this.props;
-    return <MainScreen localization={localization} quizManager={quizManager} />;
+    return <MainScreen quizManager={quizManager} />;
   }
 
-  private renderQuizPage(localization: Localization) {
+  private renderQuizPage() {
     const { quizManager } = this.props;
     const { isModalOpen } = this.state;
-    return (
-      <QuizPage
-        enabled={!isModalOpen}
-        localization={localization}
-        quizManager={quizManager}
-      />
-    );
+    return <QuizPage enabled={!isModalOpen} quizManager={quizManager} />;
   }
 
   private onHeaderModalOpened = (isModalOpen: boolean) =>
