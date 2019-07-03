@@ -22,6 +22,8 @@ import BetaExplanation from "../BetaExplanation";
 import CounterPreview from "../CounterPreview";
 import PackSelection from "../PackSelection";
 
+import "./PreparePage.scss";
+
 function getPacksFromArray(packs: ReadonlyArray<string>) {
   return packs.map(packId => STUDY_PACK_LOOKUP[packId]);
 }
@@ -79,7 +81,7 @@ class PreparePage extends React.PureComponent<ComponentProps, ComponentState> {
     const { localization } = this.props;
     const { selection, showingTutorial } = this.state;
     return (
-      <div>
+      <div className="PreparePage">
         <p>
           Welcome to <strong>助数詞を練習</strong>! This is a tool that's meant
           to help you study{" "}

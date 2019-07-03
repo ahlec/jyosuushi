@@ -11,16 +11,18 @@ export default class MainScreen extends React.PureComponent {
   public render() {
     return (
       <div className="MainScreen">
-        <Switch>
-          {UNORDERED_NESTED_PAGES.map(this.renderRoute)}
-          {this.renderRoute(LANDING_PAGE)}
-        </Switch>
         <Sidebar />
+        <div className="content">
+          <Switch>
+            {UNORDERED_NESTED_PAGES.map(this.renderRoute)}
+            {this.renderRoute(LANDING_PAGE)}
+          </Switch>
+        </div>
       </div>
     );
   }
 
   private renderRoute = ({ component, path }: PageDefinition) => {
-    return <Route key={path} path={path} component={component} />;
+    return <Route key={path} path={path || "/"} component={component} />;
   };
 }

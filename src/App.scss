@@ -34,8 +34,8 @@ body {
   transition: max-width 0.25s ease-in;
   margin: auto;
   overflow: hidden;
-  border-left: 1px solid $pink-base;
-  border-right: 1px solid $pink-base;
+  border-left: 1px solid $app-outline;
+  border-right: 1px solid $app-outline;
   color: $black-darkest;
 
   &.quiz-active {

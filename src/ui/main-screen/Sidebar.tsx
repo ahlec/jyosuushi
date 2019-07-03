@@ -1,9 +1,25 @@
+import { Location } from "history";
+import { memoize } from "lodash";
 import * as React from "react";
-import { NavLink } from "react-router-dom";
+import { match as Match, NavLink } from "react-router-dom";
 
-import { ORDERED_SIDEBAR_PAGES, PageDefinition } from "./pages";
+import { LANDING_PAGE, ORDERED_SIDEBAR_PAGES, PageDefinition } from "./pages";
 
 import "./Sidebar.scss";
+
+const isPageActive = memoize(
+  (page: PageDefinition) => (match: Match, { pathname }: Location): boolean => {
+    if (match) {
+      return true;
+    }
+
+    if (pathname === "/" && page === LANDING_PAGE) {
+      return true;
+    }
+
+    return false;
+  }
+);
 
 export default class Sidebar extends React.Component {
   public render() {
@@ -14,9 +30,14 @@ export default class Sidebar extends React.Component {
     );
   }
 
-  private renderLink = ({ path }: PageDefinition) => {
+  private renderLink = (page: PageDefinition) => {
     return (
-      <NavLink key={path} to={path}>
+      <NavLink
+        key={page.path}
+        to={page.path}
+        className="entry"
+        isActive={isPageActive(page)}
+      >
         hi
       </NavLink>
     );

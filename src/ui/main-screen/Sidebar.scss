@@ -1,3 +1,22 @@
+@import "../../palette";
+
 .Sidebar {
-  background-color: blue;
+  width: 90px;
+  min-width: 90px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid $app-outline;
+  background-color: $blue-lightest;
+
+  .entry {
+    height: 90px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.active {
+      background-color: red;
+    }
+  }
 }
