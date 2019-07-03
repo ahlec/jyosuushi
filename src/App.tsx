@@ -18,15 +18,13 @@ interface ProvidedProps {
 
 interface ReduxProps {
   isQuizActive: boolean;
-  lastAccessedVersion: string | null;
 }
 
 type ComponentProps = ProvidedProps & ReduxProps;
 
 function mapStateToProps(state: State): ReduxProps {
   return {
-    isQuizActive: state.quizState !== "not-in-quiz",
-    lastAccessedVersion: state.user.lastAccessedVersion
+    isQuizActive: state.quizState !== "not-in-quiz"
   };
 }
 
@@ -35,18 +33,9 @@ interface ComponentState {
 }
 
 class App extends React.PureComponent<ComponentProps, ComponentState> {
-  public state: ComponentState;
-
-  public constructor(props: ComponentProps) {
-    super(props);
-
-    const isReleaseNotesModalOpen =
-      !!props.lastAccessedVersion &&
-      props.lastAccessedVersion !== JYOSUUSHI_CURRENT_SEMVER;
-    this.state = {
-      isModalOpen: isReleaseNotesModalOpen
-    };
-  }
+  public state: ComponentState = {
+    isModalOpen: false
+  };
 
   public render() {
     const { isQuizActive } = this.props;

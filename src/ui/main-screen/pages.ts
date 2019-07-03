@@ -30,10 +30,11 @@ const SETTINGS_PAGE: PageDefinition = {
   path: "/settings"
 };
 
+export const RELEASE_NOTES_PATH = "/release-notes";
 const RELEASE_NOTES_PAGE: PageDefinition = {
   component: ReleaseNotesPage,
   name: "Release Notes",
-  path: "/release-notes"
+  path: RELEASE_NOTES_PATH
 };
 
 const FEEDBACK_PAGE: PageDefinition = {
