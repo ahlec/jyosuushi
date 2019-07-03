@@ -12,11 +12,36 @@
     height: 90px;
     cursor: pointer;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    border-bottom: 1px solid transparent;
+    text-decoration: none;
+    font-size: 14px;
+    color: $black-base;
+    text-align: center;
 
-    &.active {
-      background-color: red;
+    &:hover {
+      background-color: $blue-light;
+    }
+
+    &:not(:first-child) {
+      border-top: 1px solid transparent;
+
+      &.active {
+        border-top-color: $app-outline;
+      }
+    }
+
+    &.active,
+    &.active:hover {
+      background-color: $blue-base;
+      border-bottom-color: $app-outline;
+    }
+
+    svg {
+      width: 48px;
+      height: 48px;
     }
   }
 }

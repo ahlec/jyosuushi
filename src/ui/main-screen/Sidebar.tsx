@@ -31,14 +31,16 @@ export default class Sidebar extends React.Component {
   }
 
   private renderLink = (page: PageDefinition) => {
+    const { icon: Icon, name, path } = page;
     return (
       <NavLink
-        key={page.path}
-        to={page.path}
+        key={path}
+        to={path}
         className="entry"
         isActive={isPageActive(page)}
       >
-        {page.name}
+        <Icon />
+        {name}
       </NavLink>
     );
   };
