@@ -11,7 +11,7 @@ import Markdown from "../../Markdown";
 
 import CHANGELOG from "../../../../CHANGELOG.md";
 
-import "./ReleaseNotesModal.scss";
+import "./ReleaseNotesPage.scss";
 
 interface ProvidedProps {
   onRequestClose: () => void;
@@ -36,11 +36,7 @@ class ReleaseNotesPage extends React.PureComponent<ComponentProps> {
   }
 
   public render() {
-    return (
-      <div className="ReleaseNotesModal">
-        <Markdown className="changelog" content={CHANGELOG} />
-      </div>
-    );
+    return <Markdown className="ReleaseNotesPage" content={CHANGELOG} />;
   }
 }
 
