@@ -7,6 +7,7 @@ import {
   ActionIgnoreLastAnswer,
   ActionNextQuestion,
   ActionRestartQuiz,
+  ActionSetEnabledPacks,
   ActionStartQuiz
 } from "../actions";
 import { QuestionsState } from "../index";
@@ -48,6 +49,7 @@ function makeQuestion(
 }
 
 type ReducerAction =
+  | ActionSetEnabledPacks
   | ActionStartQuiz
   | ActionRestartQuiz
   | ActionNextQuestion
@@ -65,15 +67,20 @@ export default function questionsReducer(
   action: ReducerAction
 ): QuestionsState {
   switch (action.type) {
+    case "set-enabled-packs": {
+      return {
+        ...state,
+        enabledCounters: getDistinctCounters(action.enabledPacks).map(
+          ({ counterId }) => counterId
+        )
+      };
+    }
     case "start-quiz": {
       const [first, ...rest] = action.questions;
-      const enabledCounters = getDistinctCounters(action.enabledPacks).map(
-        ({ counterId }) => counterId
-      );
       return {
         asked: [],
-        currentQuestion: makeQuestion(first, enabledCounters),
-        enabledCounters,
+        currentQuestion: makeQuestion(first, state.enabledCounters),
+        enabledCounters: state.enabledCounters,
         queue: rest
       };
     }

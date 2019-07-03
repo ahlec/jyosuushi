@@ -1,14 +1,14 @@
-import { ActionStartQuiz } from "../actions";
+import { ActionSetEnabledPacks } from "../actions";
 import { CountersState } from "../index";
 
-type ReducerAction = ActionStartQuiz;
+type ReducerAction = ActionSetEnabledPacks;
 
 export default function countersReducer(
   state: CountersState | undefined = {},
   action: ReducerAction
 ): CountersState {
   switch (action.type) {
-    case "start-quiz": {
+    case "set-enabled-packs": {
       const next: CountersState = {};
       for (const { counters, packId } of action.enabledPacks) {
         for (const counter of counters) {

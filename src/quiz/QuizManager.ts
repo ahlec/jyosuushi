@@ -1,7 +1,6 @@
 import * as ReactGA from "react-ga";
 
 import { STUDY_PACK_LOOKUP } from "../../data/studyPacks";
-import { StudyPack } from "../interfaces";
 import { AmountRange } from "../redux";
 import {
   endQuiz,
@@ -27,13 +26,18 @@ export default class QuizManager {
     return state.settings.amountRange;
   }
 
-  public startNewQuiz(studyPacks: ReadonlyArray<StudyPack>) {
+  public startNewQuiz() {
+    const state = this.store.getState();
+    const studyPacks = state.enabledPacks.map(
+      packId => STUDY_PACK_LOOKUP[packId]
+    );
+
     if (!studyPacks.length) {
       throw new Error("Must provide one or more study packs");
     }
 
     const questions = makeQuiz(studyPacks, this.amountRange);
-    this.store.dispatch(startQuiz(studyPacks, questions));
+    this.store.dispatch(startQuiz(questions));
 
     ReactGA.event({
       action: "New Quiz Began",

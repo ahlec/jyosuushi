@@ -13,7 +13,9 @@ import Localization, {
 } from "../../../localization";
 import withQuizManager, { InjectedProps } from "../../../quiz/withQuizManager";
 import { State } from "../../../redux";
+import { setEnabledPacks } from "../../../redux/actions";
 import { getLocalization } from "../../../redux/selectors";
+import { Dispatch } from "../../../redux/store";
 
 import FeedbackFooter from "../../FeedbackFooter";
 
@@ -45,10 +47,9 @@ function mapStateToProps(state: State): ReduxProps {
   };
 }
 
-type ComponentProps = ReduxProps & InjectedProps;
+type ComponentProps = ReduxProps & InjectedProps & { dispatch: Dispatch };
 
 interface ComponentState {
-  selection: ReadonlyArray<StudyPack>;
   showingTutorial: boolean;
 }
 
@@ -57,25 +58,13 @@ class PreparePage extends React.PureComponent<ComponentProps, ComponentState> {
     super(props);
 
     this.state = {
-      selection: props.enabledPacks,
       showingTutorial: false
     };
   }
 
-  public componentDidUpdate({
-    enabledPacks: prevEnabledPacks
-  }: ComponentProps) {
-    const { enabledPacks } = this.props;
-    if (enabledPacks !== prevEnabledPacks) {
-      this.setState({
-        selection: enabledPacks
-      });
-    }
-  }
-
   public render() {
-    const { localization } = this.props;
-    const { selection, showingTutorial } = this.state;
+    const { enabledPacks, localization } = this.props;
+    const { showingTutorial } = this.state;
     return (
       <div className="PreparePage">
         <p>
@@ -97,14 +86,14 @@ class PreparePage extends React.PureComponent<ComponentProps, ComponentState> {
         <PackSelection
           localization={localization}
           onSelectionChanged={this.onSelectionChanged}
-          selection={selection}
+          selection={enabledPacks}
         />
         <div className="start">
-          <button disabled={!selection.length} onClick={this.onStartQuiz}>
+          <button disabled={!enabledPacks.length} onClick={this.onStartQuiz}>
             {localization.startQuiz}
           </button>
         </div>
-        <CounterPreview localization={localization} packs={selection} />
+        <CounterPreview localization={localization} packs={enabledPacks} />
 
         <div className="flex" />
         <FeedbackFooter localization={localization} />
@@ -171,15 +160,14 @@ class PreparePage extends React.PureComponent<ComponentProps, ComponentState> {
   private showTutorialModal = () => this.setState({ showingTutorial: true });
   private hideTutorialModal = () => this.setState({ showingTutorial: false });
 
-  private onSelectionChanged = (selection: ReadonlyArray<StudyPack>) =>
-    this.setState({
-      selection
-    });
+  private onSelectionChanged = (selection: ReadonlyArray<StudyPack>) => {
+    const { dispatch } = this.props;
+    dispatch(setEnabledPacks(selection));
+  };
 
   private onStartQuiz = () => {
     const { quizManager } = this.props;
-    const { selection } = this.state;
-    quizManager.startNewQuiz(selection);
+    quizManager.startNewQuiz();
   };
 }
 

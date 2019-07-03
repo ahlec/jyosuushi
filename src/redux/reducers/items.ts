@@ -1,15 +1,15 @@
 import { ITEMS_FROM_COUNTER } from "../../../data/items";
-import { ActionStartQuiz } from "../actions";
+import { ActionSetEnabledPacks } from "../actions";
 import { ItemsState } from "../index";
 
-type ReducerAction = ActionStartQuiz;
+type ReducerAction = ActionSetEnabledPacks;
 
 export default function itemsReducer(
   state: ItemsState | undefined = {},
   action: ReducerAction
 ): ItemsState {
   switch (action.type) {
-    case "start-quiz": {
+    case "set-enabled-packs": {
       const next: ItemsState = {};
       for (const { counters } of action.enabledPacks) {
         for (const { counterId } of counters) {
