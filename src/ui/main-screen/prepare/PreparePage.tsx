@@ -15,12 +15,12 @@ import withQuizManager, { InjectedProps } from "../../../quiz/withQuizManager";
 import { State } from "../../../redux";
 import { getLocalization } from "../../../redux/selectors";
 
-import TutorialModal from "../TutorialModal";
-
 import FeedbackFooter from "../../FeedbackFooter";
-import BetaExplanation from "../BetaExplanation";
-import CounterPreview from "../CounterPreview";
+
+import BetaExplanation from "./BetaExplanation";
+import CounterPreview from "./CounterPreview";
 import PackSelection from "./PackSelection";
+import TutorialModal from "./TutorialModal";
 
 import "./PreparePage.scss";
 

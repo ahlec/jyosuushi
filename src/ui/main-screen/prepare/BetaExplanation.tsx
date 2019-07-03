@@ -1,7 +1,7 @@
 import * as React from "react";
 
-import BugIcon from "../FeedbackFooter/bug.png";
-import CommentsIcon from "../FeedbackFooter/comments.png";
+import BugIcon from "../../FeedbackFooter/bug.png";
+import CommentsIcon from "../../FeedbackFooter/comments.png";
 
 import "./BetaExplanation.scss";
 
