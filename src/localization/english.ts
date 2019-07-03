@@ -76,6 +76,7 @@ const ENGLISH: Localization = {
     "This stuff isn't easy; practice WILL make perfect."
   ],
   pageExplore: "Explore",
+  pageExploreCounter: "Counter:",
   pageExploreStudyPack: "Study Pack:",
   pageFeedback: "Feedback",
   pagePrepare: "Prepare",

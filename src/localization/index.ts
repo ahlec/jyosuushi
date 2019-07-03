@@ -45,6 +45,7 @@ export default interface Localization {
   lowScoreEncouragements: ReadonlyArray<string>;
   pagePrepare: string;
   pageExplore: string;
+  pageExploreCounter: string;
   pageExploreStudyPack: string;
   pageReleaseNotes: string;
   pageFeedback: string;

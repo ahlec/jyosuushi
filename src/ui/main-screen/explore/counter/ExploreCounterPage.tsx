@@ -12,6 +12,8 @@ import { State } from "../../../../redux";
 import { getLocalization } from "../../../../redux/selectors";
 import { conjugateCounter, ConjugatedInfo } from "../../../../utils";
 
+import BreadcrumbBar from "../BreadcrumbBar";
+
 import "./ExploreCounterPage.scss";
 
 const AMOUNTS_TO_DISPLAY = 17;
@@ -118,33 +120,36 @@ class ExploreCounterPage extends React.PureComponent<ComponentProps> {
     const items = ITEMS_FROM_COUNTER[counter.counterId];
     return (
       <div className="ExploreCounterPage">
-        <div className="kanji">{counter.kanji}</div>
-        <p className="examples-prefix">
-          {localization.hereAreTheFirstXNumbers(AMOUNTS_TO_DISPLAY)}{" "}
-          {this.renderIrregularsWarning()}
-        </p>
-        <div className="examples-table">
-          {conjugations.map(this.renderAmountTile)}
-          <div className="etc">{localization.andSoForth}</div>
+        <BreadcrumbBar />
+        <div className="contents">
+          <div className="kanji">{counter.kanji}</div>
+          <p className="examples-prefix">
+            {localization.hereAreTheFirstXNumbers(AMOUNTS_TO_DISPLAY)}{" "}
+            {this.renderIrregularsWarning()}
+          </p>
+          <div className="examples-table">
+            {conjugations.map(this.renderAmountTile)}
+            <div className="etc">{localization.andSoForth}</div>
+          </div>
+          {!!furtherIrregulars.length && (
+            <React.Fragment>
+              <p className="further-irregulars">
+                {localization.furtherIrregulars}
+              </p>
+              <div className="examples-table">
+                {furtherIrregulars.map(this.renderFurtherIrregular)}
+              </div>
+            </React.Fragment>
+          )}
+          {items.length > 1 && ( // don't show list if only one item, will be rule
+            <React.Fragment>
+              <p className="items-prefix">
+                {localization.counterItemsPrefix(items.length)}
+              </p>
+              <div className="items-list">{items.map(this.renderItem)}</div>
+            </React.Fragment>
+          )}
         </div>
-        {!!furtherIrregulars.length && (
-          <React.Fragment>
-            <p className="further-irregulars">
-              {localization.furtherIrregulars}
-            </p>
-            <div className="examples-table">
-              {furtherIrregulars.map(this.renderFurtherIrregular)}
-            </div>
-          </React.Fragment>
-        )}
-        {items.length > 1 && ( // don't show list if only one item, will be rule
-          <React.Fragment>
-            <p className="items-prefix">
-              {localization.counterItemsPrefix(items.length)}
-            </p>
-            <div className="items-list">{items.map(this.renderItem)}</div>
-          </React.Fragment>
-        )}
       </div>
     );
   }

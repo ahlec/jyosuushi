@@ -2,6 +2,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { NavLink, RouteComponentProps, withRouter } from "react-router-dom";
 
+import { COUNTERS_LOOKUP } from "../../../../data/counters";
 import { STUDY_PACK_LOOKUP } from "../../../../data/studyPacks";
 
 import { State } from "../../../redux";
@@ -11,7 +12,12 @@ import Localization from "../../../localization";
 
 import { interleave } from "../../../utils";
 
-import { EXPLORE_PAGE_PATH, EXPLORE_STUDY_PACK_PATH } from "./constants";
+import {
+  EXPLORE_COUNTER_PATH,
+  EXPLORE_PAGE_PATH,
+  EXPLORE_STUDY_PACK_PATH,
+  getStudyPackLink
+} from "./constants";
 
 import "./BreadcrumbBar.scss";
 
@@ -27,6 +33,20 @@ function mapStateToProps(state: State): ReduxProps {
 
 type ComponentProps = ReduxProps & RouteComponentProps<any>;
 
+function makeStudyPackDomLink(localization: Localization, packId: string) {
+  const studyPack = STUDY_PACK_LOOKUP[packId];
+  return (
+    <NavLink
+      key={EXPLORE_STUDY_PACK_PATH}
+      exact={true}
+      to={getStudyPackLink(studyPack)}
+    >
+      {localization.pageExploreStudyPack}{" "}
+      {localization.studyPackName(studyPack)}
+    </NavLink>
+  );
+}
+
 class BreadcrumbBar extends React.PureComponent<ComponentProps> {
   public render() {
     const { localization, location, match } = this.props;
@@ -37,15 +57,30 @@ class BreadcrumbBar extends React.PureComponent<ComponentProps> {
       </NavLink>
     ];
 
-    if (match.path === EXPLORE_STUDY_PACK_PATH) {
-      const packId: string = match.params.packId;
-      const studyPack = STUDY_PACK_LOOKUP[packId];
-      links.push(
-        <NavLink key={EXPLORE_STUDY_PACK_PATH} exact={true} to={location}>
-          {localization.pageExploreStudyPack}{" "}
-          {localization.studyPackName(studyPack)}
-        </NavLink>
-      );
+    switch (match.path) {
+      case EXPLORE_STUDY_PACK_PATH: {
+        const packId: string = match.params.packId;
+        links.push(makeStudyPackDomLink(localization, packId));
+        break;
+      }
+      case EXPLORE_COUNTER_PATH: {
+        if (location.state && location.state.fromStudyPack) {
+          links.push(
+            makeStudyPackDomLink(localization, location.state.fromStudyPack)
+          );
+        }
+
+        const counterId: string = match.params.counterId;
+        const counter = COUNTERS_LOOKUP[counterId];
+        links.push(
+          <NavLink key={EXPLORE_COUNTER_PATH} exact={true} to={location}>
+            {localization.pageExploreCounter}{" "}
+            {localization.counterName(counter)}（{counter.kanji}）
+          </NavLink>
+        );
+
+        break;
+      }
     }
 
     return <div className="BreadcrumbBar">{interleave(links, " > ")}</div>;
