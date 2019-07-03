@@ -40,7 +40,9 @@ export default class PackDetails extends React.PureComponent<ComponentProps> {
           </strong>
           :
         </p>
-        {counters.map(this.renderCounter)}
+        <table>
+          <tbody>{counters.map(this.renderCounter)}</tbody>
+        </table>
       </div>
     );
   }
@@ -48,19 +50,22 @@ export default class PackDetails extends React.PureComponent<ComponentProps> {
   private renderCounter = (counter: Counter) => {
     const { enabled, localization } = this.props;
     return (
-      <div
+      <tr
         key={counter.counterId}
         className={classnames("counter", !enabled && "disabled")}
         onClick={this.onClickInvestigate(counter)}
       >
-        <Furigana
-          className="jp"
-          text={counter.kanji || counter.kana}
-          furigana={counter.kanji && counter.kana}
-        />
-        <div className="name">{localization.counterName(counter)}</div>
-        <RightIcon />
-      </div>
+        <td className="jp">
+          <Furigana
+            text={counter.kanji || counter.kana}
+            furigana={counter.kanji && counter.kana}
+          />
+        </td>
+        <td className="name">{localization.counterName(counter)}</td>
+        <td className="button">
+          <RightIcon />
+        </td>
+      </tr>
     );
   };
 }
