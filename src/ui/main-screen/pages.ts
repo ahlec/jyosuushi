@@ -1,5 +1,6 @@
 import { ComponentClass } from "react";
 
+import { EXPLORE_PAGE_PATH } from "./explore/constants";
 import ExplorePageIcon from "./explore/explore-icon.svg";
 import ExplorePage from "./explore/ExplorePage";
 import FeedbackPageIcon from "./feedback/feedback-icon.svg";
@@ -27,7 +28,7 @@ const EXPLORE_PAGE: PageDefinition = {
   component: ExplorePage,
   icon: ExplorePageIcon,
   name: "Explore",
-  path: "/explore"
+  path: EXPLORE_PAGE_PATH
 };
 
 export const RELEASE_NOTES_PATH = "/release-notes";

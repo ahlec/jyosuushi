@@ -6,8 +6,6 @@ import { STUDY_PACKS } from "../../../data/studyPacks";
 import { StudyPack } from "../../interfaces";
 import Localization from "../../localization";
 
-import PackDetailsModal from "./PackDetailsModal";
-
 import CheckIcon from "./check.svg";
 
 import "./PackSelection.scss";
@@ -18,20 +16,11 @@ interface ComponentProps {
   selection: ReadonlyArray<StudyPack>;
 }
 
-interface ComponentState {
-  detailsPack: StudyPack | null;
-}
-
 function comparePacks(a: StudyPack, b: StudyPack): number {
   return a.packId.localeCompare(b.packId);
 }
 
-export default class PackSelection extends React.PureComponent<
-  ComponentProps,
-  ComponentState
-> {
-  public state: ComponentState = { detailsPack: null };
-
+export default class PackSelection extends React.PureComponent<ComponentProps> {
   private onTogglePack = memoize((pack: StudyPack) => () => {
     const { onSelectionChanged, selection } = this.props;
     const next = [...selection];
@@ -66,7 +55,6 @@ export default class PackSelection extends React.PureComponent<
 
   public render() {
     const { localization } = this.props;
-    const { detailsPack } = this.state;
     return (
       <div className="PackSelection">
         <div className="fieldset">
@@ -78,16 +66,9 @@ export default class PackSelection extends React.PureComponent<
           </div>
           {STUDY_PACKS.map(this.renderPack)}
         </div>
-        <PackDetailsModal
-          localization={localization}
-          onRequestClose={this.onRequestCloseDetails}
-          pack={detailsPack}
-        />
       </div>
     );
   }
-
-  private onRequestCloseDetails = () => this.setState({ detailsPack: null });
 
   private renderPack = (pack: StudyPack) => {
     const { localization, selection } = this.props;
