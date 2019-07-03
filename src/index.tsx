@@ -3,6 +3,7 @@ import * as ReactDOM from "react-dom";
 import * as ReactGA from "react-ga";
 import Modal from "react-modal";
 import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
 
 import App from "./App";
@@ -25,7 +26,9 @@ Modal.setAppElement(document.getElementById("root")!);
 ReactDOM.render(
   <Provider store={redux.store}>
     <PersistGate loading={null} persistor={redux.persistor}>
-      <App quizManager={quizManager} />
+      <BrowserRouter>
+        <App quizManager={quizManager} />
+      </BrowserRouter>
     </PersistGate>
   </Provider>,
   document.getElementById("root")

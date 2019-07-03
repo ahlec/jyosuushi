@@ -1,6 +1,7 @@
 import classnames from "classnames";
 import * as React from "react";
 import { connect } from "react-redux";
+import { Route, Switch } from "react-router-dom";
 
 import QuizManager from "./QuizManager";
 import { State } from "./redux";
@@ -59,7 +60,10 @@ class App extends React.PureComponent<ComponentProps, ComponentState> {
           isQuizActive={isQuizActive}
           onModalOpened={this.onHeaderModalOpened}
         />
-        {isQuizActive ? this.renderQuizPage() : this.renderMainScreen()}
+        <Switch>
+          <Route path="/quiz" render={this.renderQuizPage} />
+          <Route render={this.renderMainScreen} />
+        </Switch>
         {isReleaseNotesModalOpen && (
           <ReleaseNotesModal onRequestClose={this.onReleaseNotesClosed} />
         )}
@@ -67,16 +71,16 @@ class App extends React.PureComponent<ComponentProps, ComponentState> {
     );
   }
 
-  private renderMainScreen() {
+  private renderMainScreen = () => {
     const { quizManager } = this.props;
     return <MainScreen quizManager={quizManager} />;
-  }
+  };
 
-  private renderQuizPage() {
+  private renderQuizPage = () => {
     const { quizManager } = this.props;
     const { isModalOpen } = this.state;
     return <QuizPage enabled={!isModalOpen} quizManager={quizManager} />;
-  }
+  };
 
   private onHeaderModalOpened = (isModalOpen: boolean) =>
     this.setState({ isModalOpen });

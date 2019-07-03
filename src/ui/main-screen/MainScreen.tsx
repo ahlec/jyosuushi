@@ -1,6 +1,7 @@
 import { memoize } from "lodash";
 import * as React from "react";
 import { connect } from "react-redux";
+import { Route, Switch } from "react-router-dom";
 
 import { STUDY_PACK_LOOKUP } from "../../../data/studyPacks";
 import { StudyPack } from "../../interfaces";
@@ -21,6 +22,12 @@ import FeedbackFooter from "../FeedbackFooter";
 import BetaExplanation from "./BetaExplanation";
 import CounterPreview from "./CounterPreview";
 import PackSelection from "./PackSelection";
+
+import ExplorePage from "./explore/ExplorePage";
+import FeedbackPage from "./feedback/FeedbackPage";
+import PreparePage from "./prepare/PreparePage";
+import ReleaseNotesPage from "./release-notes/ReleaseNotesPage";
+import SettingsPage from "./settings/SettingsPage";
 
 import "./MainScreen.scss";
 
@@ -84,6 +91,13 @@ class MainScreen extends React.PureComponent<ComponentProps, ComponentState> {
     const { selection, showingTutorial } = this.state;
     return (
       <div className="MainScreen">
+        <Switch>
+          <Route path="/explore" component={ExplorePage} />
+          <Route path="/feedback" component={FeedbackPage} />
+          <Route path="/release-notes" component={ReleaseNotesPage} />
+          <Route path="/settings" component={SettingsPage} />
+          <Route component={PreparePage} />
+        </Switch>
         <p>
           Welcome to <strong>助数詞を練習</strong>! This is a tool that's meant
           to help you study{" "}
