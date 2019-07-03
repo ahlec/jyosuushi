@@ -130,7 +130,9 @@ export default class CounterDetails extends React.PureComponent<
   private renderIrregularsWarning() {
     const { counter, localization } = this.props;
     const conjugations = getConjugations(counter);
-    const numIrregulars = countIrregulars(conjugations);
+    const furtherIrregulars = getFurtherIrregulars(counter);
+    const numIrregulars =
+      countIrregulars(conjugations) + furtherIrregulars.length;
     if (!numIrregulars) {
       return localization.irregularsWarningNoIrregulars;
     }
