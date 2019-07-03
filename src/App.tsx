@@ -9,7 +9,7 @@ import Localization from "./localization";
 import ENGLISH from "./localization/english";
 
 import Header from "./ui/Header";
-import IntroPage from "./ui/intro-page";
+import MainScreen from "./ui/main-screen/MainScreen";
 import QuizPage from "./ui/quiz-page";
 import ReleaseNotesModal from "./ui/ReleaseNotesModal";
 
@@ -74,7 +74,7 @@ class App extends React.PureComponent<ComponentProps, ComponentState> {
         />
         {isQuizActive
           ? this.renderQuizPage(localization)
-          : this.renderIntroPage(localization)}
+          : this.renderMainScreen(localization)}
         {isReleaseNotesModalOpen && (
           <ReleaseNotesModal
             localization={localization}
@@ -85,9 +85,9 @@ class App extends React.PureComponent<ComponentProps, ComponentState> {
     );
   }
 
-  private renderIntroPage(localization: Localization) {
+  private renderMainScreen(localization: Localization) {
     const { quizManager } = this.props;
-    return <IntroPage localization={localization} quizManager={quizManager} />;
+    return <MainScreen localization={localization} quizManager={quizManager} />;
   }
 
   private renderQuizPage(localization: Localization) {
