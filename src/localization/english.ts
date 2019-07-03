@@ -75,7 +75,11 @@ const ENGLISH: Localization = {
     "You've learned so much to get here, I know you'll get to where you want to go!",
     "This stuff isn't easy; practice WILL make perfect."
   ],
-  releaseNotes: "Release Notes",
+  pageExplore: "Explore",
+  pageExploreStudyPack: "Study Pack:",
+  pageFeedback: "Feedback",
+  pagePrepare: "Prepare",
+  pageReleaseNotes: "Release Notes",
   reportABug: "Report a Bug",
   resultColumnHeaderCounter: "Counter",
   resultColumnHeaderHiragana: "Hiragana",

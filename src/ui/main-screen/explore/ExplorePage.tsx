@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import { EXPLORE_STUDY_PACK_PATH } from "./constants";
 
 import AllStudyPacks from "./AllStudyPacks";
+import BreadcrumbBar from "./BreadcrumbBar";
 import ExploreStudyPackPage from "./study-pack/ExploreStudyPackPage";
 
 export default class ExplorePage extends React.PureComponent {
@@ -20,6 +21,11 @@ export default class ExplorePage extends React.PureComponent {
   }
 
   private renderLandingPage = () => {
-    return <AllStudyPacks />;
+    return (
+      <div className="ExplorePage">
+        <BreadcrumbBar />
+        <AllStudyPacks />
+      </div>
+    );
   };
 }

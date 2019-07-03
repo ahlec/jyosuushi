@@ -12,6 +12,8 @@ import { getLocalization } from "../../../../redux/selectors";
 import Furigana from "../../../Furigana";
 import RightIcon from "../../../right.svg";
 
+import BreadcrumbBar from "../BreadcrumbBar";
+
 import "./ExploreStudyPackPage.scss";
 
 interface ReduxProps {
@@ -37,6 +39,7 @@ class ExploreStudyPackPage extends React.PureComponent<ComponentProps> {
     const { counters } = studyPack;
     return (
       <div className="ExploreStudyPackPage">
+        <BreadcrumbBar />
         <p>
           This pack contains{" "}
           <strong>

@@ -1,0 +1,17 @@
+@import "../../../palette.scss";
+
+.BreadcrumbBar {
+  font-size: 14px;
+  margin-bottom: 15px;
+
+  a {
+    color: $blue-dark;
+    text-decoration: none;
+
+    &.active {
+      color: $black-dark;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+  }
+}

@@ -1,7 +1,12 @@
 import { Location } from "history";
 import { memoize } from "lodash";
 import * as React from "react";
+import { connect } from "react-redux";
 import { match as Match, NavLink } from "react-router-dom";
+
+import Localization from "../../localization";
+import { State } from "../../redux";
+import { getLocalization } from "../../redux/selectors";
 
 import { LANDING_PAGE, ORDERED_SIDEBAR_PAGES, PageDefinition } from "./pages";
 
@@ -21,7 +26,19 @@ const isPageActive = memoize(
   }
 );
 
-export default class Sidebar extends React.Component {
+interface ReduxProps {
+  localization: Localization;
+}
+
+function mapStateToProps(state: State): ReduxProps {
+  return {
+    localization: getLocalization(state)
+  };
+}
+
+type ComponentProps = ReduxProps;
+
+class Sidebar extends React.Component<ComponentProps> {
   public render() {
     return (
       <div className="Sidebar">
@@ -31,7 +48,8 @@ export default class Sidebar extends React.Component {
   }
 
   private renderLink = (page: PageDefinition) => {
-    const { icon: Icon, name, path } = page;
+    const { localization } = this.props;
+    const { icon: Icon, getName, path } = page;
     return (
       <NavLink
         key={path}
@@ -40,8 +58,10 @@ export default class Sidebar extends React.Component {
         isActive={isPageActive(page)}
       >
         <Icon />
-        {name}
+        {getName(localization)}
       </NavLink>
     );
   };
 }
+
+export default connect(mapStateToProps)(Sidebar);
