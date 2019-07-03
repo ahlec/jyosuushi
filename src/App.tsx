@@ -3,7 +3,6 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 
-import QuizManager from "./QuizManager";
 import { State } from "./redux";
 
 import Header from "./ui/Header";
@@ -12,15 +11,9 @@ import QuizPage from "./ui/quiz-page";
 
 import "./App.scss";
 
-interface ProvidedProps {
-  quizManager: QuizManager;
-}
-
 interface ReduxProps {
   isQuizActive: boolean;
 }
-
-type ComponentProps = ProvidedProps & ReduxProps;
 
 function mapStateToProps(state: State): ReduxProps {
   return {
@@ -32,7 +25,7 @@ interface ComponentState {
   isModalOpen: boolean;
 }
 
-class App extends React.PureComponent<ComponentProps, ComponentState> {
+class App extends React.PureComponent<ReduxProps, ComponentState> {
   public state: ComponentState = {
     isModalOpen: false
   };
@@ -58,9 +51,8 @@ class App extends React.PureComponent<ComponentProps, ComponentState> {
   };
 
   private renderQuizPage = () => {
-    const { quizManager } = this.props;
     const { isModalOpen } = this.state;
-    return <QuizPage enabled={!isModalOpen} quizManager={quizManager} />;
+    return <QuizPage enabled={!isModalOpen} />;
   };
 
   private onHeaderModalOpened = (isModalOpen: boolean) =>

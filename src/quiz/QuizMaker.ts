@@ -1,20 +1,20 @@
 import { memoize, random, shuffle } from "lodash";
 
-import { ITEMS_FROM_COUNTER } from "../data/items";
-import { AMOUNT_RANGES } from "./constants";
+import { ITEMS_FROM_COUNTER } from "../../data/items";
+import { AMOUNT_RANGES } from "../constants";
 import {
   Counter,
   InterestRegion,
   Item,
   PendingQuestion,
   StudyPack
-} from "./interfaces";
-import { AmountRange } from "./redux";
+} from "../interfaces";
+import { AmountRange } from "../redux";
 import {
   getDistinctCounters,
   isConjugationRegular,
   randomFromArray
-} from "./utils";
+} from "../utils";
 
 const MAX_NUMBER_QUESTIONS_PER_ITEM = 3;
 const MIN_NUMBER_QUESTIONS_PER_COUNTER = 4;

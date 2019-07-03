@@ -7,7 +7,8 @@ import { BrowserRouter } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
 
 import App from "./App";
-import QuizManager from "./QuizManager";
+import QuizManagerContext from "./quiz/context";
+import QuizManager from "./quiz/QuizManager";
 import { createRedux } from "./redux/store";
 
 import "meyer-reset-scss/reset.scss";
@@ -27,7 +28,9 @@ ReactDOM.render(
   <Provider store={redux.store}>
     <PersistGate loading={null} persistor={redux.persistor}>
       <BrowserRouter>
-        <App quizManager={quizManager} />
+        <QuizManagerContext.Provider value={quizManager}>
+          <App />
+        </QuizManagerContext.Provider>
       </BrowserRouter>
     </PersistGate>
   </Provider>,

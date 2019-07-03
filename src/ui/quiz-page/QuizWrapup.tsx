@@ -3,7 +3,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 
 import Localization from "../../localization";
-import QuizManager from "../../QuizManager";
+import QuizManager from "../../quiz/QuizManager";
 import { Scorecard, State } from "../../redux";
 import { leaveQuiz } from "../../redux/actions";
 import { Dispatch } from "../../redux/store";

@@ -11,7 +11,7 @@ import Localization, {
   VARIABLE_ICON_CREDIT_LINK,
   VARIABLE_SILK_ICONS_CREDIT_LINK
 } from "../../../localization";
-import QuizManager from "../../../QuizManager";
+import withQuizManager, { InjectedProps } from "../../../quiz/withQuizManager";
 import { State } from "../../../redux";
 import { getLocalization } from "../../../redux/selectors";
 
@@ -33,10 +33,6 @@ const getPacksFromSet = memoize(
   (packs: ReadonlyArray<string>) => JSON.stringify(packs)
 );
 
-interface ProvidedProps {
-  quizManager: QuizManager;
-}
-
 interface ReduxProps {
   enabledPacks: ReadonlyArray<StudyPack>;
   localization: Localization;
@@ -49,7 +45,7 @@ function mapStateToProps(state: State): ReduxProps {
   };
 }
 
-type ComponentProps = ProvidedProps & ReduxProps;
+type ComponentProps = ReduxProps & InjectedProps;
 
 interface ComponentState {
   selection: ReadonlyArray<StudyPack>;
@@ -187,4 +183,4 @@ class PreparePage extends React.PureComponent<ComponentProps, ComponentState> {
   };
 }
 
-export default connect(mapStateToProps)(PreparePage);
+export default connect(mapStateToProps)(withQuizManager(PreparePage));

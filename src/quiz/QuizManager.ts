@@ -1,11 +1,16 @@
 import * as ReactGA from "react-ga";
 
-import { STUDY_PACK_LOOKUP } from "../data/studyPacks";
-import { StudyPack } from "./interfaces";
+import { STUDY_PACK_LOOKUP } from "../../data/studyPacks";
+import { StudyPack } from "../interfaces";
+import { AmountRange } from "../redux";
+import {
+  endQuiz,
+  nextQuestion,
+  restartQuiz,
+  startQuiz
+} from "../redux/actions";
+import { Store } from "../redux/store";
 import makeQuiz from "./QuizMaker";
-import { AmountRange } from "./redux";
-import { endQuiz, nextQuestion, restartQuiz, startQuiz } from "./redux/actions";
-import { Store } from "./redux/store";
 
 const GOOGLE_ANALYTICS_CATEGORY = "Quiz";
 

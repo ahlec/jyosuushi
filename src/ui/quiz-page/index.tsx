@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import { Question } from "../../interfaces";
 import Localization from "../../localization";
-import QuizManager from "../../QuizManager";
+import withQuizManager, { InjectedProps } from "../../quiz/withQuizManager";
 import { QuizState, State } from "../../redux";
 import { getLocalization } from "../../redux/selectors";
 
@@ -19,7 +19,6 @@ const KEY_ENTER = 13;
 
 interface ProvidedProps {
   enabled: boolean;
-  quizManager: QuizManager;
 }
 
 interface ReduxProps {
@@ -36,7 +35,7 @@ function mapStateToProps(state: State): ReduxProps {
   };
 }
 
-type ComponentProps = ProvidedProps & ReduxProps;
+type ComponentProps = ProvidedProps & ReduxProps & InjectedProps;
 
 class QuizPage extends React.PureComponent<ComponentProps> {
   public componentDidMount() {
@@ -118,4 +117,4 @@ class QuizPage extends React.PureComponent<ComponentProps> {
   };
 }
 
-export default connect(mapStateToProps)(QuizPage);
+export default connect(mapStateToProps)(withQuizManager(QuizPage));
