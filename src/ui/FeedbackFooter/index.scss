@@ -5,8 +5,16 @@
   margin: 20px;
   font-size: 12px;
 
-  img {
-    position: relative;
-    top: 3px;
+  a {
+    text-decoration: none;
+
+    img {
+      position: relative;
+      top: 3px;
+    }
+
+    span {
+      text-decoration: underline;
+    }
   }
 }

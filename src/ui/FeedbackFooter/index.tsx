@@ -36,7 +36,7 @@ export default class FeedbackFooter extends React.PureComponent<
             href={CONFIG_BUG_REPORT_FORM_LINK}
             target="_blank"
           >
-            <img src={BugIcon} /> {localization.reportABug}
+            <img src={BugIcon} /> <span>{localization.reportABug}</span>
           </a>
         );
       case VARIABLE_SUBMIT_FEEDBACK_LINK:
@@ -46,7 +46,8 @@ export default class FeedbackFooter extends React.PureComponent<
             href={CONFIG_FEEDBACK_FORM_LINK}
             target="_blank"
           >
-            <img src={CommentsIcon} /> {localization.submitFeedback}
+            <img src={CommentsIcon} />{" "}
+            <span>{localization.submitFeedback}</span>
           </a>
         );
       default:
