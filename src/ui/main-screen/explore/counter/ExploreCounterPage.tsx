@@ -1,20 +1,20 @@
 import classnames from "classnames";
 import { memoize } from "lodash";
 import * as React from "react";
+import { connect } from "react-redux";
+import { RouteComponentProps } from "react-router-dom";
 
-import { ITEMS_FROM_COUNTER } from "../../data/items";
-import { ConjugationCategory, Counter, Item } from "../interfaces";
-import Localization from "../localization";
-import { conjugateCounter, ConjugatedInfo } from "../utils";
+import { COUNTERS_LOOKUP } from "../../../../../data/counters";
+import { ITEMS_FROM_COUNTER } from "../../../../../data/items";
+import { ConjugationCategory, Counter, Item } from "../../../../interfaces";
+import Localization from "../../../../localization";
+import { State } from "../../../../redux";
+import { getLocalization } from "../../../../redux/selectors";
+import { conjugateCounter, ConjugatedInfo } from "../../../../utils";
 
-import "./CounterDetails.scss";
+import "./ExploreCounterPage.scss";
 
 const AMOUNTS_TO_DISPLAY = 17;
-
-interface ComponentProps {
-  counter: Counter;
-  localization: Localization;
-}
 
 interface Irregular {
   conjugation: string;
@@ -86,16 +86,38 @@ function highlightIrregular(contents: string) {
   );
 }
 
-export default class CounterDetails extends React.PureComponent<
-  ComponentProps
-> {
+interface ReduxProps {
+  localization: Localization;
+}
+
+function mapStateToProps(state: State): ReduxProps {
+  return {
+    localization: getLocalization(state)
+  };
+}
+
+type ComponentProps = ReduxProps & RouteComponentProps<{ counterId: string }>;
+
+class ExploreCounterPage extends React.PureComponent<ComponentProps> {
+  private get counter(): Counter {
+    const {
+      match: {
+        params: { counterId }
+      }
+    } = this.props;
+    return COUNTERS_LOOKUP[counterId];
+  }
+
   public render() {
-    const { counter, localization } = this.props;
+    const {
+      counter,
+      props: { localization }
+    } = this;
     const conjugations = getConjugations(counter);
     const furtherIrregulars = getFurtherIrregulars(counter);
     const items = ITEMS_FROM_COUNTER[counter.counterId];
     return (
-      <div className="CounterDetails">
+      <div className="ExploreCounterPage">
         <div className="kanji">{counter.kanji}</div>
         <p className="examples-prefix">
           {localization.hereAreTheFirstXNumbers(AMOUNTS_TO_DISPLAY)}{" "}
@@ -128,7 +150,10 @@ export default class CounterDetails extends React.PureComponent<
   }
 
   private renderIrregularsWarning() {
-    const { counter, localization } = this.props;
+    const {
+      counter,
+      props: { localization }
+    } = this;
     const conjugations = getConjugations(counter);
     const furtherIrregulars = getFurtherIrregulars(counter);
     const numIrregulars =
@@ -185,3 +210,5 @@ export default class CounterDetails extends React.PureComponent<
     return <div key={item.itemId}>{localization.itemPlural(item)}</div>;
   };
 }
+
+export default connect(mapStateToProps)(ExploreCounterPage);
