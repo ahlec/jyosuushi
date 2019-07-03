@@ -6,7 +6,7 @@ import { Counter } from "../../../interfaces";
 
 import { COUNTERS_LOOKUP } from "../../../../data/counters";
 
-import { getCounterLink } from "./constants";
+import { getCounterLink } from "./pathing";
 
 const ALL_COUNTERS = values(COUNTERS_LOOKUP);
 

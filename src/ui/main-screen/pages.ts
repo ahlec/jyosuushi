@@ -2,9 +2,9 @@ import { ComponentClass } from "react";
 
 import Localization from "../../localization";
 
-import { EXPLORE_PAGE_PATH } from "./explore/constants";
 import ExplorePageIcon from "./explore/explore-icon.svg";
 import ExplorePage from "./explore/ExplorePage";
+import { EXPLORE_PAGE_PATH } from "./explore/pathing";
 import FeedbackPageIcon from "./feedback/feedback-icon.svg";
 import FeedbackPage from "./feedback/FeedbackPage";
 import PreparePageIcon from "./prepare/prepare-icon.svg";

@@ -1,4 +1,4 @@
-@import "../../palette.scss";
+@import "../../../palette.scss";
 
 $hover-darken-amount: 25%;
 
@@ -102,6 +102,7 @@ $hover-darken-amount: 25%;
       width: 100%;
       background-color: $blue-darkest;
       color: white;
+      text-decoration: none;
 
       &:hover {
         background-color: $blue-dark;

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Route, Switch } from "react-router-dom";
 
-import { EXPLORE_COUNTER_PATH, EXPLORE_STUDY_PACK_PATH } from "./constants";
+import { EXPLORE_COUNTER_PATH, EXPLORE_STUDY_PACK_PATH } from "./pathing";
 
 import AllCounters from "./AllCounters";
 import AllStudyPacks from "./AllStudyPacks";

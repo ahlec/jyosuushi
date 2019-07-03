@@ -20,7 +20,7 @@ import TutorialModal from "../TutorialModal";
 import FeedbackFooter from "../../FeedbackFooter";
 import BetaExplanation from "../BetaExplanation";
 import CounterPreview from "../CounterPreview";
-import PackSelection from "../PackSelection";
+import PackSelection from "./PackSelection";
 
 import "./PreparePage.scss";
 

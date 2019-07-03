@@ -14,7 +14,7 @@ import Furigana from "../../../Furigana";
 import RightIcon from "../../../right.svg";
 
 import BreadcrumbBar from "../BreadcrumbBar";
-import { getCounterLink } from "../constants";
+import { getCounterLink } from "../pathing";
 
 import "./ExploreStudyPackPage.scss";
 

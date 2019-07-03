@@ -5,7 +5,7 @@ import { StudyPack } from "../../../interfaces";
 
 import { STUDY_PACKS } from "../../../../data/studyPacks";
 
-import { getStudyPackLink } from "./constants";
+import { getStudyPackLink } from "./pathing";
 
 export default class AllStudyPacks extends React.PureComponent {
   public render() {

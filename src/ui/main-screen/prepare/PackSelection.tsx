@@ -1,10 +1,13 @@
 import classnames from "classnames";
 import { memoize } from "lodash";
 import * as React from "react";
+import { Link } from "react-router-dom";
 
-import { STUDY_PACKS } from "../../../data/studyPacks";
-import { StudyPack } from "../../interfaces";
-import Localization from "../../localization";
+import { STUDY_PACKS } from "../../../../data/studyPacks";
+import { StudyPack } from "../../../interfaces";
+import Localization from "../../../localization";
+
+import { getStudyPackLink } from "../explore/pathing";
 
 import CheckIcon from "./check.svg";
 
@@ -35,23 +38,6 @@ export default class PackSelection extends React.PureComponent<ComponentProps> {
     next.sort(comparePacks);
     onSelectionChanged(next);
   });
-
-  private onClickViewPack = memoize(
-    (pack: StudyPack) => (event: React.MouseEvent) => {
-      this.setState({ detailsPack: pack });
-      event.stopPropagation();
-      event.preventDefault();
-    }
-  );
-
-  public componentDidUpdate({ selection: prevSelection }: ComponentProps) {
-    const { selection } = this.props;
-    if (selection !== prevSelection) {
-      this.setState({
-        detailsPack: null
-      });
-    }
-  }
 
   public render() {
     const { localization } = this.props;
@@ -85,9 +71,9 @@ export default class PackSelection extends React.PureComponent<ComponentProps> {
             {localization.studyPackSize(pack.counters.length)}
           </div>
         </div>
-        <div className="view-details" onClick={this.onClickViewPack(pack)}>
+        <Link className="view-details" to={getStudyPackLink(pack)}>
           View Details
-        </div>
+        </Link>
       </div>
     );
   };

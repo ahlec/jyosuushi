@@ -17,7 +17,7 @@ import {
   EXPLORE_PAGE_PATH,
   EXPLORE_STUDY_PACK_PATH,
   getStudyPackLink
-} from "./constants";
+} from "./pathing";
 
 import "./BreadcrumbBar.scss";
 
