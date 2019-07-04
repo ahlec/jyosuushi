@@ -48,6 +48,7 @@ class ExploreStudyPackPage extends React.PureComponent<ComponentProps> {
 
   public render() {
     const {
+      localization,
       match: {
         params: { packId }
       }
@@ -57,6 +58,7 @@ class ExploreStudyPackPage extends React.PureComponent<ComponentProps> {
     return (
       <div className="ExploreStudyPackPage">
         <BreadcrumbBar />
+        <h3>{localization.studyPackName(studyPack)}</h3>
         <p>
           This pack contains{" "}
           <strong>

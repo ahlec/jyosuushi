@@ -11,6 +11,8 @@
     &.active {
       color: $black-dark;
       font-weight: bold;
+      pointer-events: none;
+      cursor: default;
     }
   }
 }

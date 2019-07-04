@@ -122,6 +122,7 @@ class ExploreCounterPage extends React.PureComponent<ComponentProps> {
       <div className="ExploreCounterPage">
         <BreadcrumbBar />
         <div className="contents">
+          <h3>{localization.counterName(counter)}</h3>
           <div className="kanji">{counter.kanji}</div>
           <p className="examples-prefix">
             {localization.hereAreTheFirstXNumbers(AMOUNTS_TO_DISPLAY)}{" "}

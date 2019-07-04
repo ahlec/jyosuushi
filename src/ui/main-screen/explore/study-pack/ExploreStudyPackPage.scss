@@ -4,6 +4,15 @@
 .ExploreStudyPackPage {
   overflow-y: auto;
 
+  h3 {
+    font-size: 24px;
+    font-weight: bold;
+    border-bottom: 1px solid $app-outline;
+    width: 50%;
+    margin: 0px auto 20px;
+    text-align: center;
+  }
+
   p {
     margin: 8px 0px;
     text-align: center;
