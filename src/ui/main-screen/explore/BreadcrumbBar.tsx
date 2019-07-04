@@ -75,7 +75,7 @@ class BreadcrumbBar extends React.PureComponent<ComponentProps> {
         links.push(
           <NavLink key={EXPLORE_COUNTER_PATH} exact={true} to={location}>
             {localization.pageExploreCounter}{" "}
-            {localization.counterName(counter)}（{counter.kanji}）
+            {localization.counterName(counter)}【{counter.kanji}】
           </NavLink>
         );
 
@@ -83,7 +83,7 @@ class BreadcrumbBar extends React.PureComponent<ComponentProps> {
       }
     }
 
-    return <div className="BreadcrumbBar">{interleave(links, " > ")}</div>;
+    return <div className="BreadcrumbBar">{interleave(links, " » ")}</div>;
   }
 }
 
