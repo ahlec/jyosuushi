@@ -4,6 +4,11 @@
   font-size: 14px;
   margin-bottom: 15px;
 
+  .flourish {
+    position: relative;
+    top: -1px;
+  }
+
   a {
     color: $blue-dark;
     text-decoration: none;

@@ -83,7 +83,11 @@ class BreadcrumbBar extends React.PureComponent<ComponentProps> {
       }
     }
 
-    return <div className="BreadcrumbBar">{interleave(links, " » ")}</div>;
+    return (
+      <div className="BreadcrumbBar">
+        <span className="flourish">⁜</span> {interleave(links, " » ")}
+      </div>
+    );
   }
 }
 
