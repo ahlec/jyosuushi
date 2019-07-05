@@ -20,24 +20,23 @@ interface LinkEntry {
 
 const LINKS: ReadonlyArray<LinkEntry> = [
   {
-    description: () =>
-      "Share with me anything that you'd like to see happen, or any ideas on how I can improve this service!",
+    description: localization =>
+      localization.feedbackPageSubmitFeedbackDescription,
     icon: CommentsIcon,
-    linkText: () => "Submit feedback and ideas",
+    linkText: localization => localization.feedbackPageSubmitFeedbackLink,
     url: CONFIG_FEEDBACK_FORM_LINK
   },
   {
-    description: () =>
-      "Please help me make a more perfect service! A brief description of the problem (or a mistake with Japanese!) will help me track it down and fix it right away!",
+    description: localization => localization.feedbackPageReportBugDescription,
     icon: BugIcon,
-    linkText: () => "Report a bug",
+    linkText: localization => localization.feedbackPageReportBugLink,
     url: CONFIG_BUG_REPORT_FORM_LINK
   },
   {
-    description: () =>
-      "The project is open source, and if you'd like to join in on working on the project, check out my GitHub!",
+    description: localization =>
+      localization.feedbackPageHelpContributeDescription,
     icon: CodeIcon,
-    linkText: () => "Help contribute",
+    linkText: localization => localization.feedbackPageHelpContributeLink,
     url: "https://github.com/ahlec/jyosuushi"
   }
 ];
@@ -54,12 +53,10 @@ function mapStateToProps(state: State): ReduxProps {
 
 class FeedbackPage extends React.PureComponent<ReduxProps> {
   public render() {
+    const { localization } = this.props;
     return (
       <div className="FeedbackPage">
-        <p>
-          We're in open beta right now! I hope you enjoy the application! Expect
-          updates frequently!
-        </p>
+        <p className="intro">{localization.feedbackPageIntro}</p>
         <hr />
         {LINKS.map(this.renderLink)}
       </div>
@@ -69,7 +66,7 @@ class FeedbackPage extends React.PureComponent<ReduxProps> {
   private renderLink = (link: LinkEntry) => {
     const { localization } = this.props;
     return (
-      <p key={link.url}>
+      <p key={link.url} className="link-entry">
         <a href={link.url} target="_blank">
           <img src={link.icon} /> <strong>{link.linkText(localization)}</strong>
         </a>

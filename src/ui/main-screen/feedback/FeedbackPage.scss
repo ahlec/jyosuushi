@@ -3,6 +3,14 @@
 .FeedbackPage {
   p {
     margin: 10px;
+
+    &.intro {
+      text-align: center;
+    }
+
+    &.link-entry {
+      margin-bottom: 20px;
+    }
   }
 
   hr {
@@ -27,6 +35,6 @@
   }
 
   .small {
-    font-size: 14px;
+    font-size: 13px;
   }
 }
