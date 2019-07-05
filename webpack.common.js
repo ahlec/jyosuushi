@@ -100,6 +100,10 @@ module.exports = {
       {
         from: FAVICON_DIRECTORY,
         to: BUILD_DIRECTORY
+      },
+      {
+        from: path.resolve(ROOT_DIRECTORY, "./.htaccess"),
+        to: path.resolve(BUILD_DIRECTORY)
       }
     ]),
     new HtmlWebpackPlugin({
