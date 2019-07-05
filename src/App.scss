@@ -12,15 +12,16 @@ body {
 
 html {
   overflow: hidden;
+  background-color: $pink-light;
 }
 
 body {
   overflow: auto;
+  background: url("diag.png");
 }
 
 #root {
   height: 100%;
-  background: url("diag.png");
 }
 
 .App {
