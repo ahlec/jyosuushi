@@ -80,6 +80,12 @@ async function writeCountersFile(db) {
     "SELECT * FROM counters ORDER BY counter_id ASC"
   );
   const irregulars = await db.all("SELECT * FROM counter_irregulars");
+  const itemCounters = await db.all("SELECT * FROM item_counters");
+
+  const counterHasItems = {};
+  for (const itemCounter of itemCounters) {
+    counterHasItems[itemCounter.counter_id] = true;
+  }
 
   const irregularsLookup = {};
   for (const irregular of irregulars) {
@@ -104,7 +110,7 @@ async function writeCountersFile(db) {
     if (!counter.uses_yon && !counter.uses_yo && !counter.uses_shi) {
       hasInvalidCounter = true;
       console.log(
-        `[${chalk.yellow("COUNTER")}][${chalk.bold(
+        `[${chalk.red("COUNTER")}][${chalk.bold(
           counter.counter_id
         )}] Counter doesn't use 'yon', 'yo', or 'shi'.`
       );
@@ -113,7 +119,7 @@ async function writeCountersFile(db) {
     if (!counter.uses_nana && !counter.uses_shichi) {
       hasInvalidCounter = true;
       console.log(
-        `[${chalk.yellow("COUNTER")}][${chalk.bold(
+        `[${chalk.red("COUNTER")}][${chalk.bold(
           counter.counter_id
         )}] Counter doesn't use either 'nana' or 'shichi'.`
       );
@@ -122,10 +128,19 @@ async function writeCountersFile(db) {
     if (!counter.uses_kyuu && !counter.uses_ku) {
       hasInvalidCounter = true;
       console.log(
-        `[${chalk.yellow("COUNTER")}][${chalk.bold(
+        `[${chalk.red("COUNTER")}][${chalk.bold(
           counter.counter_id
         )}] Counter doesn't use either 'kyuu' or 'ku'.`
       );
+    }
+
+    if (!counterHasItems[counter.counter_id]) {
+      console.warn(
+        `[${chalk.yellow("COUNTER")}][${chalk.bold(
+          counter.counter_id
+        )}] No associated items, so not being exported.`
+      );
+      continue;
     }
 
     writeCounterData(file, counter, irregularsLookup[counter.counter_id]);
@@ -136,6 +151,10 @@ async function writeCountersFile(db) {
   fs.writeSync(file, "} = {\n");
   let hasWrittenFirst = false;
   for (const counter of counters) {
+    if (!counterHasItems[counter.counter_id]) {
+      continue;
+    }
+
     if (hasWrittenFirst) {
       fs.writeSync(file, ",\n");
     } else {
@@ -214,7 +233,7 @@ async function writeItemsFile(db) {
     if (!itemsToCounters[item.item_id]) {
       hasItemsWithoutCounters = true;
       console.warn(
-        `[${chalk.yellow("ITEM")}][${chalk.bold(
+        `[${chalk.red("ITEM")}][${chalk.bold(
           item.item_id
         )}] No counters defined, so not added to export.`
       );
@@ -343,7 +362,7 @@ async function writeStudyPacksFile(db) {
     if (!countersLookup[studyPack.pack_id]) {
       hasStudyPacksWithoutItems = true;
       console.warn(
-        `[${chalk.yellow("STUDY PACK")}][${chalk.bold(
+        `[${chalk.red("STUDY PACK")}][${chalk.bold(
           studyPack.pack_id
         )}] No items added to pack, so not exported.`
       );
