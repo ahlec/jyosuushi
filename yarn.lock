@@ -1450,14 +1450,14 @@ block-stream@*:
   dependencies:
     inherits "~2.0.0"
 
-bluebird@3.*:
-  version "3.5.4"
-  resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.4.tgz#d6cc661595de30d5b3af5fcedd3c0b3ef6ec5714"
-  integrity sha512-FG+nFEZChJrbQ9tIccIfZJBz3J7mLrAhxakAbnrJWn8d7aKOC+LWifa0G+p4ZqKp4y13T7juYvdhq9NzKdsrjw==
-
 bluebird@^3.5.3:
   version "3.5.3"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.3.tgz#7d01c6f9616c9a51ab0f8c549a79dfe6ec33efa7"
+
+bluebird@^3.5.5:
+  version "3.5.5"
+  resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.5.tgz#a8d0afd73251effbbd5fe384a77d73003c17a71f"
+  integrity sha512-5am6HnnfN+urzt4yfg7IgTbotDjIT/u8AJpEt0sIU9FtXfVeezXAPKswrG+xKUCOYAINpSdgZVDU6QFh+cuH3w==
 
 bn.js@^4.0.0, bn.js@^4.1.0, bn.js@^4.1.1, bn.js@^4.4.0:
   version "4.11.8"
@@ -1827,15 +1827,15 @@ clean-css@4.2.x:
   dependencies:
     source-map "~0.6.0"
 
-cli-real-favicon@^0.0.7:
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/cli-real-favicon/-/cli-real-favicon-0.0.7.tgz#1576c4f56e46f718e08fdb7b4d7eb7f47988d689"
-  integrity sha512-r2QZFZEN/Ph2HjQhRUsaqL9cr+jX0jANZ3cWHxWEXDK4TZrpYiA9h2v8mlTzhO/fHkgevD5r3KmyqIo9bVIhUw==
+cli-real-favicon@^0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/cli-real-favicon/-/cli-real-favicon-0.0.8.tgz#0c72a862b3ff1fc432b18c978777fdcdba2f7e6a"
+  integrity sha512-ZuymVh8nbEB4+iHsz4zZYyZfUr7DakWwY4p8LYI7u3eF/ysn4FzaHNgGpKMCZhze7BaZA+enGIwJSzOqTAJOjQ==
   dependencies:
-    bluebird "3.*"
-    commander "^2.9.0"
-    glob "6.*"
-    rfg-api "^0.4.0"
+    bluebird "^3.5.5"
+    commander "^2.20.0"
+    glob "^6.0.4"
+    rfg-api "^0.5.0"
 
 cliui@^3.2.0:
   version "3.2.0"
@@ -1924,7 +1924,7 @@ commander@^2.12.1, commander@^2.19.0, commander@~2.19.0:
   version "2.19.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.19.0.tgz#f6198aa84e5b83c46054b94ddedbfed5ee9ff12a"
 
-commander@^2.9.0:
+commander@^2.20.0:
   version "2.20.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.0.tgz#d58bb2b5c1ee8f87b0d340027e9e94e222c5a422"
   integrity sha512-7j2y+40w61zy6YC2iRNpUe/NwhNyoXrYpHMrSunaMG64nRnaf96zO/KMQR4OyN/UnE5KLyEBnKHd4aG3rskjpQ==
@@ -2902,14 +2902,14 @@ fstream@^1.0.0, fstream@^1.0.2:
     mkdirp ">=0.5 0"
     rimraf "2"
 
-fstream@~0.1.21:
-  version "0.1.31"
-  resolved "https://registry.yarnpkg.com/fstream/-/fstream-0.1.31.tgz#7337f058fbbbbefa8c9f561a28cab0849202c988"
-  integrity sha1-czfwWPu7vvqMn1YaKMqwhJICyYg=
+fstream@~1.0.12:
+  version "1.0.12"
+  resolved "https://registry.yarnpkg.com/fstream/-/fstream-1.0.12.tgz#4e8ba8ee2d48be4f7d0de505455548eae5932045"
+  integrity sha512-WvJ193OHa0GHPEL+AycEJgxvBEwyfRkN1vhjca23OaPVMCaLCXTd5qAu82AjTcgP1UJmytkOKb63Ypde7raDIg==
   dependencies:
-    graceful-fs "~3.0.2"
+    graceful-fs "^4.1.2"
     inherits "~2.0.0"
-    mkdirp "0.5"
+    mkdirp ">=0.5 0"
     rimraf "2"
 
 function-bind@^1.1.1:
@@ -2966,7 +2966,7 @@ glob-parent@^3.1.0:
     is-glob "^3.1.0"
     path-dirname "^1.0.0"
 
-glob@6.*:
+glob@^6.0.4:
   version "6.0.4"
   resolved "https://registry.yarnpkg.com/glob/-/glob-6.0.4.tgz#0f08860f6a155127b2fadd4f9ce24b1aab6e4d22"
   integrity sha1-DwiGD2oVUSey+t1PnOJLGqtuTSI=
@@ -3044,13 +3044,6 @@ globule@^1.0.0:
 graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2:
   version "4.1.15"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.15.tgz#ffb703e1066e8a0eeaa4c8b80ba9253eeefbfb00"
-
-graceful-fs@~3.0.2:
-  version "3.0.11"
-  resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-3.0.11.tgz#7613c778a1afea62f25c630a086d7f3acbbdd818"
-  integrity sha1-dhPHeKGv6mLyXGMKCG1/Osu92Bg=
-  dependencies:
-    natives "^1.1.0"
 
 gud@^1.0.0:
   version "1.0.0"
@@ -4207,7 +4200,7 @@ mixin-object@^2.0.1:
     for-in "^0.1.3"
     is-extendable "^0.1.1"
 
-mkdirp@*, mkdirp@0.5, mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0, mkdirp@~0.5.1:
+mkdirp@*, mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0, mkdirp@~0.5.1:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
   dependencies:
@@ -4267,11 +4260,6 @@ nanomatch@^1.2.9:
     regex-not "^1.0.0"
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
-
-natives@^1.1.0:
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/natives/-/natives-1.1.6.tgz#a603b4a498ab77173612b9ea1acdec4d980f00bb"
-  integrity sha512-6+TDFewD4yxY14ptjKaS63GVdtKiES1pTPyxn9Jb0rBqPMZ7VcCiooEhPNsr+mqHtMGxa/5c/HhcC4uPEUw/nA==
 
 needle@^2.2.1:
   version "2.2.4"
@@ -4408,6 +4396,18 @@ node-sass@^4.12.0:
     sass-graph "^2.2.4"
     stdout-stream "^1.4.0"
     "true-case-path" "^1.0.2"
+
+node-unzip-2@^0.2.7:
+  version "0.2.8"
+  resolved "https://registry.yarnpkg.com/node-unzip-2/-/node-unzip-2-0.2.8.tgz#246f6c2ad30279aeb9d20d4de942a6fb94d81149"
+  integrity sha512-fmJi73zTRW7RSo/1wyrKc2srKMwb3L6Ppke/7elzQ0QRt6sUjfiIcVsWdrqO5uEHAdvRKXjoySuo4HYe5BB0rw==
+  dependencies:
+    binary "~0.3.0"
+    fstream "~1.0.12"
+    match-stream "~0.0.2"
+    pullstream "~0.4.0"
+    readable-stream "~1.0.0"
+    setimmediate "~1.0.1"
 
 "nopt@2 || 3":
   version "3.0.6"
@@ -4915,9 +4915,10 @@ postcss@^7.0.16, postcss@^7.0.17:
     source-map "^0.6.1"
     supports-color "^6.1.0"
 
-prettier@^1.16.4:
-  version "1.16.4"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.16.4.tgz#73e37e73e018ad2db9c76742e2647e21790c9717"
+prettier@^1.18.2:
+  version "1.18.2"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.18.2.tgz#6823e7c5900017b4bd3acf46fe9ac4b4d7bda9ea"
+  integrity sha512-OeHeMc0JhFE9idD4ZdtNibzY0+TPHSpSSb9h8FqtP+YnoZZ1sl8Vc9b1sasjfymH3SonAF4QcA2+mzHPhMvIiw==
 
 pretty-error@^2.0.2:
   version "2.1.1"
@@ -5452,16 +5453,16 @@ ret@~0.1.10:
   version "0.1.15"
   resolved "https://registry.yarnpkg.com/ret/-/ret-0.1.15.tgz#b8a4825d5bdb1fc3f6f53c2bc33f81388681c7bc"
 
-rfg-api@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/rfg-api/-/rfg-api-0.4.0.tgz#98bdcac26e7dc73a3509c6c0665f69b7c4849a17"
-  integrity sha512-teNyrr6FCxXNKBvwy2qCRVMo52EaAVeeMkVwHgycCaW6qZa0HC6cA1cNpm8D0yKbACh7wqVuSaUvAGnRH3SztQ==
+rfg-api@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/rfg-api/-/rfg-api-0.5.0.tgz#8916dcc75df93e5880f64878affe00b5fe84ace8"
+  integrity sha512-wd6BcVoBsEHlbfsaB1WD4Z/Xis4uEP+Qctd3u2jxXR5yTkCYENaB/m3Jsk0G2qToKgAeE+6tbsN6T0n8DHcSaw==
   dependencies:
     axios "^0.18.0"
     fstream "^1.0.2"
     metaparser "^1.0.7"
     mkdirp "^0.5.0"
-    unzip2 "^0.2.5"
+    node-unzip-2 "^0.2.7"
 
 rimraf@2, rimraf@^2.2.8, rimraf@^2.5.4, rimraf@^2.6.1, rimraf@^2.6.2, rimraf@^2.6.3:
   version "2.6.3"
@@ -6400,18 +6401,6 @@ unset-value@^1.0.0:
   dependencies:
     has-value "^0.3.1"
     isobject "^3.0.0"
-
-unzip2@^0.2.5:
-  version "0.2.5"
-  resolved "https://registry.yarnpkg.com/unzip2/-/unzip2-0.2.5.tgz#4ef7a579a78c15c51f550f6a053db194149c8992"
-  integrity sha1-TveleaeMFcUfVQ9qBT2xlBSciZI=
-  dependencies:
-    binary "~0.3.0"
-    fstream "~0.1.21"
-    match-stream "~0.0.2"
-    pullstream "~0.4.0"
-    readable-stream "~1.0.0"
-    setimmediate "~1.0.1"
 
 upath@^1.1.1:
   version "1.1.2"
