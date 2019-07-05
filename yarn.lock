@@ -908,9 +908,10 @@
     "@svgr/plugin-svgo" "^4.3.1"
     loader-utils "^1.2.3"
 
-"@types/classnames@^2.2.7":
-  version "2.2.7"
-  resolved "https://registry.yarnpkg.com/@types/classnames/-/classnames-2.2.7.tgz#fb68cc9be8487e6ea5b13700e759bfbab7e0fefd"
+"@types/classnames@^2.2.9":
+  version "2.2.9"
+  resolved "https://registry.yarnpkg.com/@types/classnames/-/classnames-2.2.9.tgz#d868b6febb02666330410fe7f58f3c4b8258be7b"
+  integrity sha512-MNl+rT5UmZeilaPxAVs6YaPC2m6aA8rofviZbhbxpPpl61uKodfdQVsBtgJGTqGizEf02oW3tsVe7FYB8kK14A==
 
 "@types/events@*":
   version "3.0.0"
@@ -937,9 +938,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/lodash@^4.14.123":
-  version "4.14.123"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.123.tgz#39be5d211478c8dd3bdae98ee75bb7efe4abfe4d"
+"@types/lodash@^4.14.135":
+  version "4.14.135"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.135.tgz#d2607c35dd68f70c2b35ba020c667493dedd8447"
+  integrity sha512-Ed+tSZ9qM1oYpi5kzdsBuOzcAIn1wDW+e8TFJ50IMJMlSopGdJgKAbhHzN6h1E1OfjlGOr2JepzEWtg9NIfoNg==
 
 "@types/minimatch@*":
   version "3.0.3"
@@ -1007,10 +1009,10 @@
     "@types/history" "*"
     "@types/react" "*"
 
-"@types/react-tooltip@^3.9.2":
-  version "3.9.2"
-  resolved "https://registry.yarnpkg.com/@types/react-tooltip/-/react-tooltip-3.9.2.tgz#c46ee03cc8631ec1b130feef02af119dbe3639d2"
-  integrity sha512-nw8yikdyULgQoZWSkMgjMVd7nnrjlnUJc4U8NtuxCmTIloEgQTJpI6O/KrWTBK8cNP67KZy/fGgjZ9rOQsdwBQ==
+"@types/react-tooltip@^3.9.3":
+  version "3.9.3"
+  resolved "https://registry.yarnpkg.com/@types/react-tooltip/-/react-tooltip-3.9.3.tgz#2eb1e08e128bb691197c5c7f9063fda9ffd5ea42"
+  integrity sha512-X9xuVWlZTLUQadIIrf5MnMPo/FE8izJPRo6c6f+XUs8eIaQ2vj+5Qw4Ttw9bMUPrqImmsJp7o7FY4t1qHLFf4g==
   dependencies:
     "@types/react" "*"
 
