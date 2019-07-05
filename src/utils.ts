@@ -130,3 +130,23 @@ export function isConjugationRegular(
     ({ category }) => category === ConjugationCategory.Regular
   );
 }
+
+export function interleave<TItem, TInterleaved>(
+  arr: ReadonlyArray<TItem>,
+  item: TInterleaved
+): ReadonlyArray<TItem | TInterleaved> {
+  if (arr.length <= 1) {
+    return arr;
+  }
+
+  const interleaved: Array<TItem | TInterleaved> = [];
+  for (let index = 0; index < arr.length; index++) {
+    if (index > 0) {
+      interleaved.push(item);
+    }
+
+    interleaved.push(arr[index]);
+  }
+
+  return interleaved;
+}

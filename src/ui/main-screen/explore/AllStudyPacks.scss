@@ -1,0 +1,48 @@
+@import "../../../palette.scss";
+
+$num-links-per-row: 4;
+
+.AllStudyPacks {
+  .list {
+    width: 70%;
+    margin: auto;
+
+    .StudyPackLink {
+      $border-width: 1px;
+      $padding: 6px;
+      $reserved-space-per-row: ($border-width + $padding) * $num-links-per-row *
+        2;
+
+      display: inline-flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: calc((100% - #{$reserved-space-per-row}) / #{$num-links-per-row});
+      max-width: calc(
+        (100% - #{$reserved-space-per-row}) / #{$num-links-per-row}
+      );
+      text-decoration: none;
+      border-radius: 6px;
+      padding: $padding;
+      border: $border-width solid transparent;
+
+      &:hover {
+        background-color: $blue-lightest;
+        border-color: $blue-base;
+      }
+
+      .name {
+        font-weight: bold;
+        font-size: 18px;
+        margin-bottom: 5px;
+        color: $black-base;
+      }
+
+      .count {
+        font-size: 14px;
+        color: $black-lightest;
+        text-align: center;
+      }
+    }
+  }
+}

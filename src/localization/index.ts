@@ -32,6 +32,13 @@ export default interface Localization {
   countersDisplayHeader: (numCounters: number) => string;
   credits: ReadonlyArray<CreditsPiece>;
   feedbackFooter: ReadonlyArray<FeedbackFooterPiece>;
+  feedbackPageHelpContributeDescription: string;
+  feedbackPageHelpContributeLink: string;
+  feedbackPageIntro: string;
+  feedbackPageReportBugDescription: string;
+  feedbackPageReportBugLink: string;
+  feedbackPageSubmitFeedbackDescription: string;
+  feedbackPageSubmitFeedbackLink: string;
   furtherIrregulars: string;
   hereAreTheFirstXNumbers: (amountToDisplay: number) => string;
   highScoreEncouragements: ReadonlyArray<string>;
@@ -43,7 +50,12 @@ export default interface Localization {
   itemPlural: (item: Item) => string;
   itemSingular: (item: Item) => string;
   lowScoreEncouragements: ReadonlyArray<string>;
-  releaseNotes: string;
+  pagePrepare: string;
+  pageExplore: string;
+  pageExploreCounter: string;
+  pageExploreStudyPack: string;
+  pageReleaseNotes: string;
+  pageFeedback: string;
   reportABug: string;
   resultColumnHeaderCounter: string;
   resultColumnHeaderRule: string;

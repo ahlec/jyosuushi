@@ -1,0 +1,84 @@
+@import "../../../../palette.scss";
+@import "../../../ModalShared.scss";
+
+.ExploreStudyPackPage {
+  overflow-y: auto;
+
+  h3 {
+    font-size: 24px;
+    font-weight: bold;
+    border-bottom: 1px solid $app-outline;
+    width: 50%;
+    margin: 0px auto 20px;
+    text-align: center;
+  }
+
+  p {
+    margin: 8px 0px;
+    text-align: center;
+
+    strong {
+      font-weight: 600;
+    }
+  }
+
+  table {
+    $horizontal-padding: 20px;
+    $vertical-padding: 10px;
+
+    width: 100%;
+
+    .counter {
+      &:hover:not(.disabled) {
+        cursor: pointer;
+        background-color: $green-light;
+
+        svg {
+          opacity: 1;
+
+          path {
+            fill: $modal-button-hover;
+          }
+        }
+      }
+
+      td {
+        vertical-align: middle;
+      }
+
+      .jp {
+        padding-left: $horizontal-padding;
+        font-size: 32px;
+        padding-right: 20px;
+        width: 1px;
+        white-space: nowrap;
+        text-align: center;
+
+        .Furigana {
+          display: inline-block;
+          margin-top: $vertical-padding;
+          margin-bottom: $vertical-padding;
+        }
+      }
+
+      .name {
+        vertical-align: middle;
+      }
+
+      .button {
+        padding-right: $horizontal-padding;
+        width: 1px;
+
+        svg {
+          width: 32px;
+          height: 32px;
+          opacity: 0.65;
+
+          path {
+            fill: $modal-button;
+          }
+        }
+      }
+    }
+  }
+}

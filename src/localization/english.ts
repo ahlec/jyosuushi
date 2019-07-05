@@ -41,6 +41,17 @@ const ENGLISH: Localization = {
     VARIABLE_SUBMIT_FEEDBACK_LINK,
     "."
   ],
+  feedbackPageHelpContributeDescription:
+    "The project is open source, and if you'd like to join in on working on the project, check out my GitHub!",
+  feedbackPageHelpContributeLink: "Help contribute",
+  feedbackPageIntro:
+    "We're in open beta right now and I hope you enjoy the application! Expect updates frequently!",
+  feedbackPageReportBugDescription:
+    "Please help me make a more perfect service! A brief description of the problem (or a mistake with Japanese!) will help me track it down and fix it right away!",
+  feedbackPageReportBugLink: "Report a bug",
+  feedbackPageSubmitFeedbackDescription:
+    "Share with me anything that you'd like to see happen, or any ideas on how I can improve this service!",
+  feedbackPageSubmitFeedbackLink: "Submit feedback and ideas",
   furtherIrregulars: "There are some more irregulars later on as well though:",
   hereAreTheFirstXNumbers: (amountToDisplay: number) =>
     `Here ${
@@ -75,7 +86,12 @@ const ENGLISH: Localization = {
     "You've learned so much to get here, I know you'll get to where you want to go!",
     "This stuff isn't easy; practice WILL make perfect."
   ],
-  releaseNotes: "Release Notes",
+  pageExplore: "Explore",
+  pageExploreCounter: "Counter:",
+  pageExploreStudyPack: "Study Pack:",
+  pageFeedback: "Feedback",
+  pagePrepare: "Prepare",
+  pageReleaseNotes: "Release Notes",
   reportABug: "Report a Bug",
   resultColumnHeaderCounter: "Counter",
   resultColumnHeaderHiragana: "Hiragana",

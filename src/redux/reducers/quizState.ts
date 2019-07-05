@@ -3,6 +3,7 @@ import {
   ActionLeaveQuiz,
   ActionNextQuestion,
   ActionRestartQuiz,
+  ActionSetEnabledPacks,
   ActionSkipQuestion,
   ActionStartQuiz,
   ActionSubmitCorrectAnswer,
@@ -15,6 +16,7 @@ type ReducerAction =
   | ActionSubmitCorrectAnswer
   | ActionSubmitIncorrectAnswer
   | ActionNextQuestion
+  | ActionSetEnabledPacks
   | ActionSkipQuestion
   | ActionStartQuiz
   | ActionRestartQuiz
@@ -35,6 +37,7 @@ export default function quizStateReducer(
       return "reviewing-answer";
     case "end-quiz":
       return "quiz-wrapup";
+    case "set-enabled-packs":
     case "leave-quiz":
       return "not-in-quiz";
     default:

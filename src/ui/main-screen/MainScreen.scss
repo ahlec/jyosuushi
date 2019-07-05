@@ -1,0 +1,9 @@
+.MainScreen {
+  display: flex;
+  flex: 1;
+
+  .content {
+    margin: 15px;
+    width: 100%;
+  }
+}

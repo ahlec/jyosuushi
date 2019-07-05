@@ -1,112 +1,89 @@
 import classnames from "classnames";
 import * as React from "react";
 import { connect } from "react-redux";
+import {
+  Redirect,
+  Route,
+  RouteComponentProps,
+  Switch,
+  withRouter
+} from "react-router-dom";
 
-import QuizManager from "./QuizManager";
-import { LocalizationLanguage, State } from "./redux";
-
-import Localization from "./localization";
-import ENGLISH from "./localization/english";
+import { State } from "./redux";
 
 import Header from "./ui/Header";
-import IntroPage from "./ui/intro-page";
+import MainScreen from "./ui/main-screen/MainScreen";
 import QuizPage from "./ui/quiz-page";
-import ReleaseNotesModal from "./ui/ReleaseNotesModal";
 
 import "./App.scss";
 
-const LOCALIZATION_LOOKUP: {
-  [language in LocalizationLanguage]: Localization
-} = {
-  english: ENGLISH
-};
-
-interface ProvidedProps {
-  quizManager: QuizManager;
-}
+const QUIZ_SCREEN_PATH = "/quiz";
 
 interface ReduxProps {
   isQuizActive: boolean;
-  language: LocalizationLanguage;
-  lastAccessedVersion: string | null;
 }
-
-type ComponentProps = ProvidedProps & ReduxProps;
 
 function mapStateToProps(state: State): ReduxProps {
   return {
-    isQuizActive: state.quizState !== "not-in-quiz",
-    language: state.settings.localization,
-    lastAccessedVersion: state.user.lastAccessedVersion
+    isQuizActive: state.quizState !== "not-in-quiz"
   };
 }
 
 interface ComponentState {
   isModalOpen: boolean;
-  isReleaseNotesModalOpen: boolean;
 }
 
+type ComponentProps = ReduxProps & RouteComponentProps;
+
 class App extends React.PureComponent<ComponentProps, ComponentState> {
-  public state: ComponentState;
-
-  public constructor(props: ComponentProps) {
-    super(props);
-
-    const isReleaseNotesModalOpen =
-      !!props.lastAccessedVersion &&
-      props.lastAccessedVersion !== JYOSUUSHI_CURRENT_SEMVER;
-    this.state = {
-      isModalOpen: isReleaseNotesModalOpen,
-      isReleaseNotesModalOpen
-    };
-  }
+  public state: ComponentState = {
+    isModalOpen: false
+  };
 
   public render() {
-    const { isQuizActive, language } = this.props;
-    const { isReleaseNotesModalOpen } = this.state;
-    const localization = LOCALIZATION_LOOKUP[language];
+    const { isQuizActive } = this.props;
+
     return (
       <div className={classnames("App", isQuizActive && "quiz-active")}>
         <Header
           isQuizActive={isQuizActive}
-          localization={localization}
           onModalOpened={this.onHeaderModalOpened}
         />
-        {isQuizActive
-          ? this.renderQuizPage(localization)
-          : this.renderIntroPage(localization)}
-        {isReleaseNotesModalOpen && (
-          <ReleaseNotesModal
-            localization={localization}
-            onRequestClose={this.onReleaseNotesClosed}
-          />
-        )}
+        {this.renderNecessaryRedirect()}
+        <Switch>
+          <Route path={QUIZ_SCREEN_PATH} render={this.renderQuizPage} />
+          <Route render={this.renderMainScreen} />
+        </Switch>
       </div>
     );
   }
 
-  private renderIntroPage(localization: Localization) {
-    const { quizManager } = this.props;
-    return <IntroPage localization={localization} quizManager={quizManager} />;
-  }
+  private renderNecessaryRedirect = () => {
+    const {
+      location: { pathname },
+      isQuizActive
+    } = this.props;
+    const isOnQuizScreen = pathname === QUIZ_SCREEN_PATH;
+    if (isOnQuizScreen && !isQuizActive) {
+      return <Redirect to="/" />;
+    }
 
-  private renderQuizPage(localization: Localization) {
-    const { quizManager } = this.props;
+    if (!isOnQuizScreen && isQuizActive) {
+      return <Redirect to={QUIZ_SCREEN_PATH} />;
+    }
+  };
+
+  private renderMainScreen = () => {
+    return <MainScreen />;
+  };
+
+  private renderQuizPage = () => {
     const { isModalOpen } = this.state;
-    return (
-      <QuizPage
-        enabled={!isModalOpen}
-        localization={localization}
-        quizManager={quizManager}
-      />
-    );
-  }
+    return <QuizPage enabled={!isModalOpen} />;
+  };
 
   private onHeaderModalOpened = (isModalOpen: boolean) =>
     this.setState({ isModalOpen });
-
-  private onReleaseNotesClosed = () =>
-    this.setState({ isModalOpen: false, isReleaseNotesModalOpen: false });
 }
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(withRouter(App));

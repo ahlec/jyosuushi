@@ -7,6 +7,7 @@ import Localization from "../../localization";
 
 import { Scorecard, State } from "../../redux";
 import { leaveQuiz } from "../../redux/actions";
+import { getLocalization } from "../../redux/selectors";
 import { Dispatch } from "../../redux/store";
 
 import Furigana from "../Furigana";
@@ -26,7 +27,6 @@ import "./index.scss";
 
 interface ProvidedProps {
   isQuizActive: boolean;
-  localization: Localization;
   onModalOpened: (isOpen: boolean) => void;
 }
 
@@ -34,6 +34,7 @@ interface ReduxProps {
   enabledPacks: ReadonlyArray<string>;
   hasAnsweredQuestion: boolean;
   isOnQuizWrapup: boolean;
+  localization: Localization;
   scorecard: Scorecard;
   totalNumberQuestions: number;
 }
@@ -56,6 +57,7 @@ function mapStateToProps(state: State): ReduxProps {
     enabledPacks: state.enabledPacks,
     hasAnsweredQuestion,
     isOnQuizWrapup: state.quizState === "quiz-wrapup",
+    localization: getLocalization(state),
     scorecard: state.scorecard,
     totalNumberQuestions:
       state.questions.asked.length +

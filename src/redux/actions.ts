@@ -6,18 +6,29 @@ export interface ActionSetLocalizationLanguage {
   language: LocalizationLanguage;
 }
 
+export interface ActionSetEnabledPacks {
+  type: "set-enabled-packs";
+  enabledPacks: ReadonlyArray<StudyPack>;
+}
+
+export function setEnabledPacks(
+  enabledPacks: ReadonlyArray<StudyPack>
+): ActionSetEnabledPacks {
+  return {
+    enabledPacks,
+    type: "set-enabled-packs"
+  };
+}
+
 export interface ActionStartQuiz {
   type: "start-quiz";
-  enabledPacks: ReadonlyArray<StudyPack>;
   questions: ReadonlyArray<PendingQuestion>;
 }
 
 export function startQuiz(
-  enabledPacks: ReadonlyArray<StudyPack>,
   questions: ReadonlyArray<PendingQuestion>
 ): ActionStartQuiz {
   return {
-    enabledPacks,
     questions,
     type: "start-quiz"
   };

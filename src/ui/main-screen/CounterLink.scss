@@ -1,0 +1,33 @@
+@import "../../palette.scss";
+
+$min-counter-height: 75px;
+
+.CounterLink {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: calc((100% - 6px) / 3);
+  max-width: calc((100% - 6px) / 3);
+  min-height: $min-counter-height;
+  text-decoration: none;
+  border-radius: 6px;
+  border: 1px solid transparent;
+
+  &:hover {
+    background-color: $blue-lightest;
+    border-color: $blue-base;
+  }
+
+  .kanji {
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 5px;
+    color: $black-base;
+  }
+
+  .name {
+    color: $black-lightest;
+    text-align: center;
+  }
+}

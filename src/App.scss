@@ -12,15 +12,16 @@ body {
 
 html {
   overflow: hidden;
+  background-color: $pink-light;
 }
 
 body {
   overflow: auto;
+  background: url("diag.png");
 }
 
 #root {
   height: 100%;
-  background: url("diag.png");
 }
 
 .App {
@@ -34,8 +35,8 @@ body {
   transition: max-width 0.25s ease-in;
   margin: auto;
   overflow: hidden;
-  border-left: 1px solid $pink-base;
-  border-right: 1px solid $pink-base;
+  border-left: 1px solid $app-outline;
+  border-right: 1px solid $app-outline;
   color: $black-darkest;
 
   &.quiz-active {
