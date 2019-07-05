@@ -1,25 +1,50 @@
-import { values } from "lodash";
+import { memoize, values } from "lodash";
 import * as React from "react";
-import { Link } from "react-router-dom";
-
-import { Counter } from "../../../interfaces";
+import { connect } from "react-redux";
 
 import { COUNTERS_LOOKUP } from "../../../../data/counters";
+import { Counter } from "../../../interfaces";
+import Localization from "../../../localization";
+import { State } from "../../../redux";
+import { getLocalization } from "../../../redux/selectors";
 
-import { getCounterLink } from "./pathing";
+import CounterLink from "../CounterLink";
 
-const ALL_COUNTERS = values(COUNTERS_LOOKUP);
+import "./AllCounters.scss";
 
-export default class AllCounters extends React.PureComponent {
+interface ReduxProps {
+  localization: Localization;
+}
+
+function mapStateToProps(state: State): ReduxProps {
+  return {
+    localization: getLocalization(state)
+  };
+}
+
+const getAllCountersSorted = memoize((localization: Localization) => {
+  const allCounters = values(COUNTERS_LOOKUP);
+  allCounters.sort((a, b) =>
+    localization.counterName(a).localeCompare(localization.counterName(b))
+  );
+  return allCounters;
+});
+
+class AllCounters extends React.PureComponent<ReduxProps> {
   public render() {
-    return <div>{ALL_COUNTERS.map(this.renderStudyPack)}</div>;
+    const { localization } = this.props;
+    const allCounters = getAllCountersSorted(localization);
+    return (
+      <div className="AllCounters">
+        <h3>Counters</h3>
+        <div className="list">{allCounters.map(this.renderStudyPack)}</div>
+      </div>
+    );
   }
 
   private renderStudyPack = (counter: Counter) => {
-    return (
-      <Link key={counter.counterId} to={getCounterLink(counter)}>
-        {counter.kanji}
-      </Link>
-    );
+    return <CounterLink key={counter.counterId} counter={counter} />;
   };
 }
+
+export default connect(mapStateToProps)(AllCounters);

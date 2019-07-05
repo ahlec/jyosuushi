@@ -1,0 +1,14 @@
+@import "../../../palette.scss";
+
+.ExplorePageLanding {
+  .contents {
+    h3 {
+      font-size: 24px;
+      font-weight: bold;
+      border-bottom: 1px solid $app-outline;
+      width: 50%;
+      margin: 0px auto 10px;
+      text-align: center;
+    }
+  }
+}

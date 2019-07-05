@@ -1,6 +1,5 @@
 @import "../../../palette.scss";
-
-$min-counter-height: 75px;
+@import "../CounterLink.scss";
 
 .CounterPreview {
   width: 70%;
@@ -17,26 +16,5 @@ $min-counter-height: 75px;
     text-align: center;
     max-height: $min-counter-height * 3;
     overflow-y: auto;
-
-    .counter {
-      display: inline-flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      width: 33%;
-      max-width: 33%;
-      min-height: $min-counter-height;
-
-      .kanji {
-        font-weight: bold;
-        font-size: 24px;
-        margin-bottom: 5px;
-        color: $black-base;
-      }
-
-      .name {
-        color: $black-lightest;
-      }
-    }
   }
 }

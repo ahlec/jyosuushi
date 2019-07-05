@@ -5,6 +5,8 @@ import { Counter, StudyPack } from "../../../interfaces";
 import Localization from "../../../localization";
 import { getDistinctCounters } from "../../../utils";
 
+import CounterLink from "../CounterLink";
+
 import "./CounterPreview.scss";
 
 const getCountersForPacks = memoize(
@@ -38,12 +40,6 @@ export default class CounterPreview extends React.PureComponent<
   }
 
   private renderCounter = (counter: Counter) => {
-    const { localization } = this.props;
-    return (
-      <div key={counter.counterId} className="counter">
-        <div className="kanji">{counter.kanji}</div>
-        <div className="name">{localization.counterName(counter)}</div>
-      </div>
-    );
+    return <CounterLink key={counter.counterId} counter={counter} />;
   };
 }

@@ -9,6 +9,8 @@ import BreadcrumbBar from "./BreadcrumbBar";
 import ExploreCounterPage from "./counter/ExploreCounterPage";
 import ExploreStudyPackPage from "./study-pack/ExploreStudyPackPage";
 
+import "./ExplorePage.scss";
+
 export default class ExplorePage extends React.PureComponent {
   public render() {
     return (
@@ -25,10 +27,12 @@ export default class ExplorePage extends React.PureComponent {
 
   private renderLandingPage = () => {
     return (
-      <div className="ExplorePage">
+      <div className="ExplorePageLanding">
         <BreadcrumbBar />
-        <AllStudyPacks />
-        <AllCounters />
+        <div className="contents">
+          <AllStudyPacks />
+          <AllCounters />
+        </div>
       </div>
     );
   };
