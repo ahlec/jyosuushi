@@ -1,0 +1,32 @@
+@import "../../../palette.scss";
+
+.FeedbackPage {
+  p {
+    margin: 10px;
+  }
+
+  hr {
+    border: 0px;
+    border-top: 1px solid $app-outline;
+    width: 60%;
+    margin: 25px auto;
+  }
+
+  a {
+    text-decoration: none;
+
+    img {
+      position: relative;
+      top: 3px;
+    }
+
+    strong {
+      text-decoration: underline;
+      font-weight: bold;
+    }
+  }
+
+  .small {
+    font-size: 14px;
+  }
+}

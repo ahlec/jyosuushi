@@ -17,9 +17,6 @@ import { setEnabledPacks } from "../../../redux/actions";
 import { getLocalization } from "../../../redux/selectors";
 import { Dispatch } from "../../../redux/store";
 
-import FeedbackFooter from "../../FeedbackFooter";
-
-import BetaExplanation from "./BetaExplanation";
 import CounterPreview from "./CounterPreview";
 import PackSelection from "./PackSelection";
 import TutorialModal from "./TutorialModal";
@@ -82,7 +79,6 @@ class PreparePage extends React.PureComponent<ComponentProps, ComponentState> {
             Click here to read the tutorial.
           </span>
         </p>
-        <BetaExplanation />
         <PackSelection
           localization={localization}
           onSelectionChanged={this.onSelectionChanged}
@@ -96,7 +92,6 @@ class PreparePage extends React.PureComponent<ComponentProps, ComponentState> {
         <CounterPreview localization={localization} packs={enabledPacks} />
 
         <div className="flex" />
-        <FeedbackFooter localization={localization} />
         <div className="credits">
           {localization.credits.map(this.renderCredit)}
         </div>
