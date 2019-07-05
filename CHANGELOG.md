@@ -1,3 +1,20 @@
+### v2.2.0
+
+New Features:
+
+- **New layout.** The home screen has been updated! A sidebar was added, and almost everything that was previously in a modal now has its own page. With the increase in space, more features will be able to come very shortly!
+
+Bug Fixes:
+
+- Fixed a bug where the number of irregular conjugations after the first 17 wouldn't be included in the count of total irregulars.
+- Added a missing conjugation rule between 8 and か行.
+
+Developer Changes:
+
+- Upgraded _all_ packages to their latest versions!
+- Defined counters that do not have associated items are no longer exported from the database.
+- Added `react-router` and set up the application to work as a true SPA.
+
 ### v2.1.0
 
 New Features:
