@@ -1,10 +1,8 @@
 const chalk = require("chalk");
 const fs = require("fs");
 const path = require("path");
-const sqlite = require("sqlite");
+const { openDatabase, ROOT_DIRECTORY } = require("./utils");
 
-const ROOT_DIRECTORY = path.resolve(__dirname, "..");
-const DATABASE_FILE = path.resolve(ROOT_DIRECTORY, "jyosuushi.sqlite");
 const DATA_DIRECTORY = path.resolve(ROOT_DIRECTORY, "data");
 const COUNTERS_FILE = path.resolve(DATA_DIRECTORY, "counters.ts");
 const ITEMS_FILE = path.resolve(DATA_DIRECTORY, "items.ts");
@@ -426,7 +424,7 @@ async function writeStudyPacksFile(db) {
 }
 
 async function main() {
-  const db = await sqlite.open(DATABASE_FILE, { Promise });
+  const db = await openDatabase();
   const countersSuccess = await writeCountersFile(db);
   const itemsSuccess = await writeItemsFile(db);
   const studyPacksSuccess = await writeStudyPacksFile(db);
