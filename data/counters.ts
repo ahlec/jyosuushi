@@ -276,6 +276,23 @@ export const COUNTER_台: Counter = {
   kanji: "台"
 };
 
+export const COUNTER_周: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYoFor4: false,
+    allowsYonFor4: true
+  },
+  counterId: "周",
+  englishName: "laps and circuits",
+  irregulars: {},
+  kana: "しゅう",
+  kanji: "周"
+};
+
 export const COUNTER_回: Counter = {
   conjugationOptions: {
     allowsKuFor9: false,
@@ -291,6 +308,23 @@ export const COUNTER_回: Counter = {
   irregulars: {},
   kana: "かい",
   kanji: "回"
+};
+
+export const COUNTER_席: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYoFor4: false,
+    allowsYonFor4: true
+  },
+  counterId: "席",
+  englishName: "seats",
+  irregulars: {},
+  kana: "せき",
+  kanji: "席"
 };
 
 export const COUNTER_年: Counter = {
@@ -432,6 +466,40 @@ export const COUNTER_羽: Counter = {
   kanji: "羽"
 };
 
+export const COUNTER_色: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYoFor4: false,
+    allowsYonFor4: true
+  },
+  counterId: "色",
+  englishName: "colours",
+  irregulars: {},
+  kana: "しょく",
+  kanji: "色"
+};
+
+export const COUNTER_週: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYoFor4: false,
+    allowsYonFor4: true
+  },
+  counterId: "週",
+  englishName: "weeks",
+  irregulars: {},
+  kana: "しゅう",
+  kanji: "週"
+};
+
 export const COUNTER_階: Counter = {
   conjugationOptions: {
     allowsKuFor9: false,
@@ -484,7 +552,9 @@ export const COUNTERS_LOOKUP: {
   "匹": COUNTER_匹,
   "口": COUNTER_口,
   "台": COUNTER_台,
+  "周": COUNTER_周,
   "回": COUNTER_回,
+  "席": COUNTER_席,
   "年": COUNTER_年,
   "曲": COUNTER_曲,
   "月": COUNTER_月,
@@ -493,6 +563,8 @@ export const COUNTERS_LOOKUP: {
   "組": COUNTER_組,
   "缶": COUNTER_缶,
   "羽": COUNTER_羽,
+  "色": COUNTER_色,
+  "週": COUNTER_週,
   "階": COUNTER_階,
   "頭": COUNTER_頭
 };

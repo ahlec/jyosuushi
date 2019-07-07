@@ -79,7 +79,9 @@ async function writeCountersFile(db) {
   const counters = await db.all(
     "SELECT * FROM counters ORDER BY counter_id ASC"
   );
-  const irregulars = await db.all("SELECT * FROM counter_irregulars");
+  const irregulars = await db.all(
+    "SELECT * FROM counter_irregulars WHERE nonstandard = 0" // TODO: nonstandard?
+  );
   const itemCounters = await db.all("SELECT * FROM item_counters");
 
   const counterHasItems = {};
