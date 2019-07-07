@@ -13,10 +13,6 @@ import CHANGELOG from "../../../../CHANGELOG.md";
 
 import "./ReleaseNotesPage.scss";
 
-interface ProvidedProps {
-  onRequestClose: () => void;
-}
-
 interface ReduxProps {
   localization: Localization;
 }
@@ -27,7 +23,7 @@ function mapStateToProps(state: State): ReduxProps {
   };
 }
 
-type ComponentProps = ProvidedProps & ReduxProps & { dispatch: Dispatch };
+type ComponentProps = ReduxProps & { dispatch: Dispatch };
 
 class ReleaseNotesPage extends React.PureComponent<ComponentProps> {
   public componentDidMount() {
