@@ -1,7 +1,10 @@
 const chalk = require("chalk");
 const { openDatabase } = require("./utils");
 
-const AUDITORS = [require("./auditors/counters-without-packs")];
+const AUDITORS = [
+  require("./auditors/counters-in-packs-without-items"),
+  require("./auditors/counters-without-packs")
+];
 
 async function runAuditor(auditor, db) {
   const results = await auditor.run(db);
@@ -25,6 +28,10 @@ async function runAuditor(auditor, db) {
     }
 
     console.log(`  > [${styledId}] ${message}`);
+  }
+
+  if (!results.length) {
+    console.log("No results");
   }
 
   console.log();

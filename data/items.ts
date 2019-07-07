@@ -175,6 +175,15 @@ const ITEM_COLOUR: Item = {
   minQuantity: 1
 };
 
+const ITEM_COMPANY: Item = {
+  counters: ["社"],
+  englishPlural: "companies",
+  englishSingular: "company",
+  itemId: "company",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
 const ITEM_COUNTRY: Item = {
   counters: ["ヶ国"],
   englishPlural: "countries",
@@ -472,6 +481,15 @@ const ITEM_OCCURRENCE: Item = {
   minQuantity: 1
 };
 
+const ITEM_OFFICE_BUILDING: Item = {
+  counters: ["ヶ所"],
+  englishPlural: "office buildings",
+  englishSingular: "office building",
+  itemId: "office building",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
 const ITEM_ORIGAMI_CRANE: Item = {
   counters: ["羽"],
   englishPlural: "origami cranes",
@@ -643,6 +661,15 @@ const ITEM_SHEEP: Item = {
   minQuantity: 1
 };
 
+const ITEM_SHINTO_SHRINE: Item = {
+  counters: ["社"],
+  englishPlural: "Shinto shrines",
+  englishSingular: "Shinto shrine",
+  itemId: "shinto shrine",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
 const ITEM_SHOPPING_MALL: Item = {
   counters: ["ヶ所"],
   englishPlural: "shopping malls",
@@ -720,6 +747,15 @@ const ITEM_STOREY: Item = {
   englishPlural: "stories",
   englishSingular: "storey",
   itemId: "storey",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
+const ITEM_STREET: Item = {
+  counters: ["本"],
+  englishPlural: "streets",
+  englishSingular: "street",
+  itemId: "street",
   maxQuantity: 100,
   minQuantity: 1
 };
@@ -854,6 +890,7 @@ export const ITEMS_LOOKUP: {
   cinema: ITEM_CINEMA,
   circuit: ITEM_CIRCUIT,
   colour: ITEM_COLOUR,
+  company: ITEM_COMPANY,
   country: ITEM_COUNTRY,
   "couple (people)": ITEM_COUPLE_PEOPLE_,
   cow: ITEM_COW,
@@ -887,6 +924,7 @@ export const ITEMS_LOOKUP: {
   notebook: ITEM_NOTEBOOK,
   "o'clock": ITEM_O_CLOCK,
   occurrence: ITEM_OCCURRENCE,
+  "office building": ITEM_OFFICE_BUILDING,
   "origami crane": ITEM_ORIGAMI_CRANE,
   otter: ITEM_OTTER,
   oven: ITEM_OVEN,
@@ -906,6 +944,7 @@ export const ITEMS_LOOKUP: {
   round: ITEM_ROUND,
   seat: ITEM_SEAT,
   sheep: ITEM_SHEEP,
+  "shinto shrine": ITEM_SHINTO_SHRINE,
   "shopping mall": ITEM_SHOPPING_MALL,
   "sip of water": ITEM_SIP_OF_WATER,
   "slice of cake": ITEM_SLICE_OF_CAKE,
@@ -915,6 +954,7 @@ export const ITEMS_LOOKUP: {
   song: ITEM_SONG,
   "spray paint": ITEM_SPRAY_PAINT,
   storey: ITEM_STOREY,
+  street: ITEM_STREET,
   textbook: ITEM_TEXTBOOK,
   "time (occurrences)": ITEM_TIME_OCCURRENCES_,
   tint: ITEM_TINT,
@@ -933,7 +973,7 @@ export const ITEMS_FROM_COUNTER: {
   [counterId: string]: ReadonlyArray<Item>;
 } = {
   "ヶ国": [ITEM_COUNTRY, ITEM_NATION],
-  "ヶ所": [ITEM_BATHROOM, ITEM_SHOPPING_MALL, ITEM_CINEMA, ITEM_LOCATION, ITEM_PLACE],
+  "ヶ所": [ITEM_BATHROOM, ITEM_SHOPPING_MALL, ITEM_CINEMA, ITEM_LOCATION, ITEM_PLACE, ITEM_OFFICE_BUILDING],
   "ヶ月": [ITEM_MONTH],
   "人": [ITEM_MAN, ITEM_WOMAN, ITEM_COWORKER, ITEM_ROOMMATE, ITEM_PERSON],
   "円": [ITEM_YEN],
@@ -952,9 +992,10 @@ export const ITEMS_FROM_COUNTER: {
   "時": [ITEM_O_CLOCK],
   "曲": [ITEM_SONG, ITEM_TUNE, ITEM_MELODY, ITEM_JINGLE],
   "月": [ITEM_MONTH],
-  "本": [ITEM_BOTTLE, ITEM_TREE, ITEM_ROD, ITEM_RIVER, ITEM_PEN, ITEM_LINE],
+  "本": [ITEM_BOTTLE, ITEM_TREE, ITEM_ROD, ITEM_RIVER, ITEM_PEN, ITEM_LINE, ITEM_STREET],
   "枚": [ITEM_CREDIT_CARD, ITEM_PLAYING_CARD, ITEM_PAPER, ITEM_PHOTO, ITEM_RECEIPT, ITEM_BAR_OF_CHOCOLATE],
   "歳": [ITEM_YEARS_OLD],
+  "社": [ITEM_COMPANY, ITEM_SHINTO_SHRINE],
   "組": [ITEM_COUPLE_PEOPLE_, ITEM_GROUP_OF_FRIENDS],
   "缶": [ITEM_SODA_CAN, ITEM_BEER_CAN, ITEM_EMPTY_CAN, ITEM_CAN_OF_BUG_SPRAY, ITEM_CAN_OF_HAIR_SPRAY, ITEM_SPRAY_PAINT, ITEM_CAN_OF_SOUP],
   "羽": [ITEM_CHICKEN, ITEM_PENGUIN, ITEM_RABBIT, ITEM_ORIGAMI_CRANE, ITEM_BAT],
