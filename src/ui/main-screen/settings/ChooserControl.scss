@@ -1,0 +1,41 @@
+@import "../../../palette.scss";
+
+$border-radius: 6px;
+
+.ChooserControl {
+  display: flex;
+
+  .choice {
+    border: 1px solid $green-darkest;
+    background-color: $green-lightest;
+    cursor: pointer;
+    flex: 1;
+    text-align: center;
+    padding: 15px 0px;
+    border-left-width: 0px;
+
+    &:hover {
+      background-color: $green-light;
+    }
+
+    &:first-child {
+      border-top-left-radius: $border-radius;
+      border-bottom-left-radius: $border-radius;
+      border-left-width: 1px;
+    }
+
+    &:last-child {
+      border-top-right-radius: $border-radius;
+      border-bottom-right-radius: $border-radius;
+    }
+
+    &.selected {
+      background-color: $green-base;
+      cursor: default;
+
+      &:hover {
+        background-color: $green-base;
+      }
+    }
+  }
+}

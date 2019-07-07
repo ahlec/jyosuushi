@@ -1,7 +1,10 @@
-import { ActionSetLocalizationLanguage } from "../actions";
+import {
+  ActionSetAmountRange,
+  ActionSetLocalizationLanguage
+} from "../actions";
 import { AmountRange, Settings } from "../index";
 
-type ReducerAction = ActionSetLocalizationLanguage;
+type ReducerAction = ActionSetAmountRange | ActionSetLocalizationLanguage;
 
 const DEFAULT_SETTINGS: Settings = {
   amountRange: AmountRange.Medium,
@@ -17,6 +20,12 @@ export default function settingsReducer(
       return {
         ...state,
         localization: action.language
+      };
+    }
+    case "set-amount-range": {
+      return {
+        ...state,
+        amountRange: action.amountRange
       };
     }
     default:

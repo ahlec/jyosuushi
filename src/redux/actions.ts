@@ -1,9 +1,21 @@
 import { PendingQuestion, StudyPack } from "../interfaces";
-import { LocalizationLanguage } from "./index";
+import { AmountRange, LocalizationLanguage } from "./index";
 
 export interface ActionSetLocalizationLanguage {
   type: "set-localization";
   language: LocalizationLanguage;
+}
+
+export interface ActionSetAmountRange {
+  type: "set-amount-range";
+  amountRange: AmountRange;
+}
+
+export function setAmountRange(amountRange: AmountRange): ActionSetAmountRange {
+  return {
+    amountRange,
+    type: "set-amount-range"
+  };
 }
 
 export interface ActionSetEnabledPacks {

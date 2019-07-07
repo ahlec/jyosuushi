@@ -23,6 +23,9 @@ export type FeedbackFooterPiece =
 
 export default interface Localization {
   alecDeitloff: string;
+  amountRangeSmall: string;
+  amountRangeMedium: string;
+  amountRangeLarge: string;
   andSoForth: string;
   beta: string;
   buttonIgnoreAnswer: string;
@@ -55,6 +58,7 @@ export default interface Localization {
   pageExploreCounter: string;
   pageExploreStudyPack: string;
   pageReleaseNotes: string;
+  pageSettings: string;
   pageFeedback: string;
   reportABug: string;
   resultColumnHeaderCounter: string;
@@ -68,6 +72,8 @@ export default interface Localization {
   resultTableIntro: string;
   resultTableIrregularLabel: string;
   resultTableStrangeLabel: string;
+  settingAmountRange: string;
+  settingAmountRangeDescription: string;
   siteTagline: string;
   skippedQuestionResult: string;
   startQuiz: string;

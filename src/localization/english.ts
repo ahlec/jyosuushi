@@ -12,6 +12,9 @@ import Localization, {
 
 const ENGLISH: Localization = {
   alecDeitloff: "Alec Deitloff",
+  amountRangeLarge: "Large (TBD)",
+  amountRangeMedium: "Medium (TBD)",
+  amountRangeSmall: "Small (TBD)",
   andSoForth: "... and so forth",
   beta: "Beta",
   buttonIgnoreAnswer: "Ignore Answer",
@@ -92,6 +95,7 @@ const ENGLISH: Localization = {
   pageFeedback: "Feedback",
   pagePrepare: "Prepare",
   pageReleaseNotes: "Release Notes",
+  pageSettings: "Settings",
   reportABug: "Report a Bug",
   resultColumnHeaderCounter: "Counter",
   resultColumnHeaderHiragana: "Hiragana",
@@ -105,6 +109,8 @@ const ENGLISH: Localization = {
     "Here are all of the possible answers based on the sets you have enabled:",
   resultTableIrregularLabel: "(irregular)",
   resultTableStrangeLabel: "(strange)",
+  settingAmountRange: "Amounts Range",
+  settingAmountRangeDescription: "Adjust the range of the numbers generated.",
   siteTagline: "Let's review Japanese counters!",
   skippedQuestionResult:
     "Alright! You don't need to worry about this question!",

@@ -11,6 +11,7 @@ import PreparePageIcon from "./prepare/prepare-icon.svg";
 import PreparePage from "./prepare/PreparePage";
 import ReleaseNotesPageIcon from "./release-notes/release-notes-icon.svg";
 import ReleaseNotesPage from "./release-notes/ReleaseNotesPage";
+import SettingsPage from "./settings/SettingsPage";
 
 export interface PageDefinition {
   component: ComponentClass;
@@ -33,6 +34,13 @@ const EXPLORE_PAGE: PageDefinition = {
   path: EXPLORE_PAGE_PATH
 };
 
+const SETTINGS_PAGE: PageDefinition = {
+  component: SettingsPage,
+  getName: localization => localization.pageSettings,
+  icon: ReleaseNotesPageIcon,
+  path: "/settings"
+};
+
 export const RELEASE_NOTES_PATH = "/release-notes";
 const RELEASE_NOTES_PAGE: PageDefinition = {
   component: ReleaseNotesPage,
@@ -51,6 +59,7 @@ const FEEDBACK_PAGE: PageDefinition = {
 export const LANDING_PAGE = PREPARE_PAGE;
 export const UNORDERED_NESTED_PAGES: ReadonlyArray<PageDefinition> = [
   EXPLORE_PAGE,
+  SETTINGS_PAGE,
   RELEASE_NOTES_PAGE,
   FEEDBACK_PAGE
 ];
@@ -58,6 +67,7 @@ export const UNORDERED_NESTED_PAGES: ReadonlyArray<PageDefinition> = [
 export const ORDERED_SIDEBAR_PAGES: ReadonlyArray<PageDefinition> = [
   LANDING_PAGE,
   EXPLORE_PAGE,
+  SETTINGS_PAGE,
   RELEASE_NOTES_PAGE,
   FEEDBACK_PAGE
 ];

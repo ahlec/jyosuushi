@@ -1,0 +1,27 @@
+@import "../../../palette.scss";
+
+.SettingsPage {
+  h1 {
+    font-size: 24px;
+    font-weight: bold;
+    border-bottom: 1px solid $app-outline;
+    width: 50%;
+    margin: 0px auto 15px;
+    text-align: center;
+  }
+
+  .section {
+    margin-bottom: 15px;
+
+    h3 {
+      font-weight: bold;
+      font-size: 24px;
+      text-decoration: underline;
+    }
+
+    .description {
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+  }
+}
