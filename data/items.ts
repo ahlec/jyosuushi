@@ -86,7 +86,7 @@ const ITEM_BOOK: Item = {
 };
 
 const ITEM_BOTTLE: Item = {
-  counters: ["long, thin object"],
+  counters: ["本"],
   englishPlural: "bottles",
   englishSingular: "bottle",
   itemId: "bottle",
@@ -203,7 +203,7 @@ const ITEM_COW: Item = {
 };
 
 const ITEM_COWORKER: Item = {
-  counters: ["people-nin"],
+  counters: ["人"],
   englishPlural: "coworkers",
   englishSingular: "coworker",
   itemId: "coworker",
@@ -230,7 +230,7 @@ const ITEM_CUT_OF_MEAT: Item = {
 };
 
 const ITEM_DAY_OF_THE_MONTH: Item = {
-  counters: ["days of the month"],
+  counters: ["日"],
   englishPlural: "days of the month",
   englishSingular: "day of the month",
   itemId: "day of the month",
@@ -356,7 +356,7 @@ const ITEM_LAP: Item = {
 };
 
 const ITEM_LINE: Item = {
-  counters: ["long, thin object"],
+  counters: ["本"],
   englishPlural: "lines",
   englishSingular: "line",
   itemId: "line",
@@ -383,7 +383,7 @@ const ITEM_MAGAZINE: Item = {
 };
 
 const ITEM_MAN: Item = {
-  counters: ["people-nin"],
+  counters: ["人"],
   englishPlural: "men",
   englishSingular: "man",
   itemId: "man",
@@ -419,7 +419,7 @@ const ITEM_MICROWAVE: Item = {
 };
 
 const ITEM_MINUTE: Item = {
-  counters: ["minute"],
+  counters: ["分"],
   englishPlural: "minutes",
   englishSingular: "minute",
   itemId: "minute",
@@ -455,7 +455,7 @@ const ITEM_NOTEBOOK: Item = {
 };
 
 const ITEM_O_CLOCK: Item = {
-  counters: ["hour"],
+  counters: ["時"],
   englishPlural: "o'clock",
   englishSingular: "o'clock",
   itemId: "o'clock",
@@ -509,7 +509,7 @@ const ITEM_PAPER: Item = {
 };
 
 const ITEM_PEN: Item = {
-  counters: ["long, thin object"],
+  counters: ["本"],
   englishPlural: "pens",
   englishSingular: "pen",
   itemId: "pen",
@@ -527,7 +527,7 @@ const ITEM_PENGUIN: Item = {
 };
 
 const ITEM_PERSON: Item = {
-  counters: ["people-mei","people-nin"],
+  counters: ["人","名"],
   englishPlural: "people",
   englishSingular: "person",
   itemId: "person",
@@ -590,7 +590,7 @@ const ITEM_RECEIPT: Item = {
 };
 
 const ITEM_RIVER: Item = {
-  counters: ["long, thin object"],
+  counters: ["本"],
   englishPlural: "rivers",
   englishSingular: "river",
   itemId: "river",
@@ -599,7 +599,7 @@ const ITEM_RIVER: Item = {
 };
 
 const ITEM_ROD: Item = {
-  counters: ["long, thin object"],
+  counters: ["本"],
   englishPlural: "rods",
   englishSingular: "rod",
   itemId: "rod",
@@ -608,7 +608,7 @@ const ITEM_ROD: Item = {
 };
 
 const ITEM_ROOMMATE: Item = {
-  counters: ["people-nin"],
+  counters: ["人"],
   englishPlural: "roommates",
   englishSingular: "roommate",
   itemId: "roommate",
@@ -752,7 +752,7 @@ const ITEM_TINT: Item = {
 };
 
 const ITEM_TREE: Item = {
-  counters: ["long, thin object"],
+  counters: ["本"],
   englishPlural: "trees",
   englishSingular: "tree",
   itemId: "tree",
@@ -797,7 +797,7 @@ const ITEM_WHALE: Item = {
 };
 
 const ITEM_WOMAN: Item = {
-  counters: ["people-nin"],
+  counters: ["人"],
   englishPlural: "women",
   englishSingular: "woman",
   itemId: "woman",
@@ -932,27 +932,27 @@ export const ITEMS_LOOKUP: {
 export const ITEMS_FROM_COUNTER: {
   [counterId: string]: ReadonlyArray<Item>;
 } = {
-  "days of the month": [ITEM_DAY_OF_THE_MONTH],
-  hour: [ITEM_O_CLOCK],
-  "long, thin object": [ITEM_LINE, ITEM_PEN, ITEM_RIVER, ITEM_ROD, ITEM_TREE, ITEM_BOTTLE],
-  minute: [ITEM_MINUTE],
-  "people-mei": [ITEM_PERSON],
-  "people-nin": [ITEM_PERSON, ITEM_ROOMMATE, ITEM_COWORKER, ITEM_WOMAN, ITEM_MAN],
   "ヶ国": [ITEM_COUNTRY, ITEM_NATION],
   "ヶ所": [ITEM_BATHROOM, ITEM_SHOPPING_MALL, ITEM_CINEMA, ITEM_LOCATION, ITEM_PLACE],
   "ヶ月": [ITEM_MONTH],
+  "人": [ITEM_MAN, ITEM_WOMAN, ITEM_COWORKER, ITEM_ROOMMATE, ITEM_PERSON],
   "円": [ITEM_YEN],
   "冊": [ITEM_TEXTBOOK, ITEM_DICTIONARY, ITEM_NOTEBOOK, ITEM_MAGAZINE, ITEM_BOOK],
+  "分": [ITEM_MINUTE],
   "切れ": [ITEM_SLICE_OF_PIZZA, ITEM_FILET, ITEM_SLICE_OF_CAKE, ITEM_CUT_OF_MEAT, ITEM_SLICE_OF_SASHIMI],
   "匹": [ITEM_RABBIT, ITEM_DOG, ITEM_CAT, ITEM_SHEEP, ITEM_DEER, ITEM_OTTER],
   "口": [ITEM_BITE_OF_FOOD, ITEM_SIP_OF_WATER],
   "台": [ITEM_WASHING_MACHINE, ITEM_OVEN, ITEM_MICROWAVE, ITEM_CAR, ITEM_BED, ITEM_RADIO],
+  "名": [ITEM_PERSON],
   "周": [ITEM_LAP, ITEM_CIRCUIT, ITEM_ROUND],
   "回": [ITEM_TIME_OCCURRENCES_, ITEM_OCCURRENCE],
   "席": [ITEM_SEAT, ITEM_MEETING, ITEM_ASSEMBLY, ITEM_BANQUET],
   "年": [ITEM_YEAR],
+  "日": [ITEM_DAY_OF_THE_MONTH],
+  "時": [ITEM_O_CLOCK],
   "曲": [ITEM_SONG, ITEM_TUNE, ITEM_MELODY, ITEM_JINGLE],
   "月": [ITEM_MONTH],
+  "本": [ITEM_BOTTLE, ITEM_TREE, ITEM_ROD, ITEM_RIVER, ITEM_PEN, ITEM_LINE],
   "枚": [ITEM_CREDIT_CARD, ITEM_PLAYING_CARD, ITEM_PAPER, ITEM_PHOTO, ITEM_RECEIPT, ITEM_BAR_OF_CHOCOLATE],
   "歳": [ITEM_YEARS_OLD],
   "組": [ITEM_COUPLE_PEOPLE_, ITEM_GROUP_OF_FRIENDS],

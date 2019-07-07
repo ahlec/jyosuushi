@@ -4,125 +4,6 @@
 
 import { Counter } from "../src/interfaces";
 
-export const COUNTER_DAYS_OF_THE_MONTH: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: false,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
-  counterId: "days of the month",
-  englishName: "days of the month",
-  irregulars: {
-    1: ["ついたち"],
-    2: ["ふつか"],
-    3: ["みっか"],
-    4: ["よっか"],
-    5: ["いつか"],
-    6: ["むいか"],
-    7: ["なのか"],
-    8: ["ようか"],
-    9: ["ここのか"],
-    10: ["とうか"],
-    14: ["じゅうよっか"],
-    20: ["はつか"],
-    24: ["にじゅうよっか"]
-  },
-  kana: "にち",
-  kanji: "日"
-};
-
-export const COUNTER_HOUR: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: true,
-    allowsKyuuFor9: false,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: true,
-    allowsYoFor4: true,
-    allowsYonFor4: false
-  },
-  counterId: "hour",
-  englishName: "hours",
-  irregulars: {},
-  kana: "じ",
-  kanji: "時"
-};
-
-export const COUNTER_LONG_THIN_OBJECT: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: true,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
-  counterId: "long, thin object",
-  englishName: "long, thin objects",
-  irregulars: {},
-  kana: "ほん",
-  kanji: "本"
-};
-
-export const COUNTER_MINUTE: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: true,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
-  counterId: "minute",
-  englishName: "minutes",
-  irregulars: {},
-  kana: "ふん",
-  kanji: "分"
-};
-
-export const COUNTER_PEOPLE_MEI: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: false,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
-  counterId: "people-mei",
-  englishName: "people (formal)",
-  irregulars: {},
-  kana: "めい",
-  kanji: "名"
-};
-
-export const COUNTER_PEOPLE_NIN: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: true,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: true,
-    allowsYoFor4: true,
-    allowsYonFor4: false
-  },
-  counterId: "people-nin",
-  englishName: "people",
-  irregulars: {
-    1: ["ひとり"],
-    2: ["ふたり"]
-  },
-  kana: "にん",
-  kanji: "人"
-};
-
 export const COUNTER_ヶ国: Counter = {
   conjugationOptions: {
     allowsKuFor9: false,
@@ -174,6 +55,26 @@ export const COUNTER_ヶ月: Counter = {
   kanji: "ヶ月"
 };
 
+export const COUNTER_人: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: true,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: true,
+    allowsYoFor4: true,
+    allowsYonFor4: false
+  },
+  counterId: "人",
+  englishName: "people",
+  irregulars: {
+    1: ["ひとり"],
+    2: ["ふたり"]
+  },
+  kana: "にん",
+  kanji: "人"
+};
+
 export const COUNTER_円: Counter = {
   conjugationOptions: {
     allowsKuFor9: false,
@@ -206,6 +107,23 @@ export const COUNTER_冊: Counter = {
   irregulars: {},
   kana: "さつ",
   kanji: "冊"
+};
+
+export const COUNTER_分: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: true,
+    allowsYoFor4: false,
+    allowsYonFor4: true
+  },
+  counterId: "分",
+  englishName: "minutes",
+  irregulars: {},
+  kana: "ふん",
+  kanji: "分"
 };
 
 export const COUNTER_切れ: Counter = {
@@ -276,6 +194,23 @@ export const COUNTER_台: Counter = {
   kanji: "台"
 };
 
+export const COUNTER_名: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYoFor4: false,
+    allowsYonFor4: true
+  },
+  counterId: "名",
+  englishName: "people (formal)",
+  irregulars: {},
+  kana: "めい",
+  kanji: "名"
+};
+
 export const COUNTER_周: Counter = {
   conjugationOptions: {
     allowsKuFor9: false,
@@ -344,6 +279,54 @@ export const COUNTER_年: Counter = {
   kanji: "年"
 };
 
+export const COUNTER_日: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYoFor4: false,
+    allowsYonFor4: true
+  },
+  counterId: "日",
+  englishName: "days of the month",
+  irregulars: {
+    1: ["ついたち"],
+    2: ["ふつか"],
+    3: ["みっか"],
+    4: ["よっか"],
+    5: ["いつか"],
+    6: ["むいか"],
+    7: ["なのか"],
+    8: ["ようか"],
+    9: ["ここのか"],
+    10: ["とおか"],
+    14: ["じゅうよっか"],
+    20: ["はつか"],
+    24: ["にじゅうよっか"]
+  },
+  kana: "にち",
+  kanji: "日"
+};
+
+export const COUNTER_時: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: true,
+    allowsKyuuFor9: false,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: true,
+    allowsYoFor4: true,
+    allowsYonFor4: false
+  },
+  counterId: "時",
+  englishName: "hours",
+  irregulars: {},
+  kana: "じ",
+  kanji: "時"
+};
+
 export const COUNTER_曲: Counter = {
   conjugationOptions: {
     allowsKuFor9: false,
@@ -376,6 +359,23 @@ export const COUNTER_月: Counter = {
   irregulars: {},
   kana: "つき",
   kanji: "月"
+};
+
+export const COUNTER_本: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: true,
+    allowsYoFor4: false,
+    allowsYonFor4: true
+  },
+  counterId: "本",
+  englishName: "long, thin objects",
+  irregulars: {},
+  kana: "ほん",
+  kanji: "本"
 };
 
 export const COUNTER_枚: Counter = {
@@ -537,27 +537,27 @@ export const COUNTER_頭: Counter = {
 export const COUNTERS_LOOKUP: {
   [counterId: string]: Counter;
 } = {
-  "days of the month": COUNTER_DAYS_OF_THE_MONTH,
-  hour: COUNTER_HOUR,
-  "long, thin object": COUNTER_LONG_THIN_OBJECT,
-  minute: COUNTER_MINUTE,
-  "people-mei": COUNTER_PEOPLE_MEI,
-  "people-nin": COUNTER_PEOPLE_NIN,
   "ヶ国": COUNTER_ヶ国,
   "ヶ所": COUNTER_ヶ所,
   "ヶ月": COUNTER_ヶ月,
+  "人": COUNTER_人,
   "円": COUNTER_円,
   "冊": COUNTER_冊,
+  "分": COUNTER_分,
   "切れ": COUNTER_切れ,
   "匹": COUNTER_匹,
   "口": COUNTER_口,
   "台": COUNTER_台,
+  "名": COUNTER_名,
   "周": COUNTER_周,
   "回": COUNTER_回,
   "席": COUNTER_席,
   "年": COUNTER_年,
+  "日": COUNTER_日,
+  "時": COUNTER_時,
   "曲": COUNTER_曲,
   "月": COUNTER_月,
+  "本": COUNTER_本,
   "枚": COUNTER_枚,
   "歳": COUNTER_歳,
   "組": COUNTER_組,
