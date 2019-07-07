@@ -220,6 +220,15 @@ const ITEM_COWORKER: Item = {
   minQuantity: 1
 };
 
+const ITEM_CRAM_SCHOOL: Item = {
+  counters: ["校"],
+  englishPlural: "cram schools",
+  englishSingular: "cram school",
+  itemId: "cram school",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
 const ITEM_CREDIT_CARD: Item = {
   counters: ["枚"],
   englishPlural: "credit cards",
@@ -247,6 +256,15 @@ const ITEM_DAY_OF_THE_MONTH: Item = {
   minQuantity: 1
 };
 
+const ITEM_DECK_OF_CARDS: Item = {
+  counters: ["組"],
+  englishPlural: "decks of cards",
+  englishSingular: "deck of cards",
+  itemId: "deck of cards",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
 const ITEM_DEER: Item = {
   counters: ["匹"],
   englishPlural: "deer",
@@ -270,6 +288,24 @@ const ITEM_DOG: Item = {
   englishPlural: "dogs",
   englishSingular: "dog",
   itemId: "dog",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
+const ITEM_DRUMSET: Item = {
+  counters: ["組"],
+  englishPlural: "drumsets",
+  englishSingular: "drumset",
+  itemId: "drumset",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
+const ITEM_ELEMENTARY_SCHOOL: Item = {
+  counters: ["校"],
+  englishPlural: "elementary schools",
+  englishSingular: "elementary school",
+  itemId: "elementary school",
   maxQuantity: 100,
   minQuantity: 1
 };
@@ -324,6 +360,15 @@ const ITEM_GROUP_OF_FRIENDS: Item = {
   englishPlural: "groups of friends",
   englishSingular: "group of friends",
   itemId: "group of friends",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
+const ITEM_HIGH_SCHOOL: Item = {
+  counters: ["校"],
+  englishPlural: "high schools",
+  englishSingular: "high school",
+  itemId: "high school",
   maxQuantity: 100,
   minQuantity: 1
 };
@@ -427,6 +472,15 @@ const ITEM_MICROWAVE: Item = {
   minQuantity: 1
 };
 
+const ITEM_MIDDLE_SCHOOL: Item = {
+  counters: ["校"],
+  englishPlural: "middle schools",
+  englishSingular: "middle school",
+  itemId: "middle school",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
 const ITEM_MINUTE: Item = {
   counters: ["分"],
   englishPlural: "minutes",
@@ -513,6 +567,24 @@ const ITEM_OVEN: Item = {
   englishPlural: "ovens",
   englishSingular: "oven",
   itemId: "oven",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
+const ITEM_PAIR_OF_GLOVES: Item = {
+  counters: ["組"],
+  englishPlural: "pairs of gloves",
+  englishSingular: "pair of gloves",
+  itemId: "pair of gloves",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
+const ITEM_PAIR_OF_MITTENS: Item = {
+  counters: ["組"],
+  englishPlural: "pairs of mittens",
+  englishSingular: "pair of mittens",
+  itemId: "pair of mittens",
   maxQuantity: 100,
   minQuantity: 1
 };
@@ -805,6 +877,15 @@ const ITEM_TUNE: Item = {
   minQuantity: 1
 };
 
+const ITEM_UNIVERSITY: Item = {
+  counters: ["校"],
+  englishPlural: "universities",
+  englishSingular: "university",
+  itemId: "university",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
 const ITEM_WASHING_MACHINE: Item = {
   counters: ["台"],
   englishPlural: "washing machines",
@@ -895,18 +976,23 @@ export const ITEMS_LOOKUP: {
   "couple (people)": ITEM_COUPLE_PEOPLE_,
   cow: ITEM_COW,
   coworker: ITEM_COWORKER,
+  "cram school": ITEM_CRAM_SCHOOL,
   "credit card": ITEM_CREDIT_CARD,
   "cut of meat": ITEM_CUT_OF_MEAT,
   "day of the month": ITEM_DAY_OF_THE_MONTH,
+  "deck of cards": ITEM_DECK_OF_CARDS,
   deer: ITEM_DEER,
   dictionary: ITEM_DICTIONARY,
   dog: ITEM_DOG,
+  drumset: ITEM_DRUMSET,
+  "elementary school": ITEM_ELEMENTARY_SCHOOL,
   elephant: ITEM_ELEPHANT,
   "empty can": ITEM_EMPTY_CAN,
   filet: ITEM_FILET,
   "floor (building)": ITEM_FLOOR_BUILDING_,
   gorilla: ITEM_GORILLA,
   "group of friends": ITEM_GROUP_OF_FRIENDS,
+  "high school": ITEM_HIGH_SCHOOL,
   horse: ITEM_HORSE,
   hue: ITEM_HUE,
   jingle: ITEM_JINGLE,
@@ -918,6 +1004,7 @@ export const ITEMS_LOOKUP: {
   meeting: ITEM_MEETING,
   melody: ITEM_MELODY,
   microwave: ITEM_MICROWAVE,
+  "middle school": ITEM_MIDDLE_SCHOOL,
   minute: ITEM_MINUTE,
   month: ITEM_MONTH,
   nation: ITEM_NATION,
@@ -928,6 +1015,8 @@ export const ITEMS_LOOKUP: {
   "origami crane": ITEM_ORIGAMI_CRANE,
   otter: ITEM_OTTER,
   oven: ITEM_OVEN,
+  "pair of gloves": ITEM_PAIR_OF_GLOVES,
+  "pair of mittens": ITEM_PAIR_OF_MITTENS,
   paper: ITEM_PAPER,
   pen: ITEM_PEN,
   penguin: ITEM_PENGUIN,
@@ -960,6 +1049,7 @@ export const ITEMS_LOOKUP: {
   tint: ITEM_TINT,
   tree: ITEM_TREE,
   tune: ITEM_TUNE,
+  university: ITEM_UNIVERSITY,
   "washing machine": ITEM_WASHING_MACHINE,
   week: ITEM_WEEK,
   whale: ITEM_WHALE,
@@ -994,9 +1084,10 @@ export const ITEMS_FROM_COUNTER: {
   "月": [ITEM_MONTH],
   "本": [ITEM_BOTTLE, ITEM_TREE, ITEM_ROD, ITEM_RIVER, ITEM_PEN, ITEM_LINE, ITEM_STREET],
   "枚": [ITEM_CREDIT_CARD, ITEM_PLAYING_CARD, ITEM_PAPER, ITEM_PHOTO, ITEM_RECEIPT, ITEM_BAR_OF_CHOCOLATE],
+  "校": [ITEM_HIGH_SCHOOL, ITEM_ELEMENTARY_SCHOOL, ITEM_MIDDLE_SCHOOL, ITEM_UNIVERSITY, ITEM_CRAM_SCHOOL],
   "歳": [ITEM_YEARS_OLD],
   "社": [ITEM_COMPANY, ITEM_SHINTO_SHRINE],
-  "組": [ITEM_COUPLE_PEOPLE_, ITEM_GROUP_OF_FRIENDS],
+  "組": [ITEM_COUPLE_PEOPLE_, ITEM_GROUP_OF_FRIENDS, ITEM_PAIR_OF_MITTENS, ITEM_PAIR_OF_GLOVES, ITEM_DRUMSET, ITEM_DECK_OF_CARDS],
   "缶": [ITEM_SODA_CAN, ITEM_BEER_CAN, ITEM_EMPTY_CAN, ITEM_CAN_OF_BUG_SPRAY, ITEM_CAN_OF_HAIR_SPRAY, ITEM_SPRAY_PAINT, ITEM_CAN_OF_SOUP],
   "羽": [ITEM_CHICKEN, ITEM_PENGUIN, ITEM_RABBIT, ITEM_ORIGAMI_CRANE, ITEM_BAT],
   "色": [ITEM_TINT, ITEM_HUE, ITEM_COLOUR],

@@ -395,6 +395,23 @@ export const COUNTER_枚: Counter = {
   kanji: "枚"
 };
 
+export const COUNTER_校: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYoFor4: false,
+    allowsYonFor4: true
+  },
+  counterId: "校",
+  englishName: "schools",
+  irregulars: {},
+  kana: "こう",
+  kanji: "校"
+};
+
 export const COUNTER_歳: Counter = {
   conjugationOptions: {
     allowsKuFor9: false,
@@ -576,6 +593,7 @@ export const COUNTERS_LOOKUP: {
   "月": COUNTER_月,
   "本": COUNTER_本,
   "枚": COUNTER_枚,
+  "校": COUNTER_校,
   "歳": COUNTER_歳,
   "社": COUNTER_社,
   "組": COUNTER_組,
