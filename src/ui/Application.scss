@@ -1,0 +1,34 @@
+@import "_constants";
+@import "../palette";
+
+$border-radius: 6px;
+
+.Application {
+  position: relative;
+  background-color: white;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid $app-outline;
+  border-top: 0px;
+  color: $black-darkest;
+  border-bottom-left-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
+
+  @media (max-width: $normal-container-width) {
+    &:not(.quiz-active) {
+      border-left: 0px;
+      border-right: 0px;
+      border-radius: 0px;
+    }
+  }
+
+  @media (max-width: $quiz-container-width) {
+    &.quiz-active {
+      border-left: 0px;
+      border-right: 0px;
+      border-radius: 0px;
+    }
+  }
+}

@@ -4,13 +4,7 @@ import { connect } from "react-redux";
 
 import { STUDY_PACK_LOOKUP } from "../../../../data/studyPacks";
 import { StudyPack } from "../../../interfaces";
-import Localization, {
-  CreditsPiece,
-  VARIABLE_ALEC_DEITLOFF,
-  VARIABLE_FAVICON_CREDIT_LINK,
-  VARIABLE_ICON_CREDIT_LINK,
-  VARIABLE_SILK_ICONS_CREDIT_LINK
-} from "../../../localization";
+import Localization from "../../../localization";
 import withQuizManager, { InjectedProps } from "../../../quiz/withQuizManager";
 import { State } from "../../../redux";
 import { setEnabledPacks } from "../../../redux/actions";
@@ -90,11 +84,7 @@ class PreparePage extends React.PureComponent<ComponentProps, ComponentState> {
           </button>
         </div>
         <CounterPreview localization={localization} packs={enabledPacks} />
-
         <div className="flex" />
-        <div className="credits">
-          {localization.credits.map(this.renderCredit)}
-        </div>
         <TutorialModal
           isOpen={showingTutorial}
           localization={localization}
@@ -103,54 +93,6 @@ class PreparePage extends React.PureComponent<ComponentProps, ComponentState> {
       </div>
     );
   }
-
-  private renderCredit = (piece: CreditsPiece) => {
-    switch (piece) {
-      case VARIABLE_ALEC_DEITLOFF:
-        return (
-          <a
-            key={VARIABLE_ALEC_DEITLOFF}
-            href="http://alec.deitloff.com"
-            target="_blank"
-          >
-            {this.props.localization.alecDeitloff}
-          </a>
-        );
-      case VARIABLE_ICON_CREDIT_LINK:
-        return (
-          <React.Fragment key={VARIABLE_ICON_CREDIT_LINK}>
-            <a
-              href="https://www.iconfinder.com/iconsets/core-ui-outlined"
-              target="_blank"
-            >
-              Core - UI - Outlined
-            </a>
-          </React.Fragment>
-        );
-      case VARIABLE_FAVICON_CREDIT_LINK:
-        return (
-          <a
-            key={VARIABLE_FAVICON_CREDIT_LINK}
-            href="https://www.flaticon.com/packs/chinese-new-year-12"
-            target="_blank"
-          >
-            Freepik
-          </a>
-        );
-      case VARIABLE_SILK_ICONS_CREDIT_LINK:
-        return (
-          <a
-            key={VARIABLE_SILK_ICONS_CREDIT_LINK}
-            href="http://www.famfamfam.com/lab/icons/silk/"
-            target="_blank"
-          >
-            Silk
-          </a>
-        );
-      default:
-        return piece;
-    }
-  };
 
   private showTutorialModal = () => this.setState({ showingTutorial: true });
   private hideTutorialModal = () => this.setState({ showingTutorial: false });

@@ -9,3 +9,7 @@ export function getLocalization(state: State): Localization {
       return ENGLISH;
   }
 }
+
+export function getIsQuizActive(state: State): boolean {
+  return state.quizState !== "not-in-quiz";
+}

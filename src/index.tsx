@@ -6,12 +6,13 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
 
-import App from "./App";
 import QuizManagerContext from "./quiz/context";
 import QuizManager from "./quiz/QuizManager";
 import { createRedux } from "./redux/store";
+import Container from "./ui/Container";
 
 import "meyer-reset-scss/reset.scss";
+import "./index.scss";
 
 ReactGA.initialize(CONFIG_GOOGLE_ANALYTICS_TRACKING_ID, {
   gaOptions: {
@@ -29,7 +30,7 @@ ReactDOM.render(
     <PersistGate loading={null} persistor={redux.persistor}>
       <BrowserRouter>
         <QuizManagerContext.Provider value={quizManager}>
-          <App />
+          <Container />
         </QuizManagerContext.Provider>
       </BrowserRouter>
     </PersistGate>

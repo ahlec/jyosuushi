@@ -1,8 +1,6 @@
 @import "palette.scss";
 
 $font-family: "Ubuntu", Meiryo, sans-serif;
-$intro-app-width: 800px;
-$quiz-app-width: 1200px;
 
 html,
 body {
@@ -18,42 +16,11 @@ html {
 body {
   overflow: auto;
   background: url("diag.png");
+  font-family: $font-family;
 }
 
 #root {
   height: 100%;
-}
-
-.App {
-  font-family: $font-family;
-  position: relative;
-  min-height: 100%;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  max-width: $intro-app-width;
-  transition: max-width 0.25s ease-in;
-  margin: auto;
-  overflow: hidden;
-  border-left: 1px solid $app-outline;
-  border-right: 1px solid $app-outline;
-  color: $black-darkest;
-
-  &.quiz-active {
-    max-width: $quiz-app-width;
-  }
-
-  @media (max-width: $intro-app-width) {
-    &:not(.quiz-active) {
-      border: 0px;
-    }
-  }
-
-  @media (max-width: $quiz-app-width) {
-    &.quiz-active {
-      border: 0px;
-    }
-  }
 }
 
 .ReactModalPortal {

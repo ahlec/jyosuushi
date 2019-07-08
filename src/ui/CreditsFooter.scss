@@ -1,0 +1,18 @@
+@import "../palette.scss";
+
+.CreditsFooter {
+  text-align: center;
+  font-size: 12px;
+  margin: 15px 0px;
+
+  a,
+  a:visited {
+    color: $green-darkest;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+    color: $green-dark;
+  }
+}

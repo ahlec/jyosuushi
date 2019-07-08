@@ -1,0 +1,14 @@
+@import "_constants";
+
+.Container {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  max-width: $normal-container-width;
+  margin: auto;
+  transition: max-width 0.25s ease-in;
+
+  &.quiz-active {
+    max-width: $quiz-container-width;
+  }
+}

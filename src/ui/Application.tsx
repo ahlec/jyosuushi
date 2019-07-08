@@ -9,13 +9,14 @@ import {
   withRouter
 } from "react-router-dom";
 
-import { State } from "./redux";
+import { State } from "../redux";
+import { getIsQuizActive } from "../redux/selectors";
 
-import Header from "./ui/Header";
-import MainScreen from "./ui/main-screen/MainScreen";
-import QuizPage from "./ui/quiz-page";
+import Header from "./Header";
+import MainScreen from "./main-screen/MainScreen";
+import QuizPage from "./quiz-page";
 
-import "./App.scss";
+import "./Application.scss";
 
 const QUIZ_SCREEN_PATH = "/quiz";
 
@@ -25,7 +26,7 @@ interface ReduxProps {
 
 function mapStateToProps(state: State): ReduxProps {
   return {
-    isQuizActive: state.quizState !== "not-in-quiz"
+    isQuizActive: getIsQuizActive(state)
   };
 }
 
@@ -35,7 +36,7 @@ interface ComponentState {
 
 type ComponentProps = ReduxProps & RouteComponentProps;
 
-class App extends React.PureComponent<ComponentProps, ComponentState> {
+class Application extends React.PureComponent<ComponentProps, ComponentState> {
   public state: ComponentState = {
     isModalOpen: false
   };
@@ -44,7 +45,7 @@ class App extends React.PureComponent<ComponentProps, ComponentState> {
     const { isQuizActive } = this.props;
 
     return (
-      <div className={classnames("App", isQuizActive && "quiz-active")}>
+      <div className={classnames("Application", isQuizActive && "quiz-active")}>
         <Header
           isQuizActive={isQuizActive}
           onModalOpened={this.onHeaderModalOpened}
@@ -86,4 +87,4 @@ class App extends React.PureComponent<ComponentProps, ComponentState> {
     this.setState({ isModalOpen });
 }
 
-export default connect(mapStateToProps)(withRouter(App));
+export default connect(mapStateToProps)(withRouter(Application));
