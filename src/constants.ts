@@ -20,5 +20,9 @@ export const AMOUNT_RANGES: {
   [AmountRange.Large]: {
     max: 100,
     min: 1
+  },
+  [AmountRange.Giant]: {
+    max: 1000,
+    min: 1
   }
 };

@@ -2,9 +2,10 @@ import { Counter, PendingQuestion, Question } from "../interfaces";
 
 export type LocalizationLanguage = "english";
 export enum AmountRange {
-  Small,
-  Medium,
-  Large
+  Small = "small",
+  Medium = "medium",
+  Large = "large",
+  Giant = "giant"
 }
 
 export interface Settings {

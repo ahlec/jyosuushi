@@ -26,6 +26,7 @@ export default interface Localization {
   amountRangeSmall: string;
   amountRangeMedium: string;
   amountRangeLarge: string;
+  amountRangeGiant: string;
   andSoForth: string;
   beta: string;
   buttonIgnoreAnswer: string;

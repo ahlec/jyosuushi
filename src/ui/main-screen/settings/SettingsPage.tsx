@@ -53,6 +53,13 @@ const AMOUNT_RANGE_CHOICES = memoize(
         }`,
         title: localization.amountRangeLarge,
         value: AmountRange.Large
+      },
+      {
+        subtext: `${AMOUNT_RANGES[AmountRange.Giant].min}–${
+          AMOUNT_RANGES[AmountRange.Giant].max
+        }`,
+        title: localization.amountRangeGiant,
+        value: AmountRange.Giant
       }
     ];
 

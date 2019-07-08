@@ -6,6 +6,7 @@
 //   - PendingQuestion and Question replace InterestRegion with array of numbers
 //   - Updated a number of early counters to an appropriate counter ID
 //   - Removed the `items` state
+//   - Changed AmountRange to be string-backed instead of number-backed
 
 import { range } from "lodash";
 
@@ -17,6 +18,12 @@ const CONVERTED_COUNTER_IDS: { [oldCounterId: string]: string } = {
   "people-mei": "名",
   "people-nin": "人"
 };
+
+const AMOUNT_RANGE_STRINGS: ReadonlyArray<string> = [
+  "small",
+  "medium",
+  "large"
+];
 
 function convertCounterId(counterId: string) {
   return CONVERTED_COUNTER_IDS[counterId] || counterId;
@@ -87,6 +94,7 @@ export default function migrateV1(state: any): any {
     },
     settings: {
       ...state.settings,
+      amountRange: AMOUNT_RANGE_STRINGS[state.settings.amountRange],
       infiniteMode: false
     }
   };
