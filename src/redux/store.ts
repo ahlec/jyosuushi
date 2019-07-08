@@ -4,7 +4,7 @@ import {
   Dispatch as ReduxDispatch,
   Store as ReduxStore
 } from "redux";
-import { composeWithDevTools } from "redux-devtools-extension/developmentOnly";
+import { composeWithDevTools } from "redux-devtools-extension/logOnlyInProduction";
 import {
   createMigrate,
   Persistor,
