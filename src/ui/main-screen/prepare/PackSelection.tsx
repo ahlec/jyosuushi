@@ -9,7 +9,7 @@ import Localization from "../../../localization";
 
 import { getStudyPackLink } from "../explore/pathing";
 
-import CheckIcon from "./check.svg";
+import CheckIcon from "../check.svg";
 
 import "./PackSelection.scss";
 

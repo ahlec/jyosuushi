@@ -1,6 +1,9 @@
 import classnames from "classnames";
 import * as React from "react";
 
+import CheckIcon from "../check.svg";
+import CircleIcon from "../circle.svg";
+
 import "./Checkbox.scss";
 
 interface ComponentProps {
@@ -17,7 +20,11 @@ export default class Checkbox extends React.PureComponent<ComponentProps> {
         className={classnames("Checkbox", checked && "checked")}
         onClick={this.onClick}
       >
-        <div className="box" />
+        {checked ? (
+          <CheckIcon className="icon" />
+        ) : (
+          <CircleIcon className="icon" />
+        )}
         <div className="label">{label}</div>
       </div>
     );
