@@ -7,7 +7,7 @@ import { Dispatch } from "../../../redux/store";
 
 import Localization from "../../../localization";
 
-import Markdown from "../../Markdown";
+import Markdown from "./Markdown";
 
 import CHANGELOG from "../../../../CHANGELOG.md";
 
