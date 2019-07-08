@@ -75,6 +75,20 @@ export function restartQuiz(
   };
 }
 
+export interface ActionReplenishInfiniteQuiz {
+  type: "replenish-infinite-quiz";
+  questions: ReadonlyArray<PendingQuestion>;
+}
+
+export function replenishInfiniteQuiz(
+  questions: ReadonlyArray<PendingQuestion>
+): ActionReplenishInfiniteQuiz {
+  return {
+    questions,
+    type: "replenish-infinite-quiz"
+  };
+}
+
 export interface ActionSubmitCorrectAnswer {
   type: "submit-correct-answer";
   providedAnswer: string;

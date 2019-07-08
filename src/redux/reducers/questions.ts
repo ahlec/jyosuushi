@@ -6,6 +6,7 @@ import { conjugateCounter, getDistinctCounters } from "../../utils";
 import {
   ActionIgnoreLastAnswer,
   ActionNextQuestion,
+  ActionReplenishInfiniteQuiz,
   ActionRestartQuiz,
   ActionSetEnabledPacks,
   ActionStartQuiz
@@ -51,6 +52,7 @@ function makeQuestion(
 type ReducerAction =
   | ActionSetEnabledPacks
   | ActionStartQuiz
+  | ActionReplenishInfiniteQuiz
   | ActionRestartQuiz
   | ActionNextQuestion
   | ActionIgnoreLastAnswer;
@@ -91,6 +93,19 @@ export default function questionsReducer(
         currentQuestion: makeQuestion(first, state.enabledCounters),
         enabledCounters: state.enabledCounters,
         queue: rest
+      };
+    }
+    case "replenish-infinite-quiz": {
+      let queue: ReadonlyArray<PendingQuestion>;
+      if (state.queue.length) {
+        queue = [...state.queue, ...action.questions];
+      } else {
+        queue = action.questions;
+      }
+
+      return {
+        ...state,
+        queue
       };
     }
     case "next-question": {

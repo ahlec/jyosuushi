@@ -5,6 +5,7 @@ import { AmountRange } from "../redux";
 import {
   endQuiz,
   nextQuestion,
+  replenishInfiniteQuiz,
   restartQuiz,
   startQuiz
 } from "../redux/actions";
@@ -45,14 +46,15 @@ export default class QuizManager {
     }
 
     const questions = makeQuiz(studyPacks, this.amountRange);
-    this.store.dispatch(startQuiz(questions, state.settings.infiniteMode));
+    const isInfinite = state.settings.infiniteMode;
+    this.store.dispatch(startQuiz(questions, isInfinite));
 
     ReactGA.event({
       action: "New Quiz Began",
       category: GOOGLE_ANALYTICS_CATEGORY,
-      label: `[${studyPacks
-        .map(({ packId }) => packId)
-        .join(", ")}] Questions: ${questions.length}`
+      label: `[${studyPacks.map(({ packId }) => packId).join(", ")}] ${
+        isInfinite ? "infinite mode" : `Questions: ${questions.length}`
+      }`
     });
   }
 
@@ -77,13 +79,14 @@ export default class QuizManager {
     const state = this.store.getState();
     const packs = state.enabledPacks.map(packId => STUDY_PACK_LOOKUP[packId]);
     const questions = makeQuiz(packs, this.amountRange);
+    const isInfinite = state.settings.infiniteMode;
     this.store.dispatch(restartQuiz(questions));
 
     ReactGA.event({
       action: "Quiz Restarted",
       category: GOOGLE_ANALYTICS_CATEGORY,
-      label: `[${packs.map(({ packId }) => packId).join(", ")}] Questions: ${
-        questions.length
+      label: `[${packs.map(({ packId }) => packId).join(", ")}] ${
+        isInfinite ? "infinite mode" : `Questions: ${questions.length}`
       }`
     });
   }
@@ -91,6 +94,13 @@ export default class QuizManager {
   public nextQuestion() {
     if (!this.hasNextQuestion) {
       throw new Error("No more questions in this quiz");
+    }
+
+    const state = this.store.getState();
+    if (state.quizState.isInfinite && !state.questions.queue.length) {
+      const packs = state.enabledPacks.map(packId => STUDY_PACK_LOOKUP[packId]);
+      const questions = makeQuiz(packs, this.amountRange);
+      this.store.dispatch(replenishInfiniteQuiz(questions));
     }
 
     this.store.dispatch(nextQuestion());
