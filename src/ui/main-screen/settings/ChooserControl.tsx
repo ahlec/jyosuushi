@@ -6,6 +6,7 @@ import "./ChooserControl.scss";
 
 export interface Choice<TValue> {
   title: string;
+  subtext?: string;
   value: TValue;
 }
 
@@ -46,6 +47,7 @@ export default class ChooserControl<TValue> extends React.PureComponent<
         onClick={this.onChoiceClicked(choice.value)}
       >
         {choice.title}
+        {choice.subtext && <div className="subtext">{choice.subtext}</div>}
       </div>
     );
   };

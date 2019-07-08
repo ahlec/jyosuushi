@@ -6,7 +6,7 @@ import { setAmountRange } from "../../../redux/actions";
 import { getLocalization } from "../../../redux/selectors";
 import { Dispatch } from "../../../redux/store";
 
-// import { AMOUNT_RANGES } from "../../../constants";
+import { AMOUNT_RANGES } from "../../../constants";
 import Localization from "../../../localization";
 
 import ChooserControl, { Choice } from "./ChooserControl";
@@ -31,14 +31,23 @@ const AMOUNT_RANGE_CHOICES = memoize(
   (localization: Localization): ReadonlyArray<Choice<AmountRange>> => {
     const choices: Array<Choice<AmountRange>> = [
       {
+        subtext: `${AMOUNT_RANGES[AmountRange.Small].min}–${
+          AMOUNT_RANGES[AmountRange.Small].max
+        }`,
         title: localization.amountRangeSmall,
         value: AmountRange.Small
       },
       {
+        subtext: `${AMOUNT_RANGES[AmountRange.Medium].min}–${
+          AMOUNT_RANGES[AmountRange.Medium].max
+        }`,
         title: localization.amountRangeMedium,
         value: AmountRange.Medium
       },
       {
+        subtext: `${AMOUNT_RANGES[AmountRange.Large].min}–${
+          AMOUNT_RANGES[AmountRange.Large].max
+        }`,
         title: localization.amountRangeLarge,
         value: AmountRange.Large
       }

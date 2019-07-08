@@ -12,9 +12,9 @@ import Localization, {
 
 const ENGLISH: Localization = {
   alecDeitloff: "Alec Deitloff",
-  amountRangeLarge: "Large (TBD)",
-  amountRangeMedium: "Medium (TBD)",
-  amountRangeSmall: "Small (TBD)",
+  amountRangeLarge: "Massive",
+  amountRangeMedium: "Average",
+  amountRangeSmall: "Tiny",
   andSoForth: "... and so forth",
   beta: "Beta",
   buttonIgnoreAnswer: "Ignore Answer",
