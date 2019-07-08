@@ -5,6 +5,7 @@
 //     - Added new value `isInfinite`
 //   - PendingQuestion and Question replace InterestRegion with array of numbers
 //   - Updated a number of early counters to an appropriate counter ID
+//   - Removed the `items` state
 
 import { range } from "lodash";
 
@@ -59,8 +60,9 @@ function updateMissedCounterTallies(tallies: any): any {
 }
 
 export default function migrateV1(state: any): any {
+  const { items, ...rest } = state;
   return {
-    ...state,
+    ...rest,
     counters: updateCountersState(state.counters),
     questions: {
       asked: state.questions.asked.map(updateQuestionLikeObject),

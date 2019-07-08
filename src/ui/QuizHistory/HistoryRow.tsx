@@ -1,46 +1,32 @@
 import classnames from "classnames";
 import * as React from "react";
-import { connect } from "react-redux";
 
-import { Item, Question } from "../../interfaces";
+import { ITEMS_LOOKUP } from "../../../data/items";
+
+import { Question } from "../../interfaces";
 import Localization from "../../localization";
-import { State, UserAnswer } from "../../redux";
+import { UserAnswer } from "../../redux";
 
 import JudgmentBubble from "../JudgmentBubble";
 
 import "./HistoryRow.scss";
 
-interface ProvidedProps {
+interface ComponentProps {
   localization: Localization;
   question: Question;
   questionNo: number;
   usersAnswer: UserAnswer;
 }
 
-interface ReduxProps {
-  item: Item;
-}
-
-function mapStateToProps(
-  state: State,
-  { question }: ProvidedProps
-): ReduxProps {
-  return {
-    item: state.items[question.itemId]
-  };
-}
-
-type ComponentProps = ProvidedProps & ReduxProps;
-
-class HistoryRow extends React.PureComponent<ComponentProps> {
+export default class HistoryRow extends React.PureComponent<ComponentProps> {
   public render() {
     const {
-      item,
       localization,
-      question: { amount },
+      question: { amount, itemId },
       questionNo,
       usersAnswer: { input, judgment }
     } = this.props;
+    const item = ITEMS_LOOKUP[itemId];
     const itemName =
       amount === 1
         ? localization.itemSingular(item)
@@ -69,5 +55,3 @@ class HistoryRow extends React.PureComponent<ComponentProps> {
     );
   }
 }
-
-export default connect(mapStateToProps)(HistoryRow);

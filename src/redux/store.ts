@@ -16,7 +16,6 @@ import { State } from "./index";
 
 import countersReducer from "./reducers/counters";
 import enabledPacksReducer from "./reducers/enabledPacks";
-import itemsReducer from "./reducers/items";
 import questionsReducer from "./reducers/questions";
 import quizStateReducer from "./reducers/quizState";
 import scorecardReducer from "./reducers/scorecard";
@@ -41,7 +40,6 @@ export function createRedux(): Redux {
   const reducers = combineReducers<State>({
     counters: countersReducer,
     enabledPacks: enabledPacksReducer,
-    items: itemsReducer,
     questions: questionsReducer,
     quizState: quizStateReducer,
     scorecard: scorecardReducer,

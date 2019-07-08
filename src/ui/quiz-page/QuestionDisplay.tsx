@@ -1,35 +1,20 @@
 import * as React from "react";
-import { connect } from "react-redux";
 
-import { Item, Question } from "../../interfaces";
+import { ITEMS_LOOKUP } from "../../../data/items";
+import { Question } from "../../interfaces";
 import Localization from "../../localization";
-import { State } from "../../redux";
 
 import "./QuestionDisplay.scss";
 
-interface ProvidedProps {
+interface ComponentProps {
   currentQuestion: Question;
   localization: Localization;
 }
 
-interface ReduxProps {
-  item: Item;
-}
-
-function mapStateToProps(
-  state: State,
-  { currentQuestion }: ProvidedProps
-): ReduxProps {
-  return {
-    item: state.items[currentQuestion.itemId]
-  };
-}
-
-type ComponentProps = ProvidedProps & ReduxProps;
-
-class QuestionPanel extends React.PureComponent<ComponentProps> {
+export default class QuestionPanel extends React.PureComponent<ComponentProps> {
   public render() {
-    const { item, localization, currentQuestion } = this.props;
+    const { localization, currentQuestion } = this.props;
+    const item = ITEMS_LOOKUP[currentQuestion.itemId];
     const name =
       currentQuestion.amount === 1
         ? localization.itemSingular(item)
@@ -41,5 +26,3 @@ class QuestionPanel extends React.PureComponent<ComponentProps> {
     );
   }
 }
-
-export default connect(mapStateToProps)(QuestionPanel);

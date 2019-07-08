@@ -1,4 +1,4 @@
-import { Counter, Item, PendingQuestion, Question } from "../interfaces";
+import { Counter, PendingQuestion, Question } from "../interfaces";
 
 export type LocalizationLanguage = "english";
 export enum AmountRange {
@@ -20,10 +20,6 @@ export interface Scorecard {
   numIncorrectAnswers: number;
   numSkippedQuestions: number;
   numIgnoredAnswers: number;
-}
-
-export interface ItemsState {
-  [itemId: string]: Item;
 }
 
 export interface QuestionsState {
@@ -70,7 +66,6 @@ export interface User {
 export interface State {
   counters: CountersState;
   enabledPacks: ReadonlyArray<string>;
-  items: ItemsState;
   questions: QuestionsState;
   quizState: QuizState;
   scorecard: Scorecard;
