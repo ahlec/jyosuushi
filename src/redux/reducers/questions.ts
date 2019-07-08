@@ -2,7 +2,11 @@ import { memoize, random } from "lodash";
 import { COUNTERS_LOOKUP } from "../../../data/counters";
 import { ITEMS_LOOKUP } from "../../../data/items";
 import { Answer, PendingQuestion, Question } from "../../interfaces";
-import { conjugateCounter, getDistinctCounters } from "../../utils";
+import {
+  conjugateCounter,
+  getDistinctCounters,
+  randomFromArray
+} from "../../utils";
 import {
   ActionIgnoreLastAnswer,
   ActionNextQuestion,
@@ -18,13 +22,10 @@ const getEnabledCountersSet = memoize(
 );
 
 function makeQuestion(
-  { interestRegion, itemId }: PendingQuestion,
+  { itemId, possibleAmounts }: PendingQuestion,
   enabledCounters: ReadonlyArray<string>
 ): Question {
-  const amount = random(
-    interestRegion.startInclusive,
-    interestRegion.endInclusive
-  );
+  const amount = randomFromArray(possibleAmounts);
 
   const enabledCountersSet = getEnabledCountersSet(enabledCounters);
   const counters = ITEMS_LOOKUP[itemId].counters
@@ -43,8 +44,8 @@ function makeQuestion(
 
   return {
     amount,
-    interestRegion,
     itemId,
+    possibleAmounts,
     validAnswers
   };
 }
@@ -119,8 +120,8 @@ export default function questionsReducer(
     }
     case "ignore-last-answer": {
       const pending: PendingQuestion = {
-        interestRegion: state.currentQuestion!.interestRegion,
-        itemId: state.currentQuestion!.itemId
+        itemId: state.currentQuestion!.itemId,
+        possibleAmounts: state.currentQuestion!.possibleAmounts
       };
       const insertIndex = random(0, state.queue.length - 1);
       const queue = [...state.queue];

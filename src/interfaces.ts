@@ -1,10 +1,5 @@
 import { NumericConjugationOptions } from "./japanese/interfaces";
 
-export interface InterestRegion {
-  startInclusive: number;
-  endInclusive: number;
-}
-
 export interface Counter {
   counterId: string;
   englishName: string;
@@ -30,8 +25,8 @@ export interface StudyPack {
 }
 
 export interface PendingQuestion {
-  interestRegion: InterestRegion;
   itemId: string;
+  possibleAmounts: ReadonlyArray<number>;
 }
 
 export enum ConjugationCategory {
@@ -49,7 +44,7 @@ export interface Answer {
 
 export interface Question {
   amount: number;
-  interestRegion: InterestRegion;
   itemId: string;
+  possibleAmounts: ReadonlyArray<number>;
   validAnswers: ReadonlyArray<Answer>;
 }

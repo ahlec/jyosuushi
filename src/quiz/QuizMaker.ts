@@ -2,13 +2,7 @@ import { memoize, random, shuffle } from "lodash";
 
 import { ITEMS_FROM_COUNTER } from "../../data/items";
 import { AMOUNT_RANGES } from "../constants";
-import {
-  Counter,
-  InterestRegion,
-  Item,
-  PendingQuestion,
-  StudyPack
-} from "../interfaces";
+import { Counter, Item, PendingQuestion, StudyPack } from "../interfaces";
 import { AmountRange } from "../redux";
 import {
   getDistinctCounters,
@@ -23,7 +17,7 @@ const MAX_NUMBER_QUESTIONS_PER_COUNTER = 10;
 interface ItemEntry {
   item: Item;
   numRemaining: number;
-  usedInterestRegions: Set<string>;
+  usedAmountRegions: Set<string>;
 }
 
 interface QuizItems {
@@ -61,59 +55,43 @@ function planOutItems(items: ReadonlyArray<Item>): QuizItems {
     quizItems[item.itemId] = {
       item,
       numRemaining: Math.min(maxPossibleItems, MAX_NUMBER_QUESTIONS_PER_ITEM),
-      usedInterestRegions: new Set()
+      usedAmountRegions: new Set()
     };
   }
 
   return quizItems;
 }
 
-function getInterestRegionId({
-  endInclusive,
-  startInclusive
-}: InterestRegion): string {
-  return `${startInclusive}-${endInclusive}`;
-}
-
-const DOUBLE_DIGITS_INTEREST_REGION_RANGE = 10;
-const getInterestRegions = memoize(
-  (counter: Counter, max: number): ReadonlyArray<InterestRegion> => {
-    const regions: InterestRegion[] = [];
+// "Amount regions" are what will become PendingQuestion.possibleAmounts
+// "Interesting" amounts will be a region themselves, everything else is "boring"
+const BORING_AMOUNTS_REGION_SIZE = 10;
+const getAmountRegions = memoize(
+  (counter: Counter, max: number): ReadonlyArray<ReadonlyArray<number>> => {
+    const regions: Array<ReadonlyArray<number>> = [];
 
     // The first ten are interesting enough we'll want to always just focus on them.
     for (let amount = 1; amount <= 10; ++amount) {
-      regions.push({ endInclusive: amount, startInclusive: amount });
+      regions.push([amount]);
     }
 
     // Chunk regions based on if there's anything interesting there. If there is,
     // give it a region of its own. If not, group it together with surrounding numbers.
-    let regionStart = 11;
-    for (let amount = regionStart; amount <= max; amount++) {
+    let boringAmounts: number[] = [];
+    for (let amount = 11; amount <= max; amount++) {
       const isRegular = isConjugationRegular(amount, counter);
       if (!isRegular) {
-        if (regionStart < amount) {
-          regions.push({
-            endInclusive: amount - 1,
-            startInclusive: regionStart
-          });
+        regions.push([amount]);
+      } else {
+        boringAmounts.push(amount);
+        if (boringAmounts.length >= BORING_AMOUNTS_REGION_SIZE) {
+          regions.push(boringAmounts);
+          boringAmounts = [];
         }
-
-        regions.push({ endInclusive: amount, startInclusive: amount });
-        regionStart = amount + 1;
-      } else if (amount - regionStart >= DOUBLE_DIGITS_INTEREST_REGION_RANGE) {
-        regions.push({
-          endInclusive: amount,
-          startInclusive: regionStart
-        });
-        regionStart = amount + 1;
       }
     }
 
-    if (regions[regions.length - 1].endInclusive !== max && regionStart < max) {
-      regions.push({
-        endInclusive: max,
-        startInclusive: regionStart
-      });
+    if (boringAmounts.length) {
+      regions.push(boringAmounts);
     }
 
     return regions;
@@ -130,8 +108,8 @@ function makeQuestionsForCounter(
   const validItems = ITEMS_FROM_COUNTER[counter.counterId].filter(
     ({ itemId }) => quizItems[itemId].numRemaining > 0
   );
-  const interestRegions: InterestRegion[] = [
-    ...getInterestRegions(counter, AMOUNT_RANGES[amountRange].max)
+  const amountRegions = [
+    ...getAmountRegions(counter, AMOUNT_RANGES[amountRange].max)
   ];
 
   const numCounterQuestions = random(
@@ -140,20 +118,20 @@ function makeQuestionsForCounter(
   );
   while (questions.length < numCounterQuestions && validItems.length) {
     const item = randomFromArray(validItems);
-    let interestRegion: InterestRegion;
-    let interestRegionId: string;
-    // TODO: Provide check on interest region to make sure doesn't exceed item-specific max quantity.
+    let possibleAmounts: ReadonlyArray<number>;
+    let possibleAmountsId: string;
+    // TODO: Provide check on amount region to make sure doesn't exceed item-specific max quantity.
     do {
-      interestRegion = randomFromArray(interestRegions);
-      interestRegionId = getInterestRegionId(interestRegion);
-    } while (quizItems[item.itemId].usedInterestRegions.has(interestRegionId));
+      possibleAmounts = randomFromArray(amountRegions);
+      possibleAmountsId = possibleAmounts.join(",");
+    } while (quizItems[item.itemId].usedAmountRegions.has(possibleAmountsId));
 
     questions.push({
-      interestRegion,
-      itemId: item.itemId
+      itemId: item.itemId,
+      possibleAmounts
     });
 
-    quizItems[item.itemId].usedInterestRegions.add(interestRegionId);
+    quizItems[item.itemId].usedAmountRegions.add(possibleAmountsId);
     quizItems[item.itemId].numRemaining--;
     if (quizItems[item.itemId].numRemaining <= 0) {
       const index = validItems.indexOf(item);
