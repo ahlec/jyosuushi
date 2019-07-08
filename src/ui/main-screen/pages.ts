@@ -11,6 +11,7 @@ import PreparePageIcon from "./prepare/prepare-icon.svg";
 import PreparePage from "./prepare/PreparePage";
 import ReleaseNotesPageIcon from "./release-notes/release-notes-icon.svg";
 import ReleaseNotesPage from "./release-notes/ReleaseNotesPage";
+import SettingsPageIcon from "./settings/settings-icon.svg";
 import SettingsPage from "./settings/SettingsPage";
 
 export interface PageDefinition {
@@ -37,7 +38,7 @@ const EXPLORE_PAGE: PageDefinition = {
 const SETTINGS_PAGE: PageDefinition = {
   component: SettingsPage,
   getName: localization => localization.pageSettings,
-  icon: ReleaseNotesPageIcon,
+  icon: SettingsPageIcon,
   path: "/settings"
 };
 

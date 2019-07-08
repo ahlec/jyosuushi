@@ -113,7 +113,7 @@ const ENGLISH: Localization = {
   settingAmountRangeDescription: "Adjust the range of the numbers generated.",
   settingInfiniteMode: "Infinite Mode",
   settingInfiniteModeDescription:
-    "Decide whether the quiz has a finite number of questions, or if it goes on forever.",
+    "Choose whether the quiz has a finite number of questions, or if it goes on forever.",
   siteTagline: "Let's review Japanese counters!",
   skippedQuestionResult:
     "Alright! You don't need to worry about this question!",
