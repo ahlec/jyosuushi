@@ -54,11 +54,11 @@ class QuizPage extends React.PureComponent<ComponentProps> {
       quizManager,
       quizState
     } = this.props;
-    if (quizState === "not-in-quiz") {
+    if (quizState.state === "not-in-quiz") {
       return null;
     }
 
-    if (quizState === "quiz-wrapup") {
+    if (quizState.state === "quiz-wrapup") {
       return (
         <QuizWrapup localization={localization} quizManager={quizManager} />
       );
@@ -72,10 +72,10 @@ class QuizPage extends React.PureComponent<ComponentProps> {
         />
         <AnswerInput
           currentQuestion={currentQuestion}
-          enabled={enabled && quizState === "waiting-for-answer"}
+          enabled={enabled && quizState.state === "waiting-for-answer"}
           localization={localization}
         />
-        {quizState === "reviewing-answer" && (
+        {quizState.state === "reviewing-answer" && (
           <ResultsView
             currentQuestion={currentQuestion}
             localization={localization}
@@ -107,7 +107,7 @@ class QuizPage extends React.PureComponent<ComponentProps> {
 
   private onKeyDown = (event: KeyboardEvent) => {
     const { quizState } = this.props;
-    if (quizState !== "reviewing-answer") {
+    if (quizState.state !== "reviewing-answer") {
       return;
     }
 

@@ -46,13 +46,16 @@ export function setEnabledPacks(
 
 export interface ActionStartQuiz {
   type: "start-quiz";
+  isInfinite: boolean;
   questions: ReadonlyArray<PendingQuestion>;
 }
 
 export function startQuiz(
-  questions: ReadonlyArray<PendingQuestion>
+  questions: ReadonlyArray<PendingQuestion>,
+  isInfinite: boolean
 ): ActionStartQuiz {
   return {
+    isInfinite,
     questions,
     type: "start-quiz"
   };

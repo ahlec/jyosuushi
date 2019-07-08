@@ -11,5 +11,5 @@ export function getLocalization(state: State): Localization {
 }
 
 export function getIsQuizActive(state: State): boolean {
-  return state.quizState !== "not-in-quiz";
+  return state.quizState.state !== "not-in-quiz";
 }

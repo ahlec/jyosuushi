@@ -18,6 +18,14 @@ export default class QuizManager {
 
   public get hasNextQuestion(): boolean {
     const state = this.store.getState();
+    if (state.quizState.state === "not-in-quiz") {
+      return false;
+    }
+
+    if (state.quizState.isInfinite) {
+      return true;
+    }
+
     return !!state.questions.queue.length;
   }
 
@@ -37,7 +45,7 @@ export default class QuizManager {
     }
 
     const questions = makeQuiz(studyPacks, this.amountRange);
-    this.store.dispatch(startQuiz(questions));
+    this.store.dispatch(startQuiz(questions, state.settings.infiniteMode));
 
     ReactGA.event({
       action: "New Quiz Began",

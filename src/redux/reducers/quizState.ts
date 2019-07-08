@@ -22,24 +22,45 @@ type ReducerAction =
   | ActionRestartQuiz
   | ActionLeaveQuiz;
 
+const DEFAULT_STATE: QuizState = {
+  isInfinite: false,
+  state: "not-in-quiz"
+};
+
 export default function quizStateReducer(
-  state: QuizState | undefined = "not-in-quiz",
+  state: QuizState = DEFAULT_STATE,
   action: ReducerAction
 ): QuizState {
   switch (action.type) {
     case "start-quiz":
+      return {
+        isInfinite: action.isInfinite,
+        state: "waiting-for-answer"
+      };
     case "restart-quiz":
     case "next-question":
-      return "waiting-for-answer";
+      return {
+        ...state,
+        state: "waiting-for-answer"
+      };
     case "skip-question":
     case "submit-correct-answer":
     case "submit-incorrect-answer":
-      return "reviewing-answer";
+      return {
+        ...state,
+        state: "reviewing-answer"
+      };
     case "end-quiz":
-      return "quiz-wrapup";
+      return {
+        ...state,
+        state: "quiz-wrapup"
+      };
     case "set-enabled-packs":
     case "leave-quiz":
-      return "not-in-quiz";
+      return {
+        ...state,
+        state: "not-in-quiz"
+      };
     default:
       return state;
   }

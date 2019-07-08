@@ -53,11 +53,14 @@ export interface UserAnswer {
   judgment: UserAnswerJudgment;
 }
 
-export type QuizState =
-  | "not-in-quiz"
-  | "waiting-for-answer"
-  | "reviewing-answer"
-  | "quiz-wrapup";
+export interface QuizState {
+  isInfinite: boolean;
+  state:
+    | "not-in-quiz"
+    | "waiting-for-answer"
+    | "reviewing-answer"
+    | "quiz-wrapup";
+}
 
 export interface User {
   lastAccessedVersion: string | null;

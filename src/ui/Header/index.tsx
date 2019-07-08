@@ -41,7 +41,7 @@ interface ReduxProps {
 
 function mapStateToProps(state: State): ReduxProps {
   let hasAnsweredQuestion: boolean;
-  switch (state.quizState) {
+  switch (state.quizState.state) {
     case "reviewing-answer":
     case "quiz-wrapup": {
       hasAnsweredQuestion = true;
@@ -56,7 +56,7 @@ function mapStateToProps(state: State): ReduxProps {
   return {
     enabledPacks: state.enabledPacks,
     hasAnsweredQuestion,
-    isOnQuizWrapup: state.quizState === "quiz-wrapup",
+    isOnQuizWrapup: state.quizState.state === "quiz-wrapup",
     localization: getLocalization(state),
     scorecard: state.scorecard,
     totalNumberQuestions:

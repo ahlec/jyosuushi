@@ -21,7 +21,8 @@ interface ReduxProps {
 
 function mapStateToProps(state: State): ReduxProps {
   const includeCurrentQuestion =
-    state.quizState === "reviewing-answer" || state.quizState === "quiz-wrapup";
+    state.quizState.state === "reviewing-answer" ||
+    state.quizState.state === "quiz-wrapup";
   return {
     askedQuestions: state.questions.asked,
     currentQuestion: includeCurrentQuestion
