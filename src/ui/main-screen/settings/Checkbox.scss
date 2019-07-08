@@ -1,0 +1,48 @@
+@import "../../../palette.scss";
+
+$checkbox-height: 50px;
+$box-dimension: $checkbox-height - 20px;
+$horizontal-padding: 10px;
+
+.Checkbox {
+  border: 1px solid $green-dark;
+  background-color: $green-lightest;
+  border-radius: 6px;
+  width: 250px;
+  height: $checkbox-height;
+  margin: auto;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0px $horizontal-padding;
+
+  &:hover {
+    background-color: $green-light;
+  }
+
+  &.checked {
+    background-color: $green-dark;
+
+    &:hover {
+      background-color: $green-darkest;
+      border-color: $green-darkest;
+
+      .box {
+        border-color: $green-darkest;
+      }
+    }
+  }
+
+  .box {
+    background-color: white;
+    border: 1px solid $green-dark;
+    width: $box-dimension;
+    height: $box-dimension;
+    border-radius: 3px;
+    margin-right: $horizontal-padding;
+  }
+
+  .label {
+    flex: 1;
+  }
+}

@@ -74,6 +74,8 @@ export default interface Localization {
   resultTableStrangeLabel: string;
   settingAmountRange: string;
   settingAmountRangeDescription: string;
+  settingInfiniteMode: string;
+  settingInfiniteModeDescription: string;
   siteTagline: string;
   skippedQuestionResult: string;
   startQuiz: string;

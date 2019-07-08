@@ -18,6 +18,18 @@ export function setAmountRange(amountRange: AmountRange): ActionSetAmountRange {
   };
 }
 
+export interface ActionSetInfiniteMode {
+  type: "set-infinite-mode";
+  infiniteMode: boolean;
+}
+
+export function setInfiniteMode(infiniteMode: boolean): ActionSetInfiniteMode {
+  return {
+    infiniteMode,
+    type: "set-infinite-mode"
+  };
+}
+
 export interface ActionSetEnabledPacks {
   type: "set-enabled-packs";
   enabledPacks: ReadonlyArray<StudyPack>;

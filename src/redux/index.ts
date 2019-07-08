@@ -9,6 +9,7 @@ export enum AmountRange {
 
 export interface Settings {
   amountRange: AmountRange;
+  infiniteMode: boolean;
   localization: LocalizationLanguage;
 }
 

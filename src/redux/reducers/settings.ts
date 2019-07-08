@@ -1,13 +1,18 @@
 import {
   ActionSetAmountRange,
+  ActionSetInfiniteMode,
   ActionSetLocalizationLanguage
 } from "../actions";
 import { AmountRange, Settings } from "../index";
 
-type ReducerAction = ActionSetAmountRange | ActionSetLocalizationLanguage;
+type ReducerAction =
+  | ActionSetAmountRange
+  | ActionSetInfiniteMode
+  | ActionSetLocalizationLanguage;
 
 const DEFAULT_SETTINGS: Settings = {
   amountRange: AmountRange.Medium,
+  infiniteMode: false,
   localization: "english"
 };
 
@@ -16,16 +21,22 @@ export default function settingsReducer(
   action: ReducerAction
 ): Settings {
   switch (action.type) {
-    case "set-localization": {
-      return {
-        ...state,
-        localization: action.language
-      };
-    }
     case "set-amount-range": {
       return {
         ...state,
         amountRange: action.amountRange
+      };
+    }
+    case "set-infinite-mode": {
+      return {
+        ...state,
+        infiniteMode: action.infiniteMode
+      };
+    }
+    case "set-localization": {
+      return {
+        ...state,
+        localization: action.language
       };
     }
     default:

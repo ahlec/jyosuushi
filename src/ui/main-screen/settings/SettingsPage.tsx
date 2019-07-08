@@ -2,24 +2,27 @@ import { memoize } from "lodash";
 import * as React from "react";
 import { connect } from "react-redux";
 import { AmountRange, State } from "../../../redux";
-import { setAmountRange } from "../../../redux/actions";
+import { setAmountRange, setInfiniteMode } from "../../../redux/actions";
 import { getLocalization } from "../../../redux/selectors";
 import { Dispatch } from "../../../redux/store";
 
 import { AMOUNT_RANGES } from "../../../constants";
 import Localization from "../../../localization";
 
+import Checkbox from "./Checkbox";
 import ChooserControl, { Choice } from "./ChooserControl";
 
 import "./SettingsPage.scss";
 
 interface ReduxProps {
+  currentInfiniteMode: boolean;
   currentRange: AmountRange;
   localization: Localization;
 }
 
 function mapStateToProps(state: State): ReduxProps {
   return {
+    currentInfiniteMode: state.settings.infiniteMode,
     currentRange: state.settings.amountRange,
     localization: getLocalization(state)
   };
@@ -64,6 +67,7 @@ class SettingsPage extends React.PureComponent<ComponentProps> {
       <div className="SettingsPage">
         <h1>{localization.pageSettings}</h1>
         {this.renderAmountRangeSelector()}
+        {this.renderInfiniteModeSelector()}
       </div>
     );
   }
@@ -88,6 +92,28 @@ class SettingsPage extends React.PureComponent<ComponentProps> {
   private onCurrentRangeChanged = (amountRange: AmountRange) => {
     const { dispatch } = this.props;
     dispatch(setAmountRange(amountRange));
+  };
+
+  private renderInfiniteModeSelector() {
+    const { currentInfiniteMode, localization } = this.props;
+    return (
+      <div className="section">
+        <h3>{localization.settingInfiniteMode}</h3>
+        <div className="description">
+          {localization.settingInfiniteModeDescription}
+        </div>
+        <Checkbox
+          checked={currentInfiniteMode}
+          label={localization.settingInfiniteMode}
+          onChange={this.onInfiniteModeChanged}
+        />
+      </div>
+    );
+  }
+
+  private onInfiniteModeChanged = (infiniteMode: boolean) => {
+    const { dispatch } = this.props;
+    dispatch(setInfiniteMode(infiniteMode));
   };
 }
 
