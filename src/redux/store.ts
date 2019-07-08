@@ -25,6 +25,7 @@ import userReducer from "./reducers/user";
 import userAnswersReducer from "./reducers/userAnswers";
 
 import migrateV0 from "./migration/v0";
+import migrateV1 from "./migration/v1";
 
 type Action = any;
 
@@ -53,10 +54,11 @@ export function createRedux(): Redux {
       {
         key: "root",
         migrate: createMigrate({
-          0: migrateV0
+          0: migrateV0,
+          1: migrateV1
         }),
         storage,
-        version: 0
+        version: 1
       },
       reducers
     ),
