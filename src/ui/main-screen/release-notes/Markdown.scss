@@ -11,6 +11,11 @@
     margin-bottom: 16px;
     line-height: 1.5;
     list-style: disc;
+
+    ul,
+    ol {
+      margin-bottom: 0px;
+    }
   }
 
   strong {
