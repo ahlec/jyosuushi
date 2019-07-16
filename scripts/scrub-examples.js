@@ -5,6 +5,7 @@ const path = require("path");
 const request = require("request-promise-native");
 
 const CACHE_DIRECTORY = path.resolve(__dirname, "./scrubber_cache");
+const OUTPUT_DIRECTORY = path.resolve(__dirname, "./kazu");
 const URL_BASE = "https://www.benricho.org/kazu";
 const PAGES = [
   "a",
@@ -109,12 +110,26 @@ function parseRows(rows) {
     // though.
     const tds = row.querySelectorAll("td");
     if (tds.length === 2) {
+      if (
+        tds[1].firstChild.attributes &&
+        tds[1].firstChild.attributes.class === "betsukoumoku_link"
+      ) {
+        continue;
+      }
+
       parsed.push({
         kana: parsed[parsed.length - 1].kana,
         kanji: tds[0].innerHTML,
         counters: getCounters(tds[1].firstChild.rawText)
       });
     } else {
+      if (
+        tds[2].firstChild.attributes &&
+        tds[2].firstChild.attributes.class === "betsukoumoku_link"
+      ) {
+        continue;
+      }
+
       parsed.push({
         kana: tds[0].innerHTML,
         kanji: tds[1].innerHTML,
@@ -126,11 +141,22 @@ function parseRows(rows) {
   return parsed;
 }
 
+const ITEMS_BY_COUNTER = {};
+
 async function scrubPage(page) {
   const root = await getPageRoot(page);
   const rows = root.querySelectorAll("tr").filter(isValidTr);
   const data = parseRows(rows).filter(({ counters }) => !!counters.length);
-  console.log(`[${page}] data:`, data);
+  for (const { kana, kanji, counters } of data) {
+    for (let index = 0; index < counters.length; ++index) {
+      const counter = counters[index];
+      if (!ITEMS_BY_COUNTER[counter]) {
+        ITEMS_BY_COUNTER[counter] = [];
+      }
+
+      ITEMS_BY_COUNTER[counter].push({ kana, kanji, rank: index });
+    }
+  }
 }
 
 async function main() {
@@ -138,9 +164,28 @@ async function main() {
     fs.mkdirSync(CACHE_DIRECTORY);
   }
 
+  if (!fs.existsSync(OUTPUT_DIRECTORY)) {
+    fs.mkdirSync(OUTPUT_DIRECTORY);
+  }
+
   const scrubbers = PAGES.map(scrubPage);
   await Promise.all(scrubbers);
-  console.log("done");
+
+  for (const counter of Object.keys(ITEMS_BY_COUNTER)) {
+    const filename = path.resolve(OUTPUT_DIRECTORY, `./${counter}.json`);
+    fs.writeFileSync(
+      filename,
+      JSON.stringify(
+        {
+          counter,
+          numItems: ITEMS_BY_COUNTER[counter].length,
+          items: ITEMS_BY_COUNTER[counter]
+        },
+        null,
+        2
+      )
+    );
+  }
 }
 
 main();
