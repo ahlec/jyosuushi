@@ -1,3 +1,17 @@
+### v2.3.0
+
+New Features:
+
+- **New counters added.** It's slow but steady work. A number of new counters are now available!
+- **Added a settings page.** You can now start changing settings around how the site works!
+  - Control the range of amounts that will be generated for questions.
+  - Make the quiz last forever in endless mode!
+- **Further tweak amount generation.** Further work was done to make sure that the random amounts you're quizzed with will be better distributed so you get more variation, and you can focus more on interesting amounts rather than mundane.
+
+Developer Changes:
+
+- Added a script that's able to audit the database and detect points of interest.
+
 ### v2.2.0
 
 New Features:
