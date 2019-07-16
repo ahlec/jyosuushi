@@ -4,6 +4,23 @@
 
 import { Counter } from "../src/interfaces";
 
+export const COUNTER_ゲ_ム: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYoFor4: false,
+    allowsYonFor4: true
+  },
+  counterId: "ゲーム",
+  englishName: "games",
+  irregulars: {},
+  kana: "ゲーム",
+  kanji: "ゲーム"
+};
+
 export const COUNTER_ヶ国: Counter = {
   conjugationOptions: {
     allowsKuFor9: false,
@@ -517,6 +534,57 @@ export const COUNTER_色: Counter = {
   kanji: "色"
 };
 
+export const COUNTER_試合: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYoFor4: false,
+    allowsYonFor4: true
+  },
+  counterId: "試合",
+  englishName: "games",
+  irregulars: {},
+  kana: "しあい",
+  kanji: "試合"
+};
+
+export const COUNTER_語: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYoFor4: false,
+    allowsYonFor4: true
+  },
+  counterId: "語",
+  englishName: "words",
+  irregulars: {},
+  kana: "ご",
+  kanji: "語"
+};
+
+export const COUNTER_軒: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYoFor4: false,
+    allowsYonFor4: true
+  },
+  counterId: "軒",
+  englishName: "houses and buildings",
+  irregulars: {},
+  kana: "けん",
+  kanji: "軒"
+};
+
 export const COUNTER_週: Counter = {
   conjugationOptions: {
     allowsKuFor9: false,
@@ -571,6 +639,7 @@ export const COUNTER_頭: Counter = {
 export const COUNTERS_LOOKUP: {
   [counterId: string]: Counter;
 } = {
+  "ゲーム": COUNTER_ゲ_ム,
   "ヶ国": COUNTER_ヶ国,
   "ヶ所": COUNTER_ヶ所,
   "ヶ月": COUNTER_ヶ月,
@@ -600,6 +669,9 @@ export const COUNTERS_LOOKUP: {
   "缶": COUNTER_缶,
   "羽": COUNTER_羽,
   "色": COUNTER_色,
+  "試合": COUNTER_試合,
+  "語": COUNTER_語,
+  "軒": COUNTER_軒,
   "週": COUNTER_週,
   "階": COUNTER_階,
   "頭": COUNTER_頭

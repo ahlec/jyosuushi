@@ -20,6 +20,8 @@ const STUDY_PACK_COMMON: StudyPack = {
     COUNTERS.COUNTER_組,
     COUNTERS.COUNTER_缶,
     COUNTERS.COUNTER_色,
+    COUNTERS.COUNTER_語,
+    COUNTERS.COUNTER_軒,
     COUNTERS.COUNTER_週
   ],
   englishName: "Common",

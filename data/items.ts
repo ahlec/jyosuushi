@@ -31,6 +31,24 @@ const ITEM_BAR_OF_CHOCOLATE: Item = {
   minQuantity: 1
 };
 
+const ITEM_BASEBALL_GAME: Item = {
+  counters: ["試合"],
+  englishPlural: "baseball games",
+  englishSingular: "baseball game",
+  itemId: "baseball game",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
+const ITEM_BASKETBALL_GAME: Item = {
+  counters: ["ゲーム"],
+  englishPlural: "basketball games",
+  englishSingular: "basketball game",
+  itemId: "basketball game",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
 const ITEM_BAT: Item = {
   counters: ["羽"],
   englishPlural: "bats",
@@ -76,11 +94,29 @@ const ITEM_BITE_OF_FOOD: Item = {
   minQuantity: 1
 };
 
+const ITEM_BLANKET: Item = {
+  counters: ["枚"],
+  englishPlural: "blanket",
+  englishSingular: "blanket",
+  itemId: "blanket",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
 const ITEM_BOOK: Item = {
   counters: ["冊"],
   englishPlural: "books",
   englishSingular: "book",
   itemId: "book",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
+const ITEM_BOOKSTORE: Item = {
+  counters: ["軒"],
+  englishPlural: "bookstores",
+  englishSingular: "bookstore",
+  itemId: "bookstore",
   maxQuantity: 100,
   minQuantity: 1
 };
@@ -346,6 +382,24 @@ const ITEM_FLOOR_BUILDING_: Item = {
   minQuantity: 1
 };
 
+const ITEM_FUR_PELT: Item = {
+  counters: ["枚"],
+  englishPlural: "fur pelts",
+  englishSingular: "fur pelt",
+  itemId: "fur pelt",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
+const ITEM_GAME: Item = {
+  counters: ["試合"],
+  englishPlural: "games",
+  englishSingular: "game",
+  itemId: "game",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
 const ITEM_GORILLA: Item = {
   counters: ["頭"],
   englishPlural: "gorillas",
@@ -373,11 +427,29 @@ const ITEM_HIGH_SCHOOL: Item = {
   minQuantity: 1
 };
 
+const ITEM_HOME: Item = {
+  counters: ["軒"],
+  englishPlural: "homes",
+  englishSingular: "home",
+  itemId: "home",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
 const ITEM_HORSE: Item = {
   counters: ["頭"],
   englishPlural: "horses",
   englishSingular: "horse",
   itemId: "horse",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
+const ITEM_HOUSE: Item = {
+  counters: ["軒"],
+  englishPlural: "houses",
+  englishSingular: "house",
+  itemId: "house",
   maxQuantity: 100,
   minQuantity: 1
 };
@@ -441,6 +513,15 @@ const ITEM_MAN: Item = {
   englishPlural: "men",
   englishSingular: "man",
   itemId: "man",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
+const ITEM_MATCH_SPORTS_: Item = {
+  counters: ["試合"],
+  englishPlural: "matches",
+  englishSingular: "match",
+  itemId: "match (sports)",
   maxQuantity: 100,
   minQuantity: 1
 };
@@ -742,6 +823,15 @@ const ITEM_SHINTO_SHRINE: Item = {
   minQuantity: 1
 };
 
+const ITEM_SHOP: Item = {
+  counters: ["軒"],
+  englishPlural: "shops",
+  englishSingular: "shop",
+  itemId: "shop",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
 const ITEM_SHOPPING_MALL: Item = {
   counters: ["ヶ所"],
   englishPlural: "shopping malls",
@@ -814,6 +904,15 @@ const ITEM_SPRAY_PAINT: Item = {
   minQuantity: 1
 };
 
+const ITEM_STORE: Item = {
+  counters: ["軒"],
+  englishPlural: "stores",
+  englishSingular: "store",
+  itemId: "store",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
 const ITEM_STOREY: Item = {
   counters: ["階"],
   englishPlural: "stories",
@@ -823,11 +922,29 @@ const ITEM_STOREY: Item = {
   minQuantity: 1
 };
 
+const ITEM_STRAW: Item = {
+  counters: ["本"],
+  englishPlural: "straws",
+  englishSingular: "straw",
+  itemId: "straw",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
 const ITEM_STREET: Item = {
   counters: ["本"],
   englishPlural: "streets",
   englishSingular: "street",
   itemId: "street",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
+const ITEM_TEA_HOUSE: Item = {
+  counters: ["軒"],
+  englishPlural: "tea houses",
+  englishSingular: "tea house",
+  itemId: "tea house",
   maxQuantity: 100,
   minQuantity: 1
 };
@@ -922,6 +1039,15 @@ const ITEM_WOMAN: Item = {
   minQuantity: 1
 };
 
+const ITEM_WORD: Item = {
+  counters: ["語"],
+  englishPlural: "words",
+  englishSingular: "word",
+  itemId: "word",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
 const ITEM_YEAR: Item = {
   counters: ["年"],
   englishPlural: "years",
@@ -955,12 +1081,16 @@ export const ITEMS_LOOKUP: {
   assembly: ITEM_ASSEMBLY,
   banquet: ITEM_BANQUET,
   "bar of chocolate": ITEM_BAR_OF_CHOCOLATE,
+  "baseball game": ITEM_BASEBALL_GAME,
+  "basketball game": ITEM_BASKETBALL_GAME,
   bat: ITEM_BAT,
   bathroom: ITEM_BATHROOM,
   bed: ITEM_BED,
   "beer can": ITEM_BEER_CAN,
   "bite of food": ITEM_BITE_OF_FOOD,
+  blanket: ITEM_BLANKET,
   book: ITEM_BOOK,
+  bookstore: ITEM_BOOKSTORE,
   bottle: ITEM_BOTTLE,
   "can of bug spray": ITEM_CAN_OF_BUG_SPRAY,
   "can of hair spray": ITEM_CAN_OF_HAIR_SPRAY,
@@ -990,10 +1120,14 @@ export const ITEMS_LOOKUP: {
   "empty can": ITEM_EMPTY_CAN,
   filet: ITEM_FILET,
   "floor (building)": ITEM_FLOOR_BUILDING_,
+  "fur pelt": ITEM_FUR_PELT,
+  game: ITEM_GAME,
   gorilla: ITEM_GORILLA,
   "group of friends": ITEM_GROUP_OF_FRIENDS,
   "high school": ITEM_HIGH_SCHOOL,
+  home: ITEM_HOME,
   horse: ITEM_HORSE,
+  house: ITEM_HOUSE,
   hue: ITEM_HUE,
   jingle: ITEM_JINGLE,
   lap: ITEM_LAP,
@@ -1001,6 +1135,7 @@ export const ITEMS_LOOKUP: {
   location: ITEM_LOCATION,
   magazine: ITEM_MAGAZINE,
   man: ITEM_MAN,
+  "match (sports)": ITEM_MATCH_SPORTS_,
   meeting: ITEM_MEETING,
   melody: ITEM_MELODY,
   microwave: ITEM_MICROWAVE,
@@ -1034,6 +1169,7 @@ export const ITEMS_LOOKUP: {
   seat: ITEM_SEAT,
   sheep: ITEM_SHEEP,
   "shinto shrine": ITEM_SHINTO_SHRINE,
+  shop: ITEM_SHOP,
   "shopping mall": ITEM_SHOPPING_MALL,
   "sip of water": ITEM_SIP_OF_WATER,
   "slice of cake": ITEM_SLICE_OF_CAKE,
@@ -1042,8 +1178,11 @@ export const ITEMS_LOOKUP: {
   "soda can": ITEM_SODA_CAN,
   song: ITEM_SONG,
   "spray paint": ITEM_SPRAY_PAINT,
+  store: ITEM_STORE,
   storey: ITEM_STOREY,
+  straw: ITEM_STRAW,
   street: ITEM_STREET,
+  "tea house": ITEM_TEA_HOUSE,
   textbook: ITEM_TEXTBOOK,
   "time (occurrences)": ITEM_TIME_OCCURRENCES_,
   tint: ITEM_TINT,
@@ -1054,6 +1193,7 @@ export const ITEMS_LOOKUP: {
   week: ITEM_WEEK,
   whale: ITEM_WHALE,
   woman: ITEM_WOMAN,
+  word: ITEM_WORD,
   year: ITEM_YEAR,
   "years old": ITEM_YEARS_OLD,
   yen: ITEM_YEN
@@ -1062,6 +1202,7 @@ export const ITEMS_LOOKUP: {
 export const ITEMS_FROM_COUNTER: {
   [counterId: string]: ReadonlyArray<Item>;
 } = {
+  "ゲーム": [ITEM_BASKETBALL_GAME],
   "ヶ国": [ITEM_COUNTRY, ITEM_NATION],
   "ヶ所": [ITEM_BATHROOM, ITEM_SHOPPING_MALL, ITEM_CINEMA, ITEM_LOCATION, ITEM_PLACE, ITEM_OFFICE_BUILDING],
   "ヶ月": [ITEM_MONTH],
@@ -1082,8 +1223,8 @@ export const ITEMS_FROM_COUNTER: {
   "時": [ITEM_O_CLOCK],
   "曲": [ITEM_SONG, ITEM_TUNE, ITEM_MELODY, ITEM_JINGLE],
   "月": [ITEM_MONTH],
-  "本": [ITEM_BOTTLE, ITEM_TREE, ITEM_ROD, ITEM_RIVER, ITEM_PEN, ITEM_LINE, ITEM_STREET],
-  "枚": [ITEM_CREDIT_CARD, ITEM_PLAYING_CARD, ITEM_PAPER, ITEM_PHOTO, ITEM_RECEIPT, ITEM_BAR_OF_CHOCOLATE],
+  "本": [ITEM_BOTTLE, ITEM_TREE, ITEM_ROD, ITEM_RIVER, ITEM_PEN, ITEM_LINE, ITEM_STREET, ITEM_STRAW],
+  "枚": [ITEM_CREDIT_CARD, ITEM_PLAYING_CARD, ITEM_PAPER, ITEM_PHOTO, ITEM_RECEIPT, ITEM_BAR_OF_CHOCOLATE, ITEM_FUR_PELT, ITEM_BLANKET],
   "校": [ITEM_HIGH_SCHOOL, ITEM_ELEMENTARY_SCHOOL, ITEM_MIDDLE_SCHOOL, ITEM_UNIVERSITY, ITEM_CRAM_SCHOOL],
   "歳": [ITEM_YEARS_OLD],
   "社": [ITEM_COMPANY, ITEM_SHINTO_SHRINE],
@@ -1091,6 +1232,9 @@ export const ITEMS_FROM_COUNTER: {
   "缶": [ITEM_SODA_CAN, ITEM_BEER_CAN, ITEM_EMPTY_CAN, ITEM_CAN_OF_BUG_SPRAY, ITEM_CAN_OF_HAIR_SPRAY, ITEM_SPRAY_PAINT, ITEM_CAN_OF_SOUP],
   "羽": [ITEM_CHICKEN, ITEM_PENGUIN, ITEM_RABBIT, ITEM_ORIGAMI_CRANE, ITEM_BAT],
   "色": [ITEM_TINT, ITEM_HUE, ITEM_COLOUR],
+  "試合": [ITEM_BASEBALL_GAME, ITEM_GAME, ITEM_MATCH_SPORTS_],
+  "語": [ITEM_WORD],
+  "軒": [ITEM_BOOKSTORE, ITEM_SHOP, ITEM_STORE, ITEM_TEA_HOUSE, ITEM_HOUSE, ITEM_HOME],
   "週": [ITEM_WEEK],
   "階": [ITEM_FLOOR_BUILDING_, ITEM_STOREY],
   "頭": [ITEM_COW, ITEM_HORSE, ITEM_GORILLA, ITEM_WHALE, ITEM_ELEPHANT]
