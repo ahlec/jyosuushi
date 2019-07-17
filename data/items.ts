@@ -4,6 +4,33 @@
 
 import { Item } from "../src/interfaces";
 
+const ITEM_APARTMENT: Item = {
+  counters: ["軒"],
+  englishPlural: "apartments",
+  englishSingular: "apartment",
+  itemId: "apartment",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
+const ITEM_APPOINTMENT: Item = {
+  counters: ["件"],
+  englishPlural: "appointments",
+  englishSingular: "appointment",
+  itemId: "appointment",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
+const ITEM_ARCADE: Item = {
+  counters: ["軒"],
+  englishPlural: "arcades",
+  englishSingular: "arcade",
+  itemId: "arcade",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
 const ITEM_ASSEMBLY: Item = {
   counters: ["席"],
   englishPlural: "assemblies",
@@ -27,6 +54,15 @@ const ITEM_BAR_OF_CHOCOLATE: Item = {
   englishPlural: "bars of chocolate",
   englishSingular: "bar of chocolate",
   itemId: "bar of chocolate",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
+const ITEM_BARN: Item = {
+  counters: ["軒"],
+  englishPlural: "barns",
+  englishSingular: "barn",
+  itemId: "barn",
   maxQuantity: 100,
   minQuantity: 1
 };
@@ -130,6 +166,24 @@ const ITEM_BOTTLE: Item = {
   minQuantity: 1
 };
 
+const ITEM_BOWL_OF_FRIED_RICE: Item = {
+  counters: ["皿"],
+  englishPlural: "bowls of fried rice",
+  englishSingular: "bowl of fried rice",
+  itemId: "bowl of fried rice",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
+const ITEM_BOWL_OF_SOUP: Item = {
+  counters: ["皿"],
+  englishPlural: "bowls of soup",
+  englishSingular: "bowl of soup",
+  itemId: "bowl of soup",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
 const ITEM_CAN_OF_BUG_SPRAY: Item = {
   counters: ["缶"],
   englishPlural: "cans of bug spray",
@@ -185,7 +239,7 @@ const ITEM_CHICKEN: Item = {
 };
 
 const ITEM_CINEMA: Item = {
-  counters: ["ヶ所"],
+  counters: ["ヶ所","軒"],
   englishPlural: "cinemas",
   englishSingular: "cinema",
   itemId: "cinema",
@@ -463,11 +517,38 @@ const ITEM_HUE: Item = {
   minQuantity: 1
 };
 
+const ITEM_IDIOM: Item = {
+  counters: ["語"],
+  englishPlural: "idioms",
+  englishSingular: "idiom",
+  itemId: "idiom",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
+const ITEM_IZAKAYA: Item = {
+  counters: ["軒"],
+  englishPlural: "izakaya",
+  englishSingular: "izakaya",
+  itemId: "izakaya",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
 const ITEM_JINGLE: Item = {
   counters: ["曲"],
   englishPlural: "jingles",
   englishSingular: "jingle",
   itemId: "jingle",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
+const ITEM_KEYWORD: Item = {
+  counters: ["語"],
+  englishPlural: "keywords",
+  englishSingular: "keyword",
+  itemId: "keyword",
   maxQuantity: 100,
   minQuantity: 1
 };
@@ -481,11 +562,29 @@ const ITEM_LAP: Item = {
   minQuantity: 1
 };
 
+const ITEM_LAW: Item = {
+  counters: ["件"],
+  englishPlural: "laws",
+  englishSingular: "law",
+  itemId: "law",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
 const ITEM_LINE: Item = {
   counters: ["本"],
   englishPlural: "lines",
   englishSingular: "line",
   itemId: "line",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
+const ITEM_LOAN: Item = {
+  counters: ["件"],
+  englishPlural: "loans",
+  englishSingular: "loan",
+  itemId: "loan",
   maxQuantity: 100,
   minQuantity: 1
 };
@@ -585,6 +684,15 @@ const ITEM_NATION: Item = {
   englishPlural: "nations",
   englishSingular: "nation",
   itemId: "nation",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
+const ITEM_NIGHTCLUB: Item = {
+  counters: ["軒"],
+  englishPlural: "nightclubs",
+  englishSingular: "nightclub",
+  itemId: "nightclub",
   maxQuantity: 100,
   minQuantity: 1
 };
@@ -724,11 +832,29 @@ const ITEM_PLACE: Item = {
   minQuantity: 1
 };
 
+const ITEM_PLATE_OF_FOOD: Item = {
+  counters: ["皿"],
+  englishPlural: "plates of food",
+  englishSingular: "plate of food",
+  itemId: "plate of food",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
 const ITEM_PLAYING_CARD: Item = {
   counters: ["枚"],
   englishPlural: "playing cards",
   englishSingular: "playing card",
   itemId: "playing card",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
+const ITEM_PROVERB: Item = {
+  counters: ["語"],
+  englishPlural: "proverbs",
+  englishSingular: "proverb",
+  itemId: "proverb",
   maxQuantity: 100,
   minQuantity: 1
 };
@@ -756,6 +882,33 @@ const ITEM_RECEIPT: Item = {
   englishPlural: "receipts",
   englishSingular: "receipt",
   itemId: "receipt",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
+const ITEM_RECOMMENDATION: Item = {
+  counters: ["件"],
+  englishPlural: "recommendations",
+  englishSingular: "recommendation",
+  itemId: "recommendation",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
+const ITEM_REGISTRATION: Item = {
+  counters: ["件"],
+  englishPlural: "registrations",
+  englishSingular: "registration",
+  itemId: "registration",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
+const ITEM_REQUEST: Item = {
+  counters: ["件"],
+  englishPlural: "requests",
+  englishSingular: "request",
+  itemId: "request",
   maxQuantity: 100,
   minQuantity: 1
 };
@@ -796,11 +949,29 @@ const ITEM_ROUND: Item = {
   minQuantity: 1
 };
 
+const ITEM_SAYING: Item = {
+  counters: ["語"],
+  englishPlural: "sayings",
+  englishSingular: "saying",
+  itemId: "saying",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
 const ITEM_SEAT: Item = {
   counters: ["席"],
   englishPlural: "seats",
   englishSingular: "seat",
   itemId: "seat",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
+const ITEM_SERVING_OF_YAKISOBA: Item = {
+  counters: ["皿"],
+  englishPlural: "servings of yakisoba",
+  englishSingular: "serving of yakisoba",
+  itemId: "serving of yakisoba",
   maxQuantity: 100,
   minQuantity: 1
 };
@@ -837,6 +1008,15 @@ const ITEM_SHOPPING_MALL: Item = {
   englishPlural: "shopping malls",
   englishSingular: "shopping mall",
   itemId: "shopping mall",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
+const ITEM_SIDE_DISH: Item = {
+  counters: ["皿"],
+  englishPlural: "side dishes",
+  englishSingular: "side dish",
+  itemId: "side dish",
   maxQuantity: 100,
   minQuantity: 1
 };
@@ -936,6 +1116,15 @@ const ITEM_STREET: Item = {
   englishPlural: "streets",
   englishSingular: "street",
   itemId: "street",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
+const ITEM_TASK: Item = {
+  counters: ["件"],
+  englishPlural: "tasks",
+  englishSingular: "task",
+  itemId: "task",
   maxQuantity: 100,
   minQuantity: 1
 };
@@ -1078,9 +1267,13 @@ const ITEM_YEN: Item = {
 export const ITEMS_LOOKUP: {
   [itemId: string]: Item;
 } = {
+  apartment: ITEM_APARTMENT,
+  appointment: ITEM_APPOINTMENT,
+  arcade: ITEM_ARCADE,
   assembly: ITEM_ASSEMBLY,
   banquet: ITEM_BANQUET,
   "bar of chocolate": ITEM_BAR_OF_CHOCOLATE,
+  barn: ITEM_BARN,
   "baseball game": ITEM_BASEBALL_GAME,
   "basketball game": ITEM_BASKETBALL_GAME,
   bat: ITEM_BAT,
@@ -1092,6 +1285,8 @@ export const ITEMS_LOOKUP: {
   book: ITEM_BOOK,
   bookstore: ITEM_BOOKSTORE,
   bottle: ITEM_BOTTLE,
+  "bowl of fried rice": ITEM_BOWL_OF_FRIED_RICE,
+  "bowl of soup": ITEM_BOWL_OF_SOUP,
   "can of bug spray": ITEM_CAN_OF_BUG_SPRAY,
   "can of hair spray": ITEM_CAN_OF_HAIR_SPRAY,
   "can of soup": ITEM_CAN_OF_SOUP,
@@ -1129,9 +1324,14 @@ export const ITEMS_LOOKUP: {
   horse: ITEM_HORSE,
   house: ITEM_HOUSE,
   hue: ITEM_HUE,
+  idiom: ITEM_IDIOM,
+  izakaya: ITEM_IZAKAYA,
   jingle: ITEM_JINGLE,
+  keyword: ITEM_KEYWORD,
   lap: ITEM_LAP,
+  law: ITEM_LAW,
   line: ITEM_LINE,
+  loan: ITEM_LOAN,
   location: ITEM_LOCATION,
   magazine: ITEM_MAGAZINE,
   man: ITEM_MAN,
@@ -1143,6 +1343,7 @@ export const ITEMS_LOOKUP: {
   minute: ITEM_MINUTE,
   month: ITEM_MONTH,
   nation: ITEM_NATION,
+  nightclub: ITEM_NIGHTCLUB,
   notebook: ITEM_NOTEBOOK,
   "o'clock": ITEM_O_CLOCK,
   occurrence: ITEM_OCCURRENCE,
@@ -1158,19 +1359,27 @@ export const ITEMS_LOOKUP: {
   person: ITEM_PERSON,
   photo: ITEM_PHOTO,
   place: ITEM_PLACE,
+  "plate of food": ITEM_PLATE_OF_FOOD,
   "playing card": ITEM_PLAYING_CARD,
+  proverb: ITEM_PROVERB,
   rabbit: ITEM_RABBIT,
   radio: ITEM_RADIO,
   receipt: ITEM_RECEIPT,
+  recommendation: ITEM_RECOMMENDATION,
+  registration: ITEM_REGISTRATION,
+  request: ITEM_REQUEST,
   river: ITEM_RIVER,
   rod: ITEM_ROD,
   roommate: ITEM_ROOMMATE,
   round: ITEM_ROUND,
+  saying: ITEM_SAYING,
   seat: ITEM_SEAT,
+  "serving of yakisoba": ITEM_SERVING_OF_YAKISOBA,
   sheep: ITEM_SHEEP,
   "shinto shrine": ITEM_SHINTO_SHRINE,
   shop: ITEM_SHOP,
   "shopping mall": ITEM_SHOPPING_MALL,
+  "side dish": ITEM_SIDE_DISH,
   "sip of water": ITEM_SIP_OF_WATER,
   "slice of cake": ITEM_SLICE_OF_CAKE,
   "slice of pizza": ITEM_SLICE_OF_PIZZA,
@@ -1182,6 +1391,7 @@ export const ITEMS_LOOKUP: {
   storey: ITEM_STOREY,
   straw: ITEM_STRAW,
   street: ITEM_STREET,
+  task: ITEM_TASK,
   "tea house": ITEM_TEA_HOUSE,
   textbook: ITEM_TEXTBOOK,
   "time (occurrences)": ITEM_TIME_OCCURRENCES_,
@@ -1207,6 +1417,7 @@ export const ITEMS_FROM_COUNTER: {
   "ヶ所": [ITEM_BATHROOM, ITEM_SHOPPING_MALL, ITEM_CINEMA, ITEM_LOCATION, ITEM_PLACE, ITEM_OFFICE_BUILDING],
   "ヶ月": [ITEM_MONTH],
   "人": [ITEM_MAN, ITEM_WOMAN, ITEM_COWORKER, ITEM_ROOMMATE, ITEM_PERSON],
+  "件": [ITEM_LAW, ITEM_LOAN, ITEM_TASK, ITEM_APPOINTMENT, ITEM_REGISTRATION, ITEM_REQUEST, ITEM_RECOMMENDATION],
   "円": [ITEM_YEN],
   "冊": [ITEM_TEXTBOOK, ITEM_DICTIONARY, ITEM_NOTEBOOK, ITEM_MAGAZINE, ITEM_BOOK],
   "分": [ITEM_MINUTE],
@@ -1227,14 +1438,15 @@ export const ITEMS_FROM_COUNTER: {
   "枚": [ITEM_CREDIT_CARD, ITEM_PLAYING_CARD, ITEM_PAPER, ITEM_PHOTO, ITEM_RECEIPT, ITEM_BAR_OF_CHOCOLATE, ITEM_FUR_PELT, ITEM_BLANKET],
   "校": [ITEM_HIGH_SCHOOL, ITEM_ELEMENTARY_SCHOOL, ITEM_MIDDLE_SCHOOL, ITEM_UNIVERSITY, ITEM_CRAM_SCHOOL],
   "歳": [ITEM_YEARS_OLD],
+  "皿": [ITEM_SERVING_OF_YAKISOBA, ITEM_BOWL_OF_SOUP, ITEM_BOWL_OF_FRIED_RICE, ITEM_PLATE_OF_FOOD, ITEM_SIDE_DISH],
   "社": [ITEM_COMPANY, ITEM_SHINTO_SHRINE],
   "組": [ITEM_COUPLE_PEOPLE_, ITEM_GROUP_OF_FRIENDS, ITEM_PAIR_OF_MITTENS, ITEM_PAIR_OF_GLOVES, ITEM_DRUMSET, ITEM_DECK_OF_CARDS],
   "缶": [ITEM_SODA_CAN, ITEM_BEER_CAN, ITEM_EMPTY_CAN, ITEM_CAN_OF_BUG_SPRAY, ITEM_CAN_OF_HAIR_SPRAY, ITEM_SPRAY_PAINT, ITEM_CAN_OF_SOUP],
   "羽": [ITEM_CHICKEN, ITEM_PENGUIN, ITEM_RABBIT, ITEM_ORIGAMI_CRANE, ITEM_BAT],
   "色": [ITEM_TINT, ITEM_HUE, ITEM_COLOUR],
   "試合": [ITEM_BASEBALL_GAME, ITEM_GAME, ITEM_MATCH_SPORTS_],
-  "語": [ITEM_WORD],
-  "軒": [ITEM_BOOKSTORE, ITEM_SHOP, ITEM_STORE, ITEM_TEA_HOUSE, ITEM_HOUSE, ITEM_HOME],
+  "語": [ITEM_WORD, ITEM_PROVERB, ITEM_SAYING, ITEM_KEYWORD, ITEM_IDIOM],
+  "軒": [ITEM_BOOKSTORE, ITEM_SHOP, ITEM_STORE, ITEM_TEA_HOUSE, ITEM_HOUSE, ITEM_HOME, ITEM_BARN, ITEM_IZAKAYA, ITEM_APARTMENT, ITEM_CINEMA, ITEM_ARCADE, ITEM_NIGHTCLUB],
   "週": [ITEM_WEEK],
   "階": [ITEM_FLOOR_BUILDING_, ITEM_STOREY],
   "頭": [ITEM_COW, ITEM_HORSE, ITEM_GORILLA, ITEM_WHALE, ITEM_ELEPHANT]

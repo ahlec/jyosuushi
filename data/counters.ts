@@ -92,6 +92,23 @@ export const COUNTER_人: Counter = {
   kanji: "人"
 };
 
+export const COUNTER_件: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYoFor4: false,
+    allowsYonFor4: true
+  },
+  counterId: "件",
+  englishName: "matters",
+  irregulars: {},
+  kana: "けん",
+  kanji: "件"
+};
+
 export const COUNTER_円: Counter = {
   conjugationOptions: {
     allowsKuFor9: false,
@@ -446,6 +463,27 @@ export const COUNTER_歳: Counter = {
   kanji: "歳"
 };
 
+export const COUNTER_皿: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYoFor4: false,
+    allowsYonFor4: true
+  },
+  counterId: "皿",
+  englishName: "plates of food",
+  irregulars: {
+    1: ["ひとさら"],
+    2: ["ふたさら"],
+    3: ["さんさら", "みさら"]
+  },
+  kana: "さら",
+  kanji: "皿"
+};
+
 export const COUNTER_社: Counter = {
   conjugationOptions: {
     allowsKuFor9: false,
@@ -644,6 +682,7 @@ export const COUNTERS_LOOKUP: {
   "ヶ所": COUNTER_ヶ所,
   "ヶ月": COUNTER_ヶ月,
   "人": COUNTER_人,
+  "件": COUNTER_件,
   "円": COUNTER_円,
   "冊": COUNTER_冊,
   "分": COUNTER_分,
@@ -664,6 +703,7 @@ export const COUNTERS_LOOKUP: {
   "枚": COUNTER_枚,
   "校": COUNTER_校,
   "歳": COUNTER_歳,
+  "皿": COUNTER_皿,
   "社": COUNTER_社,
   "組": COUNTER_組,
   "缶": COUNTER_缶,
