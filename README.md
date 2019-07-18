@@ -62,13 +62,31 @@ yarn favicon
 
 ## Updating data
 
-When you want to make changes to the data that's used in the quiz, you can modify the SQLite database `jyosuushi.sqlite` in the root directory. When you have made your changes, you'll then need to run the script to export the data from there into TypeScript.
+All of the data for the application is managed through a SQLite database for ease of use; the database allows us to have oversight in the way of foreign and unique keys while also cutting down to the bare minimum of necessary boilerplate.
+
+The database itself is not committed to the repository because, as a binary file, resolving merge conflicts is nigh impossible. Instead, we store the SQL files for the contents and can rebuild the database at any moment.
+
+When you're working on data, the first step will be updating your local database.
+
+```
+yarn db:update
+```
+
+This will create a local database if you didn't already have one, and will also pull in all of the changes to your database to bring it up to date.
+
+You then modify the SQLite database `jyosuushi.sqlite` in the root directory directly. When you have made your changes, you'll then need to run the script to export the data from there into TypeScript.
 
 ```
 yarn build-data
 ```
 
 When this is done, it will update the files in the `./data` directory. Subsequent builds or development servers will build against these updated files. Additionally, these files are tracked in the repository to allow for painlessly building after cloning the repository.
+
+When you are ready to submit a commit, you will need to export all of your database back to the SQL files. To do this, you'll want to use another package script:
+
+```
+yarn db:export
+```
 
 ## Built With
 
