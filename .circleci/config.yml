@@ -20,7 +20,10 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - run:
-          name: Build and verify data
+          name: Build database
+          command: yarn db:update
+      - run:
+          name: Export data from database
           command: yarn build-data
       - run:
           name: Ensure repository data files are up to date
