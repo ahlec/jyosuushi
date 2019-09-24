@@ -21,6 +21,7 @@ module.exports = {
   ROOT_DIRECTORY,
   SQL_FILES: [
     makeSqlFile("counter_additional_readings"),
+    makeSqlFile("counter_external_links"),
     makeSqlFile("counter_irregulars"),
     makeSqlFile("counters"),
     makeSqlFile("item_counters"),

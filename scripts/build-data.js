@@ -1,5 +1,6 @@
 const chalk = require("chalk");
 const fs = require("fs");
+const { escape } = require("lodash");
 const path = require("path");
 const { openDatabase, ROOT_DIRECTORY } = require("./utils");
 
@@ -31,7 +32,7 @@ function getStudyPackId(id) {
 }
 
 // Counters
-async function writeCounterData(file, counter, irregulars) {
+async function writeCounterData(file, counter, irregulars, links) {
   const variableName = getCounterId(counter.counter_id);
   let irregularsStr;
   if (irregulars && Object.keys(irregulars).length) {
@@ -52,6 +53,38 @@ async function writeCounterData(file, counter, irregulars) {
     irregularsStr = "{}";
   }
 
+  let notesStr = "null";
+  if (counter.notes) {
+    notesStr = `"${escape(counter.notes)}"`;
+  }
+
+  let externalLinksStr;
+  if (links.length) {
+    externalLinksStr = "[\n";
+    for (let index = 0; index < links.length; ++index) {
+      const link = links[index];
+      const escapedUrl = encodeURI(link.url);
+      let descriptionStr = "null";
+      if (link.additionalDescription) {
+        descriptionStr = `"${escape(link.additionalDescription)}"`;
+      }
+
+      externalLinksStr += "    {\n";
+      externalLinksStr += `      additionalDescription: ${descriptionStr},\n`;
+      externalLinksStr += `      displayText: "${escape(link.displayText)}",\n`;
+      externalLinksStr += `      url: "${escapedUrl}"\n`;
+      externalLinksStr += "    }";
+
+      if (index < links.length - 1) {
+        externalLinksStr += ",\n";
+      }
+    }
+
+    externalLinksStr += "\n  ]";
+  } else {
+    externalLinksStr = "[]";
+  }
+
   fs.writeSync(
     file,
     `\n\nexport const ${variableName}: Counter = {
@@ -66,9 +99,11 @@ async function writeCounterData(file, counter, irregulars) {
   },
   counterId: "${counter.counter_id}",
   englishName: "${counter.english_name}",
+  externalLinks: ${externalLinksStr},
   irregulars: ${irregularsStr},
   kana: "${counter.kana}",
-  kanji: "${counter.kanji}"
+  kanji: "${counter.kanji}",
+  notes: ${notesStr}
 };`
   );
 }
@@ -81,6 +116,7 @@ async function writeCountersFile(db) {
     "SELECT * FROM counter_irregulars WHERE nonstandard = 0" // TODO: nonstandard?
   );
   const itemCounters = await db.all("SELECT * FROM item_counters");
+  const externalLinks = await db.all("SELECT * FROM counter_external_links");
 
   const counterHasItems = {};
   for (const itemCounter of itemCounters) {
@@ -99,6 +135,19 @@ async function writeCountersFile(db) {
     }
 
     irregularsLookup[irregular.counter_id][amount].push(irregular.kana);
+  }
+
+  const externalLinksLookup = {};
+  for (const externalLink of externalLinks) {
+    if (!externalLinksLookup[externalLink.counter_id]) {
+      externalLinksLookup[externalLink.counter_id] = [];
+    }
+
+    externalLinksLookup[externalLink.counter_id].push({
+      url: externalLink.url,
+      displayText: externalLink.link_text,
+      additionalDescription: externalLink.additional_description
+    });
   }
 
   const file = fs.openSync(COUNTERS_FILE, "w");
@@ -143,7 +192,12 @@ async function writeCountersFile(db) {
       continue;
     }
 
-    writeCounterData(file, counter, irregularsLookup[counter.counter_id]);
+    writeCounterData(
+      file,
+      counter,
+      irregularsLookup[counter.counter_id],
+      externalLinksLookup[counter.counter_id] || []
+    );
   }
 
   fs.writeSync(file, "\n\nexport const COUNTERS_LOOKUP: {\n");

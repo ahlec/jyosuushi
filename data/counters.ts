@@ -16,9 +16,11 @@ export const COUNTER_ゲ_ム: Counter = {
   },
   counterId: "ゲーム",
   englishName: "games",
+  externalLinks: [],
   irregulars: {},
   kana: "ゲーム",
-  kanji: "ゲーム"
+  kanji: "ゲーム",
+  notes: null
 };
 
 export const COUNTER_ヶ国: Counter = {
@@ -33,9 +35,11 @@ export const COUNTER_ヶ国: Counter = {
   },
   counterId: "ヶ国",
   englishName: "countries",
+  externalLinks: [],
   irregulars: {},
   kana: "かこく",
-  kanji: "ヶ国"
+  kanji: "ヶ国",
+  notes: null
 };
 
 export const COUNTER_ヶ所: Counter = {
@@ -50,9 +54,11 @@ export const COUNTER_ヶ所: Counter = {
   },
   counterId: "ヶ所",
   englishName: "places",
+  externalLinks: [],
   irregulars: {},
   kana: "かしょ",
-  kanji: "ヶ所"
+  kanji: "ヶ所",
+  notes: null
 };
 
 export const COUNTER_ヶ月: Counter = {
@@ -67,9 +73,11 @@ export const COUNTER_ヶ月: Counter = {
   },
   counterId: "ヶ月",
   englishName: "months",
+  externalLinks: [],
   irregulars: {},
   kana: "かげつ",
-  kanji: "ヶ月"
+  kanji: "ヶ月",
+  notes: null
 };
 
 export const COUNTER_人: Counter = {
@@ -84,12 +92,14 @@ export const COUNTER_人: Counter = {
   },
   counterId: "人",
   englishName: "people",
+  externalLinks: [],
   irregulars: {
     1: ["ひとり"],
     2: ["ふたり"]
   },
   kana: "にん",
-  kanji: "人"
+  kanji: "人",
+  notes: null
 };
 
 export const COUNTER_件: Counter = {
@@ -104,9 +114,11 @@ export const COUNTER_件: Counter = {
   },
   counterId: "件",
   englishName: "matters",
+  externalLinks: [],
   irregulars: {},
   kana: "けん",
-  kanji: "件"
+  kanji: "件",
+  notes: null
 };
 
 export const COUNTER_円: Counter = {
@@ -121,9 +133,11 @@ export const COUNTER_円: Counter = {
   },
   counterId: "円",
   englishName: "yen",
+  externalLinks: [],
   irregulars: {},
   kana: "えん",
-  kanji: "円"
+  kanji: "円",
+  notes: null
 };
 
 export const COUNTER_冊: Counter = {
@@ -138,9 +152,11 @@ export const COUNTER_冊: Counter = {
   },
   counterId: "冊",
   englishName: "books",
+  externalLinks: [],
   irregulars: {},
   kana: "さつ",
-  kanji: "冊"
+  kanji: "冊",
+  notes: null
 };
 
 export const COUNTER_分: Counter = {
@@ -155,9 +171,11 @@ export const COUNTER_分: Counter = {
   },
   counterId: "分",
   englishName: "minutes",
+  externalLinks: [],
   irregulars: {},
   kana: "ふん",
-  kanji: "分"
+  kanji: "分",
+  notes: null
 };
 
 export const COUNTER_切れ: Counter = {
@@ -172,9 +190,11 @@ export const COUNTER_切れ: Counter = {
   },
   counterId: "切れ",
   englishName: "cuts of meat",
+  externalLinks: [],
   irregulars: {},
   kana: "きれ",
-  kanji: "切れ"
+  kanji: "切れ",
+  notes: null
 };
 
 export const COUNTER_匹: Counter = {
@@ -189,9 +209,11 @@ export const COUNTER_匹: Counter = {
   },
   counterId: "匹",
   englishName: "small animals",
+  externalLinks: [],
   irregulars: {},
   kana: "ひき",
-  kanji: "匹"
+  kanji: "匹",
+  notes: null
 };
 
 export const COUNTER_口: Counter = {
@@ -206,9 +228,11 @@ export const COUNTER_口: Counter = {
   },
   counterId: "口",
   englishName: "bites",
+  externalLinks: [],
   irregulars: {},
   kana: "くち",
-  kanji: "口"
+  kanji: "口",
+  notes: null
 };
 
 export const COUNTER_台: Counter = {
@@ -223,9 +247,11 @@ export const COUNTER_台: Counter = {
   },
   counterId: "台",
   englishName: "machines and large objects",
+  externalLinks: [],
   irregulars: {},
   kana: "だい",
-  kanji: "台"
+  kanji: "台",
+  notes: null
 };
 
 export const COUNTER_名: Counter = {
@@ -240,9 +266,11 @@ export const COUNTER_名: Counter = {
   },
   counterId: "名",
   englishName: "people (formal)",
+  externalLinks: [],
   irregulars: {},
   kana: "めい",
-  kanji: "名"
+  kanji: "名",
+  notes: null
 };
 
 export const COUNTER_周: Counter = {
@@ -257,9 +285,11 @@ export const COUNTER_周: Counter = {
   },
   counterId: "周",
   englishName: "laps and circuits",
+  externalLinks: [],
   irregulars: {},
   kana: "しゅう",
-  kanji: "周"
+  kanji: "周",
+  notes: null
 };
 
 export const COUNTER_回: Counter = {
@@ -274,9 +304,11 @@ export const COUNTER_回: Counter = {
   },
   counterId: "回",
   englishName: "times (occurrences)",
+  externalLinks: [],
   irregulars: {},
   kana: "かい",
-  kanji: "回"
+  kanji: "回",
+  notes: null
 };
 
 export const COUNTER_席: Counter = {
@@ -291,9 +323,11 @@ export const COUNTER_席: Counter = {
   },
   counterId: "席",
   englishName: "seats",
+  externalLinks: [],
   irregulars: {},
   kana: "せき",
-  kanji: "席"
+  kanji: "席",
+  notes: null
 };
 
 export const COUNTER_年: Counter = {
@@ -308,9 +342,11 @@ export const COUNTER_年: Counter = {
   },
   counterId: "年",
   englishName: "years",
+  externalLinks: [],
   irregulars: {},
   kana: "ねん",
-  kanji: "年"
+  kanji: "年",
+  notes: null
 };
 
 export const COUNTER_日: Counter = {
@@ -325,6 +361,7 @@ export const COUNTER_日: Counter = {
   },
   counterId: "日",
   englishName: "days of the month",
+  externalLinks: [],
   irregulars: {
     1: ["ついたち"],
     2: ["ふつか"],
@@ -341,7 +378,8 @@ export const COUNTER_日: Counter = {
     24: ["にじゅうよっか"]
   },
   kana: "にち",
-  kanji: "日"
+  kanji: "日",
+  notes: null
 };
 
 export const COUNTER_時: Counter = {
@@ -356,9 +394,11 @@ export const COUNTER_時: Counter = {
   },
   counterId: "時",
   englishName: "hours",
+  externalLinks: [],
   irregulars: {},
   kana: "じ",
-  kanji: "時"
+  kanji: "時",
+  notes: null
 };
 
 export const COUNTER_曲: Counter = {
@@ -373,9 +413,11 @@ export const COUNTER_曲: Counter = {
   },
   counterId: "曲",
   englishName: "songs",
+  externalLinks: [],
   irregulars: {},
   kana: "きょく",
-  kanji: "曲"
+  kanji: "曲",
+  notes: null
 };
 
 export const COUNTER_月: Counter = {
@@ -390,9 +432,11 @@ export const COUNTER_月: Counter = {
   },
   counterId: "月",
   englishName: "months",
+  externalLinks: [],
   irregulars: {},
   kana: "つき",
-  kanji: "月"
+  kanji: "月",
+  notes: null
 };
 
 export const COUNTER_本: Counter = {
@@ -407,9 +451,11 @@ export const COUNTER_本: Counter = {
   },
   counterId: "本",
   englishName: "long, thin objects",
+  externalLinks: [],
   irregulars: {},
   kana: "ほん",
-  kanji: "本"
+  kanji: "本",
+  notes: null
 };
 
 export const COUNTER_枚: Counter = {
@@ -424,9 +470,11 @@ export const COUNTER_枚: Counter = {
   },
   counterId: "枚",
   englishName: "flat objects",
+  externalLinks: [],
   irregulars: {},
   kana: "まい",
-  kanji: "枚"
+  kanji: "枚",
+  notes: null
 };
 
 export const COUNTER_校: Counter = {
@@ -441,9 +489,11 @@ export const COUNTER_校: Counter = {
   },
   counterId: "校",
   englishName: "schools",
+  externalLinks: [],
   irregulars: {},
   kana: "こう",
-  kanji: "校"
+  kanji: "校",
+  notes: null
 };
 
 export const COUNTER_歳: Counter = {
@@ -458,9 +508,11 @@ export const COUNTER_歳: Counter = {
   },
   counterId: "歳",
   englishName: "age",
+  externalLinks: [],
   irregulars: {},
   kana: "さい",
-  kanji: "歳"
+  kanji: "歳",
+  notes: null
 };
 
 export const COUNTER_皿: Counter = {
@@ -475,13 +527,15 @@ export const COUNTER_皿: Counter = {
   },
   counterId: "皿",
   englishName: "plates of food",
+  externalLinks: [],
   irregulars: {
     1: ["ひとさら"],
     2: ["ふたさら"],
     3: ["さんさら", "みさら"]
   },
   kana: "さら",
-  kanji: "皿"
+  kanji: "皿",
+  notes: null
 };
 
 export const COUNTER_社: Counter = {
@@ -496,9 +550,11 @@ export const COUNTER_社: Counter = {
   },
   counterId: "社",
   englishName: "companies and temples",
+  externalLinks: [],
   irregulars: {},
   kana: "しゃ",
-  kanji: "社"
+  kanji: "社",
+  notes: null
 };
 
 export const COUNTER_組: Counter = {
@@ -513,9 +569,11 @@ export const COUNTER_組: Counter = {
   },
   counterId: "組",
   englishName: "groups and pairs",
+  externalLinks: [],
   irregulars: {},
   kana: "くみ",
-  kanji: "組"
+  kanji: "組",
+  notes: null
 };
 
 export const COUNTER_缶: Counter = {
@@ -530,12 +588,14 @@ export const COUNTER_缶: Counter = {
   },
   counterId: "缶",
   englishName: "cans",
+  externalLinks: [],
   irregulars: {
     1: ["ひとかん", "いっかん"],
     2: ["ふたかん", "にかん"]
   },
   kana: "かん",
-  kanji: "缶"
+  kanji: "缶",
+  notes: null
 };
 
 export const COUNTER_羽: Counter = {
@@ -550,9 +610,11 @@ export const COUNTER_羽: Counter = {
   },
   counterId: "羽",
   englishName: "birds and rabbits",
+  externalLinks: [],
   irregulars: {},
   kana: "わ",
-  kanji: "羽"
+  kanji: "羽",
+  notes: null
 };
 
 export const COUNTER_色: Counter = {
@@ -567,9 +629,11 @@ export const COUNTER_色: Counter = {
   },
   counterId: "色",
   englishName: "colours",
+  externalLinks: [],
   irregulars: {},
   kana: "しょく",
-  kanji: "色"
+  kanji: "色",
+  notes: null
 };
 
 export const COUNTER_試合: Counter = {
@@ -584,9 +648,11 @@ export const COUNTER_試合: Counter = {
   },
   counterId: "試合",
   englishName: "games",
+  externalLinks: [],
   irregulars: {},
   kana: "しあい",
-  kanji: "試合"
+  kanji: "試合",
+  notes: null
 };
 
 export const COUNTER_語: Counter = {
@@ -601,9 +667,11 @@ export const COUNTER_語: Counter = {
   },
   counterId: "語",
   englishName: "words",
+  externalLinks: [],
   irregulars: {},
   kana: "ご",
-  kanji: "語"
+  kanji: "語",
+  notes: null
 };
 
 export const COUNTER_軒: Counter = {
@@ -618,9 +686,11 @@ export const COUNTER_軒: Counter = {
   },
   counterId: "軒",
   englishName: "houses and buildings",
+  externalLinks: [],
   irregulars: {},
   kana: "けん",
-  kanji: "軒"
+  kanji: "軒",
+  notes: null
 };
 
 export const COUNTER_週: Counter = {
@@ -635,9 +705,11 @@ export const COUNTER_週: Counter = {
   },
   counterId: "週",
   englishName: "weeks",
+  externalLinks: [],
   irregulars: {},
   kana: "しゅう",
-  kanji: "週"
+  kanji: "週",
+  notes: null
 };
 
 export const COUNTER_階: Counter = {
@@ -652,9 +724,11 @@ export const COUNTER_階: Counter = {
   },
   counterId: "階",
   englishName: "floors",
+  externalLinks: [],
   irregulars: {},
   kana: "かい",
-  kanji: "階"
+  kanji: "階",
+  notes: null
 };
 
 export const COUNTER_頭: Counter = {
@@ -669,9 +743,11 @@ export const COUNTER_頭: Counter = {
   },
   counterId: "頭",
   englishName: "large animals",
+  externalLinks: [],
   irregulars: {},
   kana: "とう",
-  kanji: "頭"
+  kanji: "頭",
+  notes: null
 };
 
 export const COUNTERS_LOOKUP: {

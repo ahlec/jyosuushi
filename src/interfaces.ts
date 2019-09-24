@@ -1,5 +1,11 @@
 import { NumericConjugationOptions } from "./japanese/interfaces";
 
+export interface ExternalLink {
+  url: string;
+  displayText: string;
+  additionalDescription: string | null;
+}
+
 export interface Counter {
   counterId: string;
   englishName: string;
@@ -7,6 +13,8 @@ export interface Counter {
   kanji: string | null;
   conjugationOptions: NumericConjugationOptions;
   irregulars: { [amount: number]: ReadonlyArray<string> };
+  notes: string | null;
+  externalLinks: ReadonlyArray<ExternalLink>;
 }
 
 export interface Item {
