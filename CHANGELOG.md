@@ -1,3 +1,20 @@
+### v2.4.0
+
+New Features:
+
+- **New counters added.** We have a couple more added to the pool now! Trying to ramp production up.
+- **Preivew counters.** You can preview any amount for a counter now when visiting its page!
+
+Bug Fixes:
+
+- Fixed a bug where per-item maximum values were ignored and it lead to wonky questions (like 39 0'clock).
+- Fixed a bug where you could go to pages for counters or study packs that didn't exist.
+
+Developer Changes:
+
+- Database is now stored in SQL files rather than a SQLite database, to improve conflict resolution and readability.
+- Implemented a scraper for a website with a ton of counters, to collect items grouped by counter.
+
 ### v2.3.0
 
 New Features:
