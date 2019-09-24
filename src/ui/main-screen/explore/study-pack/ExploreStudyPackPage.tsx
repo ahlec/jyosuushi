@@ -1,11 +1,11 @@
 import { memoize } from "lodash";
 import * as React from "react";
 import { connect } from "react-redux";
-import { RouteComponentProps } from "react-router-dom";
+import { Redirect, RouteComponentProps } from "react-router-dom";
 
 import { STUDY_PACK_LOOKUP } from "../../../../../data/studyPacks";
 
-import { Counter } from "../../../../interfaces";
+import { Counter, StudyPack } from "../../../../interfaces";
 import Localization from "../../../../localization";
 import { State } from "../../../../redux";
 import { getLocalization } from "../../../../redux/selectors";
@@ -31,6 +31,15 @@ function mapStateToProps(state: State): ReduxProps {
 type ComponentProps = RouteComponentProps<{ packId: string }> & ReduxProps;
 
 class ExploreStudyPackPage extends React.PureComponent<ComponentProps> {
+  private get studyPack(): StudyPack | null {
+    const {
+      match: {
+        params: { packId }
+      }
+    } = this.props;
+    return STUDY_PACK_LOOKUP[packId] || null;
+  }
+
   private onClickInvestigate = memoize((counter: Counter) => () => {
     const {
       history,
@@ -48,12 +57,13 @@ class ExploreStudyPackPage extends React.PureComponent<ComponentProps> {
 
   public render() {
     const {
-      localization,
-      match: {
-        params: { packId }
-      }
-    } = this.props;
-    const studyPack = STUDY_PACK_LOOKUP[packId];
+      studyPack,
+      props: { localization }
+    } = this;
+    if (!studyPack) {
+      return <Redirect to="/explore" />;
+    }
+
     const { counters } = studyPack;
     return (
       <div className="ExploreStudyPackPage">
