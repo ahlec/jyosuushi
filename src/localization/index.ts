@@ -35,6 +35,7 @@ export default interface Localization {
   counterName: (counter: Counter) => string;
   countersDisplayHeader: (numCounters: number) => string;
   credits: ReadonlyArray<CreditsPiece>;
+  customCounterAmountInputPrefix: string;
   feedbackFooter: ReadonlyArray<FeedbackFooterPiece>;
   feedbackPageHelpContributeDescription: string;
   feedbackPageHelpContributeLink: string;

@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import { memoize } from "lodash";
+import { clamp, memoize } from "lodash";
 import * as React from "react";
 import { connect } from "react-redux";
 import { Redirect, RouteComponentProps } from "react-router-dom";
@@ -17,6 +17,8 @@ import BreadcrumbBar from "../BreadcrumbBar";
 import "./ExploreCounterPage.scss";
 
 const AMOUNTS_TO_DISPLAY = 17;
+const MIN_USER_INPUT = 1;
+const MAX_USER_INPUT = 999_999_999;
 
 interface Irregular {
   conjugation: string;
@@ -100,7 +102,18 @@ function mapStateToProps(state: State): ReduxProps {
 
 type ComponentProps = ReduxProps & RouteComponentProps<{ counterId: string }>;
 
-class ExploreCounterPage extends React.PureComponent<ComponentProps> {
+interface ComponentState {
+  currentUserInput: number;
+}
+
+class ExploreCounterPage extends React.PureComponent<
+  ComponentProps,
+  ComponentState
+> {
+  public state: ComponentState = {
+    currentUserInput: AMOUNTS_TO_DISPLAY + 1
+  };
+
   private get counter(): Counter | null {
     const {
       match: {
@@ -113,7 +126,8 @@ class ExploreCounterPage extends React.PureComponent<ComponentProps> {
   public render() {
     const {
       counter,
-      props: { localization }
+      props: { localization },
+      state: { currentUserInput }
     } = this;
     if (!counter) {
       return <Redirect to="/explore" />;
@@ -146,6 +160,22 @@ class ExploreCounterPage extends React.PureComponent<ComponentProps> {
               </div>
             </React.Fragment>
           )}
+          <p className="custom-input-prefix">
+            {localization.customCounterAmountInputPrefix}
+          </p>
+          <div className="conjugated-user-input">
+            {conjugateCounter(currentUserInput, counter).map(
+              this.renderCurrentUserInputItem
+            )}
+          </div>
+          <input
+            type="number"
+            className="current-user-input"
+            min={MIN_USER_INPUT}
+            max={MAX_USER_INPUT}
+            value={currentUserInput}
+            onChange={this.onUserInputChanged}
+          />
           {items.length > 1 && ( // don't show list if only one item, will be rule
             <React.Fragment>
               <p className="items-prefix">
@@ -217,6 +247,37 @@ class ExploreCounterPage extends React.PureComponent<ComponentProps> {
   private renderItem = (item: Item) => {
     const { localization } = this.props;
     return <div key={item.itemId}>{localization.itemPlural(item)}</div>;
+  };
+
+  private renderCurrentUserInputItem = (
+    { category, kana }: ConjugatedInfo,
+    index: number
+  ) => (
+    <div
+      key={index}
+      className={classnames(
+        category === ConjugationCategory.Irregular && "irregular",
+        category === ConjugationCategory.Strange && "strange"
+      )}
+    >
+      {kana}
+    </div>
+  );
+
+  private onUserInputChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = event.target.valueAsNumber;
+
+    if (
+      isNaN(newValue) ||
+      newValue < MIN_USER_INPUT ||
+      newValue > MAX_USER_INPUT
+    ) {
+      return;
+    }
+
+    this.setState({
+      currentUserInput: clamp(newValue, MIN_USER_INPUT, MAX_USER_INPUT)
+    });
   };
 }
 

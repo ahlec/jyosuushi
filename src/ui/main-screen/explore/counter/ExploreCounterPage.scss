@@ -67,6 +67,23 @@
       margin: 15px 0px;
     }
 
+    p.custom-input-prefix {
+      margin: 15px 0px;
+    }
+
+    .conjugated-user-input {
+      font-size: 28px;
+    }
+
+    .current-user-input {
+      font-size: 24px;
+      border: 1px solid $app-outline;
+      border-radius: 5px;
+      padding: 2px;
+      margin-top: 10px;
+      width: 75px;
+    }
+
     .items-prefix {
       margin: 25px 0px;
       border-top: 1px solid $black-light;

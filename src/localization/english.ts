@@ -38,6 +38,8 @@ const ENGLISH: Localization = {
     VARIABLE_SILK_ICONS_CREDIT_LINK,
     " collection."
   ],
+  customCounterAmountInputPrefix:
+    "Or you can try out any number you'd like to here:",
   feedbackFooter: [
     "Your thoughts are super appreciated! Click here to ",
     VARIABLE_REPORT_BUG_LINK,
