@@ -66,18 +66,22 @@ function planOutItems(items: ReadonlyArray<Item>): QuizItems {
 // "Interesting" amounts will be a region themselves, everything else is "boring"
 const BORING_AMOUNTS_REGION_SIZE = 10;
 const getAmountRegions = memoize(
-  (counter: Counter, max: number): ReadonlyArray<ReadonlyArray<number>> => {
+  (
+    counter: Counter,
+    min: number,
+    max: number
+  ): ReadonlyArray<ReadonlyArray<number>> => {
     const regions: Array<ReadonlyArray<number>> = [];
 
     // The first ten are interesting enough we'll want to always just focus on them.
-    for (let amount = 1; amount <= 10; ++amount) {
+    for (let amount = min; amount <= 10; ++amount) {
       regions.push([amount]);
     }
 
     // Chunk regions based on if there's anything interesting there. If there is,
     // give it a region of its own. If not, group it together with surrounding numbers.
     let boringAmounts: number[] = [];
-    for (let amount = 11; amount <= max; amount++) {
+    for (let amount = Math.max(min, 11); amount <= max; amount++) {
       const isRegular = isConjugationRegular(amount, counter);
       if (!isRegular) {
         regions.push([amount]);
@@ -96,8 +100,46 @@ const getAmountRegions = memoize(
 
     return regions;
   },
-  (counter: Counter, max: number) => `${counter.counterId}-${max}`
+  (counter: Counter, min: number, max: number) =>
+    `${counter.counterId}-${min}-${max}`
 );
+
+function getRandomAmount(
+  counter: Counter,
+  item: Item,
+  amountRange: AmountRange,
+  usedAmountRegions: ReadonlySet<string>
+):
+  | { success: true; amounts: ReadonlyArray<number>; id: string }
+  | { success: false } {
+  const amountRegions = [
+    ...getAmountRegions(
+      counter,
+      Math.max(item.minQuantity, 1),
+      Math.min(item.maxQuantity, AMOUNT_RANGES[amountRange].max)
+    )
+  ];
+
+  let possibleAmounts: ReadonlyArray<number>;
+  let possibleAmountsId: string;
+  const MAX_NUM_ATTEMPTS = 6;
+  let numAttempts = 0;
+  do {
+    if (numAttempts > MAX_NUM_ATTEMPTS) {
+      return { success: false };
+    }
+
+    ++numAttempts;
+    possibleAmounts = randomFromArray(amountRegions);
+    possibleAmountsId = possibleAmounts.join(",");
+  } while (usedAmountRegions.has(possibleAmountsId));
+
+  return {
+    amounts: possibleAmounts,
+    id: possibleAmountsId,
+    success: true
+  };
+}
 
 function makeQuestionsForCounter(
   counter: Counter,
@@ -108,9 +150,6 @@ function makeQuestionsForCounter(
   const validItems = ITEMS_FROM_COUNTER[counter.counterId].filter(
     ({ itemId }) => quizItems[itemId].numRemaining > 0
   );
-  const amountRegions = [
-    ...getAmountRegions(counter, AMOUNT_RANGES[amountRange].max)
-  ];
 
   const numCounterQuestions = random(
     MIN_NUMBER_QUESTIONS_PER_COUNTER,
@@ -118,22 +157,27 @@ function makeQuestionsForCounter(
   );
   while (questions.length < numCounterQuestions && validItems.length) {
     const item = randomFromArray(validItems);
-    let possibleAmounts: ReadonlyArray<number>;
-    let possibleAmountsId: string;
-    // TODO: Provide check on amount region to make sure doesn't exceed item-specific max quantity.
-    do {
-      possibleAmounts = randomFromArray(amountRegions);
-      possibleAmountsId = possibleAmounts.join(",");
-    } while (quizItems[item.itemId].usedAmountRegions.has(possibleAmountsId));
+    const randomAmount = getRandomAmount(
+      counter,
+      item,
+      amountRange,
+      quizItems[item.itemId].usedAmountRegions
+    );
 
-    questions.push({
-      itemId: item.itemId,
-      possibleAmounts
-    });
+    let isItemDepleted = !randomAmount.success;
 
-    quizItems[item.itemId].usedAmountRegions.add(possibleAmountsId);
-    quizItems[item.itemId].numRemaining--;
-    if (quizItems[item.itemId].numRemaining <= 0) {
+    if (randomAmount.success) {
+      questions.push({
+        itemId: item.itemId,
+        possibleAmounts: randomAmount.amounts
+      });
+
+      quizItems[item.itemId].usedAmountRegions.add(randomAmount.id);
+      quizItems[item.itemId].numRemaining--;
+      isItemDepleted = quizItems[item.itemId].numRemaining <= 0;
+    }
+
+    if (isItemDepleted) {
       const index = validItems.indexOf(item);
       validItems.splice(index, 1);
     }
