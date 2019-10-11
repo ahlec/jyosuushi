@@ -1,0 +1,13 @@
+@import "../../../../palette.scss";
+
+.ItemsSection {
+  .items-prefix {
+    margin: 25px 0px;
+    border-top: 1px solid $black-light;
+    padding-top: 25px;
+  }
+
+  .items-list {
+    line-height: 22px;
+  }
+}
