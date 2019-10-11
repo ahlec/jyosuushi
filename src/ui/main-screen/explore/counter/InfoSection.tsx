@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Counter } from "../../../../interfaces";
+import { Counter, ExternalLink } from "../../../../interfaces";
 import Localization from "../../../../localization";
 
 import "./InfoSection.scss";
@@ -12,19 +12,44 @@ interface ComponentProps {
 
 export default class InfoSection extends React.PureComponent<ComponentProps> {
   public render() {
-    const { counter } = this.props;
+    const { counter, localization } = this.props;
 
-    if (!counter.notes) {
+    if (!counter.notes && !counter.externalLinks.length) {
       return null;
     }
 
     return (
       <section className="InfoSection">
-        <p
-          className="notes"
-          dangerouslySetInnerHTML={{ __html: counter.notes }}
-        />
+        {counter.notes && (
+          <p
+            className="notes"
+            dangerouslySetInnerHTML={{ __html: counter.notes }}
+          />
+        )}
+        {counter.externalLinks.length && (
+          <React.Fragment>
+            <h6>
+              {counter.notes
+                ? localization.furtherReading
+                : localization.externalLinksHeader}
+            </h6>
+            <ul className="external-links">
+              {counter.externalLinks.map(this.renderLink)}
+            </ul>
+          </React.Fragment>
+        )}
       </section>
     );
   }
+
+  private renderLink = (link: ExternalLink) => {
+    return (
+      <li key={link.url}>
+        <a href={link.url} target="_blank">
+          <strong className="site">[{link.siteName}]</strong>
+          {link.displayText}
+        </a>
+      </li>
+    );
+  };
 }

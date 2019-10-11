@@ -451,7 +451,14 @@ export const COUNTER_本: Counter = {
   },
   counterId: "本",
   englishName: "long, thin objects",
-  externalLinks: [],
+  externalLinks: [
+    {
+      additionalDescription: null,
+      displayText: "本: Counting Long, Skinny Things",
+      siteName: "Tofugu",
+      url: "https://www.tofugu.com/japanese/japanese-counter-hon/"
+    }
+  ],
   irregulars: {},
   kana: "ほん",
   kanji: "本",

@@ -4,6 +4,7 @@ export interface ExternalLink {
   url: string;
   displayText: string;
   additionalDescription: string | null;
+  siteName: string;
 }
 
 export interface Counter {

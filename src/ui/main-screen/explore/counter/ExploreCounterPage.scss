@@ -17,5 +17,11 @@
     .kanji {
       font-size: 72px;
     }
+
+    section + section {
+      margin-top: 25px;
+      border-top: 1px solid $black-light;
+      padding-top: 25px;
+    }
   }
 }

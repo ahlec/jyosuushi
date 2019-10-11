@@ -40,6 +40,7 @@ const ENGLISH: Localization = {
   ],
   customCounterAmountInputPrefix:
     "Or you can try out any number you'd like to here:",
+  externalLinksHeader: "External Links",
   feedbackFooter: [
     "Your thoughts are super appreciated! Click here to ",
     VARIABLE_REPORT_BUG_LINK,
@@ -59,6 +60,7 @@ const ENGLISH: Localization = {
     "Share with me anything that you'd like to see happen, or any ideas on how I can improve this service!",
   feedbackPageSubmitFeedbackLink: "Submit feedback and ideas",
   furtherIrregulars: "There are some more irregulars later on as well though:",
+  furtherReading: "Further Reading",
   hereAreTheFirstXNumbers: (amountToDisplay: number) =>
     `Here ${
       amountToDisplay === 1 ? "is" : "are"

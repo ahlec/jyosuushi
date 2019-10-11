@@ -36,6 +36,7 @@ export default interface Localization {
   countersDisplayHeader: (numCounters: number) => string;
   credits: ReadonlyArray<CreditsPiece>;
   customCounterAmountInputPrefix: string;
+  externalLinksHeader: string;
   feedbackFooter: ReadonlyArray<FeedbackFooterPiece>;
   feedbackPageHelpContributeDescription: string;
   feedbackPageHelpContributeLink: string;
@@ -45,6 +46,7 @@ export default interface Localization {
   feedbackPageSubmitFeedbackDescription: string;
   feedbackPageSubmitFeedbackLink: string;
   furtherIrregulars: string;
+  furtherReading: string;
   hereAreTheFirstXNumbers: (amountToDisplay: number) => string;
   highScoreEncouragements: ReadonlyArray<string>;
   irregularsWarning: (

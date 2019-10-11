@@ -72,6 +72,7 @@ async function writeCounterData(file, counter, irregulars, links) {
       externalLinksStr += "    {\n";
       externalLinksStr += `      additionalDescription: ${descriptionStr},\n`;
       externalLinksStr += `      displayText: "${escape(link.displayText)}",\n`;
+      externalLinksStr += `      siteName: "${escape(link.siteName)}",\n`;
       externalLinksStr += `      url: "${escapedUrl}"\n`;
       externalLinksStr += "    }";
 
@@ -146,7 +147,8 @@ async function writeCountersFile(db) {
     externalLinksLookup[externalLink.counter_id].push({
       url: externalLink.url,
       displayText: externalLink.link_text,
-      additionalDescription: externalLink.additional_description
+      additionalDescription: externalLink.additional_description,
+      siteName: externalLink.site_name
     });
   }
 
