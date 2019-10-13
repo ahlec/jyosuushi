@@ -7,6 +7,12 @@ export interface ExternalLink {
   siteName: string;
 }
 
+export interface CounterDisambiguation {
+  counter1Id: string;
+  counter2Id: string;
+  disambiguation: string;
+}
+
 export interface Counter {
   counterId: string;
   englishName: string;
@@ -16,6 +22,7 @@ export interface Counter {
   irregulars: { [amount: number]: ReadonlyArray<string> };
   notes: string | null;
   externalLinks: ReadonlyArray<ExternalLink>;
+  disambiguations: { [counterId: string]: CounterDisambiguation | undefined };
 }
 
 export interface Item {

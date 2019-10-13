@@ -1,6 +1,6 @@
 const chalk = require("chalk");
 const fs = require("fs");
-const { escape } = require("lodash");
+const { escape, sortBy } = require("lodash");
 const path = require("path");
 const { openDatabase, ROOT_DIRECTORY } = require("./utils");
 
@@ -8,12 +8,15 @@ const DATA_DIRECTORY = path.resolve(ROOT_DIRECTORY, "data");
 const COUNTERS_FILE = path.resolve(DATA_DIRECTORY, "counters.ts");
 const ITEMS_FILE = path.resolve(DATA_DIRECTORY, "items.ts");
 const STUDY_PACKS_FILE = path.resolve(DATA_DIRECTORY, "studyPacks.ts");
+const DISAMBIGUATIONS_FILE = path.resolve(DATA_DIRECTORY, "disambiguations.ts");
 
 const FILE_HEADER_COMMENT = `// DO NOT HAND-MODIFY THIS FILE!!
 // This file was built using \`yarn build-data\` from the SQLite database.
 // Modifications will be lost if they are made manually and not through the database.\n\n`;
 
 const INVALID_JAVASCRIPT_IDENTIFIER_REGEX = /^[a-zA-Z0-9]*$/;
+
+const WRAP_WIDTH = 80;
 
 function getVariableFromId(prefix, id) {
   return prefix + id.toUpperCase().replace(/[-\s,&._\(\)（）ー']+/g, "_");
@@ -31,8 +34,105 @@ function getStudyPackId(id) {
   return getVariableFromId("STUDY_PACK_", id);
 }
 
+function getDisambiguationId(counter1Id, counter2Id) {
+  return `DISAMBIGUATION_${getVariableFromId(
+    "",
+    counter1Id
+  )}${getVariableFromId("", counter2Id)}`;
+}
+
+// Disambiguation
+async function writeDisambiguationData(file, disambiguation) {
+  const variableName = getDisambiguationId(
+    disambiguation.counter1_id,
+    disambiguation.counter2_id
+  );
+
+  const distinctionStr = `"${escape(disambiguation.distinction)}"`;
+  let distinctionLine = `  disambiguation: ${distinctionStr}`;
+  if (distinctionLine.length >= WRAP_WIDTH) {
+    distinctionLine = `  disambiguation:\n    ${distinctionStr}`;
+  }
+
+  fs.writeSync(
+    file,
+    `\n\nexport const ${variableName}: CounterDisambiguation = {
+  counter1Id: "${disambiguation.counter1_id}",
+  counter2Id: "${disambiguation.counter2_id}",
+${distinctionLine}
+};`
+  );
+}
+
+async function writeDisambiguationFile(db) {
+  const disambiguations = await db.all(
+    "SELECT * FROM counter_disambiguations ORDER BY counter1_id ASC, counter2_id ASC"
+  );
+  const itemCounters = await db.all("SELECT * FROM item_counters");
+
+  const counterHasItems = {};
+  for (const itemCounter of itemCounters) {
+    counterHasItems[itemCounter.counter_id] = true;
+  }
+
+  const file = fs.openSync(DISAMBIGUATIONS_FILE, "w");
+  fs.writeSync(file, FILE_HEADER_COMMENT);
+
+  fs.writeSync(
+    file,
+    'import { CounterDisambiguation } from "../src/interfaces";'
+  );
+  let hasInvalidDisambiguation = false;
+  const encounteredCombinations = new Set();
+  for (const disambiguation of disambiguations) {
+    if (
+      !counterHasItems[disambiguation.counter1_id] ||
+      !counterHasItems[disambiguation.counter2_id]
+    ) {
+      console.warn(
+        `[${chalk.yellow("DISAMBIGUATION")}][${chalk.bold(
+          disambiguation.counter1_id
+        )}${chalk.bold(
+          disambiguation.counter2_id
+        )}] No associated items for one or both counters, so not being exported.`
+      );
+      continue;
+    }
+
+    const combinationId = sortBy([
+      disambiguation.counter1_id,
+      disambiguation.counter2_id
+    ]).join();
+    if (encounteredCombinations.has(combinationId)) {
+      console.warn(
+        `[${chalk.red("DISAMBIGUATION")}][${chalk.bold(
+          disambiguation.counter1_id
+        )}${chalk.bold(
+          disambiguation.counter2_id
+        )}] Already exported a disambiguation combination involving these two counters.`
+      );
+      hasInvalidDisambiguation = true;
+    }
+
+    encounteredCombinations.add(combinationId);
+
+    writeDisambiguationData(file, disambiguation);
+  }
+
+  fs.writeSync(file, "\n");
+  fs.closeSync(file);
+
+  return !hasInvalidDisambiguation;
+}
+
 // Counters
-async function writeCounterData(file, counter, irregulars, links) {
+async function writeCounterData(
+  file,
+  counter,
+  irregulars,
+  links,
+  disambiguations
+) {
   const variableName = getCounterId(counter.counter_id);
   let irregularsStr;
   if (irregulars && Object.keys(irregulars).length) {
@@ -86,6 +186,22 @@ async function writeCounterData(file, counter, irregulars, links) {
     externalLinksStr = "[]";
   }
 
+  let disambiguationsStr;
+  if (disambiguations.length) {
+    disambiguationsStr = "{\n";
+    for (let index = 0; index < disambiguations.length; ++index) {
+      const disambiguation = disambiguations[index];
+      disambiguationsStr += `    "${disambiguation.pairedCounterId}": DISAMBIGUATIONS.${disambiguation.variableId}`;
+      if (index < disambiguations.length - 1) {
+        disambiguationsStr += ",\n";
+      }
+    }
+
+    disambiguationsStr += "\n  }";
+  } else {
+    disambiguationsStr = "{}";
+  }
+
   fs.writeSync(
     file,
     `\n\nexport const ${variableName}: Counter = {
@@ -99,6 +215,7 @@ async function writeCounterData(file, counter, irregulars, links) {
     allowsYonFor4: ${counter.uses_yon ? "true" : "false"}
   },
   counterId: "${counter.counter_id}",
+  disambiguations: ${disambiguationsStr},
   englishName: "${counter.english_name}",
   externalLinks: ${externalLinksStr},
   irregulars: ${irregularsStr},
@@ -118,6 +235,9 @@ async function writeCountersFile(db) {
   );
   const itemCounters = await db.all("SELECT * FROM item_counters");
   const externalLinks = await db.all("SELECT * FROM counter_external_links");
+  const disambiguations = await db.all(
+    "SELECT * FROM counter_disambiguations ORDER BY counter1_id ASC, counter2_id ASC"
+  );
 
   const counterHasItems = {};
   for (const itemCounter of itemCounters) {
@@ -152,10 +272,36 @@ async function writeCountersFile(db) {
     });
   }
 
+  const disambiguationsLookup = {};
+  for (const disambiguation of disambiguations) {
+    if (!disambiguationsLookup[disambiguation.counter1_id]) {
+      disambiguationsLookup[disambiguation.counter1_id] = [];
+    }
+
+    if (!disambiguationsLookup[disambiguation.counter2_id]) {
+      disambiguationsLookup[disambiguation.counter2_id] = [];
+    }
+
+    const variableId = getDisambiguationId(
+      disambiguation.counter1_id,
+      disambiguation.counter2_id
+    );
+
+    disambiguationsLookup[disambiguation.counter1_id].push({
+      variableId,
+      pairedCounterId: disambiguation.counter2_id
+    });
+    disambiguationsLookup[disambiguation.counter2_id].push({
+      variableId,
+      pairedCounterId: disambiguation.counter1_id
+    });
+  }
+
   const file = fs.openSync(COUNTERS_FILE, "w");
   fs.writeSync(file, FILE_HEADER_COMMENT);
 
-  fs.writeSync(file, 'import { Counter } from "../src/interfaces";');
+  fs.writeSync(file, 'import { Counter } from "../src/interfaces";\n');
+  fs.writeSync(file, 'import * as DISAMBIGUATIONS from "./disambiguations";');
   let hasInvalidCounter = false;
   for (const counter of counters) {
     if (!counter.uses_yon && !counter.uses_yo && !counter.uses_shi) {
@@ -198,7 +344,8 @@ async function writeCountersFile(db) {
       file,
       counter,
       irregularsLookup[counter.counter_id],
-      externalLinksLookup[counter.counter_id] || []
+      externalLinksLookup[counter.counter_id] || [],
+      disambiguationsLookup[counter.counter_id] || []
     );
   }
 
@@ -481,12 +628,18 @@ async function writeStudyPacksFile(db) {
 
 async function main() {
   const db = await openDatabase();
+  const disambiguationSuccess = await writeDisambiguationFile(db);
   const countersSuccess = await writeCountersFile(db);
   const itemsSuccess = await writeItemsFile(db);
   const studyPacksSuccess = await writeStudyPacksFile(db);
   await db.close();
 
-  if (!countersSuccess || !itemsSuccess || !studyPacksSuccess) {
+  if (
+    !disambiguationSuccess ||
+    !countersSuccess ||
+    !itemsSuccess ||
+    !studyPacksSuccess
+  ) {
     process.exit(1);
   }
 }

@@ -3,6 +3,7 @@
 // Modifications will be lost if they are made manually and not through the database.
 
 import { Counter } from "../src/interfaces";
+import * as DISAMBIGUATIONS from "./disambiguations";
 
 export const COUNTER_ゲ_ム: Counter = {
   conjugationOptions: {
@@ -15,6 +16,7 @@ export const COUNTER_ゲ_ム: Counter = {
     allowsYonFor4: true
   },
   counterId: "ゲーム",
+  disambiguations: {},
   englishName: "games",
   externalLinks: [],
   irregulars: {},
@@ -34,6 +36,7 @@ export const COUNTER_ヶ国: Counter = {
     allowsYonFor4: true
   },
   counterId: "ヶ国",
+  disambiguations: {},
   englishName: "countries",
   externalLinks: [],
   irregulars: {},
@@ -53,6 +56,7 @@ export const COUNTER_ヶ所: Counter = {
     allowsYonFor4: true
   },
   counterId: "ヶ所",
+  disambiguations: {},
   englishName: "places",
   externalLinks: [],
   irregulars: {},
@@ -72,6 +76,7 @@ export const COUNTER_ヶ月: Counter = {
     allowsYonFor4: true
   },
   counterId: "ヶ月",
+  disambiguations: {},
   englishName: "months",
   externalLinks: [],
   irregulars: {},
@@ -91,6 +96,9 @@ export const COUNTER_人: Counter = {
     allowsYonFor4: false
   },
   counterId: "人",
+  disambiguations: {
+    "名": DISAMBIGUATIONS.DISAMBIGUATION_人名
+  },
   englishName: "people",
   externalLinks: [],
   irregulars: {
@@ -113,6 +121,7 @@ export const COUNTER_件: Counter = {
     allowsYonFor4: true
   },
   counterId: "件",
+  disambiguations: {},
   englishName: "matters",
   externalLinks: [],
   irregulars: {},
@@ -132,6 +141,7 @@ export const COUNTER_円: Counter = {
     allowsYonFor4: true
   },
   counterId: "円",
+  disambiguations: {},
   englishName: "yen",
   externalLinks: [],
   irregulars: {},
@@ -151,6 +161,7 @@ export const COUNTER_冊: Counter = {
     allowsYonFor4: true
   },
   counterId: "冊",
+  disambiguations: {},
   englishName: "books",
   externalLinks: [],
   irregulars: {},
@@ -170,6 +181,7 @@ export const COUNTER_分: Counter = {
     allowsYonFor4: true
   },
   counterId: "分",
+  disambiguations: {},
   englishName: "minutes",
   externalLinks: [],
   irregulars: {},
@@ -189,6 +201,7 @@ export const COUNTER_切れ: Counter = {
     allowsYonFor4: true
   },
   counterId: "切れ",
+  disambiguations: {},
   englishName: "cuts of meat",
   externalLinks: [],
   irregulars: {},
@@ -208,6 +221,7 @@ export const COUNTER_匹: Counter = {
     allowsYonFor4: true
   },
   counterId: "匹",
+  disambiguations: {},
   englishName: "small animals",
   externalLinks: [],
   irregulars: {},
@@ -227,6 +241,7 @@ export const COUNTER_口: Counter = {
     allowsYonFor4: true
   },
   counterId: "口",
+  disambiguations: {},
   englishName: "bites",
   externalLinks: [],
   irregulars: {},
@@ -246,6 +261,7 @@ export const COUNTER_台: Counter = {
     allowsYonFor4: true
   },
   counterId: "台",
+  disambiguations: {},
   englishName: "machines and large objects",
   externalLinks: [],
   irregulars: {},
@@ -265,6 +281,9 @@ export const COUNTER_名: Counter = {
     allowsYonFor4: true
   },
   counterId: "名",
+  disambiguations: {
+    "人": DISAMBIGUATIONS.DISAMBIGUATION_人名
+  },
   englishName: "people (formal)",
   externalLinks: [],
   irregulars: {},
@@ -284,6 +303,7 @@ export const COUNTER_周: Counter = {
     allowsYonFor4: true
   },
   counterId: "周",
+  disambiguations: {},
   englishName: "laps and circuits",
   externalLinks: [],
   irregulars: {},
@@ -303,6 +323,7 @@ export const COUNTER_回: Counter = {
     allowsYonFor4: true
   },
   counterId: "回",
+  disambiguations: {},
   englishName: "times (occurrences)",
   externalLinks: [],
   irregulars: {},
@@ -322,6 +343,7 @@ export const COUNTER_席: Counter = {
     allowsYonFor4: true
   },
   counterId: "席",
+  disambiguations: {},
   englishName: "seats",
   externalLinks: [],
   irregulars: {},
@@ -341,6 +363,7 @@ export const COUNTER_年: Counter = {
     allowsYonFor4: false
   },
   counterId: "年",
+  disambiguations: {},
   englishName: "years",
   externalLinks: [],
   irregulars: {},
@@ -360,6 +383,7 @@ export const COUNTER_日: Counter = {
     allowsYonFor4: true
   },
   counterId: "日",
+  disambiguations: {},
   englishName: "days of the month",
   externalLinks: [],
   irregulars: {
@@ -393,6 +417,7 @@ export const COUNTER_時: Counter = {
     allowsYonFor4: false
   },
   counterId: "時",
+  disambiguations: {},
   englishName: "hours",
   externalLinks: [],
   irregulars: {},
@@ -412,6 +437,7 @@ export const COUNTER_曲: Counter = {
     allowsYonFor4: true
   },
   counterId: "曲",
+  disambiguations: {},
   englishName: "songs",
   externalLinks: [],
   irregulars: {},
@@ -431,6 +457,7 @@ export const COUNTER_月: Counter = {
     allowsYonFor4: true
   },
   counterId: "月",
+  disambiguations: {},
   englishName: "months",
   externalLinks: [],
   irregulars: {},
@@ -450,6 +477,7 @@ export const COUNTER_本: Counter = {
     allowsYonFor4: true
   },
   counterId: "本",
+  disambiguations: {},
   englishName: "long, thin objects",
   externalLinks: [
     {
@@ -476,6 +504,7 @@ export const COUNTER_枚: Counter = {
     allowsYonFor4: true
   },
   counterId: "枚",
+  disambiguations: {},
   englishName: "flat objects",
   externalLinks: [],
   irregulars: {},
@@ -495,6 +524,7 @@ export const COUNTER_校: Counter = {
     allowsYonFor4: true
   },
   counterId: "校",
+  disambiguations: {},
   englishName: "schools",
   externalLinks: [],
   irregulars: {},
@@ -514,6 +544,7 @@ export const COUNTER_歳: Counter = {
     allowsYonFor4: true
   },
   counterId: "歳",
+  disambiguations: {},
   englishName: "age",
   externalLinks: [],
   irregulars: {},
@@ -533,6 +564,7 @@ export const COUNTER_皿: Counter = {
     allowsYonFor4: true
   },
   counterId: "皿",
+  disambiguations: {},
   englishName: "plates of food",
   externalLinks: [],
   irregulars: {
@@ -556,6 +588,7 @@ export const COUNTER_社: Counter = {
     allowsYonFor4: true
   },
   counterId: "社",
+  disambiguations: {},
   englishName: "companies and temples",
   externalLinks: [],
   irregulars: {},
@@ -575,6 +608,7 @@ export const COUNTER_組: Counter = {
     allowsYonFor4: true
   },
   counterId: "組",
+  disambiguations: {},
   englishName: "groups and pairs",
   externalLinks: [],
   irregulars: {},
@@ -594,6 +628,7 @@ export const COUNTER_缶: Counter = {
     allowsYonFor4: true
   },
   counterId: "缶",
+  disambiguations: {},
   englishName: "cans",
   externalLinks: [],
   irregulars: {
@@ -616,6 +651,7 @@ export const COUNTER_羽: Counter = {
     allowsYonFor4: true
   },
   counterId: "羽",
+  disambiguations: {},
   englishName: "birds and rabbits",
   externalLinks: [],
   irregulars: {},
@@ -635,6 +671,7 @@ export const COUNTER_色: Counter = {
     allowsYonFor4: true
   },
   counterId: "色",
+  disambiguations: {},
   englishName: "colours",
   externalLinks: [],
   irregulars: {},
@@ -654,6 +691,7 @@ export const COUNTER_試合: Counter = {
     allowsYonFor4: true
   },
   counterId: "試合",
+  disambiguations: {},
   englishName: "games",
   externalLinks: [],
   irregulars: {},
@@ -673,6 +711,7 @@ export const COUNTER_語: Counter = {
     allowsYonFor4: true
   },
   counterId: "語",
+  disambiguations: {},
   englishName: "words",
   externalLinks: [],
   irregulars: {},
@@ -692,6 +731,7 @@ export const COUNTER_軒: Counter = {
     allowsYonFor4: true
   },
   counterId: "軒",
+  disambiguations: {},
   englishName: "houses and buildings",
   externalLinks: [],
   irregulars: {},
@@ -711,6 +751,7 @@ export const COUNTER_週: Counter = {
     allowsYonFor4: true
   },
   counterId: "週",
+  disambiguations: {},
   englishName: "weeks",
   externalLinks: [],
   irregulars: {},
@@ -730,6 +771,7 @@ export const COUNTER_階: Counter = {
     allowsYonFor4: true
   },
   counterId: "階",
+  disambiguations: {},
   englishName: "floors",
   externalLinks: [],
   irregulars: {},
@@ -749,6 +791,7 @@ export const COUNTER_頭: Counter = {
     allowsYonFor4: true
   },
   counterId: "頭",
+  disambiguations: {},
   englishName: "large animals",
   externalLinks: [],
   irregulars: {},
