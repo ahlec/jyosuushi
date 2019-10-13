@@ -372,6 +372,26 @@ export const COUNTER_年: Counter = {
   notes: null
 };
 
+export const COUNTER_戦: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYoFor4: false,
+    allowsYonFor4: true
+  },
+  counterId: "戦",
+  disambiguations: {},
+  englishName: "battles",
+  externalLinks: [],
+  irregulars: {},
+  kana: "せん",
+  kanji: "戦",
+  notes: null
+};
+
 export const COUNTER_日: Counter = {
   conjugationOptions: {
     allowsKuFor9: false,
@@ -490,6 +510,30 @@ export const COUNTER_本: Counter = {
   irregulars: {},
   kana: "ほん",
   kanji: "本",
+  notes: null
+};
+
+export const COUNTER_束: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYoFor4: false,
+    allowsYonFor4: true
+  },
+  counterId: "束",
+  disambiguations: {},
+  englishName: "bundles",
+  externalLinks: [],
+  irregulars: {
+    1: ["ひとたば"],
+    2: ["ふたたば"],
+    3: ["さんたば", "みたば"]
+  },
+  kana: "たば",
+  kanji: "束",
   notes: null
 };
 
@@ -720,6 +764,26 @@ export const COUNTER_語: Counter = {
   notes: null
 };
 
+export const COUNTER_足: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYoFor4: false,
+    allowsYonFor4: true
+  },
+  counterId: "足",
+  disambiguations: {},
+  englishName: "pairs of footwear",
+  externalLinks: [],
+  irregulars: {},
+  kana: "そく",
+  kanji: "足",
+  notes: null
+};
+
 export const COUNTER_軒: Counter = {
   conjugationOptions: {
     allowsKuFor9: false,
@@ -821,11 +885,13 @@ export const COUNTERS_LOOKUP: {
   "回": COUNTER_回,
   "席": COUNTER_席,
   "年": COUNTER_年,
+  "戦": COUNTER_戦,
   "日": COUNTER_日,
   "時": COUNTER_時,
   "曲": COUNTER_曲,
   "月": COUNTER_月,
   "本": COUNTER_本,
+  "束": COUNTER_束,
   "枚": COUNTER_枚,
   "校": COUNTER_校,
   "歳": COUNTER_歳,
@@ -837,6 +903,7 @@ export const COUNTERS_LOOKUP: {
   "色": COUNTER_色,
   "試合": COUNTER_試合,
   "語": COUNTER_語,
+  "足": COUNTER_足,
   "軒": COUNTER_軒,
   "週": COUNTER_週,
   "階": COUNTER_階,

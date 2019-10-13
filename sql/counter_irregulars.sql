@@ -28,4 +28,8 @@ INSERT INTO "counter_irregulars" VALUES('日',20,'はつか',0);
 INSERT INTO "counter_irregulars" VALUES('日',14,'じゅうよっか',0);
 INSERT INTO "counter_irregulars" VALUES('人',2,'ふたり',0);
 INSERT INTO "counter_irregulars" VALUES('人',1,'ひとり',0);
+INSERT INTO "counter_irregulars" VALUES('束',2,'ふたたば',0);
+INSERT INTO "counter_irregulars" VALUES('束',1,'ひとたば',0);
+INSERT INTO "counter_irregulars" VALUES('束',3,'さんたば',0);
+INSERT INTO "counter_irregulars" VALUES('束',3,'みたば',0);
 COMMIT;

@@ -58,4 +58,8 @@ INSERT INTO "study_pack_contents" VALUES('common','週');
 INSERT INTO "study_pack_contents" VALUES('common','社');
 INSERT INTO "study_pack_contents" VALUES('common','品（しな）');
 INSERT INTO "study_pack_contents" VALUES('common','品（ひん）');
+INSERT INTO "study_pack_contents" VALUES('common','足');
+INSERT INTO "study_pack_contents" VALUES('common','束');
+INSERT INTO "study_pack_contents" VALUES('common','戦');
+INSERT INTO "study_pack_contents" VALUES('common','名');
 COMMIT;

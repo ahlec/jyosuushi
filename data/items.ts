@@ -172,6 +172,20 @@ const ITEM_BATHROOM: Item = {
   minQuantity: 1
 };
 
+const ITEM_BATTLE: Item = {
+  counters: [
+    {
+      counterId: "戦",
+      relevance: CounterItemRelevance.Unknown
+    }
+  ],
+  englishPlural: "battles",
+  englishSingular: "battle",
+  itemId: "battle",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
 const ITEM_BED: Item = {
   counters: [
     {
@@ -256,6 +270,20 @@ const ITEM_BOOKSTORE: Item = {
   minQuantity: 1
 };
 
+const ITEM_BOSS_FIGHT: Item = {
+  counters: [
+    {
+      counterId: "戦",
+      relevance: CounterItemRelevance.Unknown
+    }
+  ],
+  englishPlural: "boss fights",
+  englishSingular: "boss fight",
+  itemId: "boss fight",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
 const ITEM_BOTTLE: Item = {
   counters: [
     {
@@ -294,6 +322,34 @@ const ITEM_BOWL_OF_SOUP: Item = {
   englishPlural: "bowls of soup",
   englishSingular: "bowl of soup",
   itemId: "bowl of soup",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
+const ITEM_BUNDLE_OF_GREEN_ONIONS: Item = {
+  counters: [
+    {
+      counterId: "束",
+      relevance: CounterItemRelevance.Best
+    }
+  ],
+  englishPlural: "bundles of green onions",
+  englishSingular: "bundle of green onions",
+  itemId: "bundle of green onions",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
+const ITEM_BUNDLE_OF_WOOD: Item = {
+  counters: [
+    {
+      counterId: "束",
+      relevance: CounterItemRelevance.Best
+    }
+  ],
+  englishPlural: "bundles of wood",
+  englishSingular: "bundle of wood",
+  itemId: "bundle of wood",
   maxQuantity: 100,
   minQuantity: 1
 };
@@ -1230,6 +1286,48 @@ const ITEM_PAIR_OF_MITTENS: Item = {
   minQuantity: 1
 };
 
+const ITEM_PAIR_OF_SANDALS: Item = {
+  counters: [
+    {
+      counterId: "足",
+      relevance: CounterItemRelevance.Best
+    }
+  ],
+  englishPlural: "pairs of sandals",
+  englishSingular: "pair of sandals",
+  itemId: "pair of sandals",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
+const ITEM_PAIR_OF_SHOES: Item = {
+  counters: [
+    {
+      counterId: "足",
+      relevance: CounterItemRelevance.Best
+    }
+  ],
+  englishPlural: "pairs of shoes",
+  englishSingular: "pair of shoes",
+  itemId: "pair of shoes",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
+const ITEM_PAIR_OF_SOCKS: Item = {
+  counters: [
+    {
+      counterId: "足",
+      relevance: CounterItemRelevance.Best
+    }
+  ],
+  englishPlural: "pairs of socks",
+  englishSingular: "pair of socks",
+  itemId: "pair of socks",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
 const ITEM_PAPER: Item = {
   counters: [
     {
@@ -1630,6 +1728,20 @@ const ITEM_SIP_OF_WATER: Item = {
   minQuantity: 1
 };
 
+const ITEM_SKIRMISH: Item = {
+  counters: [
+    {
+      counterId: "戦",
+      relevance: CounterItemRelevance.Unknown
+    }
+  ],
+  englishPlural: "skirmishes",
+  englishSingular: "skirmish",
+  itemId: "skirmish",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
 const ITEM_SLICE_OF_CAKE: Item = {
   counters: [
     {
@@ -2009,15 +2121,19 @@ export const ITEMS_LOOKUP: {
   "basketball game": ITEM_BASKETBALL_GAME,
   bat: ITEM_BAT,
   bathroom: ITEM_BATHROOM,
+  battle: ITEM_BATTLE,
   bed: ITEM_BED,
   "beer can": ITEM_BEER_CAN,
   "bite of food": ITEM_BITE_OF_FOOD,
   blanket: ITEM_BLANKET,
   book: ITEM_BOOK,
   bookstore: ITEM_BOOKSTORE,
+  "boss fight": ITEM_BOSS_FIGHT,
   bottle: ITEM_BOTTLE,
   "bowl of fried rice": ITEM_BOWL_OF_FRIED_RICE,
   "bowl of soup": ITEM_BOWL_OF_SOUP,
+  "bundle of green onions": ITEM_BUNDLE_OF_GREEN_ONIONS,
+  "bundle of wood": ITEM_BUNDLE_OF_WOOD,
   "can of bug spray": ITEM_CAN_OF_BUG_SPRAY,
   "can of hair spray": ITEM_CAN_OF_HAIR_SPRAY,
   "can of soup": ITEM_CAN_OF_SOUP,
@@ -2084,6 +2200,9 @@ export const ITEMS_LOOKUP: {
   oven: ITEM_OVEN,
   "pair of gloves": ITEM_PAIR_OF_GLOVES,
   "pair of mittens": ITEM_PAIR_OF_MITTENS,
+  "pair of sandals": ITEM_PAIR_OF_SANDALS,
+  "pair of shoes": ITEM_PAIR_OF_SHOES,
+  "pair of socks": ITEM_PAIR_OF_SOCKS,
   paper: ITEM_PAPER,
   pen: ITEM_PEN,
   penguin: ITEM_PENGUIN,
@@ -2112,6 +2231,7 @@ export const ITEMS_LOOKUP: {
   "shopping mall": ITEM_SHOPPING_MALL,
   "side dish": ITEM_SIDE_DISH,
   "sip of water": ITEM_SIP_OF_WATER,
+  skirmish: ITEM_SKIRMISH,
   "slice of cake": ITEM_SLICE_OF_CAKE,
   "slice of pizza": ITEM_SLICE_OF_PIZZA,
   "slice of sashimi": ITEM_SLICE_OF_SASHIMI,
@@ -2161,11 +2281,13 @@ export const ITEMS_FROM_COUNTER: {
   "回": [ITEM_TIME_OCCURRENCES_, ITEM_OCCURRENCE],
   "席": [ITEM_SEAT, ITEM_MEETING, ITEM_ASSEMBLY, ITEM_BANQUET],
   "年": [ITEM_YEAR],
+  "戦": [ITEM_BATTLE, ITEM_SKIRMISH, ITEM_BOSS_FIGHT],
   "日": [ITEM_DAY_OF_THE_MONTH],
   "時": [ITEM_O_CLOCK],
   "曲": [ITEM_SONG, ITEM_TUNE, ITEM_MELODY, ITEM_JINGLE],
   "月": [ITEM_MONTH],
   "本": [ITEM_BOTTLE, ITEM_TREE, ITEM_ROD, ITEM_RIVER, ITEM_PEN, ITEM_LINE, ITEM_STREET, ITEM_STRAW],
+  "束": [ITEM_BUNDLE_OF_WOOD, ITEM_BUNDLE_OF_GREEN_ONIONS],
   "枚": [ITEM_CREDIT_CARD, ITEM_PLAYING_CARD, ITEM_PAPER, ITEM_PHOTO, ITEM_RECEIPT, ITEM_BAR_OF_CHOCOLATE, ITEM_FUR_PELT, ITEM_BLANKET],
   "校": [ITEM_HIGH_SCHOOL, ITEM_ELEMENTARY_SCHOOL, ITEM_MIDDLE_SCHOOL, ITEM_UNIVERSITY, ITEM_CRAM_SCHOOL],
   "歳": [ITEM_YEARS_OLD],
@@ -2177,6 +2299,7 @@ export const ITEMS_FROM_COUNTER: {
   "色": [ITEM_TINT, ITEM_HUE, ITEM_COLOUR],
   "試合": [ITEM_BASEBALL_GAME, ITEM_GAME, ITEM_MATCH_SPORTS_],
   "語": [ITEM_WORD, ITEM_PROVERB, ITEM_SAYING, ITEM_KEYWORD, ITEM_IDIOM],
+  "足": [ITEM_PAIR_OF_SHOES, ITEM_PAIR_OF_SANDALS, ITEM_PAIR_OF_SOCKS],
   "軒": [ITEM_BOOKSTORE, ITEM_SHOP, ITEM_STORE, ITEM_TEA_HOUSE, ITEM_HOUSE, ITEM_HOME, ITEM_BARN, ITEM_IZAKAYA, ITEM_APARTMENT, ITEM_CINEMA, ITEM_ARCADE, ITEM_NIGHTCLUB],
   "週": [ITEM_WEEK],
   "階": [ITEM_FLOOR_BUILDING_, ITEM_STOREY],

@@ -42,4 +42,7 @@ INSERT INTO "counters" VALUES('週','weeks','しゅう','週',1,0,0,1,0,1,0,NULL
 INSERT INTO "counters" VALUES('周','laps and circuits','しゅう','周',1,0,0,1,0,1,0,NULL);
 INSERT INTO "counters" VALUES('色','colours','しょく','色',1,0,0,1,0,1,0,NULL);
 INSERT INTO "counters" VALUES('席','seats','せき','席',1,0,0,1,0,1,0,NULL);
+INSERT INTO "counters" VALUES('戦','battles','せん','戦',1,0,0,1,0,1,0,NULL);
+INSERT INTO "counters" VALUES('足','pairs of footwear','そく','足',1,0,0,1,0,1,0,NULL);
+INSERT INTO "counters" VALUES('束','bundles','たば','束',1,0,0,1,0,1,0,NULL);
 COMMIT;

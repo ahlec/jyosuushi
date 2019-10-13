@@ -142,4 +142,12 @@ INSERT INTO "items" VALUES('bowl of fried rice','bowl of fried rice','bowls of f
 INSERT INTO "items" VALUES('bowl of soup','bowl of soup','bowls of soup',NULL,NULL,'スープ',NULL);
 INSERT INTO "items" VALUES('serving of yakisoba','serving of yakisoba','servings of yakisoba',NULL,NULL,'やきそば','焼きそば');
 INSERT INTO "items" VALUES('bank','bank','banks',NULL,NULL,'ぎんこう','銀行');
+INSERT INTO "items" VALUES('boss fight','boss fight','boss fights',NULL,NULL,NULL,NULL);
+INSERT INTO "items" VALUES('skirmish','skirmish','skirmishes',NULL,NULL,NULL,NULL);
+INSERT INTO "items" VALUES('battle','battle','battles',NULL,NULL,NULL,NULL);
+INSERT INTO "items" VALUES('pair of sandals','pair of sandals','pairs of sandals',NULL,NULL,NULL,NULL);
+INSERT INTO "items" VALUES('pair of shoes','pair of shoes','pairs of shoes',NULL,NULL,NULL,NULL);
+INSERT INTO "items" VALUES('pair of socks','pair of socks','pairs of socks',NULL,NULL,NULL,NULL);
+INSERT INTO "items" VALUES('bundle of green onions','bundle of green onions','bundles of green onions',NULL,NULL,NULL,NULL);
+INSERT INTO "items" VALUES('bundle of wood','bundle of wood','bundles of wood',NULL,NULL,NULL,NULL);
 COMMIT;
