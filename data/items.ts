@@ -572,7 +572,7 @@ const ITEM_DEER: Item = {
   counters: [
     {
       counterId: "匹",
-      relevance: CounterItemRelevance.RarelyUsed
+      relevance: CounterItemRelevance.Unknown
     }
   ],
   englishPlural: "deer",

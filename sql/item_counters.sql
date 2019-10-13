@@ -9,7 +9,7 @@ INSERT INTO "item_counters" VALUES('rabbit','匹',NULL);
 INSERT INTO "item_counters" VALUES('dog','匹',NULL);
 INSERT INTO "item_counters" VALUES('cat','匹',NULL);
 INSERT INTO "item_counters" VALUES('sheep','匹',NULL);
-INSERT INTO "item_counters" VALUES('deer','匹','rare');
+INSERT INTO "item_counters" VALUES('deer','匹',NULL);
 INSERT INTO "item_counters" VALUES('otter','匹',NULL);
 INSERT INTO "item_counters" VALUES('credit card','枚',NULL);
 INSERT INTO "item_counters" VALUES('playing card','枚',NULL);
