@@ -1,6 +1,6 @@
 const chalk = require("chalk");
 const fs = require("fs");
-const { escape, sortBy } = require("lodash");
+const { escape, repeat, sortBy } = require("lodash");
 const path = require("path");
 const { openDatabase, ROOT_DIRECTORY } = require("./utils");
 
@@ -380,24 +380,80 @@ async function writeCountersFile(db) {
   return !hasInvalidCounter;
 }
 
-// Items
-function writeItemData(file, item, counters) {
-  const variableName = getItemId(item.item_id);
-  let countersStr = "[\n";
-  for (let index = 0; index < counters.length; ++index) {
-    countersStr += `  "${counters[index]}"`;
+function indent(str, numSpaces) {
+  // TODO: What about strings with newlines in them?
+  const lines = str.split("\n");
+  const indentation = repeat(" ", numSpaces);
+  return lines.map(line => `${indentation}${line}`).join("\n");
+}
 
-    if (index < counters.length - 1) {
-      countersStr += ",\n";
+function toPrettierCompliantArray(arr, indentation) {
+  if (!arr.length) {
+    return "[]";
+  }
+
+  // TODO: What about strings with newlines in them?
+  const doEntriesContainNewlines = arr.some(i => i.indexOf("\n") >= 0);
+  if (!doEntriesContainNewlines) {
+    // TODO: Measure length of representation + handle wrapping
+    return JSON.stringify(arr);
+  }
+
+  let str = "[\n";
+  for (let index = 0; index < arr.length; ++index) {
+    str += indent(arr[index], indentation + 2);
+
+    if (index < arr.length - 1) {
+      str += ",\n";
     }
   }
 
-  countersStr += "\n  ]";
+  str += `\n${indent("]", indentation)}`;
+  return str;
+}
+
+// Items
+function toItemCounterInterface(counter) {
+  let relevanceEnumValue;
+  switch (counter.relevance) {
+    case "rare": {
+      relevanceEnumValue = "RarelyUsed";
+      break;
+    }
+    case "situational": {
+      relevanceEnumValue = "Situational";
+      break;
+    }
+    case "common": {
+      relevanceEnumValue = "Common";
+      break;
+    }
+    case "best": {
+      relevanceEnumValue = "Best";
+      break;
+    }
+    case "unknown":
+    case null: {
+      relevanceEnumValue = "Unknown";
+      break;
+    }
+  }
+
+  return `{
+  counterId: "${counter.counterId}",
+  relevance: CounterItemRelevance.${relevanceEnumValue}
+}`;
+}
+
+function writeItemData(file, item, counters) {
+  const variableName = getItemId(item.item_id);
+
+  const counterItems = counters.map(toItemCounterInterface);
 
   fs.writeSync(
     file,
     `\n\nconst ${variableName}: Item = {
-  counters: ${JSON.stringify(counters)},
+  counters: ${toPrettierCompliantArray(counterItems, 2)},
   englishPlural: "${item.english_plural}",
   englishSingular: "${item.english_singular}",
   itemId: "${item.item_id}",
@@ -417,7 +473,10 @@ async function writeItemsFile(db) {
       itemsToCounters[itemCounter.item_id] = [];
     }
 
-    itemsToCounters[itemCounter.item_id].push(itemCounter.counter_id);
+    itemsToCounters[itemCounter.item_id].push({
+      counterId: itemCounter.counter_id,
+      relevance: itemCounter.relevance
+    });
 
     if (!countersToItems[itemCounter.counter_id]) {
       countersToItems[itemCounter.counter_id] = [];
@@ -429,7 +488,10 @@ async function writeItemsFile(db) {
   const file = fs.openSync(ITEMS_FILE, "w");
   fs.writeSync(file, FILE_HEADER_COMMENT);
 
-  fs.writeSync(file, 'import { Item } from "../src/interfaces";');
+  fs.writeSync(
+    file,
+    'import { CounterItemRelevance, Item } from "../src/interfaces";'
+  );
 
   let hasItemsWithoutCounters = false;
   for (const item of items) {

@@ -25,9 +25,22 @@ export interface Counter {
   disambiguations: { [counterId: string]: CounterDisambiguation | undefined };
 }
 
+export enum CounterItemRelevance {
+  Unknown,
+  RarelyUsed,
+  Situational,
+  Common,
+  Best
+}
+
+export interface ItemCounter {
+  counterId: string;
+  relevance: CounterItemRelevance;
+}
+
 export interface Item {
   itemId: string;
-  counters: ReadonlyArray<string>;
+  counters: ReadonlyArray<ItemCounter>;
   englishSingular: string;
   englishPlural: string;
   minQuantity: number;

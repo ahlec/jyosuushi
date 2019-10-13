@@ -141,4 +141,5 @@ INSERT INTO "items" VALUES('plate of food','plate of food','plates of food',NULL
 INSERT INTO "items" VALUES('bowl of fried rice','bowl of fried rice','bowls of fried rice',NULL,NULL,'チャーハン',NULL);
 INSERT INTO "items" VALUES('bowl of soup','bowl of soup','bowls of soup',NULL,NULL,'スープ',NULL);
 INSERT INTO "items" VALUES('serving of yakisoba','serving of yakisoba','servings of yakisoba',NULL,NULL,'やきそば','焼きそば');
+INSERT INTO "items" VALUES('bank','bank','banks',NULL,NULL,'ぎんこう','銀行');
 COMMIT;

@@ -29,6 +29,7 @@ function makeQuestion(
 
   const enabledCountersSet = getEnabledCountersSet(enabledCounters);
   const counters = ITEMS_LOOKUP[itemId].counters
+    .map(({ counterId }) => counterId)
     .filter(counterId => enabledCountersSet.has(counterId))
     .map(counterId => COUNTERS_LOOKUP[counterId]);
   const validAnswers: Answer[] = [];
