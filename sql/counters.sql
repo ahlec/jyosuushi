@@ -4,7 +4,7 @@ CREATE TABLE counters (counter_id STRING PRIMARY KEY, english_name STRING NOT NU
 INSERT INTO "counters" VALUES('日','days of the month','にち','日',1,0,0,1,0,1,0,NULL);
 INSERT INTO "counters" VALUES('本','long, thin objects','ほん','本',1,0,0,1,1,1,0,NULL);
 INSERT INTO "counters" VALUES('分','minutes','ふん','分',1,0,0,1,1,1,0,NULL);
-INSERT INTO "counters" VALUES('名','people (formal)','めい','名',1,0,0,1,0,1,0,NULL);
+INSERT INTO "counters" VALUES('名','people','めい','名',1,0,0,1,0,1,0,NULL);
 INSERT INTO "counters" VALUES('人','people','にん','人',0,1,0,1,1,1,1,NULL);
 INSERT INTO "counters" VALUES('時','hours','じ','時',0,1,0,1,1,0,1,NULL);
 INSERT INTO "counters" VALUES('枚','flat objects','まい','枚',1,0,0,1,1,1,0,NULL);

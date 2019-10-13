@@ -8,5 +8,5 @@ export const DISAMBIGUATION_人名: CounterDisambiguation = {
   counter1Id: "人",
   counter2Id: "名",
   disambiguation:
-    "While both are acceptable publicly, 名 is more polite than 人 and so is used in more formal situations, especially within the service industry."
+    "人 is much more commonly used in daily conversation. 名 is more polite than 人 and so is used in formal situations."
 };

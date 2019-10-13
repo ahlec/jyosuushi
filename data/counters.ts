@@ -284,7 +284,7 @@ export const COUNTER_名: Counter = {
   disambiguations: {
     "人": DISAMBIGUATIONS.DISAMBIGUATION_人名
   },
-  englishName: "people (formal)",
+  englishName: "people",
   externalLinks: [],
   irregulars: {},
   kana: "めい",
