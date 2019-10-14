@@ -58,11 +58,7 @@ const STUDY_PACK_ESSENTIAL: StudyPack = {
 };
 
 const STUDY_PACK_N4: StudyPack = {
-  counters: [
-    COUNTERS.COUNTER_冊,
-    COUNTERS.COUNTER_羽,
-    COUNTERS.COUNTER_頭
-  ],
+  counters: [COUNTERS.COUNTER_冊, COUNTERS.COUNTER_羽, COUNTERS.COUNTER_頭],
   englishName: "JLPT N4",
   packId: "n4"
 };
@@ -90,9 +86,7 @@ export const STUDY_PACKS: ReadonlyArray<StudyPack> = [
   STUDY_PACK_N5
 ];
 
-export const STUDY_PACK_LOOKUP: {
-  [packId: string]: StudyPack;
-} = {
+export const STUDY_PACK_LOOKUP: { [packId: string]: StudyPack } = {
   common: STUDY_PACK_COMMON,
   essential: STUDY_PACK_ESSENTIAL,
   n4: STUDY_PACK_N4,

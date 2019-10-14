@@ -24,7 +24,7 @@ jobs:
           command: yarn db:update
       - run:
           name: Export data from database
-          command: yarn build-data
+          command: yarn db:export
       - run:
           name: Ensure repository data files are up to date
           command: git diff --exit-code data/*

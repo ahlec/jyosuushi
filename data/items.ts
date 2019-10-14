@@ -5,12 +5,7 @@
 import { CounterItemRelevance, Item } from "../src/interfaces";
 
 const ITEM_APARTMENT: Item = {
-  counters: [
-    {
-      counterId: "軒",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "軒", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "apartments",
   englishSingular: "apartment",
   itemId: "apartment",
@@ -19,12 +14,7 @@ const ITEM_APARTMENT: Item = {
 };
 
 const ITEM_APPOINTMENT: Item = {
-  counters: [
-    {
-      counterId: "件",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "件", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "appointments",
   englishSingular: "appointment",
   itemId: "appointment",
@@ -33,12 +23,7 @@ const ITEM_APPOINTMENT: Item = {
 };
 
 const ITEM_ARCADE: Item = {
-  counters: [
-    {
-      counterId: "軒",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "軒", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "arcades",
   englishSingular: "arcade",
   itemId: "arcade",
@@ -47,12 +32,7 @@ const ITEM_ARCADE: Item = {
 };
 
 const ITEM_ASSEMBLY: Item = {
-  counters: [
-    {
-      counterId: "席",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "席", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "assemblies",
   englishSingular: "assembly",
   itemId: "assembly",
@@ -61,12 +41,7 @@ const ITEM_ASSEMBLY: Item = {
 };
 
 const ITEM_BANK: Item = {
-  counters: [
-    {
-      counterId: "社",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "社", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "banks",
   englishSingular: "bank",
   itemId: "bank",
@@ -75,12 +50,7 @@ const ITEM_BANK: Item = {
 };
 
 const ITEM_BANQUET: Item = {
-  counters: [
-    {
-      counterId: "席",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "席", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "banquets",
   englishSingular: "banquet",
   itemId: "banquet",
@@ -89,12 +59,7 @@ const ITEM_BANQUET: Item = {
 };
 
 const ITEM_BAR_OF_CHOCOLATE: Item = {
-  counters: [
-    {
-      counterId: "枚",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "枚", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "bars of chocolate",
   englishSingular: "bar of chocolate",
   itemId: "bar of chocolate",
@@ -103,12 +68,7 @@ const ITEM_BAR_OF_CHOCOLATE: Item = {
 };
 
 const ITEM_BARN: Item = {
-  counters: [
-    {
-      counterId: "軒",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "軒", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "barns",
   englishSingular: "barn",
   itemId: "barn",
@@ -116,41 +76,8 @@ const ITEM_BARN: Item = {
   minQuantity: 1
 };
 
-const ITEM_BASEBALL_GAME: Item = {
-  counters: [
-    {
-      counterId: "試合",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
-  englishPlural: "baseball games",
-  englishSingular: "baseball game",
-  itemId: "baseball game",
-  maxQuantity: 100,
-  minQuantity: 1
-};
-
-const ITEM_BASKETBALL_GAME: Item = {
-  counters: [
-    {
-      counterId: "ゲーム",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
-  englishPlural: "basketball games",
-  englishSingular: "basketball game",
-  itemId: "basketball game",
-  maxQuantity: 100,
-  minQuantity: 1
-};
-
 const ITEM_BAT: Item = {
-  counters: [
-    {
-      counterId: "羽",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "羽", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "bats",
   englishSingular: "bat",
   itemId: "bat",
@@ -159,12 +86,7 @@ const ITEM_BAT: Item = {
 };
 
 const ITEM_BATHROOM: Item = {
-  counters: [
-    {
-      counterId: "ヶ所",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "ヶ所", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "bathrooms",
   englishSingular: "bathroom",
   itemId: "bathroom",
@@ -173,12 +95,7 @@ const ITEM_BATHROOM: Item = {
 };
 
 const ITEM_BATTLE: Item = {
-  counters: [
-    {
-      counterId: "戦",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "戦", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "battles",
   englishSingular: "battle",
   itemId: "battle",
@@ -187,12 +104,7 @@ const ITEM_BATTLE: Item = {
 };
 
 const ITEM_BED: Item = {
-  counters: [
-    {
-      counterId: "台",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "台", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "beds",
   englishSingular: "bed",
   itemId: "bed",
@@ -201,12 +113,7 @@ const ITEM_BED: Item = {
 };
 
 const ITEM_BEER_CAN: Item = {
-  counters: [
-    {
-      counterId: "缶",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "缶", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "beer cans",
   englishSingular: "beer can",
   itemId: "beer can",
@@ -215,12 +122,7 @@ const ITEM_BEER_CAN: Item = {
 };
 
 const ITEM_BITE_OF_FOOD: Item = {
-  counters: [
-    {
-      counterId: "口",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "口", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "bites of food",
   englishSingular: "bite of food",
   itemId: "bite of food",
@@ -229,12 +131,7 @@ const ITEM_BITE_OF_FOOD: Item = {
 };
 
 const ITEM_BLANKET: Item = {
-  counters: [
-    {
-      counterId: "枚",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "枚", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "blanket",
   englishSingular: "blanket",
   itemId: "blanket",
@@ -243,12 +140,7 @@ const ITEM_BLANKET: Item = {
 };
 
 const ITEM_BOOK: Item = {
-  counters: [
-    {
-      counterId: "冊",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "冊", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "books",
   englishSingular: "book",
   itemId: "book",
@@ -257,12 +149,7 @@ const ITEM_BOOK: Item = {
 };
 
 const ITEM_BOOKSTORE: Item = {
-  counters: [
-    {
-      counterId: "軒",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "軒", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "bookstores",
   englishSingular: "bookstore",
   itemId: "bookstore",
@@ -271,12 +158,7 @@ const ITEM_BOOKSTORE: Item = {
 };
 
 const ITEM_BOSS_FIGHT: Item = {
-  counters: [
-    {
-      counterId: "戦",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "戦", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "boss fights",
   englishSingular: "boss fight",
   itemId: "boss fight",
@@ -285,12 +167,7 @@ const ITEM_BOSS_FIGHT: Item = {
 };
 
 const ITEM_BOTTLE: Item = {
-  counters: [
-    {
-      counterId: "本",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "本", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "bottles",
   englishSingular: "bottle",
   itemId: "bottle",
@@ -299,12 +176,7 @@ const ITEM_BOTTLE: Item = {
 };
 
 const ITEM_BOWL_OF_FRIED_RICE: Item = {
-  counters: [
-    {
-      counterId: "皿",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "皿", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "bowls of fried rice",
   englishSingular: "bowl of fried rice",
   itemId: "bowl of fried rice",
@@ -313,12 +185,7 @@ const ITEM_BOWL_OF_FRIED_RICE: Item = {
 };
 
 const ITEM_BOWL_OF_SOUP: Item = {
-  counters: [
-    {
-      counterId: "皿",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "皿", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "bowls of soup",
   englishSingular: "bowl of soup",
   itemId: "bowl of soup",
@@ -327,12 +194,7 @@ const ITEM_BOWL_OF_SOUP: Item = {
 };
 
 const ITEM_BUNDLE_OF_GREEN_ONIONS: Item = {
-  counters: [
-    {
-      counterId: "束",
-      relevance: CounterItemRelevance.Best
-    }
-  ],
+  counters: [{ counterId: "束", relevance: CounterItemRelevance.Best }],
   englishPlural: "bundles of green onions",
   englishSingular: "bundle of green onions",
   itemId: "bundle of green onions",
@@ -341,12 +203,7 @@ const ITEM_BUNDLE_OF_GREEN_ONIONS: Item = {
 };
 
 const ITEM_BUNDLE_OF_WOOD: Item = {
-  counters: [
-    {
-      counterId: "束",
-      relevance: CounterItemRelevance.Best
-    }
-  ],
+  counters: [{ counterId: "束", relevance: CounterItemRelevance.Best }],
   englishPlural: "bundles of wood",
   englishSingular: "bundle of wood",
   itemId: "bundle of wood",
@@ -355,12 +212,7 @@ const ITEM_BUNDLE_OF_WOOD: Item = {
 };
 
 const ITEM_CAN_OF_BUG_SPRAY: Item = {
-  counters: [
-    {
-      counterId: "缶",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "缶", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "cans of bug spray",
   englishSingular: "can of bug spray",
   itemId: "can of bug spray",
@@ -369,12 +221,7 @@ const ITEM_CAN_OF_BUG_SPRAY: Item = {
 };
 
 const ITEM_CAN_OF_HAIR_SPRAY: Item = {
-  counters: [
-    {
-      counterId: "缶",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "缶", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "cans of hair spray",
   englishSingular: "can of hair spray",
   itemId: "can of hair spray",
@@ -383,12 +230,7 @@ const ITEM_CAN_OF_HAIR_SPRAY: Item = {
 };
 
 const ITEM_CAN_OF_SOUP: Item = {
-  counters: [
-    {
-      counterId: "缶",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "缶", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "cans of soup",
   englishSingular: "can of soup",
   itemId: "can of soup",
@@ -397,12 +239,7 @@ const ITEM_CAN_OF_SOUP: Item = {
 };
 
 const ITEM_CAR: Item = {
-  counters: [
-    {
-      counterId: "台",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "台", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "cars",
   englishSingular: "car",
   itemId: "car",
@@ -411,12 +248,7 @@ const ITEM_CAR: Item = {
 };
 
 const ITEM_CAT: Item = {
-  counters: [
-    {
-      counterId: "匹",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "匹", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "cats",
   englishSingular: "cat",
   itemId: "cat",
@@ -425,12 +257,7 @@ const ITEM_CAT: Item = {
 };
 
 const ITEM_CHICKEN: Item = {
-  counters: [
-    {
-      counterId: "羽",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "羽", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "chickens",
   englishSingular: "chicken",
   itemId: "chicken",
@@ -440,14 +267,8 @@ const ITEM_CHICKEN: Item = {
 
 const ITEM_CINEMA: Item = {
   counters: [
-    {
-      counterId: "ヶ所",
-      relevance: CounterItemRelevance.Unknown
-    },
-    {
-      counterId: "軒",
-      relevance: CounterItemRelevance.Unknown
-    }
+    { counterId: "ヶ所", relevance: CounterItemRelevance.Unknown },
+    { counterId: "軒", relevance: CounterItemRelevance.Unknown }
   ],
   englishPlural: "cinemas",
   englishSingular: "cinema",
@@ -457,12 +278,7 @@ const ITEM_CINEMA: Item = {
 };
 
 const ITEM_CIRCUIT: Item = {
-  counters: [
-    {
-      counterId: "周",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "周", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "circuits",
   englishSingular: "circuit",
   itemId: "circuit",
@@ -471,12 +287,7 @@ const ITEM_CIRCUIT: Item = {
 };
 
 const ITEM_COLOUR: Item = {
-  counters: [
-    {
-      counterId: "色",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "色", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "colours",
   englishSingular: "colour",
   itemId: "colour",
@@ -485,12 +296,7 @@ const ITEM_COLOUR: Item = {
 };
 
 const ITEM_COMPANY: Item = {
-  counters: [
-    {
-      counterId: "社",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "社", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "companies",
   englishSingular: "company",
   itemId: "company",
@@ -499,12 +305,7 @@ const ITEM_COMPANY: Item = {
 };
 
 const ITEM_COUNTRY: Item = {
-  counters: [
-    {
-      counterId: "ヶ国",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "ヶ国", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "countries",
   englishSingular: "country",
   itemId: "country",
@@ -513,12 +314,7 @@ const ITEM_COUNTRY: Item = {
 };
 
 const ITEM_COUPLE_PEOPLE_: Item = {
-  counters: [
-    {
-      counterId: "組",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "組", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "couples",
   englishSingular: "couple",
   itemId: "couple (people)",
@@ -527,12 +323,7 @@ const ITEM_COUPLE_PEOPLE_: Item = {
 };
 
 const ITEM_COW: Item = {
-  counters: [
-    {
-      counterId: "頭",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "頭", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "cows",
   englishSingular: "cow",
   itemId: "cow",
@@ -541,12 +332,7 @@ const ITEM_COW: Item = {
 };
 
 const ITEM_COWORKER: Item = {
-  counters: [
-    {
-      counterId: "人",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "人", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "coworkers",
   englishSingular: "coworker",
   itemId: "coworker",
@@ -555,12 +341,7 @@ const ITEM_COWORKER: Item = {
 };
 
 const ITEM_CRAM_SCHOOL: Item = {
-  counters: [
-    {
-      counterId: "校",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "校", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "cram schools",
   englishSingular: "cram school",
   itemId: "cram school",
@@ -569,12 +350,7 @@ const ITEM_CRAM_SCHOOL: Item = {
 };
 
 const ITEM_CREDIT_CARD: Item = {
-  counters: [
-    {
-      counterId: "枚",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "枚", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "credit cards",
   englishSingular: "credit card",
   itemId: "credit card",
@@ -583,12 +359,7 @@ const ITEM_CREDIT_CARD: Item = {
 };
 
 const ITEM_CUT_OF_MEAT: Item = {
-  counters: [
-    {
-      counterId: "切れ",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "切れ", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "cuts of meat",
   englishSingular: "cut of meat",
   itemId: "cut of meat",
@@ -597,12 +368,7 @@ const ITEM_CUT_OF_MEAT: Item = {
 };
 
 const ITEM_DAY_OF_THE_MONTH: Item = {
-  counters: [
-    {
-      counterId: "日",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "日", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "days of the month",
   englishSingular: "day of the month",
   itemId: "day of the month",
@@ -611,12 +377,7 @@ const ITEM_DAY_OF_THE_MONTH: Item = {
 };
 
 const ITEM_DECK_OF_CARDS: Item = {
-  counters: [
-    {
-      counterId: "組",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "組", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "decks of cards",
   englishSingular: "deck of cards",
   itemId: "deck of cards",
@@ -625,12 +386,7 @@ const ITEM_DECK_OF_CARDS: Item = {
 };
 
 const ITEM_DEER: Item = {
-  counters: [
-    {
-      counterId: "匹",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "匹", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "deer",
   englishSingular: "deer",
   itemId: "deer",
@@ -639,12 +395,7 @@ const ITEM_DEER: Item = {
 };
 
 const ITEM_DICTIONARY: Item = {
-  counters: [
-    {
-      counterId: "冊",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "冊", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "dictionaries",
   englishSingular: "dictionary",
   itemId: "dictionary",
@@ -653,12 +404,7 @@ const ITEM_DICTIONARY: Item = {
 };
 
 const ITEM_DOG: Item = {
-  counters: [
-    {
-      counterId: "匹",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "匹", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "dogs",
   englishSingular: "dog",
   itemId: "dog",
@@ -667,12 +413,7 @@ const ITEM_DOG: Item = {
 };
 
 const ITEM_DRUMSET: Item = {
-  counters: [
-    {
-      counterId: "組",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "組", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "drumsets",
   englishSingular: "drumset",
   itemId: "drumset",
@@ -681,12 +422,7 @@ const ITEM_DRUMSET: Item = {
 };
 
 const ITEM_ELEMENTARY_SCHOOL: Item = {
-  counters: [
-    {
-      counterId: "校",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "校", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "elementary schools",
   englishSingular: "elementary school",
   itemId: "elementary school",
@@ -695,12 +431,7 @@ const ITEM_ELEMENTARY_SCHOOL: Item = {
 };
 
 const ITEM_ELEPHANT: Item = {
-  counters: [
-    {
-      counterId: "頭",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "頭", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "elephants",
   englishSingular: "elephant",
   itemId: "elephant",
@@ -709,12 +440,7 @@ const ITEM_ELEPHANT: Item = {
 };
 
 const ITEM_EMPTY_CAN: Item = {
-  counters: [
-    {
-      counterId: "缶",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "缶", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "empty cans",
   englishSingular: "empty can",
   itemId: "empty can",
@@ -723,12 +449,7 @@ const ITEM_EMPTY_CAN: Item = {
 };
 
 const ITEM_FILET: Item = {
-  counters: [
-    {
-      counterId: "切れ",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "切れ", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "filets",
   englishSingular: "filet",
   itemId: "filet",
@@ -737,12 +458,7 @@ const ITEM_FILET: Item = {
 };
 
 const ITEM_FLOOR_BUILDING_: Item = {
-  counters: [
-    {
-      counterId: "階",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "階", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "floors",
   englishSingular: "floor",
   itemId: "floor (building)",
@@ -751,12 +467,7 @@ const ITEM_FLOOR_BUILDING_: Item = {
 };
 
 const ITEM_FUR_PELT: Item = {
-  counters: [
-    {
-      counterId: "枚",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "枚", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "fur pelts",
   englishSingular: "fur pelt",
   itemId: "fur pelt",
@@ -764,27 +475,8 @@ const ITEM_FUR_PELT: Item = {
   minQuantity: 1
 };
 
-const ITEM_GAME: Item = {
-  counters: [
-    {
-      counterId: "試合",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
-  englishPlural: "games",
-  englishSingular: "game",
-  itemId: "game",
-  maxQuantity: 100,
-  minQuantity: 1
-};
-
 const ITEM_GORILLA: Item = {
-  counters: [
-    {
-      counterId: "頭",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "頭", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "gorillas",
   englishSingular: "gorilla",
   itemId: "gorilla",
@@ -793,12 +485,7 @@ const ITEM_GORILLA: Item = {
 };
 
 const ITEM_GROUP_OF_FRIENDS: Item = {
-  counters: [
-    {
-      counterId: "組",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "組", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "groups of friends",
   englishSingular: "group of friends",
   itemId: "group of friends",
@@ -807,12 +494,7 @@ const ITEM_GROUP_OF_FRIENDS: Item = {
 };
 
 const ITEM_HIGH_SCHOOL: Item = {
-  counters: [
-    {
-      counterId: "校",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "校", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "high schools",
   englishSingular: "high school",
   itemId: "high school",
@@ -821,12 +503,7 @@ const ITEM_HIGH_SCHOOL: Item = {
 };
 
 const ITEM_HOME: Item = {
-  counters: [
-    {
-      counterId: "軒",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "軒", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "homes",
   englishSingular: "home",
   itemId: "home",
@@ -835,12 +512,7 @@ const ITEM_HOME: Item = {
 };
 
 const ITEM_HORSE: Item = {
-  counters: [
-    {
-      counterId: "頭",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "頭", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "horses",
   englishSingular: "horse",
   itemId: "horse",
@@ -849,12 +521,7 @@ const ITEM_HORSE: Item = {
 };
 
 const ITEM_HOUSE: Item = {
-  counters: [
-    {
-      counterId: "軒",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "軒", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "houses",
   englishSingular: "house",
   itemId: "house",
@@ -863,12 +530,7 @@ const ITEM_HOUSE: Item = {
 };
 
 const ITEM_HUE: Item = {
-  counters: [
-    {
-      counterId: "色",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "色", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "hues",
   englishSingular: "hue",
   itemId: "hue",
@@ -877,12 +539,7 @@ const ITEM_HUE: Item = {
 };
 
 const ITEM_IDIOM: Item = {
-  counters: [
-    {
-      counterId: "語",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "語", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "idioms",
   englishSingular: "idiom",
   itemId: "idiom",
@@ -891,12 +548,7 @@ const ITEM_IDIOM: Item = {
 };
 
 const ITEM_IZAKAYA: Item = {
-  counters: [
-    {
-      counterId: "軒",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "軒", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "izakaya",
   englishSingular: "izakaya",
   itemId: "izakaya",
@@ -905,12 +557,7 @@ const ITEM_IZAKAYA: Item = {
 };
 
 const ITEM_JINGLE: Item = {
-  counters: [
-    {
-      counterId: "曲",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "曲", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "jingles",
   englishSingular: "jingle",
   itemId: "jingle",
@@ -919,12 +566,7 @@ const ITEM_JINGLE: Item = {
 };
 
 const ITEM_KEYWORD: Item = {
-  counters: [
-    {
-      counterId: "語",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "語", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "keywords",
   englishSingular: "keyword",
   itemId: "keyword",
@@ -933,12 +575,7 @@ const ITEM_KEYWORD: Item = {
 };
 
 const ITEM_LAP: Item = {
-  counters: [
-    {
-      counterId: "周",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "周", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "laps",
   englishSingular: "lap",
   itemId: "lap",
@@ -947,12 +584,7 @@ const ITEM_LAP: Item = {
 };
 
 const ITEM_LAW: Item = {
-  counters: [
-    {
-      counterId: "件",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "件", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "laws",
   englishSingular: "law",
   itemId: "law",
@@ -961,12 +593,7 @@ const ITEM_LAW: Item = {
 };
 
 const ITEM_LINE: Item = {
-  counters: [
-    {
-      counterId: "本",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "本", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "lines",
   englishSingular: "line",
   itemId: "line",
@@ -975,12 +602,7 @@ const ITEM_LINE: Item = {
 };
 
 const ITEM_LOAN: Item = {
-  counters: [
-    {
-      counterId: "件",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "件", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "loans",
   englishSingular: "loan",
   itemId: "loan",
@@ -989,12 +611,7 @@ const ITEM_LOAN: Item = {
 };
 
 const ITEM_LOCATION: Item = {
-  counters: [
-    {
-      counterId: "ヶ所",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "ヶ所", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "locations",
   englishSingular: "location",
   itemId: "location",
@@ -1003,12 +620,7 @@ const ITEM_LOCATION: Item = {
 };
 
 const ITEM_MAGAZINE: Item = {
-  counters: [
-    {
-      counterId: "冊",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "冊", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "magazines",
   englishSingular: "magazine",
   itemId: "magazine",
@@ -1017,12 +629,7 @@ const ITEM_MAGAZINE: Item = {
 };
 
 const ITEM_MAN: Item = {
-  counters: [
-    {
-      counterId: "人",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "人", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "men",
   englishSingular: "man",
   itemId: "man",
@@ -1030,27 +637,8 @@ const ITEM_MAN: Item = {
   minQuantity: 1
 };
 
-const ITEM_MATCH_SPORTS_: Item = {
-  counters: [
-    {
-      counterId: "試合",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
-  englishPlural: "matches",
-  englishSingular: "match",
-  itemId: "match (sports)",
-  maxQuantity: 100,
-  minQuantity: 1
-};
-
 const ITEM_MEETING: Item = {
-  counters: [
-    {
-      counterId: "席",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "席", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "meetings",
   englishSingular: "meeting",
   itemId: "meeting",
@@ -1059,12 +647,7 @@ const ITEM_MEETING: Item = {
 };
 
 const ITEM_MELODY: Item = {
-  counters: [
-    {
-      counterId: "曲",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "曲", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "melodies",
   englishSingular: "melody",
   itemId: "melody",
@@ -1073,12 +656,7 @@ const ITEM_MELODY: Item = {
 };
 
 const ITEM_MICROWAVE: Item = {
-  counters: [
-    {
-      counterId: "台",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "台", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "microwaves",
   englishSingular: "microwave",
   itemId: "microwave",
@@ -1087,12 +665,7 @@ const ITEM_MICROWAVE: Item = {
 };
 
 const ITEM_MIDDLE_SCHOOL: Item = {
-  counters: [
-    {
-      counterId: "校",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "校", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "middle schools",
   englishSingular: "middle school",
   itemId: "middle school",
@@ -1101,12 +674,7 @@ const ITEM_MIDDLE_SCHOOL: Item = {
 };
 
 const ITEM_MINUTE: Item = {
-  counters: [
-    {
-      counterId: "分",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "分", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "minutes",
   englishSingular: "minute",
   itemId: "minute",
@@ -1116,14 +684,8 @@ const ITEM_MINUTE: Item = {
 
 const ITEM_MONTH: Item = {
   counters: [
-    {
-      counterId: "月",
-      relevance: CounterItemRelevance.Unknown
-    },
-    {
-      counterId: "ヶ月",
-      relevance: CounterItemRelevance.Unknown
-    }
+    { counterId: "月", relevance: CounterItemRelevance.Unknown },
+    { counterId: "ヶ月", relevance: CounterItemRelevance.Unknown }
   ],
   englishPlural: "months",
   englishSingular: "month",
@@ -1133,12 +695,7 @@ const ITEM_MONTH: Item = {
 };
 
 const ITEM_NATION: Item = {
-  counters: [
-    {
-      counterId: "ヶ国",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "ヶ国", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "nations",
   englishSingular: "nation",
   itemId: "nation",
@@ -1147,12 +704,7 @@ const ITEM_NATION: Item = {
 };
 
 const ITEM_NIGHTCLUB: Item = {
-  counters: [
-    {
-      counterId: "軒",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "軒", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "nightclubs",
   englishSingular: "nightclub",
   itemId: "nightclub",
@@ -1161,12 +713,7 @@ const ITEM_NIGHTCLUB: Item = {
 };
 
 const ITEM_NOTEBOOK: Item = {
-  counters: [
-    {
-      counterId: "冊",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "冊", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "notebooks",
   englishSingular: "notebook",
   itemId: "notebook",
@@ -1175,12 +722,7 @@ const ITEM_NOTEBOOK: Item = {
 };
 
 const ITEM_O_CLOCK: Item = {
-  counters: [
-    {
-      counterId: "時",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "時", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "o'clock",
   englishSingular: "o'clock",
   itemId: "o'clock",
@@ -1189,12 +731,7 @@ const ITEM_O_CLOCK: Item = {
 };
 
 const ITEM_OCCURRENCE: Item = {
-  counters: [
-    {
-      counterId: "回",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "回", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "occurrences",
   englishSingular: "occurrence",
   itemId: "occurrence",
@@ -1203,12 +740,7 @@ const ITEM_OCCURRENCE: Item = {
 };
 
 const ITEM_OFFICE_BUILDING: Item = {
-  counters: [
-    {
-      counterId: "ヶ所",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "ヶ所", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "office buildings",
   englishSingular: "office building",
   itemId: "office building",
@@ -1217,12 +749,7 @@ const ITEM_OFFICE_BUILDING: Item = {
 };
 
 const ITEM_ORIGAMI_CRANE: Item = {
-  counters: [
-    {
-      counterId: "羽",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "羽", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "origami cranes",
   englishSingular: "origami crane",
   itemId: "origami crane",
@@ -1231,12 +758,7 @@ const ITEM_ORIGAMI_CRANE: Item = {
 };
 
 const ITEM_OTTER: Item = {
-  counters: [
-    {
-      counterId: "匹",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "匹", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "otters",
   englishSingular: "otter",
   itemId: "otter",
@@ -1245,12 +767,7 @@ const ITEM_OTTER: Item = {
 };
 
 const ITEM_OVEN: Item = {
-  counters: [
-    {
-      counterId: "台",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "台", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "ovens",
   englishSingular: "oven",
   itemId: "oven",
@@ -1259,12 +776,7 @@ const ITEM_OVEN: Item = {
 };
 
 const ITEM_PAIR_OF_GLOVES: Item = {
-  counters: [
-    {
-      counterId: "組",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "組", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "pairs of gloves",
   englishSingular: "pair of gloves",
   itemId: "pair of gloves",
@@ -1273,12 +785,7 @@ const ITEM_PAIR_OF_GLOVES: Item = {
 };
 
 const ITEM_PAIR_OF_MITTENS: Item = {
-  counters: [
-    {
-      counterId: "組",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "組", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "pairs of mittens",
   englishSingular: "pair of mittens",
   itemId: "pair of mittens",
@@ -1287,12 +794,7 @@ const ITEM_PAIR_OF_MITTENS: Item = {
 };
 
 const ITEM_PAIR_OF_SANDALS: Item = {
-  counters: [
-    {
-      counterId: "足",
-      relevance: CounterItemRelevance.Best
-    }
-  ],
+  counters: [{ counterId: "足", relevance: CounterItemRelevance.Best }],
   englishPlural: "pairs of sandals",
   englishSingular: "pair of sandals",
   itemId: "pair of sandals",
@@ -1301,12 +803,7 @@ const ITEM_PAIR_OF_SANDALS: Item = {
 };
 
 const ITEM_PAIR_OF_SHOES: Item = {
-  counters: [
-    {
-      counterId: "足",
-      relevance: CounterItemRelevance.Best
-    }
-  ],
+  counters: [{ counterId: "足", relevance: CounterItemRelevance.Best }],
   englishPlural: "pairs of shoes",
   englishSingular: "pair of shoes",
   itemId: "pair of shoes",
@@ -1315,12 +812,7 @@ const ITEM_PAIR_OF_SHOES: Item = {
 };
 
 const ITEM_PAIR_OF_SOCKS: Item = {
-  counters: [
-    {
-      counterId: "足",
-      relevance: CounterItemRelevance.Best
-    }
-  ],
+  counters: [{ counterId: "足", relevance: CounterItemRelevance.Best }],
   englishPlural: "pairs of socks",
   englishSingular: "pair of socks",
   itemId: "pair of socks",
@@ -1329,12 +821,7 @@ const ITEM_PAIR_OF_SOCKS: Item = {
 };
 
 const ITEM_PAPER: Item = {
-  counters: [
-    {
-      counterId: "枚",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "枚", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "paper",
   englishSingular: "paper",
   itemId: "paper",
@@ -1343,12 +830,7 @@ const ITEM_PAPER: Item = {
 };
 
 const ITEM_PEN: Item = {
-  counters: [
-    {
-      counterId: "本",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "本", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "pens",
   englishSingular: "pen",
   itemId: "pen",
@@ -1357,12 +839,7 @@ const ITEM_PEN: Item = {
 };
 
 const ITEM_PENGUIN: Item = {
-  counters: [
-    {
-      counterId: "羽",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "羽", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "penguins",
   englishSingular: "penguin",
   itemId: "penguin",
@@ -1372,14 +849,8 @@ const ITEM_PENGUIN: Item = {
 
 const ITEM_PERSON: Item = {
   counters: [
-    {
-      counterId: "人",
-      relevance: CounterItemRelevance.Unknown
-    },
-    {
-      counterId: "名",
-      relevance: CounterItemRelevance.Unknown
-    }
+    { counterId: "人", relevance: CounterItemRelevance.Unknown },
+    { counterId: "名", relevance: CounterItemRelevance.Unknown }
   ],
   englishPlural: "people",
   englishSingular: "person",
@@ -1389,12 +860,7 @@ const ITEM_PERSON: Item = {
 };
 
 const ITEM_PHOTO: Item = {
-  counters: [
-    {
-      counterId: "枚",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "枚", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "photos",
   englishSingular: "photo",
   itemId: "photo",
@@ -1403,12 +869,7 @@ const ITEM_PHOTO: Item = {
 };
 
 const ITEM_PLACE: Item = {
-  counters: [
-    {
-      counterId: "ヶ所",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "ヶ所", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "places",
   englishSingular: "place",
   itemId: "place",
@@ -1417,12 +878,7 @@ const ITEM_PLACE: Item = {
 };
 
 const ITEM_PLATE_OF_FOOD: Item = {
-  counters: [
-    {
-      counterId: "皿",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "皿", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "plates of food",
   englishSingular: "plate of food",
   itemId: "plate of food",
@@ -1431,12 +887,7 @@ const ITEM_PLATE_OF_FOOD: Item = {
 };
 
 const ITEM_PLAYING_CARD: Item = {
-  counters: [
-    {
-      counterId: "枚",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "枚", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "playing cards",
   englishSingular: "playing card",
   itemId: "playing card",
@@ -1445,12 +896,7 @@ const ITEM_PLAYING_CARD: Item = {
 };
 
 const ITEM_PROVERB: Item = {
-  counters: [
-    {
-      counterId: "語",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "語", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "proverbs",
   englishSingular: "proverb",
   itemId: "proverb",
@@ -1460,14 +906,8 @@ const ITEM_PROVERB: Item = {
 
 const ITEM_RABBIT: Item = {
   counters: [
-    {
-      counterId: "匹",
-      relevance: CounterItemRelevance.Unknown
-    },
-    {
-      counterId: "羽",
-      relevance: CounterItemRelevance.Unknown
-    }
+    { counterId: "匹", relevance: CounterItemRelevance.Unknown },
+    { counterId: "羽", relevance: CounterItemRelevance.Unknown }
   ],
   englishPlural: "rabbits",
   englishSingular: "rabbit",
@@ -1477,12 +917,7 @@ const ITEM_RABBIT: Item = {
 };
 
 const ITEM_RADIO: Item = {
-  counters: [
-    {
-      counterId: "台",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "台", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "radios",
   englishSingular: "radio",
   itemId: "radio",
@@ -1491,12 +926,7 @@ const ITEM_RADIO: Item = {
 };
 
 const ITEM_RECEIPT: Item = {
-  counters: [
-    {
-      counterId: "枚",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "枚", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "receipts",
   englishSingular: "receipt",
   itemId: "receipt",
@@ -1505,12 +935,7 @@ const ITEM_RECEIPT: Item = {
 };
 
 const ITEM_RECOMMENDATION: Item = {
-  counters: [
-    {
-      counterId: "件",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "件", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "recommendations",
   englishSingular: "recommendation",
   itemId: "recommendation",
@@ -1519,12 +944,7 @@ const ITEM_RECOMMENDATION: Item = {
 };
 
 const ITEM_REGISTRATION: Item = {
-  counters: [
-    {
-      counterId: "件",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "件", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "registrations",
   englishSingular: "registration",
   itemId: "registration",
@@ -1533,12 +953,7 @@ const ITEM_REGISTRATION: Item = {
 };
 
 const ITEM_REQUEST: Item = {
-  counters: [
-    {
-      counterId: "件",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "件", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "requests",
   englishSingular: "request",
   itemId: "request",
@@ -1547,12 +962,7 @@ const ITEM_REQUEST: Item = {
 };
 
 const ITEM_RIVER: Item = {
-  counters: [
-    {
-      counterId: "本",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "本", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "rivers",
   englishSingular: "river",
   itemId: "river",
@@ -1561,12 +971,7 @@ const ITEM_RIVER: Item = {
 };
 
 const ITEM_ROD: Item = {
-  counters: [
-    {
-      counterId: "本",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "本", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "rods",
   englishSingular: "rod",
   itemId: "rod",
@@ -1575,12 +980,7 @@ const ITEM_ROD: Item = {
 };
 
 const ITEM_ROOMMATE: Item = {
-  counters: [
-    {
-      counterId: "人",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "人", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "roommates",
   englishSingular: "roommate",
   itemId: "roommate",
@@ -1589,12 +989,7 @@ const ITEM_ROOMMATE: Item = {
 };
 
 const ITEM_ROUND: Item = {
-  counters: [
-    {
-      counterId: "周",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "周", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "rounds",
   englishSingular: "round",
   itemId: "round",
@@ -1603,12 +998,7 @@ const ITEM_ROUND: Item = {
 };
 
 const ITEM_SAYING: Item = {
-  counters: [
-    {
-      counterId: "語",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "語", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "sayings",
   englishSingular: "saying",
   itemId: "saying",
@@ -1617,12 +1007,7 @@ const ITEM_SAYING: Item = {
 };
 
 const ITEM_SEAT: Item = {
-  counters: [
-    {
-      counterId: "席",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "席", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "seats",
   englishSingular: "seat",
   itemId: "seat",
@@ -1631,12 +1016,7 @@ const ITEM_SEAT: Item = {
 };
 
 const ITEM_SERVING_OF_YAKISOBA: Item = {
-  counters: [
-    {
-      counterId: "皿",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "皿", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "servings of yakisoba",
   englishSingular: "serving of yakisoba",
   itemId: "serving of yakisoba",
@@ -1645,12 +1025,7 @@ const ITEM_SERVING_OF_YAKISOBA: Item = {
 };
 
 const ITEM_SHEEP: Item = {
-  counters: [
-    {
-      counterId: "匹",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "匹", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "sheep",
   englishSingular: "sheep",
   itemId: "sheep",
@@ -1659,12 +1034,7 @@ const ITEM_SHEEP: Item = {
 };
 
 const ITEM_SHINTO_SHRINE: Item = {
-  counters: [
-    {
-      counterId: "社",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "社", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "Shinto shrines",
   englishSingular: "Shinto shrine",
   itemId: "shinto shrine",
@@ -1673,12 +1043,7 @@ const ITEM_SHINTO_SHRINE: Item = {
 };
 
 const ITEM_SHOP: Item = {
-  counters: [
-    {
-      counterId: "軒",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "軒", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "shops",
   englishSingular: "shop",
   itemId: "shop",
@@ -1687,12 +1052,7 @@ const ITEM_SHOP: Item = {
 };
 
 const ITEM_SHOPPING_MALL: Item = {
-  counters: [
-    {
-      counterId: "ヶ所",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "ヶ所", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "shopping malls",
   englishSingular: "shopping mall",
   itemId: "shopping mall",
@@ -1701,12 +1061,7 @@ const ITEM_SHOPPING_MALL: Item = {
 };
 
 const ITEM_SIDE_DISH: Item = {
-  counters: [
-    {
-      counterId: "皿",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "皿", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "side dishes",
   englishSingular: "side dish",
   itemId: "side dish",
@@ -1715,12 +1070,7 @@ const ITEM_SIDE_DISH: Item = {
 };
 
 const ITEM_SIP_OF_WATER: Item = {
-  counters: [
-    {
-      counterId: "口",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "口", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "sips of water",
   englishSingular: "sip of water",
   itemId: "sip of water",
@@ -1729,12 +1079,7 @@ const ITEM_SIP_OF_WATER: Item = {
 };
 
 const ITEM_SKIRMISH: Item = {
-  counters: [
-    {
-      counterId: "戦",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "戦", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "skirmishes",
   englishSingular: "skirmish",
   itemId: "skirmish",
@@ -1743,12 +1088,7 @@ const ITEM_SKIRMISH: Item = {
 };
 
 const ITEM_SLICE_OF_CAKE: Item = {
-  counters: [
-    {
-      counterId: "切れ",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "切れ", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "slices of cake",
   englishSingular: "slice of cake",
   itemId: "slice of cake",
@@ -1757,12 +1097,7 @@ const ITEM_SLICE_OF_CAKE: Item = {
 };
 
 const ITEM_SLICE_OF_PIZZA: Item = {
-  counters: [
-    {
-      counterId: "切れ",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "切れ", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "slices of pizza",
   englishSingular: "slice of pizza",
   itemId: "slice of pizza",
@@ -1771,12 +1106,7 @@ const ITEM_SLICE_OF_PIZZA: Item = {
 };
 
 const ITEM_SLICE_OF_SASHIMI: Item = {
-  counters: [
-    {
-      counterId: "切れ",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "切れ", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "slices of sashimi",
   englishSingular: "slice of sashimi",
   itemId: "slice of sashimi",
@@ -1785,12 +1115,7 @@ const ITEM_SLICE_OF_SASHIMI: Item = {
 };
 
 const ITEM_SODA_CAN: Item = {
-  counters: [
-    {
-      counterId: "缶",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "缶", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "soda cans",
   englishSingular: "soda can",
   itemId: "soda can",
@@ -1799,12 +1124,7 @@ const ITEM_SODA_CAN: Item = {
 };
 
 const ITEM_SONG: Item = {
-  counters: [
-    {
-      counterId: "曲",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "曲", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "songs",
   englishSingular: "song",
   itemId: "song",
@@ -1813,12 +1133,7 @@ const ITEM_SONG: Item = {
 };
 
 const ITEM_SPRAY_PAINT: Item = {
-  counters: [
-    {
-      counterId: "缶",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "缶", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "spray paints",
   englishSingular: "spray paint",
   itemId: "spray paint",
@@ -1827,12 +1142,7 @@ const ITEM_SPRAY_PAINT: Item = {
 };
 
 const ITEM_STORE: Item = {
-  counters: [
-    {
-      counterId: "軒",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "軒", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "stores",
   englishSingular: "store",
   itemId: "store",
@@ -1841,12 +1151,7 @@ const ITEM_STORE: Item = {
 };
 
 const ITEM_STOREY: Item = {
-  counters: [
-    {
-      counterId: "階",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "階", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "stories",
   englishSingular: "storey",
   itemId: "storey",
@@ -1855,12 +1160,7 @@ const ITEM_STOREY: Item = {
 };
 
 const ITEM_STRAW: Item = {
-  counters: [
-    {
-      counterId: "本",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "本", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "straws",
   englishSingular: "straw",
   itemId: "straw",
@@ -1869,12 +1169,7 @@ const ITEM_STRAW: Item = {
 };
 
 const ITEM_STREET: Item = {
-  counters: [
-    {
-      counterId: "本",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "本", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "streets",
   englishSingular: "street",
   itemId: "street",
@@ -1883,12 +1178,7 @@ const ITEM_STREET: Item = {
 };
 
 const ITEM_TASK: Item = {
-  counters: [
-    {
-      counterId: "件",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "件", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "tasks",
   englishSingular: "task",
   itemId: "task",
@@ -1897,12 +1187,7 @@ const ITEM_TASK: Item = {
 };
 
 const ITEM_TEA_HOUSE: Item = {
-  counters: [
-    {
-      counterId: "軒",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "軒", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "tea houses",
   englishSingular: "tea house",
   itemId: "tea house",
@@ -1911,12 +1196,7 @@ const ITEM_TEA_HOUSE: Item = {
 };
 
 const ITEM_TEXTBOOK: Item = {
-  counters: [
-    {
-      counterId: "冊",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "冊", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "textbooks",
   englishSingular: "textbook",
   itemId: "textbook",
@@ -1925,12 +1205,7 @@ const ITEM_TEXTBOOK: Item = {
 };
 
 const ITEM_TIME_OCCURRENCES_: Item = {
-  counters: [
-    {
-      counterId: "回",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "回", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "times",
   englishSingular: "time",
   itemId: "time (occurrences)",
@@ -1939,12 +1214,7 @@ const ITEM_TIME_OCCURRENCES_: Item = {
 };
 
 const ITEM_TINT: Item = {
-  counters: [
-    {
-      counterId: "色",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "色", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "tints",
   englishSingular: "tint",
   itemId: "tint",
@@ -1953,12 +1223,7 @@ const ITEM_TINT: Item = {
 };
 
 const ITEM_TREE: Item = {
-  counters: [
-    {
-      counterId: "本",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "本", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "trees",
   englishSingular: "tree",
   itemId: "tree",
@@ -1967,12 +1232,7 @@ const ITEM_TREE: Item = {
 };
 
 const ITEM_TUNE: Item = {
-  counters: [
-    {
-      counterId: "曲",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "曲", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "tunes",
   englishSingular: "tune",
   itemId: "tune",
@@ -1981,12 +1241,7 @@ const ITEM_TUNE: Item = {
 };
 
 const ITEM_UNIVERSITY: Item = {
-  counters: [
-    {
-      counterId: "校",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "校", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "universities",
   englishSingular: "university",
   itemId: "university",
@@ -1995,12 +1250,7 @@ const ITEM_UNIVERSITY: Item = {
 };
 
 const ITEM_WASHING_MACHINE: Item = {
-  counters: [
-    {
-      counterId: "台",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "台", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "washing machines",
   englishSingular: "washing machine",
   itemId: "washing machine",
@@ -2009,12 +1259,7 @@ const ITEM_WASHING_MACHINE: Item = {
 };
 
 const ITEM_WEEK: Item = {
-  counters: [
-    {
-      counterId: "週",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "週", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "weeks",
   englishSingular: "week",
   itemId: "week",
@@ -2023,12 +1268,7 @@ const ITEM_WEEK: Item = {
 };
 
 const ITEM_WHALE: Item = {
-  counters: [
-    {
-      counterId: "頭",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "頭", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "whales",
   englishSingular: "whale",
   itemId: "whale",
@@ -2037,12 +1277,7 @@ const ITEM_WHALE: Item = {
 };
 
 const ITEM_WOMAN: Item = {
-  counters: [
-    {
-      counterId: "人",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "人", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "women",
   englishSingular: "woman",
   itemId: "woman",
@@ -2051,12 +1286,7 @@ const ITEM_WOMAN: Item = {
 };
 
 const ITEM_WORD: Item = {
-  counters: [
-    {
-      counterId: "語",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "語", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "words",
   englishSingular: "word",
   itemId: "word",
@@ -2065,12 +1295,7 @@ const ITEM_WORD: Item = {
 };
 
 const ITEM_YEAR: Item = {
-  counters: [
-    {
-      counterId: "年",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "年", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "years",
   englishSingular: "year",
   itemId: "year",
@@ -2079,12 +1304,7 @@ const ITEM_YEAR: Item = {
 };
 
 const ITEM_YEARS_OLD: Item = {
-  counters: [
-    {
-      counterId: "歳",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "歳", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "years old",
   englishSingular: "year old",
   itemId: "years old",
@@ -2093,12 +1313,7 @@ const ITEM_YEARS_OLD: Item = {
 };
 
 const ITEM_YEN: Item = {
-  counters: [
-    {
-      counterId: "円",
-      relevance: CounterItemRelevance.Unknown
-    }
-  ],
+  counters: [{ counterId: "円", relevance: CounterItemRelevance.Unknown }],
   englishPlural: "yen",
   englishSingular: "yen",
   itemId: "yen",
@@ -2106,9 +1321,7 @@ const ITEM_YEN: Item = {
   minQuantity: 1
 };
 
-export const ITEMS_LOOKUP: {
-  [itemId: string]: Item;
-} = {
+export const ITEMS_LOOKUP: { [itemId: string]: Item } = {
   apartment: ITEM_APARTMENT,
   appointment: ITEM_APPOINTMENT,
   arcade: ITEM_ARCADE,
@@ -2117,8 +1330,6 @@ export const ITEMS_LOOKUP: {
   banquet: ITEM_BANQUET,
   "bar of chocolate": ITEM_BAR_OF_CHOCOLATE,
   barn: ITEM_BARN,
-  "baseball game": ITEM_BASEBALL_GAME,
-  "basketball game": ITEM_BASKETBALL_GAME,
   bat: ITEM_BAT,
   bathroom: ITEM_BATHROOM,
   battle: ITEM_BATTLE,
@@ -2163,7 +1374,6 @@ export const ITEMS_LOOKUP: {
   filet: ITEM_FILET,
   "floor (building)": ITEM_FLOOR_BUILDING_,
   "fur pelt": ITEM_FUR_PELT,
-  game: ITEM_GAME,
   gorilla: ITEM_GORILLA,
   "group of friends": ITEM_GROUP_OF_FRIENDS,
   "high school": ITEM_HIGH_SCHOOL,
@@ -2182,7 +1392,6 @@ export const ITEMS_LOOKUP: {
   location: ITEM_LOCATION,
   magazine: ITEM_MAGAZINE,
   man: ITEM_MAN,
-  "match (sports)": ITEM_MATCH_SPORTS_,
   meeting: ITEM_MEETING,
   melody: ITEM_MELODY,
   microwave: ITEM_MICROWAVE,
@@ -2192,7 +1401,7 @@ export const ITEMS_LOOKUP: {
   nation: ITEM_NATION,
   nightclub: ITEM_NIGHTCLUB,
   notebook: ITEM_NOTEBOOK,
-  "o'clock": ITEM_O_CLOCK,
+  "o&#39;clock": ITEM_O_CLOCK,
   occurrence: ITEM_OCCURRENCE,
   "office building": ITEM_OFFICE_BUILDING,
   "origami crane": ITEM_ORIGAMI_CRANE,
@@ -2259,49 +1468,132 @@ export const ITEMS_LOOKUP: {
   "years old": ITEM_YEARS_OLD,
   yen: ITEM_YEN
 };
-
 export const ITEMS_FROM_COUNTER: {
   [counterId: string]: ReadonlyArray<Item>;
 } = {
-  "ゲーム": [ITEM_BASKETBALL_GAME],
-  "ヶ国": [ITEM_COUNTRY, ITEM_NATION],
-  "ヶ所": [ITEM_BATHROOM, ITEM_SHOPPING_MALL, ITEM_CINEMA, ITEM_LOCATION, ITEM_PLACE, ITEM_OFFICE_BUILDING],
-  "ヶ月": [ITEM_MONTH],
-  "人": [ITEM_MAN, ITEM_WOMAN, ITEM_COWORKER, ITEM_ROOMMATE, ITEM_PERSON],
-  "件": [ITEM_LAW, ITEM_LOAN, ITEM_TASK, ITEM_APPOINTMENT, ITEM_REGISTRATION, ITEM_REQUEST, ITEM_RECOMMENDATION],
-  "円": [ITEM_YEN],
-  "冊": [ITEM_TEXTBOOK, ITEM_DICTIONARY, ITEM_NOTEBOOK, ITEM_MAGAZINE, ITEM_BOOK],
-  "分": [ITEM_MINUTE],
-  "切れ": [ITEM_SLICE_OF_PIZZA, ITEM_FILET, ITEM_SLICE_OF_CAKE, ITEM_CUT_OF_MEAT, ITEM_SLICE_OF_SASHIMI],
-  "匹": [ITEM_RABBIT, ITEM_DOG, ITEM_CAT, ITEM_SHEEP, ITEM_DEER, ITEM_OTTER],
-  "口": [ITEM_BITE_OF_FOOD, ITEM_SIP_OF_WATER],
-  "台": [ITEM_WASHING_MACHINE, ITEM_OVEN, ITEM_MICROWAVE, ITEM_CAR, ITEM_BED, ITEM_RADIO],
-  "名": [ITEM_PERSON],
-  "周": [ITEM_LAP, ITEM_CIRCUIT, ITEM_ROUND],
-  "回": [ITEM_TIME_OCCURRENCES_, ITEM_OCCURRENCE],
-  "席": [ITEM_SEAT, ITEM_MEETING, ITEM_ASSEMBLY, ITEM_BANQUET],
-  "年": [ITEM_YEAR],
-  "戦": [ITEM_BATTLE, ITEM_SKIRMISH, ITEM_BOSS_FIGHT],
-  "日": [ITEM_DAY_OF_THE_MONTH],
-  "時": [ITEM_O_CLOCK],
-  "曲": [ITEM_SONG, ITEM_TUNE, ITEM_MELODY, ITEM_JINGLE],
-  "月": [ITEM_MONTH],
-  "本": [ITEM_BOTTLE, ITEM_TREE, ITEM_ROD, ITEM_RIVER, ITEM_PEN, ITEM_LINE, ITEM_STREET, ITEM_STRAW],
-  "束": [ITEM_BUNDLE_OF_WOOD, ITEM_BUNDLE_OF_GREEN_ONIONS],
-  "枚": [ITEM_CREDIT_CARD, ITEM_PLAYING_CARD, ITEM_PAPER, ITEM_PHOTO, ITEM_RECEIPT, ITEM_BAR_OF_CHOCOLATE, ITEM_FUR_PELT, ITEM_BLANKET],
-  "校": [ITEM_HIGH_SCHOOL, ITEM_ELEMENTARY_SCHOOL, ITEM_MIDDLE_SCHOOL, ITEM_UNIVERSITY, ITEM_CRAM_SCHOOL],
-  "歳": [ITEM_YEARS_OLD],
-  "皿": [ITEM_SERVING_OF_YAKISOBA, ITEM_BOWL_OF_SOUP, ITEM_BOWL_OF_FRIED_RICE, ITEM_PLATE_OF_FOOD, ITEM_SIDE_DISH],
-  "社": [ITEM_COMPANY, ITEM_SHINTO_SHRINE, ITEM_BANK],
-  "組": [ITEM_COUPLE_PEOPLE_, ITEM_GROUP_OF_FRIENDS, ITEM_PAIR_OF_MITTENS, ITEM_PAIR_OF_GLOVES, ITEM_DRUMSET, ITEM_DECK_OF_CARDS],
-  "缶": [ITEM_SODA_CAN, ITEM_BEER_CAN, ITEM_EMPTY_CAN, ITEM_CAN_OF_BUG_SPRAY, ITEM_CAN_OF_HAIR_SPRAY, ITEM_SPRAY_PAINT, ITEM_CAN_OF_SOUP],
-  "羽": [ITEM_CHICKEN, ITEM_PENGUIN, ITEM_RABBIT, ITEM_ORIGAMI_CRANE, ITEM_BAT],
-  "色": [ITEM_TINT, ITEM_HUE, ITEM_COLOUR],
-  "試合": [ITEM_BASEBALL_GAME, ITEM_GAME, ITEM_MATCH_SPORTS_],
-  "語": [ITEM_WORD, ITEM_PROVERB, ITEM_SAYING, ITEM_KEYWORD, ITEM_IDIOM],
-  "足": [ITEM_PAIR_OF_SHOES, ITEM_PAIR_OF_SANDALS, ITEM_PAIR_OF_SOCKS],
-  "軒": [ITEM_BOOKSTORE, ITEM_SHOP, ITEM_STORE, ITEM_TEA_HOUSE, ITEM_HOUSE, ITEM_HOME, ITEM_BARN, ITEM_IZAKAYA, ITEM_APARTMENT, ITEM_CINEMA, ITEM_ARCADE, ITEM_NIGHTCLUB],
-  "週": [ITEM_WEEK],
-  "階": [ITEM_FLOOR_BUILDING_, ITEM_STOREY],
-  "頭": [ITEM_COW, ITEM_HORSE, ITEM_GORILLA, ITEM_WHALE, ITEM_ELEPHANT]
+  ヶ国: [ITEM_COUNTRY, ITEM_NATION],
+  ヶ所: [
+    ITEM_BATHROOM,
+    ITEM_SHOPPING_MALL,
+    ITEM_CINEMA,
+    ITEM_LOCATION,
+    ITEM_PLACE,
+    ITEM_OFFICE_BUILDING
+  ],
+  ヶ月: [ITEM_MONTH],
+  人: [ITEM_MAN, ITEM_WOMAN, ITEM_COWORKER, ITEM_ROOMMATE, ITEM_PERSON],
+  件: [
+    ITEM_LAW,
+    ITEM_LOAN,
+    ITEM_TASK,
+    ITEM_APPOINTMENT,
+    ITEM_REGISTRATION,
+    ITEM_REQUEST,
+    ITEM_RECOMMENDATION
+  ],
+  円: [ITEM_YEN],
+  冊: [ITEM_TEXTBOOK, ITEM_DICTIONARY, ITEM_NOTEBOOK, ITEM_MAGAZINE, ITEM_BOOK],
+  分: [ITEM_MINUTE],
+  切れ: [
+    ITEM_SLICE_OF_PIZZA,
+    ITEM_FILET,
+    ITEM_SLICE_OF_CAKE,
+    ITEM_CUT_OF_MEAT,
+    ITEM_SLICE_OF_SASHIMI
+  ],
+  匹: [ITEM_RABBIT, ITEM_DOG, ITEM_CAT, ITEM_SHEEP, ITEM_DEER, ITEM_OTTER],
+  口: [ITEM_BITE_OF_FOOD, ITEM_SIP_OF_WATER],
+  台: [
+    ITEM_WASHING_MACHINE,
+    ITEM_OVEN,
+    ITEM_MICROWAVE,
+    ITEM_CAR,
+    ITEM_BED,
+    ITEM_RADIO
+  ],
+  名: [ITEM_PERSON],
+  周: [ITEM_LAP, ITEM_CIRCUIT, ITEM_ROUND],
+  回: [ITEM_TIME_OCCURRENCES_, ITEM_OCCURRENCE],
+  席: [ITEM_SEAT, ITEM_MEETING, ITEM_ASSEMBLY, ITEM_BANQUET],
+  年: [ITEM_YEAR],
+  戦: [ITEM_BATTLE, ITEM_SKIRMISH, ITEM_BOSS_FIGHT],
+  日: [ITEM_DAY_OF_THE_MONTH],
+  時: [ITEM_O_CLOCK],
+  曲: [ITEM_SONG, ITEM_TUNE, ITEM_MELODY, ITEM_JINGLE],
+  月: [ITEM_MONTH],
+  本: [
+    ITEM_BOTTLE,
+    ITEM_TREE,
+    ITEM_ROD,
+    ITEM_RIVER,
+    ITEM_PEN,
+    ITEM_LINE,
+    ITEM_STREET,
+    ITEM_STRAW
+  ],
+  束: [ITEM_BUNDLE_OF_WOOD, ITEM_BUNDLE_OF_GREEN_ONIONS],
+  枚: [
+    ITEM_CREDIT_CARD,
+    ITEM_PLAYING_CARD,
+    ITEM_PAPER,
+    ITEM_PHOTO,
+    ITEM_RECEIPT,
+    ITEM_BAR_OF_CHOCOLATE,
+    ITEM_FUR_PELT,
+    ITEM_BLANKET
+  ],
+  校: [
+    ITEM_HIGH_SCHOOL,
+    ITEM_ELEMENTARY_SCHOOL,
+    ITEM_MIDDLE_SCHOOL,
+    ITEM_UNIVERSITY,
+    ITEM_CRAM_SCHOOL
+  ],
+  歳: [ITEM_YEARS_OLD],
+  皿: [
+    ITEM_SERVING_OF_YAKISOBA,
+    ITEM_BOWL_OF_SOUP,
+    ITEM_BOWL_OF_FRIED_RICE,
+    ITEM_PLATE_OF_FOOD,
+    ITEM_SIDE_DISH
+  ],
+  社: [ITEM_COMPANY, ITEM_SHINTO_SHRINE, ITEM_BANK],
+  組: [
+    ITEM_COUPLE_PEOPLE_,
+    ITEM_GROUP_OF_FRIENDS,
+    ITEM_PAIR_OF_MITTENS,
+    ITEM_PAIR_OF_GLOVES,
+    ITEM_DRUMSET,
+    ITEM_DECK_OF_CARDS
+  ],
+  缶: [
+    ITEM_SODA_CAN,
+    ITEM_BEER_CAN,
+    ITEM_EMPTY_CAN,
+    ITEM_CAN_OF_BUG_SPRAY,
+    ITEM_CAN_OF_HAIR_SPRAY,
+    ITEM_SPRAY_PAINT,
+    ITEM_CAN_OF_SOUP
+  ],
+  羽: [ITEM_CHICKEN, ITEM_PENGUIN, ITEM_RABBIT, ITEM_ORIGAMI_CRANE, ITEM_BAT],
+  色: [ITEM_TINT, ITEM_HUE, ITEM_COLOUR],
+  語: [ITEM_WORD, ITEM_PROVERB, ITEM_SAYING, ITEM_KEYWORD, ITEM_IDIOM],
+  足: [ITEM_PAIR_OF_SHOES, ITEM_PAIR_OF_SANDALS, ITEM_PAIR_OF_SOCKS],
+  軒: [
+    ITEM_BOOKSTORE,
+    ITEM_SHOP,
+    ITEM_STORE,
+    ITEM_TEA_HOUSE,
+    ITEM_HOUSE,
+    ITEM_HOME,
+    ITEM_BARN,
+    ITEM_IZAKAYA,
+    ITEM_APARTMENT,
+    ITEM_CINEMA,
+    ITEM_ARCADE,
+    ITEM_NIGHTCLUB
+  ],
+  週: [ITEM_WEEK],
+  階: [ITEM_FLOOR_BUILDING_, ITEM_STOREY],
+  頭: [ITEM_COW, ITEM_HORSE, ITEM_GORILLA, ITEM_WHALE, ITEM_ELEPHANT]
 };

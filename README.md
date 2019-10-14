@@ -77,15 +77,15 @@ This will create a local database if you didn't already have one, and will also 
 You then modify the SQLite database `jyosuushi.sqlite` in the root directory directly. When you have made your changes, you'll then need to run the script to export the data from there into TypeScript.
 
 ```
-yarn build-data
+yarn db:export
 ```
 
 When this is done, it will update the files in the `./data` directory. Subsequent builds or development servers will build against these updated files. Additionally, these files are tracked in the repository to allow for painlessly building after cloning the repository.
 
-When you are ready to submit a commit, you will need to export all of your database back to the SQL files. To do this, you'll want to use another package script:
+When you are ready to submit a commit, you will need to dump all of your database back to the SQL files. To do this, you'll want to use another package script:
 
 ```
-yarn db:export
+yarn db:dump
 ```
 
 ## Built With

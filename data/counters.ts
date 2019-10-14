@@ -5,26 +5,6 @@
 import { Counter } from "../src/interfaces";
 import * as DISAMBIGUATIONS from "./disambiguations";
 
-export const COUNTER_ゲ_ム: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: false,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
-  counterId: "ゲーム",
-  disambiguations: {},
-  englishName: "games",
-  externalLinks: [],
-  irregulars: {},
-  kana: "ゲーム",
-  kanji: "ゲーム",
-  notes: null
-};
-
 export const COUNTER_ヶ国: Counter = {
   conjugationOptions: {
     allowsKuFor9: false,
@@ -96,15 +76,10 @@ export const COUNTER_人: Counter = {
     allowsYonFor4: false
   },
   counterId: "人",
-  disambiguations: {
-    "名": DISAMBIGUATIONS.DISAMBIGUATION_人名
-  },
+  disambiguations: { 名: DISAMBIGUATIONS.DISAMBIGUATION_人名 },
   englishName: "people",
   externalLinks: [],
-  irregulars: {
-    1: ["ひとり"],
-    2: ["ふたり"]
-  },
+  irregulars: { 1: ["ひとり"], 2: ["ふたり"] },
   kana: "にん",
   kanji: "人",
   notes: null
@@ -281,9 +256,7 @@ export const COUNTER_名: Counter = {
     allowsYonFor4: true
   },
   counterId: "名",
-  disambiguations: {
-    "人": DISAMBIGUATIONS.DISAMBIGUATION_人名
-  },
+  disambiguations: { 人: DISAMBIGUATIONS.DISAMBIGUATION_人名 },
   englishName: "people",
   externalLinks: [],
   irregulars: {},
@@ -466,26 +439,6 @@ export const COUNTER_曲: Counter = {
   notes: null
 };
 
-export const COUNTER_月: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: false,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
-  counterId: "月",
-  disambiguations: {},
-  englishName: "months",
-  externalLinks: [],
-  irregulars: {},
-  kana: "つき",
-  kanji: "月",
-  notes: null
-};
-
 export const COUNTER_本: Counter = {
   conjugationOptions: {
     allowsKuFor9: false,
@@ -527,11 +480,7 @@ export const COUNTER_束: Counter = {
   disambiguations: {},
   englishName: "bundles",
   externalLinks: [],
-  irregulars: {
-    1: ["ひとたば"],
-    2: ["ふたたば"],
-    3: ["さんたば", "みたば"]
-  },
+  irregulars: { 1: ["ひとたば"], 2: ["ふたたば"], 3: ["さんたば", "みたば"] },
   kana: "たば",
   kanji: "束",
   notes: null
@@ -611,11 +560,7 @@ export const COUNTER_皿: Counter = {
   disambiguations: {},
   englishName: "plates of food",
   externalLinks: [],
-  irregulars: {
-    1: ["ひとさら"],
-    2: ["ふたさら"],
-    3: ["さんさら", "みさら"]
-  },
+  irregulars: { 1: ["ひとさら"], 2: ["ふたさら"], 3: ["さんさら", "みさら"] },
   kana: "さら",
   kanji: "皿",
   notes: null
@@ -675,10 +620,7 @@ export const COUNTER_缶: Counter = {
   disambiguations: {},
   englishName: "cans",
   externalLinks: [],
-  irregulars: {
-    1: ["ひとかん", "いっかん"],
-    2: ["ふたかん", "にかん"]
-  },
+  irregulars: { 1: ["ひとかん", "いっかん"], 2: ["ふたかん", "にかん"] },
   kana: "かん",
   kanji: "缶",
   notes: null
@@ -721,26 +663,6 @@ export const COUNTER_色: Counter = {
   irregulars: {},
   kana: "しょく",
   kanji: "色",
-  notes: null
-};
-
-export const COUNTER_試合: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: false,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
-  counterId: "試合",
-  disambiguations: {},
-  englishName: "games",
-  externalLinks: [],
-  irregulars: {},
-  kana: "しあい",
-  kanji: "試合",
   notes: null
 };
 
@@ -864,48 +786,43 @@ export const COUNTER_頭: Counter = {
   notes: null
 };
 
-export const COUNTERS_LOOKUP: {
-  [counterId: string]: Counter;
-} = {
-  "ゲーム": COUNTER_ゲ_ム,
-  "ヶ国": COUNTER_ヶ国,
-  "ヶ所": COUNTER_ヶ所,
-  "ヶ月": COUNTER_ヶ月,
-  "人": COUNTER_人,
-  "件": COUNTER_件,
-  "円": COUNTER_円,
-  "冊": COUNTER_冊,
-  "分": COUNTER_分,
-  "切れ": COUNTER_切れ,
-  "匹": COUNTER_匹,
-  "口": COUNTER_口,
-  "台": COUNTER_台,
-  "名": COUNTER_名,
-  "周": COUNTER_周,
-  "回": COUNTER_回,
-  "席": COUNTER_席,
-  "年": COUNTER_年,
-  "戦": COUNTER_戦,
-  "日": COUNTER_日,
-  "時": COUNTER_時,
-  "曲": COUNTER_曲,
-  "月": COUNTER_月,
-  "本": COUNTER_本,
-  "束": COUNTER_束,
-  "枚": COUNTER_枚,
-  "校": COUNTER_校,
-  "歳": COUNTER_歳,
-  "皿": COUNTER_皿,
-  "社": COUNTER_社,
-  "組": COUNTER_組,
-  "缶": COUNTER_缶,
-  "羽": COUNTER_羽,
-  "色": COUNTER_色,
-  "試合": COUNTER_試合,
-  "語": COUNTER_語,
-  "足": COUNTER_足,
-  "軒": COUNTER_軒,
-  "週": COUNTER_週,
-  "階": COUNTER_階,
-  "頭": COUNTER_頭
+export const COUNTERS_LOOKUP: { [counterId: string]: Counter } = {
+  ヶ国: COUNTER_ヶ国,
+  ヶ所: COUNTER_ヶ所,
+  ヶ月: COUNTER_ヶ月,
+  人: COUNTER_人,
+  件: COUNTER_件,
+  円: COUNTER_円,
+  冊: COUNTER_冊,
+  分: COUNTER_分,
+  切れ: COUNTER_切れ,
+  匹: COUNTER_匹,
+  口: COUNTER_口,
+  台: COUNTER_台,
+  名: COUNTER_名,
+  周: COUNTER_周,
+  回: COUNTER_回,
+  席: COUNTER_席,
+  年: COUNTER_年,
+  戦: COUNTER_戦,
+  日: COUNTER_日,
+  時: COUNTER_時,
+  曲: COUNTER_曲,
+  本: COUNTER_本,
+  束: COUNTER_束,
+  枚: COUNTER_枚,
+  校: COUNTER_校,
+  歳: COUNTER_歳,
+  皿: COUNTER_皿,
+  社: COUNTER_社,
+  組: COUNTER_組,
+  缶: COUNTER_缶,
+  羽: COUNTER_羽,
+  色: COUNTER_色,
+  語: COUNTER_語,
+  足: COUNTER_足,
+  軒: COUNTER_軒,
+  週: COUNTER_週,
+  階: COUNTER_階,
+  頭: COUNTER_頭
 };
