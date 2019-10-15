@@ -456,17 +456,9 @@ export default class ValidatedDataSource implements Indexer {
     public readonly study_pack_contents: ValidatedResult<DbStudyPackContent>,
     public readonly study_packs: ValidatedResult<DbStudyPack>
   ) {
-    this.hasErrors = [
-      counter_additional_readings,
-      counter_disambiguations,
-      counter_external_links,
-      counter_irregulars,
-      counters,
-      item_counters,
-      items,
-      study_pack_contents,
-      study_packs
-    ].some(results => !!results.error.length);
+    this.hasErrors = Object.values(Schemas)
+      .map(schema => this.getSchema(schema))
+      .some(results => !!results.error.length);
   }
 
   public getSchema<TSchema extends Schemas>(

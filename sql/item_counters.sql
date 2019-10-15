@@ -154,4 +154,7 @@ INSERT INTO "item_counters" VALUES('pair of sandals','足','best');
 INSERT INTO "item_counters" VALUES('pair of socks','足','best');
 INSERT INTO "item_counters" VALUES('bundle of wood','束','best');
 INSERT INTO "item_counters" VALUES('bundle of green onions','束','best');
+INSERT INTO "item_counters" VALUES('sutra','巻',NULL);
+INSERT INTO "item_counters" VALUES('side dish','品（しな）',NULL);
+INSERT INTO "item_counters" VALUES('side dish','品（ひん）',NULL);
 COMMIT;

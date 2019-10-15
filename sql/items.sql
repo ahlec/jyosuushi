@@ -150,4 +150,5 @@ INSERT INTO "items" VALUES('pair of shoes','pair of shoes','pairs of shoes',NULL
 INSERT INTO "items" VALUES('pair of socks','pair of socks','pairs of socks',NULL,NULL,NULL,NULL);
 INSERT INTO "items" VALUES('bundle of green onions','bundle of green onions','bundles of green onions',NULL,NULL,NULL,NULL);
 INSERT INTO "items" VALUES('bundle of wood','bundle of wood','bundles of wood',NULL,NULL,NULL,NULL);
+INSERT INTO "items" VALUES('sutra','sutra','sutra',NULL,NULL,NULL,NULL);
 COMMIT;

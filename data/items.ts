@@ -1649,6 +1649,14 @@ const ITEM_SIDE_DISH: Item = {
     {
       counterId: "皿",
       relevance: CounterItemRelevance.Unknown
+    },
+    {
+      counterId: "品（しな）",
+      relevance: CounterItemRelevance.Unknown
+    },
+    {
+      counterId: "品（ひん）",
+      relevance: CounterItemRelevance.Unknown
     }
   ],
   englishPlural: "side dishes",
@@ -1822,6 +1830,20 @@ const ITEM_STREET: Item = {
   englishPlural: "streets",
   englishSingular: "street",
   itemId: "street",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
+const ITEM_SUTRA: Item = {
+  counters: [
+    {
+      counterId: "巻",
+      relevance: CounterItemRelevance.Unknown
+    }
+  ],
+  englishPlural: "sutra",
+  englishSingular: "sutra",
+  itemId: "sutra",
   maxQuantity: 100,
   minQuantity: 1
 };
@@ -2180,6 +2202,7 @@ export const ITEMS_LOOKUP: { [itemId: string]: Item } = {
   storey: ITEM_STOREY,
   straw: ITEM_STRAW,
   street: ITEM_STREET,
+  sutra: ITEM_SUTRA,
   task: ITEM_TASK,
   "tea house": ITEM_TEA_HOUSE,
   textbook: ITEM_TEXTBOOK,
@@ -2242,7 +2265,10 @@ export const ITEMS_FROM_COUNTER: {
   ],
   名: [ITEM_PERSON],
   周: [ITEM_LAP, ITEM_CIRCUIT, ITEM_ROUND],
+  "品（しな）": [ITEM_SIDE_DISH],
+  "品（ひん）": [ITEM_SIDE_DISH],
   回: [ITEM_TIME_OCCURRENCES_, ITEM_OCCURRENCE],
+  巻: [ITEM_SUTRA],
   席: [ITEM_SEAT, ITEM_MEETING, ITEM_ASSEMBLY, ITEM_BANQUET],
   年: [ITEM_YEAR],
   戦: [ITEM_BATTLE, ITEM_SKIRMISH, ITEM_BOSS_FIGHT],

@@ -292,6 +292,49 @@ export const COUNTER_周: Counter = {
   notes: null
 };
 
+export const COUNTER_品_しな_: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYoFor4: false,
+    allowsYonFor4: true
+  },
+  counterId: "品（しな）",
+  disambiguations: {},
+  englishName: "products",
+  externalLinks: [],
+  irregulars: {
+    1: ["ひとしな"],
+    2: ["ふたしな"]
+  },
+  kana: "しな",
+  kanji: "品",
+  notes: null
+};
+
+export const COUNTER_品_ひん_: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYoFor4: false,
+    allowsYonFor4: true
+  },
+  counterId: "品（ひん）",
+  disambiguations: {},
+  englishName: "products",
+  externalLinks: [],
+  irregulars: {},
+  kana: "ひん",
+  kanji: "品",
+  notes: null
+};
+
 export const COUNTER_回: Counter = {
   conjugationOptions: {
     allowsKuFor9: false,
@@ -309,6 +352,26 @@ export const COUNTER_回: Counter = {
   irregulars: {},
   kana: "かい",
   kanji: "回",
+  notes: null
+};
+
+export const COUNTER_巻: Counter = {
+  conjugationOptions: {
+    allowsKuFor9: false,
+    allowsKyuuFor9: true,
+    allowsNanaFor7: true,
+    allowsShiFor4: false,
+    allowsShichiFor7: false,
+    allowsYoFor4: false,
+    allowsYonFor4: true
+  },
+  counterId: "巻",
+  disambiguations: {},
+  englishName: "volumes",
+  externalLinks: [],
+  irregulars: {},
+  kana: "かん",
+  kanji: "巻",
   notes: null
 };
 
@@ -819,7 +882,10 @@ export const COUNTERS_LOOKUP: { [counterId: string]: Counter } = {
   台: COUNTER_台,
   名: COUNTER_名,
   周: COUNTER_周,
+  "品（しな）": COUNTER_品_しな_,
+  "品（ひん）": COUNTER_品_ひん_,
   回: COUNTER_回,
+  巻: COUNTER_巻,
   席: COUNTER_席,
   年: COUNTER_年,
   戦: COUNTER_戦,
