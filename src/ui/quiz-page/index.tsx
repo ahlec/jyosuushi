@@ -1,13 +1,15 @@
 import * as React from "react";
 import { connect } from "react-redux";
 
-import { Question } from "../../interfaces";
-import Localization from "../../localization";
-import withQuizManager, { InjectedProps } from "../../quiz/withQuizManager";
-import { QuizState, State } from "../../redux";
-import { getLocalization } from "../../redux/selectors";
+import { Question } from "@jyosuushi/interfaces";
+import Localization from "@jyosuushi/localization";
+import withQuizManager, {
+  InjectedProps
+} from "@jyosuushi/quiz/withQuizManager";
+import { QuizState, State } from "@jyosuushi/redux";
+import { getLocalization } from "@jyosuushi/redux/selectors";
 
-import FeedbackFooter from "../FeedbackFooter";
+import FeedbackFooter from "@jyosuushi/ui/FeedbackFooter";
 import AnswerInput from "./AnswerInput";
 import QuestionDisplay from "./QuestionDisplay";
 import QuizWrapup from "./QuizWrapup";

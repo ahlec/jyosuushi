@@ -1,9 +1,9 @@
+import { AmountRange, Settings } from "@jyosuushi/redux";
 import {
   ActionSetAmountRange,
   ActionSetInfiniteMode,
   ActionSetLocalizationLanguage
-} from "../actions";
-import { AmountRange, Settings } from "../index";
+} from "@jyosuushi/redux/actions";
 
 type ReducerAction =
   | ActionSetAmountRange

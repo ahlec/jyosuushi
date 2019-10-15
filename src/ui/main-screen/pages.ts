@@ -1,6 +1,6 @@
 import { ComponentClass } from "react";
 
-import Localization from "../../localization";
+import Localization from "@jyosuushi/localization";
 
 import ExplorePageIcon from "./explore/explore-icon.svg";
 import ExplorePage from "./explore/ExplorePage";

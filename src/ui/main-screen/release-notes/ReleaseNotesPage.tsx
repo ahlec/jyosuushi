@@ -1,14 +1,18 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { State } from "../../../redux";
-import { markLatestVersion } from "../../../redux/actions";
-import { getLocalization } from "../../../redux/selectors";
-import { Dispatch } from "../../../redux/store";
 
-import Localization from "../../../localization";
+import { State } from "@jyosuushi/redux";
+import { markLatestVersion } from "@jyosuushi/redux/actions";
+import { getLocalization } from "@jyosuushi/redux/selectors";
+import { Dispatch } from "@jyosuushi/redux/store";
+
+import Localization from "@jyosuushi/localization";
 
 import Markdown from "./Markdown";
 
+// We're importing outside of the src/ directory and this is one-off, so
+// we'll just make an exception for here.
+/* tslint:disable-next-line:no-relative-imports */
 import CHANGELOG from "../../../../CHANGELOG.md";
 
 import "./ReleaseNotesPage.scss";

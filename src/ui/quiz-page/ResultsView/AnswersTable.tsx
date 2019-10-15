@@ -3,12 +3,12 @@ import { groupBy, uniq } from "lodash";
 import * as React from "react";
 import { connect } from "react-redux";
 
-import { STUDY_PACK_LOOKUP } from "../../../../data/studyPacks";
-import { Answer, ConjugationCategory, Question } from "../../../interfaces";
-import Localization from "../../../localization";
-import { CountersState, State, UserAnswer } from "../../../redux";
+import { STUDY_PACK_LOOKUP } from "@data/studyPacks";
+import { Answer, ConjugationCategory, Question } from "@jyosuushi/interfaces";
+import Localization from "@jyosuushi/localization";
+import { CountersState, State, UserAnswer } from "@jyosuushi/redux";
 
-import Furigana from "../../Furigana";
+import Furigana from "@jyosuushi/ui/Furigana";
 
 import "./AnswersTable.scss";
 

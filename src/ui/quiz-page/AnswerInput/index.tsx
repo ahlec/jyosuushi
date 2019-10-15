@@ -4,19 +4,19 @@ import * as React from "react";
 import * as ReactGA from "react-ga";
 import { connect } from "react-redux";
 
-import { Answer, Question } from "../../../interfaces";
-import { HIRAGANA } from "../../../japanese/kana";
-import Localization from "../../../localization";
-import { State } from "../../../redux";
+import { Answer, Question } from "@jyosuushi/interfaces";
+import { HIRAGANA } from "@jyosuushi/japanese/kana";
+import Localization from "@jyosuushi/localization";
+import { State } from "@jyosuushi/redux";
 import {
   skipQuestion,
   submitCorrectAnswer,
   submitIncorrectAnswer
-} from "../../../redux/actions";
-import { Dispatch } from "../../../redux/store";
+} from "@jyosuushi/redux/actions";
+import { Dispatch } from "@jyosuushi/redux/store";
 import KanaInput, { KanaInputValue } from "./KanaInput";
 
-import RightIcon from "../../right.svg";
+import RightIcon from "@jyosuushi/ui/right.svg";
 
 import TsuNotice from "./TsuNotice";
 

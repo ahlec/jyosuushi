@@ -1,8 +1,8 @@
 import * as React from "react";
 import { connect } from "react-redux";
 
-import { State } from "../redux";
-import { getLocalization } from "../redux/selectors";
+import { State } from "@jyosuushi/redux";
+import { getLocalization } from "@jyosuushi/redux/selectors";
 
 import Localization, {
   CreditsPiece,
@@ -10,7 +10,7 @@ import Localization, {
   VARIABLE_FAVICON_CREDIT_LINK,
   VARIABLE_ICON_CREDIT_LINK,
   VARIABLE_SILK_ICONS_CREDIT_LINK
-} from "../localization";
+} from "@jyosuushi/localization";
 
 import "./CreditsFooter.scss";
 

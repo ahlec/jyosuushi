@@ -1,5 +1,7 @@
 import { uniqBy } from "lodash";
-import { permutate } from "../utils";
+
+import { permutate } from "@jyosuushi/utils";
+
 import { areTagsCompatible, Tag } from "./tags";
 
 export interface JapaneseWord {

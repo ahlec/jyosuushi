@@ -2,13 +2,13 @@ import { memoize, values } from "lodash";
 import * as React from "react";
 import { connect } from "react-redux";
 
-import { COUNTERS_LOOKUP } from "../../../../data/counters";
-import { Counter } from "../../../interfaces";
-import Localization from "../../../localization";
-import { State } from "../../../redux";
-import { getLocalization } from "../../../redux/selectors";
+import { COUNTERS_LOOKUP } from "@data/counters";
+import { Counter } from "@jyosuushi/interfaces";
+import Localization from "@jyosuushi/localization";
+import { State } from "@jyosuushi/redux";
+import { getLocalization } from "@jyosuushi/redux/selectors";
 
-import CounterLink from "../CounterLink";
+import CounterLink from "@jyosuushi/ui/main-screen/CounterLink";
 
 import "./AllCounters.scss";
 

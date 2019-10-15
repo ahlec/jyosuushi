@@ -1,13 +1,13 @@
 import classnames from "classnames";
 import * as React from "react";
 
-import { ITEMS_LOOKUP } from "../../../data/items";
+import { ITEMS_LOOKUP } from "@data/items";
 
-import { Question } from "../../interfaces";
-import Localization from "../../localization";
-import { UserAnswer } from "../../redux";
+import { Question } from "@jyosuushi/interfaces";
+import Localization from "@jyosuushi/localization";
+import { UserAnswer } from "@jyosuushi/redux";
 
-import JudgmentBubble from "../JudgmentBubble";
+import JudgmentBubble from "@jyosuushi/ui/JudgmentBubble";
 
 import "./HistoryRow.scss";
 

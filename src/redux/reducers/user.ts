@@ -1,5 +1,8 @@
-import { ActionMarkLatestVersion, ActionNextQuestion } from "../actions";
-import { User } from "../index";
+import { User } from "@jyosuushi/redux";
+import {
+  ActionMarkLatestVersion,
+  ActionNextQuestion
+} from "@jyosuushi/redux/actions";
 
 type ReducerAction = ActionMarkLatestVersion | ActionNextQuestion;
 

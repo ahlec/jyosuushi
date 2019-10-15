@@ -1,5 +1,7 @@
 import { memoize } from "lodash";
-import { Counter } from "../interfaces";
+
+import { Counter } from "@jyosuushi/interfaces";
+
 import { getLeadingConsonant } from "./hepburn";
 import { Gyou, HIRAGANA } from "./kana";
 import {

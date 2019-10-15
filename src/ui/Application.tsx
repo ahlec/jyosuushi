@@ -9,8 +9,8 @@ import {
   withRouter
 } from "react-router-dom";
 
-import { State } from "../redux";
-import { getIsQuizActive } from "../redux/selectors";
+import { State } from "@jyosuushi/redux";
+import { getIsQuizActive } from "@jyosuushi/redux/selectors";
 
 import Header from "./Header";
 import MainScreen from "./main-screen/MainScreen";

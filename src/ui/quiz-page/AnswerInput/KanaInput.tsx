@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { KanaDefinition } from "../../../japanese/kana";
+import { KanaDefinition } from "@jyosuushi/japanese/kana";
 
 export interface KanaInputValue {
   conversionBuffer: string;

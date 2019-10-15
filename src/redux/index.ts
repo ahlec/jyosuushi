@@ -1,4 +1,4 @@
-import { Counter, PendingQuestion, Question } from "../interfaces";
+import { Counter, PendingQuestion, Question } from "@jyosuushi/interfaces";
 
 export type LocalizationLanguage = "english";
 export enum AmountRange {

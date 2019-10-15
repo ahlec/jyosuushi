@@ -1,9 +1,9 @@
 import * as React from "react";
 
-import { ITEMS_FROM_COUNTER } from "../../../../../data/items";
+import { ITEMS_FROM_COUNTER } from "@data/items";
 
-import { Counter, Item } from "../../../../interfaces";
-import Localization from "../../../../localization";
+import { Counter, Item } from "@jyosuushi/interfaces";
+import Localization from "@jyosuushi/localization";
 
 import "./ItemsSection.scss";
 

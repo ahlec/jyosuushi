@@ -1,15 +1,16 @@
 import * as ReactGA from "react-ga";
 
-import { STUDY_PACK_LOOKUP } from "../../data/studyPacks";
-import { AmountRange } from "../redux";
+import { STUDY_PACK_LOOKUP } from "@data/studyPacks";
+
+import { AmountRange } from "@jyosuushi/redux";
 import {
   endQuiz,
   nextQuestion,
   replenishInfiniteQuiz,
   restartQuiz,
   startQuiz
-} from "../redux/actions";
-import { Store } from "../redux/store";
+} from "@jyosuushi/redux/actions";
+import { Store } from "@jyosuushi/redux/store";
 import makeQuiz from "./QuizMaker";
 
 const GOOGLE_ANALYTICS_CATEGORY = "Quiz";

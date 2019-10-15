@@ -2,7 +2,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { Redirect, Route, Switch } from "react-router-dom";
 
-import { State } from "../../redux";
+import { State } from "@jyosuushi/redux";
 
 import Sidebar from "./Sidebar";
 

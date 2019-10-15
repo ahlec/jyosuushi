@@ -1,4 +1,4 @@
-import { ActionSetEnabledPacks } from "../actions";
+import { ActionSetEnabledPacks } from "@jyosuushi/redux/actions";
 
 type ReducerAction = ActionSetEnabledPacks;
 

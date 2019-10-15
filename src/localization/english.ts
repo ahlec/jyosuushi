@@ -1,6 +1,7 @@
 import * as React from "react";
 
-import { Counter, Item, StudyPack } from "../interfaces";
+import { Counter, Item, StudyPack } from "@jyosuushi/interfaces";
+
 import Localization, {
   VARIABLE_ALEC_DEITLOFF,
   VARIABLE_FAVICON_CREDIT_LINK,

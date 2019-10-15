@@ -3,8 +3,8 @@ import * as React from "react";
 import { connect } from "react-redux";
 import ReactTooltip from "react-tooltip";
 
-import Localization from "../../localization";
-import { Scorecard, State } from "../../redux";
+import Localization from "@jyosuushi/localization";
+import { Scorecard, State } from "@jyosuushi/redux";
 
 import "./Score.scss";
 

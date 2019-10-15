@@ -1,8 +1,8 @@
 import * as React from "react";
 import { connect } from "react-redux";
 
-import Localization from "../../../../localization";
-import { State } from "../../../../redux";
+import Localization from "@jyosuushi/localization";
+import { State } from "@jyosuushi/redux";
 
 import TsuWarningModel, { NUM_DEFAULT_WARNINGS } from "./model";
 

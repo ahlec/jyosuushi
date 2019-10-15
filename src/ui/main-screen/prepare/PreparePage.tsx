@@ -2,14 +2,16 @@ import { memoize } from "lodash";
 import * as React from "react";
 import { connect } from "react-redux";
 
-import { STUDY_PACK_LOOKUP } from "../../../../data/studyPacks";
-import { StudyPack } from "../../../interfaces";
-import Localization from "../../../localization";
-import withQuizManager, { InjectedProps } from "../../../quiz/withQuizManager";
-import { State } from "../../../redux";
-import { setEnabledPacks } from "../../../redux/actions";
-import { getLocalization } from "../../../redux/selectors";
-import { Dispatch } from "../../../redux/store";
+import { STUDY_PACK_LOOKUP } from "@data/studyPacks";
+import { StudyPack } from "@jyosuushi/interfaces";
+import Localization from "@jyosuushi/localization";
+import withQuizManager, {
+  InjectedProps
+} from "@jyosuushi/quiz/withQuizManager";
+import { State } from "@jyosuushi/redux";
+import { setEnabledPacks } from "@jyosuushi/redux/actions";
+import { getLocalization } from "@jyosuushi/redux/selectors";
+import { Dispatch } from "@jyosuushi/redux/store";
 
 import CounterPreview from "./CounterPreview";
 import PackSelection from "./PackSelection";

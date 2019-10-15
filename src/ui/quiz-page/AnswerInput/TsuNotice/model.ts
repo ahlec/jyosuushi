@@ -1,4 +1,4 @@
-import { ONE_MONTH } from "../../../../constants";
+import { ONE_MONTH } from "@jyosuushi/constants";
 
 const LOCAL_STORAGE_KEY = "tsu-warning";
 export const NUM_DEFAULT_WARNINGS = 3;

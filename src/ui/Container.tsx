@@ -2,8 +2,8 @@ import classnames from "classnames";
 import * as React from "react";
 import { connect } from "react-redux";
 
-import { State } from "../redux";
-import { getIsQuizActive } from "../redux/selectors";
+import { State } from "@jyosuushi/redux";
+import { getIsQuizActive } from "@jyosuushi/redux/selectors";
 
 import Application from "./Application";
 import CreditsFooter from "./CreditsFooter";

@@ -1,12 +1,16 @@
 import { memoize, random } from "lodash";
-import { COUNTERS_LOOKUP } from "../../../data/counters";
-import { ITEMS_LOOKUP } from "../../../data/items";
-import { Answer, PendingQuestion, Question } from "../../interfaces";
+
+import { COUNTERS_LOOKUP } from "@data/counters";
+import { ITEMS_LOOKUP } from "@data/items";
+
+import { Answer, PendingQuestion, Question } from "@jyosuushi/interfaces";
 import {
   conjugateCounter,
   getDistinctCounters,
   randomFromArray
-} from "../../utils";
+} from "@jyosuushi/utils";
+
+import { QuestionsState } from "@jyosuushi/redux";
 import {
   ActionIgnoreLastAnswer,
   ActionNextQuestion,
@@ -14,8 +18,7 @@ import {
   ActionRestartQuiz,
   ActionSetEnabledPacks,
   ActionStartQuiz
-} from "../actions";
-import { QuestionsState } from "../index";
+} from "@jyosuushi/redux/actions";
 
 const getEnabledCountersSet = memoize(
   (enabledCounters: ReadonlyArray<string>) => new Set<string>(enabledCounters)
