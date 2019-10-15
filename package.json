@@ -9,7 +9,7 @@
     "db:update": "node ./scripts/update-database.js",
     "db:audit": "ts-node ./scripts/audit-database.ts",
     "db:export": "ts-node ./scripts/exporter/export-data.ts",
-    "db:dump": "node ./scripts/export-database.js",
+    "db:dump": "ts-node ./scripts/dump-database.ts",
     "clean": "rimraf ./build",
     "lint": "tslint 'src/**/*.ts?(x)'",
     "favicon": "rimraf ./favicons && real-favicon generate faviconDescription.json faviconData.json favicons"
