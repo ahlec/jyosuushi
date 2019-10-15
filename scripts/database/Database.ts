@@ -2,45 +2,11 @@ import { execSync } from "child_process";
 import * as path from "path";
 import { Database as SQLiteDatabase, open as openSQLite } from "sqlite";
 
-import {
-  DbCounter,
-  DbCounterAdditionalReading,
-  DbCounterDisambiguation,
-  DbCounterExternalLink,
-  DbCounterIrregular,
-  DbItem,
-  DbItemCounter,
-  DbStudyPack,
-  DbStudyPackContent
-} from "./schemas";
+import { SchemaEntryTypes, Schemas } from "./schemas";
 
 const ROOT_DIRECTORY = path.resolve(__dirname, "../../");
 const SQL_DIRECTORY = path.resolve(ROOT_DIRECTORY, "./sql");
 const DATABASE_FILE = path.resolve(ROOT_DIRECTORY, "jyosuushi.sqlite");
-
-export enum Schemas {
-  CounterAdditionalReadings = "counter_additional_readings",
-  CounterDisambiguations = "counter_disambiguations",
-  CounterExternalLinks = "counter_external_links",
-  CounterIrregulars = "counter_irregulars",
-  Counters = "counters",
-  ItemCounters = "item_counters",
-  Items = "items",
-  StudyPackContents = "study_pack_contents",
-  StudyPacks = "study_packs"
-}
-
-export interface SchemaEntryTypes {
-  [Schemas.CounterAdditionalReadings]: DbCounterAdditionalReading;
-  [Schemas.CounterDisambiguations]: DbCounterDisambiguation;
-  [Schemas.CounterExternalLinks]: DbCounterExternalLink;
-  [Schemas.CounterIrregulars]: DbCounterIrregular;
-  [Schemas.Counters]: DbCounter;
-  [Schemas.ItemCounters]: DbItemCounter;
-  [Schemas.Items]: DbItem;
-  [Schemas.StudyPackContents]: DbStudyPackContent;
-  [Schemas.StudyPacks]: DbStudyPack;
-}
 
 export type DatabaseSnapshot = {
   [schema in Schemas]: ReadonlyArray<SchemaEntryTypes[schema]>;

@@ -1,10 +1,6 @@
 /* tslint:disable variable-name */
 
-import Database, {
-  DatabaseSnapshot,
-  SchemaEntryTypes,
-  Schemas
-} from "../database/Database";
+import Database, { DatabaseSnapshot } from "../database/Database";
 import {
   DbCounter,
   DbCounterAdditionalReading,
@@ -14,12 +10,19 @@ import {
   DbItem,
   DbItemCounter,
   DbStudyPack,
-  DbStudyPackContent
+  DbStudyPackContent,
+  SchemaEntryTypes,
+  Schemas
 } from "./schemas";
 
-interface InvalidResultEntry<TSchemaEntry> {
+interface Reason {
+  text: string;
+  showsInAudit: boolean;
+}
+
+export interface InvalidResultEntry<TSchemaEntry> {
   entry: TSchemaEntry;
-  reasons: ReadonlyArray<string>;
+  reasons: ReadonlyArray<Reason>;
 }
 
 interface ValidatedResult<TSchemaEntry> {
@@ -50,17 +53,36 @@ function validateCounters(
   }
 
   for (const counter of snapshot.counters) {
-    const errorReasons: string[] = [];
+    const errorReasons: Reason[] = [];
     if (!counter.uses_yon && !counter.uses_yo && !counter.uses_shi) {
-      errorReasons.push("Counter doesn't use 'yon', 'yo', or 'shi'.");
+      errorReasons.push({
+        showsInAudit: true,
+        text: "Counter doesn't use 'yon', 'yo', or 'shi'."
+      });
     }
 
     if (!counter.uses_nana && !counter.uses_shichi) {
-      errorReasons.push("Counter doesn't use either 'nana' or 'shichi'.");
+      errorReasons.push({
+        showsInAudit: true,
+        text: "Counter doesn't use either 'nana' or 'shichi'."
+      });
     }
 
     if (!counter.uses_kyuu && !counter.uses_ku) {
-      errorReasons.push("Counter doesn't use either 'kyuu' or 'ku'.");
+      errorReasons.push({
+        showsInAudit: true,
+        text: "Counter doesn't use either 'kyuu' or 'ku'."
+      });
+    }
+
+    if (
+      counterInStudyPack.has(counter.counter_id) &&
+      !counterHasItems.has(counter.counter_id)
+    ) {
+      errorReasons.push({
+        showsInAudit: true,
+        text: "Included in a study pack but does not define any items."
+      });
     }
 
     if (errorReasons.length) {
@@ -72,14 +94,20 @@ function validateCounters(
       continue;
     }
 
-    const ignoredReasons: string[] = [];
+    const ignoredReasons: Reason[] = [];
 
     if (!counterHasItems.has(counter.counter_id)) {
-      ignoredReasons.push("No associated items.");
+      ignoredReasons.push({
+        showsInAudit: true,
+        text: "No associated items."
+      });
     }
 
     if (!counterInStudyPack.has(counter.counter_id)) {
-      ignoredReasons.push("Not part of a study pack.");
+      ignoredReasons.push({
+        showsInAudit: true,
+        text: "Not part of a study pack."
+      });
     }
 
     if (ignoredReasons.length) {
@@ -106,22 +134,45 @@ function validateItems(
   validCounterIds: ReadonlySet<string>
 ): ValidatedResult<DbItem> {
   const valid: DbItem[] = [];
+  const error: Array<InvalidResultEntry<DbItem>> = [];
   const ignored: Array<InvalidResultEntry<DbItem>> = [];
 
-  const itemHasCounters = new Set<string>();
+  const itemHasExportedCounter = new Set<string>();
+  const itemHasAnyCounter = new Set<string>();
   for (const { counter_id, item_id } of snapshot.item_counters) {
+    itemHasAnyCounter.add(item_id);
+
     if (!validCounterIds.has(counter_id)) {
       continue;
     }
 
-    itemHasCounters.add(item_id);
+    itemHasExportedCounter.add(item_id);
   }
 
   for (const item of snapshot.items) {
-    if (!itemHasCounters.has(item.item_id)) {
+    if (!itemHasAnyCounter.has(item.item_id)) {
+      error.push({
+        entry: item,
+        reasons: [
+          {
+            showsInAudit: true,
+            text: "No counters use this item (exported or otherwise)."
+          }
+        ]
+      });
+
+      continue;
+    }
+
+    if (!itemHasExportedCounter.has(item.item_id)) {
       ignored.push({
         entry: item,
-        reasons: ["No exported counters use this item."]
+        reasons: [
+          {
+            showsInAudit: false,
+            text: "No exported counters use this item."
+          }
+        ]
       });
 
       continue;
@@ -130,7 +181,7 @@ function validateItems(
     valid.push(item);
   }
 
-  return { error: [], ignored, valid };
+  return { error, ignored, valid };
 }
 
 function validateSingleCounterDependentDb<
@@ -146,7 +197,12 @@ function validateSingleCounterDependentDb<
     if (!validCounterIds.has(entry.counter_id)) {
       ignored.push({
         entry,
-        reasons: ["Counter is not being exported."]
+        reasons: [
+          {
+            showsInAudit: false,
+            text: "Counter is not being exported."
+          }
+        ]
       });
 
       continue;
@@ -181,20 +237,31 @@ function validateCounterDisambiguations(
     if (combinations.has(inverse)) {
       error.push({
         entry: disambiguation,
-        reasons: ["The inverse of this combination is also defined."]
+        reasons: [
+          {
+            showsInAudit: true,
+            text: "The inverse of this combination is also defined."
+          }
+        ]
       });
 
       continue;
     }
 
-    const ignoredReasons: string[] = [];
+    const ignoredReasons: Reason[] = [];
 
     if (!validCounterIds.has(disambiguation.counter1_id)) {
-      ignoredReasons.push("Counter 1 is not being exported.");
+      ignoredReasons.push({
+        showsInAudit: false,
+        text: "Counter 1 is not being exported."
+      });
     }
 
     if (!validCounterIds.has(disambiguation.counter2_id)) {
-      ignoredReasons.push("Counter 2 is not being exported.");
+      ignoredReasons.push({
+        showsInAudit: false,
+        text: "Counter 2 is not being exported."
+      });
     }
 
     if (ignoredReasons.length) {
@@ -224,13 +291,19 @@ function validateCounterIrregulars(
   const ignored: Array<InvalidResultEntry<DbCounterIrregular>> = [];
 
   for (const irregular of snapshot.counter_irregulars) {
-    const ignoredReasons: string[] = [];
+    const ignoredReasons: Reason[] = [];
     if (!validCounterIds.has(irregular.counter_id)) {
-      ignoredReasons.push("Counter is not being exported.");
+      ignoredReasons.push({
+        showsInAudit: false,
+        text: "Counter is not being exported."
+      });
     }
 
     if (irregular.nonstandard) {
-      ignoredReasons.push("Nonstandard support has not yet been added.");
+      ignoredReasons.push({
+        showsInAudit: true,
+        text: "Nonstandard support has not yet been added."
+      });
     }
 
     if (ignoredReasons.length) {
@@ -263,7 +336,7 @@ function validateItemCounters(
     if (!validItemIds.has(itemCounter.item_id)) {
       ignored.push({
         entry: itemCounter,
-        reasons: ["Item is not being exported"]
+        reasons: [{ showsInAudit: false, text: "Item is not being exported" }]
       });
 
       continue;
@@ -295,7 +368,12 @@ function validateStudyPacks(
     if (!hasCounter.has(studyPack.pack_id)) {
       ignored.push({
         entry: studyPack,
-        reasons: ["No exported counters in study pack."]
+        reasons: [
+          {
+            showsInAudit: true,
+            text: "No exported counters in study pack."
+          }
+        ]
       });
 
       continue;
@@ -389,5 +467,11 @@ export default class ValidatedDataSource implements Indexer {
       study_pack_contents,
       study_packs
     ].some(results => !!results.error.length);
+  }
+
+  public getSchema<TSchema extends Schemas>(
+    schema: TSchema
+  ): ValidatedResult<SchemaEntryTypes[TSchema]> {
+    return (this as any)[schema];
   }
 }
