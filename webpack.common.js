@@ -40,8 +40,8 @@ module.exports = {
   },
   resolve: {
     alias: {
-      "@data/*": DATA_DIRECTORY,
-      "@jyosuushi/*": SOURCE_DIRECTORY
+      "@data": DATA_DIRECTORY,
+      "@jyosuushi": SOURCE_DIRECTORY
     },
     extensions: [".js", ".jsx", ".json", ".ts", ".tsx", ".scss"]
   },
