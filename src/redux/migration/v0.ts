@@ -10,7 +10,7 @@
 //   - Add a default value for settings.amountRange
 //   - Remove user from quiz (easiest solution)
 
-import { AmountRange } from "../index";
+import { AmountRange } from "@jyosuushi/redux";
 
 export default function migrateV0(state: any): any {
   const { session, ...rest } = state;

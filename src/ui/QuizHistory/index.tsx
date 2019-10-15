@@ -1,9 +1,9 @@
 import * as React from "react";
 import { connect } from "react-redux";
 
-import { Question } from "../../interfaces";
-import Localization from "../../localization";
-import { State, UserAnswer } from "../../redux";
+import { Question } from "@jyosuushi/interfaces";
+import Localization from "@jyosuushi/localization";
+import { State, UserAnswer } from "@jyosuushi/redux";
 
 import HistoryRow from "./HistoryRow";
 

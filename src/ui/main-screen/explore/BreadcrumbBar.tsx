@@ -2,15 +2,15 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { NavLink, RouteComponentProps, withRouter } from "react-router-dom";
 
-import { COUNTERS_LOOKUP } from "../../../../data/counters";
-import { STUDY_PACK_LOOKUP } from "../../../../data/studyPacks";
+import { COUNTERS_LOOKUP } from "@data/counters";
+import { STUDY_PACK_LOOKUP } from "@data/studyPacks";
 
-import { State } from "../../../redux";
-import { getLocalization } from "../../../redux/selectors";
+import { State } from "@jyosuushi/redux";
+import { getLocalization } from "@jyosuushi/redux/selectors";
 
-import Localization from "../../../localization";
+import Localization from "@jyosuushi/localization";
 
-import { interleave } from "../../../utils";
+import { interleave } from "@jyosuushi/utils";
 
 import {
   EXPLORE_COUNTER_PATH,

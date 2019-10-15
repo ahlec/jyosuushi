@@ -3,17 +3,17 @@ import * as React from "react";
 import * as ReactGA from "react-ga";
 import { connect } from "react-redux";
 
-import Localization from "../../localization";
+import Localization from "@jyosuushi/localization";
 
-import { Scorecard, State } from "../../redux";
-import { leaveQuiz } from "../../redux/actions";
-import { getLocalization } from "../../redux/selectors";
-import { Dispatch } from "../../redux/store";
+import { Scorecard, State } from "@jyosuushi/redux";
+import { leaveQuiz } from "@jyosuushi/redux/actions";
+import { getLocalization } from "@jyosuushi/redux/selectors";
+import { Dispatch } from "@jyosuushi/redux/store";
 
-import Furigana from "../Furigana";
-import Modal from "../Modal";
-import QuizHistory from "../QuizHistory";
-import TooltipButton from "../TooltipButton";
+import Furigana from "@jyosuushi/ui/Furigana";
+import Modal from "@jyosuushi/ui/Modal";
+import QuizHistory from "@jyosuushi/ui/QuizHistory";
+import TooltipButton from "@jyosuushi/ui/TooltipButton";
 
 import AbortConfirmationModal from "./AbortConfirmationModal";
 import BetaBanner from "./BetaBanner";

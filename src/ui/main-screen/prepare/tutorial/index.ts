@@ -1,4 +1,4 @@
-import Localization from "../../../../localization";
+import Localization from "@jyosuushi/localization";
 
 import IgnoreAnswerPng from "./ignore-answer.png";
 import QuizWrapupPng from "./quiz-wrapup.png";

@@ -1,11 +1,11 @@
 import { memoize } from "lodash";
 import * as React from "react";
 
-import { Counter, StudyPack } from "../../../interfaces";
-import Localization from "../../../localization";
-import { getDistinctCounters } from "../../../utils";
+import { Counter, StudyPack } from "@jyosuushi/interfaces";
+import Localization from "@jyosuushi/localization";
+import { getDistinctCounters } from "@jyosuushi/utils";
 
-import CounterLink from "../CounterLink";
+import CounterLink from "@jyosuushi/ui/main-screen/CounterLink";
 
 import "./CounterPreview.scss";
 

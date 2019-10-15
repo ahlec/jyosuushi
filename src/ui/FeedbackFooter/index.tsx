@@ -4,7 +4,7 @@ import Localization, {
   FeedbackFooterPiece,
   VARIABLE_REPORT_BUG_LINK,
   VARIABLE_SUBMIT_FEEDBACK_LINK
-} from "../../localization";
+} from "@jyosuushi/localization";
 
 import BugIcon from "./bug.png";
 import CommentsIcon from "./comments.png";

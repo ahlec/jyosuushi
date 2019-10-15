@@ -3,13 +3,13 @@ import { memoize } from "lodash";
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-import { STUDY_PACKS } from "../../../../data/studyPacks";
-import { StudyPack } from "../../../interfaces";
-import Localization from "../../../localization";
+import { STUDY_PACKS } from "@data/studyPacks";
+import { StudyPack } from "@jyosuushi/interfaces";
+import Localization from "@jyosuushi/localization";
 
-import { getStudyPackLink } from "../explore/pathing";
+import { getStudyPackLink } from "@jyosuushi/ui/main-screen/explore/pathing";
 
-import CheckIcon from "../check.svg";
+import CheckIcon from "@jyosuushi/ui/main-screen/check.svg";
 
 import "./PackSelection.scss";
 

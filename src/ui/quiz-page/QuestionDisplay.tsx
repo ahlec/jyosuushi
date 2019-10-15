@@ -1,8 +1,8 @@
 import * as React from "react";
 
-import { ITEMS_LOOKUP } from "../../../data/items";
-import { Question } from "../../interfaces";
-import Localization from "../../localization";
+import { ITEMS_LOOKUP } from "@data/items";
+import { Question } from "@jyosuushi/interfaces";
+import Localization from "@jyosuushi/localization";
 
 import "./QuestionDisplay.scss";
 

@@ -1,7 +1,7 @@
 import * as React from "react";
 
-import { Counter, ExternalLink } from "../../../../interfaces";
-import Localization from "../../../../localization";
+import { Counter, ExternalLink } from "@jyosuushi/interfaces";
+import Localization from "@jyosuushi/localization";
 
 import "./InfoSection.scss";
 

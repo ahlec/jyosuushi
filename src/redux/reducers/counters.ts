@@ -1,5 +1,5 @@
-import { ActionSetEnabledPacks } from "../actions";
-import { CountersState } from "../index";
+import { CountersState } from "@jyosuushi/redux";
+import { ActionSetEnabledPacks } from "@jyosuushi/redux/actions";
 
 type ReducerAction = ActionSetEnabledPacks;
 

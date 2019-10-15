@@ -1,4 +1,6 @@
 import { maxBy } from "lodash";
+
+import { Scorecard } from "@jyosuushi/redux";
 import {
   ActionIgnoreLastAnswer,
   ActionLeaveQuiz,
@@ -7,8 +9,7 @@ import {
   ActionStartQuiz,
   ActionSubmitCorrectAnswer,
   ActionSubmitIncorrectAnswer
-} from "../actions";
-import { Scorecard } from "../index";
+} from "@jyosuushi/redux/actions";
 
 type ReducerAction =
   | ActionStartQuiz

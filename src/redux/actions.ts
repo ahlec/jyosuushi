@@ -1,4 +1,5 @@
-import { PendingQuestion, StudyPack } from "../interfaces";
+import { PendingQuestion, StudyPack } from "@jyosuushi/interfaces";
+
 import { AmountRange, LocalizationLanguage } from "./index";
 
 export interface ActionSetLocalizationLanguage {

@@ -3,18 +3,18 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { Redirect, RouteComponentProps } from "react-router-dom";
 
-import { STUDY_PACK_LOOKUP } from "../../../../../data/studyPacks";
+import { STUDY_PACK_LOOKUP } from "@data/studyPacks";
 
-import { Counter, StudyPack } from "../../../../interfaces";
-import Localization from "../../../../localization";
-import { State } from "../../../../redux";
-import { getLocalization } from "../../../../redux/selectors";
+import { Counter, StudyPack } from "@jyosuushi/interfaces";
+import Localization from "@jyosuushi/localization";
+import { State } from "@jyosuushi/redux";
+import { getLocalization } from "@jyosuushi/redux/selectors";
 
-import Furigana from "../../../Furigana";
-import RightIcon from "../../../right.svg";
+import Furigana from "@jyosuushi/ui/Furigana";
+import RightIcon from "@jyosuushi/ui/right.svg";
 
-import BreadcrumbBar from "../BreadcrumbBar";
-import { getCounterLink } from "../pathing";
+import BreadcrumbBar from "@jyosuushi/ui/main-screen/explore/BreadcrumbBar";
+import { getCounterLink } from "@jyosuushi/ui/main-screen/explore/pathing";
 
 import "./ExploreStudyPackPage.scss";
 

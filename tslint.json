@@ -4,8 +4,10 @@
     "no-debugger": false,
     "no-namespace": false,
     "no-var-requires": false,
-    "interface-name": [true, "never-prefix"]
+    "interface-name": [true, "never-prefix"],
+    "no-relative-imports": [true, "allow-siblings"]
   },
+  "rulesDirectory": ["node_modules/tslint-microsoft-contrib"],
   "linterOptions": {
     "exclude": ["node_modules/**/*.ts"]
   }

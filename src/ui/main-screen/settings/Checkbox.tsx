@@ -1,8 +1,8 @@
 import classnames from "classnames";
 import * as React from "react";
 
-import CheckIcon from "../check.svg";
-import CircleIcon from "../circle.svg";
+import CheckIcon from "@jyosuushi/ui/main-screen/check.svg";
+import CircleIcon from "@jyosuushi/ui/main-screen/circle.svg";
 
 import "./Checkbox.scss";
 

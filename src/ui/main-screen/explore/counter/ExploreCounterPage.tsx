@@ -2,13 +2,13 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { Redirect, RouteComponentProps } from "react-router-dom";
 
-import { COUNTERS_LOOKUP } from "../../../../../data/counters";
-import { Counter } from "../../../../interfaces";
-import Localization from "../../../../localization";
-import { State } from "../../../../redux";
-import { getLocalization } from "../../../../redux/selectors";
+import { COUNTERS_LOOKUP } from "@data/counters";
+import { Counter } from "@jyosuushi/interfaces";
+import Localization from "@jyosuushi/localization";
+import { State } from "@jyosuushi/redux";
+import { getLocalization } from "@jyosuushi/redux/selectors";
 
-import BreadcrumbBar from "../BreadcrumbBar";
+import BreadcrumbBar from "@jyosuushi/ui/main-screen/explore/BreadcrumbBar";
 
 import ConjugationsSection from "./ConjugationsSection";
 import InfoSection from "./InfoSection";

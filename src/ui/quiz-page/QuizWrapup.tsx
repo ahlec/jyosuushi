@@ -2,14 +2,14 @@ import { round } from "lodash";
 import * as React from "react";
 import { connect } from "react-redux";
 
-import Localization from "../../localization";
-import QuizManager from "../../quiz/QuizManager";
-import { Scorecard, State } from "../../redux";
-import { leaveQuiz } from "../../redux/actions";
-import { Dispatch } from "../../redux/store";
-import { randomFromArray } from "../../utils";
+import Localization from "@jyosuushi/localization";
+import QuizManager from "@jyosuushi/quiz/QuizManager";
+import { Scorecard, State } from "@jyosuushi/redux";
+import { leaveQuiz } from "@jyosuushi/redux/actions";
+import { Dispatch } from "@jyosuushi/redux/store";
+import { randomFromArray } from "@jyosuushi/utils";
 
-import QuizHistory from "../QuizHistory";
+import QuizHistory from "@jyosuushi/ui/QuizHistory";
 
 import "./QuizWrapup.scss";
 

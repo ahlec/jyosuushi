@@ -3,18 +3,18 @@ import * as React from "react";
 import * as ReactGA from "react-ga";
 import { connect } from "react-redux";
 
-import { Answer, Question } from "../../../interfaces";
-import Localization from "../../../localization";
+import { Answer, Question } from "@jyosuushi/interfaces";
+import Localization from "@jyosuushi/localization";
 import {
   CountersState,
   State,
   UserAnswer,
   UserAnswerJudgment
-} from "../../../redux";
-import { ignoreLastAnswer } from "../../../redux/actions";
-import { Dispatch } from "../../../redux/store";
+} from "@jyosuushi/redux";
+import { ignoreLastAnswer } from "@jyosuushi/redux/actions";
+import { Dispatch } from "@jyosuushi/redux/store";
 
-import JudgmentBubble from "../../JudgmentBubble";
+import JudgmentBubble from "@jyosuushi/ui/JudgmentBubble";
 
 import AnswersTable from "./AnswersTable";
 import "./index.scss";
@@ -40,7 +40,7 @@ function mapStateToProps(state: State): ReduxProps {
 type ComponentProps = ProvidedProps & ReduxProps & { dispatch: Dispatch };
 
 const HEADERS: {
-  [judgment in UserAnswerJudgment]: (localization: Localization) => string
+  [judgment in UserAnswerJudgment]: (localization: Localization) => string;
 } = {
   correct: localization => localization.resultCorrectHeader,
   ignored: localization => localization.resultIncorrectHeader,

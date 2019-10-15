@@ -1,3 +1,4 @@
+import { QuizState } from "@jyosuushi/redux";
 import {
   ActionEndQuiz,
   ActionLeaveQuiz,
@@ -8,8 +9,7 @@ import {
   ActionStartQuiz,
   ActionSubmitCorrectAnswer,
   ActionSubmitIncorrectAnswer
-} from "../actions";
-import { QuizState } from "../index";
+} from "@jyosuushi/redux/actions";
 
 type ReducerAction =
   | ActionEndQuiz

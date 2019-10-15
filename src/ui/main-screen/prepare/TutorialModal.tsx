@@ -2,12 +2,12 @@ import classnames from "classnames";
 import { memoize } from "lodash";
 import * as React from "react";
 
-import Localization from "../../../localization";
+import Localization from "@jyosuushi/localization";
 
-import Modal from "../../Modal";
+import Modal from "@jyosuushi/ui/Modal";
 
-import LeftIcon from "../../left.svg";
-import RightIcon from "../../right.svg";
+import LeftIcon from "@jyosuushi/ui/left.svg";
+import RightIcon from "@jyosuushi/ui/right.svg";
 
 import { TUTORIAL_PAGES } from "./tutorial";
 

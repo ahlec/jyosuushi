@@ -4,9 +4,9 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { match as Match, NavLink } from "react-router-dom";
 
-import Localization from "../../localization";
-import { State } from "../../redux";
-import { getLocalization } from "../../redux/selectors";
+import Localization from "@jyosuushi/localization";
+import { State } from "@jyosuushi/redux";
+import { getLocalization } from "@jyosuushi/redux/selectors";
 
 import { LANDING_PAGE, ORDERED_SIDEBAR_PAGES, PageDefinition } from "./pages";
 

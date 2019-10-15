@@ -1,4 +1,4 @@
-import { Counter, StudyPack } from "../../../interfaces";
+import { Counter, StudyPack } from "@jyosuushi/interfaces";
 
 export const EXPLORE_PAGE_PATH = "/explore";
 

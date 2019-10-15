@@ -2,9 +2,9 @@ import classnames from "classnames";
 import { clamp, memoize } from "lodash";
 import * as React from "react";
 
-import { ConjugationCategory, Counter } from "../../../../interfaces";
-import Localization from "../../../../localization";
-import { conjugateCounter, ConjugatedInfo } from "../../../../utils";
+import { ConjugationCategory, Counter } from "@jyosuushi/interfaces";
+import Localization from "@jyosuushi/localization";
+import { conjugateCounter, ConjugatedInfo } from "@jyosuushi/utils";
 
 import "./ConjugationsSection.scss";
 

@@ -1,5 +1,10 @@
 {
   "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@jyosuushi/*": ["src/*"],
+      "@data/*": ["data/*"]
+    },
     "esModuleInterop": true,
     "jsx": "react",
     "module": "commonjs",

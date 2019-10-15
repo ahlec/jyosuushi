@@ -1,3 +1,4 @@
+import { UserAnswer, UserAnswerJudgment } from "@jyosuushi/redux";
 import {
   ActionIgnoreLastAnswer,
   ActionRestartQuiz,
@@ -5,8 +6,7 @@ import {
   ActionStartQuiz,
   ActionSubmitCorrectAnswer,
   ActionSubmitIncorrectAnswer
-} from "../actions";
-import { UserAnswer, UserAnswerJudgment } from "../index";
+} from "@jyosuushi/redux/actions";
 
 type ReducerAction =
   | ActionIgnoreLastAnswer

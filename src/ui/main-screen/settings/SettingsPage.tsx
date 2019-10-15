@@ -1,13 +1,14 @@
 import { memoize } from "lodash";
 import * as React from "react";
 import { connect } from "react-redux";
-import { AmountRange, State } from "../../../redux";
-import { setAmountRange, setInfiniteMode } from "../../../redux/actions";
-import { getLocalization } from "../../../redux/selectors";
-import { Dispatch } from "../../../redux/store";
 
-import { AMOUNT_RANGES } from "../../../constants";
-import Localization from "../../../localization";
+import { AmountRange, State } from "@jyosuushi/redux";
+import { setAmountRange, setInfiniteMode } from "@jyosuushi/redux/actions";
+import { getLocalization } from "@jyosuushi/redux/selectors";
+import { Dispatch } from "@jyosuushi/redux/store";
+
+import { AMOUNT_RANGES } from "@jyosuushi/constants";
+import Localization from "@jyosuushi/localization";
 
 import Checkbox from "./Checkbox";
 import ChooserControl, { Choice } from "./ChooserControl";
@@ -34,30 +35,22 @@ const AMOUNT_RANGE_CHOICES = memoize(
   (localization: Localization): ReadonlyArray<Choice<AmountRange>> => {
     const choices: Array<Choice<AmountRange>> = [
       {
-        subtext: `${AMOUNT_RANGES[AmountRange.Small].min}–${
-          AMOUNT_RANGES[AmountRange.Small].max
-        }`,
+        subtext: `${AMOUNT_RANGES[AmountRange.Small].min}–${AMOUNT_RANGES[AmountRange.Small].max}`,
         title: localization.amountRangeSmall,
         value: AmountRange.Small
       },
       {
-        subtext: `${AMOUNT_RANGES[AmountRange.Medium].min}–${
-          AMOUNT_RANGES[AmountRange.Medium].max
-        }`,
+        subtext: `${AMOUNT_RANGES[AmountRange.Medium].min}–${AMOUNT_RANGES[AmountRange.Medium].max}`,
         title: localization.amountRangeMedium,
         value: AmountRange.Medium
       },
       {
-        subtext: `${AMOUNT_RANGES[AmountRange.Large].min}–${
-          AMOUNT_RANGES[AmountRange.Large].max
-        }`,
+        subtext: `${AMOUNT_RANGES[AmountRange.Large].min}–${AMOUNT_RANGES[AmountRange.Large].max}`,
         title: localization.amountRangeLarge,
         value: AmountRange.Large
       },
       {
-        subtext: `${AMOUNT_RANGES[AmountRange.Giant].min}–${
-          AMOUNT_RANGES[AmountRange.Giant].max
-        }`,
+        subtext: `${AMOUNT_RANGES[AmountRange.Giant].min}–${AMOUNT_RANGES[AmountRange.Giant].max}`,
         title: localization.amountRangeGiant,
         value: AmountRange.Giant
       }

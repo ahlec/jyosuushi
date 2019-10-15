@@ -1,12 +1,12 @@
 import * as React from "react";
 import { connect } from "react-redux";
 
-import Localization from "../../../localization";
-import { State } from "../../../redux";
-import { getLocalization } from "../../../redux/selectors";
+import Localization from "@jyosuushi/localization";
+import { State } from "@jyosuushi/redux";
+import { getLocalization } from "@jyosuushi/redux/selectors";
 
-import BugIcon from "../../FeedbackFooter/bug.png";
-import CommentsIcon from "../../FeedbackFooter/comments.png";
+import BugIcon from "@jyosuushi/ui/FeedbackFooter/bug.png";
+import CommentsIcon from "@jyosuushi/ui/FeedbackFooter/comments.png";
 import CodeIcon from "./code.png";
 
 import "./FeedbackPage.scss";

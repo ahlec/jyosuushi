@@ -1,14 +1,14 @@
 import classnames from "classnames";
 import * as React from "react";
 
-import { UserAnswerJudgment } from "../redux";
+import { UserAnswerJudgment } from "@jyosuushi/redux";
 
 import Furigana from "./Furigana";
 
 import "./JudgmentBubble.scss";
 
 const RESULT_BUBBLE_CONTENTS: {
-  [judgment in UserAnswerJudgment]: { kanji: string; kana: string }
+  [judgment in UserAnswerJudgment]: { kanji: string; kana: string };
 } = {
   correct: {
     kana: "せいかい",
