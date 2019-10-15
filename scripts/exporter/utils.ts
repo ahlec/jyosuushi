@@ -36,10 +36,10 @@ export function productionStringify(value: any): string {
   }
 
   if (isArray(value)) {
-    let str = "[";
+    let str = "[\n";
 
     for (const element of value) {
-      str += `${productionStringify(element)},`;
+      str += `${productionStringify(element)},\n`;
     }
 
     str += "]";
@@ -47,7 +47,7 @@ export function productionStringify(value: any): string {
   }
 
   if (isObjectLike(value)) {
-    let str = "{";
+    let str = "{\n";
 
     const keys = Object.keys(value);
     for (const key of keys) {
@@ -58,7 +58,7 @@ export function productionStringify(value: any): string {
         str += `"${escape(key)}"`;
       }
 
-      str += `: ${productionStringify(value[key])},`;
+      str += `: ${productionStringify(value[key])},\n`;
     }
 
     str += "}";

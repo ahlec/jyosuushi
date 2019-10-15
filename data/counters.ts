@@ -76,10 +76,15 @@ export const COUNTER_人: Counter = {
     allowsYonFor4: false
   },
   counterId: "人",
-  disambiguations: { 名: DISAMBIGUATIONS.DISAMBIGUATION_人名 },
+  disambiguations: {
+    名: DISAMBIGUATIONS.DISAMBIGUATION_人名
+  },
   englishName: "people",
   externalLinks: [],
-  irregulars: { 1: ["ひとり"], 2: ["ふたり"] },
+  irregulars: {
+    1: ["ひとり"],
+    2: ["ふたり"]
+  },
   kana: "にん",
   kanji: "人",
   notes: null
@@ -256,7 +261,9 @@ export const COUNTER_名: Counter = {
     allowsYonFor4: true
   },
   counterId: "名",
-  disambiguations: { 人: DISAMBIGUATIONS.DISAMBIGUATION_人名 },
+  disambiguations: {
+    人: DISAMBIGUATIONS.DISAMBIGUATION_人名
+  },
   englishName: "people",
   externalLinks: [],
   irregulars: {},
@@ -480,7 +487,11 @@ export const COUNTER_束: Counter = {
   disambiguations: {},
   englishName: "bundles",
   externalLinks: [],
-  irregulars: { 1: ["ひとたば"], 2: ["ふたたば"], 3: ["さんたば", "みたば"] },
+  irregulars: {
+    1: ["ひとたば"],
+    2: ["ふたたば"],
+    3: ["さんたば", "みたば"]
+  },
   kana: "たば",
   kanji: "束",
   notes: null
@@ -560,7 +571,11 @@ export const COUNTER_皿: Counter = {
   disambiguations: {},
   englishName: "plates of food",
   externalLinks: [],
-  irregulars: { 1: ["ひとさら"], 2: ["ふたさら"], 3: ["さんさら", "みさら"] },
+  irregulars: {
+    1: ["ひとさら"],
+    2: ["ふたさら"],
+    3: ["さんさら", "みさら"]
+  },
   kana: "さら",
   kanji: "皿",
   notes: null
@@ -620,7 +635,10 @@ export const COUNTER_缶: Counter = {
   disambiguations: {},
   englishName: "cans",
   externalLinks: [],
-  irregulars: { 1: ["ひとかん", "いっかん"], 2: ["ふたかん", "にかん"] },
+  irregulars: {
+    1: ["ひとかん", "いっかん"],
+    2: ["ふたかん", "にかん"]
+  },
   kana: "かん",
   kanji: "缶",
   notes: null
