@@ -14,7 +14,7 @@ import "./Sidebar.scss";
 
 const isPageActive = memoize(
   (page: PageDefinition) => (match: Match, { pathname }: Location): boolean => {
-    if (match) {
+    if (match && match.url) {
       return true;
     }
 
