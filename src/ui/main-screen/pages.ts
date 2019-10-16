@@ -1,4 +1,5 @@
-import { ComponentClass } from "react";
+import * as React from "react";
+import { ConnectedComponent } from "react-redux";
 
 import Localization from "@jyosuushi/localization";
 
@@ -15,7 +16,7 @@ import SettingsPageIcon from "./settings/settings-icon.svg";
 import SettingsPage from "./settings/SettingsPage";
 
 export interface PageDefinition {
-  component: ComponentClass;
+  component: React.ComponentClass | ConnectedComponent<React.ComponentClass, {}>;
   icon: React.ComponentClass<React.SVGProps<SVGSVGElement>, any>;
   getName: (localization: Localization) => string;
   path: string;
