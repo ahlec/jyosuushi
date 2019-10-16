@@ -5,7 +5,8 @@ const common = require("./webpack.common.js");
 module.exports = merge(
   {
     devServer: {
-      historyApiFallback: true
+      historyApiFallback: true,
+      hot: true
     },
     devtool: "inline-source-map",
     mode: "development",
