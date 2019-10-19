@@ -7,7 +7,8 @@ import { Database as SQLiteDatabase, open as openSQLite } from "sqlite";
 import { SchemaEntryTypes, Schemas } from "./schemas";
 
 const ROOT_DIRECTORY = path.resolve(__dirname, "../../");
-const SQL_DIRECTORY = path.resolve(ROOT_DIRECTORY, "./sql");
+const RELATIVE_SQL_DIRECTORY = "./sql";
+const SQL_DIRECTORY = path.resolve(ROOT_DIRECTORY, RELATIVE_SQL_DIRECTORY);
 const DATABASE_FILE = path.resolve(ROOT_DIRECTORY, "jyosuushi.sqlite");
 
 export type DatabaseSnapshot = {
@@ -74,10 +75,30 @@ export default class Database implements AsyncDatabaseIndexer {
     return snapshot as DatabaseSnapshot;
   }
 
+  public async hasUncommittedChanges(): Promise<boolean> {
+    for (const schema of Object.values(Schemas)) {
+      // Get the .sql file at HEAD
+      const headSql = execSync(
+        `git show HEAD:${RELATIVE_SQL_DIRECTORY}/${schema}.sql`
+      ).toString();
+
+      // Get the current SQLite DDL
+      const sqliteSql = this.dumpTable(schema);
+
+      // Compare
+      if (headSql !== sqliteSql) {
+        console.log("different:", schema);
+      }
+    }
+
+    return false;
+  }
+
   public dump() {
     for (const schema of Object.values(Schemas)) {
       const file = path.resolve(SQL_DIRECTORY, `./${schema}.sql`);
-      this.dumpTable(schema, file);
+      const sql = this.dumpTable(schema);
+      writeFileSync(file, sql);
     }
   }
 
@@ -91,9 +112,8 @@ export default class Database implements AsyncDatabaseIndexer {
     return this.connection.all(`SELECT * FROM ${schema}`);
   }
 
-  private dumpTable(schema: Schemas, filename: string) {
+  private dumpTable(schema: Schemas): string {
     const rawSql = execSync(`sqlite3 ${DATABASE_FILE} ".dump '${schema}'"`);
-    const sql = formatSql(rawSql.toString());
-    writeFileSync(filename, sql);
+    return formatSql(rawSql.toString());
   }
 }
