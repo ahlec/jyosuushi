@@ -1,5 +1,7 @@
 import { execSync } from "child_process";
+import { writeFileSync } from "fs";
 import * as path from "path";
+import { format as formatSql } from "sql-formatter";
 import { Database as SQLiteDatabase, open as openSQLite } from "sqlite";
 
 import { SchemaEntryTypes, Schemas } from "./schemas";
@@ -74,7 +76,8 @@ export default class Database implements AsyncDatabaseIndexer {
 
   public dump() {
     for (const schema of Object.values(Schemas)) {
-      this.dumpTable(SQL_DIRECTORY, schema);
+      const file = path.resolve(SQL_DIRECTORY, `./${schema}.sql`);
+      this.dumpTable(schema, file);
     }
   }
 
@@ -88,8 +91,9 @@ export default class Database implements AsyncDatabaseIndexer {
     return this.connection.all(`SELECT * FROM ${schema}`);
   }
 
-  private dumpTable(directory: string, schema: Schemas) {
-    const file = path.resolve(directory, `./${schema}.sql`);
-    execSync(`sqlite3 ${DATABASE_FILE} ".dump '${schema}'" > ${file}`);
+  private dumpTable(schema: Schemas, filename: string) {
+    const rawSql = execSync(`sqlite3 ${DATABASE_FILE} ".dump '${schema}'"`);
+    const sql = formatSql(rawSql.toString());
+    writeFileSync(filename, sql);
   }
 }

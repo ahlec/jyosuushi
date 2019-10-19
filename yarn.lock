@@ -4057,7 +4057,7 @@ lodash@^4.0.0, lodash@^4.17.11, lodash@^4.17.3, lodash@~4.17.10:
   version "4.17.11"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
 
-lodash@^4.17.14, lodash@^4.17.15:
+lodash@^4.16.0, lodash@^4.17.14, lodash@^4.17.15:
   version "4.17.15"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
   integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
@@ -6143,6 +6143,13 @@ split-string@^3.0.1, split-string@^3.0.2:
 sprintf-js@~1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
+
+sql-formatter@^2.3.3:
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/sql-formatter/-/sql-formatter-2.3.3.tgz#910ef484fbb988a5e510bea4161157e3b80b2f62"
+  integrity sha512-m6pqVXwsm9GkCHC/+gdPvNowI7PNoVTT6OZMWKwXJoP2MvfntfhcfyliIf4/QX6t+DirSJ6XDSiSS70YvZ87Lw==
+  dependencies:
+    lodash "^4.16.0"
 
 sql-template-strings@^2.2.2:
   version "2.2.2"
