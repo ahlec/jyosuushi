@@ -12,6 +12,9 @@ import BreadcrumbBar from "@jyosuushi/ui/main-screen/explore/BreadcrumbBar";
 import CollapsibleSection from "@jyosuushi/ui/main-screen/explore/CollapsibleSection";
 
 import ConjugationsSection from "./ConjugationsSection";
+import DisambiguationSection, {
+  hasDisambiguationSection
+} from "./DisambiguationSection";
 import InfoSection, { hasInfoSectionContents } from "./InfoSection";
 import ItemsSection, { hasItemsSectionContents } from "./ItemsSection";
 
@@ -55,19 +58,31 @@ class ExploreCounterPage extends React.PureComponent<ComponentProps> {
           <h3>{localization.counterName(counter)}</h3>
           <div className="kanji">{counter.kanji}</div>
           {hasInfoSectionContents(counter) && (
-            <CollapsibleSection header="Details">
+            <CollapsibleSection header={localization.counterPageHeaderInfo}>
               <InfoSection counter={counter} localization={localization} />
             </CollapsibleSection>
           )}
-          <CollapsibleSection header="Conjugations">
+          <CollapsibleSection
+            header={localization.counterPageHeaderConjugation}
+          >
             <ConjugationsSection
               counter={counter}
               localization={localization}
             />
           </CollapsibleSection>
           {hasItemsSectionContents(counter) && (
-            <CollapsibleSection header="Items">
+            <CollapsibleSection header={localization.counterPageHeaderItems}>
               <ItemsSection counter={counter} localization={localization} />
+            </CollapsibleSection>
+          )}
+          {hasDisambiguationSection(counter) && (
+            <CollapsibleSection
+              header={localization.counterPageHeaderDisambiguation}
+            >
+              <DisambiguationSection
+                counter={counter}
+                localization={localization}
+              />
             </CollapsibleSection>
           )}
         </div>

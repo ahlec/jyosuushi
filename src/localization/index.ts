@@ -33,6 +33,10 @@ export default interface Localization {
   buttonNextQuestion: string;
   counterItemsPrefix: (numCounters: number) => string;
   counterName: (counter: Counter) => string;
+  counterPageHeaderConjugation: string;
+  counterPageHeaderDisambiguation: string;
+  counterPageHeaderInfo: string;
+  counterPageHeaderItems: string;
   countersDisplayHeader: (numCounters: number) => string;
   credits: ReadonlyArray<CreditsPiece>;
   customCounterAmountInputPrefix: string;

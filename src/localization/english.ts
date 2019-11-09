@@ -26,6 +26,10 @@ const ENGLISH: Localization = {
       numCounters === 1 ? "is an example" : "are examples"
     } of what this is used to count:`,
   counterName: (counter: Counter) => counter.englishName,
+  counterPageHeaderConjugation: "Conjugations",
+  counterPageHeaderDisambiguation: "Similar Counters",
+  counterPageHeaderInfo: "Details",
+  counterPageHeaderItems: "Items",
   countersDisplayHeader: (numCounters: number) =>
     `${numCounters} ${numCounters === 1 ? "Counter" : "Counters"} Included`,
   credits: [
