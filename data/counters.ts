@@ -80,7 +80,14 @@ export const COUNTER_人: Counter = {
     名: DISAMBIGUATIONS.DISAMBIGUATION_人名
   },
   englishName: "people",
-  externalLinks: [],
+  externalLinks: [
+    {
+      additionalDescription: null,
+      displayText: "人: Counting People and Smart Animals",
+      siteName: "Tofugu",
+      url: "https://www.tofugu.com/japanese/japanese-counter-nin/"
+    }
+  ],
   irregulars: {
     1: ["ひとり"],
     2: ["ふたり"]
@@ -143,7 +150,14 @@ export const COUNTER_冊: Counter = {
   counterId: "冊",
   disambiguations: {},
   englishName: "books",
-  externalLinks: [],
+  externalLinks: [
+    {
+      additionalDescription: null,
+      displayText: "冊: Counting Books",
+      siteName: "Tofugu",
+      url: "https://www.tofugu.com/japanese/japanese-counter-satsu/"
+    }
+  ],
   irregulars: {},
   kana: "さつ",
   kanji: "冊",
@@ -163,7 +177,14 @@ export const COUNTER_分: Counter = {
   counterId: "分",
   disambiguations: {},
   englishName: "minutes",
-  externalLinks: [],
+  externalLinks: [
+    {
+      additionalDescription: null,
+      displayText: "分: Counting Minutes and Edo Period Silver Currency",
+      siteName: "Tofugu",
+      url: "https://www.tofugu.com/japanese/japanese-counter-fun/"
+    }
+  ],
   irregulars: {},
   kana: "ふん",
   kanji: "分",
@@ -203,7 +224,14 @@ export const COUNTER_匹: Counter = {
   counterId: "匹",
   disambiguations: {},
   englishName: "small animals",
-  externalLinks: [],
+  externalLinks: [
+    {
+      additionalDescription: null,
+      displayText: "匹: Counting Animals, Bugs, and Wild Children",
+      siteName: "Tofugu",
+      url: "https://www.tofugu.com/japanese/japanese-counter-hiki/"
+    }
+  ],
   irregulars: {},
   kana: "ひき",
   kanji: "匹",
@@ -243,7 +271,14 @@ export const COUNTER_台: Counter = {
   counterId: "台",
   disambiguations: {},
   englishName: "machines and large objects",
-  externalLinks: [],
+  externalLinks: [
+    {
+      additionalDescription: null,
+      displayText: "台: Counting Machines, Furniture, & Whole Cakes",
+      siteName: "Tofugu",
+      url: "https://www.tofugu.com/japanese/japanese-counter-dai/"
+    }
+  ],
   irregulars: {},
   kana: "だい",
   kanji: "台",
@@ -265,7 +300,14 @@ export const COUNTER_名: Counter = {
     人: DISAMBIGUATIONS.DISAMBIGUATION_人名
   },
   englishName: "people",
-  externalLinks: [],
+  externalLinks: [
+    {
+      additionalDescription: null,
+      displayText: "人: Counting People and Smart Animals",
+      siteName: "Tofugu",
+      url: "https://www.tofugu.com/japanese/japanese-counter-nin/"
+    }
+  ],
   irregulars: {},
   kana: "めい",
   kanji: "名",
@@ -348,7 +390,14 @@ export const COUNTER_回: Counter = {
   counterId: "回",
   disambiguations: {},
   englishName: "times (occurrences)",
-  externalLinks: [],
+  externalLinks: [
+    {
+      additionalDescription: null,
+      displayText: "回: Repetitive Actions, Regular Events",
+      siteName: "Tofugu",
+      url: "https://www.tofugu.com/japanese/japanese-counter-kai-times/"
+    }
+  ],
   irregulars: {},
   kana: "かい",
   kanji: "回",
@@ -408,7 +457,14 @@ export const COUNTER_年: Counter = {
   counterId: "年",
   disambiguations: {},
   englishName: "years",
-  externalLinks: [],
+  externalLinks: [
+    {
+      additionalDescription: null,
+      displayText: "年: Counting Years and Planetary Orbits",
+      siteName: "Tofugu",
+      url: "https://www.tofugu.com/japanese/japanese-counters-nen/"
+    }
+  ],
   irregulars: {},
   kana: "ねん",
   kanji: "年",
@@ -448,7 +504,14 @@ export const COUNTER_日: Counter = {
   counterId: "日",
   disambiguations: {},
   englishName: "days of the month",
-  externalLinks: [],
+  externalLinks: [
+    {
+      additionalDescription: null,
+      displayText: "日: Counting Days",
+      siteName: "Tofugu",
+      url: "https://www.tofugu.com/japanese/japanese-counter-ka-nichi/"
+    }
+  ],
   irregulars: {
     1: ["ついたち"],
     2: ["ふつか"],
@@ -482,7 +545,14 @@ export const COUNTER_時: Counter = {
   counterId: "時",
   disambiguations: {},
   englishName: "hours",
-  externalLinks: [],
+  externalLinks: [
+    {
+      additionalDescription: null,
+      displayText: "時/時間: Counting Time and Hours",
+      siteName: "Tofugu",
+      url: "https://www.tofugu.com/japanese/japanese-counter-ji-jikan/"
+    }
+  ],
   irregulars: {},
   kana: "じ",
   kanji: "時",
@@ -573,7 +643,14 @@ export const COUNTER_枚: Counter = {
   counterId: "枚",
   disambiguations: {},
   englishName: "flat objects",
-  externalLinks: [],
+  externalLinks: [
+    {
+      additionalDescription: null,
+      displayText: "枚: Counting Everything Flat",
+      siteName: "Tofugu",
+      url: "https://www.tofugu.com/japanese/japanese-counter-mai/"
+    }
+  ],
   irregulars: {},
   kana: "まい",
   kanji: "枚",
@@ -720,7 +797,14 @@ export const COUNTER_羽: Counter = {
   counterId: "羽",
   disambiguations: {},
   englishName: "birds and rabbits",
-  externalLinks: [],
+  externalLinks: [
+    {
+      additionalDescription: null,
+      displayText: "羽: Counting Birds, Bats, and Bun-Buns",
+      siteName: "Tofugu",
+      url: "https://www.tofugu.com/japanese/japanese-counter-wa/"
+    }
+  ],
   irregulars: {},
   kana: "わ",
   kanji: "羽",
@@ -840,7 +924,14 @@ export const COUNTER_階: Counter = {
   counterId: "階",
   disambiguations: {},
   englishName: "floors",
-  externalLinks: [],
+  externalLinks: [
+    {
+      additionalDescription: null,
+      displayText: "階: Floors of a Building",
+      siteName: "Tofugu",
+      url: "https://www.tofugu.com/japanese/japanese-counter-kai-floors/"
+    }
+  ],
   irregulars: {},
   kana: "かい",
   kanji: "階",
@@ -860,7 +951,14 @@ export const COUNTER_頭: Counter = {
   counterId: "頭",
   disambiguations: {},
   englishName: "large animals",
-  externalLinks: [],
+  externalLinks: [
+    {
+      additionalDescription: null,
+      displayText: "頭: Counting Those Big, Professional Animals",
+      siteName: "Tofugu",
+      url: "https://www.tofugu.com/japanese/japanese-counter-tou/"
+    }
+  ],
   irregulars: {},
   kana: "とう",
   kanji: "頭",
