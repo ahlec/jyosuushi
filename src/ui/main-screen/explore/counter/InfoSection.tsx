@@ -10,6 +10,10 @@ interface ComponentProps {
   localization: Localization;
 }
 
+export function hasInfoSectionContents(counter: Counter): boolean {
+  return !!counter.notes || !!counter.externalLinks.length;
+}
+
 export default class InfoSection extends React.PureComponent<ComponentProps> {
   public render() {
     const { counter, localization } = this.props;

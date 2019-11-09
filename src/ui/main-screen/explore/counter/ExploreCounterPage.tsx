@@ -9,10 +9,11 @@ import { State } from "@jyosuushi/redux";
 import { getLocalization } from "@jyosuushi/redux/selectors";
 
 import BreadcrumbBar from "@jyosuushi/ui/main-screen/explore/BreadcrumbBar";
+import CollapsibleSection from "@jyosuushi/ui/main-screen/explore/CollapsibleSection";
 
 import ConjugationsSection from "./ConjugationsSection";
-import InfoSection from "./InfoSection";
-import ItemsSection from "./ItemsSection";
+import InfoSection, { hasInfoSectionContents } from "./InfoSection";
+import ItemsSection, { hasItemsSectionContents } from "./ItemsSection";
 
 import "./ExploreCounterPage.scss";
 
@@ -53,9 +54,22 @@ class ExploreCounterPage extends React.PureComponent<ComponentProps> {
         <div className="contents">
           <h3>{localization.counterName(counter)}</h3>
           <div className="kanji">{counter.kanji}</div>
-          <InfoSection counter={counter} localization={localization} />
-          <ConjugationsSection counter={counter} localization={localization} />
-          <ItemsSection counter={counter} localization={localization} />
+          {hasInfoSectionContents(counter) && (
+            <CollapsibleSection header="Details">
+              <InfoSection counter={counter} localization={localization} />
+            </CollapsibleSection>
+          )}
+          <CollapsibleSection header="Conjugations">
+            <ConjugationsSection
+              counter={counter}
+              localization={localization}
+            />
+          </CollapsibleSection>
+          {hasItemsSectionContents(counter) && (
+            <CollapsibleSection header="Items">
+              <ItemsSection counter={counter} localization={localization} />
+            </CollapsibleSection>
+          )}
         </div>
       </div>
     );

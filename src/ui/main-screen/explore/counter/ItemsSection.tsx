@@ -7,6 +7,11 @@ import Localization from "@jyosuushi/localization";
 
 import "./ItemsSection.scss";
 
+export function hasItemsSectionContents(counter: Counter): boolean {
+  const items = ITEMS_FROM_COUNTER[counter.counterId];
+  return items.length > 1;
+}
+
 interface ComponentProps {
   counter: Counter;
   localization: Localization;
@@ -16,12 +21,11 @@ export default class ItemsSection extends React.PureComponent<ComponentProps> {
   public render() {
     const { counter, localization } = this.props;
 
-    const items = ITEMS_FROM_COUNTER[counter.counterId];
-    if (items.length <= 1) {
-      // Don't show list if only one item, it will be the rule's title
+    if (!hasItemsSectionContents(counter)) {
       return null;
     }
 
+    const items = ITEMS_FROM_COUNTER[counter.counterId];
     return (
       <section className="ItemsSection">
         <p className="items-prefix">
