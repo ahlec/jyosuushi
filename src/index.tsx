@@ -19,6 +19,11 @@ ReactGA.initialize(CONFIG_GOOGLE_ANALYTICS_TRACKING_ID, {
   }
 });
 
+ReactGA.event({
+  action: "Migration page (deitloff.com) loaded",
+  category: "Migration"
+});
+
 const redux = createRedux();
 const quizManager = new QuizManager(redux.store);
 
