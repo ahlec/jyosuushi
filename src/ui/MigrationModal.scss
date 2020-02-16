@@ -1,0 +1,29 @@
+@import "../palette";
+
+.MigrationModal {
+  .content {
+    overflow: hidden;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    padding: 20px 10px;
+
+    .new-url {
+      margin: 20px 0px;
+      font-size: 32px;
+      font-weight: bold;
+    }
+
+    p {
+      text-align: center;
+
+      &.signature {
+        margin-top: 10px;
+      }
+    }
+  }
+}

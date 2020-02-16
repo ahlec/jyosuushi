@@ -7,6 +7,7 @@ import CloseIcon from "./close.svg";
 import "./Modal.scss";
 
 interface ComponentProps {
+  canClose?: boolean;
   className?: string;
   header: string;
   isOpen: boolean;
@@ -15,7 +16,7 @@ interface ComponentProps {
 
 export default class Modal extends React.Component<ComponentProps> {
   public render() {
-    const { children, className, header, isOpen } = this.props;
+    const { canClose = true, children, className, header, isOpen } = this.props;
     return (
       <ReactModal
         className={classnames("Modal", className)}
@@ -23,9 +24,11 @@ export default class Modal extends React.Component<ComponentProps> {
         onRequestClose={this.onRequestClose}
       >
         <header>
-          <div className="button" onClick={this.onRequestClose}>
-            <CloseIcon />
-          </div>
+          {canClose && (
+            <div className="button" onClick={this.onRequestClose}>
+              <CloseIcon />
+            </div>
+          )}
           {header}
         </header>
         <div className="content">{children}</div>
