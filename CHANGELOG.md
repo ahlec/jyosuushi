@@ -1,3 +1,18 @@
+### v2.5.0
+
+New Features:
+
+- **New domain name.** We've moved! You can now find us at [https://www.jyosuushi.com/](https://www.jyosuushi.com/).
+- **New layout for counters page.** The individual counters page have been given a new layout to help them grow to include more information. You'll start to notice some entries having links to other articles, descriptions, and comparisons with similar counters and what makes them different.
+- **New counters added.** A couple more counters have joined the fray!
+
+Developer Changes:
+
+- Upgraded dependencies to their latest versions.
+- Reworked the internal auditing scripts to speed up data development and create stronger oversight on data.
+- Introduced aliasing for imports
+- Improved support for linting and format enforcement.
+
 ### v2.4.0
 
 New Features:
