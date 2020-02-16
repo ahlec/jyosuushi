@@ -1,4 +1,4 @@
-import { memoize } from "lodash";
+import { memoize, noop } from "lodash";
 import * as React from "react";
 import { connect } from "react-redux";
 
@@ -9,13 +9,11 @@ import withQuizManager, {
   InjectedProps
 } from "@jyosuushi/quiz/withQuizManager";
 import { State } from "@jyosuushi/redux";
-import { setEnabledPacks } from "@jyosuushi/redux/actions";
 import { getLocalization } from "@jyosuushi/redux/selectors";
 import { Dispatch } from "@jyosuushi/redux/store";
 
 import CounterPreview from "./CounterPreview";
 import PackSelection from "./PackSelection";
-import TutorialModal from "./TutorialModal";
 
 import "./PreparePage.scss";
 
@@ -42,22 +40,9 @@ function mapStateToProps(state: State): ReduxProps {
 
 type ComponentProps = ReduxProps & InjectedProps & { dispatch: Dispatch };
 
-interface ComponentState {
-  showingTutorial: boolean;
-}
-
-class PreparePage extends React.PureComponent<ComponentProps, ComponentState> {
-  public constructor(props: ComponentProps) {
-    super(props);
-
-    this.state = {
-      showingTutorial: false
-    };
-  }
-
+class PreparePage extends React.PureComponent<ComponentProps> {
   public render() {
     const { enabledPacks, localization } = this.props;
-    const { showingTutorial } = this.state;
     return (
       <div className="PreparePage">
         <p>
@@ -71,43 +56,23 @@ class PreparePage extends React.PureComponent<ComponentProps, ComponentState> {
           </a>
           . You'll be given a random item and a random number, and then you tell
           us how you'd count that in Japanese.{" "}
-          <span className="link" onClick={this.showTutorialModal}>
-            Click here to read the tutorial.
-          </span>
+          <span className="link">Click here to read the tutorial.</span>
         </p>
         <PackSelection
           localization={localization}
-          onSelectionChanged={this.onSelectionChanged}
+          onSelectionChanged={noop}
           selection={enabledPacks}
         />
         <div className="start">
-          <button disabled={!enabledPacks.length} onClick={this.onStartQuiz}>
+          <button disabled={!enabledPacks.length} onClick={noop}>
             {localization.startQuiz}
           </button>
         </div>
         <CounterPreview localization={localization} packs={enabledPacks} />
         <div className="flex" />
-        <TutorialModal
-          isOpen={showingTutorial}
-          localization={localization}
-          onRequestClose={this.hideTutorialModal}
-        />
       </div>
     );
   }
-
-  private showTutorialModal = () => this.setState({ showingTutorial: true });
-  private hideTutorialModal = () => this.setState({ showingTutorial: false });
-
-  private onSelectionChanged = (selection: ReadonlyArray<StudyPack>) => {
-    const { dispatch } = this.props;
-    dispatch(setEnabledPacks(selection));
-  };
-
-  private onStartQuiz = () => {
-    const { quizManager } = this.props;
-    quizManager.startNewQuiz();
-  };
 }
 
 export default connect(mapStateToProps)(withQuizManager(PreparePage));

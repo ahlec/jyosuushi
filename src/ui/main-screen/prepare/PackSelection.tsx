@@ -1,13 +1,10 @@
 import classnames from "classnames";
 import { memoize } from "lodash";
 import * as React from "react";
-import { Link } from "react-router-dom";
 
 import { STUDY_PACKS } from "@data/studyPacks";
 import { StudyPack } from "@jyosuushi/interfaces";
 import Localization from "@jyosuushi/localization";
-
-import { getStudyPackLink } from "@jyosuushi/ui/main-screen/explore/pathing";
 
 import CheckIcon from "@jyosuushi/ui/main-screen/check.svg";
 
@@ -71,9 +68,7 @@ export default class PackSelection extends React.PureComponent<ComponentProps> {
             {localization.studyPackSize(pack.counters.length)}
           </div>
         </div>
-        <Link className="view-details" to={getStudyPackLink(pack)}>
-          View Details
-        </Link>
+        <div className="view-details">View Details</div>
       </div>
     );
   };

@@ -1,30 +1,18 @@
-import { Location } from "history";
-import { memoize } from "lodash";
+import classnames from "classnames";
 import * as React from "react";
 import { connect } from "react-redux";
-import { match as Match, NavLink } from "react-router-dom";
 
 import Localization from "@jyosuushi/localization";
 import { State } from "@jyosuushi/redux";
 import { getLocalization } from "@jyosuushi/redux/selectors";
 
-import { LANDING_PAGE, ORDERED_SIDEBAR_PAGES, PageDefinition } from "./pages";
+import ExplorePageIcon from "./icons/explore-icon.svg";
+import FeedbackPageIcon from "./icons/feedback-icon.svg";
+import ReleaseNotesPageIcon from "./icons/release-notes-icon.svg";
+import SettingsPageIcon from "./icons/settings-icon.svg";
+import PreparePageIcon from "./prepare/prepare-icon.svg";
 
 import "./Sidebar.scss";
-
-const isPageActive = memoize(
-  (page: PageDefinition) => (match: Match, { pathname }: Location): boolean => {
-    if (match && match.url) {
-      return true;
-    }
-
-    if (pathname === "/" && page === LANDING_PAGE) {
-      return true;
-    }
-
-    return false;
-  }
-);
 
 interface ReduxProps {
   localization: Localization;
@@ -40,28 +28,34 @@ type ComponentProps = ReduxProps;
 
 class Sidebar extends React.Component<ComponentProps> {
   public render() {
+    const { localization } = this.props;
     return (
       <div className="Sidebar">
-        {ORDERED_SIDEBAR_PAGES.map(this.renderLink)}
+        {this.renderLink(localization.pagePrepare, PreparePageIcon, true)}
+        {this.renderLink(localization.pageExplore, ExplorePageIcon, false)}
+        {this.renderLink(localization.pageSettings, SettingsPageIcon, false)}
+        {this.renderLink(
+          localization.pageReleaseNotes,
+          ReleaseNotesPageIcon,
+          false
+        )}
+        {this.renderLink(localization.pageFeedback, FeedbackPageIcon, false)}
       </div>
     );
   }
 
-  private renderLink = (page: PageDefinition) => {
-    const { localization } = this.props;
-    const { icon: Icon, getName, path } = page;
+  private renderLink(
+    name: string,
+    Icon: React.ComponentClass<React.SVGProps<SVGSVGElement>, any>,
+    isSelected: boolean
+  ) {
     return (
-      <NavLink
-        key={path}
-        to={path}
-        className="entry"
-        isActive={isPageActive(page)}
-      >
+      <div key={name} className={classnames("entry", isSelected && "active")}>
         <Icon />
-        {getName(localization)}
-      </NavLink>
+        {name}
+      </div>
     );
-  };
+  }
 }
 
 export default connect(mapStateToProps)(Sidebar);
