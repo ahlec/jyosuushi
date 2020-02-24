@@ -25,7 +25,7 @@ function mapStateToProps(state: State): ReduxProps {
 }
 
 class CreditsFooter extends React.PureComponent<ReduxProps> {
-  public render() {
+  public render(): React.ReactNode {
     const { localization } = this.props;
     return (
       <div className="CreditsFooter">
@@ -34,7 +34,7 @@ class CreditsFooter extends React.PureComponent<ReduxProps> {
     );
   }
 
-  private renderCredit = (piece: CreditsPiece) => {
+  private renderCredit = (piece: CreditsPiece): React.ReactNode => {
     switch (piece) {
       case VARIABLE_ALEC_DEITLOFF:
         return (
@@ -42,6 +42,7 @@ class CreditsFooter extends React.PureComponent<ReduxProps> {
             key={VARIABLE_ALEC_DEITLOFF}
             href="http://alec.deitloff.com"
             target="_blank"
+            rel="noopener noreferrer"
           >
             {this.props.localization.alecDeitloff}
           </a>
@@ -52,6 +53,7 @@ class CreditsFooter extends React.PureComponent<ReduxProps> {
             <a
               href="https://www.iconfinder.com/iconsets/core-ui-outlined"
               target="_blank"
+              rel="noopener noreferrer"
             >
               Core - UI - Outlined
             </a>
@@ -63,6 +65,7 @@ class CreditsFooter extends React.PureComponent<ReduxProps> {
             key={VARIABLE_FAVICON_CREDIT_LINK}
             href="https://www.flaticon.com/packs/chinese-new-year-12"
             target="_blank"
+            rel="noopener noreferrer"
           >
             Freepik
           </a>
@@ -73,6 +76,7 @@ class CreditsFooter extends React.PureComponent<ReduxProps> {
             key={VARIABLE_SILK_ICONS_CREDIT_LINK}
             href="http://www.famfamfam.com/lab/icons/silk/"
             target="_blank"
+            rel="noopener noreferrer"
           >
             Silk
           </a>

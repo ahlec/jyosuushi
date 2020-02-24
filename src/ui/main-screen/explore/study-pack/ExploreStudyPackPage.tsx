@@ -40,7 +40,7 @@ class ExploreStudyPackPage extends React.PureComponent<ComponentProps> {
     return STUDY_PACK_LOOKUP[packId] || null;
   }
 
-  private onClickInvestigate = memoize((counter: Counter) => () => {
+  private onClickInvestigate = memoize((counter: Counter) => (): void => {
     const {
       history,
       match: {
@@ -55,7 +55,7 @@ class ExploreStudyPackPage extends React.PureComponent<ComponentProps> {
     });
   });
 
-  public render() {
+  public render(): React.ReactNode {
     const {
       studyPack,
       props: { localization }
@@ -83,7 +83,7 @@ class ExploreStudyPackPage extends React.PureComponent<ComponentProps> {
     );
   }
 
-  private renderCounter = (counter: Counter) => {
+  private renderCounter = (counter: Counter): React.ReactNode => {
     const { localization } = this.props;
     return (
       <tr

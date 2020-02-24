@@ -23,7 +23,7 @@ export type Dan = "a" | "i" | "u" | "e" | "o";
 
 type GoJyuuOn<T> = { [gyou in Gyou]: { [dan in Dan]: T | null } };
 
-/* tslint:disable:object-literal-sort-keys */
+/* eslint-disable sort-keys */
 // JUSTIFICATION: This allows us to match the expected vowel pattern of Japanese and
 // keeps our codepoints in ascending order rather than jumping around.
 const GOJYUUON_HIRAGANA_CODEPOINTS: GoJyuuOn<number> = {
@@ -133,7 +133,7 @@ const GOJYUUON_HIRAGANA_CODEPOINTS: GoJyuuOn<number> = {
     o: 0x3092
   }
 };
-/* tslint:enable:object-literal-sort-keys */
+/* eslint-enable sort-keys */
 
 interface GoJyuuOnLookup {
   [codepoint: number]: { dan: Dan; gyou: Gyou };
@@ -182,18 +182,19 @@ export class KanaDefinition {
       throw new Error("Provided kana must be exactly one character");
     }
 
-    const info = GOJYUUON_FROM_CODEPOINTS[kana.codePointAt(0)!];
+    const info = GOJYUUON_FROM_CODEPOINTS[kana.codePointAt(0) || 0];
     if (!info) {
       throw new Error(`Could not find '${kana}' in gojyuuon`);
     }
 
     const newCodepoint =
-      GOJYUUON_HIRAGANA_CODEPOINTS[gyou][info.dan]! + this.deltaFromHiragana;
+      (GOJYUUON_HIRAGANA_CODEPOINTS[gyou][info.dan] || 0) +
+      this.deltaFromHiragana;
     return String.fromCodePoint(newCodepoint);
   }
 }
 
-/* tslint:disable:object-literal-sort-keys */
+/* eslint-disable sort-keys */
 // JUSTIFICATION: Allows us to match the pattern of Japanese vowels better.
 export const HIRAGANA = new KanaDefinition(HIRAGANA_CODEPOINT_START, 0x309f, {
   a: "あ",
@@ -527,7 +528,7 @@ export const HIRAGANA = new KanaDefinition(HIRAGANA_CODEPOINT_START, 0x309f, {
   nø: "んø",
   næ: "んæ"
 });
-/* tslint:enable:object-literal-sort-keys */
+/* eslint-enable sort-keys */
 
 const CODEPOINT_KATAKANA_FIRST = 0x30a1;
 const CODEPOINT_KATAKANA_LAST = 0x30ff;
@@ -561,7 +562,7 @@ export const Katakana = new KanaDefinition(
 export function getAsHiragana(kana: string): string {
   const characters: string[] = [];
   for (let index = 0; index < kana.length; ++index) {
-    const codepoint = kana.codePointAt(index)!;
+    const codepoint = kana.codePointAt(index) || 0;
     if (
       codepoint >= HIRAGANA.codepointStart &&
       codepoint <= HIRAGANA.codepointEnd

@@ -14,27 +14,27 @@ export interface TutorialPage {
 
 export const TUTORIAL_PAGES: ReadonlyArray<TutorialPage> = [
   {
-    getText: localization => localization.tutorialPage1,
+    getText: (localization): string => localization.tutorialPage1,
     image: StudyPacksPng
   },
   {
-    getText: localization => localization.tutorialPage2,
+    getText: (localization): string => localization.tutorialPage2,
     image: SubmitAnswerPng
   },
   {
-    getText: localization => localization.tutorialPage3,
+    getText: (localization): string => localization.tutorialPage3,
     image: SkipQuestionsPng
   },
   {
-    getText: localization => localization.tutorialPage4,
+    getText: (localization): string => localization.tutorialPage4,
     image: ReviewAnswersPng
   },
   {
-    getText: localization => localization.tutorialPage5,
+    getText: (localization): string => localization.tutorialPage5,
     image: IgnoreAnswerPng
   },
   {
-    getText: localization => localization.tutorialPage6,
+    getText: (localization): string => localization.tutorialPage6,
     image: QuizWrapupPng
   }
 ];

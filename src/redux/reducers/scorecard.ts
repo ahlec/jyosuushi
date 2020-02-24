@@ -50,10 +50,11 @@ export default function scorecardReducer(
         nextCounterTallies[counterId] =
           (nextCounterTallies[counterId] || 0) + 1;
       }
-      const mostMissedCounterId = maxBy(
-        Object.keys(nextCounterTallies),
-        (counterId: string) => nextCounterTallies[counterId]
-      )!;
+      const mostMissedCounterId =
+        maxBy(
+          Object.keys(nextCounterTallies),
+          (counterId: string) => nextCounterTallies[counterId]
+        ) || null;
       return {
         ...state,
         missedCounterTallies: nextCounterTallies,
@@ -71,10 +72,11 @@ export default function scorecardReducer(
           nextCounterTallies[counterId] = newCount;
         }
       }
-      const mostMissedCounterId = maxBy(
-        Object.keys(nextCounterTallies),
-        (counterId: string) => nextCounterTallies[counterId]
-      )!;
+      const mostMissedCounterId =
+        maxBy(
+          Object.keys(nextCounterTallies),
+          (counterId: string) => nextCounterTallies[counterId]
+        ) || null;
       return {
         ...state,
         missedCounterTallies: nextCounterTallies,

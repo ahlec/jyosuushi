@@ -35,7 +35,7 @@ function getKanjiFromAnswer(answer: Answer): string | null {
 }
 
 class AnswersTable extends React.PureComponent<ComponentProps> {
-  public render() {
+  public render(): React.ReactNode {
     const { currentQuestion, localization } = this.props;
     const answersByCounterId = groupBy(
       currentQuestion.validAnswers,
@@ -59,7 +59,10 @@ class AnswersTable extends React.PureComponent<ComponentProps> {
     );
   }
 
-  private renderCounter(counterId: string, answers: ReadonlyArray<Answer>) {
+  private renderCounter(
+    counterId: string,
+    answers: ReadonlyArray<Answer>
+  ): React.ReactNode {
     const { counters, localization, usersAnswer } = this.props;
     const { counter, studyPacks } = counters[counterId];
     const kanjiAnswers = uniq(answers.map(getKanjiFromAnswer).filter(x => x));
@@ -87,7 +90,7 @@ class AnswersTable extends React.PureComponent<ComponentProps> {
     );
   }
 
-  private renderStudyPack = (packId: string) => {
+  private renderStudyPack = (packId: string): React.ReactNode => {
     const { localization } = this.props;
     const pack = STUDY_PACK_LOOKUP[packId];
     return (
@@ -97,7 +100,7 @@ class AnswersTable extends React.PureComponent<ComponentProps> {
     );
   };
 
-  private renderKanji = (kanji: string) => {
+  private renderKanji = (kanji: string): React.ReactNode => {
     return (
       <div key={kanji} className="kanji">
         {kanji}
@@ -105,7 +108,7 @@ class AnswersTable extends React.PureComponent<ComponentProps> {
     );
   };
 
-  private renderKana = ({ category, kana }: Answer) => {
+  private renderKana = ({ category, kana }: Answer): React.ReactNode => {
     const { usersAnswer } = this.props;
     return (
       <div

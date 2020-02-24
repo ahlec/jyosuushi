@@ -39,7 +39,7 @@ function getResetBufferForKana(kana: string): string {
 export default class KanaInput extends React.PureComponent<ComponentProps> {
   private inputRef = React.createRef<HTMLInputElement>();
 
-  public componentDidMount() {
+  public componentDidMount(): void {
     const { enabled } = this.props;
     const { current: input } = this.inputRef;
 
@@ -48,7 +48,7 @@ export default class KanaInput extends React.PureComponent<ComponentProps> {
     }
   }
 
-  public componentDidUpdate({ enabled: wasEnabled }: ComponentProps) {
+  public componentDidUpdate({ enabled: wasEnabled }: ComponentProps): void {
     const { enabled } = this.props;
     if (enabled !== wasEnabled) {
       const { current: input } = this.inputRef;
@@ -58,7 +58,7 @@ export default class KanaInput extends React.PureComponent<ComponentProps> {
     }
   }
 
-  public render() {
+  public render(): React.ReactNode {
     const { children, enabled, value } = this.props;
     return (
       <div className="KanaInput">
@@ -74,7 +74,7 @@ export default class KanaInput extends React.PureComponent<ComponentProps> {
     );
   }
 
-  private setCursor(position: number) {
+  private setCursor(position: number): void {
     const { current: input } = this.inputRef;
     if (!input) {
       return;
@@ -86,7 +86,7 @@ export default class KanaInput extends React.PureComponent<ComponentProps> {
     // TODO: This doesn't work in a react world?
   }
 
-  private handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  private handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const { kana, onChange } = this.props;
     const currentPosition = event.target.selectionStart || 0;
     let buffer = this.applyChangeEventToBuffer(event, currentPosition);

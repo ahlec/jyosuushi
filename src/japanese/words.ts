@@ -78,7 +78,7 @@ function castToTaggableInternal(
 ): TaggableJapaneseWord {
   return {
     ...word,
-    tags: (word as any).tags || new Set()
+    tags: "tags" in word ? word.tags : new Set()
   };
 }
 

@@ -21,7 +21,7 @@ function mapStateToProps(state: State): ReduxProps {
 }
 
 class Container extends React.PureComponent<ReduxProps> {
-  public render() {
+  public render(): React.ReactNode {
     const { isQuizActive } = this.props;
     return (
       <div className={classnames("Container", isQuizActive && "quiz-active")}>

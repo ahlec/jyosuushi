@@ -42,7 +42,7 @@ class ExploreCounterPage extends React.PureComponent<ComponentProps> {
     return COUNTERS_LOOKUP[counterId] || null;
   }
 
-  public render() {
+  public render(): React.ReactNode {
     const {
       counter,
       props: { localization }

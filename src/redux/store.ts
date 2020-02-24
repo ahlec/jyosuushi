@@ -1,4 +1,5 @@
 import {
+  Action,
   combineReducers,
   createStore,
   Dispatch as ReduxDispatch,
@@ -26,8 +27,6 @@ import userAnswersReducer from "./reducers/userAnswers";
 import migrateV0 from "./migration/v0";
 import migrateV1 from "./migration/v1";
 
-type Action = any;
-
 export type Store = ReduxStore<State, Action>;
 export type Dispatch = ReduxDispatch<Action>;
 
@@ -47,7 +46,7 @@ export function createRedux(): Redux {
     user: userReducer,
     userAnswers: userAnswersReducer
   });
-  const store = createStore<State, Action, any, any>(
+  const store = createStore<State, Action, {}, {}>(
     persistReducer(
       {
         key: "root",

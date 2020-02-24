@@ -27,7 +27,7 @@ type ComponentProps = ProvidedProps & ReduxProps;
 const TOOLTIP_ID = "score-tooltip";
 
 class Score extends React.PureComponent<ComponentProps> {
-  public render() {
+  public render(): React.ReactNode {
     const {
       localization,
       scorecard: { numCorrectAnswers, numIncorrectAnswers }

@@ -37,7 +37,7 @@ export default class TutorialModal extends React.PureComponent<
     previousPage: 0,
     transition: null
   };
-  private onClickPageLink = memoize(pageNumber => () => {
+  private onClickPageLink = memoize(pageNumber => (): void => {
     const { currentPage, transition } = this.state;
     if (
       transition !== null ||
@@ -55,15 +55,15 @@ export default class TutorialModal extends React.PureComponent<
     });
   });
 
-  public componentDidMount() {
+  public componentDidMount(): void {
     window.addEventListener("keydown", this.onKeyDown);
   }
 
-  public componentWillUnmount() {
+  public componentWillUnmount(): void {
     window.removeEventListener("keydown", this.onKeyDown);
   }
 
-  public render() {
+  public render(): React.ReactNode {
     const { isOpen, localization } = this.props;
     const { currentPage, previousPage, transition } = this.state;
     const isChangingPage = transition !== null;
@@ -110,7 +110,7 @@ export default class TutorialModal extends React.PureComponent<
     );
   }
 
-  private renderPage = (pageNumber: number) => {
+  private renderPage = (pageNumber: number): React.ReactNode => {
     const { localization } = this.props;
     const page = TUTORIAL_PAGES[pageNumber];
     return (
@@ -131,7 +131,7 @@ export default class TutorialModal extends React.PureComponent<
   private renderNavigationLink = (
     onPageNumber: number,
     linkedPageNumber: number
-  ) => {
+  ): React.ReactNode => {
     return (
       <svg
         key={linkedPageNumber}
@@ -147,7 +147,7 @@ export default class TutorialModal extends React.PureComponent<
     );
   };
 
-  private onKeyDown = (event: KeyboardEvent) => {
+  private onKeyDown = (event: KeyboardEvent): void => {
     switch (event.keyCode) {
       case KEYCODE_LEFT_ARROW: {
         this.onClickLeft();
@@ -160,7 +160,7 @@ export default class TutorialModal extends React.PureComponent<
     }
   };
 
-  private onClickLeft = () => {
+  private onClickLeft = (): void => {
     const { currentPage, transition } = this.state;
     if (transition !== null || currentPage <= 0) {
       return;
@@ -173,7 +173,7 @@ export default class TutorialModal extends React.PureComponent<
     });
   };
 
-  private onAnimationEnd = ({ animationName }: React.AnimationEvent) => {
+  private onAnimationEnd = ({ animationName }: React.AnimationEvent): void => {
     const { transition } = this.state;
     let finishesTransition = false;
     switch (animationName) {
@@ -198,13 +198,13 @@ export default class TutorialModal extends React.PureComponent<
     }
   };
 
-  private onRequestClose = () => {
+  private onRequestClose = (): void => {
     const { onRequestClose } = this.props;
     this.setState({ currentPage: 0, previousPage: 0, transition: null });
     onRequestClose();
   };
 
-  private onClickRight = () => {
+  private onClickRight = (): void => {
     const { currentPage, transition } = this.state;
     if (transition !== null || currentPage >= TUTORIAL_PAGES.length - 1) {
       return;

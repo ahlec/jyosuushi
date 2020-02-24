@@ -1,3 +1,4 @@
+import memoizeOne from "memoize-one";
 import * as React from "react";
 import { Link } from "react-router-dom";
 
@@ -19,34 +20,58 @@ interface ComponentProps {
   localization: Localization;
 }
 
+interface Disambiguation {
+  distinction: string;
+  otherCounter: Counter;
+}
+
 export default class DisambiguationSection extends React.PureComponent<
   ComponentProps
 > {
-  public render() {
-    const { counter } = this.props;
+  private readonly getDisambiguations = memoizeOne(
+    (counter: Counter): ReadonlyArray<Disambiguation> => {
+      const disambiguations: Disambiguation[] = [];
 
-    if (!hasDisambiguationSection(counter)) {
+      const entries = Object.entries(counter.disambiguations);
+      for (const [otherCounterId, info] of entries) {
+        if (!info) {
+          continue;
+        }
+
+        disambiguations.push({
+          distinction: info.disambiguation,
+          otherCounter: COUNTERS_LOOKUP[otherCounterId]
+        });
+      }
+
+      return disambiguations;
+    }
+  );
+
+  public render(): React.ReactNode {
+    const { counter } = this.props;
+    const disambiguations = this.getDisambiguations(counter);
+    if (!disambiguations.length) {
       return null;
     }
 
     return (
       <section className="DisambiguationSection">
-        {Object.keys(counter.disambiguations).map(this.renderCounter)}
+        {disambiguations.map(this.renderDisambiguation)}
       </section>
     );
   }
 
-  private renderCounter = (otherCounterId: string) => {
-    const { counter } = this.props;
-    const otherCounter = COUNTERS_LOOKUP[otherCounterId];
+  private renderDisambiguation = ({
+    distinction,
+    otherCounter
+  }: Disambiguation): React.ReactNode => {
     return (
-      <div key={otherCounterId} className="disambiguation">
+      <div key={otherCounter.counterId} className="disambiguation">
         <Link className="counter" to={getCounterLink(otherCounter)}>
           {otherCounter.kanji}
         </Link>
-        <div className="distinction">
-          {counter.disambiguations[otherCounterId]!.disambiguation}
-        </div>
+        <div className="distinction">{distinction}</div>
       </div>
     );
   };

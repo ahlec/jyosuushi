@@ -13,7 +13,7 @@ interface ComponentProps {
 }
 
 export default class Checkbox extends React.PureComponent<ComponentProps> {
-  public render() {
+  public render(): React.ReactNode {
     const { checked, label } = this.props;
     return (
       <div
@@ -30,7 +30,7 @@ export default class Checkbox extends React.PureComponent<ComponentProps> {
     );
   }
 
-  private onClick = () => {
+  private onClick = (): void => {
     const { checked, onChange } = this.props;
     onChange(!checked);
   };

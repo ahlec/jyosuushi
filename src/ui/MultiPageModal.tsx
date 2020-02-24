@@ -43,11 +43,11 @@ export default class MultiPageModal<TSubpageData> extends React.Component<
   private contentRef = React.createRef<HTMLDivElement>();
   private mainPageScrollTop = 0;
 
-  public componentWillUnmount() {
+  public componentWillUnmount(): void {
     clearTimeout(this.transitionTimeout);
   }
 
-  public render() {
+  public render(): React.ReactNode {
     const {
       getSubpageHeader,
       isOpen,
@@ -116,7 +116,7 @@ export default class MultiPageModal<TSubpageData> extends React.Component<
     );
   }
 
-  private openSubpage = (data: TSubpageData) => {
+  private openSubpage = (data: TSubpageData): void => {
     if (this.contentRef.current) {
       this.mainPageScrollTop = this.contentRef.current.scrollTop;
       this.contentRef.current.scrollTop = 0;
@@ -135,7 +135,7 @@ export default class MultiPageModal<TSubpageData> extends React.Component<
     );
   };
 
-  private onLeaveSubpage = () => {
+  private onLeaveSubpage = (): void => {
     if (this.contentRef.current) {
       this.contentRef.current.scrollTop = this.mainPageScrollTop;
     }
@@ -150,16 +150,17 @@ export default class MultiPageModal<TSubpageData> extends React.Component<
     );
   };
 
-  private stopTransitioning = () => this.setState({ isTransitioning: false });
+  private stopTransitioning = (): void =>
+    this.setState({ isTransitioning: false });
 
-  private clearSubpageData = () =>
+  private clearSubpageData = (): void =>
     this.setState({
       displaySubpage: false,
       isTransitioning: false,
       subpageData: null
     });
 
-  private onRequestClose = () => {
+  private onRequestClose = (): void => {
     const { isOpen, onRequestClose } = this.props;
     if (!isOpen) {
       return;

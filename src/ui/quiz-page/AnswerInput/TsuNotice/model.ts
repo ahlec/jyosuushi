@@ -50,12 +50,12 @@ export default class TsuWarningModel {
 
   private constructor(public numWarnings: number) {}
 
-  public reduce() {
+  public reduce(): void {
     this.numWarnings--;
     this.save();
   }
 
-  private save() {
+  private save(): void {
     const storageFormat: LocalStorageFormat = {
       lastAccessedTimestamp: Date.now(),
       numWarningsRemaining: this.numWarnings

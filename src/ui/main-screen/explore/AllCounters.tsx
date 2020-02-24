@@ -31,7 +31,7 @@ const getAllCountersSorted = memoize((localization: Localization) => {
 });
 
 class AllCounters extends React.PureComponent<ReduxProps> {
-  public render() {
+  public render(): React.ReactNode {
     const { localization } = this.props;
     const allCounters = getAllCountersSorted(localization);
     return (
@@ -42,7 +42,7 @@ class AllCounters extends React.PureComponent<ReduxProps> {
     );
   }
 
-  private renderStudyPack = (counter: Counter) => {
+  private renderStudyPack = (counter: Counter): React.ReactNode => {
     return <CounterLink key={counter.counterId} counter={counter} />;
   };
 }

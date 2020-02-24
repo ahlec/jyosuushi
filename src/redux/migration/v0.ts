@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // Changes from Jyosuushi v2.0.0 -> v2.1.0:
 //   - Added settings.amountRange
 //   - questions.currentQuestion: number -> {Question}

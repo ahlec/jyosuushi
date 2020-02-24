@@ -46,7 +46,7 @@ export default class CollapsibleSection extends React.PureComponent<
     };
   }
 
-  public render() {
+  public render(): React.ReactNode {
     const { children, header } = this.props;
     const { contentsHeightTransition, isCollapsed } = this.state;
     return (
@@ -88,7 +88,7 @@ export default class CollapsibleSection extends React.PureComponent<
     );
   }
 
-  private transitionToScrollHeight = () => {
+  private transitionToScrollHeight = (): void => {
     const { current: contentsDiv } = this.contentsRef;
     if (!contentsDiv) {
       return;
@@ -111,12 +111,12 @@ export default class CollapsibleSection extends React.PureComponent<
     });
   };
 
-  private transitionToZero = () =>
+  private transitionToZero = (): void =>
     this.setState({ contentsHeightTransition: 0 });
 
-  private clearTransitionHeight = () =>
+  private clearTransitionHeight = (): void =>
     this.setState({ contentsHeightTransition: null });
 
-  private onClickToggle = () =>
+  private onClickToggle = (): void =>
     this.setState({ isCollapsed: !this.state.isCollapsed });
 }

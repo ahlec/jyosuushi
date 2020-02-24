@@ -19,7 +19,7 @@ interface ComponentProps {
 }
 
 export default class HistoryRow extends React.PureComponent<ComponentProps> {
-  public render() {
+  public render(): React.ReactNode {
     const {
       localization,
       question: { amount, itemId },

@@ -15,7 +15,7 @@ export function hasInfoSectionContents(counter: Counter): boolean {
 }
 
 export default class InfoSection extends React.PureComponent<ComponentProps> {
-  public render() {
+  public render(): React.ReactNode {
     const { counter, localization } = this.props;
 
     if (!counter.notes && !counter.externalLinks.length) {
@@ -46,10 +46,10 @@ export default class InfoSection extends React.PureComponent<ComponentProps> {
     );
   }
 
-  private renderLink = (link: ExternalLink) => {
+  private renderLink = (link: ExternalLink): React.ReactNode => {
     return (
       <li key={link.url}>
-        <a href={link.url} target="_blank">
+        <a href={link.url} target="_blank" rel="noopener noreferrer">
           <strong className="site">[{link.siteName}]</strong>
           {link.displayText}
         </a>

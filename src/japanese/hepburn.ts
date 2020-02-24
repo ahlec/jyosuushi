@@ -24,7 +24,7 @@ const N_CONSONANT_IS: {
   り: { consonant: "r", includeY: true }
 };
 
-/* tslint:disable:object-literal-sort-keys */
+/* eslint-disable sort-keys */
 // JUSTIFICATION: Allows us to maintain traditional/expected ordering of Japanese.
 const HepburnChart: { [kana: string]: string } = {
   あ: "a",
@@ -99,7 +99,7 @@ const HepburnChart: { [kana: string]: string } = {
   を: "wo",
   ん: "n"
 };
-/* tslint:enable:object-literal-sort-keys */
+/* eslint-enable sort-keys */
 
 class HepburnConverter {
   private readonly englishCharacters: string[] = [];
@@ -112,7 +112,7 @@ class HepburnConverter {
     return this.englishCharacters.join("");
   }
 
-  public pushKana(kana: string) {
+  public pushKana(kana: string): void {
     const wasPrecededByKanaO = this.precedingKanaO;
     this.precedingKanaO = false;
     const precedingNConsonantI = this.precedingNConsonantI;
@@ -153,7 +153,7 @@ class HepburnConverter {
     }
   }
 
-  private pushEnglish(english: string) {
+  private pushEnglish(english: string): void {
     if (this.precedingN && VOWELS_HEPBURN.has(english)) {
       this.englishCharacters.push("-");
       this.precedingN = false;

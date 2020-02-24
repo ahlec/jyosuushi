@@ -13,7 +13,7 @@ interface ComponentProps {
 export default class AbortConfirmationModal extends React.PureComponent<
   ComponentProps
 > {
-  public render() {
+  public render(): React.ReactNode {
     const { isOpen, onRequestClose } = this.props;
     return (
       <Modal
@@ -35,7 +35,7 @@ export default class AbortConfirmationModal extends React.PureComponent<
     );
   }
 
-  private onClickConfirm = () => {
+  private onClickConfirm = (): void => {
     const { onConfirm, onRequestClose } = this.props;
     onConfirm();
     onRequestClose();

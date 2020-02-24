@@ -24,7 +24,7 @@ function comparePacks(a: StudyPack, b: StudyPack): number {
 }
 
 export default class PackSelection extends React.PureComponent<ComponentProps> {
-  private onTogglePack = memoize((pack: StudyPack) => () => {
+  private onTogglePack = memoize((pack: StudyPack) => (): void => {
     const { onSelectionChanged, selection } = this.props;
     const next = [...selection];
 
@@ -39,7 +39,7 @@ export default class PackSelection extends React.PureComponent<ComponentProps> {
     onSelectionChanged(next);
   });
 
-  public render() {
+  public render(): React.ReactNode {
     const { localization } = this.props;
     return (
       <div className="PackSelection">
@@ -56,7 +56,7 @@ export default class PackSelection extends React.PureComponent<ComponentProps> {
     );
   }
 
-  private renderPack = (pack: StudyPack) => {
+  private renderPack = (pack: StudyPack): React.ReactNode => {
     const { localization, selection } = this.props;
     const enabled = selection.indexOf(pack) >= 0;
     return (

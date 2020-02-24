@@ -17,7 +17,7 @@ interface ComponentProps {
 export default class FeedbackFooter extends React.PureComponent<
   ComponentProps
 > {
-  public render() {
+  public render(): React.ReactNode {
     const { localization } = this.props;
     return (
       <div className="FeedbackFooter">
@@ -26,7 +26,7 @@ export default class FeedbackFooter extends React.PureComponent<
     );
   }
 
-  private renderPiece = (piece: FeedbackFooterPiece) => {
+  private renderPiece = (piece: FeedbackFooterPiece): React.ReactNode => {
     const { localization } = this.props;
     switch (piece) {
       case VARIABLE_REPORT_BUG_LINK:
@@ -35,6 +35,7 @@ export default class FeedbackFooter extends React.PureComponent<
             key={VARIABLE_REPORT_BUG_LINK}
             href={CONFIG_BUG_REPORT_FORM_LINK}
             target="_blank"
+            rel="noopener noreferrer"
           >
             <img src={BugIcon} /> <span>{localization.reportABug}</span>
           </a>
@@ -45,6 +46,7 @@ export default class FeedbackFooter extends React.PureComponent<
             key={VARIABLE_SUBMIT_FEEDBACK_LINK}
             href={CONFIG_FEEDBACK_FORM_LINK}
             target="_blank"
+            rel="noopener noreferrer"
           >
             <img src={CommentsIcon} />{" "}
             <span>{localization.submitFeedback}</span>

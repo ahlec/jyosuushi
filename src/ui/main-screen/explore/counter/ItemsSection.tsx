@@ -18,7 +18,7 @@ interface ComponentProps {
 }
 
 export default class ItemsSection extends React.PureComponent<ComponentProps> {
-  public render() {
+  public render(): React.ReactNode {
     const { counter, localization } = this.props;
 
     if (!hasItemsSectionContents(counter)) {
@@ -36,7 +36,7 @@ export default class ItemsSection extends React.PureComponent<ComponentProps> {
     );
   }
 
-  private renderItem = (item: Item) => {
+  private renderItem = (item: Item): React.ReactNode => {
     const { localization } = this.props;
     return <div key={item.itemId}>{localization.itemPlural(item)}</div>;
   };

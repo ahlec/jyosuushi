@@ -19,7 +19,7 @@ interface ComponentProps<TValue> {
 export default class ChooserControl<TValue> extends React.PureComponent<
   ComponentProps<TValue>
 > {
-  private onChoiceClicked = memoize((value: TValue) => () => {
+  private onChoiceClicked = memoize((value: TValue) => (): void => {
     const { currentValue, onChoiceClicked } = this.props;
     if (currentValue === value) {
       return;
@@ -28,14 +28,14 @@ export default class ChooserControl<TValue> extends React.PureComponent<
     onChoiceClicked(value);
   });
 
-  public render() {
+  public render(): React.ReactNode {
     const { choices } = this.props;
     return (
       <div className="ChooserControl">{choices.map(this.renderChoice)}</div>
     );
   }
 
-  private renderChoice = (choice: Choice<TValue>) => {
+  private renderChoice = (choice: Choice<TValue>): React.ReactNode => {
     const { currentValue } = this.props;
     return (
       <div

@@ -1,5 +1,3 @@
-/* tslint:disable variable-name */
-
 import Database, { DatabaseSnapshot } from "../database/Database";
 import {
   DbCounter,

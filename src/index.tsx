@@ -23,7 +23,10 @@ ReactGA.initialize(CONFIG_GOOGLE_ANALYTICS_TRACKING_ID, {
 const redux = createRedux();
 const quizManager = new QuizManager(redux.store);
 
-Modal.setAppElement(document.getElementById("root")!);
+const rootElement = document.getElementById("root");
+if (rootElement) {
+  Modal.setAppElement(rootElement);
+}
 
 ReactDOM.render(
   <Provider store={redux.store}>
@@ -35,5 +38,5 @@ ReactDOM.render(
       </BrowserRouter>
     </PersistGate>
   </Provider>,
-  document.getElementById("root")
+  rootElement
 );

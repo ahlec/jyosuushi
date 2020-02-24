@@ -27,14 +27,14 @@ type ComponentProps = ProvidedProps & ReduxProps;
 class TsuNotice extends React.PureComponent<ComponentProps> {
   private readonly model: TsuWarningModel;
 
-  public constructor(props: any) {
+  public constructor(props: ComponentProps) {
     super(props);
     this.model = TsuWarningModel.get();
   }
 
   public componentDidUpdate({
     numQuestionsAsked: prevNumQuestionsAsked
-  }: ComponentProps) {
+  }: ComponentProps): void {
     const { numQuestionsAsked } = this.props;
     if (numQuestionsAsked > prevNumQuestionsAsked) {
       this.model.reduce();
@@ -42,7 +42,7 @@ class TsuNotice extends React.PureComponent<ComponentProps> {
     }
   }
 
-  public render() {
+  public render(): React.ReactNode {
     if (this.model.numWarnings <= 0) {
       return null;
     }

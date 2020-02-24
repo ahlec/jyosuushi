@@ -84,7 +84,7 @@ interface ComponentState {
   stage: Stage;
 }
 
-/* tslint:disable:object-literal-sort-keys */
+/* eslint-disable sort-keys */
 // JUSTIFICATION: Allows the object to follow a linear progression through animations.
 const SUBSEQUENT_LAYOUT_STAGE: { [stage in Stage]: Stage | null } = {
   "resting-home": null,
@@ -94,7 +94,7 @@ const SUBSEQUENT_LAYOUT_STAGE: { [stage in Stage]: Stage | null } = {
   "transitioning-from-quiz": "transitioning-to-home",
   "transitioning-to-home": "resting-home"
 };
-/* tslint:enable:object-literal-sort-keys */
+/* eslint-enable sort-keys */
 
 class Header extends React.PureComponent<ComponentProps, ComponentState> {
   public state: ComponentState;
@@ -108,7 +108,9 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
     };
   }
 
-  public componentDidUpdate({ isQuizActive: wasQuizActive }: ComponentProps) {
+  public componentDidUpdate({
+    isQuizActive: wasQuizActive
+  }: ComponentProps): void {
     const { hasAnsweredQuestion, isQuizActive, onModalOpened } = this.props;
     if (wasQuizActive !== isQuizActive) {
       this.setState({
@@ -126,7 +128,7 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
     }
   }
 
-  public render() {
+  public render(): React.ReactNode {
     const { stage } = this.state;
 
     const layout: Layout =
@@ -146,7 +148,7 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
     );
   }
 
-  private renderHomeLayout() {
+  private renderHomeLayout(): React.ReactNode {
     const { localization } = this.props;
     return (
       <React.Fragment>
@@ -160,7 +162,7 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
     );
   }
 
-  private renderQuizLayout() {
+  private renderQuizLayout(): React.ReactNode {
     const {
       hasAnsweredQuestion,
       localization,
@@ -217,7 +219,7 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
     );
   }
 
-  private onAnimationEnd = ({ animationName }: React.AnimationEvent) => {
+  private onAnimationEnd = ({ animationName }: React.AnimationEvent): void => {
     const nextStage = SUBSEQUENT_LAYOUT_STAGE[animationName as Stage];
     if (!nextStage) {
       // A nested animation, we'll just ignore
@@ -227,7 +229,7 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
     this.setState({ stage: nextStage });
   };
 
-  private onClickHistory = () => {
+  private onClickHistory = (): void => {
     const { hasAnsweredQuestion, onModalOpened } = this.props;
     if (!hasAnsweredQuestion) {
       return;
@@ -236,13 +238,14 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
     this.setState({ showHistoryModal: true });
     onModalOpened(true);
   };
-  private onCloseHistory = () => {
+
+  private onCloseHistory = (): void => {
     const { onModalOpened } = this.props;
     this.setState({ showHistoryModal: false });
     onModalOpened(false);
   };
 
-  private onClickHome = () => {
+  private onClickHome = (): void => {
     const { dispatch, isOnQuizWrapup, onModalOpened, scorecard } = this.props;
     const numQuestionsAnswered =
       scorecard.numCorrectAnswers + scorecard.numIncorrectAnswers;
@@ -259,19 +262,19 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
     onModalOpened(true);
   };
 
-  private onConfirmLeaveEarly = () => {
+  private onConfirmLeaveEarly = (): void => {
     const { dispatch } = this.props;
     this.trackLeavingQuizEarly();
     dispatch(leaveQuiz());
   };
 
-  private onRequestCloseLeaveEarly = () => {
+  private onRequestCloseLeaveEarly = (): void => {
     const { onModalOpened } = this.props;
     this.setState({ isPromptingToLeave: false });
     onModalOpened(false);
   };
 
-  private trackLeavingQuizEarly() {
+  private trackLeavingQuizEarly(): void {
     const { enabledPacks, scorecard, totalNumberQuestions } = this.props;
     const numQuestionsAnswered =
       scorecard.numCorrectAnswers + scorecard.numIncorrectAnswers;

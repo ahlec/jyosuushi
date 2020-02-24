@@ -13,7 +13,7 @@ interface ComponentProps {
 // text. Wrapping it in a non-flex parent fixes this issue.
 
 export default class Furigana extends React.PureComponent<ComponentProps> {
-  public render() {
+  public render(): React.ReactNode {
     const { className, furigana, text } = this.props;
     return (
       <span className={classnames("Furigana", className)}>

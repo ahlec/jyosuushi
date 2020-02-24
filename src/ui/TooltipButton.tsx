@@ -22,7 +22,7 @@ export default class TooltipButton extends React.PureComponent<
     tooltipVisible: false
   };
 
-  public render() {
+  public render(): React.ReactNode {
     const { icon: Icon, text } = this.props;
     const id = `tb-${text}`;
     return (
@@ -40,7 +40,7 @@ export default class TooltipButton extends React.PureComponent<
     );
   }
 
-  private onMouseOver = () => {
+  private onMouseOver = (): void => {
     const { enabled } = this.props;
     if (!enabled) {
       return;
@@ -48,8 +48,9 @@ export default class TooltipButton extends React.PureComponent<
 
     this.setState({ tooltipVisible: true });
   };
-  private onMouseOut = () => this.setState({ tooltipVisible: false });
-  private onClick = (event: React.MouseEvent) => {
+  private onMouseOut = (): void => this.setState({ tooltipVisible: false });
+
+  private onClick = (event: React.MouseEvent): void => {
     const { onClick } = this.props;
     this.setState({ tooltipVisible: false });
     onClick(event);

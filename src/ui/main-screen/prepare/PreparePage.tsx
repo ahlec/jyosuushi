@@ -19,7 +19,9 @@ import TutorialModal from "./TutorialModal";
 
 import "./PreparePage.scss";
 
-function getPacksFromArray(packs: ReadonlyArray<string>) {
+function getPacksFromArray(
+  packs: ReadonlyArray<string>
+): ReadonlyArray<StudyPack> {
   return packs.map(packId => STUDY_PACK_LOOKUP[packId]);
 }
 
@@ -55,22 +57,23 @@ class PreparePage extends React.PureComponent<ComponentProps, ComponentState> {
     };
   }
 
-  public render() {
+  public render(): React.ReactNode {
     const { enabledPacks, localization } = this.props;
     const { showingTutorial } = this.state;
     return (
       <div className="PreparePage">
         <p>
-          Welcome to <strong>助数詞を練習</strong>! This is a tool that's meant
-          to help you study{" "}
+          Welcome to <strong>助数詞を練習</strong>! This is a tool that&apos;s
+          meant to help you study{" "}
           <a
             href="https://en.wikipedia.org/wiki/Japanese_counter_word"
             target="_blank"
+            rel="noopener noreferrer"
           >
             Japanese counters
           </a>
-          . You'll be given a random item and a random number, and then you tell
-          us how you'd count that in Japanese.{" "}
+          . You&apos;ll be given a random item and a random number, and then you
+          tell us how you&apos;d count that in Japanese.{" "}
           <span className="link" onClick={this.showTutorialModal}>
             Click here to read the tutorial.
           </span>
@@ -96,15 +99,17 @@ class PreparePage extends React.PureComponent<ComponentProps, ComponentState> {
     );
   }
 
-  private showTutorialModal = () => this.setState({ showingTutorial: true });
-  private hideTutorialModal = () => this.setState({ showingTutorial: false });
+  private showTutorialModal = (): void =>
+    this.setState({ showingTutorial: true });
+  private hideTutorialModal = (): void =>
+    this.setState({ showingTutorial: false });
 
-  private onSelectionChanged = (selection: ReadonlyArray<StudyPack>) => {
+  private onSelectionChanged = (selection: ReadonlyArray<StudyPack>): void => {
     const { dispatch } = this.props;
     dispatch(setEnabledPacks(selection));
   };
 
-  private onStartQuiz = () => {
+  private onStartQuiz = (): void => {
     const { quizManager } = this.props;
     quizManager.startNewQuiz();
   };

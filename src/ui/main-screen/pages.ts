@@ -19,7 +19,7 @@ export interface PageDefinition {
   component:
     | React.ComponentClass
     | ConnectedComponent<React.ComponentClass, {}>;
-  icon: React.ComponentClass<React.SVGProps<SVGSVGElement>, any>;
+  icon: React.ComponentClass<React.SVGProps<SVGSVGElement>>;
   getName: (localization: Localization) => string;
   path: string;
 }

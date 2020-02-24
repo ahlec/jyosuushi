@@ -12,7 +12,7 @@ interface ComponentProps {
 }
 
 export default class QuestionPanel extends React.PureComponent<ComponentProps> {
-  public render() {
+  public render(): React.ReactNode {
     const { localization, currentQuestion } = this.props;
     const item = ITEMS_LOOKUP[currentQuestion.itemId];
     const name =

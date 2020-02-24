@@ -20,6 +20,8 @@ import {
   uniqueWords
 } from "./words";
 
+/* eslint-disable sort-keys */
+// JUSTIFICATION: We want to declare everything in a natural way of incrementing
 const COUNTER_K_P_CHANGES: FinalNumberChanges = {
   1: [[{ type: "trailing-small-tsu" }]],
   6: [[{ type: "trailing-small-tsu" }]],
@@ -107,6 +109,7 @@ const COUNTER_W_CHANGES: FinalNumberChanges = {
   ],
   [JYUU]: [[{ type: "replace", kana: "じっ", kanji: "十" }]]
 };
+/* eslint-enable sort-keys */
 
 interface CounterChange {
   gyou?: Gyou;
@@ -245,7 +248,9 @@ function conjugateCounterRegularsInternal(
 export const conjugateCounterRegulars: (
   amount: number,
   counter: Counter
-) => ReadonlyArray<ConjugatedJapaneseWord> = memoize(
+) => ReadonlyArray<
+  ConjugatedJapaneseWord
+> = memoize(
   conjugateCounterRegularsInternal,
   (amount: number, counter: Counter) => [amount, counter.counterId].join("-")
 );

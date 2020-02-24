@@ -1,5 +1,3 @@
-/* tslint:disable:no-console */
-
 import chalk from "chalk";
 import fs from "fs";
 import { WritableStream } from "memory-streams";

@@ -23,7 +23,7 @@ interface ComponentProps {
 export default class CounterPreview extends React.PureComponent<
   ComponentProps
 > {
-  public render() {
+  public render(): React.ReactNode {
     const { localization, packs } = this.props;
     const counters = getCountersForPacks(packs);
 
@@ -39,7 +39,7 @@ export default class CounterPreview extends React.PureComponent<
     );
   }
 
-  private renderCounter = (counter: Counter) => {
+  private renderCounter = (counter: Counter): React.ReactNode => {
     return <CounterLink key={counter.counterId} counter={counter} />;
   };
 }

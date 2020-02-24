@@ -44,7 +44,7 @@ export const breakDownNumber: (value: number) => NumberBreakdown = memoize(
     const jyuu = Math.floor(remainder / JYUU);
     remainder -= jyuu * JYUU;
 
-    /* tslint:disable:object-literal-sort-keys */
+    /* eslint-disable sort-keys */
     // JUSTIFICATION: It's much easier to reason about this in numeric descending order.
     return {
       oku,
@@ -67,7 +67,7 @@ export const breakDownNumber: (value: number) => NumberBreakdown = memoize(
         ? "oku"
         : "solo"
     };
-    /* tslint:enable:object-literal-sort-keys */
+    /* eslint-enable sort-keys */
   }
 );
 
@@ -76,9 +76,9 @@ interface FirstTenWords extends JapaneseWord {
   strange?: boolean;
 }
 
-const FIRST_TEN_NUMBERS: ReadonlyArray<
-  ReadonlyArray<Readonly<FirstTenWords>>
-> = [
+const FIRST_TEN_NUMBERS: ReadonlyArray<ReadonlyArray<
+  Readonly<FirstTenWords>
+>> = [
   [
     {
       kana: "ゼロ",
@@ -109,18 +109,18 @@ const FIRST_TEN_NUMBERS: ReadonlyArray<
   ],
   [
     {
-      isValid: options => options.allowsYonFor4,
+      isValid: (options): boolean => options.allowsYonFor4,
       kana: "よん",
       kanji: "四"
     },
     {
-      isValid: options => options.allowsYoFor4,
+      isValid: (options): boolean => options.allowsYoFor4,
       kana: "よ",
       kanji: "四",
       strange: true
     },
     {
-      isValid: options => options.allowsShiFor4,
+      isValid: (options): boolean => options.allowsShiFor4,
       kana: "し",
       kanji: "四",
       strange: true
@@ -140,13 +140,13 @@ const FIRST_TEN_NUMBERS: ReadonlyArray<
   ],
   [
     {
-      isValid: options => options.allowsShichiFor7,
+      isValid: (options): boolean => options.allowsShichiFor7,
       kana: "しち",
       kanji: "七",
       strange: true
     },
     {
-      isValid: options => options.allowsNanaFor7,
+      isValid: (options): boolean => options.allowsNanaFor7,
       kana: "なな",
       kanji: "七"
     }
@@ -159,12 +159,12 @@ const FIRST_TEN_NUMBERS: ReadonlyArray<
   ],
   [
     {
-      isValid: options => options.allowsKyuuFor9,
+      isValid: (options): boolean => options.allowsKyuuFor9,
       kana: "きゅう",
       kanji: "九"
     },
     {
-      isValid: options => options.allowsKuFor9,
+      isValid: (options): boolean => options.allowsKuFor9,
       kana: "く",
       kanji: "九",
       strange: true
@@ -248,8 +248,8 @@ const JYUU_NUMBER: ReadonlyArray<Readonly<JapaneseWord>> = [
 
 const HYAKU_CHANGES: FinalNumberChanges = {
   1: [
-    [{ type: "omit" }, { type: "tag", tag: "hyaku" }],
-    [{ type: "trailing-small-tsu" }, { type: "tag", tag: "ippyaku" }]
+    [{ type: "omit" }, { tag: "hyaku", type: "tag" }],
+    [{ type: "trailing-small-tsu" }, { tag: "ippyaku", type: "tag" }]
   ],
   6: [[{ type: "trailing-small-tsu" }]],
   8: [[{ type: "trailing-small-tsu" }]]
@@ -316,9 +316,9 @@ function applyUniqueChanges(
 
   const results: Array<ReadonlyArray<TaggableJapaneseWord>> = [];
   for (const changeSet of changes) {
-    let currentPermutation: ReadonlyArray<
-      TaggableJapaneseWord
-    > = castToTaggable(words);
+    let currentPermutation: ReadonlyArray<TaggableJapaneseWord> = castToTaggable(
+      words
+    );
     for (const change of changeSet) {
       currentPermutation = applySingleChange(currentPermutation, change);
     }
@@ -330,14 +330,15 @@ function applyUniqueChanges(
 }
 
 function conjugateNumberInternal(
-  breakdown: NumberBreakdown,
+  amount: number,
   options: NumericConjugationOptions,
   finalNumberChanges?: FinalNumberChanges
 ): ReadonlyArray<TaggableJapaneseWord> {
   const chunks: Array<ReadonlyArray<TaggableJapaneseWord>> = [];
+  const breakdown = breakDownNumber(amount);
 
   if (breakdown.oku) {
-    chunks.push(conjugateNumber(breakdown.oku, options, OMIT_ONE));
+    chunks.push(conjugateNumberInternal(breakdown.oku, options, OMIT_ONE));
 
     const change =
       finalNumberChanges &&
@@ -347,7 +348,7 @@ function conjugateNumberInternal(
   }
 
   if (breakdown.man) {
-    chunks.push(conjugateNumber(breakdown.man, options, OMIT_ONE));
+    chunks.push(conjugateNumberInternal(breakdown.man, options, OMIT_ONE));
 
     const change =
       finalNumberChanges &&
@@ -357,7 +358,7 @@ function conjugateNumberInternal(
   }
 
   if (breakdown.sen) {
-    chunks.push(conjugateNumber(breakdown.sen, options, SEN_CHANGES));
+    chunks.push(conjugateNumberInternal(breakdown.sen, options, SEN_CHANGES));
 
     const senBreakdown = breakDownNumber(breakdown.sen);
     const change =
@@ -373,7 +374,9 @@ function conjugateNumberInternal(
   }
 
   if (breakdown.hyaku) {
-    chunks.push(conjugateNumber(breakdown.hyaku, options, HYAKU_CHANGES));
+    chunks.push(
+      conjugateNumberInternal(breakdown.hyaku, options, HYAKU_CHANGES)
+    );
 
     const hyakuBreakdown = breakDownNumber(breakdown.hyaku);
     const change =
@@ -403,7 +406,7 @@ function conjugateNumberInternal(
   }
 
   if (breakdown.jyuu) {
-    chunks.push(conjugateNumber(breakdown.jyuu, options, OMIT_ONE));
+    chunks.push(conjugateNumberInternal(breakdown.jyuu, options, OMIT_ONE));
 
     const change =
       finalNumberChanges &&
@@ -444,16 +447,7 @@ export const conjugateNumber: (
   options: NumericConjugationOptions,
   finalNumberChanges?: FinalNumberChanges
 ) => ReadonlyArray<TaggableJapaneseWord> = memoize(
-  (
-    amount: number,
-    options: NumericConjugationOptions,
-    finalNumberChanges?: FinalNumberChanges
-  ) =>
-    conjugateNumberInternal(
-      breakDownNumber(amount),
-      options,
-      finalNumberChanges
-    ),
+  conjugateNumberInternal,
   (
     amount: number,
     options: NumericConjugationOptions,

@@ -11,14 +11,22 @@ export default function withQuizManager<TComponentProps>(
   Component: React.ComponentClass<TComponentProps & InjectedProps>
 ): React.ComponentClass<TComponentProps> {
   return class WithQuizManager extends React.PureComponent<TComponentProps> {
-    public render() {
+    public render(): React.ReactNode {
       return (
         <QuizManagerContext.Consumer>
-          {quizManager => (
-            <Component {...this.props} quizManager={quizManager} />
-          )}
+          {this.renderComponent}
         </QuizManagerContext.Consumer>
       );
     }
+
+    private renderComponent = (
+      quizManager: QuizManager | undefined
+    ): React.ReactNode => {
+      if (!quizManager) {
+        return null;
+      }
+
+      return <Component {...this.props} quizManager={quizManager} />;
+    };
   };
 }

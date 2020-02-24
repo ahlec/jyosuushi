@@ -20,23 +20,26 @@ interface LinkEntry {
 
 const LINKS: ReadonlyArray<LinkEntry> = [
   {
-    description: localization =>
+    description: (localization): string =>
       localization.feedbackPageSubmitFeedbackDescription,
     icon: CommentsIcon,
-    linkText: localization => localization.feedbackPageSubmitFeedbackLink,
+    linkText: (localization): string =>
+      localization.feedbackPageSubmitFeedbackLink,
     url: CONFIG_FEEDBACK_FORM_LINK
   },
   {
-    description: localization => localization.feedbackPageReportBugDescription,
+    description: (localization): string =>
+      localization.feedbackPageReportBugDescription,
     icon: BugIcon,
-    linkText: localization => localization.feedbackPageReportBugLink,
+    linkText: (localization): string => localization.feedbackPageReportBugLink,
     url: CONFIG_BUG_REPORT_FORM_LINK
   },
   {
-    description: localization =>
+    description: (localization): string =>
       localization.feedbackPageHelpContributeDescription,
     icon: CodeIcon,
-    linkText: localization => localization.feedbackPageHelpContributeLink,
+    linkText: (localization): string =>
+      localization.feedbackPageHelpContributeLink,
     url: "https://github.com/ahlec/jyosuushi"
   }
 ];
@@ -52,7 +55,7 @@ function mapStateToProps(state: State): ReduxProps {
 }
 
 class FeedbackPage extends React.PureComponent<ReduxProps> {
-  public render() {
+  public render(): React.ReactNode {
     const { localization } = this.props;
     return (
       <div className="FeedbackPage">
@@ -63,11 +66,11 @@ class FeedbackPage extends React.PureComponent<ReduxProps> {
     );
   }
 
-  private renderLink = (link: LinkEntry) => {
+  private renderLink = (link: LinkEntry): React.ReactNode => {
     const { localization } = this.props;
     return (
       <p key={link.url} className="link-entry">
-        <a href={link.url} target="_blank">
+        <a href={link.url} target="_blank" rel="noopener noreferrer">
           <img src={link.icon} /> <strong>{link.linkText(localization)}</strong>
         </a>
         {". "}

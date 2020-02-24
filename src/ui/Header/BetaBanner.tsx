@@ -9,7 +9,7 @@ interface ComponentProps {
 }
 
 export default class BetaBanner extends React.PureComponent<ComponentProps> {
-  public render() {
+  public render(): React.ReactNode {
     const { localization } = this.props;
     return <div className="BetaBanner">{localization.beta}</div>;
   }

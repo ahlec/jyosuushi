@@ -36,7 +36,7 @@ export default class QuizManager {
     return state.settings.amountRange;
   }
 
-  public startNewQuiz() {
+  public startNewQuiz(): void {
     const state = this.store.getState();
     const studyPacks = state.enabledPacks.map(
       packId => STUDY_PACK_LOOKUP[packId]
@@ -59,7 +59,7 @@ export default class QuizManager {
     });
   }
 
-  public endQuiz() {
+  public endQuiz(): void {
     const { enabledPacks, scorecard } = this.store.getState();
     const numQuestionsAnswered =
       scorecard.numCorrectAnswers + scorecard.numIncorrectAnswers;
@@ -76,7 +76,7 @@ export default class QuizManager {
     this.store.dispatch(endQuiz());
   }
 
-  public restart() {
+  public restart(): void {
     const state = this.store.getState();
     const packs = state.enabledPacks.map(packId => STUDY_PACK_LOOKUP[packId]);
     const questions = makeQuiz(packs, this.amountRange);
@@ -92,7 +92,7 @@ export default class QuizManager {
     });
   }
 
-  public nextQuestion() {
+  public nextQuestion(): void {
     if (!this.hasNextQuestion) {
       throw new Error("No more questions in this quiz");
     }

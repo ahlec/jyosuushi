@@ -58,14 +58,14 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
 
   public componentDidUpdate({
     numQuestionsAsked: prevNumQuestionsAsked
-  }: ComponentProps) {
+  }: ComponentProps): void {
     const { numQuestionsAsked } = this.props;
     if (numQuestionsAsked !== prevNumQuestionsAsked) {
       this.setState({ value: null });
     }
   }
 
-  public render() {
+  public render(): React.ReactNode {
     const { enabled, localization } = this.props;
     const { value } = this.state;
     return (
@@ -99,8 +99,8 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
             !!value && !value.validValue && enabled && "invalid"
           )}
         >
-          Press the [enter] key when you're finished, or click the arrow button
-          to submit.
+          Press the [enter] key when you&apos;re finished, or click the arrow
+          button to submit.
         </div>
         <TsuNotice localization={localization} />
         <div className="buttons">
@@ -112,17 +112,17 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
     );
   }
 
-  private onChange = (value: KanaInputValue) =>
+  private onChange = (value: KanaInputValue): void =>
     this.setState({
       value
     });
 
-  private onClickSubmitButton = (event: React.MouseEvent) => {
+  private onClickSubmitButton = (event: React.MouseEvent): void => {
     this.submit();
     event.preventDefault();
   };
 
-  private onKeyDown = (event: React.KeyboardEvent) => {
+  private onKeyDown = (event: React.KeyboardEvent): void => {
     const { enabled } = this.props;
     if (enabled && event.keyCode === KEY_ENTER) {
       this.submit();
@@ -130,7 +130,7 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
     }
   };
 
-  private submit() {
+  private submit(): void {
     const { currentQuestion, dispatch, onAnswerSubmitted } = this.props;
     const { value } = this.state;
 
@@ -166,7 +166,7 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
     return null;
   }
 
-  private onSkipClicked = () => {
+  private onSkipClicked = (): void => {
     const { currentQuestion } = this.props;
     ReactGA.event({
       action: "Question Skipped",

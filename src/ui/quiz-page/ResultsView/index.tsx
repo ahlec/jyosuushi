@@ -49,7 +49,7 @@ const HEADERS: {
 };
 
 class ResultsView extends React.PureComponent<ComponentProps> {
-  public render() {
+  public render(): React.ReactNode {
     const { currentQuestion, localization, usersAnswer } = this.props;
     return (
       <div className="ResultsView">
@@ -88,7 +88,7 @@ class ResultsView extends React.PureComponent<ComponentProps> {
     );
   }
 
-  private onIgnoreClicked = () => {
+  private onIgnoreClicked = (): void => {
     const { currentQuestion, dispatch } = this.props;
     const counters = uniq(
       currentQuestion.validAnswers.map(({ counterId }: Answer) => counterId)
@@ -103,7 +103,7 @@ class ResultsView extends React.PureComponent<ComponentProps> {
     dispatch(ignoreLastAnswer(counters));
   };
 
-  private onClickNextQuestion = (event: React.MouseEvent) => {
+  private onClickNextQuestion = (event: React.MouseEvent): void => {
     const { onClickNextQuestion } = this.props;
     onClickNextQuestion();
     event.stopPropagation();

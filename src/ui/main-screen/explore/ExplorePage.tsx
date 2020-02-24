@@ -12,7 +12,7 @@ import ExploreStudyPackPage from "./study-pack/ExploreStudyPackPage";
 import "./ExplorePage.scss";
 
 export default class ExplorePage extends React.PureComponent {
-  public render() {
+  public render(): React.ReactNode {
     return (
       <Switch>
         <Route
@@ -25,7 +25,7 @@ export default class ExplorePage extends React.PureComponent {
     );
   }
 
-  private renderLandingPage = () => {
+  private renderLandingPage = (): React.ReactNode => {
     return (
       <div className="ExplorePageLanding">
         <BreadcrumbBar />

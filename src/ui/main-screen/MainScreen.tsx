@@ -28,7 +28,7 @@ function mapStateToProps(state: State): ReduxProps {
 }
 
 class MainScreen extends React.PureComponent<ReduxProps> {
-  public render() {
+  public render(): React.ReactNode {
     const { shouldRedirectToReleaseNotes } = this.props;
     return (
       <div className="MainScreen">
@@ -44,7 +44,10 @@ class MainScreen extends React.PureComponent<ReduxProps> {
     );
   }
 
-  private renderRoute = ({ component, path }: PageDefinition) => {
+  private renderRoute = ({
+    component,
+    path
+  }: PageDefinition): React.ReactNode => {
     return <Route key={path} path={path || "/"} component={component} />;
   };
 }

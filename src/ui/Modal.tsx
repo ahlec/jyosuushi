@@ -14,7 +14,7 @@ interface ComponentProps {
 }
 
 export default class Modal extends React.Component<ComponentProps> {
-  public render() {
+  public render(): React.ReactNode {
     const { children, className, header, isOpen } = this.props;
     return (
       <ReactModal
@@ -33,7 +33,7 @@ export default class Modal extends React.Component<ComponentProps> {
     );
   }
 
-  private onRequestClose = () => {
+  private onRequestClose = (): void => {
     const { isOpen, onRequestClose } = this.props;
     if (!isOpen) {
       return;

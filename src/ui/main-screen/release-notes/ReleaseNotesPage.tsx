@@ -30,12 +30,12 @@ function mapStateToProps(state: State): ReduxProps {
 type ComponentProps = ReduxProps & { dispatch: Dispatch };
 
 class ReleaseNotesPage extends React.PureComponent<ComponentProps> {
-  public componentDidMount() {
+  public componentDidMount(): void {
     const { dispatch } = this.props;
     dispatch(markLatestVersion());
   }
 
-  public render() {
+  public render(): React.ReactNode {
     return <Markdown className="ReleaseNotesPage" content={CHANGELOG} />;
   }
 }

@@ -24,14 +24,14 @@ interface ProvidedProps {
 }
 
 interface ReduxProps {
-  currentQuestion: Question;
+  currentQuestion: Question | null;
   localization: Localization;
   quizState: QuizState;
 }
 
 function mapStateToProps(state: State): ReduxProps {
   return {
-    currentQuestion: state.questions.currentQuestion!,
+    currentQuestion: state.questions.currentQuestion,
     localization: getLocalization(state),
     quizState: state.quizState
   };
@@ -40,15 +40,15 @@ function mapStateToProps(state: State): ReduxProps {
 type ComponentProps = ProvidedProps & ReduxProps & InjectedProps;
 
 class QuizPage extends React.PureComponent<ComponentProps> {
-  public componentDidMount() {
+  public componentDidMount(): void {
     window.addEventListener("keydown", this.onKeyDown);
   }
 
-  public componentWillUnmount() {
+  public componentWillUnmount(): void {
     window.removeEventListener("keydown", this.onKeyDown);
   }
 
-  public render() {
+  public render(): React.ReactNode {
     const {
       currentQuestion,
       enabled,
@@ -64,6 +64,10 @@ class QuizPage extends React.PureComponent<ComponentProps> {
       return (
         <QuizWrapup localization={localization} quizManager={quizManager} />
       );
+    }
+
+    if (!currentQuestion) {
+      throw new Error("Cannot render quiz page without question");
     }
 
     return (
@@ -90,7 +94,7 @@ class QuizPage extends React.PureComponent<ComponentProps> {
     );
   }
 
-  private advance() {
+  private advance(): void {
     const { enabled, quizManager } = this.props;
     if (!enabled) {
       return;
@@ -103,11 +107,11 @@ class QuizPage extends React.PureComponent<ComponentProps> {
     }
   }
 
-  private onClickNextQuestion = () => {
+  private onClickNextQuestion = (): void => {
     this.advance();
   };
 
-  private onKeyDown = (event: KeyboardEvent) => {
+  private onKeyDown = (event: KeyboardEvent): void => {
     const { quizState } = this.props;
     if (quizState.state !== "reviewing-answer") {
       return;

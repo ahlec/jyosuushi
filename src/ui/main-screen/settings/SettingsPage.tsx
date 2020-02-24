@@ -35,22 +35,30 @@ const AMOUNT_RANGE_CHOICES = memoize(
   (localization: Localization): ReadonlyArray<Choice<AmountRange>> => {
     const choices: Array<Choice<AmountRange>> = [
       {
-        subtext: `${AMOUNT_RANGES[AmountRange.Small].min}–${AMOUNT_RANGES[AmountRange.Small].max}`,
+        subtext: `${AMOUNT_RANGES[AmountRange.Small].min}–${
+          AMOUNT_RANGES[AmountRange.Small].max
+        }`,
         title: localization.amountRangeSmall,
         value: AmountRange.Small
       },
       {
-        subtext: `${AMOUNT_RANGES[AmountRange.Medium].min}–${AMOUNT_RANGES[AmountRange.Medium].max}`,
+        subtext: `${AMOUNT_RANGES[AmountRange.Medium].min}–${
+          AMOUNT_RANGES[AmountRange.Medium].max
+        }`,
         title: localization.amountRangeMedium,
         value: AmountRange.Medium
       },
       {
-        subtext: `${AMOUNT_RANGES[AmountRange.Large].min}–${AMOUNT_RANGES[AmountRange.Large].max}`,
+        subtext: `${AMOUNT_RANGES[AmountRange.Large].min}–${
+          AMOUNT_RANGES[AmountRange.Large].max
+        }`,
         title: localization.amountRangeLarge,
         value: AmountRange.Large
       },
       {
-        subtext: `${AMOUNT_RANGES[AmountRange.Giant].min}–${AMOUNT_RANGES[AmountRange.Giant].max}`,
+        subtext: `${AMOUNT_RANGES[AmountRange.Giant].min}–${
+          AMOUNT_RANGES[AmountRange.Giant].max
+        }`,
         title: localization.amountRangeGiant,
         value: AmountRange.Giant
       }
@@ -61,7 +69,7 @@ const AMOUNT_RANGE_CHOICES = memoize(
 );
 
 class SettingsPage extends React.PureComponent<ComponentProps> {
-  public render() {
+  public render(): React.ReactNode {
     const { localization } = this.props;
     return (
       <div className="SettingsPage">
@@ -72,7 +80,7 @@ class SettingsPage extends React.PureComponent<ComponentProps> {
     );
   }
 
-  private renderAmountRangeSelector() {
+  private renderAmountRangeSelector(): React.ReactNode {
     const { currentRange, localization } = this.props;
     return (
       <div className="section">
@@ -89,12 +97,12 @@ class SettingsPage extends React.PureComponent<ComponentProps> {
     );
   }
 
-  private onCurrentRangeChanged = (amountRange: AmountRange) => {
+  private onCurrentRangeChanged = (amountRange: AmountRange): void => {
     const { dispatch } = this.props;
     dispatch(setAmountRange(amountRange));
   };
 
-  private renderInfiniteModeSelector() {
+  private renderInfiniteModeSelector(): React.ReactNode {
     const { currentInfiniteMode, localization } = this.props;
     return (
       <div className="section">
@@ -111,7 +119,7 @@ class SettingsPage extends React.PureComponent<ComponentProps> {
     );
   }
 
-  private onInfiniteModeChanged = (infiniteMode: boolean) => {
+  private onInfiniteModeChanged = (infiniteMode: boolean): void => {
     const { dispatch } = this.props;
     dispatch(setInfiniteMode(infiniteMode));
   };

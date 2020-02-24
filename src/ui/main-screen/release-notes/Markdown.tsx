@@ -9,7 +9,7 @@ interface ComponentProps {
 }
 
 export default class Markdown extends React.PureComponent<ComponentProps> {
-  public render() {
+  public render(): React.ReactNode {
     const { className, content } = this.props;
     return (
       <div

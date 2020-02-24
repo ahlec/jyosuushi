@@ -28,7 +28,7 @@ function mapStateToProps(state: State): ReduxProps {
 type ComponentProps = ProvidedProps & ReduxProps;
 
 class CounterLink extends React.PureComponent<ComponentProps> {
-  public render() {
+  public render(): React.ReactNode {
     const { counter, localization } = this.props;
     return (
       <Link className="CounterLink" to={getCounterLink(counter)}>

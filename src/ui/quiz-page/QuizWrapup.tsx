@@ -31,7 +31,7 @@ function mapStateToProps(state: State): ReduxProps {
 type ComponentProps = ProvidedProps & ReduxProps & { dispatch: Dispatch };
 
 class QuizWrapup extends React.PureComponent<ComponentProps> {
-  public render() {
+  public render(): React.ReactNode {
     const {
       localization,
       scorecard: { numCorrectAnswers, numIncorrectAnswers }
@@ -60,8 +60,13 @@ class QuizWrapup extends React.PureComponent<ComponentProps> {
     );
   }
 
-  private onClickLeave = () => this.props.dispatch(leaveQuiz());
-  private onClickRestart = () => this.props.quizManager.restart();
+  private onClickLeave = (): void => {
+    this.props.dispatch(leaveQuiz());
+  };
+
+  private onClickRestart = (): void => {
+    this.props.quizManager.restart();
+  };
 }
 
 export default connect(mapStateToProps)(QuizWrapup);

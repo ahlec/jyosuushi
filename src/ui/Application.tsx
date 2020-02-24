@@ -41,7 +41,7 @@ class Application extends React.PureComponent<ComponentProps, ComponentState> {
     isModalOpen: false
   };
 
-  public render() {
+  public render(): React.ReactNode {
     const { isQuizActive } = this.props;
 
     return (
@@ -59,7 +59,7 @@ class Application extends React.PureComponent<ComponentProps, ComponentState> {
     );
   }
 
-  private renderNecessaryRedirect = () => {
+  private renderNecessaryRedirect = (): React.ReactNode => {
     const {
       location: { pathname },
       isQuizActive
@@ -74,16 +74,16 @@ class Application extends React.PureComponent<ComponentProps, ComponentState> {
     }
   };
 
-  private renderMainScreen = () => {
+  private renderMainScreen = (): React.ReactNode => {
     return <MainScreen />;
   };
 
-  private renderQuizPage = () => {
+  private renderQuizPage = (): React.ReactNode => {
     const { isModalOpen } = this.state;
     return <QuizPage enabled={!isModalOpen} />;
   };
 
-  private onHeaderModalOpened = (isModalOpen: boolean) =>
+  private onHeaderModalOpened = (isModalOpen: boolean): void =>
     this.setState({ isModalOpen });
 }
 

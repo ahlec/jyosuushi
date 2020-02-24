@@ -74,7 +74,7 @@ const getFurtherIrregulars = memoize(
   (counter: Counter) => counter.counterId
 );
 
-function highlightIrregular(contents: string) {
+function highlightIrregular(contents: string): React.ReactNode {
   return (
     <span className="irregular" key={contents}>
       {contents}
@@ -99,7 +99,7 @@ export default class ConjugationsSection extends React.PureComponent<
     currentUserInput: AMOUNTS_TO_DISPLAY + 1
   };
 
-  public render() {
+  public render(): React.ReactNode {
     const { counter, localization } = this.props;
     const { currentUserInput } = this.state;
 
@@ -146,7 +146,7 @@ export default class ConjugationsSection extends React.PureComponent<
     );
   }
 
-  private renderIrregularsWarning(counter: Counter) {
+  private renderIrregularsWarning(counter: Counter): React.ReactNode {
     const {
       props: { localization }
     } = this;
@@ -164,7 +164,7 @@ export default class ConjugationsSection extends React.PureComponent<
   private renderAmountTile = (
     conjugations: ReadonlyArray<ConjugatedInfo>,
     index: number
-  ) => {
+  ): React.ReactNode => {
     const amount = index + 1;
     return (
       <div className="conjugation-container" key={index}>
@@ -176,7 +176,10 @@ export default class ConjugationsSection extends React.PureComponent<
     );
   };
 
-  private renderFurtherIrregular = ({ amount, conjugation }: Irregular) => {
+  private renderFurtherIrregular = ({
+    amount,
+    conjugation
+  }: Irregular): React.ReactNode => {
     return (
       <div className="conjugation-container" key={amount}>
         <div className="amount">{amount}</div>
@@ -190,7 +193,7 @@ export default class ConjugationsSection extends React.PureComponent<
   private renderCurrentUserInputItem = (
     { category, kana }: ConjugatedInfo,
     index: number
-  ) => (
+  ): React.ReactNode => (
     <div
       key={index}
       className={classnames(
@@ -202,7 +205,10 @@ export default class ConjugationsSection extends React.PureComponent<
     </div>
   );
 
-  private renderConjugation = ({ category, kana }: ConjugatedInfo) => {
+  private renderConjugation = ({
+    category,
+    kana
+  }: ConjugatedInfo): React.ReactNode => {
     return (
       <div
         key={kana}
@@ -216,7 +222,9 @@ export default class ConjugationsSection extends React.PureComponent<
     );
   };
 
-  private onUserInputChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
+  private onUserInputChanged = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
     const newValue = event.target.valueAsNumber;
 
     if (

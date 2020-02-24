@@ -35,7 +35,7 @@ function mapStateToProps(state: State): ReduxProps {
 type ComponentProps = ProvidedProps & ReduxProps;
 
 class QuizHistory extends React.PureComponent<ComponentProps> {
-  public render() {
+  public render(): React.ReactNode {
     const { askedQuestions, currentQuestion } = this.props;
 
     const rows: JSX.Element[] = [];

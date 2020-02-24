@@ -31,9 +31,13 @@ function mapStateToProps(state: State): ReduxProps {
   };
 }
 
-type ComponentProps = ReduxProps & RouteComponentProps<any>;
+type ComponentProps = ReduxProps &
+  RouteComponentProps<{ counterId?: string; packId?: string }>;
 
-function makeStudyPackDomLink(localization: Localization, packId: string) {
+function makeStudyPackDomLink(
+  localization: Localization,
+  packId: string
+): React.ReactNode {
   const studyPack = STUDY_PACK_LOOKUP[packId];
   return (
     <NavLink
@@ -47,8 +51,17 @@ function makeStudyPackDomLink(localization: Localization, packId: string) {
   );
 }
 
+function assertParamDefined<
+  TKey extends keyof ComponentProps["match"]["params"],
+  TType extends ComponentProps["match"]["params"][TKey]
+>(key: TKey, param: TType): asserts param is Exclude<TType, undefined> {
+  if (!param) {
+    throw new Error(`Param '${key}' is required.`);
+  }
+}
+
 class BreadcrumbBar extends React.PureComponent<ComponentProps> {
-  public render() {
+  public render(): React.ReactNode {
     const { localization, location, match } = this.props;
 
     const links: React.ReactNode[] = [
@@ -59,8 +72,8 @@ class BreadcrumbBar extends React.PureComponent<ComponentProps> {
 
     switch (match.path) {
       case EXPLORE_STUDY_PACK_PATH: {
-        const packId: string = match.params.packId;
-        links.push(makeStudyPackDomLink(localization, packId));
+        assertParamDefined("packId", match.params.packId);
+        links.push(makeStudyPackDomLink(localization, match.params.packId));
         break;
       }
       case EXPLORE_COUNTER_PATH: {
@@ -70,8 +83,8 @@ class BreadcrumbBar extends React.PureComponent<ComponentProps> {
           );
         }
 
-        const counterId: string = match.params.counterId;
-        const counter = COUNTERS_LOOKUP[counterId];
+        assertParamDefined("counterId", match.params.counterId);
+        const counter = COUNTERS_LOOKUP[match.params.counterId];
         links.push(
           <NavLink key={EXPLORE_COUNTER_PATH} exact={true} to={location}>
             {localization.pageExploreCounter}{" "}

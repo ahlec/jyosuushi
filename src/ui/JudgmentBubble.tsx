@@ -36,7 +36,7 @@ interface ComponentProps {
 export default class JudgmentBubble extends React.PureComponent<
   ComponentProps
 > {
-  public render() {
+  public render(): React.ReactNode {
     const { judgment, shape } = this.props;
 
     let contents: React.ReactNode;

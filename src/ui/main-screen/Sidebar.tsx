@@ -39,7 +39,7 @@ function mapStateToProps(state: State): ReduxProps {
 type ComponentProps = ReduxProps;
 
 class Sidebar extends React.Component<ComponentProps> {
-  public render() {
+  public render(): React.ReactNode {
     return (
       <div className="Sidebar">
         {ORDERED_SIDEBAR_PAGES.map(this.renderLink)}
@@ -47,7 +47,7 @@ class Sidebar extends React.Component<ComponentProps> {
     );
   }
 
-  private renderLink = (page: PageDefinition) => {
+  private renderLink = (page: PageDefinition): React.ReactNode => {
     const { localization } = this.props;
     const { icon: Icon, getName, path } = page;
     return (

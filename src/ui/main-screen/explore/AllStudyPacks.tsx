@@ -24,7 +24,7 @@ function mapStateToProps(state: State): ReduxProps {
 }
 
 class AllStudyPacks extends React.PureComponent<ReduxProps> {
-  public render() {
+  public render(): React.ReactNode {
     return (
       <div className="AllStudyPacks">
         <h3>Study Packs</h3>
@@ -33,7 +33,7 @@ class AllStudyPacks extends React.PureComponent<ReduxProps> {
     );
   }
 
-  private renderStudyPack = (studyPack: StudyPack) => {
+  private renderStudyPack = (studyPack: StudyPack): React.ReactNode => {
     const { localization } = this.props;
 
     return (

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // Changes from Jyosuushi v2.2.0 -> v2.3.0:
 //   - Added settings.infiniteMode
 //   - Converted `quizState` from a string to an object
@@ -25,7 +26,7 @@ const AMOUNT_RANGE_STRINGS: ReadonlyArray<string> = [
   "large"
 ];
 
-function convertCounterId(counterId: string) {
+function convertCounterId(counterId: string): string {
   return CONVERTED_COUNTER_IDS[counterId] || counterId;
 }
 

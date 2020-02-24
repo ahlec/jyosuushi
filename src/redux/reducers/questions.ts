@@ -115,17 +115,25 @@ export default function questionsReducer(
     }
     case "next-question": {
       const [next, ...rest] = state.queue;
+      if (!state.currentQuestion) {
+        return state;
+      }
+
       return {
-        asked: [...state.asked, state.currentQuestion!],
+        asked: [...state.asked, state.currentQuestion],
         currentQuestion: makeQuestion(next, state.enabledCounters),
         enabledCounters: state.enabledCounters,
         queue: rest
       };
     }
     case "ignore-last-answer": {
+      if (!state.currentQuestion) {
+        return state;
+      }
+
       const pending: PendingQuestion = {
-        itemId: state.currentQuestion!.itemId,
-        possibleAmounts: state.currentQuestion!.possibleAmounts
+        itemId: state.currentQuestion.itemId,
+        possibleAmounts: state.currentQuestion.possibleAmounts
       };
       const insertIndex = random(0, state.queue.length - 1);
       const queue = [...state.queue];
