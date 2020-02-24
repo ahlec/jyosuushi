@@ -329,6 +329,16 @@ function applyUniqueChanges(
   return flatten(results);
 }
 
+const TYPICAL_COUNTING_CONJUGATION_OPTIONS: NumericConjugationOptions = {
+  allowsKuFor9: false,
+  allowsKyuuFor9: true,
+  allowsNanaFor7: true,
+  allowsShiFor4: false,
+  allowsShichiFor7: false,
+  allowsYoFor4: false,
+  allowsYonFor4: true
+};
+
 function conjugateNumberInternal(
   amount: number,
   options: NumericConjugationOptions,
@@ -338,7 +348,13 @@ function conjugateNumberInternal(
   const breakdown = breakDownNumber(amount);
 
   if (breakdown.oku) {
-    chunks.push(conjugateNumberInternal(breakdown.oku, options, OMIT_ONE));
+    chunks.push(
+      conjugateNumberInternal(
+        breakdown.oku,
+        TYPICAL_COUNTING_CONJUGATION_OPTIONS,
+        OMIT_ONE
+      )
+    );
 
     const change =
       finalNumberChanges &&
@@ -348,7 +364,13 @@ function conjugateNumberInternal(
   }
 
   if (breakdown.man) {
-    chunks.push(conjugateNumberInternal(breakdown.man, options, OMIT_ONE));
+    chunks.push(
+      conjugateNumberInternal(
+        breakdown.man,
+        TYPICAL_COUNTING_CONJUGATION_OPTIONS,
+        OMIT_ONE
+      )
+    );
 
     const change =
       finalNumberChanges &&
@@ -358,7 +380,13 @@ function conjugateNumberInternal(
   }
 
   if (breakdown.sen) {
-    chunks.push(conjugateNumberInternal(breakdown.sen, options, SEN_CHANGES));
+    chunks.push(
+      conjugateNumberInternal(
+        breakdown.sen,
+        TYPICAL_COUNTING_CONJUGATION_OPTIONS,
+        SEN_CHANGES
+      )
+    );
 
     const senBreakdown = breakDownNumber(breakdown.sen);
     const change =
@@ -375,7 +403,11 @@ function conjugateNumberInternal(
 
   if (breakdown.hyaku) {
     chunks.push(
-      conjugateNumberInternal(breakdown.hyaku, options, HYAKU_CHANGES)
+      conjugateNumberInternal(
+        breakdown.hyaku,
+        TYPICAL_COUNTING_CONJUGATION_OPTIONS,
+        HYAKU_CHANGES
+      )
     );
 
     const hyakuBreakdown = breakDownNumber(breakdown.hyaku);
@@ -406,7 +438,13 @@ function conjugateNumberInternal(
   }
 
   if (breakdown.jyuu) {
-    chunks.push(conjugateNumberInternal(breakdown.jyuu, options, OMIT_ONE));
+    chunks.push(
+      conjugateNumberInternal(
+        breakdown.jyuu,
+        TYPICAL_COUNTING_CONJUGATION_OPTIONS,
+        OMIT_ONE
+      )
+    );
 
     const change =
       finalNumberChanges &&
