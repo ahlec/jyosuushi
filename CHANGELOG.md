@@ -1,3 +1,13 @@
+### v2.5.1
+
+Bug Fixes:
+
+- Fixed a bug where counters that used alternative readings (such as 人 allow for 4 to be read as "よ") would incorrectly apply this change elsewhere in the number (producing readings like よじゅうよにん instead of よ**ん**じゅうよにん).
+
+Developer Changes:
+
+- Migrated from TSLint to ESLint.
+
 ### v2.5.0
 
 New Features:
