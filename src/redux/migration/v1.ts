@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-explicit-any,@typescript-eslint/no-unused-vars */
 // Changes from Jyosuushi v2.2.0 -> v2.3.0:
 //   - Added settings.infiniteMode
 //   - Converted `quizState` from a string to an object
