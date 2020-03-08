@@ -8,12 +8,7 @@ import {
 } from "../database/schemas";
 import ValidatedDataSource from "../database/ValidatedDataSource";
 
-import {
-  Counter,
-  CounterDisambiguation,
-  ExternalLink,
-  CounterReading
-} from "../../src/interfaces";
+import { Counter, ExternalLink, CounterReading } from "../../src/interfaces";
 
 import {
   getCounterId,
@@ -22,6 +17,10 @@ import {
   ProductionVariable,
   getWordOrigin
 } from "./utils";
+
+type ProtoCounter = Omit<Counter, "disambiguations"> & {
+  disambiguations: { [counterId: string]: ProductionVariable };
+};
 
 function convertToProductionExternalLink(
   db: DbCounterExternalLink
@@ -39,8 +38,8 @@ function convertToProductionExternalLink(
 function convertToProductionDisambiguations(
   counterId: string,
   disambiguations: ReadonlyArray<DbCounterDisambiguation>
-): { [counterId: string]: CounterDisambiguation } {
-  const lookup: { [counterId: string]: any } = {};
+): { [counterId: string]: ProductionVariable } {
+  const lookup: { [counterId: string]: ProductionVariable } = {};
 
   for (const disambiguation of disambiguations) {
     lookup[
@@ -101,7 +100,7 @@ export default function writeCountersFile(
       externalLinksLookup[externalLink.counter_id] = [];
     }
 
-    externalLinksLookup[externalLink.counter_id]!.push(externalLink);
+    externalLinksLookup[externalLink.counter_id]?.push(externalLink);
   }
 
   const disambiguationsLookup: {
@@ -112,13 +111,13 @@ export default function writeCountersFile(
       disambiguationsLookup[disambiguation.counter1_id] = [];
     }
 
-    disambiguationsLookup[disambiguation.counter1_id]!.push(disambiguation);
+    disambiguationsLookup[disambiguation.counter1_id]?.push(disambiguation);
 
     if (!disambiguationsLookup[disambiguation.counter2_id]) {
       disambiguationsLookup[disambiguation.counter2_id] = [];
     }
 
-    disambiguationsLookup[disambiguation.counter2_id]!.push(disambiguation);
+    disambiguationsLookup[disambiguation.counter2_id]?.push(disambiguation);
   }
 
   const readingsLookup: {
@@ -129,14 +128,14 @@ export default function writeCountersFile(
       readingsLookup[reading.counter_id] = [];
     }
 
-    readingsLookup[reading.counter_id]!.push(reading);
+    readingsLookup[reading.counter_id]?.push(reading);
   }
 
   const sortedCounters = sortBy(dataSource.counters.valid, ["counter_id"]);
   for (const dbCounter of sortedCounters) {
     const variableName = getCounterId(dbCounter.counter_id);
 
-    const counter: Counter = {
+    const counter: ProtoCounter = {
       counterId: dbCounter.counter_id,
       disambiguations: convertToProductionDisambiguations(
         dbCounter.counter_id,

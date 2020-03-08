@@ -26,7 +26,7 @@ function appendInvalidEntries<TSchema extends Schemas>(
   schema: TSchema,
   dbEntries: ReadonlyArray<InvalidResultEntry<SchemaEntryTypes[TSchema]>>,
   arr: InvalidEntry[]
-) {
+): void {
   for (const dbEntry of dbEntries) {
     const auditableReasons = dbEntry.reasons.filter(
       ({ showsInAudit }) => showsInAudit
@@ -41,7 +41,7 @@ function appendInvalidEntries<TSchema extends Schemas>(
   }
 }
 
-function printInvalidEntry(entry: InvalidEntry) {
+function printInvalidEntry(entry: InvalidEntry): void {
   const firstLine = [
     ` * [${chalk.cyan(entry.schema)}]`,
     ...entry.id.map(({ name, value }) => `[${name}: ${chalk.cyan(value)}]`)
@@ -70,7 +70,7 @@ function printInvalidEntry(entry: InvalidEntry) {
   }
 }
 
-async function main() {
+async function main(): Promise<void> {
   const db = await Database.open();
   const validated = await ValidatedDataSource.validate(db);
   await db.close();
