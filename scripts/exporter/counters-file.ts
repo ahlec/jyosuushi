@@ -4,11 +4,17 @@ import { Writable } from "stream";
 import {
   DbCounterDisambiguation,
   DbCounterExternalLink,
-  DbCounterReading
+  DbCounterReading,
+  DbCounterAlternativeKanji
 } from "../database/schemas";
 import ValidatedDataSource from "../database/ValidatedDataSource";
 
-import { Counter, ExternalLink, CounterReading } from "../../src/interfaces";
+import {
+  Counter,
+  ExternalLink,
+  CounterReading,
+  CounterKanjiInfo
+} from "../../src/interfaces";
 
 import {
   getCounterId,
@@ -18,8 +24,13 @@ import {
   getWordOrigin
 } from "./utils";
 
-type ProtoCounter = Omit<Counter, "disambiguations"> & {
+type ProtoCounterReading = Omit<CounterReading, "wordOrigin"> & {
+  wordOrigin: ProductionVariable;
+};
+
+type ProtoCounter = Omit<Counter, "disambiguations" | "readings"> & {
   disambiguations: { [counterId: string]: ProductionVariable };
+  readings: ReadonlyArray<ProtoCounterReading>;
 };
 
 function convertToProductionExternalLink(
@@ -60,7 +71,7 @@ function convertToProductionDisambiguations(
 function convertToProductionReading(
   counterId: string,
   dbReading: DbCounterReading
-): CounterReading {
+): ProtoCounterReading {
   return {
     counterId,
     irregulars: {
@@ -78,10 +89,19 @@ function convertToProductionReading(
       allowsYoFor4: !!dbReading.kango_uses_yo,
       allowsYonFor4: !!dbReading.kango_uses_yon
     },
-    kanji: dbReading.kanji ? dbReading.kanji : null, // Handle empty string
     readingId: dbReading.reading_id,
     usesWagoForCountingThrough: dbReading.wago_range_end_inclusive,
     wordOrigin: getWordOrigin(dbReading.word_origin)
+  };
+}
+
+function convertToProductionKanji(
+  primaryKanji: string,
+  alternativeKanji: ReadonlyArray<DbCounterAlternativeKanji>
+): CounterKanjiInfo {
+  return {
+    additionalKanji: alternativeKanji.map(({ kanji }) => kanji),
+    primaryKanji
   };
 }
 
@@ -89,7 +109,7 @@ export default function writeCountersFile(
   stream: Writable,
   dataSource: ValidatedDataSource
 ): void {
-  stream.write('import { Counter } from "../src/interfaces";\n');
+  stream.write('import { Counter, WordOrigin } from "../src/interfaces";\n');
   stream.write('import * as DISAMBIGUATIONS from "./disambiguations";');
 
   const externalLinksLookup: {
@@ -131,6 +151,17 @@ export default function writeCountersFile(
     readingsLookup[reading.counter_id]?.push(reading);
   }
 
+  const alternativeKanjiLookup: {
+    [counterId: string]: DbCounterAlternativeKanji[] | undefined;
+  } = {};
+  for (const alternative of dataSource.counter_alternative_kanji.valid) {
+    if (!alternativeKanjiLookup[alternative.counter_id]) {
+      alternativeKanjiLookup[alternative.counter_id] = [];
+    }
+
+    alternativeKanjiLookup[alternative.counter_id]?.push(alternative);
+  }
+
   const sortedCounters = sortBy(dataSource.counters.valid, ["counter_id"]);
   for (const dbCounter of sortedCounters) {
     const variableName = getCounterId(dbCounter.counter_id);
@@ -145,6 +176,12 @@ export default function writeCountersFile(
       externalLinks: (externalLinksLookup[dbCounter.counter_id] || []).map(
         convertToProductionExternalLink
       ),
+      kanji: dbCounter.primary_kanji
+        ? convertToProductionKanji(
+            dbCounter.primary_kanji,
+            alternativeKanjiLookup[dbCounter.counter_id] || []
+          )
+        : null,
       notes: dbCounter.notes ? dbCounter.notes : null, // Handle empty string
       readings: (readingsLookup[dbCounter.counter_id] || []).map(reading =>
         convertToProductionReading(dbCounter.counter_id, reading)

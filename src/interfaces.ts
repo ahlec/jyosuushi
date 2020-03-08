@@ -24,7 +24,6 @@ export interface CounterReading {
   irregulars: { [amount: number]: ReadonlyArray<string> };
   kana: string;
   kangoConjugationOptions: KangoConjugationOptions;
-  kanji: string | null;
   readingId: string;
 
   /**
@@ -42,9 +41,15 @@ export interface CounterReading {
   wordOrigin: WordOrigin;
 }
 
+export interface CounterKanjiInfo {
+  primaryKanji: string;
+  additionalKanji: ReadonlyArray<string>;
+}
+
 export interface Counter {
   counterId: string;
   englishName: string;
+  kanji: CounterKanjiInfo | null;
   readings: ReadonlyArray<CounterReading>;
   notes: string | null;
   externalLinks: ReadonlyArray<ExternalLink>;

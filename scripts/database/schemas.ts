@@ -33,7 +33,6 @@ export interface DbCounterReading {
   reading_id: string;
   word_origin: DbWordOrigin;
   kana: string;
-  kanji: string | null;
   wago_range_end_inclusive: number | null;
   kango_uses_yon: DbBoolean;
   kango_uses_yo: DbBoolean;
@@ -44,10 +43,16 @@ export interface DbCounterReading {
   kango_uses_ku: DbBoolean;
 }
 
+export interface DbCounterAlternativeKanji {
+  counter_id: string;
+  kanji: string;
+}
+
 export interface DbCounter {
   counter_id: string;
   english_name: string;
   notes: string | null;
+  primary_kanji: string | null;
 }
 
 export interface DbEnumWagoRange {
@@ -86,6 +91,7 @@ export interface DbStudyPack {
 
 export enum Schemas {
   CounterAdditionalReadings = "counter_additional_readings",
+  CounterAlternativeKanji = "counter_alternative_kanji",
   CounterDisambiguations = "counter_disambiguations",
   CounterExternalLinks = "counter_external_links",
   CounterIrregulars = "counter_irregulars",
@@ -107,6 +113,7 @@ export interface SchemaEntryTypes {
   [Schemas.CounterDisambiguations]: DbCounterDisambiguation;
   [Schemas.CounterExternalLinks]: DbCounterExternalLink;
   [Schemas.CounterIrregulars]: DbCounterIrregular;
+  [Schemas.CounterAlternativeKanji]: DbCounterAlternativeKanji;
   [Schemas.CounterReadings]: DbCounterReading;
   [Schemas.Counters]: DbCounter;
   [EnumSchemas.EnumWagoRange]: DbEnumWagoRange;
@@ -130,6 +137,10 @@ export const ENTRY_IDENTIFIERS_RETRIEVER: {
   [Schemas.CounterAdditionalReadings]: entry => [
     { name: "counter_id", value: entry.counter_id },
     { name: "kana", value: entry.kana }
+  ],
+  [Schemas.CounterAlternativeKanji]: entry => [
+    { name: "counter_id", value: entry.counter_id },
+    { name: "kanji", value: entry.kanji }
   ],
   [Schemas.CounterDisambiguations]: entry => [
     { name: "counter1_id", value: entry.counter1_id },

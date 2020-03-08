@@ -2,7 +2,7 @@
 // This file was built using `yarn build-data` from the SQLite database.
 // Modifications will be lost if they are made manually and not through the database.
 
-import { Counter } from "../src/interfaces";
+import { Counter, WordOrigin } from "../src/interfaces";
 import * as DISAMBIGUATIONS from "./disambiguations";
 
 export const COUNTER_ヶ国: Counter = {
@@ -10,6 +10,10 @@ export const COUNTER_ヶ国: Counter = {
   disambiguations: {},
   englishName: "countries",
   externalLinks: [],
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "ヶ国"
+  },
   notes: null,
   readings: [
     {
@@ -25,10 +29,9 @@ export const COUNTER_ヶ国: Counter = {
         allowsYoFor4: false,
         allowsYonFor4: true
       },
-      kanji: "ヶ国",
       readingId: "かこく",
       usesWagoForCountingThrough: null,
-      wordOrigin: "chinese"
+      wordOrigin: WordOrigin.Chinese
     }
   ]
 };
@@ -38,6 +41,10 @@ export const COUNTER_ヶ所: Counter = {
   disambiguations: {},
   englishName: "places",
   externalLinks: [],
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "ヶ所"
+  },
   notes: null,
   readings: [
     {
@@ -53,10 +60,9 @@ export const COUNTER_ヶ所: Counter = {
         allowsYoFor4: false,
         allowsYonFor4: true
       },
-      kanji: "ヶ所",
       readingId: "かしょ",
       usesWagoForCountingThrough: null,
-      wordOrigin: "chinese"
+      wordOrigin: WordOrigin.Chinese
     }
   ]
 };
@@ -73,6 +79,10 @@ export const COUNTER_ヶ月: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-tsuki-gatsu-getsu/"
     }
   ],
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "ヶ月"
+  },
   notes: null,
   readings: [
     {
@@ -88,10 +98,9 @@ export const COUNTER_ヶ月: Counter = {
         allowsYoFor4: false,
         allowsYonFor4: true
       },
-      kanji: "ヶ月",
       readingId: "かげつ",
       usesWagoForCountingThrough: null,
-      wordOrigin: "chinese"
+      wordOrigin: WordOrigin.Chinese
     }
   ]
 };
@@ -110,6 +119,10 @@ export const COUNTER_人: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-nin/"
     }
   ],
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "人"
+  },
   notes: null,
   readings: [
     {
@@ -125,10 +138,9 @@ export const COUNTER_人: Counter = {
         allowsYoFor4: true,
         allowsYonFor4: false
       },
-      kanji: "人",
       readingId: "にん",
       usesWagoForCountingThrough: null,
-      wordOrigin: "japanese"
+      wordOrigin: WordOrigin.Japanese
     }
   ]
 };
@@ -138,6 +150,10 @@ export const COUNTER_件: Counter = {
   disambiguations: {},
   englishName: "matters",
   externalLinks: [],
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "件"
+  },
   notes: null,
   readings: [
     {
@@ -153,10 +169,9 @@ export const COUNTER_件: Counter = {
         allowsYoFor4: false,
         allowsYonFor4: true
       },
-      kanji: "件",
       readingId: "けん",
       usesWagoForCountingThrough: null,
-      wordOrigin: "chinese"
+      wordOrigin: WordOrigin.Chinese
     }
   ]
 };
@@ -166,6 +181,10 @@ export const COUNTER_円: Counter = {
   disambiguations: {},
   englishName: "yen",
   externalLinks: [],
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "円"
+  },
   notes: "hello world",
   readings: [
     {
@@ -181,10 +200,9 @@ export const COUNTER_円: Counter = {
         allowsYoFor4: false,
         allowsYonFor4: true
       },
-      kanji: "円",
       readingId: "えん",
       usesWagoForCountingThrough: null,
-      wordOrigin: "chinese"
+      wordOrigin: WordOrigin.Chinese
     }
   ]
 };
@@ -201,6 +219,10 @@ export const COUNTER_冊: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-satsu/"
     }
   ],
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "冊"
+  },
   notes: null,
   readings: [
     {
@@ -216,10 +238,9 @@ export const COUNTER_冊: Counter = {
         allowsYoFor4: false,
         allowsYonFor4: true
       },
-      kanji: "冊",
       readingId: "さつ",
       usesWagoForCountingThrough: null,
-      wordOrigin: "chinese"
+      wordOrigin: WordOrigin.Chinese
     }
   ]
 };
@@ -236,6 +257,10 @@ export const COUNTER_分: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-fun/"
     }
   ],
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "分"
+  },
   notes: null,
   readings: [
     {
@@ -251,10 +276,9 @@ export const COUNTER_分: Counter = {
         allowsYoFor4: false,
         allowsYonFor4: true
       },
-      kanji: "分",
       readingId: "ふん",
       usesWagoForCountingThrough: null,
-      wordOrigin: "chinese"
+      wordOrigin: WordOrigin.Chinese
     }
   ]
 };
@@ -264,6 +288,10 @@ export const COUNTER_切れ: Counter = {
   disambiguations: {},
   englishName: "cuts of meat",
   externalLinks: [],
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "切れ"
+  },
   notes: null,
   readings: [
     {
@@ -279,10 +307,9 @@ export const COUNTER_切れ: Counter = {
         allowsYoFor4: false,
         allowsYonFor4: true
       },
-      kanji: "切れ",
       readingId: "きれ",
       usesWagoForCountingThrough: null,
-      wordOrigin: "japanese"
+      wordOrigin: WordOrigin.Japanese
     }
   ]
 };
@@ -299,6 +326,10 @@ export const COUNTER_匹: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-hiki/"
     }
   ],
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "匹"
+  },
   notes: null,
   readings: [
     {
@@ -314,10 +345,9 @@ export const COUNTER_匹: Counter = {
         allowsYoFor4: false,
         allowsYonFor4: true
       },
-      kanji: "匹",
       readingId: "ひき",
       usesWagoForCountingThrough: null,
-      wordOrigin: "japanese"
+      wordOrigin: WordOrigin.Japanese
     }
   ]
 };
@@ -327,6 +357,10 @@ export const COUNTER_口: Counter = {
   disambiguations: {},
   englishName: "bites",
   externalLinks: [],
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "口"
+  },
   notes: null,
   readings: [
     {
@@ -342,10 +376,9 @@ export const COUNTER_口: Counter = {
         allowsYoFor4: false,
         allowsYonFor4: true
       },
-      kanji: "口",
       readingId: "くち",
       usesWagoForCountingThrough: null,
-      wordOrigin: "japanese"
+      wordOrigin: WordOrigin.Japanese
     }
   ]
 };
@@ -362,6 +395,10 @@ export const COUNTER_台: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-dai/"
     }
   ],
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "台"
+  },
   notes: null,
   readings: [
     {
@@ -377,10 +414,9 @@ export const COUNTER_台: Counter = {
         allowsYoFor4: false,
         allowsYonFor4: true
       },
-      kanji: "台",
       readingId: "だい",
       usesWagoForCountingThrough: null,
-      wordOrigin: "chinese"
+      wordOrigin: WordOrigin.Chinese
     }
   ]
 };
@@ -399,6 +435,10 @@ export const COUNTER_名: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-nin/"
     }
   ],
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "名"
+  },
   notes: null,
   readings: [
     {
@@ -414,10 +454,9 @@ export const COUNTER_名: Counter = {
         allowsYoFor4: false,
         allowsYonFor4: true
       },
-      kanji: "名",
       readingId: "めい",
       usesWagoForCountingThrough: null,
-      wordOrigin: "chinese"
+      wordOrigin: WordOrigin.Chinese
     }
   ]
 };
@@ -427,6 +466,10 @@ export const COUNTER_周: Counter = {
   disambiguations: {},
   englishName: "laps and circuits",
   externalLinks: [],
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "周"
+  },
   notes: null,
   readings: [
     {
@@ -442,10 +485,9 @@ export const COUNTER_周: Counter = {
         allowsYoFor4: false,
         allowsYonFor4: true
       },
-      kanji: "周",
       readingId: "しゅう",
       usesWagoForCountingThrough: null,
-      wordOrigin: "chinese"
+      wordOrigin: WordOrigin.Chinese
     }
   ]
 };
@@ -462,6 +504,10 @@ export const COUNTER_回: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-kai-times/"
     }
   ],
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "回"
+  },
   notes: null,
   readings: [
     {
@@ -477,10 +523,9 @@ export const COUNTER_回: Counter = {
         allowsYoFor4: false,
         allowsYonFor4: true
       },
-      kanji: "回",
       readingId: "かい",
       usesWagoForCountingThrough: null,
-      wordOrigin: "chinese"
+      wordOrigin: WordOrigin.Chinese
     }
   ]
 };
@@ -490,6 +535,10 @@ export const COUNTER_巻: Counter = {
   disambiguations: {},
   englishName: "volumes",
   externalLinks: [],
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "巻"
+  },
   notes: null,
   readings: [
     {
@@ -505,10 +554,9 @@ export const COUNTER_巻: Counter = {
         allowsYoFor4: false,
         allowsYonFor4: true
       },
-      kanji: "巻",
       readingId: "かん",
       usesWagoForCountingThrough: null,
-      wordOrigin: "chinese"
+      wordOrigin: WordOrigin.Chinese
     }
   ]
 };
@@ -518,6 +566,10 @@ export const COUNTER_席: Counter = {
   disambiguations: {},
   englishName: "seats",
   externalLinks: [],
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "席"
+  },
   notes: null,
   readings: [
     {
@@ -533,10 +585,9 @@ export const COUNTER_席: Counter = {
         allowsYoFor4: false,
         allowsYonFor4: true
       },
-      kanji: "席",
       readingId: "せき",
       usesWagoForCountingThrough: null,
-      wordOrigin: "chinese"
+      wordOrigin: WordOrigin.Chinese
     }
   ]
 };
@@ -553,6 +604,10 @@ export const COUNTER_年: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counters-nen/"
     }
   ],
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "年"
+  },
   notes: null,
   readings: [
     {
@@ -568,10 +623,9 @@ export const COUNTER_年: Counter = {
         allowsYoFor4: true,
         allowsYonFor4: false
       },
-      kanji: "年",
       readingId: "ねん",
       usesWagoForCountingThrough: null,
-      wordOrigin: "chinese"
+      wordOrigin: WordOrigin.Chinese
     }
   ]
 };
@@ -581,6 +635,10 @@ export const COUNTER_戦: Counter = {
   disambiguations: {},
   englishName: "battles",
   externalLinks: [],
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "戦"
+  },
   notes: null,
   readings: [
     {
@@ -596,10 +654,9 @@ export const COUNTER_戦: Counter = {
         allowsYoFor4: false,
         allowsYonFor4: true
       },
-      kanji: "戦",
       readingId: "せん",
       usesWagoForCountingThrough: null,
-      wordOrigin: "chinese"
+      wordOrigin: WordOrigin.Chinese
     }
   ]
 };
@@ -616,6 +673,10 @@ export const COUNTER_日: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-ka-nichi/"
     }
   ],
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "日"
+  },
   notes: null,
   readings: [
     {
@@ -631,10 +692,9 @@ export const COUNTER_日: Counter = {
         allowsYoFor4: false,
         allowsYonFor4: true
       },
-      kanji: "日",
       readingId: "にち",
       usesWagoForCountingThrough: null,
-      wordOrigin: "chinese"
+      wordOrigin: WordOrigin.Chinese
     }
   ]
 };
@@ -651,6 +711,10 @@ export const COUNTER_時: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-ji-jikan/"
     }
   ],
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "時"
+  },
   notes: null,
   readings: [
     {
@@ -666,10 +730,9 @@ export const COUNTER_時: Counter = {
         allowsYoFor4: true,
         allowsYonFor4: false
       },
-      kanji: "時",
       readingId: "じ",
       usesWagoForCountingThrough: null,
-      wordOrigin: "chinese"
+      wordOrigin: WordOrigin.Chinese
     }
   ]
 };
@@ -679,6 +742,10 @@ export const COUNTER_曲: Counter = {
   disambiguations: {},
   englishName: "songs",
   externalLinks: [],
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "曲"
+  },
   notes: null,
   readings: [
     {
@@ -694,10 +761,9 @@ export const COUNTER_曲: Counter = {
         allowsYoFor4: false,
         allowsYonFor4: true
       },
-      kanji: "曲",
       readingId: "きょく",
       usesWagoForCountingThrough: null,
-      wordOrigin: "chinese"
+      wordOrigin: WordOrigin.Chinese
     }
   ]
 };
@@ -714,6 +780,10 @@ export const COUNTER_本: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-hon/"
     }
   ],
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "本"
+  },
   notes: null,
   readings: [
     {
@@ -729,10 +799,9 @@ export const COUNTER_本: Counter = {
         allowsYoFor4: false,
         allowsYonFor4: true
       },
-      kanji: "本",
       readingId: "ほん",
       usesWagoForCountingThrough: null,
-      wordOrigin: "chinese"
+      wordOrigin: WordOrigin.Chinese
     }
   ]
 };
@@ -742,6 +811,10 @@ export const COUNTER_束: Counter = {
   disambiguations: {},
   englishName: "bundles",
   externalLinks: [],
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "束"
+  },
   notes: null,
   readings: [
     {
@@ -757,10 +830,9 @@ export const COUNTER_束: Counter = {
         allowsYoFor4: false,
         allowsYonFor4: true
       },
-      kanji: "束",
       readingId: "たば",
       usesWagoForCountingThrough: null,
-      wordOrigin: "japanese"
+      wordOrigin: WordOrigin.Japanese
     }
   ]
 };
@@ -777,6 +849,10 @@ export const COUNTER_枚: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-mai/"
     }
   ],
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "枚"
+  },
   notes: null,
   readings: [
     {
@@ -792,10 +868,9 @@ export const COUNTER_枚: Counter = {
         allowsYoFor4: false,
         allowsYonFor4: true
       },
-      kanji: "枚",
       readingId: "まい",
       usesWagoForCountingThrough: null,
-      wordOrigin: "chinese"
+      wordOrigin: WordOrigin.Chinese
     }
   ]
 };
@@ -805,6 +880,10 @@ export const COUNTER_校: Counter = {
   disambiguations: {},
   englishName: "schools",
   externalLinks: [],
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "校"
+  },
   notes: null,
   readings: [
     {
@@ -820,10 +899,9 @@ export const COUNTER_校: Counter = {
         allowsYoFor4: false,
         allowsYonFor4: true
       },
-      kanji: "校",
       readingId: "こう",
       usesWagoForCountingThrough: null,
-      wordOrigin: "chinese"
+      wordOrigin: WordOrigin.Chinese
     }
   ]
 };
@@ -833,6 +911,10 @@ export const COUNTER_歳: Counter = {
   disambiguations: {},
   englishName: "age",
   externalLinks: [],
+  kanji: {
+    additionalKanji: ["才"],
+    primaryKanji: "歳"
+  },
   notes: null,
   readings: [
     {
@@ -848,10 +930,9 @@ export const COUNTER_歳: Counter = {
         allowsYoFor4: false,
         allowsYonFor4: true
       },
-      kanji: "歳",
       readingId: "さい",
       usesWagoForCountingThrough: null,
-      wordOrigin: "chinese"
+      wordOrigin: WordOrigin.Chinese
     }
   ]
 };
@@ -861,6 +942,10 @@ export const COUNTER_皿: Counter = {
   disambiguations: {},
   englishName: "plates of food",
   externalLinks: [],
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "皿"
+  },
   notes: null,
   readings: [
     {
@@ -876,10 +961,9 @@ export const COUNTER_皿: Counter = {
         allowsYoFor4: false,
         allowsYonFor4: true
       },
-      kanji: "皿",
       readingId: "さら",
       usesWagoForCountingThrough: null,
-      wordOrigin: "japanese"
+      wordOrigin: WordOrigin.Japanese
     }
   ]
 };
@@ -889,6 +973,10 @@ export const COUNTER_社: Counter = {
   disambiguations: {},
   englishName: "companies and temples",
   externalLinks: [],
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "社"
+  },
   notes: null,
   readings: [
     {
@@ -904,10 +992,9 @@ export const COUNTER_社: Counter = {
         allowsYoFor4: false,
         allowsYonFor4: true
       },
-      kanji: "社",
       readingId: "しゃ",
       usesWagoForCountingThrough: null,
-      wordOrigin: "chinese"
+      wordOrigin: WordOrigin.Chinese
     }
   ]
 };
@@ -917,6 +1004,10 @@ export const COUNTER_組: Counter = {
   disambiguations: {},
   englishName: "groups and pairs",
   externalLinks: [],
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "組"
+  },
   notes: null,
   readings: [
     {
@@ -932,10 +1023,9 @@ export const COUNTER_組: Counter = {
         allowsYoFor4: false,
         allowsYonFor4: true
       },
-      kanji: "組",
       readingId: "くみ",
       usesWagoForCountingThrough: null,
-      wordOrigin: "japanese"
+      wordOrigin: WordOrigin.Japanese
     }
   ]
 };
@@ -945,6 +1035,10 @@ export const COUNTER_缶: Counter = {
   disambiguations: {},
   englishName: "cans",
   externalLinks: [],
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "缶"
+  },
   notes: null,
   readings: [
     {
@@ -960,10 +1054,9 @@ export const COUNTER_缶: Counter = {
         allowsYoFor4: false,
         allowsYonFor4: true
       },
-      kanji: "缶",
       readingId: "かん",
       usesWagoForCountingThrough: null,
-      wordOrigin: "chinese"
+      wordOrigin: WordOrigin.Chinese
     }
   ]
 };
@@ -980,6 +1073,10 @@ export const COUNTER_羽: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-wa/"
     }
   ],
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "羽"
+  },
   notes: null,
   readings: [
     {
@@ -995,10 +1092,9 @@ export const COUNTER_羽: Counter = {
         allowsYoFor4: false,
         allowsYonFor4: true
       },
-      kanji: "羽",
       readingId: "わ",
       usesWagoForCountingThrough: null,
-      wordOrigin: "japanese"
+      wordOrigin: WordOrigin.Japanese
     }
   ]
 };
@@ -1008,6 +1104,10 @@ export const COUNTER_色: Counter = {
   disambiguations: {},
   englishName: "colours",
   externalLinks: [],
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "色"
+  },
   notes: null,
   readings: [
     {
@@ -1023,10 +1123,9 @@ export const COUNTER_色: Counter = {
         allowsYoFor4: false,
         allowsYonFor4: true
       },
-      kanji: "色",
       readingId: "しょく",
       usesWagoForCountingThrough: null,
-      wordOrigin: "chinese"
+      wordOrigin: WordOrigin.Chinese
     }
   ]
 };
@@ -1036,6 +1135,10 @@ export const COUNTER_語: Counter = {
   disambiguations: {},
   englishName: "words",
   externalLinks: [],
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "語"
+  },
   notes: null,
   readings: [
     {
@@ -1051,10 +1154,9 @@ export const COUNTER_語: Counter = {
         allowsYoFor4: false,
         allowsYonFor4: true
       },
-      kanji: "語",
       readingId: "ご",
       usesWagoForCountingThrough: null,
-      wordOrigin: "chinese"
+      wordOrigin: WordOrigin.Chinese
     }
   ]
 };
@@ -1064,6 +1166,10 @@ export const COUNTER_足: Counter = {
   disambiguations: {},
   englishName: "pairs of footwear",
   externalLinks: [],
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "足"
+  },
   notes: null,
   readings: [
     {
@@ -1079,10 +1185,9 @@ export const COUNTER_足: Counter = {
         allowsYoFor4: false,
         allowsYonFor4: true
       },
-      kanji: "足",
       readingId: "そく",
       usesWagoForCountingThrough: null,
-      wordOrigin: "chinese"
+      wordOrigin: WordOrigin.Chinese
     }
   ]
 };
@@ -1092,6 +1197,10 @@ export const COUNTER_軒: Counter = {
   disambiguations: {},
   englishName: "houses and buildings",
   externalLinks: [],
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "軒"
+  },
   notes: null,
   readings: [
     {
@@ -1107,10 +1216,9 @@ export const COUNTER_軒: Counter = {
         allowsYoFor4: false,
         allowsYonFor4: true
       },
-      kanji: "軒",
       readingId: "けん",
       usesWagoForCountingThrough: null,
-      wordOrigin: "chinese"
+      wordOrigin: WordOrigin.Chinese
     }
   ]
 };
@@ -1120,6 +1228,10 @@ export const COUNTER_週: Counter = {
   disambiguations: {},
   englishName: "weeks",
   externalLinks: [],
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "週"
+  },
   notes: null,
   readings: [
     {
@@ -1135,10 +1247,9 @@ export const COUNTER_週: Counter = {
         allowsYoFor4: false,
         allowsYonFor4: true
       },
-      kanji: "週",
       readingId: "しゅう",
       usesWagoForCountingThrough: null,
-      wordOrigin: "chinese"
+      wordOrigin: WordOrigin.Chinese
     }
   ]
 };
@@ -1155,6 +1266,10 @@ export const COUNTER_階: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-kai-floors/"
     }
   ],
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "階"
+  },
   notes: null,
   readings: [
     {
@@ -1170,10 +1285,9 @@ export const COUNTER_階: Counter = {
         allowsYoFor4: false,
         allowsYonFor4: true
       },
-      kanji: "階",
       readingId: "かい",
       usesWagoForCountingThrough: null,
-      wordOrigin: "chinese"
+      wordOrigin: WordOrigin.Chinese
     }
   ]
 };
@@ -1190,6 +1304,10 @@ export const COUNTER_頭: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-tou/"
     }
   ],
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "頭"
+  },
   notes: null,
   readings: [
     {
@@ -1205,10 +1323,9 @@ export const COUNTER_頭: Counter = {
         allowsYoFor4: false,
         allowsYonFor4: true
       },
-      kanji: "頭",
       readingId: "とう",
       usesWagoForCountingThrough: null,
-      wordOrigin: "chinese"
+      wordOrigin: WordOrigin.Chinese
     }
   ]
 };

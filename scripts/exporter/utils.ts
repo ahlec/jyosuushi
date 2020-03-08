@@ -1,8 +1,6 @@
 import { escape, isArray } from "lodash";
 import { DbWordOrigin } from "../database/schemas";
 
-import { WordOrigin } from "../../src/interfaces";
-
 function getVariableFromId(prefix: string, id: string): string {
   return prefix + id.toUpperCase().replace(/[-\s,&._()（）ー']+/g, "_");
 }
@@ -29,22 +27,22 @@ export function getDisambiguationId(
   )}${getVariableFromId("", counter2Id)}`;
 }
 
-export function getWordOrigin(dbWordOrigin: DbWordOrigin): WordOrigin {
-  switch (dbWordOrigin) {
-    case "和語": {
-      return WordOrigin.Japanese;
-    }
-    case "漢語": {
-      return WordOrigin.Chinese;
-    }
-    case "外来語": {
-      return WordOrigin.Foreign;
-    }
-  }
-}
-
 export class ProductionVariable {
   public constructor(public readonly id: string) {}
+}
+
+export function getWordOrigin(dbWordOrigin: DbWordOrigin): ProductionVariable {
+  switch (dbWordOrigin) {
+    case "和語": {
+      return new ProductionVariable("WordOrigin.Japanese");
+    }
+    case "漢語": {
+      return new ProductionVariable("WordOrigin.Chinese");
+    }
+    case "外来語": {
+      return new ProductionVariable("WordOrigin.Foreign");
+    }
+  }
 }
 
 export function productionStringify(value: unknown): string {

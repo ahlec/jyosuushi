@@ -11,7 +11,8 @@ import {
   DbStudyPackContent,
   SchemaEntryTypes,
   Schemas,
-  DbCounterReading
+  DbCounterReading,
+  DbCounterAlternativeKanji
 } from "./schemas";
 
 interface Reason {
@@ -181,7 +182,61 @@ function validateCounterReadings(
   }
 
   return {
-    error: [],
+    error,
+    ignored,
+    valid
+  };
+}
+
+function validateCounterAlternativeKanji(
+  snapshot: DatabaseSnapshot,
+  validCounterIds: ReadonlySet<string>
+): ValidatedResult<DbCounterAlternativeKanji> {
+  const valid: DbCounterAlternativeKanji[] = [];
+  const ignored: Array<InvalidResultEntry<DbCounterAlternativeKanji>> = [];
+  const error: Array<InvalidResultEntry<DbCounterAlternativeKanji>> = [];
+
+  const countersWithoutPrimaryKanji = new Set<string>();
+  for (const { counter_id, primary_kanji } of snapshot.counters) {
+    if (primary_kanji) {
+      continue;
+    }
+
+    countersWithoutPrimaryKanji.add(counter_id);
+  }
+
+  for (const entry of snapshot.counter_alternative_kanji) {
+    if (countersWithoutPrimaryKanji.has(entry.counter_id)) {
+      error.push({
+        entry,
+        reasons: [
+          {
+            showsInAudit: true,
+            text: `Counter '${entry.counter_id}' doesn't have a primary kanji but has alternative kanji listed.`
+          }
+        ]
+      });
+    }
+
+    if (!validCounterIds.has(entry.counter_id)) {
+      ignored.push({
+        entry,
+        reasons: [
+          {
+            showsInAudit: false,
+            text: "Counter is not being exported."
+          }
+        ]
+      });
+
+      continue;
+    }
+
+    valid.push(entry);
+  }
+
+  return {
+    error,
     ignored,
     valid
   };
@@ -470,6 +525,10 @@ export default class ValidatedDataSource implements Indexer {
       snapshot.counter_external_links,
       validCounterIds
     );
+    const counter_alternative_kanji = validateCounterAlternativeKanji(
+      snapshot,
+      validCounterIds
+    );
     const counter_irregulars = validateCounterIrregulars(
       snapshot,
       validCounterIds
@@ -490,6 +549,7 @@ export default class ValidatedDataSource implements Indexer {
       counter_disambiguations,
       counter_external_links,
       counter_irregulars,
+      counter_alternative_kanji,
       counter_readings,
       counters,
       item_counters,
@@ -512,6 +572,9 @@ export default class ValidatedDataSource implements Indexer {
       DbCounterExternalLink
     >,
     public readonly counter_irregulars: ValidatedResult<DbCounterIrregular>,
+    public readonly counter_alternative_kanji: ValidatedResult<
+      DbCounterAlternativeKanji
+    >,
     public readonly counter_readings: ValidatedResult<DbCounterReading>,
     public readonly counters: ValidatedResult<DbCounter>,
     public readonly item_counters: ValidatedResult<DbItemCounter>,
