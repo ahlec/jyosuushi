@@ -1,5 +1,5 @@
 import { execSync } from "child_process";
-import { writeFileSync } from "fs";
+import { existsSync, readFileSync, unlinkSync, writeFileSync } from "fs";
 import * as path from "path";
 import { format as formatSql } from "sql-formatter";
 import { Database as SQLiteDatabase, open as openSQLite } from "sqlite";
@@ -37,7 +37,28 @@ type AsyncDatabaseIndexer = {
   >;
 };
 
+const ALL_SCHEMAS: ReadonlyArray<Schemas | EnumSchemas> = [
+  ...Object.values(Schemas),
+  ...Object.values(EnumSchemas)
+];
+
 export default class Database implements AsyncDatabaseIndexer {
+  public static async create(): Promise<Database> {
+    if (existsSync(DATABASE_FILE)) {
+      unlinkSync(DATABASE_FILE);
+    }
+
+    const db = await openSQLite(DATABASE_FILE, { promise: Promise });
+    for (const schema of ALL_SCHEMAS) {
+      const file = path.resolve(SQL_DIRECTORY, `./${schema}.sql`);
+      const sql = readFileSync(file);
+
+      await db.exec(sql.toString());
+    }
+
+    return new Database(db);
+  }
+
   public static async open(): Promise<Database> {
     const db = await openSQLite(DATABASE_FILE, { promise: Promise });
     return new Database(db);
@@ -131,13 +152,7 @@ export default class Database implements AsyncDatabaseIndexer {
   }
 
   public dump(): void {
-    for (const schema of Object.values(Schemas)) {
-      const file = path.resolve(SQL_DIRECTORY, `./${schema}.sql`);
-      const sql = this.dumpTable(schema);
-      writeFileSync(file, sql);
-    }
-
-    for (const schema of Object.values(EnumSchemas)) {
+    for (const schema of ALL_SCHEMAS) {
       const file = path.resolve(SQL_DIRECTORY, `./${schema}.sql`);
       const sql = this.dumpTable(schema);
       writeFileSync(file, sql);

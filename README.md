@@ -66,13 +66,13 @@ All of the data for the application is managed through a SQLite database for eas
 
 The database itself is not committed to the repository because, as a binary file, resolving merge conflicts is nigh impossible. Instead, we store the SQL files for the contents and can rebuild the database at any moment.
 
-When you're working on data, the first step will be updating your local database.
+When you're working on data, the first step will be creating your local database.
 
 ```
-yarn db:update
+yarn db:create
 ```
 
-This will create a local database if you didn't already have one, and will also pull in all of the changes to your database to bring it up to date.
+This will create a local database (deleting the file that was there before, so make sure to **dump** your changes if you had any!) and will also pull in all of the changes to your database to bring it up to date.
 
 You then modify the SQLite database `jyosuushi.sqlite` in the root directory directly. When you have made your changes, you'll then need to run the script to export the data from there into TypeScript.
 

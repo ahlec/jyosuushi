@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
-    "db:update": "node ./scripts/update-database.js",
+    "db:create": "ts-node ./scripts/create-database.ts",
     "db:audit": "ts-node ./scripts/audit-database.ts",
     "db:export": "ts-node ./scripts/exporter/export-data.ts",
     "db:dump": "ts-node ./scripts/dump-database.ts",
