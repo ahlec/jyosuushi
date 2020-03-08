@@ -33,12 +33,6 @@ INSERT INTO
 VALUES('皿', 1, 'ひとさら', 0);
 INSERT INTO
   "counter_irregulars"
-VALUES('品（しな）', 2, 'ふたしな', 0);
-INSERT INTO
-  "counter_irregulars"
-VALUES('品（しな）', 1, 'ひとしな', 0);
-INSERT INTO
-  "counter_irregulars"
 VALUES('席', 2, 'ふたせき', 1);
 INSERT INTO
   "counter_irregulars"

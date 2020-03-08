@@ -4,7 +4,23 @@ import * as path from "path";
 import { format as formatSql } from "sql-formatter";
 import { Database as SQLiteDatabase, open as openSQLite } from "sqlite";
 
-import { SchemaEntryTypes, Schemas } from "./schemas";
+import {
+  SchemaEntryTypes,
+  Schemas,
+  DbCounterAdditionalReading,
+  DbCounterDisambiguation,
+  DbCounterExternalLink,
+  DbCounterIrregular,
+  DbCounterReading,
+  DbCounter,
+  DbEnumWagoRange,
+  DbEnumWordOrigin,
+  DbItemCounter,
+  DbItem,
+  DbStudyPackContent,
+  DbStudyPack,
+  EnumSchemas
+} from "./schemas";
 
 const ROOT_DIRECTORY = path.resolve(__dirname, "../../");
 const RELATIVE_SQL_DIRECTORY = "./sql";
@@ -12,11 +28,13 @@ const SQL_DIRECTORY = path.resolve(ROOT_DIRECTORY, RELATIVE_SQL_DIRECTORY);
 const DATABASE_FILE = path.resolve(ROOT_DIRECTORY, "jyosuushi.sqlite");
 
 export type DatabaseSnapshot = {
-  [schema in Schemas]: ReadonlyArray<SchemaEntryTypes[schema]>;
+  [schema in Schemas | EnumSchemas]: ReadonlyArray<SchemaEntryTypes[schema]>;
 };
 
 type AsyncDatabaseIndexer = {
-  [schema in Schemas]: Promise<ReadonlyArray<SchemaEntryTypes[schema]>>;
+  [schema in Schemas | EnumSchemas]: Promise<
+    ReadonlyArray<SchemaEntryTypes[schema]>
+  >;
 };
 
 export default class Database implements AsyncDatabaseIndexer {
@@ -27,39 +45,57 @@ export default class Database implements AsyncDatabaseIndexer {
 
   private constructor(private readonly connection: SQLiteDatabase) {}
 
-  public get counter_additional_readings() {
+  public get counter_additional_readings(): Promise<
+    ReadonlyArray<DbCounterAdditionalReading>
+  > {
     return this.retrieve(Schemas.CounterAdditionalReadings);
   }
 
-  public get counter_disambiguations() {
+  public get counter_disambiguations(): Promise<
+    ReadonlyArray<DbCounterDisambiguation>
+  > {
     return this.retrieve(Schemas.CounterDisambiguations);
   }
 
-  public get counter_external_links() {
+  public get counter_external_links(): Promise<
+    ReadonlyArray<DbCounterExternalLink>
+  > {
     return this.retrieve(Schemas.CounterExternalLinks);
   }
 
-  public get counter_irregulars() {
+  public get counter_irregulars(): Promise<ReadonlyArray<DbCounterIrregular>> {
     return this.retrieve(Schemas.CounterIrregulars);
   }
 
-  public get counters() {
+  public get counter_readings(): Promise<ReadonlyArray<DbCounterReading>> {
+    return this.retrieve(Schemas.CounterReadings);
+  }
+
+  public get counters(): Promise<ReadonlyArray<DbCounter>> {
     return this.retrieve(Schemas.Counters);
   }
 
-  public get item_counters() {
+  public get enum_wago_range(): Promise<ReadonlyArray<DbEnumWagoRange>> {
+    return this.retrieve(EnumSchemas.EnumWagoRange);
+  }
+
+  public get enum_word_origin(): Promise<ReadonlyArray<DbEnumWordOrigin>> {
+    return this.retrieve(EnumSchemas.EnumWordOrigin);
+  }
+
+  public get item_counters(): Promise<ReadonlyArray<DbItemCounter>> {
     return this.retrieve(Schemas.ItemCounters);
   }
 
-  public get items() {
+  public get items(): Promise<ReadonlyArray<DbItem>> {
     return this.retrieve(Schemas.Items);
   }
 
-  public get study_pack_contents() {
+  public get study_pack_contents(): Promise<ReadonlyArray<DbStudyPackContent>> {
     return this.retrieve(Schemas.StudyPackContents);
   }
 
-  public get study_packs() {
+  public get study_packs(): Promise<ReadonlyArray<DbStudyPack>> {
     return this.retrieve(Schemas.StudyPacks);
   }
 
@@ -94,25 +130,32 @@ export default class Database implements AsyncDatabaseIndexer {
     return false;
   }
 
-  public dump() {
+  public dump(): void {
     for (const schema of Object.values(Schemas)) {
+      const file = path.resolve(SQL_DIRECTORY, `./${schema}.sql`);
+      const sql = this.dumpTable(schema);
+      writeFileSync(file, sql);
+    }
+
+    for (const schema of Object.values(EnumSchemas)) {
       const file = path.resolve(SQL_DIRECTORY, `./${schema}.sql`);
       const sql = this.dumpTable(schema);
       writeFileSync(file, sql);
     }
   }
 
-  public async close() {
+  public async close(): Promise<void> {
     await this.connection.close();
   }
 
-  private retrieve<TSchema extends Schemas, TEntry = SchemaEntryTypes[TSchema]>(
-    schema: TSchema
-  ): Promise<ReadonlyArray<TEntry>> {
+  private retrieve<
+    TSchema extends Schemas | EnumSchemas,
+    TEntry = SchemaEntryTypes[TSchema]
+  >(schema: TSchema): Promise<ReadonlyArray<TEntry>> {
     return this.connection.all(`SELECT * FROM ${schema}`);
   }
 
-  private dumpTable(schema: Schemas): string {
+  private dumpTable(schema: Schemas | EnumSchemas): string {
     const rawSql = execSync(`sqlite3 ${DATABASE_FILE} ".dump '${schema}'"`);
     return formatSql(rawSql.toString());
   }

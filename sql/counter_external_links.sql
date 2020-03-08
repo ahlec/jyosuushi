@@ -73,7 +73,7 @@ VALUES(
 INSERT INTO
   "counter_external_links"
 VALUES(
-    '月',
+    'ヶ月',
     'https://www.tofugu.com/japanese/japanese-counter-tsuki-gatsu-getsu/',
     'Tofugu',
     '月: Counting Months',

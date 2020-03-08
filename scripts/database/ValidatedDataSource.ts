@@ -10,7 +10,8 @@ import {
   DbStudyPack,
   DbStudyPackContent,
   SchemaEntryTypes,
-  Schemas
+  Schemas,
+  DbCounterReading
 } from "./schemas";
 
 interface Reason {
@@ -50,29 +51,13 @@ function validateCounters(
     counterInStudyPack.add(counter_id);
   }
 
+  const counterHasReading = new Set<string>();
+  for (const { counter_id } of snapshot.counter_readings) {
+    counterHasReading.add(counter_id);
+  }
+
   for (const counter of snapshot.counters) {
     const errorReasons: Reason[] = [];
-    if (!counter.uses_yon && !counter.uses_yo && !counter.uses_shi) {
-      errorReasons.push({
-        showsInAudit: true,
-        text: "Counter doesn't use 'yon', 'yo', or 'shi'."
-      });
-    }
-
-    if (!counter.uses_nana && !counter.uses_shichi) {
-      errorReasons.push({
-        showsInAudit: true,
-        text: "Counter doesn't use either 'nana' or 'shichi'."
-      });
-    }
-
-    if (!counter.uses_kyuu && !counter.uses_ku) {
-      errorReasons.push({
-        showsInAudit: true,
-        text: "Counter doesn't use either 'kyuu' or 'ku'."
-      });
-    }
-
     if (
       counterInStudyPack.has(counter.counter_id) &&
       !counterHasItems.has(counter.counter_id)
@@ -80,6 +65,13 @@ function validateCounters(
       errorReasons.push({
         showsInAudit: true,
         text: "Included in a study pack but does not define any items."
+      });
+    }
+
+    if (!counterHasReading.has(counter.counter_id)) {
+      errorReasons.push({
+        showsInAudit: true,
+        text: "Counter does not have any defined readings."
       });
     }
 
@@ -122,6 +114,74 @@ function validateCounters(
 
   return {
     error,
+    ignored,
+    valid
+  };
+}
+
+function validateCounterReadings(
+  snapshot: DatabaseSnapshot,
+  validCounterIds: ReadonlySet<string>
+): ValidatedResult<DbCounterReading> {
+  const valid: DbCounterReading[] = [];
+  const ignored: Array<InvalidResultEntry<DbCounterReading>> = [];
+  const error: Array<InvalidResultEntry<DbCounterReading>> = [];
+
+  for (const counterReading of snapshot.counter_readings) {
+    const errorReasons: Reason[] = [];
+    if (
+      !counterReading.kango_uses_yon &&
+      !counterReading.kango_uses_yo &&
+      !counterReading.kango_uses_shi
+    ) {
+      errorReasons.push({
+        showsInAudit: true,
+        text: "Counter reading doesn't use 'yon', 'yo', or 'shi'."
+      });
+    }
+
+    if (!counterReading.kango_uses_nana && !counterReading.kango_uses_shichi) {
+      errorReasons.push({
+        showsInAudit: true,
+        text: "Counter reading doesn't use either 'nana' or 'shichi'."
+      });
+    }
+
+    if (!counterReading.kango_uses_kyuu && !counterReading.kango_uses_ku) {
+      errorReasons.push({
+        showsInAudit: true,
+        text: "Counter reading doesn't use either 'kyuu' or 'ku'."
+      });
+    }
+
+    if (errorReasons.length) {
+      error.push({
+        entry: counterReading,
+        reasons: errorReasons
+      });
+
+      continue;
+    }
+
+    if (!validCounterIds.has(counterReading.counter_id)) {
+      ignored.push({
+        entry: counterReading,
+        reasons: [
+          {
+            showsInAudit: false,
+            text: "Counter is not being exported."
+          }
+        ]
+      });
+
+      continue;
+    }
+
+    valid.push(counterReading);
+  }
+
+  return {
+    error: [],
     ignored,
     valid
   };
@@ -388,7 +448,9 @@ function validateStudyPacks(
 }
 
 export default class ValidatedDataSource implements Indexer {
-  public static async validate(database: Database) {
+  public static async validate(
+    database: Database
+  ): Promise<ValidatedDataSource> {
     const snapshot = await database.getSnapshot();
 
     const counters = validateCounters(snapshot);
@@ -399,6 +461,7 @@ export default class ValidatedDataSource implements Indexer {
       snapshot.counter_additional_readings,
       validCounterIds
     );
+    const counter_readings = validateCounterReadings(snapshot, validCounterIds);
     const counter_disambiguations = validateCounterDisambiguations(
       snapshot,
       validCounterIds
@@ -427,6 +490,7 @@ export default class ValidatedDataSource implements Indexer {
       counter_disambiguations,
       counter_external_links,
       counter_irregulars,
+      counter_readings,
       counters,
       item_counters,
       items,
@@ -448,6 +512,7 @@ export default class ValidatedDataSource implements Indexer {
       DbCounterExternalLink
     >,
     public readonly counter_irregulars: ValidatedResult<DbCounterIrregular>,
+    public readonly counter_readings: ValidatedResult<DbCounterReading>,
     public readonly counters: ValidatedResult<DbCounter>,
     public readonly item_counters: ValidatedResult<DbItemCounter>,
     public readonly items: ValidatedResult<DbItem>,

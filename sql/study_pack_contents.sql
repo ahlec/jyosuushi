@@ -148,12 +148,6 @@ INSERT INTO
 VALUES('common', '社');
 INSERT INTO
   "study_pack_contents"
-VALUES('common', '品（しな）');
-INSERT INTO
-  "study_pack_contents"
-VALUES('common', '品（ひん）');
-INSERT INTO
-  "study_pack_contents"
 VALUES('common', '足');
 INSERT INTO
   "study_pack_contents"

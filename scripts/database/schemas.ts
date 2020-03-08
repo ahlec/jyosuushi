@@ -1,4 +1,5 @@
 export type DbBoolean = 0 | 1;
+export type DbWordOrigin = "和語" | "漢語" | "外来語";
 
 export interface DbCounterAdditionalReading {
   counter_id: string;
@@ -27,19 +28,34 @@ export interface DbCounterIrregular {
   nonstandard: DbBoolean;
 }
 
+export interface DbCounterReading {
+  counter_id: string;
+  reading_id: string;
+  word_origin: DbWordOrigin;
+  kana: string;
+  kanji: string | null;
+  wago_range_end_inclusive: number | null;
+  kango_uses_yon: DbBoolean;
+  kango_uses_yo: DbBoolean;
+  kango_uses_shi: DbBoolean;
+  kango_uses_nana: DbBoolean;
+  kango_uses_shichi: DbBoolean;
+  kango_uses_kyuu: DbBoolean;
+  kango_uses_ku: DbBoolean;
+}
+
 export interface DbCounter {
   counter_id: string;
   english_name: string;
-  kana: string;
-  kanji: string | null;
-  uses_yon: DbBoolean;
-  uses_yo: DbBoolean;
-  uses_shi: DbBoolean;
-  uses_nana: DbBoolean;
-  uses_shichi: DbBoolean;
-  uses_kyuu: DbBoolean;
-  uses_ku: DbBoolean;
   notes: string | null;
+}
+
+export interface DbEnumWagoRange {
+  range_end_inclusive: number;
+}
+
+export interface DbEnumWordOrigin {
+  word_origin: string;
 }
 
 export interface DbItemCounter {
@@ -73,6 +89,7 @@ export enum Schemas {
   CounterDisambiguations = "counter_disambiguations",
   CounterExternalLinks = "counter_external_links",
   CounterIrregulars = "counter_irregulars",
+  CounterReadings = "counter_readings",
   Counters = "counters",
   ItemCounters = "item_counters",
   Items = "items",
@@ -80,12 +97,20 @@ export enum Schemas {
   StudyPacks = "study_packs"
 }
 
+export enum EnumSchemas {
+  EnumWagoRange = "enum_wago_range",
+  EnumWordOrigin = "enum_word_origin"
+}
+
 export interface SchemaEntryTypes {
   [Schemas.CounterAdditionalReadings]: DbCounterAdditionalReading;
   [Schemas.CounterDisambiguations]: DbCounterDisambiguation;
   [Schemas.CounterExternalLinks]: DbCounterExternalLink;
   [Schemas.CounterIrregulars]: DbCounterIrregular;
+  [Schemas.CounterReadings]: DbCounterReading;
   [Schemas.Counters]: DbCounter;
+  [EnumSchemas.EnumWagoRange]: DbEnumWagoRange;
+  [EnumSchemas.EnumWordOrigin]: DbEnumWordOrigin;
   [Schemas.ItemCounters]: DbItemCounter;
   [Schemas.Items]: DbItem;
   [Schemas.StudyPackContents]: DbStudyPackContent;
@@ -118,6 +143,10 @@ export const ENTRY_IDENTIFIERS_RETRIEVER: {
     { name: "counter_id", value: entry.counter_id },
     { name: "number", value: entry.number.toString() },
     { name: "kana", value: entry.kana }
+  ],
+  [Schemas.CounterReadings]: entry => [
+    { name: "counter_id", value: entry.counter_id },
+    { name: "reading_id", value: entry.reading_id }
   ],
   [Schemas.Counters]: entry => [
     { name: "counter_id", value: entry.counter_id }
