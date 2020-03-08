@@ -11,7 +11,7 @@
     "db:export": "ts-node ./scripts/exporter/export-data.ts",
     "db:dump": "ts-node ./scripts/dump-database.ts",
     "clean": "rimraf ./build",
-    "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
+    "lint": "eslint \"./{src,scripts}/**/*.{js,jsx,ts,tsx}\"",
     "favicon": "rimraf ./favicons && real-favicon generate faviconDescription.json faviconData.json favicons"
   },
   "devDependencies": {
