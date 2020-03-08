@@ -1,4 +1,4 @@
-import { NumericConjugationOptions } from "./japanese/interfaces";
+import { KangoConjugationOptions } from "./japanese/interfaces";
 
 export interface ExternalLink {
   url: string;
@@ -13,13 +13,39 @@ export interface CounterDisambiguation {
   disambiguation: string;
 }
 
+export enum WordOrigin {
+  Japanese = "japanese",
+  Chinese = "chinese",
+  Foreign = "foreign"
+}
+
+export interface CounterReading {
+  counterId: string;
+  irregulars: { [amount: number]: ReadonlyArray<string> };
+  kana: string;
+  kangoConjugationOptions: KangoConjugationOptions;
+  kanji: string | null;
+  readingId: string;
+
+  /**
+   * The number (inclusive) through which this counter will
+   * use wago counting as opposed to kango counting. The
+   * range for counting always begins with 1, and it can be
+   * expected that this number will always be less than or
+   * equal to 10 (at most). Usages of wago beyond 10, if
+   * even possible, will be marked as an irregular reading.
+   *
+   * If this counter doesn't use wago counting at all, this
+   * will be null.
+   */
+  usesWagoForCountingThrough: number | null;
+  wordOrigin: WordOrigin;
+}
+
 export interface Counter {
   counterId: string;
   englishName: string;
-  kana: string;
-  kanji: string | null;
-  conjugationOptions: NumericConjugationOptions;
-  irregulars: { [amount: number]: ReadonlyArray<string> };
+  readings: ReadonlyArray<CounterReading>;
   notes: string | null;
   externalLinks: ReadonlyArray<ExternalLink>;
   disambiguations: { [counterId: string]: CounterDisambiguation | undefined };

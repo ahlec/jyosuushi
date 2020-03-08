@@ -4,21 +4,23 @@ import { Writable } from "stream";
 import {
   DbCounterDisambiguation,
   DbCounterExternalLink,
-  DbCounterIrregular
+  DbCounterReading
 } from "../database/schemas";
 import ValidatedDataSource from "../database/ValidatedDataSource";
 
 import {
   Counter,
   CounterDisambiguation,
-  ExternalLink
+  ExternalLink,
+  CounterReading
 } from "../../src/interfaces";
 
 import {
   getCounterId,
   getDisambiguationId,
   productionStringify,
-  ProductionVariable
+  ProductionVariable,
+  getWordOrigin
 } from "./utils";
 
 function convertToProductionExternalLink(
@@ -56,23 +58,38 @@ function convertToProductionDisambiguations(
   return lookup;
 }
 
-function convertToProductionIrregulars(irregulars: {
-  [amount: number]: DbCounterIrregular[] | undefined;
-}): { [amount: number]: ReadonlyArray<string> } {
-  const production: { [amount: number]: string[] } = {};
-
-  for (const amountStr of Object.keys(irregulars)) {
-    const amount = parseInt(amountStr, 10);
-    production[amount] = irregulars[amount]!.map(({ kana }) => kana);
-  }
-
-  return production;
+function convertToProductionReading(
+  counterId: string,
+  dbReading: DbCounterReading
+): CounterReading {
+  return {
+    counterId,
+    irregulars: {
+      /**
+       * TODO!!
+       */
+    },
+    kana: dbReading.kana,
+    kangoConjugationOptions: {
+      allowsKuFor9: !!dbReading.kango_uses_ku,
+      allowsKyuuFor9: !!dbReading.kango_uses_kyuu,
+      allowsNanaFor7: !!dbReading.kango_uses_nana,
+      allowsShiFor4: !!dbReading.kango_uses_shi,
+      allowsShichiFor7: !!dbReading.kango_uses_shichi,
+      allowsYoFor4: !!dbReading.kango_uses_yo,
+      allowsYonFor4: !!dbReading.kango_uses_yon
+    },
+    kanji: dbReading.kanji ? dbReading.kanji : null, // Handle empty string
+    readingId: dbReading.reading_id,
+    usesWagoForCountingThrough: dbReading.wago_range_end_inclusive,
+    wordOrigin: getWordOrigin(dbReading.word_origin)
+  };
 }
 
 export default function writeCountersFile(
   stream: Writable,
   dataSource: ValidatedDataSource
-) {
+): void {
   stream.write('import { Counter } from "../src/interfaces";\n');
   stream.write('import * as DISAMBIGUATIONS from "./disambiguations";');
 
@@ -104,21 +121,15 @@ export default function writeCountersFile(
     disambiguationsLookup[disambiguation.counter2_id]!.push(disambiguation);
   }
 
-  const irregularsLookup: {
-    [counterId: string]:
-      | { [amount: number]: DbCounterIrregular[] | undefined }
-      | undefined;
+  const readingsLookup: {
+    [counterId: string]: DbCounterReading[] | undefined;
   } = {};
-  for (const irregular of dataSource.counter_irregulars.valid) {
-    if (!irregularsLookup[irregular.counter_id]) {
-      irregularsLookup[irregular.counter_id] = {};
+  for (const reading of dataSource.counter_readings.valid) {
+    if (!readingsLookup[reading.counter_id]) {
+      readingsLookup[reading.counter_id] = [];
     }
 
-    if (!irregularsLookup[irregular.counter_id]![irregular.number]) {
-      irregularsLookup[irregular.counter_id]![irregular.number] = [];
-    }
-
-    irregularsLookup[irregular.counter_id]![irregular.number]!.push(irregular);
+    readingsLookup[reading.counter_id]!.push(reading);
   }
 
   const sortedCounters = sortBy(dataSource.counters.valid, ["counter_id"]);
@@ -126,15 +137,6 @@ export default function writeCountersFile(
     const variableName = getCounterId(dbCounter.counter_id);
 
     const counter: Counter = {
-      conjugationOptions: {
-        allowsKuFor9: !!dbCounter.uses_ku,
-        allowsKyuuFor9: !!dbCounter.uses_kyuu,
-        allowsNanaFor7: !!dbCounter.uses_nana,
-        allowsShiFor4: !!dbCounter.uses_shi,
-        allowsShichiFor7: !!dbCounter.uses_shichi,
-        allowsYoFor4: !!dbCounter.uses_yo,
-        allowsYonFor4: !!dbCounter.uses_yon
-      },
       counterId: dbCounter.counter_id,
       disambiguations: convertToProductionDisambiguations(
         dbCounter.counter_id,
@@ -144,12 +146,10 @@ export default function writeCountersFile(
       externalLinks: (externalLinksLookup[dbCounter.counter_id] || []).map(
         convertToProductionExternalLink
       ),
-      irregulars: convertToProductionIrregulars(
-        irregularsLookup[dbCounter.counter_id] || {}
-      ),
-      kana: dbCounter.kana,
-      kanji: dbCounter.kanji ? dbCounter.kanji : null, // Handle empty string
-      notes: dbCounter.notes ? dbCounter.notes : null // Handle empty string
+      notes: dbCounter.notes ? dbCounter.notes : null, // Handle empty string
+      readings: (readingsLookup[dbCounter.counter_id] || []).map(reading =>
+        convertToProductionReading(dbCounter.counter_id, reading)
+      )
     };
 
     stream.write(

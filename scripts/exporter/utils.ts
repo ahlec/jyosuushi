@@ -1,7 +1,10 @@
 import { escape, isArray, isObjectLike } from "lodash";
+import { DbWordOrigin } from "../database/schemas";
 
-function getVariableFromId(prefix: string, id: string) {
-  return prefix + id.toUpperCase().replace(/[-\s,&._\(\)（）ー']+/g, "_");
+import { WordOrigin } from "../../src/interfaces";
+
+function getVariableFromId(prefix: string, id: string): string {
+  return prefix + id.toUpperCase().replace(/[-\s,&._()（）ー']+/g, "_");
 }
 
 export function getCounterId(id: string): string {
@@ -24,6 +27,20 @@ export function getDisambiguationId(
     "",
     counter1Id
   )}${getVariableFromId("", counter2Id)}`;
+}
+
+export function getWordOrigin(dbWordOrigin: DbWordOrigin): WordOrigin {
+  switch (dbWordOrigin) {
+    case "和語": {
+      return WordOrigin.Japanese;
+    }
+    case "漢語": {
+      return WordOrigin.Chinese;
+    }
+    case "外来語": {
+      return WordOrigin.Foreign;
+    }
+  }
 }
 
 export class ProductionVariable {

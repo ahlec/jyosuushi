@@ -1061,10 +1061,6 @@ const ITEM_MINUTE: Item = {
 const ITEM_MONTH: Item = {
   counters: [
     {
-      counterId: "月",
-      relevance: CounterItemRelevance.Unknown
-    },
-    {
       counterId: "ヶ月",
       relevance: CounterItemRelevance.Unknown
     }
@@ -1648,14 +1644,6 @@ const ITEM_SIDE_DISH: Item = {
   counters: [
     {
       counterId: "皿",
-      relevance: CounterItemRelevance.Unknown
-    },
-    {
-      counterId: "品（しな）",
-      relevance: CounterItemRelevance.Unknown
-    },
-    {
-      counterId: "品（ひん）",
       relevance: CounterItemRelevance.Unknown
     }
   ],
@@ -2265,8 +2253,6 @@ export const ITEMS_FROM_COUNTER: {
   ],
   名: [ITEM_PERSON],
   周: [ITEM_LAP, ITEM_CIRCUIT, ITEM_ROUND],
-  "品（しな）": [ITEM_SIDE_DISH],
-  "品（ひん）": [ITEM_SIDE_DISH],
   回: [ITEM_TIME_OCCURRENCES_, ITEM_OCCURRENCE],
   巻: [ITEM_SUTRA],
   席: [ITEM_SEAT, ITEM_MEETING, ITEM_ASSEMBLY, ITEM_BANQUET],
@@ -2275,7 +2261,6 @@ export const ITEMS_FROM_COUNTER: {
   日: [ITEM_DAY_OF_THE_MONTH],
   時: [ITEM_O_CLOCK],
   曲: [ITEM_SONG, ITEM_TUNE, ITEM_MELODY, ITEM_JINGLE],
-  月: [ITEM_MONTH],
   本: [
     ITEM_BOTTLE,
     ITEM_TREE,
