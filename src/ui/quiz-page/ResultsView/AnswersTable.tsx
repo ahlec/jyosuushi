@@ -5,7 +5,13 @@ import * as React from "react";
 import { connect } from "react-redux";
 
 import { STUDY_PACK_LOOKUP } from "@data/studyPacks";
-import { Answer, Question, Counter, StudyPack } from "@jyosuushi/interfaces";
+import {
+  Answer,
+  Question,
+  Counter,
+  StudyPack,
+  CountingSystem
+} from "@jyosuushi/interfaces";
 import Localization from "@jyosuushi/localization";
 import { CountersState, State, UserAnswer } from "@jyosuushi/redux";
 
@@ -150,8 +156,12 @@ class AnswersTable extends React.PureComponent<ComponentProps> {
     );
   };
 
-  private renderKana = ({ kana }: Answer): React.ReactNode => {
-    const { usersAnswer } = this.props;
+  private renderKana = ({
+    countingSystem,
+    irregularType,
+    kana
+  }: Answer): React.ReactNode => {
+    const { localization, usersAnswer } = this.props;
     return (
       <div
         key={kana}
@@ -163,32 +173,18 @@ class AnswersTable extends React.PureComponent<ComponentProps> {
         )}
       >
         {kana}
-        {/* {this.renderConjugationCategory(category)} */}
+        {irregularType ? (
+          <span className="irregular">
+            {localization.resultTableIrregularLabel}
+          </span>
+        ) : countingSystem !== CountingSystem.Kango ? (
+          <span className="non-kango">
+            {localization.resultTableNonKangoLabel}
+          </span>
+        ) : null}
       </div>
     );
   };
-
-  // private renderConjugationCategory(
-  //   category: ConjugationCategory
-  // ): React.ReactNode {
-  //   const { localization } = this.props;
-  //   switch (category) {
-  //     case ConjugationCategory.Regular:
-  //       return null;
-  //     case ConjugationCategory.Strange:
-  //       return (
-  //         <span className="strange">
-  //           {localization.resultTableStrangeLabel}
-  //         </span>
-  //       );
-  //     case ConjugationCategory.Irregular:
-  //       return (
-  //         <span className="irregular">
-  //           {localization.resultTableIrregularLabel}
-  //         </span>
-  //       );
-  //   }
-  // }
 }
 
 export default connect(mapStateToProps)(AnswersTable);

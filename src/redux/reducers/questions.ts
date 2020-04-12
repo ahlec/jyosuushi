@@ -39,6 +39,7 @@ function makeQuestion(
     for (const answer of answers) {
       validAnswers.push({
         counterId: counter.counterId,
+        countingSystem: answer.countingSystem,
         irregularType: answer.irregularType,
         kana: answer.reading,
         kanji: answer.kanji

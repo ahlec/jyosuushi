@@ -118,7 +118,7 @@ const ENGLISH: Localization = {
   resultTableIntro:
     "Here are all of the possible answers based on the sets you have enabled:",
   resultTableIrregularLabel: "(irregular)",
-  resultTableStrangeLabel: "(strange)",
+  resultTableNonKangoLabel: "(not 漢語)",
   settingAmountRange: "Amounts Range",
   settingAmountRangeDescription: "Adjust the range of the numbers generated.",
   settingInfiniteMode: "Infinite Mode",

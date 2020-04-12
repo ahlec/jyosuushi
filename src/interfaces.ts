@@ -164,6 +164,7 @@ export interface Conjugation {
 
 export interface Answer {
   counterId: string;
+  countingSystem: CountingSystem;
   irregularType: CounterIrregularType | null;
   kana: string;
   kanji: string | null;

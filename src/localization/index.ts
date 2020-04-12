@@ -79,7 +79,7 @@ export default interface Localization {
   resultSkippedHeader: string;
   resultTableIntro: string;
   resultTableIrregularLabel: string;
-  resultTableStrangeLabel: string;
+  resultTableNonKangoLabel: string;
   settingAmountRange: string;
   settingAmountRangeDescription: string;
   settingInfiniteMode: string;
