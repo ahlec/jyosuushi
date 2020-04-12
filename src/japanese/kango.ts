@@ -19,92 +19,77 @@ const FIRST_TEN_NUMBERS: ReadonlyArray<ReadonlyArray<
 >> = [
   [
     {
-      kana: "ゼロ",
-      kanji: null
+      kana: "ゼロ"
     },
     {
-      kana: "れい",
-      kanji: null
+      kana: "れい"
     }
   ],
   [
     {
-      kana: "いち",
-      kanji: "一"
+      kana: "いち"
     }
   ],
   [
     {
-      kana: "に",
-      kanji: "二"
+      kana: "に"
     }
   ],
   [
     {
-      kana: "さん",
-      kanji: "三"
+      kana: "さん"
     }
   ],
   [
     {
       isValid: (options): boolean => options.allowsYonFor4,
-      kana: "よん",
-      kanji: "四"
+      kana: "よん"
     },
     {
       isValid: (options): boolean => options.allowsYoFor4,
       kana: "よ",
-      kanji: "四",
       strange: true
     },
     {
       isValid: (options): boolean => options.allowsShiFor4,
       kana: "し",
-      kanji: "四",
       strange: true
     }
   ],
   [
     {
-      kana: "ご",
-      kanji: "五"
+      kana: "ご"
     }
   ],
   [
     {
-      kana: "ろく",
-      kanji: "六"
+      kana: "ろく"
     }
   ],
   [
     {
       isValid: (options): boolean => options.allowsShichiFor7,
       kana: "しち",
-      kanji: "七",
       strange: true
     },
     {
       isValid: (options): boolean => options.allowsNanaFor7,
-      kana: "なな",
-      kanji: "七"
+      kana: "なな"
     }
   ],
   [
     {
-      kana: "はち",
-      kanji: "八"
+      kana: "はち"
     }
   ],
   [
     {
       isValid: (options): boolean => options.allowsKyuuFor9,
-      kana: "きゅう",
-      kanji: "九"
+      kana: "きゅう"
     },
     {
       isValid: (options): boolean => options.allowsKuFor9,
       kana: "く",
-      kanji: "九",
       strange: true
     }
   ]
@@ -112,29 +97,25 @@ const FIRST_TEN_NUMBERS: ReadonlyArray<ReadonlyArray<
 
 const OKU_NUMBER: ReadonlyArray<Readonly<JapaneseWord>> = [
   {
-    kana: "おく",
-    kanji: "億"
+    kana: "おく"
   }
 ];
 
 const MAN_NUMBER: ReadonlyArray<Readonly<JapaneseWord>> = [
   {
-    kana: "まん",
-    kanji: "万"
+    kana: "まん"
   }
 ];
 
 const SEN_NUMBER: ReadonlyArray<Readonly<JapaneseWord>> = [
   {
-    kana: "せん",
-    kanji: "千"
+    kana: "せん"
   }
 ];
 
 const ZEN_NUMBER: ReadonlyArray<Readonly<JapaneseWord>> = [
   {
-    kana: "ぜん",
-    kanji: "千"
+    kana: "ぜん"
   }
 ];
 
@@ -145,42 +126,36 @@ const SEN_CHANGES: FinalNumberChanges = {
 
 const HYAKU_NUMBER: ReadonlyArray<Readonly<JapaneseWord>> = [
   {
-    kana: "ひゃく",
-    kanji: "百"
+    kana: "ひゃく"
   }
 ];
 
 const IPPYAKU_NUMBER: ReadonlyArray<TaggableJapaneseWord> = [
   {
     kana: "ひゃく",
-    kanji: "百",
     tags: new Set<Tag>(["hyaku"])
   },
   {
     kana: "ぴゃく",
-    kanji: "百",
     tags: new Set<Tag>(["ippyaku"])
   }
 ];
 
 const BYAKU_NUMBER: ReadonlyArray<Readonly<JapaneseWord>> = [
   {
-    kana: "びゃく",
-    kanji: "百"
+    kana: "びゃく"
   }
 ];
 
 const PYAKU_NUMBER: ReadonlyArray<Readonly<JapaneseWord>> = [
   {
-    kana: "ぴゃく",
-    kanji: "百"
+    kana: "ぴゃく"
   }
 ];
 
 const JYUU_NUMBER: ReadonlyArray<Readonly<JapaneseWord>> = [
   {
-    kana: "じゅう",
-    kanji: "十"
+    kana: "じゅう"
   }
 ];
 
@@ -215,21 +190,19 @@ function applySingleChange(
   switch (change.type) {
     case "trailing-small-tsu": {
       return words.map(
-        ({ kana, kanji, tags }): TaggableJapaneseWord => ({
+        ({ kana, tags }): TaggableJapaneseWord => ({
           kana: kana.slice(0, -1) + "っ",
-          kanji,
           tags
         })
       );
     }
     case "omit": {
-      return [{ kana: "", kanji: "", tags: new Set() }];
+      return [{ kana: "", tags: new Set() }];
     }
     case "replace": {
       return [
         {
           kana: change.kana,
-          kanji: change.kanji,
           tags: new Set()
         }
       ];
@@ -407,7 +380,6 @@ function conjugateKangoNumberInternal(
           .map(
             (word: Readonly<FirstTenWords>): TaggableJapaneseWord => ({
               kana: word.kana,
-              kanji: word.kanji,
               tags: word.strange ? new Set<Tag>(["strange"]) : new Set()
             })
           ),

@@ -38,6 +38,11 @@ function combineWagoPieces(
   return permutate(interleave(pieces, ["あまり"]), (a, b) => `${a}${b}`);
 }
 
+/**
+ *
+ * TODO!!! THIS DOESN'T WORK. ONLY SOLO IS GUARANTEED TO HAVE ONLY 0-9. EVERYTHING ELSE REQUIRES
+ * RECURSION.
+ */
 export function conjugateWagoNumber(amount: number): ReadonlyArray<string> {
   const breakdown = breakDownNumber(amount);
   const pieces: Array<ReadonlyArray<string>> = [];

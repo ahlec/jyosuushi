@@ -12,6 +12,7 @@ import { getLeadingConsonant } from "./hepburn";
 import { KangoConjugationOptions } from "./interfaces";
 import { Gyou, HIRAGANA } from "./kana";
 import { conjugateKangoNumber, FinalNumberChanges } from "./kango";
+import { getKanjiForNumber } from "./kanji";
 import { breakDownNumber, HYAKU, JYUU } from "./numbers";
 import { Tag } from "./tags";
 import { conjugateWagoNumber } from "./wago";
@@ -129,6 +130,7 @@ const COUNTER_PA_GYOU: Readonly<CounterChange> = {
 function conjugateRegularWagoReading(
   amount: number,
   counterId: string,
+  kanji: string | null,
   style: CounterWagoStyle
 ): ReadonlyArray<Conjugation> {
   const numbers = conjugateWagoNumber(amount);
@@ -138,6 +140,7 @@ function conjugateRegularWagoReading(
       counterId,
       countingSystem: CountingSystem.Wago,
       irregularType: null,
+      kanji,
       reading: `${numberBase}${style.kana}`
     })
   );
@@ -146,7 +149,7 @@ function conjugateRegularWagoReading(
 function conjugateRegularKangoReading(
   amount: number,
   counterId: string,
-  counterKanji: string | null,
+  kanji: string | null,
   readingKana: string,
   conjugationOptions: KangoConjugationOptions
 ): ReadonlyArray<Conjugation> {
@@ -247,18 +250,18 @@ function conjugateRegularKangoReading(
   if (counterChanges) {
     const firstKana = readingKana[0];
     const followingKana = readingKana.slice(1);
-    finalizedCounter = counterChanges.map(({ gyou, tag }) => ({
-      kana: gyou
-        ? HIRAGANA.changeGyou(firstKana, gyou) + followingKana
-        : readingKana,
-      kanji: counterKanji,
-      tags: tag ? new Set([tag]) : new Set()
-    }));
+    finalizedCounter = counterChanges.map(
+      ({ gyou, tag }): TaggableJapaneseWord => ({
+        kana: gyou
+          ? HIRAGANA.changeGyou(firstKana, gyou) + followingKana
+          : readingKana,
+        tags: tag ? new Set([tag]) : new Set()
+      })
+    );
   } else {
     finalizedCounter = [
       {
         kana: readingKana,
-        kanji: counterKanji,
         tags: new Set()
       }
     ];
@@ -269,12 +272,12 @@ function conjugateRegularKangoReading(
     finalizedCounter
   ]);
 
-  return uniqueWords(castAwayTaggable(words)).map(({ kana, kanji }) => ({
+  return uniqueWords(castAwayTaggable(words)).map(({ kana }) => ({
     amount,
     counterId,
     countingSystem: CountingSystem.Kango,
     irregularType: null,
-    kanji: kanji,
+    kanji,
     reading: kana
   }));
 }
@@ -282,7 +285,7 @@ function conjugateRegularKangoReading(
 function conjugateRegularReadings(
   amount: number,
   counterId: string,
-  counterKanji: string | null,
+  kanji: string | null,
   reading: CounterReading
 ): ReadonlyArray<Conjugation> {
   const regularConjugations: Conjugation[] = [];
@@ -290,7 +293,12 @@ function conjugateRegularReadings(
   let appendRegularKangoReadings: boolean;
   if (reading.wagoStyle && amount <= reading.wagoStyle.rangeEndInclusive) {
     regularConjugations.push(
-      ...conjugateRegularWagoReading(amount, counterId, reading.wagoStyle)
+      ...conjugateRegularWagoReading(
+        amount,
+        counterId,
+        kanji,
+        reading.wagoStyle
+      )
     );
 
     switch (amount) {
@@ -320,7 +328,7 @@ function conjugateRegularReadings(
       ...conjugateRegularKangoReading(
         amount,
         counterId,
-        counterKanji,
+        kanji,
         reading.kana,
         reading.kangoConjugationOptions
       )
@@ -357,6 +365,7 @@ export const conjugateCounter: (
           counterId: counter.counterId,
           countingSystem: CountingSystem.Unknown,
           irregularType: irregular.type,
+          kanji: null,
           reading: irregular.reading
         });
 
@@ -367,15 +376,17 @@ export const conjugateCounter: (
     }
 
     if (includeRegularReadings) {
+      /**
+       * TODO [JSS-10]: Add ability to associate readings with particular kanji (if necessary)
+       * TODO [JSS-11]: Incorporate multiple kanji into conjugation return values
+       */
+      const kanji = counter.kanji
+        ? `${getKanjiForNumber(amount)}${counter.kanji.primaryKanji}`
+        : null;
       results.push(
         ...flatten(
           counter.readings.map(reading =>
-            conjugateRegularReadings(
-              amount,
-              counter.counterId,
-              counter.kanji ? counter.kanji.primaryKanji : null,
-              reading
-            )
+            conjugateRegularReadings(amount, counter.counterId, kanji, reading)
           )
         )
       );
