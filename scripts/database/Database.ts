@@ -13,14 +13,14 @@ import {
   DbCounterIrregular,
   DbCounterReading,
   DbCounter,
-  DbEnumWagoRange,
   DbEnumWordOrigin,
   DbItemCounter,
   DbItem,
   DbStudyPackContent,
   DbStudyPack,
   EnumSchemas,
-  DbCounterAlternativeKanji
+  DbCounterAlternativeKanji,
+  DbWagoStyle
 } from "./schemas";
 
 const ROOT_DIRECTORY = path.resolve(__dirname, "../../");
@@ -103,10 +103,6 @@ export default class Database implements AsyncDatabaseIndexer {
     return this.retrieve(Schemas.Counters);
   }
 
-  public get enum_wago_range(): Promise<ReadonlyArray<DbEnumWagoRange>> {
-    return this.retrieve(EnumSchemas.EnumWagoRange);
-  }
-
   public get enum_word_origin(): Promise<ReadonlyArray<DbEnumWordOrigin>> {
     return this.retrieve(EnumSchemas.EnumWordOrigin);
   }
@@ -125,6 +121,10 @@ export default class Database implements AsyncDatabaseIndexer {
 
   public get study_packs(): Promise<ReadonlyArray<DbStudyPack>> {
     return this.retrieve(Schemas.StudyPacks);
+  }
+
+  public get wago_style(): Promise<ReadonlyArray<DbWagoStyle>> {
+    return this.retrieve(Schemas.WagoStyle);
   }
 
   public async getSnapshot(): Promise<DatabaseSnapshot> {

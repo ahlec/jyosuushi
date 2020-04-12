@@ -9,36 +9,6 @@ CREATE TABLE counter_irregulars (
 );
 INSERT INTO
   "counter_irregulars"
-VALUES('缶', 2, 'ふたかん', 0);
-INSERT INTO
-  "counter_irregulars"
-VALUES('缶', 2, 'にかん', 0);
-INSERT INTO
-  "counter_irregulars"
-VALUES('缶', 1, 'ひとかん', 0);
-INSERT INTO
-  "counter_irregulars"
-VALUES('缶', 1, 'いっかん', 0);
-INSERT INTO
-  "counter_irregulars"
-VALUES('皿', 3, 'さんさら', 0);
-INSERT INTO
-  "counter_irregulars"
-VALUES('皿', 3, 'みさら', 0);
-INSERT INTO
-  "counter_irregulars"
-VALUES('皿', 2, 'ふたさら', 0);
-INSERT INTO
-  "counter_irregulars"
-VALUES('皿', 1, 'ひとさら', 0);
-INSERT INTO
-  "counter_irregulars"
-VALUES('席', 2, 'ふたせき', 1);
-INSERT INTO
-  "counter_irregulars"
-VALUES('席', 1, 'ひとせき', 1);
-INSERT INTO
-  "counter_irregulars"
 VALUES('日', 10, 'とおか', 0);
 INSERT INTO
   "counter_irregulars"
@@ -76,22 +46,4 @@ VALUES('日', 20, 'はつか', 0);
 INSERT INTO
   "counter_irregulars"
 VALUES('日', 14, 'じゅうよっか', 0);
-INSERT INTO
-  "counter_irregulars"
-VALUES('人', 2, 'ふたり', 0);
-INSERT INTO
-  "counter_irregulars"
-VALUES('人', 1, 'ひとり', 0);
-INSERT INTO
-  "counter_irregulars"
-VALUES('束', 2, 'ふたたば', 0);
-INSERT INTO
-  "counter_irregulars"
-VALUES('束', 1, 'ひとたば', 0);
-INSERT INTO
-  "counter_irregulars"
-VALUES('束', 3, 'さんたば', 0);
-INSERT INTO
-  "counter_irregulars"
-VALUES('束', 3, 'みたば', 0);
 COMMIT;

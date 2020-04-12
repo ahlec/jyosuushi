@@ -30,7 +30,7 @@ export const COUNTER_ヶ国: Counter = {
         allowsYonFor4: true
       },
       readingId: "かこく",
-      usesWagoForCountingThrough: null,
+      wagoStyle: null,
       wordOrigin: WordOrigin.Chinese
     }
   ]
@@ -61,7 +61,7 @@ export const COUNTER_ヶ所: Counter = {
         allowsYonFor4: true
       },
       readingId: "かしょ",
-      usesWagoForCountingThrough: null,
+      wagoStyle: null,
       wordOrigin: WordOrigin.Chinese
     }
   ]
@@ -99,7 +99,7 @@ export const COUNTER_ヶ月: Counter = {
         allowsYonFor4: true
       },
       readingId: "かげつ",
-      usesWagoForCountingThrough: null,
+      wagoStyle: null,
       wordOrigin: WordOrigin.Chinese
     }
   ]
@@ -139,7 +139,13 @@ export const COUNTER_人: Counter = {
         allowsYonFor4: false
       },
       readingId: "にん",
-      usesWagoForCountingThrough: null,
+      wagoStyle: {
+        alsoUsesKangoIchi: false,
+        alsoUsesKangoNi: false,
+        alsoUsesKangoSan: false,
+        kana: "り",
+        rangeEndInclusive: 2
+      },
       wordOrigin: WordOrigin.Japanese
     }
   ]
@@ -170,7 +176,7 @@ export const COUNTER_件: Counter = {
         allowsYonFor4: true
       },
       readingId: "けん",
-      usesWagoForCountingThrough: null,
+      wagoStyle: null,
       wordOrigin: WordOrigin.Chinese
     }
   ]
@@ -201,7 +207,7 @@ export const COUNTER_円: Counter = {
         allowsYonFor4: true
       },
       readingId: "えん",
-      usesWagoForCountingThrough: null,
+      wagoStyle: null,
       wordOrigin: WordOrigin.Chinese
     }
   ]
@@ -239,7 +245,7 @@ export const COUNTER_冊: Counter = {
         allowsYonFor4: true
       },
       readingId: "さつ",
-      usesWagoForCountingThrough: null,
+      wagoStyle: null,
       wordOrigin: WordOrigin.Chinese
     }
   ]
@@ -277,7 +283,7 @@ export const COUNTER_分: Counter = {
         allowsYonFor4: true
       },
       readingId: "ふん",
-      usesWagoForCountingThrough: null,
+      wagoStyle: null,
       wordOrigin: WordOrigin.Chinese
     }
   ]
@@ -308,7 +314,7 @@ export const COUNTER_切れ: Counter = {
         allowsYonFor4: true
       },
       readingId: "きれ",
-      usesWagoForCountingThrough: null,
+      wagoStyle: null,
       wordOrigin: WordOrigin.Japanese
     }
   ]
@@ -346,7 +352,7 @@ export const COUNTER_匹: Counter = {
         allowsYonFor4: true
       },
       readingId: "ひき",
-      usesWagoForCountingThrough: null,
+      wagoStyle: null,
       wordOrigin: WordOrigin.Japanese
     }
   ]
@@ -377,7 +383,7 @@ export const COUNTER_口: Counter = {
         allowsYonFor4: true
       },
       readingId: "くち",
-      usesWagoForCountingThrough: null,
+      wagoStyle: null,
       wordOrigin: WordOrigin.Japanese
     }
   ]
@@ -415,7 +421,7 @@ export const COUNTER_台: Counter = {
         allowsYonFor4: true
       },
       readingId: "だい",
-      usesWagoForCountingThrough: null,
+      wagoStyle: null,
       wordOrigin: WordOrigin.Chinese
     }
   ]
@@ -455,7 +461,7 @@ export const COUNTER_名: Counter = {
         allowsYonFor4: true
       },
       readingId: "めい",
-      usesWagoForCountingThrough: null,
+      wagoStyle: null,
       wordOrigin: WordOrigin.Chinese
     }
   ]
@@ -486,7 +492,7 @@ export const COUNTER_周: Counter = {
         allowsYonFor4: true
       },
       readingId: "しゅう",
-      usesWagoForCountingThrough: null,
+      wagoStyle: null,
       wordOrigin: WordOrigin.Chinese
     }
   ]
@@ -524,7 +530,7 @@ export const COUNTER_回: Counter = {
         allowsYonFor4: true
       },
       readingId: "かい",
-      usesWagoForCountingThrough: null,
+      wagoStyle: null,
       wordOrigin: WordOrigin.Chinese
     }
   ]
@@ -555,7 +561,7 @@ export const COUNTER_巻: Counter = {
         allowsYonFor4: true
       },
       readingId: "かん",
-      usesWagoForCountingThrough: null,
+      wagoStyle: null,
       wordOrigin: WordOrigin.Chinese
     }
   ]
@@ -586,7 +592,13 @@ export const COUNTER_席: Counter = {
         allowsYonFor4: true
       },
       readingId: "せき",
-      usesWagoForCountingThrough: null,
+      wagoStyle: {
+        alsoUsesKangoIchi: true,
+        alsoUsesKangoNi: true,
+        alsoUsesKangoSan: false,
+        kana: "せき",
+        rangeEndInclusive: 2
+      },
       wordOrigin: WordOrigin.Chinese
     }
   ]
@@ -624,7 +636,7 @@ export const COUNTER_年: Counter = {
         allowsYonFor4: false
       },
       readingId: "ねん",
-      usesWagoForCountingThrough: null,
+      wagoStyle: null,
       wordOrigin: WordOrigin.Chinese
     }
   ]
@@ -655,7 +667,7 @@ export const COUNTER_戦: Counter = {
         allowsYonFor4: true
       },
       readingId: "せん",
-      usesWagoForCountingThrough: null,
+      wagoStyle: null,
       wordOrigin: WordOrigin.Chinese
     }
   ]
@@ -693,7 +705,7 @@ export const COUNTER_日: Counter = {
         allowsYonFor4: true
       },
       readingId: "にち",
-      usesWagoForCountingThrough: null,
+      wagoStyle: null,
       wordOrigin: WordOrigin.Chinese
     }
   ]
@@ -731,7 +743,7 @@ export const COUNTER_時: Counter = {
         allowsYonFor4: false
       },
       readingId: "じ",
-      usesWagoForCountingThrough: null,
+      wagoStyle: null,
       wordOrigin: WordOrigin.Chinese
     }
   ]
@@ -762,7 +774,7 @@ export const COUNTER_曲: Counter = {
         allowsYonFor4: true
       },
       readingId: "きょく",
-      usesWagoForCountingThrough: null,
+      wagoStyle: null,
       wordOrigin: WordOrigin.Chinese
     }
   ]
@@ -800,7 +812,7 @@ export const COUNTER_本: Counter = {
         allowsYonFor4: true
       },
       readingId: "ほん",
-      usesWagoForCountingThrough: null,
+      wagoStyle: null,
       wordOrigin: WordOrigin.Chinese
     }
   ]
@@ -831,7 +843,13 @@ export const COUNTER_束: Counter = {
         allowsYonFor4: true
       },
       readingId: "たば",
-      usesWagoForCountingThrough: null,
+      wagoStyle: {
+        alsoUsesKangoIchi: false,
+        alsoUsesKangoNi: false,
+        alsoUsesKangoSan: true,
+        kana: "たば",
+        rangeEndInclusive: 3
+      },
       wordOrigin: WordOrigin.Japanese
     }
   ]
@@ -869,7 +887,7 @@ export const COUNTER_枚: Counter = {
         allowsYonFor4: true
       },
       readingId: "まい",
-      usesWagoForCountingThrough: null,
+      wagoStyle: null,
       wordOrigin: WordOrigin.Chinese
     }
   ]
@@ -900,7 +918,7 @@ export const COUNTER_校: Counter = {
         allowsYonFor4: true
       },
       readingId: "こう",
-      usesWagoForCountingThrough: null,
+      wagoStyle: null,
       wordOrigin: WordOrigin.Chinese
     }
   ]
@@ -931,7 +949,7 @@ export const COUNTER_歳: Counter = {
         allowsYonFor4: true
       },
       readingId: "さい",
-      usesWagoForCountingThrough: null,
+      wagoStyle: null,
       wordOrigin: WordOrigin.Chinese
     }
   ]
@@ -962,7 +980,13 @@ export const COUNTER_皿: Counter = {
         allowsYonFor4: true
       },
       readingId: "さら",
-      usesWagoForCountingThrough: null,
+      wagoStyle: {
+        alsoUsesKangoIchi: false,
+        alsoUsesKangoNi: false,
+        alsoUsesKangoSan: true,
+        kana: "さら",
+        rangeEndInclusive: 3
+      },
       wordOrigin: WordOrigin.Japanese
     }
   ]
@@ -993,7 +1017,7 @@ export const COUNTER_社: Counter = {
         allowsYonFor4: true
       },
       readingId: "しゃ",
-      usesWagoForCountingThrough: null,
+      wagoStyle: null,
       wordOrigin: WordOrigin.Chinese
     }
   ]
@@ -1024,7 +1048,7 @@ export const COUNTER_組: Counter = {
         allowsYonFor4: true
       },
       readingId: "くみ",
-      usesWagoForCountingThrough: null,
+      wagoStyle: null,
       wordOrigin: WordOrigin.Japanese
     }
   ]
@@ -1055,7 +1079,13 @@ export const COUNTER_缶: Counter = {
         allowsYonFor4: true
       },
       readingId: "かん",
-      usesWagoForCountingThrough: null,
+      wagoStyle: {
+        alsoUsesKangoIchi: true,
+        alsoUsesKangoNi: true,
+        alsoUsesKangoSan: false,
+        kana: "かん",
+        rangeEndInclusive: 2
+      },
       wordOrigin: WordOrigin.Chinese
     }
   ]
@@ -1093,7 +1123,7 @@ export const COUNTER_羽: Counter = {
         allowsYonFor4: true
       },
       readingId: "わ",
-      usesWagoForCountingThrough: null,
+      wagoStyle: null,
       wordOrigin: WordOrigin.Japanese
     }
   ]
@@ -1124,7 +1154,7 @@ export const COUNTER_色: Counter = {
         allowsYonFor4: true
       },
       readingId: "しょく",
-      usesWagoForCountingThrough: null,
+      wagoStyle: null,
       wordOrigin: WordOrigin.Chinese
     }
   ]
@@ -1155,7 +1185,7 @@ export const COUNTER_語: Counter = {
         allowsYonFor4: true
       },
       readingId: "ご",
-      usesWagoForCountingThrough: null,
+      wagoStyle: null,
       wordOrigin: WordOrigin.Chinese
     }
   ]
@@ -1186,7 +1216,7 @@ export const COUNTER_足: Counter = {
         allowsYonFor4: true
       },
       readingId: "そく",
-      usesWagoForCountingThrough: null,
+      wagoStyle: null,
       wordOrigin: WordOrigin.Chinese
     }
   ]
@@ -1217,7 +1247,7 @@ export const COUNTER_軒: Counter = {
         allowsYonFor4: true
       },
       readingId: "けん",
-      usesWagoForCountingThrough: null,
+      wagoStyle: null,
       wordOrigin: WordOrigin.Chinese
     }
   ]
@@ -1248,7 +1278,7 @@ export const COUNTER_週: Counter = {
         allowsYonFor4: true
       },
       readingId: "しゅう",
-      usesWagoForCountingThrough: null,
+      wagoStyle: null,
       wordOrigin: WordOrigin.Chinese
     }
   ]
@@ -1286,7 +1316,7 @@ export const COUNTER_階: Counter = {
         allowsYonFor4: true
       },
       readingId: "かい",
-      usesWagoForCountingThrough: null,
+      wagoStyle: null,
       wordOrigin: WordOrigin.Chinese
     }
   ]
@@ -1324,7 +1354,7 @@ export const COUNTER_頭: Counter = {
         allowsYonFor4: true
       },
       readingId: "とう",
-      usesWagoForCountingThrough: null,
+      wagoStyle: null,
       wordOrigin: WordOrigin.Chinese
     }
   ]

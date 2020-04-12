@@ -33,7 +33,8 @@ export interface DbCounterReading {
   reading_id: string;
   word_origin: DbWordOrigin;
   kana: string;
-  wago_range_end_inclusive: number | null;
+  wago_style: string | null;
+  wago_custom_base: string | null;
   kango_uses_yon: DbBoolean;
   kango_uses_yo: DbBoolean;
   kango_uses_shi: DbBoolean;
@@ -53,10 +54,6 @@ export interface DbCounter {
   english_name: string;
   notes: string | null;
   primary_kanji: string | null;
-}
-
-export interface DbEnumWagoRange {
-  range_end_inclusive: number;
 }
 
 export interface DbEnumWordOrigin {
@@ -89,6 +86,14 @@ export interface DbStudyPack {
   english_name: string;
 }
 
+export interface DbWagoStyle {
+  wago_style_handle: string;
+  range_end_inclusive: number;
+  also_uses_kango_one: DbBoolean;
+  also_uses_kango_two: DbBoolean;
+  also_uses_kango_three: DbBoolean;
+}
+
 export enum Schemas {
   CounterAdditionalReadings = "counter_additional_readings",
   CounterAlternativeKanji = "counter_alternative_kanji",
@@ -100,11 +105,11 @@ export enum Schemas {
   ItemCounters = "item_counters",
   Items = "items",
   StudyPackContents = "study_pack_contents",
-  StudyPacks = "study_packs"
+  StudyPacks = "study_packs",
+  WagoStyle = "wago_style"
 }
 
 export enum EnumSchemas {
-  EnumWagoRange = "enum_wago_range",
   EnumWordOrigin = "enum_word_origin"
 }
 
@@ -116,12 +121,12 @@ export interface SchemaEntryTypes {
   [Schemas.CounterAlternativeKanji]: DbCounterAlternativeKanji;
   [Schemas.CounterReadings]: DbCounterReading;
   [Schemas.Counters]: DbCounter;
-  [EnumSchemas.EnumWagoRange]: DbEnumWagoRange;
   [EnumSchemas.EnumWordOrigin]: DbEnumWordOrigin;
   [Schemas.ItemCounters]: DbItemCounter;
   [Schemas.Items]: DbItem;
   [Schemas.StudyPackContents]: DbStudyPackContent;
   [Schemas.StudyPacks]: DbStudyPack;
+  [Schemas.WagoStyle]: DbWagoStyle;
 }
 
 export interface IdentifierField {
@@ -171,5 +176,8 @@ export const ENTRY_IDENTIFIERS_RETRIEVER: {
     { name: "counter_id", value: entry.counter_id },
     { name: "pack_id", value: entry.pack_id }
   ],
-  [Schemas.StudyPacks]: entry => [{ name: "pack_id", value: entry.pack_id }]
+  [Schemas.StudyPacks]: entry => [{ name: "pack_id", value: entry.pack_id }],
+  [Schemas.WagoStyle]: entry => [
+    { name: "wago_style_handle", value: entry.wago_style_handle }
+  ]
 };

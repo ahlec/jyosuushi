@@ -12,7 +12,8 @@ import {
   SchemaEntryTypes,
   Schemas,
   DbCounterReading,
-  DbCounterAlternativeKanji
+  DbCounterAlternativeKanji,
+  DbWagoStyle
 } from "./schemas";
 
 interface Reason {
@@ -35,6 +36,48 @@ type Indexer = {
   [schema in Schemas]: ValidatedResult<SchemaEntryTypes[schema]>;
 };
 
+function validateWagoStyles(
+  snapshot: DatabaseSnapshot
+): ValidatedResult<DbWagoStyle> {
+  const valid: DbWagoStyle[] = [];
+  const error: Array<InvalidResultEntry<DbWagoStyle>> = [];
+
+  for (const wagoStyle of snapshot.wago_style) {
+    const errorReasons: Reason[] = [];
+    if (wagoStyle.range_end_inclusive <= 0) {
+      errorReasons.push({
+        showsInAudit: true,
+        text: "Wago rango cannot be negative or zero."
+      });
+    }
+
+    if (wagoStyle.range_end_inclusive > 10) {
+      errorReasons.push({
+        showsInAudit: true,
+        text:
+          "Standard wago range cannot go above 10 (these values require being listed as irregular)"
+      });
+    }
+
+    if (errorReasons.length) {
+      error.push({
+        entry: wagoStyle,
+        reasons: errorReasons
+      });
+
+      continue;
+    }
+
+    valid.push(wagoStyle);
+  }
+
+  return {
+    error,
+    ignored: [],
+    valid
+  };
+}
+
 function validateCounters(
   snapshot: DatabaseSnapshot
 ): ValidatedResult<DbCounter> {
@@ -52,9 +95,10 @@ function validateCounters(
     counterInStudyPack.add(counter_id);
   }
 
-  const counterHasReading = new Set<string>();
+  const numReadingsForCounter = new Map<string, number>();
   for (const { counter_id } of snapshot.counter_readings) {
-    counterHasReading.add(counter_id);
+    const previous = numReadingsForCounter.get(counter_id) || 0;
+    numReadingsForCounter.set(counter_id, previous + 1);
   }
 
   for (const counter of snapshot.counters) {
@@ -69,10 +113,20 @@ function validateCounters(
       });
     }
 
-    if (!counterHasReading.has(counter.counter_id)) {
+    const numReadings = numReadingsForCounter.get(counter.counter_id) || 0;
+    if (!numReadings) {
       errorReasons.push({
         showsInAudit: true,
         text: "Counter does not have any defined readings."
+      });
+    }
+
+    if (!counter.primary_kanji && numReadings > 1) {
+      // We've already reported an error for the case where < 1
+      errorReasons.push({
+        showsInAudit: true,
+        text:
+          "Counters without primary kanji must have no more than one reading."
       });
     }
 
@@ -122,7 +176,8 @@ function validateCounters(
 
 function validateCounterReadings(
   snapshot: DatabaseSnapshot,
-  validCounterIds: ReadonlySet<string>
+  validCounterIds: ReadonlySet<string>,
+  validWagoStyleHandles: ReadonlySet<string>
 ): ValidatedResult<DbCounterReading> {
   const valid: DbCounterReading[] = [];
   const ignored: Array<InvalidResultEntry<DbCounterReading>> = [];
@@ -152,6 +207,17 @@ function validateCounterReadings(
       errorReasons.push({
         showsInAudit: true,
         text: "Counter reading doesn't use either 'kyuu' or 'ku'."
+      });
+    }
+
+    if (
+      counterReading.wago_style &&
+      !validWagoStyleHandles.has(counterReading.wago_style)
+    ) {
+      errorReasons.push({
+        showsInAudit: true,
+        text:
+          "Counter reading is configured to use wago style that doesn't exist or isn't valid."
       });
     }
 
@@ -508,6 +574,11 @@ export default class ValidatedDataSource implements Indexer {
   ): Promise<ValidatedDataSource> {
     const snapshot = await database.getSnapshot();
 
+    const wago_style = validateWagoStyles(snapshot);
+    const validWagoStyleHandles = new Set(
+      wago_style.valid.map(({ wago_style_handle }) => wago_style_handle)
+    );
+
     const counters = validateCounters(snapshot);
     const validCounterIds = new Set(
       counters.valid.map(({ counter_id }) => counter_id)
@@ -516,7 +587,11 @@ export default class ValidatedDataSource implements Indexer {
       snapshot.counter_additional_readings,
       validCounterIds
     );
-    const counter_readings = validateCounterReadings(snapshot, validCounterIds);
+    const counter_readings = validateCounterReadings(
+      snapshot,
+      validCounterIds,
+      validWagoStyleHandles
+    );
     const counter_disambiguations = validateCounterDisambiguations(
       snapshot,
       validCounterIds
@@ -555,7 +630,8 @@ export default class ValidatedDataSource implements Indexer {
       item_counters,
       items,
       study_pack_contents,
-      study_packs
+      study_packs,
+      wago_style
     );
   }
 
@@ -580,7 +656,8 @@ export default class ValidatedDataSource implements Indexer {
     public readonly item_counters: ValidatedResult<DbItemCounter>,
     public readonly items: ValidatedResult<DbItem>,
     public readonly study_pack_contents: ValidatedResult<DbStudyPackContent>,
-    public readonly study_packs: ValidatedResult<DbStudyPack>
+    public readonly study_packs: ValidatedResult<DbStudyPack>,
+    public readonly wago_style: ValidatedResult<DbWagoStyle>
   ) {
     this.hasErrors = Object.values(Schemas)
       .map(schema => this.getSchema(schema))

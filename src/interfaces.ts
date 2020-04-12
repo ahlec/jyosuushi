@@ -19,6 +19,47 @@ export enum WordOrigin {
   Foreign = "foreign"
 }
 
+export interface CounterWagoStyle {
+  /**
+   * If true, in addition to a wago conjugation with
+   * ひと, a kango conjugation with イチ is also valid
+   * and should be considered.
+   */
+  alsoUsesKangoIchi: boolean;
+
+  /**
+   * If true, in addition to a wago conjugation with
+   * ふた, a kango conjugation with 二 is also valid
+   * and should be considered.
+   */
+  alsoUsesKangoNi: boolean;
+
+  /**
+   * If true, in addition to a wago conjugation with
+   * み, a kango conjugation with サン is also valid
+   * and should be considered.
+   */
+  alsoUsesKangoSan: boolean;
+
+  /**
+   * The kana that should be used as the base for wago
+   * conjugation.
+   */
+  kana: string;
+
+  /**
+   * The final number which is valid for standard wago
+   * counting (inclusive). For counters that use wago,
+   * they will always be in a range that starts with 1
+   * and affects every number between 1 and the end
+   * (inclusive). The standard ranges are always 10 or
+   * less. There are some outliers (such as はつか) but
+   * these are considered irregular rather than part
+   * of standard wago counting.
+   */
+  rangeEndInclusive: number;
+}
+
 export interface CounterReading {
   counterId: string;
   irregulars: { [amount: number]: ReadonlyArray<string> };
@@ -27,17 +68,11 @@ export interface CounterReading {
   readingId: string;
 
   /**
-   * The number (inclusive) through which this counter will
-   * use wago counting as opposed to kango counting. The
-   * range for counting always begins with 1, and it can be
-   * expected that this number will always be less than or
-   * equal to 10 (at most). Usages of wago beyond 10, if
-   * even possible, will be marked as an irregular reading.
-   *
-   * If this counter doesn't use wago counting at all, this
-   * will be null.
+   * The wago style used by this counter reading. If this
+   * counter doesn't use wago counting at all, this will
+   * be null.
    */
-  usesWagoForCountingThrough: number | null;
+  wagoStyle: CounterWagoStyle | null;
   wordOrigin: WordOrigin;
 }
 
