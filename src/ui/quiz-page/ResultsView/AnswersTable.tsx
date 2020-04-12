@@ -1,14 +1,15 @@
 import classnames from "classnames";
 import { groupBy, uniq } from "lodash";
+import memoizeOne from "memoize-one";
 import * as React from "react";
 import { connect } from "react-redux";
 
 import { STUDY_PACK_LOOKUP } from "@data/studyPacks";
-import { Answer, ConjugationCategory, Question } from "@jyosuushi/interfaces";
+import { Answer, Question, Counter, StudyPack } from "@jyosuushi/interfaces";
 import Localization from "@jyosuushi/localization";
 import { CountersState, State, UserAnswer } from "@jyosuushi/redux";
 
-import Furigana from "@jyosuushi/ui/Furigana";
+import CounterDisplay from "@jyosuushi/ui/components/CounterDisplay";
 
 import "./AnswersTable.scss";
 
@@ -30,16 +31,65 @@ function mapStateToProps(state: State): ReduxProps {
 
 type ComponentProps = ProvidedProps & ReduxProps;
 
-function getKanjiFromAnswer(answer: Answer): string | null {
-  return answer.kanji;
+interface AnswerTableRow {
+  counter: Counter;
+  studyPacks: ReadonlyArray<StudyPack>;
+
+  kanaAnswers: ReadonlyArray<Answer>;
+
+  /**
+   * An array of all of the valid kanji answers usable for this
+   * counter row.
+   */
+  validKanji: ReadonlyArray<string>;
+
+  /**
+   * A boolean that is true iff the user's answer was correct
+   * AND this row includes the answer that the user typed in.
+   */
+  wasUsersCorrectAnswer: boolean;
 }
 
 class AnswersTable extends React.PureComponent<ComponentProps> {
+  private readonly getRows = memoizeOne(
+    (
+      usersAnswer: UserAnswer,
+      validAnswers: ReadonlyArray<Answer>,
+      counters: CountersState
+    ): ReadonlyArray<AnswerTableRow> => {
+      const answersByCounterId = groupBy(
+        validAnswers,
+        answer => answer.counterId
+      );
+
+      return Object.keys(answersByCounterId).map(
+        (counterId): AnswerTableRow => {
+          const { counter, studyPacks } = counters[counterId];
+          const answers = answersByCounterId[counterId];
+          return {
+            counter,
+            kanaAnswers: answers,
+            studyPacks: studyPacks.map(packId => STUDY_PACK_LOOKUP[packId]),
+            validKanji: uniq(
+              answers
+                .map(({ kanji }) => kanji)
+                .filter((kanji): kanji is string => typeof kanji == "string")
+            ),
+            wasUsersCorrectAnswer:
+              usersAnswer.judgment === "correct" &&
+              !!answers.find(answer => answer.kana === usersAnswer.input)
+          };
+        }
+      );
+    }
+  );
+
   public render(): React.ReactNode {
-    const { currentQuestion, localization } = this.props;
-    const answersByCounterId = groupBy(
+    const { counters, currentQuestion, localization, usersAnswer } = this.props;
+    const rows = this.getRows(
+      usersAnswer,
       currentQuestion.validAnswers,
-      answer => answer.counterId
+      counters
     );
     return (
       <table className="AnswersTable">
@@ -51,50 +101,42 @@ class AnswersTable extends React.PureComponent<ComponentProps> {
             <th>{localization.resultColumnHeaderKanji}</th>
             <th>{localization.resultColumnHeaderHiragana}</th>
           </tr>
-          {Object.keys(answersByCounterId).map(counterId =>
-            this.renderCounter(counterId, answersByCounterId[counterId])
-          )}
+          {rows.map(this.renderRow)}
         </tbody>
       </table>
     );
   }
 
-  private renderCounter(
-    counterId: string,
-    answers: ReadonlyArray<Answer>
-  ): React.ReactNode {
-    const { counters, localization, usersAnswer } = this.props;
-    const { counter, studyPacks } = counters[counterId];
-    const kanjiAnswers = uniq(answers.map(getKanjiFromAnswer).filter(x => x));
-    const correctAnswer =
-      usersAnswer.judgment === "correct"
-        ? answers.find(answer => answer.kana === usersAnswer.input)
-        : undefined;
+  private renderRow = (row: AnswerTableRow): React.ReactNode => {
+    const { localization } = this.props;
     return (
-      <tr key={counterId} className={classnames(correctAnswer && "correct")}>
+      <tr
+        key={row.counter.counterId}
+        className={classnames(row.wasUsersCorrectAnswer && "correct")}
+      >
         <td className="cell-counter">
-          <Furigana
-            text={counter.kanji || counter.kana}
-            furigana={counter.kanji && counter.kana}
-          />
+          <CounterDisplay counter={row.counter} />
         </td>
-        <td className="cell-rule">{localization.counterName(counter)}</td>
+        <td className="cell-rule">{localization.counterName(row.counter)}</td>
         <td className="cell-study-pack">
-          {studyPacks.map(this.renderStudyPack)}
+          {row.studyPacks.map(this.renderStudyPack)}
         </td>
         <td className="cell-kanji">
-          {kanjiAnswers.length ? kanjiAnswers.map(this.renderKanji) : "(none)"}
+          {row.validKanji.length
+            ? row.validKanji.map(this.renderKanji)
+            : "(none)"}
         </td>
-        <td className="cell-hiragana">{answers.map(this.renderKana)}</td>
+        <td className="cell-hiragana">
+          {row.kanaAnswers.map(this.renderKana)}
+        </td>
       </tr>
     );
-  }
+  };
 
-  private renderStudyPack = (packId: string): React.ReactNode => {
+  private renderStudyPack = (pack: StudyPack): React.ReactNode => {
     const { localization } = this.props;
-    const pack = STUDY_PACK_LOOKUP[packId];
     return (
-      <div key={packId} className="study-pack">
+      <div key={pack.packId} className="study-pack">
         {localization.studyPackName(pack)}
       </div>
     );
@@ -108,7 +150,7 @@ class AnswersTable extends React.PureComponent<ComponentProps> {
     );
   };
 
-  private renderKana = ({ category, kana }: Answer): React.ReactNode => {
+  private renderKana = ({ kana }: Answer): React.ReactNode => {
     const { usersAnswer } = this.props;
     return (
       <div
@@ -121,32 +163,32 @@ class AnswersTable extends React.PureComponent<ComponentProps> {
         )}
       >
         {kana}
-        {this.renderConjugationCategory(category)}
+        {/* {this.renderConjugationCategory(category)} */}
       </div>
     );
   };
 
-  private renderConjugationCategory(
-    category: ConjugationCategory
-  ): React.ReactNode {
-    const { localization } = this.props;
-    switch (category) {
-      case ConjugationCategory.Regular:
-        return null;
-      case ConjugationCategory.Strange:
-        return (
-          <span className="strange">
-            {localization.resultTableStrangeLabel}
-          </span>
-        );
-      case ConjugationCategory.Irregular:
-        return (
-          <span className="irregular">
-            {localization.resultTableIrregularLabel}
-          </span>
-        );
-    }
-  }
+  // private renderConjugationCategory(
+  //   category: ConjugationCategory
+  // ): React.ReactNode {
+  //   const { localization } = this.props;
+  //   switch (category) {
+  //     case ConjugationCategory.Regular:
+  //       return null;
+  //     case ConjugationCategory.Strange:
+  //       return (
+  //         <span className="strange">
+  //           {localization.resultTableStrangeLabel}
+  //         </span>
+  //       );
+  //     case ConjugationCategory.Irregular:
+  //       return (
+  //         <span className="irregular">
+  //           {localization.resultTableIrregularLabel}
+  //         </span>
+  //       );
+  //   }
+  // }
 }
 
 export default connect(mapStateToProps)(AnswersTable);
