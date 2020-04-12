@@ -1,9 +1,11 @@
-import { memoize } from "lodash";
+import { flatten, memoize } from "lodash";
 
 import {
   CounterReading,
   Counter,
-  CounterWagoStyle
+  Conjugation,
+  CounterWagoStyle,
+  CountingSystem
 } from "@jyosuushi/interfaces";
 
 import { getLeadingConsonant } from "./hepburn";
@@ -14,7 +16,6 @@ import { breakDownNumber, HYAKU, JYUU } from "./numbers";
 import { Tag } from "./tags";
 import {
   castAwayTaggable,
-  ConjugatedJapaneseWord,
   permutateTaggableWords,
   TaggableJapaneseWord,
   uniqueWords
@@ -126,16 +127,18 @@ const COUNTER_PA_GYOU: Readonly<CounterChange> = {
 
 function conjugateRegularWagoReading(
   amount: number,
+  counterId: string,
   style: CounterWagoStyle
-): ReadonlyArray<ConjugatedJapaneseWord> {
+): ReadonlyArray<Conjugation> {
   throw new Error("TODO!");
 }
 
 function conjugateRegularKangoReading(
   amount: number,
+  counterId: string,
   readingKana: string,
   conjugationOptions: KangoConjugationOptions
-): ReadonlyArray<ConjugatedJapaneseWord> {
+): ReadonlyArray<Conjugation> {
   const counterFirstConsonant = getLeadingConsonant(readingKana);
   const amountBreakdown = breakDownNumber(amount);
   let numberChanges: FinalNumberChanges | undefined;
@@ -252,19 +255,26 @@ function conjugateRegularKangoReading(
     conjugateKangoNumber(amount, conjugationOptions, numberChanges),
     finalizedCounter
   ]);
-  return uniqueWords(castAwayTaggable(words));
+
+  return uniqueWords(castAwayTaggable(words)).map(({ kana }) => ({
+    amount,
+    counterId,
+    countingSystem: CountingSystem.Kango,
+    reading: kana
+  }));
 }
 
 function conjugateReading(
   amount: number,
+  counterId: string,
   reading: CounterReading
-): ReadonlyArray<ConjugationReading> {
-  const regularReadings: ConjugatedJapaneseWord[] = [];
+): ReadonlyArray<Conjugation> {
+  const regularConjugations: Conjugation[] = [];
 
   let appendRegularKangoReadings: boolean;
   if (reading.wagoStyle && amount <= reading.wagoStyle.rangeEndInclusive) {
-    regularReadings.push(
-      ...conjugateRegularWagoReading(amount, reading.wagoStyle)
+    regularConjugations.push(
+      ...conjugateRegularWagoReading(amount, counterId, reading.wagoStyle)
     );
 
     switch (amount) {
@@ -290,9 +300,10 @@ function conjugateReading(
   }
 
   if (appendRegularKangoReadings) {
-    regularReadings.push(
+    regularConjugations.push(
       ...conjugateRegularKangoReading(
         amount,
+        counterId,
         reading.kana,
         reading.kangoConjugationOptions
       )
@@ -300,7 +311,7 @@ function conjugateReading(
   }
 
   if (!reading.irregulars[amount]) {
-    return regularReadings;
+    return regularConjugations;
   }
 
   const results: ConjugationReading[] = [];
@@ -327,22 +338,17 @@ function conjugateReading(
 export const conjugateCounter: (
   amount: number,
   counter: Counter
-) => Conjugation = memoize(
-  (amount: number, counter: Counter): Conjugation => {
+) => ReadonlyArray<Conjugation> = memoize(
+  (amount: number, counter: Counter): ReadonlyArray<Conjugation> => {
     if (amount <= 0) {
       throw new Error("Negative numbers and zero are not implemented (yet?)");
     }
 
-    const readings: ConjugationReading[] = [];
-    for (const reading of counter.readings) {
-      readings.push(...conjugateReading(amount, reading));
-    }
-
-    return {
-      amount,
-      counterId: counter.counterId,
-      readings
-    };
+    return flatten(
+      counter.readings.map(reading =>
+        conjugateReading(amount, counter.counterId, reading)
+      )
+    );
   },
   (amount: number, counter: Counter) => [amount, counter.counterId].join("-")
 );

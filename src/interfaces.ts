@@ -124,10 +124,18 @@ export interface PendingQuestion {
   possibleAmounts: ReadonlyArray<number>;
 }
 
-export enum ConjugationCategory {
-  Regular,
-  Strange,
-  Irregular
+export enum CountingSystem {
+  Unknown = "unknown",
+  Kango = "kango",
+  Wago = "wago",
+  Gairaigo = "Gairaigo"
+}
+
+export interface Conjugation {
+  amount: number;
+  counterId: string;
+  countingSystem: CountingSystem;
+  reading: string;
 }
 
 export interface Answer {
