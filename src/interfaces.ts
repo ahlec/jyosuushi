@@ -155,6 +155,7 @@ export interface Conjugation {
   amount: number;
   counterId: string;
   countingSystem: CountingSystem;
+  irregularType: CounterIrregularType | null;
   reading: string;
 }
 

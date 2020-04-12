@@ -42,10 +42,6 @@ function japaneseNumberCombiner(
 
   return {
     kana: first.kana + second.kana,
-    kanji:
-      first.kanji !== null && second.kanji !== null
-        ? first.kanji + second.kanji
-        : null,
     tags
   };
 }

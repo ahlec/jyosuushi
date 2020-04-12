@@ -2,7 +2,7 @@
 // This file was built using `yarn build-data` from the SQLite database.
 // Modifications will be lost if they are made manually and not through the database.
 
-import { Counter, WordOrigin } from "../src/interfaces";
+import { Counter, CounterIrregularType, WordOrigin } from "../src/interfaces";
 import * as DISAMBIGUATIONS from "./disambiguations";
 
 export const COUNTER_ヶ国: Counter = {
@@ -690,91 +690,91 @@ export const COUNTER_日: Counter = {
       {
         doesPresenceEraseRegularConjugations: false,
         reading: "ついたち",
-        type: "arbitrary-reading"
+        type: CounterIrregularType.ArbitraryReading
       }
     ],
     2: [
       {
         doesPresenceEraseRegularConjugations: false,
         reading: "ふつか",
-        type: "arbitrary-reading"
+        type: CounterIrregularType.ArbitraryReading
       }
     ],
     3: [
       {
         doesPresenceEraseRegularConjugations: false,
         reading: "みっか",
-        type: "arbitrary-reading"
+        type: CounterIrregularType.ArbitraryReading
       }
     ],
     4: [
       {
         doesPresenceEraseRegularConjugations: false,
         reading: "よっか",
-        type: "arbitrary-reading"
+        type: CounterIrregularType.ArbitraryReading
       }
     ],
     5: [
       {
         doesPresenceEraseRegularConjugations: false,
         reading: "いつか",
-        type: "arbitrary-reading"
+        type: CounterIrregularType.ArbitraryReading
       }
     ],
     6: [
       {
         doesPresenceEraseRegularConjugations: false,
         reading: "むいか",
-        type: "arbitrary-reading"
+        type: CounterIrregularType.ArbitraryReading
       }
     ],
     7: [
       {
         doesPresenceEraseRegularConjugations: false,
         reading: "なのか",
-        type: "arbitrary-reading"
+        type: CounterIrregularType.ArbitraryReading
       }
     ],
     8: [
       {
         doesPresenceEraseRegularConjugations: false,
         reading: "ようか",
-        type: "arbitrary-reading"
+        type: CounterIrregularType.ArbitraryReading
       }
     ],
     9: [
       {
         doesPresenceEraseRegularConjugations: false,
         reading: "ここのか",
-        type: "arbitrary-reading"
+        type: CounterIrregularType.ArbitraryReading
       }
     ],
     10: [
       {
         doesPresenceEraseRegularConjugations: false,
         reading: "とおか",
-        type: "arbitrary-reading"
+        type: CounterIrregularType.ArbitraryReading
       }
     ],
     14: [
       {
         doesPresenceEraseRegularConjugations: false,
         reading: "じゅうよっか",
-        type: "arbitrary-reading"
+        type: CounterIrregularType.ArbitraryReading
       }
     ],
     20: [
       {
         doesPresenceEraseRegularConjugations: false,
         reading: "はつか",
-        type: "arbitrary-reading"
+        type: CounterIrregularType.ArbitraryReading
       }
     ],
     24: [
       {
         doesPresenceEraseRegularConjugations: false,
         reading: "にじゅうよっか",
-        type: "arbitrary-reading"
+        type: CounterIrregularType.ArbitraryReading
       }
     ]
   },

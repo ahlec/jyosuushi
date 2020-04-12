@@ -137,6 +137,7 @@ function conjugateRegularWagoReading(
       amount,
       counterId,
       countingSystem: CountingSystem.Wago,
+      irregularType: null,
       reading: `${numberBase}${style.kana}`
     })
   );
@@ -269,11 +270,12 @@ function conjugateRegularKangoReading(
     amount,
     counterId,
     countingSystem: CountingSystem.Kango,
+    irregularType: null,
     reading: kana
   }));
 }
 
-function conjugateReading(
+function conjugateRegularReadings(
   amount: number,
   counterId: string,
   reading: CounterReading
@@ -319,22 +321,7 @@ function conjugateReading(
     );
   }
 
-  if (!reading.irregulars[amount]) {
-    return regularConjugations;
-  }
-
-  const results: ConjugationReading[] = [];
-  for (const irregular of reading.irregulars[amount]) {
-    // Because defining a single irregular means that we don't display the
-    // conjugations, we need to define regular conjugations alongside irregular
-    // ones in the database if there is even a single irregular. However,
-    // let's not display them as irregular on the frontend.
-    results.push({
-      kana: irregular
-    });
-  }
-
-  return results;
+  return regularConjugations;
 }
 
 /**
@@ -353,11 +340,37 @@ export const conjugateCounter: (
       throw new Error("Negative numbers and zero are not implemented (yet?)");
     }
 
-    return flatten(
-      counter.readings.map(reading =>
-        conjugateReading(amount, counter.counterId, reading)
-      )
-    );
+    const results: Conjugation[] = [];
+    let includeRegularReadings = true;
+
+    const irregularDefinitions = counter.irregulars[amount];
+    if (irregularDefinitions && irregularDefinitions.length) {
+      for (const irregular of irregularDefinitions) {
+        results.push({
+          amount,
+          counterId: counter.counterId,
+          countingSystem: CountingSystem.Unknown,
+          irregularType: irregular.type,
+          reading: irregular.reading
+        });
+
+        if (irregular.doesPresenceEraseRegularConjugations) {
+          includeRegularReadings = false;
+        }
+      }
+    }
+
+    if (includeRegularReadings) {
+      results.push(
+        ...flatten(
+          counter.readings.map(reading =>
+            conjugateRegularReadings(amount, counter.counterId, reading)
+          )
+        )
+      );
+    }
+
+    return results;
   },
   (amount: number, counter: Counter) => [amount, counter.counterId].join("-")
 );

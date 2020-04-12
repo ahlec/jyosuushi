@@ -17,8 +17,7 @@ import {
   ExternalLink,
   CounterReading,
   CounterKanjiInfo,
-  CounterIrregular,
-  CounterIrregularType
+  CounterIrregular
 } from "../../src/interfaces";
 
 import {
@@ -33,8 +32,18 @@ type ProtoCounterReading = Omit<CounterReading, "wordOrigin"> & {
   wordOrigin: ProductionVariable;
 };
 
-type ProtoCounter = Omit<Counter, "disambiguations" | "readings"> & {
+type ProtoCounterIrregular = Omit<CounterIrregular, "type"> & {
+  type: ProductionVariable;
+};
+
+type ProtoCounter = Omit<
+  Counter,
+  "disambiguations" | "irregulars" | "readings"
+> & {
   disambiguations: { [counterId: string]: ProductionVariable };
+  irregulars: {
+    [amount: number]: ReadonlyArray<ProtoCounterIrregular> | undefined;
+  };
   readings: ReadonlyArray<ProtoCounterReading>;
 };
 
@@ -122,18 +131,18 @@ function convertToProductionKanji(
 
 export function convertToProductionIrregularType(
   dbType: DbIrregularType
-): CounterIrregularType {
+): ProductionVariable {
   switch (dbType) {
     case DbIrregularType.ArbitraryReading: {
-      return CounterIrregularType.ArbitraryReading;
+      return new ProductionVariable("CounterIrregularType.ArbitraryReading");
     }
   }
 }
 
 function convertToProductionIrregularsMap(
   dbIrregulars: ReadonlyArray<DbCounterIrregular>
-): Counter["irregulars"] {
-  const result: Counter["irregulars"] = {};
+): ProtoCounter["irregulars"] {
+  const result: ProtoCounter["irregulars"] = {};
 
   const amountsLookup = new Map<number, DbCounterIrregular[]>();
   for (const irregular of dbIrregulars) {
@@ -153,7 +162,7 @@ function convertToProductionIrregularsMap(
     }
 
     result[amount] = irregulars.map(
-      (dbIrregular): CounterIrregular => ({
+      (dbIrregular): ProtoCounterIrregular => ({
         doesPresenceEraseRegularConjugations: !!dbIrregular.does_presence_erase_regular_conjugations,
         reading: dbIrregular.kana,
         type: convertToProductionIrregularType(dbIrregular.irregular_type)
@@ -168,7 +177,9 @@ export default function writeCountersFile(
   stream: Writable,
   dataSource: ValidatedDataSource
 ): void {
-  stream.write('import { Counter, WordOrigin } from "../src/interfaces";\n');
+  stream.write(
+    'import { Counter, CounterIrregularType, WordOrigin } from "../src/interfaces";\n'
+  );
   stream.write('import * as DISAMBIGUATIONS from "./disambiguations";');
 
   const externalLinksLookup: {
