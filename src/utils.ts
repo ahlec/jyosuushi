@@ -97,3 +97,11 @@ export function interleave<TItem, TInterleaved>(
 
   return interleaved;
 }
+
+export function getPrimaryJapaneseRepresentation(counter: Counter): string {
+  if (counter.kanji) {
+    return counter.kanji.primaryKanji;
+  }
+
+  return counter.readings[0].kana;
+}

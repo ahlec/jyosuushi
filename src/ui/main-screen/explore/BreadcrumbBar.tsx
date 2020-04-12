@@ -10,7 +10,7 @@ import { getLocalization } from "@jyosuushi/redux/selectors";
 
 import Localization from "@jyosuushi/localization";
 
-import { interleave } from "@jyosuushi/utils";
+import { getPrimaryJapaneseRepresentation, interleave } from "@jyosuushi/utils";
 
 import {
   EXPLORE_COUNTER_PATH,
@@ -88,7 +88,8 @@ class BreadcrumbBar extends React.PureComponent<ComponentProps> {
         links.push(
           <NavLink key={EXPLORE_COUNTER_PATH} exact={true} to={location}>
             {localization.pageExploreCounter}{" "}
-            {localization.counterName(counter)}【{counter.kanji}】
+            {localization.counterName(counter)}【
+            {getPrimaryJapaneseRepresentation(counter)}】
           </NavLink>
         );
 

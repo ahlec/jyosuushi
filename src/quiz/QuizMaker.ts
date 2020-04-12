@@ -10,11 +10,7 @@ import {
   StudyPack
 } from "@jyosuushi/interfaces";
 import { AmountRange } from "@jyosuushi/redux";
-import {
-  getDistinctCounters,
-  isConjugationRegular,
-  randomFromArray
-} from "@jyosuushi/utils";
+import { getDistinctCounters, randomFromArray } from "@jyosuushi/utils";
 
 const MAX_NUMBER_QUESTIONS_PER_ITEM = 3;
 const MIN_NUMBER_QUESTIONS_PER_COUNTER = 4;

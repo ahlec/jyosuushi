@@ -146,6 +146,7 @@ function conjugateRegularWagoReading(
 function conjugateRegularKangoReading(
   amount: number,
   counterId: string,
+  counterKanji: string | null,
   readingKana: string,
   conjugationOptions: KangoConjugationOptions
 ): ReadonlyArray<Conjugation> {
@@ -250,12 +251,14 @@ function conjugateRegularKangoReading(
       kana: gyou
         ? HIRAGANA.changeGyou(firstKana, gyou) + followingKana
         : readingKana,
+      kanji: counterKanji,
       tags: tag ? new Set([tag]) : new Set()
     }));
   } else {
     finalizedCounter = [
       {
         kana: readingKana,
+        kanji: counterKanji,
         tags: new Set()
       }
     ];
@@ -266,11 +269,12 @@ function conjugateRegularKangoReading(
     finalizedCounter
   ]);
 
-  return uniqueWords(castAwayTaggable(words)).map(({ kana }) => ({
+  return uniqueWords(castAwayTaggable(words)).map(({ kana, kanji }) => ({
     amount,
     counterId,
     countingSystem: CountingSystem.Kango,
     irregularType: null,
+    kanji: kanji,
     reading: kana
   }));
 }
@@ -278,6 +282,7 @@ function conjugateRegularKangoReading(
 function conjugateRegularReadings(
   amount: number,
   counterId: string,
+  counterKanji: string | null,
   reading: CounterReading
 ): ReadonlyArray<Conjugation> {
   const regularConjugations: Conjugation[] = [];
@@ -315,6 +320,7 @@ function conjugateRegularReadings(
       ...conjugateRegularKangoReading(
         amount,
         counterId,
+        counterKanji,
         reading.kana,
         reading.kangoConjugationOptions
       )
@@ -364,7 +370,12 @@ export const conjugateCounter: (
       results.push(
         ...flatten(
           counter.readings.map(reading =>
-            conjugateRegularReadings(amount, counter.counterId, reading)
+            conjugateRegularReadings(
+              amount,
+              counter.counterId,
+              counter.kanji ? counter.kanji.primaryKanji : null,
+              reading
+            )
           )
         )
       );

@@ -156,11 +156,13 @@ export interface Conjugation {
   counterId: string;
   countingSystem: CountingSystem;
   irregularType: CounterIrregularType | null;
+  kanji: string | null;
   reading: string;
 }
 
 export interface Answer {
   counterId: string;
+  irregularType: CounterIrregularType | null;
   kana: string;
   kanji: string | null;
 }

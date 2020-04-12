@@ -158,7 +158,7 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
   private getCorrectAnswer(value: string): Answer | null {
     const { currentQuestion } = this.props;
     for (const answer of currentQuestion.validAnswers) {
-      if (answer.kana === value || answer.kanji === value) {
+      if (answer.kana === value) {
         return answer;
       }
     }
