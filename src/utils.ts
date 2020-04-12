@@ -55,7 +55,7 @@ export function permutate<T>(
 }
 
 function compareCounters(a: Counter, b: Counter): number {
-  return a.kana.localeCompare(b.kana);
+  return a.readings[0].kana.localeCompare(b.readings[0].kana);
 }
 
 export function getDistinctCounters(

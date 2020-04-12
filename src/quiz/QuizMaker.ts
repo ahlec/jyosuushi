@@ -4,6 +4,7 @@ import { ITEMS_FROM_COUNTER } from "@data/items";
 
 import { AMOUNT_RANGES } from "@jyosuushi/constants";
 import {
+  Conjugation,
   Counter,
   Item,
   PendingQuestion,
@@ -11,6 +12,7 @@ import {
 } from "@jyosuushi/interfaces";
 import { AmountRange } from "@jyosuushi/redux";
 import { getDistinctCounters, randomFromArray } from "@jyosuushi/utils";
+import { conjugateCounter } from "@jyosuushi/japanese/counters";
 
 const MAX_NUMBER_QUESTIONS_PER_ITEM = 3;
 const MIN_NUMBER_QUESTIONS_PER_COUNTER = 4;
@@ -64,6 +66,10 @@ function planOutItems(items: ReadonlyArray<Item>): QuizItems {
   return quizItems;
 }
 
+function isConjugationIrregular({ irregularType }: Conjugation): boolean {
+  return irregularType !== null;
+}
+
 // "Amount regions" are what will become PendingQuestion.possibleAmounts
 // "Interesting" amounts will be a region themselves, everything else is "boring"
 const BORING_AMOUNTS_REGION_SIZE = 10;
@@ -84,8 +90,10 @@ const getAmountRegions = memoize(
     // give it a region of its own. If not, group it together with surrounding numbers.
     let boringAmounts: number[] = [];
     for (let amount = Math.max(min, 11); amount <= max; amount++) {
-      const isRegular = isConjugationRegular(amount, counter);
-      if (!isRegular) {
+      const hasAnyIrregulars = conjugateCounter(amount, counter).some(
+        isConjugationIrregular
+      );
+      if (!hasAnyIrregulars) {
         regions.push([amount]);
       } else {
         boringAmounts.push(amount);
