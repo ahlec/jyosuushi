@@ -172,7 +172,20 @@ export default class ConjugationsSection extends React.PureComponent<
   private renderCurrentUserInputItem = (
     conjugation: Conjugation,
     index: number
-  ): React.ReactNode => <div key={index}>{conjugation.reading}</div>;
+  ): React.ReactNode => (
+    <div
+      key={index}
+      className={
+        conjugation.irregularType
+          ? "irregular"
+          : conjugation.countingSystem !== CountingSystem.Kango
+          ? "non-kango"
+          : ""
+      }
+    >
+      {conjugation.reading}
+    </div>
+  );
 
   private renderConjugation = ({
     countingSystem,
