@@ -2,10 +2,10 @@ PRAGMA foreign_keys = OFF;
 BEGIN TRANSACTION;
 CREATE TABLE wago_style (
   wago_style_handle STRING PRIMARY KEY,
-  range_end_inclusive INTEGER,
-  also_uses_kango_one BOOLEAN DEFAULT (0),
-  also_uses_kango_two BOOLEAN DEFAULT (0),
-  also_uses_kango_three BOOLEAN DEFAULT (0)
+  range_end_inclusive INTEGER NOT NULL,
+  also_uses_kango_one BOOLEAN DEFAULT (0) NOT NULL,
+  also_uses_kango_two BOOLEAN DEFAULT (0) NOT NULL,
+  also_uses_kango_three BOOLEAN DEFAULT (0) NOT NULL
 );
 INSERT INTO
   "wago_style"

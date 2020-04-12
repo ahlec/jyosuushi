@@ -478,13 +478,6 @@ function validateCounterIrregulars(
       });
     }
 
-    if (irregular.nonstandard) {
-      ignoredReasons.push({
-        showsInAudit: true,
-        text: "Nonstandard support has not yet been added."
-      });
-    }
-
     if (ignoredReasons.length) {
       ignored.push({
         entry: irregular,

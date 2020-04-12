@@ -33,13 +33,13 @@ export class ProductionVariable {
 
 export function getWordOrigin(dbWordOrigin: DbWordOrigin): ProductionVariable {
   switch (dbWordOrigin) {
-    case "和語": {
+    case DbWordOrigin.Japanese: {
       return new ProductionVariable("WordOrigin.Japanese");
     }
-    case "漢語": {
+    case DbWordOrigin.Chinese: {
       return new ProductionVariable("WordOrigin.Chinese");
     }
-    case "外来語": {
+    case DbWordOrigin.Foreign: {
       return new ProductionVariable("WordOrigin.Foreign");
     }
   }

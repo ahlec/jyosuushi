@@ -5,7 +5,10 @@ import {
   DbCounterDisambiguation,
   DbCounterExternalLink,
   DbCounterReading,
-  DbCounterAlternativeKanji
+  DbCounterAlternativeKanji,
+  DbWagoStyle,
+  DbCounterIrregular,
+  DbIrregularType
 } from "../database/schemas";
 import ValidatedDataSource from "../database/ValidatedDataSource";
 
@@ -13,7 +16,9 @@ import {
   Counter,
   ExternalLink,
   CounterReading,
-  CounterKanjiInfo
+  CounterKanjiInfo,
+  CounterIrregular,
+  CounterIrregularType
 } from "../../src/interfaces";
 
 import {
@@ -70,15 +75,11 @@ function convertToProductionDisambiguations(
 
 function convertToProductionReading(
   counterId: string,
-  dbReading: DbCounterReading
+  dbReading: DbCounterReading,
+  dbWagoStyle: DbWagoStyle | undefined
 ): ProtoCounterReading {
   return {
     counterId,
-    irregulars: {
-      /**
-       * TODO!!
-       */
-    },
     kana: dbReading.kana,
     kangoConjugationOptions: {
       allowsKuFor9: !!dbReading.kango_uses_ku,
@@ -90,7 +91,21 @@ function convertToProductionReading(
       allowsYonFor4: !!dbReading.kango_uses_yon
     },
     readingId: dbReading.reading_id,
-    usesWagoForCountingThrough: dbReading.wago_range_end_inclusive,
+    wagoStyle: dbWagoStyle
+      ? {
+          alsoUsesKangoIchi:
+            dbWagoStyle.range_end_inclusive >= 1 &&
+            !!dbWagoStyle.also_uses_kango_one,
+          alsoUsesKangoNi:
+            dbWagoStyle.range_end_inclusive >= 2 &&
+            !!dbWagoStyle.also_uses_kango_two,
+          alsoUsesKangoSan:
+            dbWagoStyle.range_end_inclusive >= 3 &&
+            !!dbWagoStyle.also_uses_kango_three,
+          kana: dbReading.wago_custom_base || dbReading.kana,
+          rangeEndInclusive: dbWagoStyle.range_end_inclusive
+        }
+      : null,
     wordOrigin: getWordOrigin(dbReading.word_origin)
   };
 }
@@ -103,6 +118,50 @@ function convertToProductionKanji(
     additionalKanji: alternativeKanji.map(({ kanji }) => kanji),
     primaryKanji
   };
+}
+
+export function convertToProductionIrregularType(
+  dbType: DbIrregularType
+): CounterIrregularType {
+  switch (dbType) {
+    case DbIrregularType.ArbitraryReading: {
+      return CounterIrregularType.ArbitraryReading;
+    }
+  }
+}
+
+function convertToProductionIrregularsMap(
+  dbIrregulars: ReadonlyArray<DbCounterIrregular>
+): Counter["irregulars"] {
+  const result: Counter["irregulars"] = {};
+
+  const amountsLookup = new Map<number, DbCounterIrregular[]>();
+  for (const irregular of dbIrregulars) {
+    if (!amountsLookup.has(irregular.number)) {
+      amountsLookup.set(irregular.number, []);
+    }
+
+    amountsLookup.get(irregular.number)?.push(irregular);
+  }
+
+  const orderedAmounts = sortBy(Array.from(amountsLookup.keys()));
+
+  for (const amount of orderedAmounts) {
+    const irregulars = amountsLookup.get(amount);
+    if (!irregulars) {
+      continue;
+    }
+
+    result[amount] = irregulars.map(
+      (dbIrregular): CounterIrregular => ({
+        doesPresenceEraseRegularConjugations: !!dbIrregular.does_presence_erase_regular_conjugations,
+        reading: dbIrregular.kana,
+        type: convertToProductionIrregularType(dbIrregular.irregular_type)
+      })
+    );
+  }
+
+  return result;
 }
 
 export default function writeCountersFile(
@@ -151,6 +210,17 @@ export default function writeCountersFile(
     readingsLookup[reading.counter_id]?.push(reading);
   }
 
+  const irregularsLookup: {
+    [counterId: string]: DbCounterIrregular[] | undefined;
+  } = {};
+  for (const irregular of dataSource.counter_irregulars.valid) {
+    if (!irregularsLookup[irregular.counter_id]) {
+      irregularsLookup[irregular.counter_id] = [];
+    }
+
+    irregularsLookup[irregular.counter_id]?.push(irregular);
+  }
+
   const alternativeKanjiLookup: {
     [counterId: string]: DbCounterAlternativeKanji[] | undefined;
   } = {};
@@ -162,10 +232,16 @@ export default function writeCountersFile(
     alternativeKanjiLookup[alternative.counter_id]?.push(alternative);
   }
 
+  const wagoStyleLookup: { [handle: string]: DbWagoStyle | undefined } = {};
+  for (const wagoStyle of dataSource.wago_style.valid) {
+    wagoStyleLookup[wagoStyle.wago_style_handle] = wagoStyle;
+  }
+
   const sortedCounters = sortBy(dataSource.counters.valid, ["counter_id"]);
   for (const dbCounter of sortedCounters) {
     const variableName = getCounterId(dbCounter.counter_id);
 
+    const readings = readingsLookup[dbCounter.counter_id] || [];
     const counter: ProtoCounter = {
       counterId: dbCounter.counter_id,
       disambiguations: convertToProductionDisambiguations(
@@ -176,6 +252,9 @@ export default function writeCountersFile(
       externalLinks: (externalLinksLookup[dbCounter.counter_id] || []).map(
         convertToProductionExternalLink
       ),
+      irregulars: convertToProductionIrregularsMap(
+        irregularsLookup[dbCounter.counter_id] || []
+      ),
       kanji: dbCounter.primary_kanji
         ? convertToProductionKanji(
             dbCounter.primary_kanji,
@@ -183,8 +262,12 @@ export default function writeCountersFile(
           )
         : null,
       notes: dbCounter.notes ? dbCounter.notes : null, // Handle empty string
-      readings: (readingsLookup[dbCounter.counter_id] || []).map(reading =>
-        convertToProductionReading(dbCounter.counter_id, reading)
+      readings: readings.map(reading =>
+        convertToProductionReading(
+          dbCounter.counter_id,
+          reading,
+          reading.wago_style ? wagoStyleLookup[reading.wago_style] : undefined
+        )
       )
     };
 

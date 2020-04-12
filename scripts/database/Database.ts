@@ -13,6 +13,7 @@ import {
   DbCounterIrregular,
   DbCounterReading,
   DbCounter,
+  DbEnumIrregularType,
   DbEnumWordOrigin,
   DbItemCounter,
   DbItem,
@@ -101,6 +102,12 @@ export default class Database implements AsyncDatabaseIndexer {
 
   public get counters(): Promise<ReadonlyArray<DbCounter>> {
     return this.retrieve(Schemas.Counters);
+  }
+
+  public get enum_irregular_type(): Promise<
+    ReadonlyArray<DbEnumIrregularType>
+  > {
+    return this.retrieve(EnumSchemas.EnumIrregularType);
   }
 
   public get enum_word_origin(): Promise<ReadonlyArray<DbEnumWordOrigin>> {

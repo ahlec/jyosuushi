@@ -10,6 +10,7 @@ export const COUNTER_ヶ国: Counter = {
   disambiguations: {},
   englishName: "countries",
   externalLinks: [],
+  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "ヶ国"
@@ -18,7 +19,6 @@ export const COUNTER_ヶ国: Counter = {
   readings: [
     {
       counterId: "ヶ国",
-      irregulars: {},
       kana: "かこく",
       kangoConjugationOptions: {
         allowsKuFor9: false,
@@ -41,6 +41,7 @@ export const COUNTER_ヶ所: Counter = {
   disambiguations: {},
   englishName: "places",
   externalLinks: [],
+  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "ヶ所"
@@ -49,7 +50,6 @@ export const COUNTER_ヶ所: Counter = {
   readings: [
     {
       counterId: "ヶ所",
-      irregulars: {},
       kana: "かしょ",
       kangoConjugationOptions: {
         allowsKuFor9: false,
@@ -79,6 +79,7 @@ export const COUNTER_ヶ月: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-tsuki-gatsu-getsu/"
     }
   ],
+  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "ヶ月"
@@ -87,7 +88,6 @@ export const COUNTER_ヶ月: Counter = {
   readings: [
     {
       counterId: "ヶ月",
-      irregulars: {},
       kana: "かげつ",
       kangoConjugationOptions: {
         allowsKuFor9: false,
@@ -119,6 +119,7 @@ export const COUNTER_人: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-nin/"
     }
   ],
+  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "人"
@@ -127,7 +128,6 @@ export const COUNTER_人: Counter = {
   readings: [
     {
       counterId: "人",
-      irregulars: {},
       kana: "にん",
       kangoConjugationOptions: {
         allowsKuFor9: true,
@@ -156,6 +156,7 @@ export const COUNTER_件: Counter = {
   disambiguations: {},
   englishName: "matters",
   externalLinks: [],
+  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "件"
@@ -164,7 +165,6 @@ export const COUNTER_件: Counter = {
   readings: [
     {
       counterId: "件",
-      irregulars: {},
       kana: "けん",
       kangoConjugationOptions: {
         allowsKuFor9: false,
@@ -187,6 +187,7 @@ export const COUNTER_円: Counter = {
   disambiguations: {},
   englishName: "yen",
   externalLinks: [],
+  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "円"
@@ -195,7 +196,6 @@ export const COUNTER_円: Counter = {
   readings: [
     {
       counterId: "円",
-      irregulars: {},
       kana: "えん",
       kangoConjugationOptions: {
         allowsKuFor9: false,
@@ -225,6 +225,7 @@ export const COUNTER_冊: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-satsu/"
     }
   ],
+  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "冊"
@@ -233,7 +234,6 @@ export const COUNTER_冊: Counter = {
   readings: [
     {
       counterId: "冊",
-      irregulars: {},
       kana: "さつ",
       kangoConjugationOptions: {
         allowsKuFor9: false,
@@ -263,6 +263,7 @@ export const COUNTER_分: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-fun/"
     }
   ],
+  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "分"
@@ -271,7 +272,6 @@ export const COUNTER_分: Counter = {
   readings: [
     {
       counterId: "分",
-      irregulars: {},
       kana: "ふん",
       kangoConjugationOptions: {
         allowsKuFor9: false,
@@ -294,6 +294,7 @@ export const COUNTER_切れ: Counter = {
   disambiguations: {},
   englishName: "cuts of meat",
   externalLinks: [],
+  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "切れ"
@@ -302,7 +303,6 @@ export const COUNTER_切れ: Counter = {
   readings: [
     {
       counterId: "切れ",
-      irregulars: {},
       kana: "きれ",
       kangoConjugationOptions: {
         allowsKuFor9: false,
@@ -332,6 +332,7 @@ export const COUNTER_匹: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-hiki/"
     }
   ],
+  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "匹"
@@ -340,7 +341,6 @@ export const COUNTER_匹: Counter = {
   readings: [
     {
       counterId: "匹",
-      irregulars: {},
       kana: "ひき",
       kangoConjugationOptions: {
         allowsKuFor9: false,
@@ -363,6 +363,7 @@ export const COUNTER_口: Counter = {
   disambiguations: {},
   englishName: "bites",
   externalLinks: [],
+  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "口"
@@ -371,7 +372,6 @@ export const COUNTER_口: Counter = {
   readings: [
     {
       counterId: "口",
-      irregulars: {},
       kana: "くち",
       kangoConjugationOptions: {
         allowsKuFor9: false,
@@ -401,6 +401,7 @@ export const COUNTER_台: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-dai/"
     }
   ],
+  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "台"
@@ -409,7 +410,6 @@ export const COUNTER_台: Counter = {
   readings: [
     {
       counterId: "台",
-      irregulars: {},
       kana: "だい",
       kangoConjugationOptions: {
         allowsKuFor9: false,
@@ -441,6 +441,7 @@ export const COUNTER_名: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-nin/"
     }
   ],
+  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "名"
@@ -449,7 +450,6 @@ export const COUNTER_名: Counter = {
   readings: [
     {
       counterId: "名",
-      irregulars: {},
       kana: "めい",
       kangoConjugationOptions: {
         allowsKuFor9: false,
@@ -472,6 +472,7 @@ export const COUNTER_周: Counter = {
   disambiguations: {},
   englishName: "laps and circuits",
   externalLinks: [],
+  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "周"
@@ -480,7 +481,6 @@ export const COUNTER_周: Counter = {
   readings: [
     {
       counterId: "周",
-      irregulars: {},
       kana: "しゅう",
       kangoConjugationOptions: {
         allowsKuFor9: false,
@@ -510,6 +510,7 @@ export const COUNTER_回: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-kai-times/"
     }
   ],
+  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "回"
@@ -518,7 +519,6 @@ export const COUNTER_回: Counter = {
   readings: [
     {
       counterId: "回",
-      irregulars: {},
       kana: "かい",
       kangoConjugationOptions: {
         allowsKuFor9: false,
@@ -541,6 +541,7 @@ export const COUNTER_巻: Counter = {
   disambiguations: {},
   englishName: "volumes",
   externalLinks: [],
+  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "巻"
@@ -549,7 +550,6 @@ export const COUNTER_巻: Counter = {
   readings: [
     {
       counterId: "巻",
-      irregulars: {},
       kana: "かん",
       kangoConjugationOptions: {
         allowsKuFor9: false,
@@ -572,6 +572,7 @@ export const COUNTER_席: Counter = {
   disambiguations: {},
   englishName: "seats",
   externalLinks: [],
+  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "席"
@@ -580,7 +581,6 @@ export const COUNTER_席: Counter = {
   readings: [
     {
       counterId: "席",
-      irregulars: {},
       kana: "せき",
       kangoConjugationOptions: {
         allowsKuFor9: false,
@@ -616,6 +616,7 @@ export const COUNTER_年: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counters-nen/"
     }
   ],
+  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "年"
@@ -624,7 +625,6 @@ export const COUNTER_年: Counter = {
   readings: [
     {
       counterId: "年",
-      irregulars: {},
       kana: "ねん",
       kangoConjugationOptions: {
         allowsKuFor9: true,
@@ -647,6 +647,7 @@ export const COUNTER_戦: Counter = {
   disambiguations: {},
   englishName: "battles",
   externalLinks: [],
+  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "戦"
@@ -655,7 +656,6 @@ export const COUNTER_戦: Counter = {
   readings: [
     {
       counterId: "戦",
-      irregulars: {},
       kana: "せん",
       kangoConjugationOptions: {
         allowsKuFor9: false,
@@ -685,6 +685,99 @@ export const COUNTER_日: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-ka-nichi/"
     }
   ],
+  irregulars: {
+    1: [
+      {
+        doesPresenceEraseRegularConjugations: false,
+        reading: "ついたち",
+        type: "arbitrary-reading"
+      }
+    ],
+    2: [
+      {
+        doesPresenceEraseRegularConjugations: false,
+        reading: "ふつか",
+        type: "arbitrary-reading"
+      }
+    ],
+    3: [
+      {
+        doesPresenceEraseRegularConjugations: false,
+        reading: "みっか",
+        type: "arbitrary-reading"
+      }
+    ],
+    4: [
+      {
+        doesPresenceEraseRegularConjugations: false,
+        reading: "よっか",
+        type: "arbitrary-reading"
+      }
+    ],
+    5: [
+      {
+        doesPresenceEraseRegularConjugations: false,
+        reading: "いつか",
+        type: "arbitrary-reading"
+      }
+    ],
+    6: [
+      {
+        doesPresenceEraseRegularConjugations: false,
+        reading: "むいか",
+        type: "arbitrary-reading"
+      }
+    ],
+    7: [
+      {
+        doesPresenceEraseRegularConjugations: false,
+        reading: "なのか",
+        type: "arbitrary-reading"
+      }
+    ],
+    8: [
+      {
+        doesPresenceEraseRegularConjugations: false,
+        reading: "ようか",
+        type: "arbitrary-reading"
+      }
+    ],
+    9: [
+      {
+        doesPresenceEraseRegularConjugations: false,
+        reading: "ここのか",
+        type: "arbitrary-reading"
+      }
+    ],
+    10: [
+      {
+        doesPresenceEraseRegularConjugations: false,
+        reading: "とおか",
+        type: "arbitrary-reading"
+      }
+    ],
+    14: [
+      {
+        doesPresenceEraseRegularConjugations: false,
+        reading: "じゅうよっか",
+        type: "arbitrary-reading"
+      }
+    ],
+    20: [
+      {
+        doesPresenceEraseRegularConjugations: false,
+        reading: "はつか",
+        type: "arbitrary-reading"
+      }
+    ],
+    24: [
+      {
+        doesPresenceEraseRegularConjugations: false,
+        reading: "にじゅうよっか",
+        type: "arbitrary-reading"
+      }
+    ]
+  },
   kanji: {
     additionalKanji: [],
     primaryKanji: "日"
@@ -693,7 +786,6 @@ export const COUNTER_日: Counter = {
   readings: [
     {
       counterId: "日",
-      irregulars: {},
       kana: "にち",
       kangoConjugationOptions: {
         allowsKuFor9: false,
@@ -723,6 +815,7 @@ export const COUNTER_時: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-ji-jikan/"
     }
   ],
+  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "時"
@@ -731,7 +824,6 @@ export const COUNTER_時: Counter = {
   readings: [
     {
       counterId: "時",
-      irregulars: {},
       kana: "じ",
       kangoConjugationOptions: {
         allowsKuFor9: true,
@@ -754,6 +846,7 @@ export const COUNTER_曲: Counter = {
   disambiguations: {},
   englishName: "songs",
   externalLinks: [],
+  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "曲"
@@ -762,7 +855,6 @@ export const COUNTER_曲: Counter = {
   readings: [
     {
       counterId: "曲",
-      irregulars: {},
       kana: "きょく",
       kangoConjugationOptions: {
         allowsKuFor9: false,
@@ -792,6 +884,7 @@ export const COUNTER_本: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-hon/"
     }
   ],
+  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "本"
@@ -800,7 +893,6 @@ export const COUNTER_本: Counter = {
   readings: [
     {
       counterId: "本",
-      irregulars: {},
       kana: "ほん",
       kangoConjugationOptions: {
         allowsKuFor9: false,
@@ -823,6 +915,7 @@ export const COUNTER_束: Counter = {
   disambiguations: {},
   englishName: "bundles",
   externalLinks: [],
+  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "束"
@@ -831,7 +924,6 @@ export const COUNTER_束: Counter = {
   readings: [
     {
       counterId: "束",
-      irregulars: {},
       kana: "たば",
       kangoConjugationOptions: {
         allowsKuFor9: false,
@@ -867,6 +959,7 @@ export const COUNTER_枚: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-mai/"
     }
   ],
+  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "枚"
@@ -875,7 +968,6 @@ export const COUNTER_枚: Counter = {
   readings: [
     {
       counterId: "枚",
-      irregulars: {},
       kana: "まい",
       kangoConjugationOptions: {
         allowsKuFor9: false,
@@ -898,6 +990,7 @@ export const COUNTER_校: Counter = {
   disambiguations: {},
   englishName: "schools",
   externalLinks: [],
+  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "校"
@@ -906,7 +999,6 @@ export const COUNTER_校: Counter = {
   readings: [
     {
       counterId: "校",
-      irregulars: {},
       kana: "こう",
       kangoConjugationOptions: {
         allowsKuFor9: false,
@@ -929,6 +1021,7 @@ export const COUNTER_歳: Counter = {
   disambiguations: {},
   englishName: "age",
   externalLinks: [],
+  irregulars: {},
   kanji: {
     additionalKanji: ["才"],
     primaryKanji: "歳"
@@ -937,7 +1030,6 @@ export const COUNTER_歳: Counter = {
   readings: [
     {
       counterId: "歳",
-      irregulars: {},
       kana: "さい",
       kangoConjugationOptions: {
         allowsKuFor9: false,
@@ -960,6 +1052,7 @@ export const COUNTER_皿: Counter = {
   disambiguations: {},
   englishName: "plates of food",
   externalLinks: [],
+  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "皿"
@@ -968,7 +1061,6 @@ export const COUNTER_皿: Counter = {
   readings: [
     {
       counterId: "皿",
-      irregulars: {},
       kana: "さら",
       kangoConjugationOptions: {
         allowsKuFor9: false,
@@ -997,6 +1089,7 @@ export const COUNTER_社: Counter = {
   disambiguations: {},
   englishName: "companies and temples",
   externalLinks: [],
+  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "社"
@@ -1005,7 +1098,6 @@ export const COUNTER_社: Counter = {
   readings: [
     {
       counterId: "社",
-      irregulars: {},
       kana: "しゃ",
       kangoConjugationOptions: {
         allowsKuFor9: false,
@@ -1028,6 +1120,7 @@ export const COUNTER_組: Counter = {
   disambiguations: {},
   englishName: "groups and pairs",
   externalLinks: [],
+  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "組"
@@ -1036,7 +1129,6 @@ export const COUNTER_組: Counter = {
   readings: [
     {
       counterId: "組",
-      irregulars: {},
       kana: "くみ",
       kangoConjugationOptions: {
         allowsKuFor9: false,
@@ -1059,6 +1151,7 @@ export const COUNTER_缶: Counter = {
   disambiguations: {},
   englishName: "cans",
   externalLinks: [],
+  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "缶"
@@ -1067,7 +1160,6 @@ export const COUNTER_缶: Counter = {
   readings: [
     {
       counterId: "缶",
-      irregulars: {},
       kana: "かん",
       kangoConjugationOptions: {
         allowsKuFor9: false,
@@ -1103,6 +1195,7 @@ export const COUNTER_羽: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-wa/"
     }
   ],
+  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "羽"
@@ -1111,7 +1204,6 @@ export const COUNTER_羽: Counter = {
   readings: [
     {
       counterId: "羽",
-      irregulars: {},
       kana: "わ",
       kangoConjugationOptions: {
         allowsKuFor9: false,
@@ -1134,6 +1226,7 @@ export const COUNTER_色: Counter = {
   disambiguations: {},
   englishName: "colours",
   externalLinks: [],
+  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "色"
@@ -1142,7 +1235,6 @@ export const COUNTER_色: Counter = {
   readings: [
     {
       counterId: "色",
-      irregulars: {},
       kana: "しょく",
       kangoConjugationOptions: {
         allowsKuFor9: false,
@@ -1165,6 +1257,7 @@ export const COUNTER_語: Counter = {
   disambiguations: {},
   englishName: "words",
   externalLinks: [],
+  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "語"
@@ -1173,7 +1266,6 @@ export const COUNTER_語: Counter = {
   readings: [
     {
       counterId: "語",
-      irregulars: {},
       kana: "ご",
       kangoConjugationOptions: {
         allowsKuFor9: false,
@@ -1196,6 +1288,7 @@ export const COUNTER_足: Counter = {
   disambiguations: {},
   englishName: "pairs of footwear",
   externalLinks: [],
+  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "足"
@@ -1204,7 +1297,6 @@ export const COUNTER_足: Counter = {
   readings: [
     {
       counterId: "足",
-      irregulars: {},
       kana: "そく",
       kangoConjugationOptions: {
         allowsKuFor9: false,
@@ -1227,6 +1319,7 @@ export const COUNTER_軒: Counter = {
   disambiguations: {},
   englishName: "houses and buildings",
   externalLinks: [],
+  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "軒"
@@ -1235,7 +1328,6 @@ export const COUNTER_軒: Counter = {
   readings: [
     {
       counterId: "軒",
-      irregulars: {},
       kana: "けん",
       kangoConjugationOptions: {
         allowsKuFor9: false,
@@ -1258,6 +1350,7 @@ export const COUNTER_週: Counter = {
   disambiguations: {},
   englishName: "weeks",
   externalLinks: [],
+  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "週"
@@ -1266,7 +1359,6 @@ export const COUNTER_週: Counter = {
   readings: [
     {
       counterId: "週",
-      irregulars: {},
       kana: "しゅう",
       kangoConjugationOptions: {
         allowsKuFor9: false,
@@ -1296,6 +1388,7 @@ export const COUNTER_階: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-kai-floors/"
     }
   ],
+  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "階"
@@ -1304,7 +1397,6 @@ export const COUNTER_階: Counter = {
   readings: [
     {
       counterId: "階",
-      irregulars: {},
       kana: "かい",
       kangoConjugationOptions: {
         allowsKuFor9: false,
@@ -1334,6 +1426,7 @@ export const COUNTER_頭: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-tou/"
     }
   ],
+  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "頭"
@@ -1342,7 +1435,6 @@ export const COUNTER_頭: Counter = {
   readings: [
     {
       counterId: "頭",
-      irregulars: {},
       kana: "とう",
       kangoConjugationOptions: {
         allowsKuFor9: false,

@@ -1,5 +1,12 @@
 export type DbBoolean = 0 | 1;
-export type DbWordOrigin = "和語" | "漢語" | "外来語";
+export enum DbIrregularType {
+  ArbitraryReading = "arbitrary-reading"
+}
+export enum DbWordOrigin {
+  Japanese = "和語",
+  Chinese = "漢語",
+  Foreign = "外来語"
+}
 
 export interface DbCounterAdditionalReading {
   counter_id: string;
@@ -25,7 +32,8 @@ export interface DbCounterIrregular {
   counter_id: string;
   number: number;
   kana: string;
-  nonstandard: DbBoolean;
+  irregular_type: DbIrregularType;
+  does_presence_erase_regular_conjugations: boolean;
 }
 
 export interface DbCounterReading {
@@ -58,6 +66,10 @@ export interface DbCounter {
 
 export interface DbEnumWordOrigin {
   word_origin: string;
+}
+
+export interface DbEnumIrregularType {
+  irregular_type: string;
 }
 
 export interface DbItemCounter {
@@ -110,6 +122,7 @@ export enum Schemas {
 }
 
 export enum EnumSchemas {
+  EnumIrregularType = "enum_irregular_type",
   EnumWordOrigin = "enum_word_origin"
 }
 
@@ -121,6 +134,7 @@ export interface SchemaEntryTypes {
   [Schemas.CounterAlternativeKanji]: DbCounterAlternativeKanji;
   [Schemas.CounterReadings]: DbCounterReading;
   [Schemas.Counters]: DbCounter;
+  [EnumSchemas.EnumIrregularType]: DbEnumIrregularType;
   [EnumSchemas.EnumWordOrigin]: DbEnumWordOrigin;
   [Schemas.ItemCounters]: DbItemCounter;
   [Schemas.Items]: DbItem;

@@ -62,7 +62,6 @@ export interface CounterWagoStyle {
 
 export interface CounterReading {
   counterId: string;
-  irregulars: { [amount: number]: ReadonlyArray<string> };
   kana: string;
   kangoConjugationOptions: KangoConjugationOptions;
   readingId: string;
@@ -81,9 +80,30 @@ export interface CounterKanjiInfo {
   additionalKanji: ReadonlyArray<string>;
 }
 
+export enum CounterIrregularType {
+  ArbitraryReading = "arbitrary-reading"
+}
+
+export interface CounterIrregular {
+  /**
+   * If true, then for the amount specified all
+   * regular conjugations should be ignored and only
+   * this (and other irregular readings for this amount)
+   * should be considered. If all irregulars for this
+   * amount are false, then the irregulars should
+   * appear alongside the regular readings.
+   */
+  doesPresenceEraseRegularConjugations: boolean;
+
+  type: CounterIrregularType;
+
+  reading: string;
+}
+
 export interface Counter {
   counterId: string;
   englishName: string;
+  irregulars: { [amount: number]: ReadonlyArray<CounterIrregular> };
   kanji: CounterKanjiInfo | null;
   readings: ReadonlyArray<CounterReading>;
   notes: string | null;
@@ -140,7 +160,6 @@ export interface Conjugation {
 
 export interface Answer {
   counterId: string;
-  category: ConjugationCategory;
   kana: string;
   kanji: string | null;
 }
