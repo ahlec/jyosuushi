@@ -163,6 +163,7 @@ function convertToProductionIrregularsMap(
 
     result[amount] = irregulars.map(
       (dbIrregular): ProtoCounterIrregular => ({
+        amount,
         doesPresenceEraseRegularConjugations: !!dbIrregular.does_presence_erase_regular_conjugations,
         reading: dbIrregular.kana,
         type: convertToProductionIrregularType(dbIrregular.irregular_type)

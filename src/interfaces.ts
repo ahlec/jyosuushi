@@ -85,6 +85,8 @@ export enum CounterIrregularType {
 }
 
 export interface CounterIrregular {
+  amount: number;
+
   /**
    * If true, then for the amount specified all
    * regular conjugations should be ignored and only

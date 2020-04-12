@@ -688,6 +688,7 @@ export const COUNTER_日: Counter = {
   irregulars: {
     1: [
       {
+        amount: 1,
         doesPresenceEraseRegularConjugations: false,
         reading: "ついたち",
         type: CounterIrregularType.ArbitraryReading
@@ -695,6 +696,7 @@ export const COUNTER_日: Counter = {
     ],
     2: [
       {
+        amount: 2,
         doesPresenceEraseRegularConjugations: false,
         reading: "ふつか",
         type: CounterIrregularType.ArbitraryReading
@@ -702,6 +704,7 @@ export const COUNTER_日: Counter = {
     ],
     3: [
       {
+        amount: 3,
         doesPresenceEraseRegularConjugations: false,
         reading: "みっか",
         type: CounterIrregularType.ArbitraryReading
@@ -709,6 +712,7 @@ export const COUNTER_日: Counter = {
     ],
     4: [
       {
+        amount: 4,
         doesPresenceEraseRegularConjugations: false,
         reading: "よっか",
         type: CounterIrregularType.ArbitraryReading
@@ -716,6 +720,7 @@ export const COUNTER_日: Counter = {
     ],
     5: [
       {
+        amount: 5,
         doesPresenceEraseRegularConjugations: false,
         reading: "いつか",
         type: CounterIrregularType.ArbitraryReading
@@ -723,6 +728,7 @@ export const COUNTER_日: Counter = {
     ],
     6: [
       {
+        amount: 6,
         doesPresenceEraseRegularConjugations: false,
         reading: "むいか",
         type: CounterIrregularType.ArbitraryReading
@@ -730,6 +736,7 @@ export const COUNTER_日: Counter = {
     ],
     7: [
       {
+        amount: 7,
         doesPresenceEraseRegularConjugations: false,
         reading: "なのか",
         type: CounterIrregularType.ArbitraryReading
@@ -737,6 +744,7 @@ export const COUNTER_日: Counter = {
     ],
     8: [
       {
+        amount: 8,
         doesPresenceEraseRegularConjugations: false,
         reading: "ようか",
         type: CounterIrregularType.ArbitraryReading
@@ -744,6 +752,7 @@ export const COUNTER_日: Counter = {
     ],
     9: [
       {
+        amount: 9,
         doesPresenceEraseRegularConjugations: false,
         reading: "ここのか",
         type: CounterIrregularType.ArbitraryReading
@@ -751,6 +760,7 @@ export const COUNTER_日: Counter = {
     ],
     10: [
       {
+        amount: 10,
         doesPresenceEraseRegularConjugations: false,
         reading: "とおか",
         type: CounterIrregularType.ArbitraryReading
@@ -758,6 +768,7 @@ export const COUNTER_日: Counter = {
     ],
     14: [
       {
+        amount: 14,
         doesPresenceEraseRegularConjugations: false,
         reading: "じゅうよっか",
         type: CounterIrregularType.ArbitraryReading
@@ -765,6 +776,7 @@ export const COUNTER_日: Counter = {
     ],
     20: [
       {
+        amount: 20,
         doesPresenceEraseRegularConjugations: false,
         reading: "はつか",
         type: CounterIrregularType.ArbitraryReading
@@ -772,6 +784,7 @@ export const COUNTER_日: Counter = {
     ],
     24: [
       {
+        amount: 24,
         doesPresenceEraseRegularConjugations: false,
         reading: "にじゅうよっか",
         type: CounterIrregularType.ArbitraryReading
