@@ -148,7 +148,7 @@ export enum CountingSystem {
   Unknown = "unknown",
   Kango = "kango",
   Wago = "wago",
-  Gairaigo = "Gairaigo"
+  Eigo = "Eigo"
 }
 
 export interface Conjugation {

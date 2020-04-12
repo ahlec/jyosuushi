@@ -14,6 +14,7 @@ import { Gyou, HIRAGANA } from "./kana";
 import { conjugateKangoNumber, FinalNumberChanges } from "./kango";
 import { breakDownNumber, HYAKU, JYUU } from "./numbers";
 import { Tag } from "./tags";
+import { conjugateWagoNumber } from "./wago";
 import {
   castAwayTaggable,
   permutateTaggableWords,
@@ -130,7 +131,15 @@ function conjugateRegularWagoReading(
   counterId: string,
   style: CounterWagoStyle
 ): ReadonlyArray<Conjugation> {
-  throw new Error("TODO!");
+  const numbers = conjugateWagoNumber(amount);
+  return numbers.map(
+    (numberBase): Conjugation => ({
+      amount,
+      counterId,
+      countingSystem: CountingSystem.Wago,
+      reading: `${numberBase}${style.kana}`
+    })
+  );
 }
 
 function conjugateRegularKangoReading(
