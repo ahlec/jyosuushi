@@ -13,31 +13,37 @@ INSERT INTO
 VALUES('日', 10, 'とおか', 'arbitrary-reading', 0);
 INSERT INTO
   "counter_irregulars"
-VALUES('日', 9, 'ここのか', 'arbitrary-reading', 0);
+VALUES(
+    '日',
+    9,
+    'ここのか',
+    'standard-wago-range-sound-change',
+    1
+  );
 INSERT INTO
   "counter_irregulars"
-VALUES('日', 8, 'ようか', 'arbitrary-reading', 0);
+VALUES('日', 8, 'ようか', 'standard-wago-range-sound-change', 1);
 INSERT INTO
   "counter_irregulars"
-VALUES('日', 7, 'なのか', 'arbitrary-reading', 0);
+VALUES('日', 7, 'なのか', 'standard-wago-range-sound-change', 1);
 INSERT INTO
   "counter_irregulars"
-VALUES('日', 6, 'むいか', 'arbitrary-reading', 0);
+VALUES('日', 6, 'むいか', 'standard-wago-range-sound-change', 1);
 INSERT INTO
   "counter_irregulars"
-VALUES('日', 5, 'いつか', 'arbitrary-reading', 0);
+VALUES('日', 5, 'いつか', 'standard-wago-range-sound-change', 1);
 INSERT INTO
   "counter_irregulars"
-VALUES('日', 4, 'よっか', 'arbitrary-reading', 0);
+VALUES('日', 4, 'よっか', 'standard-wago-range-sound-change', 1);
 INSERT INTO
   "counter_irregulars"
-VALUES('日', 3, 'みっか', 'arbitrary-reading', 0);
+VALUES('日', 3, 'みっか', 'standard-wago-range-sound-change', 1);
 INSERT INTO
   "counter_irregulars"
-VALUES('日', 2, 'ふつか', 'arbitrary-reading', 0);
+VALUES('日', 2, 'ふつか', 'standard-wago-range-sound-change', 1);
 INSERT INTO
   "counter_irregulars"
-VALUES('日', 1, 'ついたち', 'arbitrary-reading', 0);
+VALUES('日', 1, 'ついたち', 'arbitrary-reading', 1);
 INSERT INTO
   "counter_irregulars"
 VALUES('日', 24, 'にじゅうよっか', 'arbitrary-reading', 0);

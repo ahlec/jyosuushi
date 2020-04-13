@@ -1,6 +1,7 @@
 export type DbBoolean = 0 | 1;
 export enum DbIrregularType {
-  ArbitraryReading = "arbitrary-reading"
+  ArbitraryReading = "arbitrary-reading",
+  StandardWagoRangeSoundChange = "standard-wago-range-sound-change"
 }
 export enum DbWordOrigin {
   Japanese = "和語",

@@ -363,7 +363,7 @@ export const conjugateCounter: (
         results.push({
           amount,
           counterId: counter.counterId,
-          countingSystem: CountingSystem.Unknown,
+          countingSystem: irregular.countingSystem,
           irregularType: irregular.type,
           kanji: null,
           reading: irregular.reading

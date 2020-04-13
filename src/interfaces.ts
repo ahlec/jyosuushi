@@ -81,11 +81,14 @@ export interface CounterKanjiInfo {
 }
 
 export enum CounterIrregularType {
-  ArbitraryReading = "arbitrary-reading"
+  ArbitraryReading = "arbitrary-reading",
+  SoundChange = "sound-change"
 }
 
 export interface CounterIrregular {
   amount: number;
+
+  countingSystem: CountingSystem | null;
 
   /**
    * If true, then for the amount specified all
@@ -147,7 +150,6 @@ export interface PendingQuestion {
 }
 
 export enum CountingSystem {
-  Unknown = "unknown",
   Kango = "kango",
   Wago = "wago",
   Eigo = "Eigo"
@@ -156,7 +158,7 @@ export enum CountingSystem {
 export interface Conjugation {
   amount: number;
   counterId: string;
-  countingSystem: CountingSystem;
+  countingSystem: CountingSystem | null;
   irregularType: CounterIrregularType | null;
   kanji: string | null;
   reading: string;
@@ -164,7 +166,7 @@ export interface Conjugation {
 
 export interface Answer {
   counterId: string;
-  countingSystem: CountingSystem;
+  countingSystem: CountingSystem | null;
   irregularType: CounterIrregularType | null;
   kana: string;
   kanji: string | null;

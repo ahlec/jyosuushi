@@ -32,7 +32,11 @@ type ProtoCounterReading = Omit<CounterReading, "wordOrigin"> & {
   wordOrigin: ProductionVariable;
 };
 
-type ProtoCounterIrregular = Omit<CounterIrregular, "type"> & {
+type ProtoCounterIrregular = Omit<
+  CounterIrregular,
+  "countingSystem" | "type"
+> & {
+  countingSystem: ProductionVariable | null;
   type: ProductionVariable;
 };
 
@@ -136,6 +140,22 @@ export function convertToProductionIrregularType(
     case DbIrregularType.ArbitraryReading: {
       return new ProductionVariable("CounterIrregularType.ArbitraryReading");
     }
+    case DbIrregularType.StandardWagoRangeSoundChange: {
+      return new ProductionVariable("CounterIrregularType.SoundChange");
+    }
+  }
+}
+
+function getIrregularCountingSystem(
+  type: DbIrregularType
+): ProductionVariable | null {
+  switch (type) {
+    case DbIrregularType.ArbitraryReading: {
+      return null;
+    }
+    case DbIrregularType.StandardWagoRangeSoundChange: {
+      return new ProductionVariable("CountingSystem.Wago");
+    }
   }
 }
 
@@ -164,6 +184,7 @@ function convertToProductionIrregularsMap(
     result[amount] = irregulars.map(
       (dbIrregular): ProtoCounterIrregular => ({
         amount,
+        countingSystem: getIrregularCountingSystem(dbIrregular.irregular_type),
         doesPresenceEraseRegularConjugations: !!dbIrregular.does_presence_erase_regular_conjugations,
         reading: dbIrregular.kana,
         type: convertToProductionIrregularType(dbIrregular.irregular_type)
@@ -179,7 +200,7 @@ export default function writeCountersFile(
   dataSource: ValidatedDataSource
 ): void {
   stream.write(
-    'import { Counter, CounterIrregularType, WordOrigin } from "../src/interfaces";\n'
+    'import { Counter, CounterIrregularType, CountingSystem, WordOrigin } from "../src/interfaces";\n'
   );
   stream.write('import * as DISAMBIGUATIONS from "./disambiguations";');
 
