@@ -10,6 +10,7 @@ const FAVICON_DIRECTORY = path.resolve(ROOT_DIRECTORY, "favicons");
 const SOURCE_DIRECTORY = path.resolve(ROOT_DIRECTORY, "src");
 const DATA_DIRECTORY = path.resolve(ROOT_DIRECTORY, "data");
 const CONFIG_JSON_FILE = path.resolve(ROOT_DIRECTORY, "config.json");
+const CHANGELOG_FILE = path.resolve(ROOT_DIRECTORY, "changelog.ts");
 
 let configJson;
 if (!process.env.CI) {
@@ -40,6 +41,7 @@ module.exports = {
   },
   resolve: {
     alias: {
+      "@changelog": CHANGELOG_FILE,
       "@data": DATA_DIRECTORY,
       "@jyosuushi": SOURCE_DIRECTORY
     },
@@ -62,10 +64,6 @@ module.exports = {
       {
         test: /\.svg$/,
         loader: "@svgr/webpack"
-      },
-      {
-        test: /\.md$/,
-        use: ["html-loader", "markdown-loader"]
       }
     ]
   },
