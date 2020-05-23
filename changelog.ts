@@ -1,3 +1,19 @@
+/**
+ * Ideally, we'd have the ability to sort these in a
+ * fixed order:
+ *  1. version
+ *  2. date
+ *  3. newFeatures
+ *  4. improvements
+ *  5. bugFixes
+ *  6. developerChanges
+ * So that it mirrors the order that we intend to display
+ * it on the site. But `sort-keys` isn't THAT flexible and
+ * it feels like it'd be more confusing to have it in
+ * alphabetical order here.
+ */
+/* eslint-disable sort-keys */
+
 export interface ConsumerFacingEntry {
   label: string;
   details: string;
