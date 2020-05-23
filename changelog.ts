@@ -74,16 +74,17 @@ const CHANGELOG: readonly ChangelogVersion[] = [
           "We've moved! You can now find us at [https://www.jyosuushi.com/](https://www.jyosuushi.com/)."
       },
       {
-        label: "New layout for counters page.",
-        details:
-          "The individual counters page have been given a new layout to help them grow to include more information. You'll start to notice some entries having links to other articles, descriptions, and comparisons with similar counters and what makes them different."
-      },
-      {
         label: "New counters added.",
         details: "A couple more counters have joined the fray!"
       }
     ],
-    improvements: [],
+    improvements: [
+      {
+        label: "New layout for counters page.",
+        details:
+          "The individual counters page have been given a new layout to help them grow to include more information. You'll start to notice some entries having links to other articles, descriptions, and comparisons with similar counters and what makes them different."
+      }
+    ],
     bugFixes: [],
     developerChanges: [
       "Upgraded dependencies to their latest versions.",
@@ -100,14 +101,15 @@ const CHANGELOG: readonly ChangelogVersion[] = [
         label: "New counters added.",
         details:
           "We have a couple more added to the pool now! Trying to ramp production up."
-      },
+      }
+    ],
+    improvements: [
       {
         label: "Preview counters.",
         details:
           "You can preview any amount for a counter now when visiting its page!"
       }
     ],
-    improvements: [],
     bugFixes: [
       {
         text:
