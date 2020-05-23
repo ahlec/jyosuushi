@@ -4,8 +4,10 @@ export interface ConsumerFacingEntry {
   nestedListItems?: readonly string[];
 }
 
+export type BugFixBrowser = "chrome" | "firefox" | "safari" | "edge" | "ie";
+
 export interface BugFixEntry {
-  browser?: "chrome" | "firefox" | "safari" | "edge" | "ie";
+  browser?: BugFixBrowser;
   text: string;
 }
 

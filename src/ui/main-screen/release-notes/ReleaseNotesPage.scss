@@ -2,12 +2,11 @@
 
 .ReleaseNotesPage {
   .version-container {
-    font-size: 14px;
-
     .version-header {
       font-size: 1.5em;
       font-weight: 600;
       line-height: 1.5;
+      color: $pink-darkest;
 
       .date {
         font-size: 13px;
@@ -22,9 +21,13 @@
       padding-left: 15px;
       border-left: 2px solid $pink-light;
 
-      .entries {
-        > .header {
+      .notes-container {
+        .notes-header {
           font-weight: bold;
+          font-size: 15px;
+          border-bottom: 1px solid $black-lightest;
+          display: inline-block;
+          padding: 0px 2px;
         }
 
         ol,
@@ -35,14 +38,23 @@
         }
 
         .entry {
+          font-size: 13px;
+
+          &.bugfix {
+            .browser {
+              color: $green-darkest;
+              display: inline-block;
+              padding: 0px 3px;
+            }
+          }
+
           .label {
             font-weight: 600;
-            text-decoration: underline;
           }
         }
       }
 
-      .entries + .entries {
+      .notes-container + .notes-container {
         margin-top: 10px;
       }
     }

@@ -5,7 +5,8 @@ import CHANGELOG, {
   ChangelogVersion,
   isFirstVersion,
   ConsumerFacingEntry,
-  BugFixEntry
+  BugFixEntry,
+  BugFixBrowser
 } from "@changelog";
 
 import { State } from "@jyosuushi/redux";
@@ -30,6 +31,14 @@ function mapStateToProps(state: State): ReduxProps {
 }
 
 type ComponentProps = ReduxProps & { dispatch: Dispatch };
+
+const BROWSER_NAMES: { [browser in BugFixBrowser]: string } = {
+  chrome: "Chrome",
+  edge: "Microsoft Edge",
+  firefox: "Firefox",
+  ie: "Internet Explorer",
+  safari: "Safari"
+};
 
 class ReleaseNotesPage extends React.PureComponent<ComponentProps> {
   public componentDidMount(): void {
@@ -88,8 +97,8 @@ class ReleaseNotesPage extends React.PureComponent<ComponentProps> {
     }
 
     return (
-      <div className="entries">
-        <div className="header">{header}</div>
+      <div className="notes-container">
+        <div className="notes-header">{header}:</div>
         <ul>{entries.map(renderEntry)}</ul>
       </div>
     );
@@ -112,7 +121,12 @@ class ReleaseNotesPage extends React.PureComponent<ComponentProps> {
     index: number
   ): React.ReactNode {
     return (
-      <li key={index} className="entry">
+      <li key={index} className="entry bugfix">
+        {entry.browser && (
+          <React.Fragment>
+            [<span className="browser">{BROWSER_NAMES[entry.browser]}</span>]{" "}
+          </React.Fragment>
+        )}
         <Markdown source={entry.text} />
       </li>
     );
