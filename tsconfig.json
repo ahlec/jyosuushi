@@ -3,7 +3,8 @@
     "baseUrl": "./",
     "paths": {
       "@jyosuushi/*": ["src/*"],
-      "@data/*": ["data/*"]
+      "@data/*": ["data/*"],
+      "@changelog": ["changelog.ts"]
     },
     "esModuleInterop": true,
     "jsx": "react",

@@ -8,13 +8,6 @@ import { Dispatch } from "@jyosuushi/redux/store";
 
 import Localization from "@jyosuushi/localization";
 
-import Markdown from "./Markdown";
-
-// We're importing outside of the src/ directory and this is one-off, so
-// we'll just make an exception for here.
-/* tslint:disable-next-line:no-relative-imports */
-import CHANGELOG from "../../../../CHANGELOG.md";
-
 import "./ReleaseNotesPage.scss";
 
 interface ReduxProps {
@@ -36,7 +29,7 @@ class ReleaseNotesPage extends React.PureComponent<ComponentProps> {
   }
 
   public render(): React.ReactNode {
-    return <Markdown className="ReleaseNotesPage" content={CHANGELOG} />;
+    return null;
   }
 }
 
