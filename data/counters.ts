@@ -197,7 +197,7 @@ export const COUNTER_円: Counter = {
     additionalKanji: [],
     primaryKanji: "円"
   },
-  notes: "hello world",
+  notes: null,
   readings: [
     {
       counterId: "円",

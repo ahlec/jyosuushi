@@ -62,7 +62,7 @@ INSERT INTO
 VALUES('ヶ国', 'countries', NULL, 'ヶ国');
 INSERT INTO
   "counters" (counter_id, english_name, notes, primary_kanji)
-VALUES('円', 'yen', 'hello world', '円');
+VALUES('円', 'yen', NULL, '円');
 INSERT INTO
   "counters" (counter_id, english_name, notes, primary_kanji)
 VALUES('巻', 'volumes', NULL, '巻');
