@@ -9,10 +9,22 @@ CREATE TABLE counter_irregulars (
   PRIMARY KEY (counter_id, kana)
 );
 INSERT INTO
-  "counter_irregulars"
+  "counter_irregulars" (
+    counter_id,
+    number,
+    kana,
+    irregular_type,
+    does_presence_erase_regular_conjugations
+  )
 VALUES('日', 10, 'とおか', 'arbitrary-reading', 0);
 INSERT INTO
-  "counter_irregulars"
+  "counter_irregulars" (
+    counter_id,
+    number,
+    kana,
+    irregular_type,
+    does_presence_erase_regular_conjugations
+  )
 VALUES(
     '日',
     9,
@@ -21,36 +33,144 @@ VALUES(
     1
   );
 INSERT INTO
-  "counter_irregulars"
-VALUES('日', 8, 'ようか', 'standard-wago-range-sound-change', 1);
+  "counter_irregulars" (
+    counter_id,
+    number,
+    kana,
+    irregular_type,
+    does_presence_erase_regular_conjugations
+  )
+VALUES(
+    '日',
+    8,
+    'ようか',
+    'standard-wago-range-sound-change',
+    1
+  );
 INSERT INTO
-  "counter_irregulars"
-VALUES('日', 7, 'なのか', 'standard-wago-range-sound-change', 1);
+  "counter_irregulars" (
+    counter_id,
+    number,
+    kana,
+    irregular_type,
+    does_presence_erase_regular_conjugations
+  )
+VALUES(
+    '日',
+    7,
+    'なのか',
+    'standard-wago-range-sound-change',
+    1
+  );
 INSERT INTO
-  "counter_irregulars"
-VALUES('日', 6, 'むいか', 'standard-wago-range-sound-change', 1);
+  "counter_irregulars" (
+    counter_id,
+    number,
+    kana,
+    irregular_type,
+    does_presence_erase_regular_conjugations
+  )
+VALUES(
+    '日',
+    6,
+    'むいか',
+    'standard-wago-range-sound-change',
+    1
+  );
 INSERT INTO
-  "counter_irregulars"
-VALUES('日', 5, 'いつか', 'standard-wago-range-sound-change', 1);
+  "counter_irregulars" (
+    counter_id,
+    number,
+    kana,
+    irregular_type,
+    does_presence_erase_regular_conjugations
+  )
+VALUES(
+    '日',
+    5,
+    'いつか',
+    'standard-wago-range-sound-change',
+    1
+  );
 INSERT INTO
-  "counter_irregulars"
-VALUES('日', 4, 'よっか', 'standard-wago-range-sound-change', 1);
+  "counter_irregulars" (
+    counter_id,
+    number,
+    kana,
+    irregular_type,
+    does_presence_erase_regular_conjugations
+  )
+VALUES(
+    '日',
+    4,
+    'よっか',
+    'standard-wago-range-sound-change',
+    1
+  );
 INSERT INTO
-  "counter_irregulars"
-VALUES('日', 3, 'みっか', 'standard-wago-range-sound-change', 1);
+  "counter_irregulars" (
+    counter_id,
+    number,
+    kana,
+    irregular_type,
+    does_presence_erase_regular_conjugations
+  )
+VALUES(
+    '日',
+    3,
+    'みっか',
+    'standard-wago-range-sound-change',
+    1
+  );
 INSERT INTO
-  "counter_irregulars"
-VALUES('日', 2, 'ふつか', 'standard-wago-range-sound-change', 1);
+  "counter_irregulars" (
+    counter_id,
+    number,
+    kana,
+    irregular_type,
+    does_presence_erase_regular_conjugations
+  )
+VALUES(
+    '日',
+    2,
+    'ふつか',
+    'standard-wago-range-sound-change',
+    1
+  );
 INSERT INTO
-  "counter_irregulars"
+  "counter_irregulars" (
+    counter_id,
+    number,
+    kana,
+    irregular_type,
+    does_presence_erase_regular_conjugations
+  )
 VALUES('日', 1, 'ついたち', 'arbitrary-reading', 1);
 INSERT INTO
-  "counter_irregulars"
+  "counter_irregulars" (
+    counter_id,
+    number,
+    kana,
+    irregular_type,
+    does_presence_erase_regular_conjugations
+  )
 VALUES('日', 24, 'にじゅうよっか', 'arbitrary-reading', 0);
 INSERT INTO
-  "counter_irregulars"
+  "counter_irregulars" (
+    counter_id,
+    number,
+    kana,
+    irregular_type,
+    does_presence_erase_regular_conjugations
+  )
 VALUES('日', 20, 'はつか', 'arbitrary-reading', 0);
 INSERT INTO
-  "counter_irregulars"
+  "counter_irregulars" (
+    counter_id,
+    number,
+    kana,
+    irregular_type,
+    does_presence_erase_regular_conjugations
+  )
 VALUES('日', 14, 'じゅうよっか', 'arbitrary-reading', 0);
 COMMIT;

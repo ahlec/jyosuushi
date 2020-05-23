@@ -8,7 +8,13 @@ CREATE TABLE counter_external_links (
   additional_description STRING
 );
 INSERT INTO
-  "counter_external_links"
+  "counter_external_links" (
+    counter_id,
+    url,
+    site_name,
+    link_text,
+    additional_description
+  )
 VALUES(
     '本',
     'https://www.tofugu.com/japanese/japanese-counter-hon/',
@@ -17,7 +23,13 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "counter_external_links"
+  "counter_external_links" (
+    counter_id,
+    url,
+    site_name,
+    link_text,
+    additional_description
+  )
 VALUES(
     '羽',
     'https://www.tofugu.com/japanese/japanese-counter-wa/',
@@ -26,7 +38,13 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "counter_external_links"
+  "counter_external_links" (
+    counter_id,
+    url,
+    site_name,
+    link_text,
+    additional_description
+  )
 VALUES(
     '匹',
     'https://www.tofugu.com/japanese/japanese-counter-hiki/',
@@ -35,7 +53,13 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "counter_external_links"
+  "counter_external_links" (
+    counter_id,
+    url,
+    site_name,
+    link_text,
+    additional_description
+  )
 VALUES(
     '台',
     'https://www.tofugu.com/japanese/japanese-counter-dai/',
@@ -44,7 +68,13 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "counter_external_links"
+  "counter_external_links" (
+    counter_id,
+    url,
+    site_name,
+    link_text,
+    additional_description
+  )
 VALUES(
     '頭',
     'https://www.tofugu.com/japanese/japanese-counter-tou/',
@@ -53,7 +83,13 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "counter_external_links"
+  "counter_external_links" (
+    counter_id,
+    url,
+    site_name,
+    link_text,
+    additional_description
+  )
 VALUES(
     '枚',
     'https://www.tofugu.com/japanese/japanese-counter-mai/',
@@ -62,7 +98,13 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "counter_external_links"
+  "counter_external_links" (
+    counter_id,
+    url,
+    site_name,
+    link_text,
+    additional_description
+  )
 VALUES(
     '階',
     'https://www.tofugu.com/japanese/japanese-counter-kai-floors/',
@@ -71,7 +113,13 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "counter_external_links"
+  "counter_external_links" (
+    counter_id,
+    url,
+    site_name,
+    link_text,
+    additional_description
+  )
 VALUES(
     'ヶ月',
     'https://www.tofugu.com/japanese/japanese-counter-tsuki-gatsu-getsu/',
@@ -80,7 +128,13 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "counter_external_links"
+  "counter_external_links" (
+    counter_id,
+    url,
+    site_name,
+    link_text,
+    additional_description
+  )
 VALUES(
     '日',
     'https://www.tofugu.com/japanese/japanese-counter-ka-nichi/',
@@ -89,7 +143,13 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "counter_external_links"
+  "counter_external_links" (
+    counter_id,
+    url,
+    site_name,
+    link_text,
+    additional_description
+  )
 VALUES(
     '名',
     'https://www.tofugu.com/japanese/japanese-counter-nin/',
@@ -98,7 +158,13 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "counter_external_links"
+  "counter_external_links" (
+    counter_id,
+    url,
+    site_name,
+    link_text,
+    additional_description
+  )
 VALUES(
     '人',
     'https://www.tofugu.com/japanese/japanese-counter-nin/',
@@ -107,7 +173,13 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "counter_external_links"
+  "counter_external_links" (
+    counter_id,
+    url,
+    site_name,
+    link_text,
+    additional_description
+  )
 VALUES(
     '冊',
     'https://www.tofugu.com/japanese/japanese-counter-satsu/',
@@ -116,7 +188,13 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "counter_external_links"
+  "counter_external_links" (
+    counter_id,
+    url,
+    site_name,
+    link_text,
+    additional_description
+  )
 VALUES(
     '回',
     'https://www.tofugu.com/japanese/japanese-counter-kai-times/',
@@ -125,7 +203,13 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "counter_external_links"
+  "counter_external_links" (
+    counter_id,
+    url,
+    site_name,
+    link_text,
+    additional_description
+  )
 VALUES(
     '時',
     'https://www.tofugu.com/japanese/japanese-counter-ji-jikan/',
@@ -134,7 +218,13 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "counter_external_links"
+  "counter_external_links" (
+    counter_id,
+    url,
+    site_name,
+    link_text,
+    additional_description
+  )
 VALUES(
     '年',
     'https://www.tofugu.com/japanese/japanese-counters-nen/',
@@ -143,7 +233,13 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "counter_external_links"
+  "counter_external_links" (
+    counter_id,
+    url,
+    site_name,
+    link_text,
+    additional_description
+  )
 VALUES(
     '分',
     'https://www.tofugu.com/japanese/japanese-counter-fun/',

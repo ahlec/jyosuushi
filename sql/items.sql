@@ -10,7 +10,15 @@ CREATE TABLE items (
   japanese_kanji STRING
 );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'day of the month',
     'day of the month',
@@ -21,52 +29,244 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES('line', 'line', 'lines', NULL, NULL, NULL, NULL);
 INSERT INTO
-  "items"
-VALUES('minute', 'minute', 'minutes', NULL, NULL, NULL, NULL);
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'minute',
+    'minute',
+    'minutes',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES('pen', 'pen', 'pens', NULL, NULL, NULL, NULL);
 INSERT INTO
-  "items"
-VALUES('bottle', 'bottle', 'bottles', NULL, NULL, NULL, NULL);
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'bottle',
+    'bottle',
+    'bottles',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
 INSERT INTO
-  "items"
-VALUES('river', 'river', 'rivers', NULL, NULL, NULL, NULL);
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'river',
+    'river',
+    'rivers',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
 INSERT INTO
-  "items"
-VALUES('person', 'person', 'people', NULL, NULL, NULL, NULL);
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'person',
+    'person',
+    'people',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES('tree', 'tree', 'trees', NULL, NULL, NULL, NULL);
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES('rod', 'rod', 'rods', NULL, NULL, NULL, NULL);
 INSERT INTO
-  "items"
-VALUES('photo', 'photo', 'photos', NULL, NULL, NULL, NULL);
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'photo',
+    'photo',
+    'photos',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
 INSERT INTO
-  "items"
-VALUES('otter', 'otter', 'otters', NULL, NULL, NULL, NULL);
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'otter',
+    'otter',
+    'otters',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES('deer', 'deer', 'deer', NULL, NULL, NULL, NULL);
 INSERT INTO
-  "items"
-VALUES('sheep', 'sheep', 'sheep', NULL, NULL, NULL, NULL);
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'sheep',
+    'sheep',
+    'sheep',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES('cat', 'cat', 'cats', NULL, NULL, NULL, NULL);
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES('dog', 'dog', 'dogs', NULL, NULL, NULL, NULL);
 INSERT INTO
-  "items"
-VALUES('paper', 'paper', 'paper', NULL, NULL, NULL, NULL);
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'paper',
+    'paper',
+    'paper',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'playing card',
     'playing card',
@@ -77,7 +277,15 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'credit card',
     'credit card',
@@ -88,7 +296,15 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'origami crane',
     'origami crane',
@@ -99,10 +315,34 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
-VALUES('rabbit', 'rabbit', 'rabbits', NULL, NULL, NULL, NULL);
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'rabbit',
+    'rabbit',
+    'rabbits',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'penguin',
     'penguin',
@@ -113,7 +353,15 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'chicken',
     'chicken',
@@ -124,10 +372,34 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
-VALUES('whale', 'whale', 'whales', NULL, NULL, NULL, NULL);
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'whale',
+    'whale',
+    'whales',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'gorilla',
     'gorilla',
@@ -138,13 +410,45 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
-VALUES('horse', 'horse', 'horses', NULL, NULL, NULL, NULL);
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'horse',
+    'horse',
+    'horses',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES('cow', 'cow', 'cows', NULL, NULL, NULL, NULL);
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'elephant',
     'elephant',
@@ -155,7 +459,15 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'washing machine',
     'washing machine',
@@ -166,10 +478,26 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES('oven', 'oven', 'ovens', NULL, NULL, NULL, NULL);
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'microwave',
     'microwave',
@@ -180,13 +508,37 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES('car', 'car', 'cars', NULL, NULL, NULL, NULL);
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES('bed', 'bed', 'beds', NULL, NULL, NULL, NULL);
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'textbook',
     'textbook',
@@ -197,7 +549,15 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'dictionary',
     'dictionary',
@@ -208,7 +568,15 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'notebook',
     'notebook',
@@ -219,7 +587,15 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'magazine',
     'magazine',
@@ -230,10 +606,26 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES('book', 'book', 'books', NULL, NULL, NULL, NULL);
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'roommate',
     'roommate',
@@ -244,7 +636,15 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'coworker',
     'coworker',
@@ -255,22 +655,86 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
-VALUES('woman', 'woman', 'women', NULL, NULL, NULL, NULL);
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'woman',
+    'woman',
+    'women',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES('man', 'man', 'men', NULL, NULL, NULL, NULL);
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES('bat', 'bat', 'bats', NULL, NULL, NULL, NULL);
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES('year', 'year', 'years', NULL, NULL, NULL, NULL);
 INSERT INTO
-  "items"
-VALUES('month', 'month', 'months', NULL, NULL, NULL, NULL);
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'month',
+    'month',
+    'months',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'floor (building)',
     'floor',
@@ -281,10 +745,34 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
-VALUES('storey', 'storey', 'stories', NULL, NULL, NULL, NULL);
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'storey',
+    'storey',
+    'stories',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'years old',
     'year old',
@@ -295,7 +783,15 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'occurrence',
     'occurrence',
@@ -306,7 +802,15 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'time (occurrences)',
     'time',
@@ -317,10 +821,34 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
-VALUES('o''clock', 'o''clock', 'o''clock', 1, 24, NULL, NULL);
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'o''clock',
+    'o''clock',
+    'o''clock',
+    1,
+    24,
+    NULL,
+    NULL
+  );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'can of soup',
     'can of soup',
@@ -331,7 +859,15 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'spray paint',
     'spray paint',
@@ -342,7 +878,15 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'can of hair spray',
     'can of hair spray',
@@ -353,7 +897,15 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'can of bug spray',
     'can of bug spray',
@@ -364,7 +916,15 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'empty can',
     'empty can',
@@ -375,7 +935,15 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'beer can',
     'beer can',
@@ -386,7 +954,15 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'soda can',
     'soda can',
@@ -397,16 +973,48 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES('tune', 'tune', 'tunes', NULL, NULL, NULL, NULL);
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES('song', 'song', 'songs', NULL, NULL, NULL, NULL);
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES('yen', 'yen', 'yen', NULL, NULL, NULL, NULL);
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'bathroom',
     'bathroom',
@@ -417,7 +1025,15 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'shopping mall',
     'shopping mall',
@@ -428,10 +1044,34 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
-VALUES('cinema', 'cinema', 'cinemas', NULL, NULL, NULL, NULL);
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'cinema',
+    'cinema',
+    'cinemas',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'location',
     'location',
@@ -442,13 +1082,53 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
-VALUES('place', 'place', 'places', NULL, NULL, NULL, NULL);
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'place',
+    'place',
+    'places',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
 INSERT INTO
-  "items"
-VALUES('nation', 'nation', 'nations', NULL, NULL, NULL, NULL);
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'nation',
+    'nation',
+    'nations',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'country',
     'country',
@@ -459,7 +1139,15 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'sip of water',
     'sip of water',
@@ -470,7 +1158,15 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'bite of food',
     'bite of food',
@@ -481,7 +1177,15 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'slice of pizza',
     'slice of pizza',
@@ -492,10 +1196,34 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
-VALUES('filet', 'filet', 'filets', NULL, NULL, NULL, NULL);
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'filet',
+    'filet',
+    'filets',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'slice of cake',
     'slice of cake',
@@ -506,7 +1234,15 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'cut of meat',
     'cut of meat',
@@ -517,7 +1253,15 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'slice of sashimi',
     'slice of sashimi',
@@ -528,7 +1272,15 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'group of friends',
     'group of friends',
@@ -539,7 +1291,15 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'couple (people)',
     'couple',
@@ -550,13 +1310,53 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
-VALUES('jingle', 'jingle', 'jingles', NULL, NULL, NULL, NULL);
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'jingle',
+    'jingle',
+    'jingles',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
 INSERT INTO
-  "items"
-VALUES('melody', 'melody', 'melodies', NULL, NULL, NULL, NULL);
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'melody',
+    'melody',
+    'melodies',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'receipt',
     'receipt',
@@ -567,16 +1367,64 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
-VALUES('radio', 'radio', 'radios', NULL, NULL, 'ラジオ', NULL);
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'radio',
+    'radio',
+    'radios',
+    NULL,
+    NULL,
+    'ラジオ',
+    NULL
+  );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES('week', 'week', 'weeks', NULL, NULL, NULL, NULL);
 INSERT INTO
-  "items"
-VALUES('round', 'round', 'rounds', NULL, NULL, NULL, NULL);
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'round',
+    'round',
+    'rounds',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'circuit',
     'circuit',
@@ -587,19 +1435,67 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES('lap', 'lap', 'laps', NULL, NULL, NULL, NULL);
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES('tint', 'tint', 'tints', NULL, NULL, NULL, NULL);
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES('hue', 'hue', 'hues', NULL, NULL, NULL, NULL);
 INSERT INTO
-  "items"
-VALUES('colour', 'colour', 'colours', NULL, NULL, NULL, NULL);
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'colour',
+    'colour',
+    'colours',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'banquet',
     'banquet',
@@ -610,7 +1506,15 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'assembly',
     'assembly',
@@ -621,7 +1525,15 @@ VALUES(
     '会合'
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'meeting',
     'meeting',
@@ -632,10 +1544,26 @@ VALUES(
     '会合'
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES('seat', 'seat', 'seats', NULL, NULL, 'ざせき', '座席');
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'bar of chocolate',
     'bar of chocolate',
@@ -646,7 +1574,15 @@ VALUES(
     '板チョコ'
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'shinto shrine',
     'Shinto shrine',
@@ -657,7 +1593,15 @@ VALUES(
     '神社'
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'office building',
     'office building',
@@ -668,7 +1612,15 @@ VALUES(
     '事務所'
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'company',
     'company',
@@ -679,10 +1631,34 @@ VALUES(
     '会社'
   );
 INSERT INTO
-  "items"
-VALUES('street', 'street', 'streets', NULL, NULL, 'とおり', '通り');
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'street',
+    'street',
+    'streets',
+    NULL,
+    NULL,
+    'とおり',
+    '通り'
+  );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'cram school',
     'cram school',
@@ -693,7 +1669,15 @@ VALUES(
     '塾'
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'university',
     'university',
@@ -704,7 +1688,15 @@ VALUES(
     '大学'
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'middle school',
     'middle school',
@@ -715,7 +1707,15 @@ VALUES(
     '中学校'
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'elementary school',
     'elementary school',
@@ -726,7 +1726,15 @@ VALUES(
     '小学校'
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'high school',
     'high school',
@@ -737,7 +1745,15 @@ VALUES(
     '高校'
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'pair of gloves',
     'pair of gloves',
@@ -748,7 +1764,15 @@ VALUES(
     '軍手'
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'pair of mittens',
     'pair of mittens',
@@ -759,7 +1783,15 @@ VALUES(
     'ミトン'
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'deck of cards',
     'deck of cards',
@@ -770,7 +1802,15 @@ VALUES(
     'トランプ'
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'drumset',
     'drumset',
@@ -781,7 +1821,15 @@ VALUES(
     'ドラムセット'
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'match (sports)',
     'match',
@@ -792,7 +1840,15 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'baseball game',
     'baseball game',
@@ -803,10 +1859,26 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES('game', 'game', 'games', NULL, NULL, NULL, NULL);
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'fur pelt',
     'fur pelt',
@@ -817,7 +1889,15 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'basketball game',
     'basketball game',
@@ -828,10 +1908,26 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES('word', 'word', 'words', NULL, NULL, NULL, NULL);
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'blanket',
     'blanket',
@@ -842,16 +1938,64 @@ VALUES(
     '毛布'
   );
 INSERT INTO
-  "items"
-VALUES('straw', 'straw', 'straws', NULL, NULL, NULL, NULL);
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'straw',
+    'straw',
+    'straws',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES('home', 'home', 'homes', NULL, NULL, NULL, NULL);
 INSERT INTO
-  "items"
-VALUES('house', 'house', 'houses', NULL, NULL, 'いえ', '家');
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'house',
+    'house',
+    'houses',
+    NULL,
+    NULL,
+    'いえ',
+    '家'
+  );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'tea house',
     'tea house',
@@ -862,13 +2006,45 @@ VALUES(
     '茶屋'
   );
 INSERT INTO
-  "items"
-VALUES('store', 'store', 'stores', NULL, NULL, NULL, NULL);
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'store',
+    'store',
+    'stores',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES('shop', 'shop', 'shops', NULL, NULL, NULL, NULL);
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'bookstore',
     'bookstore',
@@ -879,7 +2055,15 @@ VALUES(
     '本屋'
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'apartment',
     'apartment',
@@ -890,7 +2074,15 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'izakaya',
     'izakaya',
@@ -901,10 +2093,26 @@ VALUES(
     '居酒屋'
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES('barn', 'barn', 'barns', NULL, NULL, 'うまや', '厩');
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'nightclub',
     'nightclub',
@@ -915,7 +2123,15 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'arcade',
     'arcade',
@@ -926,7 +2142,15 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'recommendation',
     'recommendation',
@@ -937,7 +2161,15 @@ VALUES(
     '提言'
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'request',
     'request',
@@ -948,7 +2180,15 @@ VALUES(
     '注文'
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'registration',
     'registration',
@@ -959,7 +2199,15 @@ VALUES(
     '登記'
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'appointment',
     'appointment',
@@ -970,19 +2218,67 @@ VALUES(
     '予約'
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES('task', 'task', 'tasks', NULL, NULL, 'ようじ', '用事');
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES('loan', 'loan', 'loans', NULL, NULL, 'ゆうし', '融資');
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES('law', 'law', 'laws', NULL, NULL, 'ほうれい', '法令');
 INSERT INTO
-  "items"
-VALUES('idiom', 'idiom', 'idioms', NULL, NULL, 'かんようく', '慣用句');
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'idiom',
+    'idiom',
+    'idioms',
+    NULL,
+    NULL,
+    'かんようく',
+    '慣用句'
+  );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'keyword',
     'keyword',
@@ -993,7 +2289,15 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'saying',
     'saying',
@@ -1004,7 +2308,15 @@ VALUES(
     '格言'
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'proverb',
     'proverb',
@@ -1015,7 +2327,15 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'side dish',
     'side dish',
@@ -1026,7 +2346,15 @@ VALUES(
     '副食物'
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'plate of food',
     'plate of food',
@@ -1037,7 +2365,15 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'bowl of fried rice',
     'bowl of fried rice',
@@ -1048,7 +2384,15 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'bowl of soup',
     'bowl of soup',
@@ -1059,7 +2403,15 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'serving of yakisoba',
     'serving of yakisoba',
@@ -1070,10 +2422,34 @@ VALUES(
     '焼きそば'
   );
 INSERT INTO
-  "items"
-VALUES('bank', 'bank', 'banks', NULL, NULL, 'ぎんこう', '銀行');
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'bank',
+    'bank',
+    'banks',
+    NULL,
+    NULL,
+    'ぎんこう',
+    '銀行'
+  );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'boss fight',
     'boss fight',
@@ -1084,7 +2460,15 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'skirmish',
     'skirmish',
@@ -1095,10 +2479,34 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
-VALUES('battle', 'battle', 'battles', NULL, NULL, NULL, NULL);
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'battle',
+    'battle',
+    'battles',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'pair of sandals',
     'pair of sandals',
@@ -1109,7 +2517,15 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'pair of shoes',
     'pair of shoes',
@@ -1120,7 +2536,15 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'pair of socks',
     'pair of socks',
@@ -1131,7 +2555,15 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'bundle of green onions',
     'bundle of green onions',
@@ -1142,7 +2574,15 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'bundle of wood',
     'bundle of wood',
@@ -1153,6 +2593,22 @@ VALUES(
     NULL
   );
 INSERT INTO
-  "items"
-VALUES('sutra', 'sutra', 'sutra', NULL, NULL, NULL, NULL);
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'sutra',
+    'sutra',
+    'sutra',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
 COMMIT;

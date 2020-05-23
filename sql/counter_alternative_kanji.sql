@@ -6,6 +6,6 @@ CREATE TABLE counter_alternative_kanji (
   PRIMARY KEY (counter_id, kanji)
 );
 INSERT INTO
-  "counter_alternative_kanji"
+  "counter_alternative_kanji" (counter_id, kanji)
 VALUES('歳', '才');
 COMMIT;
