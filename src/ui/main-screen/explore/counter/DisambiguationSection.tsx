@@ -6,6 +6,7 @@ import { COUNTERS_LOOKUP } from "@data/counters";
 
 import { Counter } from "@jyosuushi/interfaces";
 import Localization from "@jyosuushi/localization";
+import { getPrimaryJapaneseRepresentation } from "@jyosuushi/utils";
 
 import { getCounterLink } from "@jyosuushi/ui/main-screen/explore/pathing";
 
@@ -69,7 +70,7 @@ export default class DisambiguationSection extends React.PureComponent<
     return (
       <div key={otherCounter.counterId} className="disambiguation">
         <Link className="counter" to={getCounterLink(otherCounter)}>
-          {otherCounter.kanji}
+          {getPrimaryJapaneseRepresentation(otherCounter)}
         </Link>
         <div className="distinction">{distinction}</div>
       </div>

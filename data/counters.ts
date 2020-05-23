@@ -2,79 +2,115 @@
 // This file was built using `yarn build-data` from the SQLite database.
 // Modifications will be lost if they are made manually and not through the database.
 
-import { Counter } from "../src/interfaces";
+import {
+  Counter,
+  CounterIrregularType,
+  CountingSystem,
+  WordOrigin
+} from "../src/interfaces";
 import * as DISAMBIGUATIONS from "./disambiguations";
 
 export const COUNTER_ヶ国: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: false,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
   counterId: "ヶ国",
   disambiguations: {},
   englishName: "countries",
   externalLinks: [],
   irregulars: {},
-  kana: "かこく",
-  kanji: "ヶ国",
-  notes: null
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "ヶ国"
+  },
+  notes: null,
+  readings: [
+    {
+      counterId: "ヶ国",
+      kana: "かこく",
+      kangoConjugationOptions: {
+        allowsKuFor9: false,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: false,
+        allowsYoFor4: false,
+        allowsYonFor4: true
+      },
+      readingId: "かこく",
+      wagoStyle: null,
+      wordOrigin: WordOrigin.Chinese
+    }
+  ]
 };
 
 export const COUNTER_ヶ所: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: false,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
   counterId: "ヶ所",
   disambiguations: {},
   englishName: "places",
   externalLinks: [],
   irregulars: {},
-  kana: "かしょ",
-  kanji: "ヶ所",
-  notes: null
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "ヶ所"
+  },
+  notes: null,
+  readings: [
+    {
+      counterId: "ヶ所",
+      kana: "かしょ",
+      kangoConjugationOptions: {
+        allowsKuFor9: false,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: false,
+        allowsYoFor4: false,
+        allowsYonFor4: true
+      },
+      readingId: "かしょ",
+      wagoStyle: null,
+      wordOrigin: WordOrigin.Chinese
+    }
+  ]
 };
 
 export const COUNTER_ヶ月: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: false,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
   counterId: "ヶ月",
   disambiguations: {},
   englishName: "months",
-  externalLinks: [],
+  externalLinks: [
+    {
+      additionalDescription: null,
+      displayText: "月: Counting Months",
+      siteName: "Tofugu",
+      url: "https://www.tofugu.com/japanese/japanese-counter-tsuki-gatsu-getsu/"
+    }
+  ],
   irregulars: {},
-  kana: "かげつ",
-  kanji: "ヶ月",
-  notes: null
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "ヶ月"
+  },
+  notes: null,
+  readings: [
+    {
+      counterId: "ヶ月",
+      kana: "かげつ",
+      kangoConjugationOptions: {
+        allowsKuFor9: false,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: false,
+        allowsYoFor4: false,
+        allowsYonFor4: true
+      },
+      readingId: "かげつ",
+      wagoStyle: null,
+      wordOrigin: WordOrigin.Chinese
+    }
+  ]
 };
 
 export const COUNTER_人: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: true,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: true,
-    allowsYoFor4: true,
-    allowsYonFor4: false
-  },
   counterId: "人",
   disambiguations: {
     名: DISAMBIGUATIONS.DISAMBIGUATION_人名
@@ -88,65 +124,101 @@ export const COUNTER_人: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-nin/"
     }
   ],
-  irregulars: {
-    1: ["ひとり"],
-    2: ["ふたり"]
+  irregulars: {},
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "人"
   },
-  kana: "にん",
-  kanji: "人",
-  notes: null
+  notes: null,
+  readings: [
+    {
+      counterId: "人",
+      kana: "にん",
+      kangoConjugationOptions: {
+        allowsKuFor9: true,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: true,
+        allowsYoFor4: true,
+        allowsYonFor4: false
+      },
+      readingId: "にん",
+      wagoStyle: {
+        alsoUsesKangoIchi: false,
+        alsoUsesKangoNi: false,
+        alsoUsesKangoSan: false,
+        kana: "り",
+        rangeEndInclusive: 2
+      },
+      wordOrigin: WordOrigin.Japanese
+    }
+  ]
 };
 
 export const COUNTER_件: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: false,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
   counterId: "件",
   disambiguations: {},
   englishName: "matters",
   externalLinks: [],
   irregulars: {},
-  kana: "けん",
-  kanji: "件",
-  notes: null
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "件"
+  },
+  notes: null,
+  readings: [
+    {
+      counterId: "件",
+      kana: "けん",
+      kangoConjugationOptions: {
+        allowsKuFor9: false,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: false,
+        allowsYoFor4: false,
+        allowsYonFor4: true
+      },
+      readingId: "けん",
+      wagoStyle: null,
+      wordOrigin: WordOrigin.Chinese
+    }
+  ]
 };
 
 export const COUNTER_円: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: false,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
   counterId: "円",
   disambiguations: {},
   englishName: "yen",
   externalLinks: [],
   irregulars: {},
-  kana: "えん",
-  kanji: "円",
-  notes: null
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "円"
+  },
+  notes: null,
+  readings: [
+    {
+      counterId: "円",
+      kana: "えん",
+      kangoConjugationOptions: {
+        allowsKuFor9: false,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: false,
+        allowsYoFor4: false,
+        allowsYonFor4: true
+      },
+      readingId: "えん",
+      wagoStyle: null,
+      wordOrigin: WordOrigin.Chinese
+    }
+  ]
 };
 
 export const COUNTER_冊: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: true,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
   counterId: "冊",
   disambiguations: {},
   englishName: "books",
@@ -159,21 +231,32 @@ export const COUNTER_冊: Counter = {
     }
   ],
   irregulars: {},
-  kana: "さつ",
-  kanji: "冊",
-  notes: null
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "冊"
+  },
+  notes: null,
+  readings: [
+    {
+      counterId: "冊",
+      kana: "さつ",
+      kangoConjugationOptions: {
+        allowsKuFor9: false,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: true,
+        allowsYoFor4: false,
+        allowsYonFor4: true
+      },
+      readingId: "さつ",
+      wagoStyle: null,
+      wordOrigin: WordOrigin.Chinese
+    }
+  ]
 };
 
 export const COUNTER_分: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: true,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
   counterId: "分",
   disambiguations: {},
   englishName: "minutes",
@@ -186,41 +269,63 @@ export const COUNTER_分: Counter = {
     }
   ],
   irregulars: {},
-  kana: "ふん",
-  kanji: "分",
-  notes: null
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "分"
+  },
+  notes: null,
+  readings: [
+    {
+      counterId: "分",
+      kana: "ふん",
+      kangoConjugationOptions: {
+        allowsKuFor9: false,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: true,
+        allowsYoFor4: false,
+        allowsYonFor4: true
+      },
+      readingId: "ふん",
+      wagoStyle: null,
+      wordOrigin: WordOrigin.Chinese
+    }
+  ]
 };
 
 export const COUNTER_切れ: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: false,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
   counterId: "切れ",
   disambiguations: {},
   englishName: "cuts of meat",
   externalLinks: [],
   irregulars: {},
-  kana: "きれ",
-  kanji: "切れ",
-  notes: null
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "切れ"
+  },
+  notes: null,
+  readings: [
+    {
+      counterId: "切れ",
+      kana: "きれ",
+      kangoConjugationOptions: {
+        allowsKuFor9: false,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: false,
+        allowsYoFor4: false,
+        allowsYonFor4: true
+      },
+      readingId: "きれ",
+      wagoStyle: null,
+      wordOrigin: WordOrigin.Japanese
+    }
+  ]
 };
 
 export const COUNTER_匹: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: true,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
   counterId: "匹",
   disambiguations: {},
   englishName: "small animals",
@@ -233,41 +338,63 @@ export const COUNTER_匹: Counter = {
     }
   ],
   irregulars: {},
-  kana: "ひき",
-  kanji: "匹",
-  notes: null
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "匹"
+  },
+  notes: null,
+  readings: [
+    {
+      counterId: "匹",
+      kana: "ひき",
+      kangoConjugationOptions: {
+        allowsKuFor9: false,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: true,
+        allowsYoFor4: false,
+        allowsYonFor4: true
+      },
+      readingId: "ひき",
+      wagoStyle: null,
+      wordOrigin: WordOrigin.Japanese
+    }
+  ]
 };
 
 export const COUNTER_口: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: false,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
   counterId: "口",
   disambiguations: {},
   englishName: "bites",
   externalLinks: [],
   irregulars: {},
-  kana: "くち",
-  kanji: "口",
-  notes: null
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "口"
+  },
+  notes: null,
+  readings: [
+    {
+      counterId: "口",
+      kana: "くち",
+      kangoConjugationOptions: {
+        allowsKuFor9: false,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: false,
+        allowsYoFor4: false,
+        allowsYonFor4: true
+      },
+      readingId: "くち",
+      wagoStyle: null,
+      wordOrigin: WordOrigin.Japanese
+    }
+  ]
 };
 
 export const COUNTER_台: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: true,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
   counterId: "台",
   disambiguations: {},
   englishName: "machines and large objects",
@@ -280,21 +407,32 @@ export const COUNTER_台: Counter = {
     }
   ],
   irregulars: {},
-  kana: "だい",
-  kanji: "台",
-  notes: null
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "台"
+  },
+  notes: null,
+  readings: [
+    {
+      counterId: "台",
+      kana: "だい",
+      kangoConjugationOptions: {
+        allowsKuFor9: false,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: true,
+        allowsYoFor4: false,
+        allowsYonFor4: true
+      },
+      readingId: "だい",
+      wagoStyle: null,
+      wordOrigin: WordOrigin.Chinese
+    }
+  ]
 };
 
 export const COUNTER_名: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: false,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
   counterId: "名",
   disambiguations: {
     人: DISAMBIGUATIONS.DISAMBIGUATION_人名
@@ -309,84 +447,63 @@ export const COUNTER_名: Counter = {
     }
   ],
   irregulars: {},
-  kana: "めい",
-  kanji: "名",
-  notes: null
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "名"
+  },
+  notes: null,
+  readings: [
+    {
+      counterId: "名",
+      kana: "めい",
+      kangoConjugationOptions: {
+        allowsKuFor9: false,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: false,
+        allowsYoFor4: false,
+        allowsYonFor4: true
+      },
+      readingId: "めい",
+      wagoStyle: null,
+      wordOrigin: WordOrigin.Chinese
+    }
+  ]
 };
 
 export const COUNTER_周: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: false,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
   counterId: "周",
   disambiguations: {},
   englishName: "laps and circuits",
   externalLinks: [],
   irregulars: {},
-  kana: "しゅう",
-  kanji: "周",
-  notes: null
-};
-
-export const COUNTER_品_しな_: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: false,
-    allowsYoFor4: false,
-    allowsYonFor4: true
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "周"
   },
-  counterId: "品（しな）",
-  disambiguations: {},
-  englishName: "products",
-  externalLinks: [],
-  irregulars: {
-    1: ["ひとしな"],
-    2: ["ふたしな"]
-  },
-  kana: "しな",
-  kanji: "品",
-  notes: null
-};
-
-export const COUNTER_品_ひん_: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: false,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
-  counterId: "品（ひん）",
-  disambiguations: {},
-  englishName: "products",
-  externalLinks: [],
-  irregulars: {},
-  kana: "ひん",
-  kanji: "品",
-  notes: null
+  notes: null,
+  readings: [
+    {
+      counterId: "周",
+      kana: "しゅう",
+      kangoConjugationOptions: {
+        allowsKuFor9: false,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: false,
+        allowsYoFor4: false,
+        allowsYonFor4: true
+      },
+      readingId: "しゅう",
+      wagoStyle: null,
+      wordOrigin: WordOrigin.Chinese
+    }
+  ]
 };
 
 export const COUNTER_回: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: true,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
   counterId: "回",
   disambiguations: {},
   englishName: "times (occurrences)",
@@ -399,61 +516,100 @@ export const COUNTER_回: Counter = {
     }
   ],
   irregulars: {},
-  kana: "かい",
-  kanji: "回",
-  notes: null
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "回"
+  },
+  notes: null,
+  readings: [
+    {
+      counterId: "回",
+      kana: "かい",
+      kangoConjugationOptions: {
+        allowsKuFor9: false,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: true,
+        allowsYoFor4: false,
+        allowsYonFor4: true
+      },
+      readingId: "かい",
+      wagoStyle: null,
+      wordOrigin: WordOrigin.Chinese
+    }
+  ]
 };
 
 export const COUNTER_巻: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: false,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
   counterId: "巻",
   disambiguations: {},
   englishName: "volumes",
   externalLinks: [],
   irregulars: {},
-  kana: "かん",
-  kanji: "巻",
-  notes: null
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "巻"
+  },
+  notes: null,
+  readings: [
+    {
+      counterId: "巻",
+      kana: "かん",
+      kangoConjugationOptions: {
+        allowsKuFor9: false,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: false,
+        allowsYoFor4: false,
+        allowsYonFor4: true
+      },
+      readingId: "かん",
+      wagoStyle: null,
+      wordOrigin: WordOrigin.Chinese
+    }
+  ]
 };
 
 export const COUNTER_席: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: false,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
   counterId: "席",
   disambiguations: {},
   englishName: "seats",
   externalLinks: [],
   irregulars: {},
-  kana: "せき",
-  kanji: "席",
-  notes: null
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "席"
+  },
+  notes: null,
+  readings: [
+    {
+      counterId: "席",
+      kana: "せき",
+      kangoConjugationOptions: {
+        allowsKuFor9: false,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: false,
+        allowsYoFor4: false,
+        allowsYonFor4: true
+      },
+      readingId: "せき",
+      wagoStyle: {
+        alsoUsesKangoIchi: true,
+        alsoUsesKangoNi: true,
+        alsoUsesKangoSan: false,
+        kana: "せき",
+        rangeEndInclusive: 2
+      },
+      wordOrigin: WordOrigin.Chinese
+    }
+  ]
 };
 
 export const COUNTER_年: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: true,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: true,
-    allowsYoFor4: true,
-    allowsYonFor4: false
-  },
   counterId: "年",
   disambiguations: {},
   englishName: "years",
@@ -466,41 +622,63 @@ export const COUNTER_年: Counter = {
     }
   ],
   irregulars: {},
-  kana: "ねん",
-  kanji: "年",
-  notes: null
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "年"
+  },
+  notes: null,
+  readings: [
+    {
+      counterId: "年",
+      kana: "ねん",
+      kangoConjugationOptions: {
+        allowsKuFor9: true,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: true,
+        allowsYoFor4: true,
+        allowsYonFor4: false
+      },
+      readingId: "ねん",
+      wagoStyle: null,
+      wordOrigin: WordOrigin.Chinese
+    }
+  ]
 };
 
 export const COUNTER_戦: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: false,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
   counterId: "戦",
   disambiguations: {},
   englishName: "battles",
   externalLinks: [],
   irregulars: {},
-  kana: "せん",
-  kanji: "戦",
-  notes: null
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "戦"
+  },
+  notes: null,
+  readings: [
+    {
+      counterId: "戦",
+      kana: "せん",
+      kangoConjugationOptions: {
+        allowsKuFor9: false,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: false,
+        allowsYoFor4: false,
+        allowsYonFor4: true
+      },
+      readingId: "せん",
+      wagoStyle: null,
+      wordOrigin: WordOrigin.Chinese
+    }
+  ]
 };
 
 export const COUNTER_日: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: false,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
   counterId: "日",
   disambiguations: {},
   englishName: "days of the month",
@@ -513,35 +691,150 @@ export const COUNTER_日: Counter = {
     }
   ],
   irregulars: {
-    1: ["ついたち"],
-    2: ["ふつか"],
-    3: ["みっか"],
-    4: ["よっか"],
-    5: ["いつか"],
-    6: ["むいか"],
-    7: ["なのか"],
-    8: ["ようか"],
-    9: ["ここのか"],
-    10: ["とおか"],
-    14: ["じゅうよっか"],
-    20: ["はつか"],
-    24: ["にじゅうよっか"]
+    1: [
+      {
+        amount: 1,
+        countingSystem: null,
+        doesPresenceEraseRegularConjugations: true,
+        reading: "ついたち",
+        type: CounterIrregularType.ArbitraryReading
+      }
+    ],
+    2: [
+      {
+        amount: 2,
+        countingSystem: CountingSystem.Wago,
+        doesPresenceEraseRegularConjugations: true,
+        reading: "ふつか",
+        type: CounterIrregularType.SoundChange
+      }
+    ],
+    3: [
+      {
+        amount: 3,
+        countingSystem: CountingSystem.Wago,
+        doesPresenceEraseRegularConjugations: true,
+        reading: "みっか",
+        type: CounterIrregularType.SoundChange
+      }
+    ],
+    4: [
+      {
+        amount: 4,
+        countingSystem: CountingSystem.Wago,
+        doesPresenceEraseRegularConjugations: true,
+        reading: "よっか",
+        type: CounterIrregularType.SoundChange
+      }
+    ],
+    5: [
+      {
+        amount: 5,
+        countingSystem: CountingSystem.Wago,
+        doesPresenceEraseRegularConjugations: true,
+        reading: "いつか",
+        type: CounterIrregularType.SoundChange
+      }
+    ],
+    6: [
+      {
+        amount: 6,
+        countingSystem: CountingSystem.Wago,
+        doesPresenceEraseRegularConjugations: true,
+        reading: "むいか",
+        type: CounterIrregularType.SoundChange
+      }
+    ],
+    7: [
+      {
+        amount: 7,
+        countingSystem: CountingSystem.Wago,
+        doesPresenceEraseRegularConjugations: true,
+        reading: "なのか",
+        type: CounterIrregularType.SoundChange
+      }
+    ],
+    8: [
+      {
+        amount: 8,
+        countingSystem: CountingSystem.Wago,
+        doesPresenceEraseRegularConjugations: true,
+        reading: "ようか",
+        type: CounterIrregularType.SoundChange
+      }
+    ],
+    9: [
+      {
+        amount: 9,
+        countingSystem: CountingSystem.Wago,
+        doesPresenceEraseRegularConjugations: true,
+        reading: "ここのか",
+        type: CounterIrregularType.SoundChange
+      }
+    ],
+    10: [
+      {
+        amount: 10,
+        countingSystem: null,
+        doesPresenceEraseRegularConjugations: false,
+        reading: "とおか",
+        type: CounterIrregularType.ArbitraryReading
+      }
+    ],
+    14: [
+      {
+        amount: 14,
+        countingSystem: null,
+        doesPresenceEraseRegularConjugations: false,
+        reading: "じゅうよっか",
+        type: CounterIrregularType.ArbitraryReading
+      }
+    ],
+    20: [
+      {
+        amount: 20,
+        countingSystem: null,
+        doesPresenceEraseRegularConjugations: false,
+        reading: "はつか",
+        type: CounterIrregularType.ArbitraryReading
+      }
+    ],
+    24: [
+      {
+        amount: 24,
+        countingSystem: null,
+        doesPresenceEraseRegularConjugations: false,
+        reading: "にじゅうよっか",
+        type: CounterIrregularType.ArbitraryReading
+      }
+    ]
   },
-  kana: "にち",
-  kanji: "日",
-  notes: null
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "日"
+  },
+  notes: null,
+  readings: [
+    {
+      counterId: "日",
+      kana: "にち",
+      kangoConjugationOptions: {
+        allowsKuFor9: false,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: false,
+        allowsYoFor4: false,
+        allowsYonFor4: true
+      },
+      readingId: "にち",
+      wagoStyle: null,
+      wordOrigin: WordOrigin.Chinese
+    }
+  ]
 };
 
 export const COUNTER_時: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: true,
-    allowsKyuuFor9: false,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: true,
-    allowsYoFor4: true,
-    allowsYonFor4: false
-  },
   counterId: "時",
   disambiguations: {},
   englishName: "hours",
@@ -554,41 +847,63 @@ export const COUNTER_時: Counter = {
     }
   ],
   irregulars: {},
-  kana: "じ",
-  kanji: "時",
-  notes: null
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "時"
+  },
+  notes: null,
+  readings: [
+    {
+      counterId: "時",
+      kana: "じ",
+      kangoConjugationOptions: {
+        allowsKuFor9: true,
+        allowsKyuuFor9: false,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: true,
+        allowsYoFor4: true,
+        allowsYonFor4: false
+      },
+      readingId: "じ",
+      wagoStyle: null,
+      wordOrigin: WordOrigin.Chinese
+    }
+  ]
 };
 
 export const COUNTER_曲: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: false,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
   counterId: "曲",
   disambiguations: {},
   englishName: "songs",
   externalLinks: [],
   irregulars: {},
-  kana: "きょく",
-  kanji: "曲",
-  notes: null
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "曲"
+  },
+  notes: null,
+  readings: [
+    {
+      counterId: "曲",
+      kana: "きょく",
+      kangoConjugationOptions: {
+        allowsKuFor9: false,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: false,
+        allowsYoFor4: false,
+        allowsYonFor4: true
+      },
+      readingId: "きょく",
+      wagoStyle: null,
+      wordOrigin: WordOrigin.Chinese
+    }
+  ]
 };
 
 export const COUNTER_本: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: true,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
   counterId: "本",
   disambiguations: {},
   englishName: "long, thin objects",
@@ -601,45 +916,69 @@ export const COUNTER_本: Counter = {
     }
   ],
   irregulars: {},
-  kana: "ほん",
-  kanji: "本",
-  notes: null
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "本"
+  },
+  notes: null,
+  readings: [
+    {
+      counterId: "本",
+      kana: "ほん",
+      kangoConjugationOptions: {
+        allowsKuFor9: false,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: true,
+        allowsYoFor4: false,
+        allowsYonFor4: true
+      },
+      readingId: "ほん",
+      wagoStyle: null,
+      wordOrigin: WordOrigin.Chinese
+    }
+  ]
 };
 
 export const COUNTER_束: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: false,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
   counterId: "束",
   disambiguations: {},
   englishName: "bundles",
   externalLinks: [],
-  irregulars: {
-    1: ["ひとたば"],
-    2: ["ふたたば"],
-    3: ["さんたば", "みたば"]
+  irregulars: {},
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "束"
   },
-  kana: "たば",
-  kanji: "束",
-  notes: null
+  notes: null,
+  readings: [
+    {
+      counterId: "束",
+      kana: "たば",
+      kangoConjugationOptions: {
+        allowsKuFor9: false,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: false,
+        allowsYoFor4: false,
+        allowsYonFor4: true
+      },
+      readingId: "たば",
+      wagoStyle: {
+        alsoUsesKangoIchi: false,
+        alsoUsesKangoNi: false,
+        alsoUsesKangoSan: true,
+        kana: "たば",
+        rangeEndInclusive: 3
+      },
+      wordOrigin: WordOrigin.Japanese
+    }
+  ]
 };
 
 export const COUNTER_枚: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: true,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
   counterId: "枚",
   disambiguations: {},
   englishName: "flat objects",
@@ -652,148 +991,230 @@ export const COUNTER_枚: Counter = {
     }
   ],
   irregulars: {},
-  kana: "まい",
-  kanji: "枚",
-  notes: null
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "枚"
+  },
+  notes: null,
+  readings: [
+    {
+      counterId: "枚",
+      kana: "まい",
+      kangoConjugationOptions: {
+        allowsKuFor9: false,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: true,
+        allowsYoFor4: false,
+        allowsYonFor4: true
+      },
+      readingId: "まい",
+      wagoStyle: null,
+      wordOrigin: WordOrigin.Chinese
+    }
+  ]
 };
 
 export const COUNTER_校: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: false,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
   counterId: "校",
   disambiguations: {},
   englishName: "schools",
   externalLinks: [],
   irregulars: {},
-  kana: "こう",
-  kanji: "校",
-  notes: null
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "校"
+  },
+  notes: null,
+  readings: [
+    {
+      counterId: "校",
+      kana: "こう",
+      kangoConjugationOptions: {
+        allowsKuFor9: false,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: false,
+        allowsYoFor4: false,
+        allowsYonFor4: true
+      },
+      readingId: "こう",
+      wagoStyle: null,
+      wordOrigin: WordOrigin.Chinese
+    }
+  ]
 };
 
 export const COUNTER_歳: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: false,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
   counterId: "歳",
   disambiguations: {},
   englishName: "age",
   externalLinks: [],
   irregulars: {},
-  kana: "さい",
-  kanji: "歳",
-  notes: null
+  kanji: {
+    additionalKanji: ["才"],
+    primaryKanji: "歳"
+  },
+  notes: null,
+  readings: [
+    {
+      counterId: "歳",
+      kana: "さい",
+      kangoConjugationOptions: {
+        allowsKuFor9: false,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: false,
+        allowsYoFor4: false,
+        allowsYonFor4: true
+      },
+      readingId: "さい",
+      wagoStyle: null,
+      wordOrigin: WordOrigin.Chinese
+    }
+  ]
 };
 
 export const COUNTER_皿: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: false,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
   counterId: "皿",
   disambiguations: {},
   englishName: "plates of food",
   externalLinks: [],
-  irregulars: {
-    1: ["ひとさら"],
-    2: ["ふたさら"],
-    3: ["さんさら", "みさら"]
+  irregulars: {},
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "皿"
   },
-  kana: "さら",
-  kanji: "皿",
-  notes: null
+  notes: null,
+  readings: [
+    {
+      counterId: "皿",
+      kana: "さら",
+      kangoConjugationOptions: {
+        allowsKuFor9: false,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: false,
+        allowsYoFor4: false,
+        allowsYonFor4: true
+      },
+      readingId: "さら",
+      wagoStyle: {
+        alsoUsesKangoIchi: false,
+        alsoUsesKangoNi: false,
+        alsoUsesKangoSan: true,
+        kana: "さら",
+        rangeEndInclusive: 3
+      },
+      wordOrigin: WordOrigin.Japanese
+    }
+  ]
 };
 
 export const COUNTER_社: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: false,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
   counterId: "社",
   disambiguations: {},
   englishName: "companies and temples",
   externalLinks: [],
   irregulars: {},
-  kana: "しゃ",
-  kanji: "社",
-  notes: null
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "社"
+  },
+  notes: null,
+  readings: [
+    {
+      counterId: "社",
+      kana: "しゃ",
+      kangoConjugationOptions: {
+        allowsKuFor9: false,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: false,
+        allowsYoFor4: false,
+        allowsYonFor4: true
+      },
+      readingId: "しゃ",
+      wagoStyle: null,
+      wordOrigin: WordOrigin.Chinese
+    }
+  ]
 };
 
 export const COUNTER_組: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: false,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
   counterId: "組",
   disambiguations: {},
   englishName: "groups and pairs",
   externalLinks: [],
   irregulars: {},
-  kana: "くみ",
-  kanji: "組",
-  notes: null
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "組"
+  },
+  notes: null,
+  readings: [
+    {
+      counterId: "組",
+      kana: "くみ",
+      kangoConjugationOptions: {
+        allowsKuFor9: false,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: false,
+        allowsYoFor4: false,
+        allowsYonFor4: true
+      },
+      readingId: "くみ",
+      wagoStyle: null,
+      wordOrigin: WordOrigin.Japanese
+    }
+  ]
 };
 
 export const COUNTER_缶: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: false,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
   counterId: "缶",
   disambiguations: {},
   englishName: "cans",
   externalLinks: [],
-  irregulars: {
-    1: ["ひとかん", "いっかん"],
-    2: ["ふたかん", "にかん"]
+  irregulars: {},
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "缶"
   },
-  kana: "かん",
-  kanji: "缶",
-  notes: null
+  notes: null,
+  readings: [
+    {
+      counterId: "缶",
+      kana: "かん",
+      kangoConjugationOptions: {
+        allowsKuFor9: false,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: false,
+        allowsYoFor4: false,
+        allowsYonFor4: true
+      },
+      readingId: "かん",
+      wagoStyle: {
+        alsoUsesKangoIchi: true,
+        alsoUsesKangoNi: true,
+        alsoUsesKangoSan: false,
+        kana: "かん",
+        rangeEndInclusive: 2
+      },
+      wordOrigin: WordOrigin.Chinese
+    }
+  ]
 };
 
 export const COUNTER_羽: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: true,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
   counterId: "羽",
   disambiguations: {},
   englishName: "birds and rabbits",
@@ -806,121 +1227,187 @@ export const COUNTER_羽: Counter = {
     }
   ],
   irregulars: {},
-  kana: "わ",
-  kanji: "羽",
-  notes: null
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "羽"
+  },
+  notes: null,
+  readings: [
+    {
+      counterId: "羽",
+      kana: "わ",
+      kangoConjugationOptions: {
+        allowsKuFor9: false,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: true,
+        allowsYoFor4: false,
+        allowsYonFor4: true
+      },
+      readingId: "わ",
+      wagoStyle: null,
+      wordOrigin: WordOrigin.Japanese
+    }
+  ]
 };
 
 export const COUNTER_色: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: false,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
   counterId: "色",
   disambiguations: {},
   englishName: "colours",
   externalLinks: [],
   irregulars: {},
-  kana: "しょく",
-  kanji: "色",
-  notes: null
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "色"
+  },
+  notes: null,
+  readings: [
+    {
+      counterId: "色",
+      kana: "しょく",
+      kangoConjugationOptions: {
+        allowsKuFor9: false,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: false,
+        allowsYoFor4: false,
+        allowsYonFor4: true
+      },
+      readingId: "しょく",
+      wagoStyle: null,
+      wordOrigin: WordOrigin.Chinese
+    }
+  ]
 };
 
 export const COUNTER_語: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: false,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
   counterId: "語",
   disambiguations: {},
   englishName: "words",
   externalLinks: [],
   irregulars: {},
-  kana: "ご",
-  kanji: "語",
-  notes: null
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "語"
+  },
+  notes: null,
+  readings: [
+    {
+      counterId: "語",
+      kana: "ご",
+      kangoConjugationOptions: {
+        allowsKuFor9: false,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: false,
+        allowsYoFor4: false,
+        allowsYonFor4: true
+      },
+      readingId: "ご",
+      wagoStyle: null,
+      wordOrigin: WordOrigin.Chinese
+    }
+  ]
 };
 
 export const COUNTER_足: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: false,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
   counterId: "足",
   disambiguations: {},
   englishName: "pairs of footwear",
   externalLinks: [],
   irregulars: {},
-  kana: "そく",
-  kanji: "足",
-  notes: null
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "足"
+  },
+  notes: null,
+  readings: [
+    {
+      counterId: "足",
+      kana: "そく",
+      kangoConjugationOptions: {
+        allowsKuFor9: false,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: false,
+        allowsYoFor4: false,
+        allowsYonFor4: true
+      },
+      readingId: "そく",
+      wagoStyle: null,
+      wordOrigin: WordOrigin.Chinese
+    }
+  ]
 };
 
 export const COUNTER_軒: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: false,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
   counterId: "軒",
   disambiguations: {},
   englishName: "houses and buildings",
   externalLinks: [],
   irregulars: {},
-  kana: "けん",
-  kanji: "軒",
-  notes: null
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "軒"
+  },
+  notes: null,
+  readings: [
+    {
+      counterId: "軒",
+      kana: "けん",
+      kangoConjugationOptions: {
+        allowsKuFor9: false,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: false,
+        allowsYoFor4: false,
+        allowsYonFor4: true
+      },
+      readingId: "けん",
+      wagoStyle: null,
+      wordOrigin: WordOrigin.Chinese
+    }
+  ]
 };
 
 export const COUNTER_週: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: false,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
   counterId: "週",
   disambiguations: {},
   englishName: "weeks",
   externalLinks: [],
   irregulars: {},
-  kana: "しゅう",
-  kanji: "週",
-  notes: null
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "週"
+  },
+  notes: null,
+  readings: [
+    {
+      counterId: "週",
+      kana: "しゅう",
+      kangoConjugationOptions: {
+        allowsKuFor9: false,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: false,
+        allowsYoFor4: false,
+        allowsYonFor4: true
+      },
+      readingId: "しゅう",
+      wagoStyle: null,
+      wordOrigin: WordOrigin.Chinese
+    }
+  ]
 };
 
 export const COUNTER_階: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: true,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
   counterId: "階",
   disambiguations: {},
   englishName: "floors",
@@ -933,21 +1420,32 @@ export const COUNTER_階: Counter = {
     }
   ],
   irregulars: {},
-  kana: "かい",
-  kanji: "階",
-  notes: null
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "階"
+  },
+  notes: null,
+  readings: [
+    {
+      counterId: "階",
+      kana: "かい",
+      kangoConjugationOptions: {
+        allowsKuFor9: false,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: true,
+        allowsYoFor4: false,
+        allowsYonFor4: true
+      },
+      readingId: "かい",
+      wagoStyle: null,
+      wordOrigin: WordOrigin.Chinese
+    }
+  ]
 };
 
 export const COUNTER_頭: Counter = {
-  conjugationOptions: {
-    allowsKuFor9: false,
-    allowsKyuuFor9: true,
-    allowsNanaFor7: true,
-    allowsShiFor4: false,
-    allowsShichiFor7: true,
-    allowsYoFor4: false,
-    allowsYonFor4: true
-  },
   counterId: "頭",
   disambiguations: {},
   englishName: "large animals",
@@ -960,9 +1458,29 @@ export const COUNTER_頭: Counter = {
     }
   ],
   irregulars: {},
-  kana: "とう",
-  kanji: "頭",
-  notes: null
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "頭"
+  },
+  notes: null,
+  readings: [
+    {
+      counterId: "頭",
+      kana: "とう",
+      kangoConjugationOptions: {
+        allowsKuFor9: false,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: true,
+        allowsYoFor4: false,
+        allowsYonFor4: true
+      },
+      readingId: "とう",
+      wagoStyle: null,
+      wordOrigin: WordOrigin.Chinese
+    }
+  ]
 };
 
 export const COUNTERS_LOOKUP: { [counterId: string]: Counter } = {
@@ -980,8 +1498,6 @@ export const COUNTERS_LOOKUP: { [counterId: string]: Counter } = {
   台: COUNTER_台,
   名: COUNTER_名,
   周: COUNTER_周,
-  "品（しな）": COUNTER_品_しな_,
-  "品（ひん）": COUNTER_品_ひん_,
   回: COUNTER_回,
   巻: COUNTER_巻,
   席: COUNTER_席,

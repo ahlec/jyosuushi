@@ -4,7 +4,7 @@ import { Writable } from "stream";
 import { DbItemCounter } from "../database/schemas";
 import ValidatedDataSource from "../database/ValidatedDataSource";
 
-import { Item } from "../../src/interfaces";
+import { Item, ItemCounter } from "../../src/interfaces";
 
 import { getItemId, productionStringify, ProductionVariable } from "./utils";
 
@@ -29,7 +29,15 @@ function getProductionRelevance(db: DbItemCounter): string {
   }
 }
 
-function convertToProductionCounterLink(db: DbItemCounter): any {
+type ProtoItemCounter = Omit<ItemCounter, "relevance"> & {
+  relevance: ProductionVariable;
+};
+
+type ProtoItem = Omit<Item, "counters"> & {
+  counters: ReadonlyArray<ProtoItemCounter>;
+};
+
+function convertToProductionCounterLink(db: DbItemCounter): ProtoItemCounter {
   return {
     counterId: db.counter_id,
     relevance: new ProductionVariable(getProductionRelevance(db))
@@ -43,7 +51,7 @@ function convertToItemVariable(db: DbItemCounter): ProductionVariable {
 export default function writeItemsFile(
   stream: Writable,
   dataSource: ValidatedDataSource
-) {
+): void {
   stream.write(
     'import { CounterItemRelevance, Item } from "../src/interfaces";'
   );
@@ -68,7 +76,7 @@ export default function writeItemsFile(
   for (const dbItem of sortedItems) {
     const variableName = getItemId(dbItem.item_id);
 
-    const item: Item = {
+    const item: ProtoItem = {
       counters: (countersLookup[dbItem.item_id] || []).map(
         convertToProductionCounterLink
       ),

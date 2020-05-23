@@ -1,5 +1,4 @@
-import { ConjugationCategory, Counter, StudyPack } from "./interfaces";
-import { conjugateCounterRegulars } from "./japanese/counters";
+import { Counter, StudyPack } from "./interfaces";
 
 export function randomFromArray<T>(arr: ReadonlyArray<T>): T {
   return arr[Math.floor(Math.random() * arr.length)];
@@ -56,7 +55,7 @@ export function permutate<T>(
 }
 
 function compareCounters(a: Counter, b: Counter): number {
-  return a.kana.localeCompare(b.kana);
+  return a.readings[0].kana.localeCompare(b.readings[0].kana);
 }
 
 export function getDistinctCounters(
@@ -79,58 +78,6 @@ export function getDistinctCounters(
   return counters;
 }
 
-export interface ConjugatedInfo {
-  category: ConjugationCategory;
-  kana: string;
-  kanji: string;
-}
-
-export function conjugateCounter(
-  amount: number,
-  counter: Counter
-): ReadonlyArray<ConjugatedInfo> {
-  const regulars = conjugateCounterRegulars(amount, counter);
-
-  if (!counter.irregulars[amount]) {
-    return regulars.map(({ isStrange, kana, kanji }) => ({
-      category: isStrange
-        ? ConjugationCategory.Strange
-        : ConjugationCategory.Regular,
-      kana,
-      kanji: kanji || ""
-    }));
-  }
-
-  const results: ConjugatedInfo[] = [];
-  for (const irregular of counter.irregulars[amount]) {
-    // Because defining a single irregular means that we don't display the
-    // conjugations, we need to define regular conjugations alongside irregular
-    // ones if there is even a single irregular. However, let's not display
-    // them as irregular on the frontend.
-    const regular = regulars.find(({ kana }) => irregular === kana);
-    results.push({
-      category: regular
-        ? regular.isStrange
-          ? ConjugationCategory.Strange
-          : ConjugationCategory.Regular
-        : ConjugationCategory.Irregular,
-      kana: irregular,
-      kanji: ""
-    });
-  }
-
-  return results;
-}
-
-export function isConjugationRegular(
-  amount: number,
-  counter: Counter
-): boolean {
-  return conjugateCounter(amount, counter).every(
-    ({ category }) => category === ConjugationCategory.Regular
-  );
-}
-
 export function interleave<TItem, TInterleaved>(
   arr: ReadonlyArray<TItem>,
   item: TInterleaved
@@ -149,4 +96,12 @@ export function interleave<TItem, TInterleaved>(
   }
 
   return interleaved;
+}
+
+export function getPrimaryJapaneseRepresentation(counter: Counter): string {
+  if (counter.kanji) {
+    return counter.kanji.primaryKanji;
+  }
+
+  return counter.readings[0].kana;
 }

@@ -13,14 +13,18 @@ import {
   ProductionVariable
 } from "./utils";
 
-function convertToCounterVariable(db: DbStudyPackContent): any {
+type ProtoStudyPack = Omit<StudyPack, "counters"> & {
+  counters: ReadonlyArray<ProductionVariable>;
+};
+
+function convertToCounterVariable(db: DbStudyPackContent): ProductionVariable {
   return new ProductionVariable(`COUNTERS.${getCounterId(db.counter_id)}`);
 }
 
 export default function writeStudyPacksFile(
   stream: Writable,
   dataSource: ValidatedDataSource
-) {
+): void {
   stream.write('import { StudyPack } from "../src/interfaces";\n');
   stream.write('import * as COUNTERS from "./counters";');
 
@@ -37,7 +41,7 @@ export default function writeStudyPacksFile(
   for (const dbStudyPack of sortedStudyPacks) {
     const variableName = getStudyPackId(dbStudyPack.pack_id);
 
-    const studyPack: StudyPack = {
+    const studyPack: ProtoStudyPack = {
       counters: sortBy(countersLookup[dbStudyPack.pack_id] || [], [
         "counter_id"
       ]).map(convertToCounterVariable),

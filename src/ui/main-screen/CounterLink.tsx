@@ -6,6 +6,7 @@ import { Counter } from "@jyosuushi/interfaces";
 import Localization from "@jyosuushi/localization";
 import { State } from "@jyosuushi/redux";
 import { getLocalization } from "@jyosuushi/redux/selectors";
+import { getPrimaryJapaneseRepresentation } from "@jyosuushi/utils";
 
 import { getCounterLink } from "./explore/pathing";
 
@@ -32,7 +33,7 @@ class CounterLink extends React.PureComponent<ComponentProps> {
     const { counter, localization } = this.props;
     return (
       <Link className="CounterLink" to={getCounterLink(counter)}>
-        <div className="kanji">{counter.kanji}</div>
+        <div className="kanji">{getPrimaryJapaneseRepresentation(counter)}</div>
         <div className="name">{localization.counterName(counter)}</div>
       </Link>
     );

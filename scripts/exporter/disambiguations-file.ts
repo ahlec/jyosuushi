@@ -8,7 +8,7 @@ import { getDisambiguationId } from "./utils";
 export default function writeDisambiguationsFile(
   stream: Writable,
   dataSource: ValidatedDataSource
-) {
+): void {
   stream.write('import { CounterDisambiguation } from "../src/interfaces";');
 
   for (const dbDisambiguation of dataSource.counter_disambiguations.valid) {

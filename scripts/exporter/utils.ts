@@ -1,7 +1,8 @@
-import { escape, isArray, isObjectLike } from "lodash";
+import { escape, isArray } from "lodash";
+import { DbWordOrigin } from "../database/schemas";
 
-function getVariableFromId(prefix: string, id: string) {
-  return prefix + id.toUpperCase().replace(/[-\s,&._\(\)（）ー']+/g, "_");
+function getVariableFromId(prefix: string, id: string): string {
+  return prefix + id.toUpperCase().replace(/[-\s,&._()（）ー']+/g, "_");
 }
 
 export function getCounterId(id: string): string {
@@ -30,7 +31,21 @@ export class ProductionVariable {
   public constructor(public readonly id: string) {}
 }
 
-export function productionStringify(value: any): string {
+export function getWordOrigin(dbWordOrigin: DbWordOrigin): ProductionVariable {
+  switch (dbWordOrigin) {
+    case DbWordOrigin.Japanese: {
+      return new ProductionVariable("WordOrigin.Japanese");
+    }
+    case DbWordOrigin.Chinese: {
+      return new ProductionVariable("WordOrigin.Chinese");
+    }
+    case DbWordOrigin.Foreign: {
+      return new ProductionVariable("WordOrigin.Foreign");
+    }
+  }
+}
+
+export function productionStringify(value: unknown): string {
   if (value instanceof ProductionVariable) {
     return value.id;
   }
@@ -46,7 +61,7 @@ export function productionStringify(value: any): string {
     return str;
   }
 
-  if (isObjectLike(value)) {
+  if (typeof value === "object" && value) {
     let str = "{\n";
 
     const keys = Object.keys(value);
@@ -58,7 +73,7 @@ export function productionStringify(value: any): string {
         str += `"${escape(key)}"`;
       }
 
-      str += `: ${productionStringify(value[key])},\n`;
+      str += `: ${productionStringify(value[key as keyof typeof value])},\n`;
     }
 
     str += "}";

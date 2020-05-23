@@ -7,7 +7,7 @@ CREATE TABLE counter_disambiguations (
   PRIMARY KEY (counter1_id, counter2_id)
 );
 INSERT INTO
-  "counter_disambiguations"
+  "counter_disambiguations" (counter1_id, counter2_id, distinction)
 VALUES(
     '人',
     '名',

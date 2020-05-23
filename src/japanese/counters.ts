@@ -1,20 +1,23 @@
-import { memoize } from "lodash";
+import { flatten, memoize } from "lodash";
 
-import { Counter } from "@jyosuushi/interfaces";
+import {
+  CounterReading,
+  Counter,
+  Conjugation,
+  CounterWagoStyle,
+  CountingSystem
+} from "@jyosuushi/interfaces";
 
 import { getLeadingConsonant } from "./hepburn";
+import { KangoConjugationOptions } from "./interfaces";
 import { Gyou, HIRAGANA } from "./kana";
-import {
-  breakDownNumber,
-  conjugateNumber,
-  FinalNumberChanges,
-  HYAKU,
-  JYUU
-} from "./numbers";
+import { conjugateKangoNumber, FinalNumberChanges } from "./kango";
+import { getKanjiForNumber } from "./kanji";
+import { breakDownNumber, HYAKU, JYUU } from "./numbers";
 import { Tag } from "./tags";
+import { conjugateWagoNumber } from "./wago";
 import {
   castAwayTaggable,
-  ConjugatedJapaneseWord,
   permutateTaggableWords,
   TaggableJapaneseWord,
   uniqueWords
@@ -22,7 +25,7 @@ import {
 
 /* eslint-disable sort-keys */
 // JUSTIFICATION: We want to declare everything in a natural way of incrementing
-const COUNTER_K_P_CHANGES: FinalNumberChanges = {
+const KANGO_COUNTER_K_P_CHANGES: FinalNumberChanges = {
   1: [[{ type: "trailing-small-tsu" }]],
   6: [[{ type: "trailing-small-tsu" }]],
   8: [[{ type: "trailing-small-tsu" }], [{ type: "preserve" }]],
@@ -33,7 +36,7 @@ const COUNTER_K_P_CHANGES: FinalNumberChanges = {
   [HYAKU]: [[{ type: "trailing-small-tsu" }]]
 };
 
-const COUNTER_S_T_CHANGES: FinalNumberChanges = {
+const KANGO_COUNTER_S_T_CHANGES: FinalNumberChanges = {
   1: [[{ type: "trailing-small-tsu" }]],
   8: [[{ type: "trailing-small-tsu" }]],
   [JYUU]: [
@@ -42,7 +45,7 @@ const COUNTER_S_T_CHANGES: FinalNumberChanges = {
   ]
 };
 
-const COUNTER_H_CHANGES: FinalNumberChanges = {
+const KANGO_COUNTER_H_CHANGES: FinalNumberChanges = {
   1: [[{ type: "trailing-small-tsu" }]],
   6: [[{ type: "trailing-small-tsu" }]],
   8: [[{ type: "trailing-small-tsu" }]],
@@ -53,7 +56,7 @@ const COUNTER_H_CHANGES: FinalNumberChanges = {
   [HYAKU]: [[{ type: "trailing-small-tsu" }]]
 };
 
-const COUNTER_W_CHANGES: FinalNumberChanges = {
+const KANGO_COUNTER_W_CHANGES: FinalNumberChanges = {
   4: [
     [
       {
@@ -124,28 +127,50 @@ const COUNTER_PA_GYOU: Readonly<CounterChange> = {
   gyou: "pa"
 };
 
-function conjugateCounterRegularsInternal(
+function conjugateRegularWagoReading(
   amount: number,
-  counter: Counter
-): ReadonlyArray<ConjugatedJapaneseWord> {
-  const counterFirstConsonant = getLeadingConsonant(counter.kana);
+  counterId: string,
+  kanji: string | null,
+  style: CounterWagoStyle
+): ReadonlyArray<Conjugation> {
+  const numbers = conjugateWagoNumber(amount);
+  return numbers.map(
+    (numberBase): Conjugation => ({
+      amount,
+      counterId,
+      countingSystem: CountingSystem.Wago,
+      irregularType: null,
+      kanji,
+      reading: `${numberBase}${style.kana}`
+    })
+  );
+}
+
+function conjugateRegularKangoReading(
+  amount: number,
+  counterId: string,
+  kanji: string | null,
+  readingKana: string,
+  conjugationOptions: KangoConjugationOptions
+): ReadonlyArray<Conjugation> {
+  const counterFirstConsonant = getLeadingConsonant(readingKana);
   const amountBreakdown = breakDownNumber(amount);
   let numberChanges: FinalNumberChanges | undefined;
   let counterChanges: CounterChange[] | undefined;
   switch (counterFirstConsonant) {
     case "k":
     case "p": {
-      numberChanges = COUNTER_K_P_CHANGES;
+      numberChanges = KANGO_COUNTER_K_P_CHANGES;
       break;
     }
     case "s":
     case "t": {
-      numberChanges = COUNTER_S_T_CHANGES;
+      numberChanges = KANGO_COUNTER_S_T_CHANGES;
       break;
     }
     case "h":
     case "f": {
-      numberChanges = COUNTER_H_CHANGES;
+      numberChanges = KANGO_COUNTER_H_CHANGES;
 
       switch (amountBreakdown.lowestUnit) {
         case "man":
@@ -188,7 +213,7 @@ function conjugateCounterRegularsInternal(
       break;
     }
     case "w": {
-      numberChanges = COUNTER_W_CHANGES;
+      numberChanges = KANGO_COUNTER_W_CHANGES;
 
       switch (amountBreakdown.lowestUnit) {
         case "jyuu": {
@@ -223,34 +248,151 @@ function conjugateCounterRegularsInternal(
 
   let finalizedCounter: TaggableJapaneseWord[];
   if (counterChanges) {
-    const firstKana = counter.kana[0];
-    const followingKana = counter.kana.slice(1);
-    finalizedCounter = counterChanges.map(({ gyou, tag }) => ({
-      kana: gyou
-        ? HIRAGANA.changeGyou(firstKana, gyou) + followingKana
-        : counter.kana,
-      kanji: counter.kanji,
-      tags: tag ? new Set([tag]) : new Set()
-    }));
+    const firstKana = readingKana[0];
+    const followingKana = readingKana.slice(1);
+    finalizedCounter = counterChanges.map(
+      ({ gyou, tag }): TaggableJapaneseWord => ({
+        kana: gyou
+          ? HIRAGANA.changeGyou(firstKana, gyou) + followingKana
+          : readingKana,
+        tags: tag ? new Set([tag]) : new Set()
+      })
+    );
   } else {
     finalizedCounter = [
-      { kana: counter.kana, kanji: counter.kanji, tags: new Set() }
+      {
+        kana: readingKana,
+        tags: new Set()
+      }
     ];
   }
 
   const words = permutateTaggableWords([
-    conjugateNumber(amount, counter.conjugationOptions, numberChanges),
+    conjugateKangoNumber(amount, conjugationOptions, numberChanges),
     finalizedCounter
   ]);
-  return uniqueWords(castAwayTaggable(words));
+
+  return uniqueWords(castAwayTaggable(words)).map(({ kana }) => ({
+    amount,
+    counterId,
+    countingSystem: CountingSystem.Kango,
+    irregularType: null,
+    kanji,
+    reading: kana
+  }));
 }
 
-export const conjugateCounterRegulars: (
+function conjugateRegularReadings(
+  amount: number,
+  counterId: string,
+  kanji: string | null,
+  reading: CounterReading
+): ReadonlyArray<Conjugation> {
+  const regularConjugations: Conjugation[] = [];
+
+  let appendRegularKangoReadings: boolean;
+  if (reading.wagoStyle && amount <= reading.wagoStyle.rangeEndInclusive) {
+    regularConjugations.push(
+      ...conjugateRegularWagoReading(
+        amount,
+        counterId,
+        kanji,
+        reading.wagoStyle
+      )
+    );
+
+    switch (amount) {
+      case 1: {
+        appendRegularKangoReadings = reading.wagoStyle.alsoUsesKangoIchi;
+        break;
+      }
+      case 2: {
+        appendRegularKangoReadings = reading.wagoStyle.alsoUsesKangoNi;
+        break;
+      }
+      case 3: {
+        appendRegularKangoReadings = reading.wagoStyle.alsoUsesKangoSan;
+        break;
+      }
+      default: {
+        appendRegularKangoReadings = false;
+        break;
+      }
+    }
+  } else {
+    appendRegularKangoReadings = true;
+  }
+
+  if (appendRegularKangoReadings) {
+    regularConjugations.push(
+      ...conjugateRegularKangoReading(
+        amount,
+        counterId,
+        kanji,
+        reading.kana,
+        reading.kangoConjugationOptions
+      )
+    );
+  }
+
+  return regularConjugations;
+}
+
+/**
+ * A function which is used to calculate all of the possible conjugations of
+ * the specified counter at the specified amount.
+ *
+ * Behind the scenes, this is memoizing; the internal mechanisms of the
+ * memoization is not publicly available.
+ */
+export const conjugateCounter: (
   amount: number,
   counter: Counter
-) => ReadonlyArray<
-  ConjugatedJapaneseWord
-> = memoize(
-  conjugateCounterRegularsInternal,
+) => ReadonlyArray<Conjugation> = memoize(
+  (amount: number, counter: Counter): ReadonlyArray<Conjugation> => {
+    if (amount <= 0) {
+      throw new Error("Negative numbers and zero are not implemented (yet?)");
+    }
+
+    const results: Conjugation[] = [];
+    let includeRegularReadings = true;
+
+    const irregularDefinitions = counter.irregulars[amount];
+    if (irregularDefinitions && irregularDefinitions.length) {
+      for (const irregular of irregularDefinitions) {
+        results.push({
+          amount,
+          counterId: counter.counterId,
+          countingSystem: irregular.countingSystem,
+          irregularType: irregular.type,
+          kanji: null,
+          reading: irregular.reading
+        });
+
+        if (irregular.doesPresenceEraseRegularConjugations) {
+          includeRegularReadings = false;
+        }
+      }
+    }
+
+    if (includeRegularReadings) {
+      /**
+       * TODO [JSS-10]: Add ability to associate readings with particular kanji (if necessary)
+       * TODO [JSS-11]: Incorporate multiple kanji into conjugation return values
+       */
+      const kanji = counter.kanji
+        ? `${getKanjiForNumber(amount)}${counter.kanji.primaryKanji}`
+        : null;
+      results.push(
+        ...flatten(
+          counter.readings.map(reading =>
+            conjugateRegularReadings(amount, counter.counterId, kanji, reading)
+          )
+        )
+      );
+    }
+
+    return results;
+  },
   (amount: number, counter: Counter) => [amount, counter.counterId].join("-")
 );

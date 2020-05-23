@@ -1,4 +1,4 @@
-export interface NumericConjugationOptions {
+export interface KangoConjugationOptions {
   allowsYonFor4: boolean;
   allowsYoFor4: boolean;
   allowsShiFor4: boolean;

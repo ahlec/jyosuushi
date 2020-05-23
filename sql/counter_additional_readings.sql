@@ -6,6 +6,6 @@ CREATE TABLE counter_additional_readings (
   uncommon BOOLEAN NOT NULL DEFAULT (0)
 );
 INSERT INTO
-  "counter_additional_readings"
+  "counter_additional_readings" (counter_id, kana, uncommon)
 VALUES('色', 'いろ', 1);
 COMMIT;

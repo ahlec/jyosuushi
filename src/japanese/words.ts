@@ -6,7 +6,6 @@ import { areTagsCompatible, Tag } from "./tags";
 
 export interface JapaneseWord {
   kana: string;
-  kanji: string | null;
 }
 
 export interface ConjugatedJapaneseWord extends JapaneseWord {
@@ -18,7 +17,7 @@ export interface TaggableJapaneseWord extends JapaneseWord {
 }
 
 function japaneseNumberIteratee(num: ConjugatedJapaneseWord): string {
-  return num.kana + "-" + num.kanji;
+  return num.kana;
 }
 
 export function uniqueWords(
@@ -43,10 +42,6 @@ function japaneseNumberCombiner(
 
   return {
     kana: first.kana + second.kana,
-    kanji:
-      first.kanji !== null && second.kanji !== null
-        ? first.kanji + second.kanji
-        : null,
     tags
   };
 }
@@ -62,8 +57,7 @@ function castAwayTaggableInternal(
 ): ConjugatedJapaneseWord {
   return {
     isStrange: word.tags.has("strange"),
-    kana: word.kana,
-    kanji: word.kanji
+    kana: word.kana
   };
 }
 

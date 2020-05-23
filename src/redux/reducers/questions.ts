@@ -3,12 +3,10 @@ import { memoize, random } from "lodash";
 import { COUNTERS_LOOKUP } from "@data/counters";
 import { ITEMS_LOOKUP } from "@data/items";
 
+import { conjugateCounter } from "@jyosuushi/japanese/counters";
+
 import { Answer, PendingQuestion, Question } from "@jyosuushi/interfaces";
-import {
-  conjugateCounter,
-  getDistinctCounters,
-  randomFromArray
-} from "@jyosuushi/utils";
+import { getDistinctCounters, randomFromArray } from "@jyosuushi/utils";
 
 import { QuestionsState } from "@jyosuushi/redux";
 import {
@@ -40,8 +38,11 @@ function makeQuestion(
     const answers = conjugateCounter(amount, counter);
     for (const answer of answers) {
       validAnswers.push({
-        ...answer,
-        counterId: counter.counterId
+        counterId: counter.counterId,
+        countingSystem: answer.countingSystem,
+        irregularType: answer.irregularType,
+        kana: answer.reading,
+        kanji: answer.kanji
       });
     }
   }

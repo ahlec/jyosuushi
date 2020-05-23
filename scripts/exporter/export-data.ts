@@ -43,7 +43,7 @@ const EXPORTED_FILES: ReadonlyArray<ExportedFile> = [
   }
 ];
 
-function exportFile(file: ExportedFile, dataSource: ValidatedDataSource) {
+function exportFile(file: ExportedFile, dataSource: ValidatedDataSource): void {
   const stream = new WritableStream();
   file.writeFunction(stream, dataSource);
 
@@ -53,7 +53,7 @@ function exportFile(file: ExportedFile, dataSource: ValidatedDataSource) {
   fs.writeFileSync(file.filename, javaScript);
 }
 
-async function main() {
+async function main(): Promise<void> {
   const db = await Database.open();
   const dataSource = await ValidatedDataSource.validate(db);
   await db.close();

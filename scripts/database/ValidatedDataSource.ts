@@ -10,7 +10,10 @@ import {
   DbStudyPack,
   DbStudyPackContent,
   SchemaEntryTypes,
-  Schemas
+  Schemas,
+  DbCounterReading,
+  DbCounterAlternativeKanji,
+  DbWagoStyle
 } from "./schemas";
 
 interface Reason {
@@ -33,6 +36,48 @@ type Indexer = {
   [schema in Schemas]: ValidatedResult<SchemaEntryTypes[schema]>;
 };
 
+function validateWagoStyles(
+  snapshot: DatabaseSnapshot
+): ValidatedResult<DbWagoStyle> {
+  const valid: DbWagoStyle[] = [];
+  const error: Array<InvalidResultEntry<DbWagoStyle>> = [];
+
+  for (const wagoStyle of snapshot.wago_style) {
+    const errorReasons: Reason[] = [];
+    if (wagoStyle.range_end_inclusive <= 0) {
+      errorReasons.push({
+        showsInAudit: true,
+        text: "Wago rango cannot be negative or zero."
+      });
+    }
+
+    if (wagoStyle.range_end_inclusive > 10) {
+      errorReasons.push({
+        showsInAudit: true,
+        text:
+          "Standard wago range cannot go above 10 (these values require being listed as irregular)"
+      });
+    }
+
+    if (errorReasons.length) {
+      error.push({
+        entry: wagoStyle,
+        reasons: errorReasons
+      });
+
+      continue;
+    }
+
+    valid.push(wagoStyle);
+  }
+
+  return {
+    error,
+    ignored: [],
+    valid
+  };
+}
+
 function validateCounters(
   snapshot: DatabaseSnapshot
 ): ValidatedResult<DbCounter> {
@@ -50,29 +95,14 @@ function validateCounters(
     counterInStudyPack.add(counter_id);
   }
 
+  const numReadingsForCounter = new Map<string, number>();
+  for (const { counter_id } of snapshot.counter_readings) {
+    const previous = numReadingsForCounter.get(counter_id) || 0;
+    numReadingsForCounter.set(counter_id, previous + 1);
+  }
+
   for (const counter of snapshot.counters) {
     const errorReasons: Reason[] = [];
-    if (!counter.uses_yon && !counter.uses_yo && !counter.uses_shi) {
-      errorReasons.push({
-        showsInAudit: true,
-        text: "Counter doesn't use 'yon', 'yo', or 'shi'."
-      });
-    }
-
-    if (!counter.uses_nana && !counter.uses_shichi) {
-      errorReasons.push({
-        showsInAudit: true,
-        text: "Counter doesn't use either 'nana' or 'shichi'."
-      });
-    }
-
-    if (!counter.uses_kyuu && !counter.uses_ku) {
-      errorReasons.push({
-        showsInAudit: true,
-        text: "Counter doesn't use either 'kyuu' or 'ku'."
-      });
-    }
-
     if (
       counterInStudyPack.has(counter.counter_id) &&
       !counterHasItems.has(counter.counter_id)
@@ -80,6 +110,23 @@ function validateCounters(
       errorReasons.push({
         showsInAudit: true,
         text: "Included in a study pack but does not define any items."
+      });
+    }
+
+    const numReadings = numReadingsForCounter.get(counter.counter_id) || 0;
+    if (!numReadings) {
+      errorReasons.push({
+        showsInAudit: true,
+        text: "Counter does not have any defined readings."
+      });
+    }
+
+    if (!counter.primary_kanji && numReadings > 1) {
+      // We've already reported an error for the case where < 1
+      errorReasons.push({
+        showsInAudit: true,
+        text:
+          "Counters without primary kanji must have no more than one reading."
       });
     }
 
@@ -118,6 +165,140 @@ function validateCounters(
     }
 
     valid.push(counter);
+  }
+
+  return {
+    error,
+    ignored,
+    valid
+  };
+}
+
+function validateCounterReadings(
+  snapshot: DatabaseSnapshot,
+  validCounterIds: ReadonlySet<string>,
+  validWagoStyleHandles: ReadonlySet<string>
+): ValidatedResult<DbCounterReading> {
+  const valid: DbCounterReading[] = [];
+  const ignored: Array<InvalidResultEntry<DbCounterReading>> = [];
+  const error: Array<InvalidResultEntry<DbCounterReading>> = [];
+
+  for (const counterReading of snapshot.counter_readings) {
+    const errorReasons: Reason[] = [];
+    if (
+      !counterReading.kango_uses_yon &&
+      !counterReading.kango_uses_yo &&
+      !counterReading.kango_uses_shi
+    ) {
+      errorReasons.push({
+        showsInAudit: true,
+        text: "Counter reading doesn't use 'yon', 'yo', or 'shi'."
+      });
+    }
+
+    if (!counterReading.kango_uses_nana && !counterReading.kango_uses_shichi) {
+      errorReasons.push({
+        showsInAudit: true,
+        text: "Counter reading doesn't use either 'nana' or 'shichi'."
+      });
+    }
+
+    if (!counterReading.kango_uses_kyuu && !counterReading.kango_uses_ku) {
+      errorReasons.push({
+        showsInAudit: true,
+        text: "Counter reading doesn't use either 'kyuu' or 'ku'."
+      });
+    }
+
+    if (
+      counterReading.wago_style &&
+      !validWagoStyleHandles.has(counterReading.wago_style)
+    ) {
+      errorReasons.push({
+        showsInAudit: true,
+        text:
+          "Counter reading is configured to use wago style that doesn't exist or isn't valid."
+      });
+    }
+
+    if (errorReasons.length) {
+      error.push({
+        entry: counterReading,
+        reasons: errorReasons
+      });
+
+      continue;
+    }
+
+    if (!validCounterIds.has(counterReading.counter_id)) {
+      ignored.push({
+        entry: counterReading,
+        reasons: [
+          {
+            showsInAudit: false,
+            text: "Counter is not being exported."
+          }
+        ]
+      });
+
+      continue;
+    }
+
+    valid.push(counterReading);
+  }
+
+  return {
+    error,
+    ignored,
+    valid
+  };
+}
+
+function validateCounterAlternativeKanji(
+  snapshot: DatabaseSnapshot,
+  validCounterIds: ReadonlySet<string>
+): ValidatedResult<DbCounterAlternativeKanji> {
+  const valid: DbCounterAlternativeKanji[] = [];
+  const ignored: Array<InvalidResultEntry<DbCounterAlternativeKanji>> = [];
+  const error: Array<InvalidResultEntry<DbCounterAlternativeKanji>> = [];
+
+  const countersWithoutPrimaryKanji = new Set<string>();
+  for (const { counter_id, primary_kanji } of snapshot.counters) {
+    if (primary_kanji) {
+      continue;
+    }
+
+    countersWithoutPrimaryKanji.add(counter_id);
+  }
+
+  for (const entry of snapshot.counter_alternative_kanji) {
+    if (countersWithoutPrimaryKanji.has(entry.counter_id)) {
+      error.push({
+        entry,
+        reasons: [
+          {
+            showsInAudit: true,
+            text: `Counter '${entry.counter_id}' doesn't have a primary kanji but has alternative kanji listed.`
+          }
+        ]
+      });
+    }
+
+    if (!validCounterIds.has(entry.counter_id)) {
+      ignored.push({
+        entry,
+        reasons: [
+          {
+            showsInAudit: false,
+            text: "Counter is not being exported."
+          }
+        ]
+      });
+
+      continue;
+    }
+
+    valid.push(entry);
   }
 
   return {
@@ -297,13 +478,6 @@ function validateCounterIrregulars(
       });
     }
 
-    if (irregular.nonstandard) {
-      ignoredReasons.push({
-        showsInAudit: true,
-        text: "Nonstandard support has not yet been added."
-      });
-    }
-
     if (ignoredReasons.length) {
       ignored.push({
         entry: irregular,
@@ -388,8 +562,15 @@ function validateStudyPacks(
 }
 
 export default class ValidatedDataSource implements Indexer {
-  public static async validate(database: Database) {
+  public static async validate(
+    database: Database
+  ): Promise<ValidatedDataSource> {
     const snapshot = await database.getSnapshot();
+
+    const wago_style = validateWagoStyles(snapshot);
+    const validWagoStyleHandles = new Set(
+      wago_style.valid.map(({ wago_style_handle }) => wago_style_handle)
+    );
 
     const counters = validateCounters(snapshot);
     const validCounterIds = new Set(
@@ -399,12 +580,21 @@ export default class ValidatedDataSource implements Indexer {
       snapshot.counter_additional_readings,
       validCounterIds
     );
+    const counter_readings = validateCounterReadings(
+      snapshot,
+      validCounterIds,
+      validWagoStyleHandles
+    );
     const counter_disambiguations = validateCounterDisambiguations(
       snapshot,
       validCounterIds
     );
     const counter_external_links = validateSingleCounterDependentDb(
       snapshot.counter_external_links,
+      validCounterIds
+    );
+    const counter_alternative_kanji = validateCounterAlternativeKanji(
+      snapshot,
       validCounterIds
     );
     const counter_irregulars = validateCounterIrregulars(
@@ -427,11 +617,14 @@ export default class ValidatedDataSource implements Indexer {
       counter_disambiguations,
       counter_external_links,
       counter_irregulars,
+      counter_alternative_kanji,
+      counter_readings,
       counters,
       item_counters,
       items,
       study_pack_contents,
-      study_packs
+      study_packs,
+      wago_style
     );
   }
 
@@ -448,11 +641,16 @@ export default class ValidatedDataSource implements Indexer {
       DbCounterExternalLink
     >,
     public readonly counter_irregulars: ValidatedResult<DbCounterIrregular>,
+    public readonly counter_alternative_kanji: ValidatedResult<
+      DbCounterAlternativeKanji
+    >,
+    public readonly counter_readings: ValidatedResult<DbCounterReading>,
     public readonly counters: ValidatedResult<DbCounter>,
     public readonly item_counters: ValidatedResult<DbItemCounter>,
     public readonly items: ValidatedResult<DbItem>,
     public readonly study_pack_contents: ValidatedResult<DbStudyPackContent>,
-    public readonly study_packs: ValidatedResult<DbStudyPack>
+    public readonly study_packs: ValidatedResult<DbStudyPack>,
+    public readonly wago_style: ValidatedResult<DbWagoStyle>
   ) {
     this.hasErrors = Object.values(Schemas)
       .map(schema => this.getSchema(schema))

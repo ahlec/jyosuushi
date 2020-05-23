@@ -10,7 +10,7 @@ import Localization from "@jyosuushi/localization";
 import { State } from "@jyosuushi/redux";
 import { getLocalization } from "@jyosuushi/redux/selectors";
 
-import Furigana from "@jyosuushi/ui/Furigana";
+import CounterDisplay from "@jyosuushi/ui/components/CounterDisplay";
 import RightIcon from "@jyosuushi/ui/right.svg";
 
 import BreadcrumbBar from "@jyosuushi/ui/main-screen/explore/BreadcrumbBar";
@@ -92,10 +92,7 @@ class ExploreStudyPackPage extends React.PureComponent<ComponentProps> {
         onClick={this.onClickInvestigate(counter)}
       >
         <td className="jp">
-          <Furigana
-            text={counter.kanji || counter.kana}
-            furigana={counter.kanji && counter.kana}
-          />
+          <CounterDisplay counter={counter} />
         </td>
         <td className="name">{localization.counterName(counter)}</td>
         <td className="button">

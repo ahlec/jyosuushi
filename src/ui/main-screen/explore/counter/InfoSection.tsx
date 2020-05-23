@@ -30,7 +30,7 @@ export default class InfoSection extends React.PureComponent<ComponentProps> {
             dangerouslySetInnerHTML={{ __html: counter.notes }}
           />
         )}
-        {counter.externalLinks.length && (
+        {counter.externalLinks.length ? (
           <React.Fragment>
             <h6>
               {counter.notes
@@ -41,7 +41,7 @@ export default class InfoSection extends React.PureComponent<ComponentProps> {
               {counter.externalLinks.map(this.renderLink)}
             </ul>
           </React.Fragment>
-        )}
+        ) : null}
       </section>
     );
   }

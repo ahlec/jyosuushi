@@ -5,15 +5,15 @@ CREATE TABLE study_packs (
   english_name STRING NOT NULL
 );
 INSERT INTO
-  "study_packs"
+  "study_packs" (pack_id, english_name)
 VALUES('n5', 'JLPT N5');
 INSERT INTO
-  "study_packs"
+  "study_packs" (pack_id, english_name)
 VALUES('n4', 'JLPT N4');
 INSERT INTO
-  "study_packs"
+  "study_packs" (pack_id, english_name)
 VALUES('essential', 'Essential');
 INSERT INTO
-  "study_packs"
+  "study_packs" (pack_id, english_name)
 VALUES('common', 'Common');
 COMMIT;

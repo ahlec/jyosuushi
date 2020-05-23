@@ -7,6 +7,7 @@ import { Counter } from "@jyosuushi/interfaces";
 import Localization from "@jyosuushi/localization";
 import { State } from "@jyosuushi/redux";
 import { getLocalization } from "@jyosuushi/redux/selectors";
+import { getPrimaryJapaneseRepresentation } from "@jyosuushi/utils";
 
 import BreadcrumbBar from "@jyosuushi/ui/main-screen/explore/BreadcrumbBar";
 import CollapsibleSection from "@jyosuushi/ui/main-screen/explore/CollapsibleSection";
@@ -56,7 +57,9 @@ class ExploreCounterPage extends React.PureComponent<ComponentProps> {
         <BreadcrumbBar />
         <div className="contents">
           <h3>{localization.counterName(counter)}</h3>
-          <div className="kanji">{counter.kanji}</div>
+          <div className="kanji">
+            {getPrimaryJapaneseRepresentation(counter)}
+          </div>
           {hasInfoSectionContents(counter) && (
             <CollapsibleSection header={localization.counterPageHeaderInfo}>
               <InfoSection counter={counter} localization={localization} />
