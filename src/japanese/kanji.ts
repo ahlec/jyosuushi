@@ -15,32 +15,47 @@ const FIRST_TEN_NUMBER_KANJI: ReadonlyArray<string | null> = [
 ];
 
 export const getKanjiForNumber: (amount: number) => string = memoize(
-  (amount): string => {
+  (amount: number): string => {
     const piecesToConcatenate: string[] = [];
     const breakdown = breakDownNumber(amount);
 
     if (breakdown.oku) {
-      piecesToConcatenate.push(getKanjiForNumber(breakdown.oku));
+      if (breakdown.oku > 1) {
+        piecesToConcatenate.push(getKanjiForNumber(breakdown.oku));
+      }
+
       piecesToConcatenate.push("億");
     }
 
     if (breakdown.man) {
-      piecesToConcatenate.push(getKanjiForNumber(breakdown.man));
+      if (breakdown.man > 1) {
+        piecesToConcatenate.push(getKanjiForNumber(breakdown.man));
+      }
+
       piecesToConcatenate.push("万");
     }
 
     if (breakdown.sen) {
-      piecesToConcatenate.push(getKanjiForNumber(breakdown.sen));
+      if (breakdown.sen > 1) {
+        piecesToConcatenate.push(getKanjiForNumber(breakdown.sen));
+      }
+
       piecesToConcatenate.push("千");
     }
 
     if (breakdown.hyaku) {
-      piecesToConcatenate.push(getKanjiForNumber(breakdown.hyaku));
+      if (breakdown.hyaku > 1) {
+        piecesToConcatenate.push(getKanjiForNumber(breakdown.hyaku));
+      }
+
       piecesToConcatenate.push("百");
     }
 
     if (breakdown.jyuu) {
-      piecesToConcatenate.push(getKanjiForNumber(breakdown.jyuu));
+      if (breakdown.jyuu > 1) {
+        piecesToConcatenate.push(getKanjiForNumber(breakdown.jyuu));
+      }
+
       piecesToConcatenate.push("十");
     }
 
