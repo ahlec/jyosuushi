@@ -1,21 +1,23 @@
-import classnames from "classnames";
 import * as React from "react";
+import ReactMarkdown, { NodeType } from "react-markdown";
 
 import "./Markdown.scss";
 
 interface ComponentProps {
-  className?: string;
-  content: string;
+  source: string;
 }
 
-export default class Markdown extends React.PureComponent<ComponentProps> {
-  public render(): React.ReactNode {
-    const { className, content } = this.props;
-    return (
-      <div
-        className={classnames("Markdown", className)}
-        dangerouslySetInnerHTML={{ __html: content }}
-      />
-    );
-  }
+const DISALLOWED_TYPES: NodeType[] = ["paragraph"];
+
+function Markdown({ source }: ComponentProps): JSX.Element {
+  return (
+    <ReactMarkdown
+      className="Markdown"
+      disallowedTypes={DISALLOWED_TYPES}
+      source={source}
+      unwrapDisallowed={true}
+    />
+  );
 }
+
+export default Markdown;

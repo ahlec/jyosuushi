@@ -4,10 +4,15 @@ export interface ConsumerFacingEntry {
   nestedListItems?: readonly string[];
 }
 
+export interface BugFixEntry {
+  browser?: "chrome" | "firefox" | "safari" | "edge" | "ie";
+  text: string;
+}
+
 export interface IncrementalVersion {
   date: string;
   version: string;
-  bugFixes: readonly string[];
+  bugFixes: readonly BugFixEntry[];
   newFeatures: readonly ConsumerFacingEntry[];
   improvements: readonly ConsumerFacingEntry[];
   developerChanges: readonly string[];
@@ -34,7 +39,10 @@ const CHANGELOG: readonly ChangelogVersion[] = [
     newFeatures: [],
     improvements: [],
     bugFixes: [
-      'Fixed a bug where counters that used alternative readings (such as 人 allow for 4 to be read as "よ") would incorrectly apply this change elsewhere in the number (producing readings like よじゅうよにん instead of よ**ん**じゅうよにん).'
+      {
+        text:
+          'Fixed a bug where counters that used alternative readings (such as 人 allow for 4 to be read as "よ") would incorrectly apply this change elsewhere in the number (producing readings like よじゅうよにん instead of よ**ん**じゅうよにん).'
+      }
     ],
     developerChanges: ["Migrated from TSLint to ESLint."]
   },
@@ -83,8 +91,14 @@ const CHANGELOG: readonly ChangelogVersion[] = [
     ],
     improvements: [],
     bugFixes: [
-      "Fixed a bug where per-item maximum values were ignored and it lead to wonky questions (like 39 0'clock).",
-      "Fixed a bug where you could go to pages for counters or study packs that didn't exist."
+      {
+        text:
+          "Fixed a bug where per-item maximum values were ignored and it lead to wonky questions (like 39 0'clock)."
+      },
+      {
+        text:
+          "Fixed a bug where you could go to pages for counters or study packs that didn't exist."
+      }
     ],
     developerChanges: [
       "Database is now stored in SQL files rather than a SQLite database, to improve conflict resolution and readability.",
@@ -134,8 +148,11 @@ const CHANGELOG: readonly ChangelogVersion[] = [
     ],
     improvements: [],
     bugFixes: [
-      "Fixed a bug where the number of irregular conjugations after the first 17 wouldn't be included in the count of total irregulars.",
-      "Added a missing conjugation rule between 8 and か行."
+      {
+        text:
+          "Fixed a bug where the number of irregular conjugations after the first 17 wouldn't be included in the count of total irregulars."
+      },
+      { text: "Added a missing conjugation rule between 8 and か行." }
     ],
     developerChanges: [
       "Upgraded _all_ packages to their latest versions!",
@@ -164,10 +181,24 @@ const CHANGELOG: readonly ChangelogVersion[] = [
       }
     ],
     bugFixes: [
-      "[Safari] Fixed a bug where the header would not fully transition.",
-      "[Safari] Fixed a bug where the tutorial had the text rendering on top of images.",
-      "[Firefox] Fixed a bug where the furigana were floating off to the side of the kanji.",
-      "Switched to using Google Forms to address issues with previous bug report/submission box."
+      {
+        browser: "safari",
+        text: "Fixed a bug where the header would not fully transition."
+      },
+      {
+        browser: "safari",
+        text:
+          "Fixed a bug where the tutorial had the text rendering on top of images."
+      },
+      {
+        browser: "firefox",
+        text:
+          "Fixed a bug where the furigana were floating off to the side of the kanji."
+      },
+      {
+        text:
+          "Switched to using Google Forms to address issues with previous bug report/submission box."
+      }
     ],
     developerChanges: []
   },

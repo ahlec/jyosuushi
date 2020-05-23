@@ -1,3 +1,54 @@
+@import "../../../palette.scss";
+
 .ReleaseNotesPage {
-  font-size: 14px;
+  .version-container {
+    font-size: 14px;
+
+    .version-header {
+      font-size: 1.5em;
+      font-weight: 600;
+      line-height: 1.5;
+
+      .date {
+        font-size: 13px;
+        font-weight: normal;
+        font-style: italic;
+        color: $black-lightest;
+      }
+    }
+
+    .contents {
+      margin-left: 3px;
+      padding-left: 15px;
+      border-left: 2px solid $pink-light;
+
+      .entries {
+        > .header {
+          font-weight: bold;
+        }
+
+        ol,
+        ul {
+          padding-left: 2em;
+          line-height: 1.5;
+          list-style: disc;
+        }
+
+        .entry {
+          .label {
+            font-weight: 600;
+            text-decoration: underline;
+          }
+        }
+      }
+
+      .entries + .entries {
+        margin-top: 10px;
+      }
+    }
+  }
+
+  .version-container + .version-container {
+    margin-top: 16px;
+  }
 }
