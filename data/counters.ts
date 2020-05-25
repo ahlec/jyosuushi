@@ -77,7 +77,16 @@ export const COUNTER_ヶ所: Counter = {
 
 export const COUNTER_ヶ月: Counter = {
   counterId: "ヶ月",
-  dictionaryEntries: [],
+  dictionaryEntries: [
+    {
+      directLink: "https://dictionary.goo.ne.jp/word/%E7%AE%87%E6%9C%88/",
+      japanese:
+        "［接尾］助数詞。月数を数えるのに用いる。「数―」「三―間 (かん) 」",
+      source: JapaneseDictionary.Goo,
+      translation:
+        '[Suffix] Counter. Used to count the number of months. "A few months" "A three month period"'
+    }
+  ],
   disambiguations: {},
   englishName: "months",
   externalLinks: [
@@ -564,7 +573,17 @@ export const COUNTER_周: Counter = {
 
 export const COUNTER_回: Counter = {
   counterId: "回",
-  dictionaryEntries: [],
+  dictionaryEntries: [
+    {
+      directLink:
+        "https://dictionary.goo.ne.jp/word/%E5%9B%9E_%28%E3%81%8B%E3%81%84%29/",
+      japanese:
+        "［接尾］助数詞。数または順序を表す語に付いて、度数または順序を表すのに用いる。「七回裏」「次回」",
+      source: JapaneseDictionary.Goo,
+      translation:
+        '[Suffix] Counter. When following a number or a word expressive a relative order, used to express the number of times or an order. "Bottom of the seventh (baseball)" "Next time."'
+    }
+  ],
   disambiguations: {},
   englishName: "times (occurrences)",
   externalLinks: [
@@ -603,7 +622,17 @@ export const COUNTER_回: Counter = {
 
 export const COUNTER_巻: Counter = {
   counterId: "巻",
-  dictionaryEntries: [],
+  dictionaryEntries: [
+    {
+      directLink:
+        "https://dictionary.goo.ne.jp/word/%E5%B7%BB_%28%E3%81%8B%E3%82%93%29/",
+      japanese:
+        "［接尾］助数詞。\n１ 書籍の冊数をかぞえるのに用いる。「全3巻の書物」\n\n２ 巻物やテープ、フィルムなどの数をかぞえるのに用いる。「巻物3巻」「フィルム5巻」",
+      source: JapaneseDictionary.Goo,
+      translation:
+        '[Suffix] Counter.\n1. Used to count the number of books in a publication. "A book in three parts."\n2. Used to count things such as scrolls, rolls of tape, or rolls of film. "Three scrolls" "Five rolls of film."'
+    }
+  ],
   disambiguations: {},
   englishName: "volumes",
   externalLinks: [],
@@ -991,7 +1020,17 @@ export const COUNTER_曲: Counter = {
 
 export const COUNTER_本: Counter = {
   counterId: "本",
-  dictionaryEntries: [],
+  dictionaryEntries: [
+    {
+      directLink:
+        "https://dictionary.goo.ne.jp/word/%E6%9C%AC_%28%E3%81%BB%E3%82%93%29/",
+      japanese:
+        "［接尾］助数詞。漢語の数詞に付く。上に来る語によっては「ぼん」「ぽん」となる。\n１ 長い物、細長い棒状のものなどを数えるのに用いる。「鉛筆五本」「二本の道路」\n\n２ 剣道や柔道などで、技 (わざ) の数を数えるのに用いる。「二本を先取する」\n\n３ 映画の作品の数を数えるのに用いる。「主演作五本」",
+      source: JapaneseDictionary.Goo,
+      translation:
+        '[Suffix] Counter. Used in conjunction with the Chinese numbering system. Depending on the preceding word, can become either 「ぼん」 or 「ぽん」.\n1. Used to count long items or long, thin cylindrical items. "5 pencils" or "2 roads"\n2. In Kendo and Judo, used to count the number of moves.\n3. Used to count the number of movies (as in: video, cinema).'
+    }
+  ],
   disambiguations: {},
   englishName: "long, thin objects",
   externalLinks: [
@@ -1149,7 +1188,15 @@ export const COUNTER_校: Counter = {
 
 export const COUNTER_歳: Counter = {
   counterId: "歳",
-  dictionaryEntries: [],
+  dictionaryEntries: [
+    {
+      directLink: "https://dictionary.goo.ne.jp/word/%E6%AD%B3/",
+      japanese:
+        "［接尾］助数詞。年齢・年数を数えるのに用いる。「三歳」「満五歳」",
+      source: JapaneseDictionary.Goo,
+      translation: "[Suffix] Counter. Used to count age or number of years."
+    }
+  ],
   disambiguations: {},
   englishName: "age",
   externalLinks: [],
@@ -1530,7 +1577,17 @@ export const COUNTER_週: Counter = {
 
 export const COUNTER_階: Counter = {
   counterId: "階",
-  dictionaryEntries: [],
+  dictionaryEntries: [
+    {
+      directLink:
+        "https://dictionary.goo.ne.jp/word/%E9%9A%8E_%28%E3%81%8B%E3%81%84%29/",
+      japanese:
+        "［接尾］助数詞。\n１ 建築物の層を数えるのに用いる。「35階建てのビル」\n\n２ 位階の等級を数えるのに用いる。\n\n「一―こえて、内侍督 (ないしのかみ) 三位の加階し給ふ」〈宇津保・蔵開下〉",
+      source: JapaneseDictionary.Goo,
+      translation:
+        '[Suffix] Counter.\n1. Used to count the number of storeys in a building. "A 35-storey building."\n2. Used to count ranks in a court (imperial).'
+    }
+  ],
   disambiguations: {},
   englishName: "floors",
   externalLinks: [

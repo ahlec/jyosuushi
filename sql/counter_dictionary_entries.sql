@@ -221,4 +221,126 @@ VALUES(
 1. Used to express a year explicitly or an amount of years. "Heisei 7" "1995 (Gregorian)"
 2. Used to express age (in years) or school grade. "50 years old" "Graduated to fifth grade."'
   );
+INSERT INTO
+  "counter_dictionary_entries" (
+    entry_id,
+    counter_id,
+    sort_order,
+    direct_link,
+    japanese,
+    translation
+  )
+VALUES(
+    11,
+    '本',
+    NULL,
+    'https://dictionary.goo.ne.jp/word/%E6%9C%AC_%28%E3%81%BB%E3%82%93%29/',
+    '［接尾］助数詞。漢語の数詞に付く。上に来る語によっては「ぼん」「ぽん」となる。
+１ 長い物、細長い棒状のものなどを数えるのに用いる。「鉛筆五本」「二本の道路」
+
+２ 剣道や柔道などで、技 (わざ) の数を数えるのに用いる。「二本を先取する」
+
+３ 映画の作品の数を数えるのに用いる。「主演作五本」',
+    '[Suffix] Counter. Used in conjunction with the Chinese numbering system. Depending on the preceding word, can become either 「ぼん」 or 「ぽん」.
+1. Used to count long items or long, thin cylindrical items. "5 pencils" or "2 roads"
+2. In Kendo and Judo, used to count the number of moves.
+3. Used to count the number of movies (as in: video, cinema).'
+  );
+INSERT INTO
+  "counter_dictionary_entries" (
+    entry_id,
+    counter_id,
+    sort_order,
+    direct_link,
+    japanese,
+    translation
+  )
+VALUES(
+    12,
+    '回',
+    NULL,
+    'https://dictionary.goo.ne.jp/word/%E5%9B%9E_%28%E3%81%8B%E3%81%84%29/',
+    '［接尾］助数詞。数または順序を表す語に付いて、度数または順序を表すのに用いる。「七回裏」「次回」',
+    '[Suffix] Counter. When following a number or a word expressive a relative order, used to express the number of times or an order. "Bottom of the seventh (baseball)" "Next time."'
+  );
+INSERT INTO
+  "counter_dictionary_entries" (
+    entry_id,
+    counter_id,
+    sort_order,
+    direct_link,
+    japanese,
+    translation
+  )
+VALUES(
+    13,
+    '階',
+    NULL,
+    'https://dictionary.goo.ne.jp/word/%E9%9A%8E_%28%E3%81%8B%E3%81%84%29/',
+    '［接尾］助数詞。
+１ 建築物の層を数えるのに用いる。「35階建てのビル」
+
+２ 位階の等級を数えるのに用いる。
+
+「一―こえて、内侍督 (ないしのかみ) 三位の加階し給ふ」〈宇津保・蔵開下〉',
+    '[Suffix] Counter.
+1. Used to count the number of storeys in a building. "A 35-storey building."
+2. Used to count ranks in a court (imperial).'
+  );
+INSERT INTO
+  "counter_dictionary_entries" (
+    entry_id,
+    counter_id,
+    sort_order,
+    direct_link,
+    japanese,
+    translation
+  )
+VALUES(
+    14,
+    '歳',
+    NULL,
+    'https://dictionary.goo.ne.jp/word/%E6%AD%B3/',
+    '［接尾］助数詞。年齢・年数を数えるのに用いる。「三歳」「満五歳」',
+    '[Suffix] Counter. Used to count age or number of years.'
+  );
+INSERT INTO
+  "counter_dictionary_entries" (
+    entry_id,
+    counter_id,
+    sort_order,
+    direct_link,
+    japanese,
+    translation
+  )
+VALUES(
+    15,
+    'ヶ月',
+    NULL,
+    'https://dictionary.goo.ne.jp/word/%E7%AE%87%E6%9C%88/',
+    '［接尾］助数詞。月数を数えるのに用いる。「数―」「三―間 (かん) 」',
+    '[Suffix] Counter. Used to count the number of months. "A few months" "A three month period"'
+  );
+INSERT INTO
+  "counter_dictionary_entries" (
+    entry_id,
+    counter_id,
+    sort_order,
+    direct_link,
+    japanese,
+    translation
+  )
+VALUES(
+    16,
+    '巻',
+    NULL,
+    'https://dictionary.goo.ne.jp/word/%E5%B7%BB_%28%E3%81%8B%E3%82%93%29/',
+    '［接尾］助数詞。
+１ 書籍の冊数をかぞえるのに用いる。「全3巻の書物」
+
+２ 巻物やテープ、フィルムなどの数をかぞえるのに用いる。「巻物3巻」「フィルム5巻」',
+    '[Suffix] Counter.
+1. Used to count the number of books in a publication. "A book in three parts."
+2. Used to count things such as scrolls, rolls of tape, or rolls of film. "Three scrolls" "Five rolls of film."'
+  );
 COMMIT;
