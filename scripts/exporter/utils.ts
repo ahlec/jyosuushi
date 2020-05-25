@@ -1,4 +1,4 @@
-import { escape, isArray } from "lodash";
+import { isArray } from "lodash";
 import { DbWordOrigin } from "../database/schemas";
 
 function getVariableFromId(prefix: string, id: string): string {
@@ -70,7 +70,11 @@ export function productionStringify(value: unknown): string {
       if (isFinite(asNumber)) {
         str += key;
       } else {
-        str += `"${escape(key)}"`;
+        /**
+         * Use JSON.stringify here to escape any double-quotes inside
+         * of strings. It will also wrap the string in double quotes.
+         */
+        str += JSON.stringify(key);
       }
 
       str += `: ${productionStringify(value[key as keyof typeof value])},\n`;
