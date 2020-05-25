@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import { groupBy, uniq } from "lodash";
+import { flatten, groupBy, uniq } from "lodash";
 import memoizeOne from "memoize-one";
 import * as React from "react";
 import { connect } from "react-redux";
@@ -77,9 +77,12 @@ class AnswersTable extends React.PureComponent<ComponentProps> {
             kanaAnswers: answers,
             studyPacks: studyPacks.map(packId => STUDY_PACK_LOOKUP[packId]),
             validKanji: uniq(
-              answers
-                .map(({ kanji }) => kanji)
-                .filter((kanji): kanji is string => typeof kanji == "string")
+              flatten(
+                answers.map(
+                  ({ kanji }): ReadonlyArray<string> =>
+                    kanji === null ? [] : kanji
+                )
+              )
             ),
             wasUsersCorrectAnswer:
               usersAnswer.judgment === "correct" &&

@@ -160,7 +160,7 @@ export interface Conjugation {
   counterId: string;
   countingSystem: CountingSystem | null;
   irregularType: CounterIrregularType | null;
-  kanji: string | null;
+  kanji: ReadonlyArray<string> | null;
   reading: string;
 }
 
@@ -169,7 +169,7 @@ export interface Answer {
   countingSystem: CountingSystem | null;
   irregularType: CounterIrregularType | null;
   kana: string;
-  kanji: string | null;
+  kanji: ReadonlyArray<string> | null;
 }
 
 export interface Question {

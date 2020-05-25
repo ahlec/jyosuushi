@@ -130,7 +130,7 @@ const COUNTER_PA_GYOU: Readonly<CounterChange> = {
 function conjugateRegularWagoReading(
   amount: number,
   counterId: string,
-  kanji: string | null,
+  kanji: ReadonlyArray<string> | null,
   style: CounterWagoStyle
 ): ReadonlyArray<Conjugation> {
   const numbers = conjugateWagoNumber(amount);
@@ -149,7 +149,7 @@ function conjugateRegularWagoReading(
 function conjugateRegularKangoReading(
   amount: number,
   counterId: string,
-  kanji: string | null,
+  kanji: ReadonlyArray<string> | null,
   readingKana: string,
   conjugationOptions: KangoConjugationOptions
 ): ReadonlyArray<Conjugation> {
@@ -285,7 +285,7 @@ function conjugateRegularKangoReading(
 function conjugateRegularReadings(
   amount: number,
   counterId: string,
-  kanji: string | null,
+  kanji: ReadonlyArray<string> | null,
   reading: CounterReading
 ): ReadonlyArray<Conjugation> {
   const regularConjugations: Conjugation[] = [];
@@ -376,13 +376,21 @@ export const conjugateCounter: (
     }
 
     if (includeRegularReadings) {
-      /**
-       * TODO [JSS-10]: Add ability to associate readings with particular kanji (if necessary)
-       * TODO [JSS-11]: Incorporate multiple kanji into conjugation return values
-       */
-      const kanji = counter.kanji
-        ? `${getKanjiForNumber(amount)}${counter.kanji.primaryKanji}`
-        : null;
+      let kanji: ReadonlyArray<string> | null;
+      if (counter.kanji) {
+        const amountKanji = getKanjiForNumber(amount);
+
+        /**
+         * TODO [JSS-10]: Add ability to associate readings with particular kanji (if necessary)
+         */
+        kanji = [
+          counter.kanji.primaryKanji,
+          ...counter.kanji.additionalKanji
+        ].map((counterKanji): string => `${amountKanji}${counterKanji}`);
+      } else {
+        kanji = null;
+      }
+
       results.push(
         ...flatten(
           counter.readings.map(reading =>
