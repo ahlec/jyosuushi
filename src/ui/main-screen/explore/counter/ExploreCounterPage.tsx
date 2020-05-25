@@ -10,7 +10,6 @@ import { getLocalization } from "@jyosuushi/redux/selectors";
 import { getPrimaryJapaneseRepresentation } from "@jyosuushi/utils";
 
 import BreadcrumbBar from "@jyosuushi/ui/main-screen/explore/BreadcrumbBar";
-import CollapsibleSection from "@jyosuushi/ui/main-screen/explore/CollapsibleSection";
 
 import ConjugationsSection from "./ConjugationsSection";
 import DisambiguationSection, {
@@ -18,6 +17,7 @@ import DisambiguationSection, {
 } from "./DisambiguationSection";
 import InfoSection, { hasInfoSectionContents } from "./InfoSection";
 import ItemsSection, { hasItemsSectionContents } from "./ItemsSection";
+import SectionContainer from "./SectionContainer";
 
 import "./ExploreCounterPage.scss";
 
@@ -61,32 +61,30 @@ class ExploreCounterPage extends React.PureComponent<ComponentProps> {
             {getPrimaryJapaneseRepresentation(counter)}
           </div>
           {hasInfoSectionContents(counter) && (
-            <CollapsibleSection header={localization.counterPageHeaderInfo}>
+            <SectionContainer header={localization.counterPageHeaderInfo}>
               <InfoSection counter={counter} localization={localization} />
-            </CollapsibleSection>
+            </SectionContainer>
           )}
-          <CollapsibleSection
-            header={localization.counterPageHeaderConjugation}
-          >
+          <SectionContainer header={localization.counterPageHeaderConjugation}>
             <ConjugationsSection
               counter={counter}
               localization={localization}
             />
-          </CollapsibleSection>
+          </SectionContainer>
           {hasItemsSectionContents(counter) && (
-            <CollapsibleSection header={localization.counterPageHeaderItems}>
+            <SectionContainer header={localization.counterPageHeaderItems}>
               <ItemsSection counter={counter} localization={localization} />
-            </CollapsibleSection>
+            </SectionContainer>
           )}
           {hasDisambiguationSection(counter) && (
-            <CollapsibleSection
+            <SectionContainer
               header={localization.counterPageHeaderDisambiguation}
             >
               <DisambiguationSection
                 counter={counter}
                 localization={localization}
               />
-            </CollapsibleSection>
+            </SectionContainer>
           )}
         </div>
       </div>
