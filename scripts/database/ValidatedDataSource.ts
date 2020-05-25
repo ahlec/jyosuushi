@@ -27,10 +27,16 @@ export interface InvalidResultEntry<TSchemaEntry> {
   reasons: ReadonlyArray<Reason>;
 }
 
+export interface Warning<TSchemaEntry> {
+  entry: TSchemaEntry;
+  text: string;
+}
+
 interface ValidatedResult<TSchemaEntry> {
   valid: ReadonlyArray<TSchemaEntry>;
   ignored: ReadonlyArray<InvalidResultEntry<TSchemaEntry>>;
   error: ReadonlyArray<InvalidResultEntry<TSchemaEntry>>;
+  warnings: ReadonlyArray<Warning<TSchemaEntry>>;
 }
 
 type Indexer = {
@@ -75,7 +81,8 @@ function validateWagoStyles(
   return {
     error,
     ignored: [],
-    valid
+    valid,
+    warnings: []
   };
 }
 
@@ -85,6 +92,7 @@ function validateCounters(
   const valid: DbCounter[] = [];
   const ignored: Array<InvalidResultEntry<DbCounter>> = [];
   const error: Array<InvalidResultEntry<DbCounter>> = [];
+  const warnings: Array<Warning<DbCounter>> = [];
 
   const counterHasItems = new Set<string>();
   for (const { counter_id } of snapshot.item_counters) {
@@ -102,7 +110,19 @@ function validateCounters(
     numReadingsForCounter.set(counter_id, previous + 1);
   }
 
+  const counterHasDictionaryEntries = new Set<string>();
+  for (const { counter_id } of snapshot.counter_dictionary_entries) {
+    counterHasDictionaryEntries.add(counter_id);
+  }
+
   for (const counter of snapshot.counters) {
+    if (!counterHasDictionaryEntries.has(counter.counter_id)) {
+      warnings.push({
+        entry: counter,
+        text: "Does not have any dictionary entries defined for it."
+      });
+    }
+
     const errorReasons: Reason[] = [];
     if (
       counterInStudyPack.has(counter.counter_id) &&
@@ -171,7 +191,8 @@ function validateCounters(
   return {
     error,
     ignored,
-    valid
+    valid,
+    warnings
   };
 }
 
@@ -251,7 +272,8 @@ function validateCounterReadings(
   return {
     error,
     ignored,
-    valid
+    valid,
+    warnings: []
   };
 }
 
@@ -283,6 +305,8 @@ function validateCounterAlternativeKanji(
           }
         ]
       });
+
+      continue;
     }
 
     if (!validCounterIds.has(entry.counter_id)) {
@@ -305,7 +329,8 @@ function validateCounterAlternativeKanji(
   return {
     error,
     ignored,
-    valid
+    valid,
+    warnings: []
   };
 }
 
@@ -361,7 +386,12 @@ function validateItems(
     valid.push(item);
   }
 
-  return { error, ignored, valid };
+  return {
+    error,
+    ignored,
+    valid,
+    warnings: []
+  };
 }
 
 function validateSingleCounterDependentDb<
@@ -394,7 +424,8 @@ function validateSingleCounterDependentDb<
   return {
     error: [],
     ignored,
-    valid
+    valid,
+    warnings: []
   };
 }
 
@@ -459,7 +490,8 @@ function validateCounterDisambiguations(
   return {
     error,
     ignored,
-    valid
+    valid,
+    warnings: []
   };
 }
 
@@ -494,7 +526,8 @@ function validateCounterIrregulars(
   return {
     error: [],
     ignored,
-    valid
+    valid,
+    warnings: []
   };
 }
 
@@ -521,7 +554,8 @@ function validateItemCounters(
   return {
     error: [],
     ignored,
-    valid
+    valid,
+    warnings: []
   };
 }
 
@@ -558,7 +592,8 @@ function validateStudyPacks(
   return {
     error: [],
     ignored,
-    valid
+    valid,
+    warnings: []
   };
 }
 
