@@ -2,6 +2,7 @@ import Database, { DatabaseSnapshot } from "../database/Database";
 import {
   DbCounter,
   DbCounterAdditionalReading,
+  DbCounterDictionaryEntry,
   DbCounterDisambiguation,
   DbCounterExternalLink,
   DbCounterIrregular,
@@ -580,6 +581,10 @@ export default class ValidatedDataSource implements Indexer {
       snapshot.counter_additional_readings,
       validCounterIds
     );
+    const counter_dictionary_entries = validateSingleCounterDependentDb(
+      snapshot.counter_dictionary_entries,
+      validCounterIds
+    );
     const counter_readings = validateCounterReadings(
       snapshot,
       validCounterIds,
@@ -614,6 +619,7 @@ export default class ValidatedDataSource implements Indexer {
 
     return new ValidatedDataSource(
       counter_additional_readings,
+      counter_dictionary_entries,
       counter_disambiguations,
       counter_external_links,
       counter_irregulars,
@@ -633,6 +639,9 @@ export default class ValidatedDataSource implements Indexer {
   private constructor(
     public readonly counter_additional_readings: ValidatedResult<
       DbCounterAdditionalReading
+    >,
+    public readonly counter_dictionary_entries: ValidatedResult<
+      DbCounterDictionaryEntry
     >,
     public readonly counter_disambiguations: ValidatedResult<
       DbCounterDisambiguation

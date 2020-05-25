@@ -6,12 +6,14 @@ import {
   Counter,
   CounterIrregularType,
   CountingSystem,
+  JapaneseDictionary,
   WordOrigin
 } from "../src/interfaces";
 import * as DISAMBIGUATIONS from "./disambiguations";
 
 export const COUNTER_ヶ国: Counter = {
   counterId: "ヶ国",
+  dictionaryEntries: [],
   disambiguations: {},
   englishName: "countries",
   externalLinks: [],
@@ -43,6 +45,7 @@ export const COUNTER_ヶ国: Counter = {
 
 export const COUNTER_ヶ所: Counter = {
   counterId: "ヶ所",
+  dictionaryEntries: [],
   disambiguations: {},
   englishName: "places",
   externalLinks: [],
@@ -74,6 +77,7 @@ export const COUNTER_ヶ所: Counter = {
 
 export const COUNTER_ヶ月: Counter = {
   counterId: "ヶ月",
+  dictionaryEntries: [],
   disambiguations: {},
   englishName: "months",
   externalLinks: [
@@ -112,6 +116,15 @@ export const COUNTER_ヶ月: Counter = {
 
 export const COUNTER_人: Counter = {
   counterId: "人",
+  dictionaryEntries: [
+    {
+      directLink:
+        "https://dictionary.goo.ne.jp/word/%E4%BA%BA_%28%E3%81%AB%E3%82%93%29/",
+      japanese: "［接尾］助数詞。人数を数えるのに用いる。「五人」「七人」",
+      source: JapaneseDictionary.Goo,
+      translation: "[Suffix] Counter. Used to count the number of people."
+    }
+  ],
   disambiguations: {
     名: DISAMBIGUATIONS.DISAMBIGUATION_人名
   },
@@ -158,6 +171,7 @@ export const COUNTER_人: Counter = {
 
 export const COUNTER_件: Counter = {
   counterId: "件",
+  dictionaryEntries: [],
   disambiguations: {},
   englishName: "matters",
   externalLinks: [],
@@ -189,6 +203,7 @@ export const COUNTER_件: Counter = {
 
 export const COUNTER_円: Counter = {
   counterId: "円",
+  dictionaryEntries: [],
   disambiguations: {},
   englishName: "yen",
   externalLinks: [],
@@ -220,6 +235,15 @@ export const COUNTER_円: Counter = {
 
 export const COUNTER_冊: Counter = {
   counterId: "冊",
+  dictionaryEntries: [
+    {
+      directLink:
+        "https://dictionary.goo.ne.jp/word/%E5%86%8A_%28%E3%81%95%E3%81%A4%29/",
+      japanese: "［接尾］助数詞。書物などを数えるのに用いる。「雑誌二、三冊」",
+      source: JapaneseDictionary.Goo,
+      translation: "[Suffix] Counter. Used to count things such as books."
+    }
+  ],
   disambiguations: {},
   englishName: "books",
   externalLinks: [
@@ -258,6 +282,7 @@ export const COUNTER_冊: Counter = {
 
 export const COUNTER_分: Counter = {
   counterId: "分",
+  dictionaryEntries: [],
   disambiguations: {},
   englishName: "minutes",
   externalLinks: [
@@ -296,6 +321,7 @@ export const COUNTER_分: Counter = {
 
 export const COUNTER_切れ: Counter = {
   counterId: "切れ",
+  dictionaryEntries: [],
   disambiguations: {},
   englishName: "cuts of meat",
   externalLinks: [],
@@ -327,6 +353,17 @@ export const COUNTER_切れ: Counter = {
 
 export const COUNTER_匹: Counter = {
   counterId: "匹",
+  dictionaryEntries: [
+    {
+      directLink:
+        "https://dictionary.goo.ne.jp/word/%E5%8C%B9_%28%E3%81%B2%E3%81%8D%29/",
+      japanese:
+        "［接尾］助数詞。動物・鳥・昆虫・魚などを数えるのに用いる。上に来る語によっては「びき」「ぴき」となる。「2―の猫」",
+      source: JapaneseDictionary.Goo,
+      translation:
+        "[Suffix] Counter. Used to count animals, birds, insects, and fish. Depending on the preceding word, this can come 「びき」 or 「ぴき」."
+    }
+  ],
   disambiguations: {},
   englishName: "small animals",
   externalLinks: [
@@ -365,6 +402,7 @@ export const COUNTER_匹: Counter = {
 
 export const COUNTER_口: Counter = {
   counterId: "口",
+  dictionaryEntries: [],
   disambiguations: {},
   englishName: "bites",
   externalLinks: [],
@@ -396,6 +434,17 @@ export const COUNTER_口: Counter = {
 
 export const COUNTER_台: Counter = {
   counterId: "台",
+  dictionaryEntries: [
+    {
+      directLink:
+        "https://dictionary.goo.ne.jp/word/%E5%8F%B0_%28%E3%81%A0%E3%81%84%29/",
+      japanese:
+        "［接尾］助数詞。\n１ 車両や機械などを数えるのに用いる。「計算機3台」\n\n２ 年齢や値段などのおおよその範囲を表すのに用いる。「20歳台で父を失う」「1ドルが100円台になる」\n\n３ 印刷や製本で16ページ分あるいは32ページ分などを1台として、その数を数えるのに用いる。折 (おり) 。「16台256ページの本」",
+      source: JapaneseDictionary.Goo,
+      translation:
+        '[Suffix] Counter.\n1. Used to count things such as machines and vehicles.\n2. Used to express rough ranges of ages or price. "I parted ways with my dad when I was around 20." or "1 dollar is something like ¥100."\n3. In printing and publishing, used to count sections of either 16- or 32-pages. "This 16台 book has 256 pages."'
+    }
+  ],
   disambiguations: {},
   englishName: "machines and large objects",
   externalLinks: [
@@ -434,6 +483,15 @@ export const COUNTER_台: Counter = {
 
 export const COUNTER_名: Counter = {
   counterId: "名",
+  dictionaryEntries: [
+    {
+      directLink:
+        "https://dictionary.goo.ne.jp/word/%E5%90%8D_%28%E3%82%81%E3%81%84%29/",
+      japanese: "［接尾］助数詞。人数を数えるのに用いる。「40名」",
+      source: JapaneseDictionary.Goo,
+      translation: "[Suffix] Counter. Used to count the number of people."
+    }
+  ],
   disambiguations: {
     人: DISAMBIGUATIONS.DISAMBIGUATION_人名
   },
@@ -474,6 +532,7 @@ export const COUNTER_名: Counter = {
 
 export const COUNTER_周: Counter = {
   counterId: "周",
+  dictionaryEntries: [],
   disambiguations: {},
   englishName: "laps and circuits",
   externalLinks: [],
@@ -505,6 +564,7 @@ export const COUNTER_周: Counter = {
 
 export const COUNTER_回: Counter = {
   counterId: "回",
+  dictionaryEntries: [],
   disambiguations: {},
   englishName: "times (occurrences)",
   externalLinks: [
@@ -543,6 +603,7 @@ export const COUNTER_回: Counter = {
 
 export const COUNTER_巻: Counter = {
   counterId: "巻",
+  dictionaryEntries: [],
   disambiguations: {},
   englishName: "volumes",
   externalLinks: [],
@@ -574,6 +635,7 @@ export const COUNTER_巻: Counter = {
 
 export const COUNTER_席: Counter = {
   counterId: "席",
+  dictionaryEntries: [],
   disambiguations: {},
   englishName: "seats",
   externalLinks: [],
@@ -611,6 +673,17 @@ export const COUNTER_席: Counter = {
 
 export const COUNTER_年: Counter = {
   counterId: "年",
+  dictionaryEntries: [
+    {
+      directLink:
+        "https://dictionary.goo.ne.jp/word/%E5%B9%B4_%28%E3%81%AD%E3%82%93%29/",
+      japanese:
+        "［接尾］助数詞。\n１ 年号・年数を表すのに用いる。「平成七年」「西暦一九九五年」\n\n２ 年齢・学年を表すのに用いる。「人生五〇年」「五年に進級」",
+      source: JapaneseDictionary.Goo,
+      translation:
+        '[Suffix] Counter.\n1. Used to express a year explicitly or an amount of years. "Heisei 7" "1995 (Gregorian)"\n2. Used to express age (in years) or school grade. "50 years old" "Graduated to fifth grade."'
+    }
+  ],
   disambiguations: {},
   englishName: "years",
   externalLinks: [
@@ -649,6 +722,7 @@ export const COUNTER_年: Counter = {
 
 export const COUNTER_戦: Counter = {
   counterId: "戦",
+  dictionaryEntries: [],
   disambiguations: {},
   englishName: "battles",
   externalLinks: [],
@@ -680,6 +754,7 @@ export const COUNTER_戦: Counter = {
 
 export const COUNTER_日: Counter = {
   counterId: "日",
+  dictionaryEntries: [],
   disambiguations: {},
   englishName: "days of the month",
   externalLinks: [
@@ -836,6 +911,16 @@ export const COUNTER_日: Counter = {
 
 export const COUNTER_時: Counter = {
   counterId: "時",
+  dictionaryEntries: [
+    {
+      directLink:
+        "https://dictionary.goo.ne.jp/word/%E6%99%82_%28%E3%81%98%29/",
+      japanese: "［接尾］助数詞。時刻を表すのに用いる。「七時」",
+      source: JapaneseDictionary.Goo,
+      translation:
+        '[Suffix] Counter. Used to express moments in time. "7 o\'clock"'
+    }
+  ],
   disambiguations: {},
   englishName: "hours",
   externalLinks: [
@@ -874,6 +959,7 @@ export const COUNTER_時: Counter = {
 
 export const COUNTER_曲: Counter = {
   counterId: "曲",
+  dictionaryEntries: [],
   disambiguations: {},
   englishName: "songs",
   externalLinks: [],
@@ -905,6 +991,7 @@ export const COUNTER_曲: Counter = {
 
 export const COUNTER_本: Counter = {
   counterId: "本",
+  dictionaryEntries: [],
   disambiguations: {},
   englishName: "long, thin objects",
   externalLinks: [
@@ -943,6 +1030,7 @@ export const COUNTER_本: Counter = {
 
 export const COUNTER_束: Counter = {
   counterId: "束",
+  dictionaryEntries: [],
   disambiguations: {},
   englishName: "bundles",
   externalLinks: [],
@@ -980,6 +1068,17 @@ export const COUNTER_束: Counter = {
 
 export const COUNTER_枚: Counter = {
   counterId: "枚",
+  dictionaryEntries: [
+    {
+      directLink:
+        "https://dictionary.goo.ne.jp/word/%E6%9E%9A_%28%E3%81%BE%E3%81%84%29/",
+      japanese:
+        "［接尾］助数詞。\n１ 紙・板・皿などの薄く平たいものを数えるのに用いる。「二、三枚の紙」\n\n２ 原稿用紙の数を数えるのに用いる。ふつう400字詰めの原稿用紙を単位として数える。「五枚ほどの随筆」\n\n３ 魚を数えるのに用いる。「ヘラブナを三枚釣り上げる」\n\n４ 相撲で、その階級の人数を数えるのに用いる。「幕内を二枚ふやす」\n\n５ 相撲の番付で、席次を数えるのに用いる。「三枚上がる」\n\n６ 田や畑などの一区画を数えるのに用いる。「田一枚を植える」\n\n７ 浄瑠璃・長唄で、太夫や唄方の人数を数えるのに用いる。「二挺 (ちょう) 三枚」\n\n８ 近世の大判金・丁銀や近代の貨幣・銀貨など、貨幣の数を数えるのに用いる。「銀三拾枚」\n\n９ 駕籠舁 (かごかき) の人数を数えるのに用いる。\n\n「大坂より四―肩は二十四匁の定まり」〈浮・諸艶大鑑・六〉",
+      source: JapaneseDictionary.Goo,
+      translation:
+        "[Suffix] Counter.\n1. Used to count thin, flat objects such as paper, boards, and plates.\n2. Used to count Japanese writing paper. Typically, this unit will represent a paper with 400 characters written on it.\n3. Used to count fish.\n4. In sumo wrestling, used to count the number of people at a particular rank.\n5. In sumo wrestling, used to count seat ranking.\n6. Used to count sections (areas) within rice paddies, agricultural plots, or the like.\n7. In some traditional Japanese performances, used to count the number of actors or musicians.\n8. When discussing monetary coins from the early modern (Edo) era or later, used to count the amount of money.\n9. Used to count the number of people carrying a palanquin."
+    }
+  ],
   disambiguations: {},
   englishName: "flat objects",
   externalLinks: [
@@ -1018,6 +1117,7 @@ export const COUNTER_枚: Counter = {
 
 export const COUNTER_校: Counter = {
   counterId: "校",
+  dictionaryEntries: [],
   disambiguations: {},
   englishName: "schools",
   externalLinks: [],
@@ -1049,6 +1149,7 @@ export const COUNTER_校: Counter = {
 
 export const COUNTER_歳: Counter = {
   counterId: "歳",
+  dictionaryEntries: [],
   disambiguations: {},
   englishName: "age",
   externalLinks: [],
@@ -1080,6 +1181,7 @@ export const COUNTER_歳: Counter = {
 
 export const COUNTER_皿: Counter = {
   counterId: "皿",
+  dictionaryEntries: [],
   disambiguations: {},
   englishName: "plates of food",
   externalLinks: [],
@@ -1117,6 +1219,7 @@ export const COUNTER_皿: Counter = {
 
 export const COUNTER_社: Counter = {
   counterId: "社",
+  dictionaryEntries: [],
   disambiguations: {},
   englishName: "companies and temples",
   externalLinks: [],
@@ -1148,6 +1251,7 @@ export const COUNTER_社: Counter = {
 
 export const COUNTER_組: Counter = {
   counterId: "組",
+  dictionaryEntries: [],
   disambiguations: {},
   englishName: "groups and pairs",
   externalLinks: [],
@@ -1179,6 +1283,7 @@ export const COUNTER_組: Counter = {
 
 export const COUNTER_缶: Counter = {
   counterId: "缶",
+  dictionaryEntries: [],
   disambiguations: {},
   englishName: "cans",
   externalLinks: [],
@@ -1216,6 +1321,17 @@ export const COUNTER_缶: Counter = {
 
 export const COUNTER_羽: Counter = {
   counterId: "羽",
+  dictionaryEntries: [
+    {
+      directLink:
+        "https://dictionary.goo.ne.jp/word/%E7%BE%BD_%28%E3%82%8F%29/",
+      japanese:
+        "［接尾］助数詞。鳥やウサギを数えるのに用いる。「一羽」「二羽」\n[補説]上に来る数詞の末音によって、「ば（三羽）」または「ぱ（六羽・八羽）」ともなる。",
+      source: JapaneseDictionary.Goo,
+      translation:
+        "[Suffix] Counter. Used to count birds and rabbits.\n[Notes] Depending on the final sound of the preceding word, this can become 「ば」 or 「ぱ」."
+    }
+  ],
   disambiguations: {},
   englishName: "birds and rabbits",
   externalLinks: [
@@ -1254,6 +1370,7 @@ export const COUNTER_羽: Counter = {
 
 export const COUNTER_色: Counter = {
   counterId: "色",
+  dictionaryEntries: [],
   disambiguations: {},
   englishName: "colours",
   externalLinks: [],
@@ -1285,6 +1402,7 @@ export const COUNTER_色: Counter = {
 
 export const COUNTER_語: Counter = {
   counterId: "語",
+  dictionaryEntries: [],
   disambiguations: {},
   englishName: "words",
   externalLinks: [],
@@ -1316,6 +1434,7 @@ export const COUNTER_語: Counter = {
 
 export const COUNTER_足: Counter = {
   counterId: "足",
+  dictionaryEntries: [],
   disambiguations: {},
   englishName: "pairs of footwear",
   externalLinks: [],
@@ -1347,6 +1466,7 @@ export const COUNTER_足: Counter = {
 
 export const COUNTER_軒: Counter = {
   counterId: "軒",
+  dictionaryEntries: [],
   disambiguations: {},
   englishName: "houses and buildings",
   externalLinks: [],
@@ -1378,6 +1498,7 @@ export const COUNTER_軒: Counter = {
 
 export const COUNTER_週: Counter = {
   counterId: "週",
+  dictionaryEntries: [],
   disambiguations: {},
   englishName: "weeks",
   externalLinks: [],
@@ -1409,6 +1530,7 @@ export const COUNTER_週: Counter = {
 
 export const COUNTER_階: Counter = {
   counterId: "階",
+  dictionaryEntries: [],
   disambiguations: {},
   englishName: "floors",
   externalLinks: [
@@ -1447,6 +1569,16 @@ export const COUNTER_階: Counter = {
 
 export const COUNTER_頭: Counter = {
   counterId: "頭",
+  dictionaryEntries: [
+    {
+      directLink:
+        "https://dictionary.goo.ne.jp/word/%E9%A0%AD_%28%E3%81%A8%E3%81%86%29/",
+      japanese: "［接尾］牛・馬・犬などの動物を数えるのに用いる。「牛七頭」",
+      source: JapaneseDictionary.Goo,
+      translation:
+        "[Suffix] Used to count animals such as cows, horses, or dogs."
+    }
+  ],
   disambiguations: {},
   englishName: "large animals",
   externalLinks: [

@@ -22,7 +22,8 @@ import {
   DbStudyPack,
   EnumSchemas,
   DbCounterAlternativeKanji,
-  DbWagoStyle
+  DbWagoStyle,
+  DbCounterDictionaryEntry
 } from "./schemas";
 
 const ROOT_DIRECTORY = path.resolve(__dirname, "../../");
@@ -102,6 +103,12 @@ export default class Database implements AsyncDatabaseIndexer {
     ReadonlyArray<DbCounterAlternativeKanji>
   > {
     return this.retrieve(Schemas.CounterAlternativeKanji);
+  }
+
+  public get counter_dictionary_entries(): Promise<
+    ReadonlyArray<DbCounterDictionaryEntry>
+  > {
+    return this.retrieve(Schemas.CounterDictionaryEntries);
   }
 
   public get counter_disambiguations(): Promise<

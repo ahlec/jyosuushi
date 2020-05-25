@@ -105,8 +105,20 @@ export interface CounterIrregular {
   reading: string;
 }
 
+export enum JapaneseDictionary {
+  Goo = "goo.ne.jp"
+}
+
+export interface JapaneseDictionaryEntry {
+  directLink: string;
+  japanese: string;
+  source: JapaneseDictionary;
+  translation: string;
+}
+
 export interface Counter {
   counterId: string;
+  dictionaryEntries: ReadonlyArray<JapaneseDictionaryEntry>;
   englishName: string;
   irregulars: { [amount: number]: ReadonlyArray<CounterIrregular> };
   kanji: CounterKanjiInfo | null;

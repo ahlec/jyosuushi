@@ -8,7 +8,8 @@ import {
   DbCounterAlternativeKanji,
   DbWagoStyle,
   DbCounterIrregular,
-  DbIrregularType
+  DbIrregularType,
+  DbCounterDictionaryEntry
 } from "../database/schemas";
 import ValidatedDataSource from "../database/ValidatedDataSource";
 
@@ -17,7 +18,8 @@ import {
   ExternalLink,
   CounterReading,
   CounterKanjiInfo,
-  CounterIrregular
+  CounterIrregular,
+  JapaneseDictionaryEntry
 } from "../../src/interfaces";
 
 import {
@@ -40,10 +42,19 @@ type ProtoCounterIrregular = Omit<
   type: ProductionVariable;
 };
 
+type ProtoJapaneseDictionaryEntry = Omit<JapaneseDictionaryEntry, "source"> & {
+  source: ProductionVariable;
+};
+
+const JAPANESE_DICTIONARY_GOO_NE = new ProductionVariable(
+  "JapaneseDictionary.Goo"
+);
+
 type ProtoCounter = Omit<
   Counter,
-  "disambiguations" | "irregulars" | "readings"
+  "dictionaryEntries" | "disambiguations" | "irregulars" | "readings"
 > & {
+  dictionaryEntries: ReadonlyArray<ProtoJapaneseDictionaryEntry>;
   disambiguations: { [counterId: string]: ProductionVariable };
   irregulars: {
     [amount: number]: ReadonlyArray<ProtoCounterIrregular> | undefined;
@@ -61,6 +72,17 @@ function convertToProductionExternalLink(
     displayText: db.link_text,
     siteName: db.site_name,
     url: db.url
+  };
+}
+
+function convertToProductionDictionaryEntry(
+  db: DbCounterDictionaryEntry
+): ProtoJapaneseDictionaryEntry {
+  return {
+    directLink: db.direct_link,
+    japanese: db.japanese,
+    source: JAPANESE_DICTIONARY_GOO_NE,
+    translation: db.translation
   };
 }
 
@@ -200,7 +222,7 @@ export default function writeCountersFile(
   dataSource: ValidatedDataSource
 ): void {
   stream.write(
-    'import { Counter, CounterIrregularType, CountingSystem, WordOrigin } from "../src/interfaces";\n'
+    'import { Counter, CounterIrregularType, CountingSystem, JapaneseDictionary, WordOrigin } from "../src/interfaces";\n'
   );
   stream.write('import * as DISAMBIGUATIONS from "./disambiguations";');
 
@@ -265,6 +287,17 @@ export default function writeCountersFile(
     alternativeKanjiLookup[alternative.counter_id]?.push(alternative);
   }
 
+  const dictionaryEntriesLookup: {
+    [counterId: string]: DbCounterDictionaryEntry[] | undefined;
+  } = {};
+  for (const dictionaryEntry of dataSource.counter_dictionary_entries.valid) {
+    if (!dictionaryEntriesLookup[dictionaryEntry.counter_id]) {
+      dictionaryEntriesLookup[dictionaryEntry.counter_id] = [];
+    }
+
+    dictionaryEntriesLookup[dictionaryEntry.counter_id]?.push(dictionaryEntry);
+  }
+
   const wagoStyleLookup: { [handle: string]: DbWagoStyle | undefined } = {};
   for (const wagoStyle of dataSource.wago_style.valid) {
     wagoStyleLookup[wagoStyle.wago_style_handle] = wagoStyle;
@@ -275,8 +308,13 @@ export default function writeCountersFile(
     const variableName = getCounterId(dbCounter.counter_id);
 
     const readings = readingsLookup[dbCounter.counter_id] || [];
+    const dictionaryEntries =
+      dictionaryEntriesLookup[dbCounter.counter_id] || [];
     const counter: ProtoCounter = {
       counterId: dbCounter.counter_id,
+      dictionaryEntries: dictionaryEntries.map(
+        convertToProductionDictionaryEntry
+      ),
       disambiguations: convertToProductionDisambiguations(
         dbCounter.counter_id,
         disambiguationsLookup[dbCounter.counter_id] || []

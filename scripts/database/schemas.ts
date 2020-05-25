@@ -15,6 +15,15 @@ export interface DbCounterAdditionalReading {
   uncommon: DbBoolean;
 }
 
+export interface DbCounterDictionaryEntry {
+  entry_id: number;
+  counter_id: string;
+  sort_order: number | null;
+  direct_link: string;
+  japanese: string;
+  translation: string;
+}
+
 export interface DbCounterDisambiguation {
   counter1_id: string;
   counter2_id: string;
@@ -110,6 +119,7 @@ export interface DbWagoStyle {
 export enum Schemas {
   CounterAdditionalReadings = "counter_additional_readings",
   CounterAlternativeKanji = "counter_alternative_kanji",
+  CounterDictionaryEntries = "counter_dictionary_entries",
   CounterDisambiguations = "counter_disambiguations",
   CounterExternalLinks = "counter_external_links",
   CounterIrregulars = "counter_irregulars",
@@ -129,6 +139,7 @@ export enum EnumSchemas {
 
 export interface SchemaEntryTypes {
   [Schemas.CounterAdditionalReadings]: DbCounterAdditionalReading;
+  [Schemas.CounterDictionaryEntries]: DbCounterDictionaryEntry;
   [Schemas.CounterDisambiguations]: DbCounterDisambiguation;
   [Schemas.CounterExternalLinks]: DbCounterExternalLink;
   [Schemas.CounterIrregulars]: DbCounterIrregular;
@@ -161,6 +172,9 @@ export const ENTRY_IDENTIFIERS_RETRIEVER: {
   [Schemas.CounterAlternativeKanji]: entry => [
     { name: "counter_id", value: entry.counter_id },
     { name: "kanji", value: entry.kanji }
+  ],
+  [Schemas.CounterDictionaryEntries]: entry => [
+    { name: "entry_id", value: entry.entry_id.toString() }
   ],
   [Schemas.CounterDisambiguations]: entry => [
     { name: "counter1_id", value: entry.counter1_id },
