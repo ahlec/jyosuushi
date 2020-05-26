@@ -330,7 +330,17 @@ export const COUNTER_分: Counter = {
 
 export const COUNTER_切れ: Counter = {
   counterId: "切れ",
-  dictionaryEntries: [],
+  dictionaryEntries: [
+    {
+      directLink:
+        "https://dictionary.goo.ne.jp/word/%E5%88%87%E3%82%8C_%28%E3%81%8D%E3%82%8C%29/",
+      japanese:
+        "［接尾］助数詞。\n１ 切ったものを数えるのに用いる。「たくあん一切れ」「ようかん二切れ」\n\n２ 江戸時代、一分金を数えるのに用いる。\n\n「白銀五百匁二包み、小判二十五両一歩合わせて四十―」〈浄・二枚絵草紙〉",
+      source: JapaneseDictionary.Goo,
+      translation:
+        '[Suffix] Counter.\n1. Used to count things that have been cut. "One slice of Takuan (pickled Daikon radish)." "Two slices of Youkan (sweet bean jelly)."\n2. In the Edo period, used to count Ichibukin (a type of gold coin).'
+    }
+  ],
   disambiguations: {},
   englishName: "cuts of meat",
   externalLinks: [],
@@ -411,7 +421,17 @@ export const COUNTER_匹: Counter = {
 
 export const COUNTER_口: Counter = {
   counterId: "口",
-  dictionaryEntries: [],
+  dictionaryEntries: [
+    {
+      directLink:
+        "https://dictionary.goo.ne.jp/word/%E5%8F%A3_%28%E3%81%8F%E3%81%A1%29/",
+      japanese:
+        "［接尾］助数詞。\n１ 刀剣などを数えるのに用いる。「脇差し数口」\n\n２ ものを食べる回数をいうのに用いる。「ひと口食べる」\n\n３ 寄付や出費などの分担の単位として用いる。「ひと口一万円の寄付金」",
+      source: JapaneseDictionary.Goo,
+      translation:
+        '[Suffix] Counter.\n1. Used to count swords and daggers. "A couple Wakizashi (short swords)"\n2. Used to count the number of times that something has been eaten. "I\'ll have one bite."\n3. When talking about donations, expenses, or similar things, used as a unit to talk about shares of money. "Donations of ¥10,000 per share."'
+    }
+  ],
   disambiguations: {},
   englishName: "bites",
   externalLinks: [],
@@ -664,7 +684,15 @@ export const COUNTER_巻: Counter = {
 
 export const COUNTER_席: Counter = {
   counterId: "席",
-  dictionaryEntries: [],
+  dictionaryEntries: [
+    {
+      directLink: "https://dictionary.goo.ne.jp/word/%E5%B8%AD/",
+      japanese: "［接尾］助数詞。順位を表すのに用いる。「第一席」",
+      source: JapaneseDictionary.Goo,
+      translation:
+        '[Suffix] Counter. Used to express order/rank. "First seat (eg, violin)"'
+    }
+  ],
   disambiguations: {},
   englishName: "seats",
   externalLinks: [],
@@ -1228,7 +1256,16 @@ export const COUNTER_歳: Counter = {
 
 export const COUNTER_皿: Counter = {
   counterId: "皿",
-  dictionaryEntries: [],
+  dictionaryEntries: [
+    {
+      directLink: "https://dictionary.goo.ne.jp/word/%E7%9A%BF/",
+      japanese:
+        "［接尾］助数詞。皿に盛った食物や料理などの数を数えるのに用いる。「カレーライス二―」「炒 (いた) め物三―」",
+      source: JapaneseDictionary.Goo,
+      translation:
+        '[Suffix] Counter. Used to count the quantity of food served on a plate. "Two plates of curry rice." "Three plates of stir-fry."'
+    }
+  ],
   disambiguations: {},
   englishName: "plates of food",
   externalLinks: [],
@@ -1298,7 +1335,16 @@ export const COUNTER_社: Counter = {
 
 export const COUNTER_組: Counter = {
   counterId: "組",
-  dictionaryEntries: [],
+  dictionaryEntries: [
+    {
+      directLink: "https://dictionary.goo.ne.jp/word/%E7%B5%84/",
+      japanese:
+        "［接尾］助数詞。いくつかが集まってひとそろいになっているものを数える。「コーヒー茶碗一 (ひと) 組み」「二 (ふた) 組みの夫婦」",
+      source: JapaneseDictionary.Goo,
+      translation:
+        '[Suffix] Counter. Used to count groups of individual things that have been brought together and are considered as one. "One coffee cup (likely indicating not just the cup but the saucer beneath it as well)" "Two husband-wife teams."'
+    }
+  ],
   disambiguations: {},
   englishName: "groups and pairs",
   externalLinks: [],
@@ -1417,7 +1463,16 @@ export const COUNTER_羽: Counter = {
 
 export const COUNTER_色: Counter = {
   counterId: "色",
-  dictionaryEntries: [],
+  dictionaryEntries: [
+    {
+      directLink:
+        "https://dictionary.goo.ne.jp/word/%E3%81%97%E3%82%87%E3%81%8F/#jn-110841",
+      japanese:
+        "［接尾］\n\n１ 助数詞。色数 (いろかず) を数えるのに用いる。「三色かけ合わせ」「二四色の色鉛筆」「三色刷り」\n",
+      source: JapaneseDictionary.Goo,
+      translation: "[Suffix]\n1. Counter. Used to count the number of colours."
+    }
+  ],
   disambiguations: {},
   englishName: "colours",
   externalLinks: [],
@@ -1513,7 +1568,17 @@ export const COUNTER_足: Counter = {
 
 export const COUNTER_軒: Counter = {
   counterId: "軒",
-  dictionaryEntries: [],
+  dictionaryEntries: [
+    {
+      directLink:
+        "https://dictionary.goo.ne.jp/word/%E8%BB%92_%28%E3%81%91%E3%82%93%29/",
+      japanese:
+        "［接尾］\n\n１ 助数詞。家屋の数をかぞえるのに用いる。「三軒」「数千軒」",
+      source: JapaneseDictionary.Goo,
+      translation:
+        '[Suffix]\n1. Counter. Used to count the number of houses (residences). "Three units (eg apartments)" "Thousands of houses"'
+    }
+  ],
   disambiguations: {},
   englishName: "houses and buildings",
   externalLinks: [],

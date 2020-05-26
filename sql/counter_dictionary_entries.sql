@@ -343,4 +343,145 @@ VALUES(
 1. Used to count the number of books in a publication. "A book in three parts."
 2. Used to count things such as scrolls, rolls of tape, or rolls of film. "Three scrolls" "Five rolls of film."'
   );
+INSERT INTO
+  "counter_dictionary_entries" (
+    entry_id,
+    counter_id,
+    sort_order,
+    direct_link,
+    japanese,
+    translation
+  )
+VALUES(
+    17,
+    '色',
+    NULL,
+    'https://dictionary.goo.ne.jp/word/%E3%81%97%E3%82%87%E3%81%8F/#jn-110841',
+    '［接尾］
+
+１ 助数詞。色数 (いろかず) を数えるのに用いる。「三色かけ合わせ」「二四色の色鉛筆」「三色刷り」
+',
+    '[Suffix]
+1. Counter. Used to count the number of colours.'
+  );
+INSERT INTO
+  "counter_dictionary_entries" (
+    entry_id,
+    counter_id,
+    sort_order,
+    direct_link,
+    japanese,
+    translation
+  )
+VALUES(
+    18,
+    '軒',
+    NULL,
+    'https://dictionary.goo.ne.jp/word/%E8%BB%92_%28%E3%81%91%E3%82%93%29/',
+    '［接尾］
+
+１ 助数詞。家屋の数をかぞえるのに用いる。「三軒」「数千軒」',
+    '[Suffix]
+1. Counter. Used to count the number of houses (residences). "Three units (eg apartments)" "Thousands of houses"'
+  );
+INSERT INTO
+  "counter_dictionary_entries" (
+    entry_id,
+    counter_id,
+    sort_order,
+    direct_link,
+    japanese,
+    translation
+  )
+VALUES(
+    19,
+    '組',
+    NULL,
+    'https://dictionary.goo.ne.jp/word/%E7%B5%84/',
+    '［接尾］助数詞。いくつかが集まってひとそろいになっているものを数える。「コーヒー茶碗一 (ひと) 組み」「二 (ふた) 組みの夫婦」',
+    '[Suffix] Counter. Used to count groups of individual things that have been brought together and are considered as one. "One coffee cup (likely indicating not just the cup but the saucer beneath it as well)" "Two husband-wife teams."'
+  );
+INSERT INTO
+  "counter_dictionary_entries" (
+    entry_id,
+    counter_id,
+    sort_order,
+    direct_link,
+    japanese,
+    translation
+  )
+VALUES(
+    20,
+    '切れ',
+    NULL,
+    'https://dictionary.goo.ne.jp/word/%E5%88%87%E3%82%8C_%28%E3%81%8D%E3%82%8C%29/',
+    '［接尾］助数詞。
+１ 切ったものを数えるのに用いる。「たくあん一切れ」「ようかん二切れ」
+
+２ 江戸時代、一分金を数えるのに用いる。
+
+「白銀五百匁二包み、小判二十五両一歩合わせて四十―」〈浄・二枚絵草紙〉',
+    '[Suffix] Counter.
+1. Used to count things that have been cut. "One slice of Takuan (pickled Daikon radish)." "Two slices of Youkan (sweet bean jelly)."
+2. In the Edo period, used to count Ichibukin (a type of gold coin).'
+  );
+INSERT INTO
+  "counter_dictionary_entries" (
+    entry_id,
+    counter_id,
+    sort_order,
+    direct_link,
+    japanese,
+    translation
+  )
+VALUES(
+    21,
+    '皿',
+    NULL,
+    'https://dictionary.goo.ne.jp/word/%E7%9A%BF/',
+    '［接尾］助数詞。皿に盛った食物や料理などの数を数えるのに用いる。「カレーライス二―」「炒 (いた) め物三―」',
+    '[Suffix] Counter. Used to count the quantity of food served on a plate. "Two plates of curry rice." "Three plates of stir-fry."'
+  );
+INSERT INTO
+  "counter_dictionary_entries" (
+    entry_id,
+    counter_id,
+    sort_order,
+    direct_link,
+    japanese,
+    translation
+  )
+VALUES(
+    22,
+    '席',
+    NULL,
+    'https://dictionary.goo.ne.jp/word/%E5%B8%AD/',
+    '［接尾］助数詞。順位を表すのに用いる。「第一席」',
+    '[Suffix] Counter. Used to express order/rank. "First seat (eg, violin)"'
+  );
+INSERT INTO
+  "counter_dictionary_entries" (
+    entry_id,
+    counter_id,
+    sort_order,
+    direct_link,
+    japanese,
+    translation
+  )
+VALUES(
+    23,
+    '口',
+    NULL,
+    'https://dictionary.goo.ne.jp/word/%E5%8F%A3_%28%E3%81%8F%E3%81%A1%29/',
+    '［接尾］助数詞。
+１ 刀剣などを数えるのに用いる。「脇差し数口」
+
+２ ものを食べる回数をいうのに用いる。「ひと口食べる」
+
+３ 寄付や出費などの分担の単位として用いる。「ひと口一万円の寄付金」',
+    '[Suffix] Counter.
+1. Used to count swords and daggers. "A couple Wakizashi (short swords)"
+2. Used to count the number of times that something has been eaten. "I''ll have one bite."
+3. When talking about donations, expenses, or similar things, used as a unit to talk about shares of money. "Donations of ¥10,000 per share."'
+  );
 COMMIT;
