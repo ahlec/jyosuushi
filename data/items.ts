@@ -2152,7 +2152,7 @@ export const ITEMS_LOOKUP: { [itemId: string]: Item } = {
   nation: ITEM_NATION,
   nightclub: ITEM_NIGHTCLUB,
   notebook: ITEM_NOTEBOOK,
-  "o&#39;clock": ITEM_O_CLOCK,
+  "o'clock": ITEM_O_CLOCK,
   occurrence: ITEM_OCCURRENCE,
   "office building": ITEM_OFFICE_BUILDING,
   "origami crane": ITEM_ORIGAMI_CRANE,

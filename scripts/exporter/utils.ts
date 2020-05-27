@@ -1,4 +1,4 @@
-import { escape, isArray, isObjectLike } from "lodash";
+import { isArray, isObjectLike } from "lodash";
 
 function getVariableFromId(prefix: string, id: string) {
   return prefix + id.toUpperCase().replace(/[-\s,&._\(\)（）ー']+/g, "_");
@@ -55,7 +55,11 @@ export function productionStringify(value: any): string {
       if (isFinite(asNumber)) {
         str += key;
       } else {
-        str += `"${escape(key)}"`;
+        /**
+         * Use JSON.stringify here to escape any double-quotes inside
+         * of strings. It will also wrap the string in double quotes.
+         */
+        str += JSON.stringify(key);
       }
 
       str += `: ${productionStringify(value[key])},\n`;
