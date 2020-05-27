@@ -1,3 +1,9 @@
+### v2.5.2
+
+Bug Fixes:
+
+- Fixed an error that would prevent progression in quizzes that contained the counter 時 (that is, the _Essential_ and _JLPT N5_ study packs).
+
 ### v2.5.1
 
 Bug Fixes:
