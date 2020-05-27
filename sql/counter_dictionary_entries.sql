@@ -484,4 +484,32 @@ VALUES(
 2. Used to count the number of times that something has been eaten. "I''ll have one bite."
 3. When talking about donations, expenses, or similar things, used as a unit to talk about shares of money. "Donations of ¥10,000 per share."'
   );
+INSERT INTO
+  "counter_dictionary_entries" (
+    entry_id,
+    counter_id,
+    sort_order,
+    direct_link,
+    japanese,
+    translation
+  )
+VALUES(
+    24,
+    '校',
+    NULL,
+    'https://dictionary.goo.ne.jp/word/%E6%A0%A1/',
+    '{1} ［名］
+1. 学校。<「わが校」>
+2. 書物の文字の誤りを調べ正すこと。校正。<「校を重ねる」>
+
+{2} ［接尾］助数詞。校正の回数を数えるのに用いる。<「初校」><「再校」><「三校」>',
+    '{1} Noun
+
+1. School. <"Our school">
+2. To look for and correct mistakes in the characters of documents. Proofreading. <"To proofread again and again">
+
+{2} [Suffix] Counter. Used to count the number of proofs[^1]. <"First proof">, <"Second proof">, <"Third proof">
+
+[^1]: Proofs in the printing sense. From [Merriam Webster](https://www.merriam-webster.com/dictionary/proof): _a copy (as of typeset text) made for examination or correction.'
+  );
 COMMIT;

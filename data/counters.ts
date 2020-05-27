@@ -1184,7 +1184,16 @@ export const COUNTER_枚: Counter = {
 
 export const COUNTER_校: Counter = {
   counterId: "校",
-  dictionaryEntries: [],
+  dictionaryEntries: [
+    {
+      directLink: "https://dictionary.goo.ne.jp/word/%E6%A0%A1/",
+      japanese:
+        "{1} ［名］\n1. 学校。<「わが校」>\n2. 書物の文字の誤りを調べ正すこと。校正。<「校を重ねる」>\n\n{2} ［接尾］助数詞。校正の回数を数えるのに用いる。<「初校」><「再校」><「三校」>",
+      source: JapaneseDictionary.Goo,
+      translation:
+        '{1} Noun\n\n1. School. <"Our school">\n2. To look for and correct mistakes in the characters of documents. Proofreading. <"To proofread again and again">\n\n{2} [Suffix] Counter. Used to count the number of proofs[^1]. <"First proof">, <"Second proof">, <"Third proof">\n\n[^1]: Proofs in the printing sense. From [Merriam Webster](https://www.merriam-webster.com/dictionary/proof): _a copy (as of typeset text) made for examination or correction.'
+    }
+  ],
   disambiguations: {},
   englishName: "schools",
   externalLinks: [],
