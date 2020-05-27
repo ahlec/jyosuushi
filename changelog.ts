@@ -52,6 +52,19 @@ export function isFirstVersion(
 
 const CHANGELOG: readonly ChangelogVersion[] = [
   {
+    version: "v2.5.2",
+    date: "26 May 2020",
+    newFeatures: [],
+    improvements: [],
+    bugFixes: [
+      {
+        text:
+          "Fixed an error that would prevent progression in quizzes that contained the counter 時 (that is, the _Essential_ and _JLPT N5_ study packs)."
+      }
+    ],
+    developerChanges: []
+  },
+  {
     version: "v2.5.1",
     date: "23 February 2020",
     newFeatures: [],
