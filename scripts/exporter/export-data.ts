@@ -9,11 +9,17 @@ import Database from "../database/Database";
 import ValidatedDataSource from "../database/ValidatedDataSource";
 
 import writeCountersFile from "./counters-file";
+import writeDictionaryEntryComponentFile from "./dictionary-entry-component";
 import writeDisambiguationsFile from "./disambiguations-file";
 import writeItemsFile from "./items-file";
 import writeStudyPacksFile from "./study-packs-file";
+import { DbCounterDictionaryEntry } from "scripts/database/schemas";
 
 const DATA_DIRECTORY = path.resolve(__dirname, "./../../data");
+const DICTIONARY_ENTRY_COMPONENTS_DIRECTORY = path.resolve(
+  DATA_DIRECTORY,
+  "./dictionary-entries/"
+);
 
 const FILE_HEADER_COMMENT = `// DO NOT HAND-MODIFY THIS FILE!!
 // This file was built using \`yarn build-data\` from the SQLite database.
@@ -43,12 +49,46 @@ const EXPORTED_FILES: ReadonlyArray<ExportedFile> = [
   }
 ];
 
+function createDictionaryEntryComponentFile(
+  dictionaryEntry: DbCounterDictionaryEntry,
+  side: "japanese" | "translation"
+): ExportedFile {
+  let componentName: string;
+  let markdown: string;
+  switch (side) {
+    case "japanese": {
+      componentName = `DictionaryEntry${dictionaryEntry.entry_id}Jpn`;
+      markdown = dictionaryEntry.japanese;
+      break;
+    }
+    case "translation": {
+      componentName = `DictionaryEntry${dictionaryEntry.entry_id}Trans`;
+      markdown = dictionaryEntry.translation;
+      break;
+    }
+  }
+
+  return {
+    filename: path.resolve(
+      DICTIONARY_ENTRY_COMPONENTS_DIRECTORY,
+      `./${dictionaryEntry.counter_id}/${componentName}.tsx`
+    ),
+    writeFunction: (stream: Writable): void =>
+      writeDictionaryEntryComponentFile(stream, componentName, markdown)
+  };
+}
+
 function exportFile(file: ExportedFile, dataSource: ValidatedDataSource): void {
   const stream = new WritableStream();
   file.writeFunction(stream, dataSource);
 
   const rawJavaScript = `${FILE_HEADER_COMMENT}${stream.toString()}`;
   const javaScript = prettier.format(rawJavaScript, { parser: "typescript" });
+
+  const directory = path.dirname(file.filename);
+  if (!fs.existsSync(directory)) {
+    fs.mkdirSync(directory, { recursive: true });
+  }
 
   fs.writeFileSync(file.filename, javaScript);
 }
@@ -72,7 +112,15 @@ async function main(): Promise<void> {
     return;
   }
 
-  for (const file of EXPORTED_FILES) {
+  const files = [...EXPORTED_FILES];
+  for (const dictionaryEntry of dataSource.counter_dictionary_entries.valid) {
+    files.push(createDictionaryEntryComponentFile(dictionaryEntry, "japanese"));
+    files.push(
+      createDictionaryEntryComponentFile(dictionaryEntry, "translation")
+    );
+  }
+
+  for (const file of files) {
     exportFile(file, dataSource);
   }
 }

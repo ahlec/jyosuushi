@@ -42,7 +42,10 @@ type ProtoCounterIrregular = Omit<
   type: ProductionVariable;
 };
 
-type ProtoJapaneseDictionaryEntry = Omit<JapaneseDictionaryEntry, "source"> & {
+type ProtoJapaneseDictionaryEntry = Omit<
+  JapaneseDictionaryEntry,
+  "source" | "japanese" | "translation"
+> & {
   source: ProductionVariable;
 };
 
@@ -80,9 +83,9 @@ function convertToProductionDictionaryEntry(
 ): ProtoJapaneseDictionaryEntry {
   return {
     directLink: db.direct_link,
-    japanese: db.japanese,
-    source: JAPANESE_DICTIONARY_GOO_NE,
-    translation: db.translation
+    // japanese: db.japanese,
+    source: JAPANESE_DICTIONARY_GOO_NE
+    // translation: db.translation
   };
 }
 

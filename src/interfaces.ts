@@ -1,3 +1,4 @@
+import { ComponentType } from "react";
 import { KangoConjugationOptions } from "./japanese/interfaces";
 
 export interface ExternalLink {
@@ -109,11 +110,13 @@ export enum JapaneseDictionary {
   Goo = "goo.ne.jp"
 }
 
+export type DictionaryEntryComponentProps = {};
+
 export interface JapaneseDictionaryEntry {
   directLink: string;
-  japanese: string;
+  japanese: ComponentType<DictionaryEntryComponentProps>;
   source: JapaneseDictionary;
-  translation: string;
+  translation: ComponentType<DictionaryEntryComponentProps>;
 }
 
 export interface Counter {

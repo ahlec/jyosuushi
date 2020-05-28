@@ -49,7 +49,7 @@ function h(
   const openingTagPieces: string[] = [name];
   if (props) {
     if (props.id) {
-      openingTagPieces.push(`id="${props["id"]}`);
+      openingTagPieces.push(`id="${props["id"]}"`);
     }
 
     if (props["class"]) {
