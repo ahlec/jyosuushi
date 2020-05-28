@@ -11,6 +11,55 @@ import {
 } from "../src/interfaces";
 import * as DISAMBIGUATIONS from "./disambiguations";
 
+import DictionaryEntry15Jpn from "@data/dictionary-entries/ヶ月/DictionaryEntry15Jpn";
+import DictionaryEntry15Trans from "@data/dictionary-entries/ヶ月/DictionaryEntry15Trans";
+import DictionaryEntry1Jpn from "@data/dictionary-entries/人/DictionaryEntry1Jpn";
+import DictionaryEntry1Trans from "@data/dictionary-entries/人/DictionaryEntry1Trans";
+import DictionaryEntry8Jpn from "@data/dictionary-entries/冊/DictionaryEntry8Jpn";
+import DictionaryEntry8Trans from "@data/dictionary-entries/冊/DictionaryEntry8Trans";
+import DictionaryEntry20Jpn from "@data/dictionary-entries/切れ/DictionaryEntry20Jpn";
+import DictionaryEntry20Trans from "@data/dictionary-entries/切れ/DictionaryEntry20Trans";
+import DictionaryEntry5Jpn from "@data/dictionary-entries/匹/DictionaryEntry5Jpn";
+import DictionaryEntry5Trans from "@data/dictionary-entries/匹/DictionaryEntry5Trans";
+import DictionaryEntry23Jpn from "@data/dictionary-entries/口/DictionaryEntry23Jpn";
+import DictionaryEntry23Trans from "@data/dictionary-entries/口/DictionaryEntry23Trans";
+import DictionaryEntry9Jpn from "@data/dictionary-entries/台/DictionaryEntry9Jpn";
+import DictionaryEntry9Trans from "@data/dictionary-entries/台/DictionaryEntry9Trans";
+import DictionaryEntry2Jpn from "@data/dictionary-entries/名/DictionaryEntry2Jpn";
+import DictionaryEntry2Trans from "@data/dictionary-entries/名/DictionaryEntry2Trans";
+import DictionaryEntry12Jpn from "@data/dictionary-entries/回/DictionaryEntry12Jpn";
+import DictionaryEntry12Trans from "@data/dictionary-entries/回/DictionaryEntry12Trans";
+import DictionaryEntry16Jpn from "@data/dictionary-entries/巻/DictionaryEntry16Jpn";
+import DictionaryEntry16Trans from "@data/dictionary-entries/巻/DictionaryEntry16Trans";
+import DictionaryEntry22Jpn from "@data/dictionary-entries/席/DictionaryEntry22Jpn";
+import DictionaryEntry22Trans from "@data/dictionary-entries/席/DictionaryEntry22Trans";
+import DictionaryEntry10Jpn from "@data/dictionary-entries/年/DictionaryEntry10Jpn";
+import DictionaryEntry10Trans from "@data/dictionary-entries/年/DictionaryEntry10Trans";
+import DictionaryEntry3Jpn from "@data/dictionary-entries/時/DictionaryEntry3Jpn";
+import DictionaryEntry3Trans from "@data/dictionary-entries/時/DictionaryEntry3Trans";
+import DictionaryEntry11Jpn from "@data/dictionary-entries/本/DictionaryEntry11Jpn";
+import DictionaryEntry11Trans from "@data/dictionary-entries/本/DictionaryEntry11Trans";
+import DictionaryEntry4Jpn from "@data/dictionary-entries/枚/DictionaryEntry4Jpn";
+import DictionaryEntry4Trans from "@data/dictionary-entries/枚/DictionaryEntry4Trans";
+import DictionaryEntry24Jpn from "@data/dictionary-entries/校/DictionaryEntry24Jpn";
+import DictionaryEntry24Trans from "@data/dictionary-entries/校/DictionaryEntry24Trans";
+import DictionaryEntry14Jpn from "@data/dictionary-entries/歳/DictionaryEntry14Jpn";
+import DictionaryEntry14Trans from "@data/dictionary-entries/歳/DictionaryEntry14Trans";
+import DictionaryEntry21Jpn from "@data/dictionary-entries/皿/DictionaryEntry21Jpn";
+import DictionaryEntry21Trans from "@data/dictionary-entries/皿/DictionaryEntry21Trans";
+import DictionaryEntry19Jpn from "@data/dictionary-entries/組/DictionaryEntry19Jpn";
+import DictionaryEntry19Trans from "@data/dictionary-entries/組/DictionaryEntry19Trans";
+import DictionaryEntry7Jpn from "@data/dictionary-entries/羽/DictionaryEntry7Jpn";
+import DictionaryEntry7Trans from "@data/dictionary-entries/羽/DictionaryEntry7Trans";
+import DictionaryEntry17Jpn from "@data/dictionary-entries/色/DictionaryEntry17Jpn";
+import DictionaryEntry17Trans from "@data/dictionary-entries/色/DictionaryEntry17Trans";
+import DictionaryEntry18Jpn from "@data/dictionary-entries/軒/DictionaryEntry18Jpn";
+import DictionaryEntry18Trans from "@data/dictionary-entries/軒/DictionaryEntry18Trans";
+import DictionaryEntry13Jpn from "@data/dictionary-entries/階/DictionaryEntry13Jpn";
+import DictionaryEntry13Trans from "@data/dictionary-entries/階/DictionaryEntry13Trans";
+import DictionaryEntry6Jpn from "@data/dictionary-entries/頭/DictionaryEntry6Jpn";
+import DictionaryEntry6Trans from "@data/dictionary-entries/頭/DictionaryEntry6Trans";
+
 export const COUNTER_ヶ国: Counter = {
   counterId: "ヶ国",
   dictionaryEntries: [],
@@ -80,7 +129,9 @@ export const COUNTER_ヶ月: Counter = {
   dictionaryEntries: [
     {
       directLink: "https://dictionary.goo.ne.jp/word/%E7%AE%87%E6%9C%88/",
-      source: JapaneseDictionary.Goo
+      japanese: DictionaryEntry15Jpn,
+      source: JapaneseDictionary.Goo,
+      translation: DictionaryEntry15Trans
     }
   ],
   disambiguations: {},
@@ -125,7 +176,9 @@ export const COUNTER_人: Counter = {
     {
       directLink:
         "https://dictionary.goo.ne.jp/word/%E4%BA%BA_%28%E3%81%AB%E3%82%93%29/",
-      source: JapaneseDictionary.Goo
+      japanese: DictionaryEntry1Jpn,
+      source: JapaneseDictionary.Goo,
+      translation: DictionaryEntry1Trans
     }
   ],
   disambiguations: {
@@ -242,7 +295,9 @@ export const COUNTER_冊: Counter = {
     {
       directLink:
         "https://dictionary.goo.ne.jp/word/%E5%86%8A_%28%E3%81%95%E3%81%A4%29/",
-      source: JapaneseDictionary.Goo
+      japanese: DictionaryEntry8Jpn,
+      source: JapaneseDictionary.Goo,
+      translation: DictionaryEntry8Trans
     }
   ],
   disambiguations: {},
@@ -326,7 +381,9 @@ export const COUNTER_切れ: Counter = {
     {
       directLink:
         "https://dictionary.goo.ne.jp/word/%E5%88%87%E3%82%8C_%28%E3%81%8D%E3%82%8C%29/",
-      source: JapaneseDictionary.Goo
+      japanese: DictionaryEntry20Jpn,
+      source: JapaneseDictionary.Goo,
+      translation: DictionaryEntry20Trans
     }
   ],
   disambiguations: {},
@@ -364,7 +421,9 @@ export const COUNTER_匹: Counter = {
     {
       directLink:
         "https://dictionary.goo.ne.jp/word/%E5%8C%B9_%28%E3%81%B2%E3%81%8D%29/",
-      source: JapaneseDictionary.Goo
+      japanese: DictionaryEntry5Jpn,
+      source: JapaneseDictionary.Goo,
+      translation: DictionaryEntry5Trans
     }
   ],
   disambiguations: {},
@@ -409,7 +468,9 @@ export const COUNTER_口: Counter = {
     {
       directLink:
         "https://dictionary.goo.ne.jp/word/%E5%8F%A3_%28%E3%81%8F%E3%81%A1%29/",
-      source: JapaneseDictionary.Goo
+      japanese: DictionaryEntry23Jpn,
+      source: JapaneseDictionary.Goo,
+      translation: DictionaryEntry23Trans
     }
   ],
   disambiguations: {},
@@ -447,7 +508,9 @@ export const COUNTER_台: Counter = {
     {
       directLink:
         "https://dictionary.goo.ne.jp/word/%E5%8F%B0_%28%E3%81%A0%E3%81%84%29/",
-      source: JapaneseDictionary.Goo
+      japanese: DictionaryEntry9Jpn,
+      source: JapaneseDictionary.Goo,
+      translation: DictionaryEntry9Trans
     }
   ],
   disambiguations: {},
@@ -492,7 +555,9 @@ export const COUNTER_名: Counter = {
     {
       directLink:
         "https://dictionary.goo.ne.jp/word/%E5%90%8D_%28%E3%82%81%E3%81%84%29/",
-      source: JapaneseDictionary.Goo
+      japanese: DictionaryEntry2Jpn,
+      source: JapaneseDictionary.Goo,
+      translation: DictionaryEntry2Trans
     }
   ],
   disambiguations: {
@@ -571,7 +636,9 @@ export const COUNTER_回: Counter = {
     {
       directLink:
         "https://dictionary.goo.ne.jp/word/%E5%9B%9E_%28%E3%81%8B%E3%81%84%29/",
-      source: JapaneseDictionary.Goo
+      japanese: DictionaryEntry12Jpn,
+      source: JapaneseDictionary.Goo,
+      translation: DictionaryEntry12Trans
     }
   ],
   disambiguations: {},
@@ -616,7 +683,9 @@ export const COUNTER_巻: Counter = {
     {
       directLink:
         "https://dictionary.goo.ne.jp/word/%E5%B7%BB_%28%E3%81%8B%E3%82%93%29/",
-      source: JapaneseDictionary.Goo
+      japanese: DictionaryEntry16Jpn,
+      source: JapaneseDictionary.Goo,
+      translation: DictionaryEntry16Trans
     }
   ],
   disambiguations: {},
@@ -653,7 +722,9 @@ export const COUNTER_席: Counter = {
   dictionaryEntries: [
     {
       directLink: "https://dictionary.goo.ne.jp/word/%E5%B8%AD/",
-      source: JapaneseDictionary.Goo
+      japanese: DictionaryEntry22Jpn,
+      source: JapaneseDictionary.Goo,
+      translation: DictionaryEntry22Trans
     }
   ],
   disambiguations: {},
@@ -697,7 +768,9 @@ export const COUNTER_年: Counter = {
     {
       directLink:
         "https://dictionary.goo.ne.jp/word/%E5%B9%B4_%28%E3%81%AD%E3%82%93%29/",
-      source: JapaneseDictionary.Goo
+      japanese: DictionaryEntry10Jpn,
+      source: JapaneseDictionary.Goo,
+      translation: DictionaryEntry10Trans
     }
   ],
   disambiguations: {},
@@ -931,7 +1004,9 @@ export const COUNTER_時: Counter = {
     {
       directLink:
         "https://dictionary.goo.ne.jp/word/%E6%99%82_%28%E3%81%98%29/",
-      source: JapaneseDictionary.Goo
+      japanese: DictionaryEntry3Jpn,
+      source: JapaneseDictionary.Goo,
+      translation: DictionaryEntry3Trans
     }
   ],
   disambiguations: {},
@@ -1008,7 +1083,9 @@ export const COUNTER_本: Counter = {
     {
       directLink:
         "https://dictionary.goo.ne.jp/word/%E6%9C%AC_%28%E3%81%BB%E3%82%93%29/",
-      source: JapaneseDictionary.Goo
+      japanese: DictionaryEntry11Jpn,
+      source: JapaneseDictionary.Goo,
+      translation: DictionaryEntry11Trans
     }
   ],
   disambiguations: {},
@@ -1091,7 +1168,9 @@ export const COUNTER_枚: Counter = {
     {
       directLink:
         "https://dictionary.goo.ne.jp/word/%E6%9E%9A_%28%E3%81%BE%E3%81%84%29/",
-      source: JapaneseDictionary.Goo
+      japanese: DictionaryEntry4Jpn,
+      source: JapaneseDictionary.Goo,
+      translation: DictionaryEntry4Trans
     }
   ],
   disambiguations: {},
@@ -1135,7 +1214,9 @@ export const COUNTER_校: Counter = {
   dictionaryEntries: [
     {
       directLink: "https://dictionary.goo.ne.jp/word/%E6%A0%A1/",
-      source: JapaneseDictionary.Goo
+      japanese: DictionaryEntry24Jpn,
+      source: JapaneseDictionary.Goo,
+      translation: DictionaryEntry24Trans
     }
   ],
   disambiguations: {},
@@ -1172,7 +1253,9 @@ export const COUNTER_歳: Counter = {
   dictionaryEntries: [
     {
       directLink: "https://dictionary.goo.ne.jp/word/%E6%AD%B3/",
-      source: JapaneseDictionary.Goo
+      japanese: DictionaryEntry14Jpn,
+      source: JapaneseDictionary.Goo,
+      translation: DictionaryEntry14Trans
     }
   ],
   disambiguations: {},
@@ -1209,7 +1292,9 @@ export const COUNTER_皿: Counter = {
   dictionaryEntries: [
     {
       directLink: "https://dictionary.goo.ne.jp/word/%E7%9A%BF/",
-      source: JapaneseDictionary.Goo
+      japanese: DictionaryEntry21Jpn,
+      source: JapaneseDictionary.Goo,
+      translation: DictionaryEntry21Trans
     }
   ],
   disambiguations: {},
@@ -1284,7 +1369,9 @@ export const COUNTER_組: Counter = {
   dictionaryEntries: [
     {
       directLink: "https://dictionary.goo.ne.jp/word/%E7%B5%84/",
-      source: JapaneseDictionary.Goo
+      japanese: DictionaryEntry19Jpn,
+      source: JapaneseDictionary.Goo,
+      translation: DictionaryEntry19Trans
     }
   ],
   disambiguations: {},
@@ -1360,7 +1447,9 @@ export const COUNTER_羽: Counter = {
     {
       directLink:
         "https://dictionary.goo.ne.jp/word/%E7%BE%BD_%28%E3%82%8F%29/",
-      source: JapaneseDictionary.Goo
+      japanese: DictionaryEntry7Jpn,
+      source: JapaneseDictionary.Goo,
+      translation: DictionaryEntry7Trans
     }
   ],
   disambiguations: {},
@@ -1405,7 +1494,9 @@ export const COUNTER_色: Counter = {
     {
       directLink:
         "https://dictionary.goo.ne.jp/word/%E3%81%97%E3%82%87%E3%81%8F/#jn-110841",
-      source: JapaneseDictionary.Goo
+      japanese: DictionaryEntry17Jpn,
+      source: JapaneseDictionary.Goo,
+      translation: DictionaryEntry17Trans
     }
   ],
   disambiguations: {},
@@ -1507,7 +1598,9 @@ export const COUNTER_軒: Counter = {
     {
       directLink:
         "https://dictionary.goo.ne.jp/word/%E8%BB%92_%28%E3%81%91%E3%82%93%29/",
-      source: JapaneseDictionary.Goo
+      japanese: DictionaryEntry18Jpn,
+      source: JapaneseDictionary.Goo,
+      translation: DictionaryEntry18Trans
     }
   ],
   disambiguations: {},
@@ -1577,7 +1670,9 @@ export const COUNTER_階: Counter = {
     {
       directLink:
         "https://dictionary.goo.ne.jp/word/%E9%9A%8E_%28%E3%81%8B%E3%81%84%29/",
-      source: JapaneseDictionary.Goo
+      japanese: DictionaryEntry13Jpn,
+      source: JapaneseDictionary.Goo,
+      translation: DictionaryEntry13Trans
     }
   ],
   disambiguations: {},
@@ -1622,7 +1717,9 @@ export const COUNTER_頭: Counter = {
     {
       directLink:
         "https://dictionary.goo.ne.jp/word/%E9%A0%AD_%28%E3%81%A8%E3%81%86%29/",
-      source: JapaneseDictionary.Goo
+      japanese: DictionaryEntry6Jpn,
+      source: JapaneseDictionary.Goo,
+      translation: DictionaryEntry6Trans
     }
   ],
   disambiguations: {},

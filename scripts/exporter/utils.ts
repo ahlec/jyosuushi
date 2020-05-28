@@ -1,4 +1,5 @@
 import { isArray } from "lodash";
+import path from "path";
 import { DbWordOrigin } from "../database/schemas";
 
 function getVariableFromId(prefix: string, id: string): string {
@@ -15,6 +16,46 @@ export function getItemId(id: string): string {
 
 export function getStudyPackId(id: string): string {
   return getVariableFromId("STUDY_PACK_", id);
+}
+
+export const DATA_DIRECTORY = path.resolve(__dirname, "./../../data");
+
+const DICTIONARY_ENTRY_COMPONENTS_DIRECTORY = path.resolve(
+  DATA_DIRECTORY,
+  "./dictionary-entries/"
+);
+
+export interface DictionaryEntryComponentInfo {
+  absoluteFilename: string;
+  componentName: string;
+  importPath: string;
+}
+
+export function getDictionaryEntryComponent(
+  counterId: string,
+  entryId: number,
+  side: "japanese" | "translation"
+): DictionaryEntryComponentInfo {
+  let componentName: string;
+  switch (side) {
+    case "japanese": {
+      componentName = `DictionaryEntry${entryId}Jpn`;
+      break;
+    }
+    case "translation": {
+      componentName = `DictionaryEntry${entryId}Trans`;
+      break;
+    }
+  }
+
+  return {
+    absoluteFilename: path.resolve(
+      DICTIONARY_ENTRY_COMPONENTS_DIRECTORY,
+      `./${counterId}/${componentName}.tsx`
+    ),
+    componentName,
+    importPath: `@data/dictionary-entries/${counterId}/${componentName}`
+  };
 }
 
 export function getDisambiguationId(

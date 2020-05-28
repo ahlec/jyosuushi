@@ -5,6 +5,7 @@ import path from "path";
 import prettier from "prettier";
 import { Writable } from "stream";
 
+import { DbCounterDictionaryEntry } from "../database/schemas";
 import Database from "../database/Database";
 import ValidatedDataSource from "../database/ValidatedDataSource";
 
@@ -13,13 +14,7 @@ import writeDictionaryEntryComponentFile from "./dictionary-entry-component";
 import writeDisambiguationsFile from "./disambiguations-file";
 import writeItemsFile from "./items-file";
 import writeStudyPacksFile from "./study-packs-file";
-import { DbCounterDictionaryEntry } from "scripts/database/schemas";
-
-const DATA_DIRECTORY = path.resolve(__dirname, "./../../data");
-const DICTIONARY_ENTRY_COMPONENTS_DIRECTORY = path.resolve(
-  DATA_DIRECTORY,
-  "./dictionary-entries/"
-);
+import { DATA_DIRECTORY, getDictionaryEntryComponent } from "./utils";
 
 const FILE_HEADER_COMMENT = `// DO NOT HAND-MODIFY THIS FILE!!
 // This file was built using \`yarn build-data\` from the SQLite database.
@@ -53,26 +48,26 @@ function createDictionaryEntryComponentFile(
   dictionaryEntry: DbCounterDictionaryEntry,
   side: "japanese" | "translation"
 ): ExportedFile {
-  let componentName: string;
   let markdown: string;
   switch (side) {
     case "japanese": {
-      componentName = `DictionaryEntry${dictionaryEntry.entry_id}Jpn`;
       markdown = dictionaryEntry.japanese;
       break;
     }
     case "translation": {
-      componentName = `DictionaryEntry${dictionaryEntry.entry_id}Trans`;
       markdown = dictionaryEntry.translation;
       break;
     }
   }
 
+  const { absoluteFilename, componentName } = getDictionaryEntryComponent(
+    dictionaryEntry.counter_id,
+    dictionaryEntry.entry_id,
+    side
+  );
+
   return {
-    filename: path.resolve(
-      DICTIONARY_ENTRY_COMPONENTS_DIRECTORY,
-      `./${dictionaryEntry.counter_id}/${componentName}.tsx`
-    ),
+    filename: absoluteFilename,
     writeFunction: (stream: Writable): void =>
       writeDictionaryEntryComponentFile(stream, componentName, markdown)
   };

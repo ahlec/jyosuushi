@@ -27,7 +27,9 @@ import {
   getDisambiguationId,
   productionStringify,
   ProductionVariable,
-  getWordOrigin
+  getWordOrigin,
+  getDictionaryEntryComponent,
+  DictionaryEntryComponentInfo
 } from "./utils";
 
 type ProtoCounterReading = Omit<CounterReading, "wordOrigin"> & {
@@ -46,7 +48,9 @@ type ProtoJapaneseDictionaryEntry = Omit<
   JapaneseDictionaryEntry,
   "source" | "japanese" | "translation"
 > & {
+  japanese: ProductionVariable;
   source: ProductionVariable;
+  translation: ProductionVariable;
 };
 
 const JAPANESE_DICTIONARY_GOO_NE = new ProductionVariable(
@@ -83,9 +87,21 @@ function convertToProductionDictionaryEntry(
 ): ProtoJapaneseDictionaryEntry {
   return {
     directLink: db.direct_link,
-    // japanese: db.japanese,
-    source: JAPANESE_DICTIONARY_GOO_NE
-    // translation: db.translation
+    japanese: new ProductionVariable(
+      getDictionaryEntryComponent(
+        db.counter_id,
+        db.entry_id,
+        "japanese"
+      ).componentName
+    ),
+    source: JAPANESE_DICTIONARY_GOO_NE,
+    translation: new ProductionVariable(
+      getDictionaryEntryComponent(
+        db.counter_id,
+        db.entry_id,
+        "translation"
+      ).componentName
+    )
   };
 }
 
@@ -224,11 +240,6 @@ export default function writeCountersFile(
   stream: Writable,
   dataSource: ValidatedDataSource
 ): void {
-  stream.write(
-    'import { Counter, CounterIrregularType, CountingSystem, JapaneseDictionary, WordOrigin } from "../src/interfaces";\n'
-  );
-  stream.write('import * as DISAMBIGUATIONS from "./disambiguations";');
-
   const externalLinksLookup: {
     [counterId: string]: DbCounterExternalLink[] | undefined;
   } = {};
@@ -293,17 +304,49 @@ export default function writeCountersFile(
   const dictionaryEntriesLookup: {
     [counterId: string]: DbCounterDictionaryEntry[] | undefined;
   } = {};
+  const dictionaryEntryComponentImports: DictionaryEntryComponentInfo[] = [];
   for (const dictionaryEntry of dataSource.counter_dictionary_entries.valid) {
     if (!dictionaryEntriesLookup[dictionaryEntry.counter_id]) {
       dictionaryEntriesLookup[dictionaryEntry.counter_id] = [];
     }
 
     dictionaryEntriesLookup[dictionaryEntry.counter_id]?.push(dictionaryEntry);
+    dictionaryEntryComponentImports.push(
+      getDictionaryEntryComponent(
+        dictionaryEntry.counter_id,
+        dictionaryEntry.entry_id,
+        "japanese"
+      )
+    );
+    dictionaryEntryComponentImports.push(
+      getDictionaryEntryComponent(
+        dictionaryEntry.counter_id,
+        dictionaryEntry.entry_id,
+        "translation"
+      )
+    );
   }
 
   const wagoStyleLookup: { [handle: string]: DbWagoStyle | undefined } = {};
   for (const wagoStyle of dataSource.wago_style.valid) {
     wagoStyleLookup[wagoStyle.wago_style_handle] = wagoStyle;
+  }
+
+  stream.write(
+    'import { Counter, CounterIrregularType, CountingSystem, JapaneseDictionary, WordOrigin } from "../src/interfaces";\n'
+  );
+  stream.write('import * as DISAMBIGUATIONS from "./disambiguations";');
+
+  if (dictionaryEntryComponentImports.length) {
+    stream.write("\n\n");
+    const orderedImports = sortBy(
+      dictionaryEntryComponentImports,
+      ({ importPath }): string => importPath
+    );
+
+    for (const { componentName, importPath } of orderedImports) {
+      stream.write(`import ${componentName} from '${importPath}';\n`);
+    }
   }
 
   const sortedCounters = sortBy(dataSource.counters.valid, ["counter_id"]);
