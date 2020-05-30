@@ -5,8 +5,22 @@ import parse from "remark-parse";
 import numericalSectionGroupMarkdownPlugin from "./numericalSectionGroupMarkdownPlugin";
 import examplesMarkdownPlugin from "./examplesMarkdownPlugin";
 import jsxCompiler from "./jsx-compiler";
+import { JsxCompilerVFileData } from "./interfaces";
 
-export function convertDictionaryEntryToJSX(markdown: string): string {
+export interface DictionaryEntryJsx {
+  doesRequireClassNamesLibrary: boolean;
+  jsx: string;
+}
+
+function assertJsxCompilerVFileData(
+  data: unknown
+): asserts data is JsxCompilerVFileData {
+  // Just... (sigh)
+}
+
+export function convertDictionaryEntryToJSX(
+  markdown: string
+): DictionaryEntryJsx {
   const result = unified()
     .use(parse)
     .use(footnotes)
@@ -14,5 +28,11 @@ export function convertDictionaryEntryToJSX(markdown: string): string {
     .use(examplesMarkdownPlugin)
     .use(jsxCompiler)
     .processSync(markdown);
-  return result.contents.toString();
+
+  assertJsxCompilerVFileData(result.data);
+
+  return {
+    doesRequireClassNamesLibrary: result.data.doesRequireClassNamesLibrary,
+    jsx: result.contents.toString()
+  };
 }

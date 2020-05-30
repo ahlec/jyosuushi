@@ -103,7 +103,9 @@ function numericalSectionTokenizer(
       ],
       data: {
         hName: "div",
-        hProperties: { className: ["numeral"] }
+        hProperties: {
+          propClassName: ["numericalGroupHeaderNumeralClassName"]
+        }
       },
       type: "numericalSection-header"
     }
@@ -113,7 +115,9 @@ function numericalSectionTokenizer(
       children: header,
       data: {
         hName: "div",
-        hProperties: { className: ["qualifier"] }
+        hProperties: {
+          propClassName: ["numericalGroupHeaderSubheaderClassName"]
+        }
       },
       type: "numericalSection-subheader"
     });
@@ -125,7 +129,9 @@ function numericalSectionTokenizer(
       children: headerChildren,
       data: {
         hName: "div",
-        hProperties: { className: ["header"] }
+        hProperties: {
+          propClassName: ["numericalGroupHeaderClassName"]
+        }
       },
       type: "numericalSection-header"
     }
@@ -136,7 +142,9 @@ function numericalSectionTokenizer(
       children: contents,
       data: {
         hName: "div",
-        hProperties: { className: ["contents"] }
+        hProperties: {
+          propClassName: ["numericalGroupContentsClassName"]
+        }
       },
       type: "numericalSection-contents"
     });
@@ -146,7 +154,9 @@ function numericalSectionTokenizer(
     children: containerChildren,
     data: {
       hName: "div",
-      hProperties: { className: ["numericalSection"] }
+      hProperties: {
+        propClassName: ["numericalGroupClassName"]
+      }
     },
     type: "numericalSection"
   });

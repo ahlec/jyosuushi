@@ -110,7 +110,14 @@ export enum JapaneseDictionary {
   Goo = "goo.ne.jp"
 }
 
-export type DictionaryEntryComponentProps = {};
+export interface DictionaryEntryComponentProps {
+  exampleClassName: string;
+  numericalGroupClassName: string;
+  numericalGroupHeaderClassName: string;
+  numericalGroupHeaderNumeralClassName: string;
+  numericalGroupHeaderSubheaderClassName: string;
+  numericalGroupContentsClassName: string;
+}
 
 export interface JapaneseDictionaryEntry {
   directLink: string;

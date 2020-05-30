@@ -39,7 +39,9 @@ function exampleTokenizer(
       children: this.tokenizeInline(value.substring(1, endMarkerIndex), now),
       data: {
         hName: "span",
-        hProperties: { className: ["example"] }
+        hProperties: {
+          propClassName: "exampleClassName"
+        }
       },
       type: "example"
     });

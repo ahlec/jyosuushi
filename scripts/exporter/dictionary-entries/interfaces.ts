@@ -17,3 +17,7 @@ export interface Eat {
   (value: string): Add;
   now: () => Position;
 }
+
+export interface JsxCompilerVFileData {
+  doesRequireClassNamesLibrary: boolean;
+}

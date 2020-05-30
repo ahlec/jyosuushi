@@ -4,6 +4,7 @@ export interface Properties {
   ["class"]?: string;
   id?: string;
   href?: string;
+  propClassName?: keyof import("@jyosuushi/interfaces").DictionaryEntryComponentProps;
 }
 
 export default function toH<T>(

@@ -11,28 +11,57 @@ class DictionaryEntry24Trans extends React.PureComponent<
   public render(): React.ReactNode {
     return (
       <React.Fragment>
-        <p>{1} Noun</p>
-        <ol>
-          <li>
-            School. <span className="example">"Our school"</span>
-          </li>
-          <li>
-            To look for and correct mistakes in the characters of documents.
-            Proofreading.{" "}
-            <span className="example">"To proofread again and again"</span>
-          </li>
-        </ol>
-        <p>
-          {2} [Suffix] Counter. Used to count the number of proofs
-          <sup id="fnref-1">
-            <a className="footnote-ref" href="#fn-1">
+        <div className={this.props.numericalGroupClassName}>
+          <div className={this.props.numericalGroupHeaderClassName}>
+            <div className={this.props.numericalGroupHeaderNumeralClassName}>
               1
-            </a>
-          </sup>
-          . <span className="example">"First proof"</span>,{" "}
-          <span className="example">"Second proof"</span>,{" "}
-          <span className="example">"Third proof"</span>
-        </p>
+            </div>
+            <div className={this.props.numericalGroupHeaderSubheaderClassName}>
+              Noun
+            </div>
+          </div>
+          <div className={this.props.numericalGroupContentsClassName}>
+            <ol>
+              <li>
+                School.{" "}
+                <span className={this.props.exampleClassName}>
+                  "Our school"
+                </span>
+              </li>
+              <li>
+                To look for and correct mistakes in the characters of documents.
+                Proofreading.{" "}
+                <span className={this.props.exampleClassName}>
+                  "To proofread again and again"
+                </span>
+              </li>
+            </ol>
+          </div>
+        </div>
+        <div className={this.props.numericalGroupClassName}>
+          <div className={this.props.numericalGroupHeaderClassName}>
+            <div className={this.props.numericalGroupHeaderNumeralClassName}>
+              2
+            </div>
+            <div className={this.props.numericalGroupHeaderSubheaderClassName}>
+              [Suffix] Counter. Used to count the number of proofs
+              <sup id="fnref-1">
+                <a className="footnote-ref" href="#fn-1">
+                  1
+                </a>
+              </sup>
+              .{" "}
+              <span className={this.props.exampleClassName}>"First proof"</span>
+              ,{" "}
+              <span className={this.props.exampleClassName}>
+                "Second proof"
+              </span>
+              ,{" "}
+              <span className={this.props.exampleClassName}>"Third proof"</span>
+            </div>
+          </div>
+          <div className={this.props.numericalGroupContentsClassName} />
+        </div>
         <div className="footnotes">
           <hr />
           <ol>

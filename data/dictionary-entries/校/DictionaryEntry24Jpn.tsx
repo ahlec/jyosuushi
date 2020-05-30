@@ -11,22 +11,43 @@ class DictionaryEntry24Jpn extends React.PureComponent<
   public render(): React.ReactNode {
     return (
       <React.Fragment>
-        <p>{1} ［名］</p>
-        <ol>
-          <li>
-            学校。<span className="example">「わが校」</span>
-          </li>
-          <li>
-            書物の文字の誤りを調べ正すこと。校正。
-            <span className="example">「校を重ねる」</span>
-          </li>
-        </ol>
-        <p>
-          {2} ［接尾］助数詞。校正の回数を数えるのに用いる。
-          <span className="example">「初校」</span>
-          <span className="example">「再校」</span>
-          <span className="example">「三校」</span>
-        </p>
+        <div className={this.props.numericalGroupClassName}>
+          <div className={this.props.numericalGroupHeaderClassName}>
+            <div className={this.props.numericalGroupHeaderNumeralClassName}>
+              1
+            </div>
+            <div className={this.props.numericalGroupHeaderSubheaderClassName}>
+              ［名］
+            </div>
+          </div>
+          <div className={this.props.numericalGroupContentsClassName}>
+            <ol>
+              <li>
+                学校。
+                <span className={this.props.exampleClassName}>「わが校」</span>
+              </li>
+              <li>
+                書物の文字の誤りを調べ正すこと。校正。
+                <span className={this.props.exampleClassName}>
+                  「校を重ねる」
+                </span>
+              </li>
+            </ol>
+          </div>
+        </div>
+        <div className={this.props.numericalGroupClassName}>
+          <div className={this.props.numericalGroupHeaderClassName}>
+            <div className={this.props.numericalGroupHeaderNumeralClassName}>
+              2
+            </div>
+            <div className={this.props.numericalGroupHeaderSubheaderClassName}>
+              ［接尾］助数詞。校正の回数を数えるのに用いる。
+              <span className={this.props.exampleClassName}>「初校」</span>
+              <span className={this.props.exampleClassName}>「再校」</span>
+              <span className={this.props.exampleClassName}>「三校」</span>
+            </div>
+          </div>
+        </div>
       </React.Fragment>
     );
   }
