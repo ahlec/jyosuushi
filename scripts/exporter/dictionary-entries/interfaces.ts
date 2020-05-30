@@ -8,7 +8,9 @@ export interface Position {
 }
 
 export interface RemarkParser extends Parser {
-  tokenizeInline: (str: string, position: Position) => unknown;
+  enterBlock: () => () => void;
+  tokenizeBlock: (str: string, position: Position) => any;
+  tokenizeInline: (str: string, position: Position) => any;
 }
 
 export interface Eat {
