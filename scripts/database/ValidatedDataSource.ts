@@ -108,6 +108,7 @@ function validateCounters(
   const valid: DbCounter[] = [];
   const ignored: Array<InvalidResultEntry<DbCounter>> = [];
   const error: Array<InvalidResultEntry<DbCounter>> = [];
+  const warnings: Array<Warning<DbCounter>> = [];
 
   const counterHasItems = new Set<string>();
   for (const { counter_id } of snapshot.item_counters) {
@@ -126,6 +127,13 @@ function validateCounters(
   }
 
   for (const counter of snapshot.counters) {
+    if (!counter.notes) {
+      warnings.push({
+        entry: counter,
+        text: "Counter does not have notes defined."
+      });
+    }
+
     const errorReasons: Reason[] = [];
     if (
       counterInStudyPack.has(counter.counter_id) &&
@@ -195,7 +203,7 @@ function validateCounters(
     error,
     ignored,
     valid,
-    warnings: []
+    warnings
   };
 }
 
