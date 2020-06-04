@@ -9,11 +9,11 @@ import Database from "../database/Database";
 import ValidatedDataSource from "../database/ValidatedDataSource";
 
 import writeCountersFile from "./counters-file";
+import writeCounterNotesComponentFile from "./counter-notes-component-file";
 import writeDisambiguationsFile from "./disambiguations-file";
 import writeItemsFile from "./items-file";
 import writeStudyPacksFile from "./study-packs-file";
-
-const DATA_DIRECTORY = path.resolve(__dirname, "./../../data");
+import { DATA_DIRECTORY, getCounterNotesComponent } from "./utils";
 
 const FILE_HEADER_COMMENT = `// DO NOT HAND-MODIFY THIS FILE!!
 // This file was built using \`yarn build-data\` from the SQLite database.
@@ -50,6 +50,11 @@ function exportFile(file: ExportedFile, dataSource: ValidatedDataSource): void {
   const rawJavaScript = `${FILE_HEADER_COMMENT}${stream.toString()}`;
   const javaScript = prettier.format(rawJavaScript, { parser: "typescript" });
 
+  const directory = path.dirname(file.filename);
+  if (!fs.existsSync(directory)) {
+    fs.mkdirSync(directory, { recursive: true });
+  }
+
   fs.writeFileSync(file.filename, javaScript);
 }
 
@@ -72,7 +77,23 @@ async function main(): Promise<void> {
     return;
   }
 
-  for (const file of EXPORTED_FILES) {
+  const files = [...EXPORTED_FILES];
+  for (const { counter_id, notes } of dataSource.counters.valid) {
+    if (!notes) {
+      continue;
+    }
+
+    const { absoluteFilename, componentName } = getCounterNotesComponent(
+      counter_id
+    );
+    files.push({
+      filename: absoluteFilename,
+      writeFunction: (stream: Writable): void =>
+        writeCounterNotesComponentFile(stream, componentName, notes)
+    });
+  }
+
+  for (const file of files) {
     exportFile(file, dataSource);
   }
 }

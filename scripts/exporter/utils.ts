@@ -1,4 +1,5 @@
 import { isArray } from "lodash";
+import path from "path";
 import { DbWordOrigin } from "../database/schemas";
 
 function getVariableFromId(prefix: string, id: string): string {
@@ -15,6 +16,33 @@ export function getItemId(id: string): string {
 
 export function getStudyPackId(id: string): string {
   return getVariableFromId("STUDY_PACK_", id);
+}
+
+export const DATA_DIRECTORY = path.resolve(__dirname, "./../../data");
+
+const COUNTER_NOTES_COMPONENTS_DIRECTORY = path.resolve(
+  DATA_DIRECTORY,
+  "./counter-notes/"
+);
+
+export interface CounterNotesComponentInfo {
+  absoluteFilename: string;
+  componentName: string;
+  importPath: string;
+}
+
+export function getCounterNotesComponent(
+  counterId: string
+): CounterNotesComponentInfo {
+  const componentName = `${counterId}Notes`;
+  return {
+    absoluteFilename: path.resolve(
+      COUNTER_NOTES_COMPONENTS_DIRECTORY,
+      `./${componentName}.tsx`
+    ),
+    componentName,
+    importPath: `@data/counter-notes/${componentName}`
+  };
 }
 
 export function getDisambiguationId(

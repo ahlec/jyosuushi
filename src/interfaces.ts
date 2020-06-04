@@ -1,3 +1,4 @@
+import { ComponentType } from "react";
 import { KangoConjugationOptions } from "./japanese/interfaces";
 
 export interface ExternalLink {
@@ -105,13 +106,15 @@ export interface CounterIrregular {
   reading: string;
 }
 
+export type CounterNotesComponentProps = {};
+
 export interface Counter {
   counterId: string;
   englishName: string;
   irregulars: { [amount: number]: ReadonlyArray<CounterIrregular> };
   kanji: CounterKanjiInfo | null;
   readings: ReadonlyArray<CounterReading>;
-  notes: string | null;
+  notes: ComponentType<CounterNotesComponentProps> | null;
   externalLinks: ReadonlyArray<ExternalLink>;
   disambiguations: { [counterId: string]: CounterDisambiguation | undefined };
 }

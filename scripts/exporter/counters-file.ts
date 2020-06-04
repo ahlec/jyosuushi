@@ -2,6 +2,7 @@ import { sortBy } from "lodash";
 import { Writable } from "stream";
 
 import {
+  DbCounter,
   DbCounterDisambiguation,
   DbCounterExternalLink,
   DbCounterReading,
@@ -25,7 +26,9 @@ import {
   getDisambiguationId,
   productionStringify,
   ProductionVariable,
-  getWordOrigin
+  getWordOrigin,
+  getCounterNotesComponent,
+  CounterNotesComponentInfo
 } from "./utils";
 
 type ProtoCounterReading = Omit<CounterReading, "wordOrigin"> & {
@@ -42,12 +45,13 @@ type ProtoCounterIrregular = Omit<
 
 type ProtoCounter = Omit<
   Counter,
-  "disambiguations" | "irregulars" | "readings"
+  "disambiguations" | "irregulars" | "notes" | "readings"
 > & {
   disambiguations: { [counterId: string]: ProductionVariable };
   irregulars: {
     [amount: number]: ReadonlyArray<ProtoCounterIrregular> | undefined;
   };
+  notes: ProductionVariable | null;
   readings: ReadonlyArray<ProtoCounterReading>;
 };
 
@@ -195,6 +199,16 @@ function convertToProductionIrregularsMap(
   return result;
 }
 
+function getNotesComponentIfExists(
+  counter: DbCounter
+): CounterNotesComponentInfo | null {
+  return counter.notes ? getCounterNotesComponent(counter.counter_id) : null;
+}
+
+function isNotNull<T>(value: T | null): value is T {
+  return value !== null;
+}
+
 export default function writeCountersFile(
   stream: Writable,
   dataSource: ValidatedDataSource
@@ -271,6 +285,24 @@ export default function writeCountersFile(
   }
 
   const sortedCounters = sortBy(dataSource.counters.valid, ["counter_id"]);
+  // Import nested components
+  const imports = sortedCounters
+    .map(getNotesComponentIfExists)
+    .filter(isNotNull);
+  if (imports.length) {
+    stream.write("\n\n");
+
+    const orderedImports = sortBy(
+      imports,
+      ({ importPath }): string => importPath
+    );
+
+    for (const { componentName, importPath } of orderedImports) {
+      stream.write(`import ${componentName} from '${importPath}';\n`);
+    }
+  }
+
+  // Export counters
   for (const dbCounter of sortedCounters) {
     const variableName = getCounterId(dbCounter.counter_id);
 
@@ -294,7 +326,11 @@ export default function writeCountersFile(
             alternativeKanjiLookup[dbCounter.counter_id] || []
           )
         : null,
-      notes: dbCounter.notes ? dbCounter.notes : null, // Handle empty string
+      notes: dbCounter.notes
+        ? new ProductionVariable(
+            getCounterNotesComponent(dbCounter.counter_id).componentName
+          )
+        : null,
       readings: readings.map(reading =>
         convertToProductionReading(
           dbCounter.counter_id,
