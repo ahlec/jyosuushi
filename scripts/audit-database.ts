@@ -9,7 +9,8 @@ import {
   Schemas
 } from "./database/schemas";
 import ValidatedDataSource, {
-  InvalidResultEntry
+  InvalidResultEntry,
+  Warning
 } from "./database/ValidatedDataSource";
 
 const LINE_WIDTH = 80;
@@ -38,6 +39,47 @@ function appendInvalidEntries<TSchema extends Schemas>(
         schema
       });
     }
+  }
+}
+
+function getHashKeyFromIdentifierFields(
+  fields: ReadonlyArray<IdentifierField>
+): string {
+  return fields.map(({ value }): string => value).join("|");
+}
+
+function groupAndAppendWarnings<TSchema extends Schemas>(
+  schema: TSchema,
+  warnings: ReadonlyArray<Warning<SchemaEntryTypes[TSchema]>>,
+  arr: InvalidEntry[]
+): void {
+  const lookup: {
+    [key: string]: {
+      readonly id: ReadonlyArray<IdentifierField>;
+      warnings: string[];
+    };
+  } = {};
+
+  for (const warning of warnings) {
+    const id = ENTRY_IDENTIFIERS_RETRIEVER[schema](warning.entry as any);
+    const lookupKey = getHashKeyFromIdentifierFields(id);
+    if (!lookup[lookupKey]) {
+      lookup[lookupKey] = {
+        id,
+        warnings: []
+      };
+    }
+
+    lookup[lookupKey].warnings.push(warning.text);
+  }
+
+  const grouped = Object.values(lookup);
+  for (const group of grouped) {
+    arr.push({
+      id: group.id,
+      reasons: group.warnings,
+      schema
+    });
   }
 }
 
@@ -76,14 +118,17 @@ async function main(): Promise<void> {
   await db.close();
 
   const errors: InvalidEntry[] = [];
+  const ignored: InvalidEntry[] = [];
   const warnings: InvalidEntry[] = [];
   for (const schema of Object.values(Schemas)) {
     const all = validated.getSchema(schema);
     appendInvalidEntries(schema, all.error, errors);
-    appendInvalidEntries(schema, all.ignored, warnings);
+    appendInvalidEntries(schema, all.ignored, ignored);
+    groupAndAppendWarnings(schema, all.warnings, warnings);
   }
 
   console.log(`[${chalk.red.underline("ERRORS")}] (${errors.length})`);
+  console.log(chalk.gray("Export will fail until these are fixed."));
   if (errors.length) {
     errors.forEach(printInvalidEntry);
   } else {
@@ -91,7 +136,21 @@ async function main(): Promise<void> {
   }
 
   console.log();
+  console.log(
+    `[${chalk.rgb(238, 64, 0).underline("IGNORED")}] (${ignored.length})`
+  );
+  console.log(chalk.gray("These items won't be included in the export."));
+  if (ignored.length) {
+    ignored.forEach(printInvalidEntry);
+  } else {
+    console.log("No ignored entries");
+  }
+
+  console.log();
   console.log(`[${chalk.yellow.underline("WARNINGS")}] (${warnings.length})`);
+  console.log(
+    chalk.gray("These items are still exported, but should be investigated.")
+  );
   if (warnings.length) {
     warnings.forEach(printInvalidEntry);
   } else {
