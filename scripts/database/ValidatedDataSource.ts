@@ -47,13 +47,14 @@ function validateWagoStyles(
 ): ValidatedResult<DbWagoStyle> {
   const valid: DbWagoStyle[] = [];
   const error: Array<InvalidResultEntry<DbWagoStyle>> = [];
+  const warnings: Array<Warning<DbWagoStyle>> = [];
 
   for (const wagoStyle of snapshot.wago_style) {
     const errorReasons: Reason[] = [];
     if (wagoStyle.range_end_inclusive <= 0) {
       errorReasons.push({
         showsInAudit: true,
-        text: "Wago rango cannot be negative or zero."
+        text: "Wago range cannot be negative or zero."
       });
     }
 
@@ -74,6 +75,22 @@ function validateWagoStyles(
       continue;
     }
 
+    if (wagoStyle.range_end_inclusive < 2 && wagoStyle.also_uses_kango_two) {
+      warnings.push({
+        entry: wagoStyle,
+        text:
+          "range_end_inclusive was less than 2, but was configured with `also_uses_kango_two` anyways"
+      });
+    }
+
+    if (wagoStyle.range_end_inclusive < 3 && wagoStyle.also_uses_kango_three) {
+      warnings.push({
+        entry: wagoStyle,
+        text:
+          "range_end_inclusive was less than 3, but was configured with `also_uses_kango_three` anyways"
+      });
+    }
+
     valid.push(wagoStyle);
   }
 
@@ -81,7 +98,7 @@ function validateWagoStyles(
     error,
     ignored: [],
     valid,
-    warnings: []
+    warnings
   };
 }
 
@@ -91,7 +108,6 @@ function validateCounters(
   const valid: DbCounter[] = [];
   const ignored: Array<InvalidResultEntry<DbCounter>> = [];
   const error: Array<InvalidResultEntry<DbCounter>> = [];
-  const warnings: Array<Warning<DbCounter>> = [];
 
   const counterHasItems = new Set<string>();
   for (const { counter_id } of snapshot.item_counters) {
@@ -179,7 +195,7 @@ function validateCounters(
     error,
     ignored,
     valid,
-    warnings
+    warnings: []
   };
 }
 
