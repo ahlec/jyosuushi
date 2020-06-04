@@ -24,12 +24,7 @@ export default class InfoSection extends React.PureComponent<ComponentProps> {
 
     return (
       <section className="InfoSection">
-        {counter.notes && (
-          <p
-            className="notes"
-            dangerouslySetInnerHTML={{ __html: counter.notes }}
-          />
-        )}
+        {this.renderNotes()}
         {counter.externalLinks.length ? (
           <React.Fragment>
             <h6>
@@ -43,6 +38,20 @@ export default class InfoSection extends React.PureComponent<ComponentProps> {
           </React.Fragment>
         ) : null}
       </section>
+    );
+  }
+
+  private renderNotes(): React.ReactNode {
+    const { counter } = this.props;
+    if (!counter.notes) {
+      return null;
+    }
+
+    const { notes: NotesComponent } = counter;
+    return (
+      <div className="notes">
+        <NotesComponent />
+      </div>
     );
   }
 
