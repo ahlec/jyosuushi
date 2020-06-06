@@ -6695,6 +6695,11 @@ remark-react@^7.0.1:
     hast-util-sanitize "^2.0.0"
     mdast-util-to-hast "^8.0.0"
 
+remark-ruby@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/remark-ruby/-/remark-ruby-0.2.1.tgz#5a8d5e09b72c66a5de929ddb2e12e62bd71ab320"
+  integrity sha512-DFU49hoWmlOsm9rRaJtNnMgDHWQdwxcV1CEb1j4sIBMmBlrAJH3EGwtObffFWcOPImZW84hGl8ToSV0XJLqcAw==
+
 remark-stringify@^8.0.0:
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/remark-stringify/-/remark-stringify-8.0.0.tgz#33423ab8bf3076fb197f4cf582aaaf866b531625"

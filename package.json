@@ -49,6 +49,7 @@
     "remark-footnotes": "^1.0.0",
     "remark-parse": "^8.0.2",
     "remark-react": "^7.0.1",
+    "remark-ruby": "^0.2.1",
     "request": "^2.34",
     "rimraf": "^3.0.0",
     "sass-loader": "^8.0.0",
