@@ -10,6 +10,8 @@ import {
 } from "../src/interfaces";
 import * as DISAMBIGUATIONS from "./disambiguations";
 
+import 人Notes from "@data/counter-notes/人Notes";
+
 export const COUNTER_ヶ国: Counter = {
   counterId: "ヶ国",
   disambiguations: {},
@@ -129,7 +131,7 @@ export const COUNTER_人: Counter = {
     additionalKanji: [],
     primaryKanji: "人"
   },
-  notes: null,
+  notes: 人Notes,
   readings: [
     {
       counterId: "人",

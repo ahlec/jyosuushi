@@ -61,7 +61,19 @@ VALUES(
     '人',
     'people',
     'The ubiquitous counter for people and humanoids.',
-    NULL,
+    'As a noun, {人}^(ひと) is the Japanese word for "human." When used as a nominal suffix, **{人}^(にん)** will indicate the person who performs an action or is associated with some duty (for example, {商人}^(しょうにん) (shopkeeper) is a combination of {商}^(しょう) (store) and {人}^(にん)). Therefore, as a counter, this is _the_ literal counter for people; it is also the most commonly-used counter for people.
+
+Unfortunately, as one of the first counters learned by beginners, it''s also one of the first introductions to variations from the general pattern. {人}^(にん) uses {和語}^(わご) (native Japanese language) counting for both "one person" and "two people," and the counter (normally read as にん) is instead read as **たり**. Originally, 1-10 were all written with たり: みったり (3), よったり (4), いつたり (5), and so on.[^1] This lasted until the Meiji era,[^2] with many native Japanese recalling memories of their grandparents born in the Meiji era (1868-1912) using みったり and よったり, among other now-defunct {和語}^(わご) words.[^3] However, over time these native Japanese readings were replaced by their {漢語}^(かんご) (Chinese language) counterpart readings. Only ひとり and ふたり, which were both already so prevalent in the everyday Japanese, survived.
+
+To further confuse learners, "one person" is read as **ひとり** rather than the expected ひとたり. The root {和語}^(わご) counter here is still read as たり. However, when speaking it can be a tongue-twister to say ひとたり. The sounds were simply blended together in order to make it easier to say when speaking.[^4]
+
+{人}^(にん) is most often used for talking about humans. It _can_ also be used to count non-humans humanoids (such as angels or robots) or animals, with the intent of humanizing them (either out of respect or to highlight some human-like behaviour or appearance in the animal). Some people will count their pets with {人}^(にん), elevating them to be equal members of the family;[^5] likewise, researchers working with intelligent primates like gorillas will count them using {人}^(にん) to show respect. 
+
+[^1]: [人の数え方，「ひとり」「ふたり」の次は？／日本書紀より](http://www.kennya.jp/kotenn/hitono-kazoekat/): これが，奈良時代に完成した日本最古の勅撰の正史である『日本書紀』では，読み方が違うのです。
+[^2]: [津原 泰水](https://twitter.com/tsuharayasumi/status/1035012517615943680): 日本語に余りにも頻出するひとりふたりが残存したのみ。みたり、よたり（よったり）、いつたり（いったり）、むゆたり……で明治頃までは通じた。
+[^3]: [Reply to 津原 泰水](https://twitter.com/nemototakako/status/1035369345864663041): 祖母(明治45年生まれ)が三人、四人のことを「みったり」「よったり」と言っていました。
+[^4]: [Chiebukuro](https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q1493388379):「ひとり」が「とり」になるのを簡単に言えは言いにくいためからきた習慣。（一人はHITARIのAがOに変化、五人も「いつたり」でなく「いくたり」と変化しています。）
+[^5]: [矢吹町の公式サイト](http://www.town.yabuki.fukushima.jp/page/page003590.html): また、ペットの数え方ですが、ペットは、家族のように大切なことから「犬一匹」、「猫一匹」とは言わず、例えば年賀状などに「新しい家族が一人増えました」と、「人」を使い、人間と同じ扱いをしていることもある。同様に、チンパンジー・ゴリラでも、研究者たちは往々にして「彼」、「彼女」と表現し、人間同様に「一人、二人」と数えられている。',
     '人'
   );
 INSERT INTO
