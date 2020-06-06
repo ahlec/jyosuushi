@@ -15,6 +15,7 @@ import {
   DbCounterAlternativeKanji,
   DbWagoStyle
 } from "./schemas";
+import { analyzeText } from "./validation-utils";
 
 interface Reason {
   text: string;
@@ -127,6 +128,13 @@ function validateCounters(
   }
 
   for (const counter of snapshot.counters) {
+    if (!counter.lead_in) {
+      warnings.push({
+        entry: counter,
+        text: "Counter does not have lead-in text defined."
+      });
+    }
+
     if (!counter.notes) {
       warnings.push({
         entry: counter,
@@ -160,6 +168,33 @@ function validateCounters(
         text:
           "Counters without primary kanji must have no more than one reading."
       });
+    }
+
+    if (counter.lead_in !== null) {
+      const analysis = analyzeText(counter.lead_in);
+
+      if (analysis.numSentences > 2) {
+        errorReasons.push({
+          showsInAudit: true,
+          text: `Lead-in text should be no longer than two sentences. (Actually: ${analysis.numSentences} sentences)`
+        });
+      }
+
+      if (analysis.numWords < 4) {
+        errorReasons.push({
+          showsInAudit: true,
+          text: `Lead-in text should be short, but at least 4+ words. (Actually: ${
+            analysis.numWords
+          } ${analysis.numWords !== 1 ? "words" : "word"})`
+        });
+      }
+
+      if (analysis.numWords > 50) {
+        errorReasons.push({
+          showsInAudit: true,
+          text: `Lead-in text should be no longer than 50 words. (Actually: ${analysis.numWords} words)`
+        });
+      }
     }
 
     if (errorReasons.length) {

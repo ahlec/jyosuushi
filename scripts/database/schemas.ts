@@ -61,6 +61,7 @@ export interface DbCounterAlternativeKanji {
 export interface DbCounter {
   counter_id: string;
   english_name: string;
+  lead_in: string | null;
   notes: string | null;
   primary_kanji: string | null;
 }
