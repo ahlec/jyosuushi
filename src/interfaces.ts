@@ -114,6 +114,7 @@ export interface Counter {
   irregulars: { [amount: number]: ReadonlyArray<CounterIrregular> };
   kanji: CounterKanjiInfo | null;
   readings: ReadonlyArray<CounterReading>;
+  leadIn: string | null;
   notes: ComponentType<CounterNotesComponentProps> | null;
   externalLinks: ReadonlyArray<ExternalLink>;
   disambiguations: { [counterId: string]: CounterDisambiguation | undefined };

@@ -22,6 +22,7 @@ export const COUNTER_ヶ国: Counter = {
     additionalKanji: [],
     primaryKanji: "ヶ国"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -53,6 +54,7 @@ export const COUNTER_ヶ所: Counter = {
     additionalKanji: [],
     primaryKanji: "ヶ所"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -91,6 +93,7 @@ export const COUNTER_ヶ月: Counter = {
     additionalKanji: [],
     primaryKanji: "ヶ月"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -131,6 +134,7 @@ export const COUNTER_人: Counter = {
     additionalKanji: [],
     primaryKanji: "人"
   },
+  leadIn: "The ubiquitous counter for people and humanoids.",
   notes: 人Notes,
   readings: [
     {
@@ -168,6 +172,7 @@ export const COUNTER_件: Counter = {
     additionalKanji: [],
     primaryKanji: "件"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -199,6 +204,7 @@ export const COUNTER_円: Counter = {
     additionalKanji: [],
     primaryKanji: "円"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -237,6 +243,7 @@ export const COUNTER_冊: Counter = {
     additionalKanji: [],
     primaryKanji: "冊"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -275,6 +282,7 @@ export const COUNTER_分: Counter = {
     additionalKanji: [],
     primaryKanji: "分"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -306,6 +314,7 @@ export const COUNTER_切れ: Counter = {
     additionalKanji: [],
     primaryKanji: "切れ"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -344,6 +353,7 @@ export const COUNTER_匹: Counter = {
     additionalKanji: [],
     primaryKanji: "匹"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -375,6 +385,7 @@ export const COUNTER_口: Counter = {
     additionalKanji: [],
     primaryKanji: "口"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -413,6 +424,7 @@ export const COUNTER_台: Counter = {
     additionalKanji: [],
     primaryKanji: "台"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -453,6 +465,7 @@ export const COUNTER_名: Counter = {
     additionalKanji: [],
     primaryKanji: "名"
   },
+  leadIn: "A situational counter for people, used in formal scenarios.",
   notes: null,
   readings: [
     {
@@ -484,6 +497,7 @@ export const COUNTER_周: Counter = {
     additionalKanji: [],
     primaryKanji: "周"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -522,6 +536,7 @@ export const COUNTER_回: Counter = {
     additionalKanji: [],
     primaryKanji: "回"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -553,6 +568,7 @@ export const COUNTER_巻: Counter = {
     additionalKanji: [],
     primaryKanji: "巻"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -584,6 +600,7 @@ export const COUNTER_席: Counter = {
     additionalKanji: [],
     primaryKanji: "席"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -628,6 +645,7 @@ export const COUNTER_年: Counter = {
     additionalKanji: [],
     primaryKanji: "年"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -659,6 +677,7 @@ export const COUNTER_戦: Counter = {
     additionalKanji: [],
     primaryKanji: "戦"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -815,6 +834,7 @@ export const COUNTER_日: Counter = {
     additionalKanji: [],
     primaryKanji: "日"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -853,6 +873,7 @@ export const COUNTER_時: Counter = {
     additionalKanji: [],
     primaryKanji: "時"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -884,6 +905,7 @@ export const COUNTER_曲: Counter = {
     additionalKanji: [],
     primaryKanji: "曲"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -922,6 +944,7 @@ export const COUNTER_本: Counter = {
     additionalKanji: [],
     primaryKanji: "本"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -953,6 +976,7 @@ export const COUNTER_束: Counter = {
     additionalKanji: [],
     primaryKanji: "束"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -997,6 +1021,7 @@ export const COUNTER_枚: Counter = {
     additionalKanji: [],
     primaryKanji: "枚"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -1028,6 +1053,7 @@ export const COUNTER_校: Counter = {
     additionalKanji: [],
     primaryKanji: "校"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -1059,6 +1085,7 @@ export const COUNTER_歳: Counter = {
     additionalKanji: ["才"],
     primaryKanji: "歳"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -1090,6 +1117,7 @@ export const COUNTER_皿: Counter = {
     additionalKanji: [],
     primaryKanji: "皿"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -1127,6 +1155,7 @@ export const COUNTER_社: Counter = {
     additionalKanji: [],
     primaryKanji: "社"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -1158,6 +1187,7 @@ export const COUNTER_組: Counter = {
     additionalKanji: [],
     primaryKanji: "組"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -1189,6 +1219,7 @@ export const COUNTER_缶: Counter = {
     additionalKanji: [],
     primaryKanji: "缶"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -1233,6 +1264,7 @@ export const COUNTER_羽: Counter = {
     additionalKanji: [],
     primaryKanji: "羽"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -1264,6 +1296,7 @@ export const COUNTER_色: Counter = {
     additionalKanji: [],
     primaryKanji: "色"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -1295,6 +1328,7 @@ export const COUNTER_語: Counter = {
     additionalKanji: [],
     primaryKanji: "語"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -1326,6 +1360,7 @@ export const COUNTER_足: Counter = {
     additionalKanji: [],
     primaryKanji: "足"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -1357,6 +1392,7 @@ export const COUNTER_軒: Counter = {
     additionalKanji: [],
     primaryKanji: "軒"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -1388,6 +1424,7 @@ export const COUNTER_週: Counter = {
     additionalKanji: [],
     primaryKanji: "週"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -1426,6 +1463,7 @@ export const COUNTER_階: Counter = {
     additionalKanji: [],
     primaryKanji: "階"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -1464,6 +1502,7 @@ export const COUNTER_頭: Counter = {
     additionalKanji: [],
     primaryKanji: "頭"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {

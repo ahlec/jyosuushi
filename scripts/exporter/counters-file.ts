@@ -326,6 +326,7 @@ export default function writeCountersFile(
             alternativeKanjiLookup[dbCounter.counter_id] || []
           )
         : null,
+      leadIn: dbCounter.lead_in ? dbCounter.lead_in : null,
       notes: dbCounter.notes
         ? new ProductionVariable(
             getCounterNotesComponent(dbCounter.counter_id).componentName
