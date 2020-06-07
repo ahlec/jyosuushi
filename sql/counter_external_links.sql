@@ -170,7 +170,7 @@ VALUES(
     'https://www.tofugu.com/japanese/japanese-counter-nin/',
     'Tofugu',
     '人: Counting People and Smart Animals',
-    NULL
+    'Detailed and well-researched article from the kings of Japanese language learning.'
   );
 INSERT INTO
   "counter_external_links" (
@@ -246,5 +246,20 @@ VALUES(
     'Tofugu',
     '分: Counting Minutes and Edo Period Silver Currency',
     NULL
+  );
+INSERT INTO
+  "counter_external_links" (
+    counter_id,
+    url,
+    site_name,
+    link_text,
+    additional_description
+  )
+VALUES(
+    '人',
+    'https://kotobank.jp/word/%E4%BA%BA-536577',
+    'コトバンク',
+    '人（読み：ジン）',
+    'Japanese dictionary entries, compiled from multiple sources.'
   );
 COMMIT;

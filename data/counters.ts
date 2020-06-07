@@ -123,10 +123,18 @@ export const COUNTER_人: Counter = {
   englishName: "people",
   externalLinks: [
     {
-      additionalDescription: null,
+      additionalDescription:
+        "Detailed and well-researched article from the kings of Japanese language learning.",
       displayText: "人: Counting People and Smart Animals",
       siteName: "Tofugu",
       url: "https://www.tofugu.com/japanese/japanese-counter-nin/"
+    },
+    {
+      additionalDescription:
+        "Japanese dictionary entries, compiled from multiple sources.",
+      displayText: "人（読み：ジン）",
+      siteName: "コトバンク",
+      url: "https://kotobank.jp/word/%E4%BA%BA-536577"
     }
   ],
   irregulars: {},

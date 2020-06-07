@@ -19,6 +19,10 @@
     text-align: left;
     list-style: circle;
 
+    li + li {
+      margin-top: 5px;
+    }
+
     a {
       font-weight: normal;
       text-decoration: none;
@@ -27,6 +31,11 @@
         font-weight: bold;
         padding-right: 5px;
       }
+    }
+
+    .additional-description {
+      font-size: 75%;
+      margin-top: 3px;
     }
   }
 }
