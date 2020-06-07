@@ -1,10 +1,11 @@
 @import "../../../../palette.scss";
 
 .InfoSection {
-  div.notes {
+  .notes {
     margin: 25px;
     color: $black-lightest;
-    font-size: 18px;
+    font-size: 15px;
+    text-align: left;
   }
 
   h6 {

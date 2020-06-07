@@ -3,6 +3,8 @@ import * as React from "react";
 import { Counter, ExternalLink } from "@jyosuushi/interfaces";
 import Localization from "@jyosuushi/localization";
 
+import MarkdownPresenter from "./MarkdownPresenter";
+
 import "./InfoSection.scss";
 
 interface ComponentProps {
@@ -24,7 +26,9 @@ export default class InfoSection extends React.PureComponent<ComponentProps> {
 
     return (
       <section className="InfoSection">
-        {this.renderNotes()}
+        {counter.notes && (
+          <MarkdownPresenter component={counter.notes} className="notes" />
+        )}
         {counter.externalLinks.length ? (
           <React.Fragment>
             <h6>
@@ -38,20 +42,6 @@ export default class InfoSection extends React.PureComponent<ComponentProps> {
           </React.Fragment>
         ) : null}
       </section>
-    );
-  }
-
-  private renderNotes(): React.ReactNode {
-    const { counter } = this.props;
-    if (!counter.notes) {
-      return null;
-    }
-
-    const { notes: NotesComponent } = counter;
-    return (
-      <div className="notes">
-        <NotesComponent />
-      </div>
     );
   }
 
