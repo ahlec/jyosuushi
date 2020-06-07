@@ -118,7 +118,8 @@ export const COUNTER_ヶ月: Counter = {
 export const COUNTER_人: Counter = {
   counterId: "人",
   disambiguations: {
-    名: DISAMBIGUATIONS.DISAMBIGUATION_人名
+    名: DISAMBIGUATIONS.DISAMBIGUATION_人名,
+    匹: DISAMBIGUATIONS.DISAMBIGUATION_人匹
   },
   englishName: "people",
   externalLinks: [
@@ -346,7 +347,9 @@ export const COUNTER_切れ: Counter = {
 
 export const COUNTER_匹: Counter = {
   counterId: "匹",
-  disambiguations: {},
+  disambiguations: {
+    人: DISAMBIGUATIONS.DISAMBIGUATION_人匹
+  },
   englishName: "small animals",
   externalLinks: [
     {

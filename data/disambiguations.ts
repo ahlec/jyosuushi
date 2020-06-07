@@ -10,3 +10,10 @@ export const DISAMBIGUATION_人名: CounterDisambiguation = {
   disambiguation:
     "人 is much more commonly used in daily conversation. 名 is more polite than 人 and so is used in formal situations."
 };
+
+export const DISAMBIGUATION_人匹: CounterDisambiguation = {
+  counter1Id: "人",
+  counter2Id: "匹",
+  disambiguation:
+    "While 人 is the counter for humans and 匹 is the counter for animals, the line can sometimes be blurred. Non-human animals can be counted with 人, either out of respect or love; using 人 to count an animal will humanize the animal. Conversely, humans can be counted with 匹 to emphasize animalistic behaviour; a woman counted with 匹 would carry the nuance of being more beast than man."
+};

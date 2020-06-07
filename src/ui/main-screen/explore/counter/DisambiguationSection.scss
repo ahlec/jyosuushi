@@ -4,18 +4,32 @@
   .disambiguation {
     display: flex;
 
-    .counter {
-      display: block;
-      font-size: 48px;
-      padding: 17px;
-      border: 8px solid $pink-light;
-      border-radius: 100%;
-      text-decoration: none;
+    .counterContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-right: 10px;
+
+      .counter {
+        display: block;
+        font-size: 48px;
+        padding: 17px;
+        border: 8px solid $pink-light;
+        border-radius: 100%;
+        text-decoration: none;
+      }
     }
 
     .distinction {
       display: flex;
       align-items: center;
+      line-height: 1.35;
+      font-size: 90%;
     }
+  }
+
+  .disambiguation + .disambiguation {
+    margin-top: 20px;
   }
 }
