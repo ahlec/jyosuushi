@@ -472,4 +472,7 @@ VALUES('bundle of green onions', '束', 'best');
 INSERT INTO
   "item_counters" (item_id, counter_id, relevance)
 VALUES('sutra', '巻', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('fire extinguisher', '本', NULL);
 COMMIT;

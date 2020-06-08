@@ -11,6 +11,7 @@ import {
 import * as DISAMBIGUATIONS from "./disambiguations";
 
 import 人Notes from "@data/counter-notes/人Notes";
+import 本Notes from "@data/counter-notes/本Notes";
 
 export const COUNTER_ヶ国: Counter = {
   counterId: "ヶ国",
@@ -940,14 +941,24 @@ export const COUNTER_曲: Counter = {
 
 export const COUNTER_本: Counter = {
   counterId: "本",
-  disambiguations: {},
+  disambiguations: {
+    缶: DISAMBIGUATIONS.DISAMBIGUATION_本缶
+  },
   englishName: "long, thin objects",
   externalLinks: [
     {
-      additionalDescription: null,
+      additionalDescription:
+        "Detailed and well-researched article from the kings of Japanese language learning.",
       displayText: "本: Counting Long, Skinny Things",
       siteName: "Tofugu",
       url: "https://www.tofugu.com/japanese/japanese-counter-hon/"
+    },
+    {
+      additionalDescription:
+        "Japanese dictionary entries, compiled from multiple sources.",
+      displayText: "本（読み：ホン）",
+      siteName: "コトバンク",
+      url: "https://kotobank.jp/word/%E6%9C%AC-631932"
     }
   ],
   irregulars: {},
@@ -955,8 +966,9 @@ export const COUNTER_本: Counter = {
     additionalKanji: [],
     primaryKanji: "本"
   },
-  leadIn: null,
-  notes: null,
+  leadIn:
+    "A highly versatile counter used primarily to count long, thin (usually cylindrical) objects.",
+  notes: 本Notes,
   readings: [
     {
       counterId: "本",
@@ -1222,7 +1234,9 @@ export const COUNTER_組: Counter = {
 
 export const COUNTER_缶: Counter = {
   counterId: "缶",
-  disambiguations: {},
+  disambiguations: {
+    本: DISAMBIGUATIONS.DISAMBIGUATION_本缶
+  },
   englishName: "cans",
   externalLinks: [],
   irregulars: {},

@@ -20,7 +20,7 @@ VALUES(
     'https://www.tofugu.com/japanese/japanese-counter-hon/',
     'Tofugu',
     '本: Counting Long, Skinny Things',
-    NULL
+    'Detailed and well-researched article from the kings of Japanese language learning.'
   );
 INSERT INTO
   "counter_external_links" (
@@ -260,6 +260,21 @@ VALUES(
     'https://kotobank.jp/word/%E4%BA%BA-536577',
     'コトバンク',
     '人（読み：ジン）',
+    'Japanese dictionary entries, compiled from multiple sources.'
+  );
+INSERT INTO
+  "counter_external_links" (
+    counter_id,
+    url,
+    site_name,
+    link_text,
+    additional_description
+  )
+VALUES(
+    '本',
+    'https://kotobank.jp/word/%E6%9C%AC-631932',
+    'コトバンク',
+    '本（読み：ホン）',
     'Japanese dictionary entries, compiled from multiple sources.'
   );
 COMMIT;

@@ -24,7 +24,30 @@ INSERT INTO
     notes,
     primary_kanji
   )
-VALUES('本', 'long, thin objects', NULL, NULL, '本');
+VALUES(
+    '本',
+    'long, thin objects',
+    'A highly versatile counter used primarily to count long, thin (usually cylindrical) objects.',
+    '{本}^(ほん) is a highly versatile character that assumes many meanings. Most commonly used as a noun, it is the most basic and common word for "book." Additionally, {本}^(ほん) can also mean "origin" ; the most noteworthy example of which is {日本}^(にほん), the name for Japan itself, which was given the kanji due to sitting to the east of China and therefore being the "land of the sun''s origin" each morning). And finally, as a noun {本}^(ほん) can mean "real" or "true," which is why you will find it used in words like {本当}^(ほんとう) ("truth") or {本物}^(ほんもの) ("genuine article"). As a prefix to a noun, it can be used in a "speak-of-the-devil" way, applied to the thing you were just talking about (for example, {本人}^(ほんにん) means "the person in question," or the person we were talking about); it can also be used as a prefix to indicate "today" in the same meaning as {本日}^(ほんじつ), to qualify that the noun (such as a time of day) was today.
+
+{本}^(ほん) similarly has a number of usages as a counter, but the most important thing to get out of the way is: **{本}^(ほん) as a counter is not used to count any of the things that {本}^(ほん) as a noun describes.** As a counter, {本}^(ほん) is most usually used to count long, thin (usually cylindrical) objects. Beyond that, dictionaries will list other, localized usages:
+* It can be used to count movie reels and cassette tapes;
+* In judo and kendo, it is used to count to count points;
+* In falconry (falcon hunting), it is used to count falcons.
+
+The most common items for this counter are long, skinny objects. These can be in many forms: bottles, pens, trees, walking canes, architectural columns, kitchen knives. Buildings counted with {本}^(ほん) highlight the fact that the building would be considerably taller than it is wide. Rivers, being by their nature significantly longer in length than they are in width, will usually be counted with {本}^(ほん). The magic ratio is that objects whose length is twice its width or more (1:2, width-to-length) will usually be counted with {本}^(ほん), while objects with a smaller ratio will be counted with other counters.[^1]
+
+So, why are books counted with <counter:冊> instead of {本}^(ほん)? In pre-modern Japan before the invention of paper, writing was done on thin boards of wood or bamboo that were bound together with cord.[^2] Books made in this traditional style of Japanese bookbinding were known as {冊子}^(さっし); the legacy of this is seen today by the continued counting of all books (regardless of style) using <counter:冊>. The meaning of "book" was a much later association with {本}^(ほん). So, how _did_ {本}^(ほん) come to mean "book," then? Before the printing press, books were produced by copying them by hand. When copying by hand, the source materials that were being reproduced were referred to as {本}^(もと) (lit. origin, source).[^3] Over time, this generalization that the character 本 referred to documents or books became widespread and the character adopted a new meaning.
+
+While {本}^(ほん) uses only {漢語}^(かんご) (Chinese-style) readings for the numbers, you''ll need to be careful as certain number-counter combinations contain sound changes; 「ほ」 will become 「ぼ」 or even 「ぽ」 depending on the number affixed to it. Luckily, this pattern of sound change is seen with many other counters as well, and once learned, the pattern can be expected. See the chart below for details.
+
+The central feature to {本}^(ほん) as a counter is the image of something long and skinny. This provides a specific image to listeners when it is used. For example, buildings can be counted with a number of other counters, such as <counter:軒>; by choosing to refer to buildings with {本}^(ほん), you paint a picture of the building being quite tall, or very narrow. Similarly, choosing to _not_ use {本}^(ほん) to count items typically counted with {本}^(ほん) can carry meaning. By counting pencils with <counter:個>, you are describing pencils which are very short or _very_ thick.
+
+[^1]: 「数え方の辞典」飯田 朝子　（出版：小学館）
+[^2]: [Chiebukuro](https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q108182870): 昔、まだ紙が発明されていなかった頃は、人々は木や竹を細長い板状（冊、さく）にして、それに字を書いて、ヒモで編んで書物にしたよ。その、「冊」から来た数え方だよ。
+[^3]: [出版 TIMES](https://kagiroi.com/publishing-times/7464/): 印刷技術が発達する以前、経典など貴重な書籍・書物は、すべて手で「書写」され、複製していました。その **「書写」のときに、「お手本」になるものを「もと（本）」と呼び**、その流れで「本」＝「書籍、書物」という概念が一般化したようです。',
+    '本'
+  );
 INSERT INTO
   "counters" (
     counter_id,
