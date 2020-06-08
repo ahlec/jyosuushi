@@ -7,7 +7,13 @@ export default function writeCounterNotesComponentFile(
   componentName: string,
   markdown: string
 ): void {
+  const convertedJsx = convertMarkdownToJSX(markdown);
+
   stream.write('import * as React from "react";\n');
+  if (convertedJsx.requiresReactRouterLink) {
+    stream.write('import { Link } from "react-router-dom";\n');
+  }
+
   stream.write(
     'import { CounterNotesComponentProps } from "@jyosuushi/interfaces";\n'
   );
@@ -17,7 +23,7 @@ export default function writeCounterNotesComponentFile(
     `class ${componentName} extends React.PureComponent<CounterNotesComponentProps> {\n`
   );
   stream.write("  public render(): React.ReactNode {\n");
-  stream.write(`    return (${convertMarkdownToJSX(markdown)});`);
+  stream.write(`    return (${convertedJsx.jsx});`);
   stream.write("  }\n");
   stream.write("}\n");
   stream.write("\n");

@@ -1,13 +1,21 @@
 import { Processor } from "unified";
 import { Node } from "unist";
+import { VFile } from "vfile";
 import toH, { Properties } from "hast-to-hyperscript";
 import toHast from "mdast-util-to-hast";
 
+import { INTRASITE_LINK_HAST_NODE_NAME } from "./intrasite-link-plugin";
+
 interface JSXRepresentation {
   childrenJsx: string;
+  containsIntrasiteLink: boolean;
   jsx: string;
   numChildNodes: number;
   tag: string;
+}
+
+export interface JsxCompilerVFileData {
+  usesReactRouterLink: boolean;
 }
 
 function isIndexableObject(obj: unknown): obj is { [index: string]: unknown } {
@@ -34,6 +42,14 @@ function getChildAsJsx(child: unknown): string | null {
   throw new Error("Unexpected child encountered.");
 }
 
+function doesChildContainIntrasiteLink(child: unknown): boolean {
+  if (!isJsxRepresentation(child)) {
+    return false;
+  }
+
+  return child.containsIntrasiteLink;
+}
+
 function isNotNull<T>(val: T | null): val is T {
   return val !== null;
 }
@@ -43,7 +59,23 @@ function h(
   props: Properties | undefined,
   children: readonly unknown[] | undefined
 ): JSXRepresentation {
-  const openingTagPieces: string[] = [name];
+  let jsxTag: string;
+  let isIntrasiteLink: boolean;
+  switch (name) {
+    case INTRASITE_LINK_HAST_NODE_NAME: {
+      jsxTag = "Link";
+      isIntrasiteLink = true;
+      break;
+    }
+    default: {
+      jsxTag = name;
+      isIntrasiteLink = false;
+      break;
+    }
+  }
+
+  const openingTagPieces: string[] = [jsxTag];
+
   if (props) {
     if (props.id) {
       openingTagPieces.push(`id="${props["id"]}"`);
@@ -61,41 +93,57 @@ function h(
         openingTagPieces.push('rel="noopener noreferrer"');
       }
     }
+
+    if (props.to) {
+      openingTagPieces.push(`to="${props.to}"`);
+    }
   }
 
   let jsxChildren: string;
   let numChildNodes: number;
+  let childContainsIntrasiteLink: boolean;
   if (children) {
     const consolidatedChildren = children.map(getChildAsJsx).filter(isNotNull);
     jsxChildren = consolidatedChildren.join("");
     numChildNodes = consolidatedChildren.length;
+    childContainsIntrasiteLink = children.some(doesChildContainIntrasiteLink);
   } else {
     jsxChildren = "";
     numChildNodes = 0;
+    childContainsIntrasiteLink = false;
   }
+
+  const containsIntrasiteLink = isIntrasiteLink || childContainsIntrasiteLink;
 
   const openingTag = openingTagPieces.join(" ");
   if (!jsxChildren) {
     return {
       childrenJsx: "",
+      containsIntrasiteLink,
       jsx: `<${openingTag} />`,
       numChildNodes: 0,
-      tag: name
+      tag: jsxTag
     };
   }
 
   return {
     childrenJsx: jsxChildren,
-    jsx: `<${openingTag}>${jsxChildren}</${name}>`,
+    containsIntrasiteLink,
+    jsx: `<${openingTag}>${jsxChildren}</${jsxTag}>`,
     numChildNodes,
-    tag: name
+    tag: jsxTag
   };
 }
 
 function jsxCompiler(this: Processor<unknown>): void {
-  this.Compiler = function compile(node: Node): string {
+  this.Compiler = function compile(node: Node, file: VFile): string {
     const tree = toHast(node);
     const root = toH(h, tree);
+
+    const data: JsxCompilerVFileData = {
+      usesReactRouterLink: root.containsIntrasiteLink
+    };
+    file.data = data;
 
     if (root.tag === "div") {
       if (root.numChildNodes <= 1) {
@@ -107,6 +155,18 @@ function jsxCompiler(this: Processor<unknown>): void {
 
     return root.jsx;
   };
+}
+
+export function assertJsxCompilerVFileData(
+  data: unknown
+): asserts data is JsxCompilerVFileData {
+  if (!isIndexableObject(data)) {
+    throw new Error("Data must be an indexable object!");
+  }
+
+  if (typeof data["usesReactRouterLink"] !== "boolean") {
+    throw new Error("Data must have the 'usesReactRouterLink' boolean on it.");
+  }
 }
 
 export default jsxCompiler;

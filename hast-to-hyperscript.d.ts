@@ -4,6 +4,8 @@ export interface Properties {
   ["class"]?: string;
   id?: string;
   href?: string;
+
+  to?: string;
 }
 
 export default function toH<T>(
