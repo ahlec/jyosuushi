@@ -15,7 +15,7 @@
     font-style: italic;
   }
 
-  p + p {
+  > * + * {
     margin-top: 20px;
   }
 
@@ -28,13 +28,21 @@
     }
   }
 
+  ol,
+  ul {
+    padding-left: 2em;
+    line-height: 1.5;
+  }
+
+  ul {
+    list-style: disc;
+  }
+
+  ol {
+    list-style: decimal;
+  }
+
   div.footnotes {
     font-size: 70%;
-
-    ol {
-      padding-left: 2em;
-      line-height: 1.5;
-      list-style: decimal;
-    }
   }
 }
