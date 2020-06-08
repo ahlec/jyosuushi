@@ -6,6 +6,7 @@ import {
   Counter,
   CounterIrregularType,
   CountingSystem,
+  ExternalLinkLanguage,
   WordOrigin
 } from "../src/interfaces";
 import * as DISAMBIGUATIONS from "./disambiguations";
@@ -85,6 +86,7 @@ export const COUNTER_ヶ月: Counter = {
     {
       additionalDescription: null,
       displayText: "月: Counting Months",
+      language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
       url: "https://www.tofugu.com/japanese/japanese-counter-tsuki-gatsu-getsu/"
     }
@@ -128,6 +130,7 @@ export const COUNTER_人: Counter = {
       additionalDescription:
         "Detailed and well-researched article from the kings of Japanese language learning.",
       displayText: "人: Counting People and Smart Animals",
+      language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
       url: "https://www.tofugu.com/japanese/japanese-counter-nin/"
     },
@@ -135,6 +138,7 @@ export const COUNTER_人: Counter = {
       additionalDescription:
         "Japanese dictionary entries, compiled from multiple sources.",
       displayText: "人（読み：ジン）",
+      language: ExternalLinkLanguage.Japanese,
       siteName: "コトバンク",
       url: "https://kotobank.jp/word/%E4%BA%BA-536577"
     }
@@ -244,6 +248,7 @@ export const COUNTER_冊: Counter = {
     {
       additionalDescription: null,
       displayText: "冊: Counting Books",
+      language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
       url: "https://www.tofugu.com/japanese/japanese-counter-satsu/"
     }
@@ -283,6 +288,7 @@ export const COUNTER_分: Counter = {
     {
       additionalDescription: null,
       displayText: "分: Counting Minutes and Edo Period Silver Currency",
+      language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
       url: "https://www.tofugu.com/japanese/japanese-counter-fun/"
     }
@@ -356,6 +362,7 @@ export const COUNTER_匹: Counter = {
     {
       additionalDescription: null,
       displayText: "匹: Counting Animals, Bugs, and Wild Children",
+      language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
       url: "https://www.tofugu.com/japanese/japanese-counter-hiki/"
     }
@@ -427,6 +434,7 @@ export const COUNTER_台: Counter = {
     {
       additionalDescription: null,
       displayText: "台: Counting Machines, Furniture, & Whole Cakes",
+      language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
       url: "https://www.tofugu.com/japanese/japanese-counter-dai/"
     }
@@ -468,6 +476,7 @@ export const COUNTER_名: Counter = {
     {
       additionalDescription: null,
       displayText: "人: Counting People and Smart Animals",
+      language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
       url: "https://www.tofugu.com/japanese/japanese-counter-nin/"
     }
@@ -539,6 +548,7 @@ export const COUNTER_回: Counter = {
     {
       additionalDescription: null,
       displayText: "回: Repetitive Actions, Regular Events",
+      language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
       url: "https://www.tofugu.com/japanese/japanese-counter-kai-times/"
     }
@@ -648,6 +658,7 @@ export const COUNTER_年: Counter = {
     {
       additionalDescription: null,
       displayText: "年: Counting Years and Planetary Orbits",
+      language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
       url: "https://www.tofugu.com/japanese/japanese-counters-nen/"
     }
@@ -719,6 +730,7 @@ export const COUNTER_日: Counter = {
     {
       additionalDescription: null,
       displayText: "日: Counting Days",
+      language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
       url: "https://www.tofugu.com/japanese/japanese-counter-ka-nichi/"
     }
@@ -876,6 +888,7 @@ export const COUNTER_時: Counter = {
     {
       additionalDescription: null,
       displayText: "時/時間: Counting Time and Hours",
+      language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
       url: "https://www.tofugu.com/japanese/japanese-counter-ji-jikan/"
     }
@@ -950,6 +963,7 @@ export const COUNTER_本: Counter = {
       additionalDescription:
         "Detailed and well-researched article from the kings of Japanese language learning.",
       displayText: "本: Counting Long, Skinny Things",
+      language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
       url: "https://www.tofugu.com/japanese/japanese-counter-hon/"
     },
@@ -957,6 +971,7 @@ export const COUNTER_本: Counter = {
       additionalDescription:
         "Japanese dictionary entries, compiled from multiple sources.",
       displayText: "本（読み：ホン）",
+      language: ExternalLinkLanguage.Japanese,
       siteName: "コトバンク",
       url: "https://kotobank.jp/word/%E6%9C%AC-631932"
     }
@@ -1035,6 +1050,7 @@ export const COUNTER_枚: Counter = {
     {
       additionalDescription: null,
       displayText: "枚: Counting Everything Flat",
+      language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
       url: "https://www.tofugu.com/japanese/japanese-counter-mai/"
     }
@@ -1280,6 +1296,7 @@ export const COUNTER_羽: Counter = {
     {
       additionalDescription: null,
       displayText: "羽: Counting Birds, Bats, and Bun-Buns",
+      language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
       url: "https://www.tofugu.com/japanese/japanese-counter-wa/"
     }
@@ -1479,6 +1496,7 @@ export const COUNTER_階: Counter = {
     {
       additionalDescription: null,
       displayText: "階: Floors of a Building",
+      language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
       url: "https://www.tofugu.com/japanese/japanese-counter-kai-floors/"
     }
@@ -1518,6 +1536,7 @@ export const COUNTER_頭: Counter = {
     {
       additionalDescription: null,
       displayText: "頭: Counting Those Big, Professional Animals",
+      language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
       url: "https://www.tofugu.com/japanese/japanese-counter-tou/"
     }

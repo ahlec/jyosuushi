@@ -9,7 +9,8 @@ import {
   DbCounterAlternativeKanji,
   DbWagoStyle,
   DbCounterIrregular,
-  DbIrregularType
+  DbIrregularType,
+  DbExternalLinkLanguage
 } from "../database/schemas";
 import ValidatedDataSource from "../database/ValidatedDataSource";
 
@@ -43,11 +44,16 @@ type ProtoCounterIrregular = Omit<
   type: ProductionVariable;
 };
 
+type ProtoExternalLink = Omit<ExternalLink, "language"> & {
+  language: ProductionVariable;
+};
+
 type ProtoCounter = Omit<
   Counter,
-  "disambiguations" | "irregulars" | "notes" | "readings"
+  "disambiguations" | "externalLinks" | "irregulars" | "notes" | "readings"
 > & {
   disambiguations: { [counterId: string]: ProductionVariable };
+  externalLinks: ReadonlyArray<ProtoExternalLink>;
   irregulars: {
     [amount: number]: ReadonlyArray<ProtoCounterIrregular> | undefined;
   };
@@ -57,12 +63,27 @@ type ProtoCounter = Omit<
 
 function convertToProductionExternalLink(
   db: DbCounterExternalLink
-): ExternalLink {
+): ProtoExternalLink {
+  let externalLinkLanguageEnumField: string;
+  switch (db.language) {
+    case DbExternalLinkLanguage.English: {
+      externalLinkLanguageEnumField = "English";
+      break;
+    }
+    case DbExternalLinkLanguage.Japanese: {
+      externalLinkLanguageEnumField = "Japanese";
+      break;
+    }
+  }
+
   return {
     additionalDescription: db.additional_description
       ? db.additional_description
       : null,
     displayText: db.link_text,
+    language: new ProductionVariable(
+      `ExternalLinkLanguage.${externalLinkLanguageEnumField}`
+    ),
     siteName: db.site_name,
     url: db.url
   };
@@ -214,7 +235,7 @@ export default function writeCountersFile(
   dataSource: ValidatedDataSource
 ): void {
   stream.write(
-    'import { Counter, CounterIrregularType, CountingSystem, WordOrigin } from "../src/interfaces";\n'
+    'import { Counter, CounterIrregularType, CountingSystem, ExternalLinkLanguage, WordOrigin } from "../src/interfaces";\n'
   );
   stream.write('import * as DISAMBIGUATIONS from "./disambiguations";');
 

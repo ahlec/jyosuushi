@@ -1,11 +1,17 @@
 import { ComponentType } from "react";
 import { KangoConjugationOptions } from "./japanese/interfaces";
 
+export enum ExternalLinkLanguage {
+  Japanese = "japanese",
+  English = "english"
+}
+
 export interface ExternalLink {
   url: string;
   displayText: string;
   additionalDescription: string | null;
   siteName: string;
+  language: ExternalLinkLanguage;
 }
 
 export interface CounterDisambiguation {
