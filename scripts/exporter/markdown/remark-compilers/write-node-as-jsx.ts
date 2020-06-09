@@ -36,6 +36,22 @@ export interface WriteNodeAsJsxOptions {
   footnoteLocalToGlobalMap: { [localRefId: string]: number | undefined };
 }
 
+function convertLocalFootnoteIdentifierToGlobal(
+  identifierStr: string,
+  options: WriteNodeAsJsxOptions
+): string {
+  const localRefIdIndex = identifierStr.indexOf("-") + 1;
+  const localRefId = identifierStr.substr(localRefIdIndex);
+  const globalRefId = options.footnoteLocalToGlobalMap[localRefId];
+  if (typeof globalRefId !== "number") {
+    throw new Error(
+      `Could not find globalRefId for localRefId '${localRefId}'`
+    );
+  }
+
+  return `${identifierStr.substring(0, localRefIdIndex)}${globalRefId}`;
+}
+
 function writeNodeAsJsx(
   name: string,
   props: Properties | undefined,
@@ -61,7 +77,14 @@ function writeNodeAsJsx(
 
   if (props) {
     if (props.id) {
-      openingTagPieces.push(`id="${props["id"]}"`);
+      let id: string;
+      if (props.id.startsWith("fn-") || props.id.startsWith("fnref-")) {
+        id = convertLocalFootnoteIdentifierToGlobal(props.id, options);
+      } else {
+        id = props.id;
+      }
+
+      openingTagPieces.push(`id="${id}"`);
     }
 
     if (props["class"]) {
@@ -71,16 +94,7 @@ function writeNodeAsJsx(
     if (props.href) {
       let href: string;
       if (props.href.startsWith("#fnref-") || props.href.startsWith("#fn-")) {
-        const localRefIdIndex = props.href.indexOf("-") + 1;
-        const localRefId = props.href.substr(localRefIdIndex);
-        const globalRefId = options.footnoteLocalToGlobalMap[localRefId];
-        if (typeof globalRefId !== "number") {
-          throw new Error(
-            `Could not find globalRefId for localRefId '${localRefId}'`
-          );
-        }
-
-        href = `${props.href.substring(0, localRefIdIndex)}${globalRefId}`;
+        href = convertLocalFootnoteIdentifierToGlobal(props.href, options);
       } else {
         href = props.href;
       }
