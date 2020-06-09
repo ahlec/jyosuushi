@@ -3,6 +3,8 @@ import * as React from "react";
 import { Counter, ExternalLink } from "@jyosuushi/interfaces";
 import Localization from "@jyosuushi/localization";
 
+import MarkdownPresenter from "./MarkdownPresenter";
+
 import "./InfoSection.scss";
 
 interface ComponentProps {
@@ -25,10 +27,7 @@ export default class InfoSection extends React.PureComponent<ComponentProps> {
     return (
       <section className="InfoSection">
         {counter.notes && (
-          <p
-            className="notes"
-            dangerouslySetInnerHTML={{ __html: counter.notes }}
-          />
+          <MarkdownPresenter component={counter.notes} className="notes" />
         )}
         {counter.externalLinks.length ? (
           <React.Fragment>
@@ -53,6 +52,11 @@ export default class InfoSection extends React.PureComponent<ComponentProps> {
           <strong className="site">[{link.siteName}]</strong>
           {link.displayText}
         </a>
+        {link.additionalDescription && (
+          <div className="additional-description">
+            {link.additionalDescription}
+          </div>
+        )}
       </li>
     );
   };

@@ -708,6 +708,20 @@ const ITEM_FILET: Item = {
   minQuantity: 1
 };
 
+const ITEM_FIRE_EXTINGUISHER: Item = {
+  counters: [
+    {
+      counterId: "本",
+      relevance: CounterItemRelevance.Unknown
+    }
+  ],
+  englishPlural: "fire extinguishers",
+  englishSingular: "fire extinguisher",
+  itemId: "fire extinguisher",
+  maxQuantity: 100,
+  minQuantity: 1
+};
+
 const ITEM_FLOOR_BUILDING_: Item = {
   counters: [
     {
@@ -2111,6 +2125,7 @@ export const ITEMS_LOOKUP: { [itemId: string]: Item } = {
   elephant: ITEM_ELEPHANT,
   "empty can": ITEM_EMPTY_CAN,
   filet: ITEM_FILET,
+  "fire extinguisher": ITEM_FIRE_EXTINGUISHER,
   "floor (building)": ITEM_FLOOR_BUILDING_,
   "fur pelt": ITEM_FUR_PELT,
   gorilla: ITEM_GORILLA,
@@ -2269,7 +2284,8 @@ export const ITEMS_FROM_COUNTER: {
     ITEM_PEN,
     ITEM_LINE,
     ITEM_STREET,
-    ITEM_STRAW
+    ITEM_STRAW,
+    ITEM_FIRE_EXTINGUISHER
   ],
   束: [ITEM_BUNDLE_OF_WOOD, ITEM_BUNDLE_OF_GREEN_ONIONS],
   枚: [

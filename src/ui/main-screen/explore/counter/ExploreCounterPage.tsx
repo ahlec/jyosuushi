@@ -60,6 +60,7 @@ class ExploreCounterPage extends React.PureComponent<ComponentProps> {
           <div className="kanji">
             {getPrimaryJapaneseRepresentation(counter)}
           </div>
+          {counter.leadIn && <div className="leadIn">{counter.leadIn}</div>}
           {hasInfoSectionContents(counter) && (
             <SectionContainer header={localization.counterPageHeaderInfo}>
               <InfoSection counter={counter} localization={localization} />

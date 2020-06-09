@@ -1,0 +1,48 @@
+.MarkdownPresenter {
+  p {
+    line-height: 2;
+  }
+
+  rt {
+    transform: scale(1.4);
+  }
+
+  strong {
+    font-weight: bold;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  > * + * {
+    margin-top: 20px;
+  }
+
+  sup {
+    vertical-align: super;
+    font-size: 60%;
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+  ol,
+  ul {
+    padding-left: 2em;
+    line-height: 1.5;
+  }
+
+  ul {
+    list-style: disc;
+  }
+
+  ol {
+    list-style: decimal;
+  }
+
+  div.footnotes {
+    font-size: 70%;
+  }
+}

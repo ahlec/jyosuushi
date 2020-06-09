@@ -1,12 +1,19 @@
 export type DbBoolean = 0 | 1;
+
 export enum DbIrregularType {
   ArbitraryReading = "arbitrary-reading",
   StandardWagoRangeSoundChange = "standard-wago-range-sound-change"
 }
+
 export enum DbWordOrigin {
   Japanese = "和語",
   Chinese = "漢語",
   Foreign = "外来語"
+}
+
+export enum DbExternalLinkLanguage {
+  Japanese = "japanese",
+  English = "english"
 }
 
 export interface DbCounterAdditionalReading {
@@ -27,6 +34,7 @@ export interface DbCounterExternalLink {
   site_name: string;
   link_text: string;
   additional_description: string | null;
+  language: DbExternalLinkLanguage;
 }
 
 export interface DbCounterIrregular {
@@ -61,6 +69,7 @@ export interface DbCounterAlternativeKanji {
 export interface DbCounter {
   counter_id: string;
   english_name: string;
+  lead_in: string | null;
   notes: string | null;
   primary_kanji: string | null;
 }
@@ -71,6 +80,10 @@ export interface DbEnumWordOrigin {
 
 export interface DbEnumIrregularType {
   irregular_type: string;
+}
+
+export interface DbEnumExternalLinkLanguage {
+  language: string;
 }
 
 export interface DbItemCounter {
@@ -123,6 +136,7 @@ export enum Schemas {
 }
 
 export enum EnumSchemas {
+  EnumExternalLinkLanguage = "enum_external_link_language",
   EnumIrregularType = "enum_irregular_type",
   EnumWordOrigin = "enum_word_origin"
 }
@@ -135,6 +149,7 @@ export interface SchemaEntryTypes {
   [Schemas.CounterAlternativeKanji]: DbCounterAlternativeKanji;
   [Schemas.CounterReadings]: DbCounterReading;
   [Schemas.Counters]: DbCounter;
+  [EnumSchemas.EnumExternalLinkLanguage]: DbEnumExternalLinkLanguage;
   [EnumSchemas.EnumIrregularType]: DbEnumIrregularType;
   [EnumSchemas.EnumWordOrigin]: DbEnumWordOrigin;
   [Schemas.ItemCounters]: DbItemCounter;

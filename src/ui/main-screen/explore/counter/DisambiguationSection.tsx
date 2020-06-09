@@ -69,9 +69,11 @@ export default class DisambiguationSection extends React.PureComponent<
   }: Disambiguation): React.ReactNode => {
     return (
       <div key={otherCounter.counterId} className="disambiguation">
-        <Link className="counter" to={getCounterLink(otherCounter)}>
-          {getPrimaryJapaneseRepresentation(otherCounter)}
-        </Link>
+        <div className="counterContainer">
+          <Link className="counter" to={getCounterLink(otherCounter)}>
+            {getPrimaryJapaneseRepresentation(otherCounter)}
+          </Link>
+        </div>
         <div className="distinction">{distinction}</div>
       </div>
     );

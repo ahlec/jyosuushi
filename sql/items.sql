@@ -2611,4 +2611,23 @@ VALUES(
     NULL,
     NULL
   );
+INSERT INTO
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'fire extinguisher',
+    'fire extinguisher',
+    'fire extinguishers',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
 COMMIT;

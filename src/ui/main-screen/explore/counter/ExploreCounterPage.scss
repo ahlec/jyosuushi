@@ -16,6 +16,16 @@
 
     .kanji {
       font-size: 72px;
+      display: inline-block;
+      padding: 17px;
+      border-radius: 100%;
+      border: 8px solid $pink-light;
+      font-weight: bold;
+    }
+
+    .leadIn {
+      margin: 30px 0px;
+      font-size: 18px;
     }
 
     section + section {

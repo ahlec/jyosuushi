@@ -6,9 +6,13 @@ import {
   Counter,
   CounterIrregularType,
   CountingSystem,
+  ExternalLinkLanguage,
   WordOrigin
 } from "../src/interfaces";
 import * as DISAMBIGUATIONS from "./disambiguations";
+
+import 人Notes from "@data/counter-notes/人Notes";
+import 本Notes from "@data/counter-notes/本Notes";
 
 export const COUNTER_ヶ国: Counter = {
   counterId: "ヶ国",
@@ -20,6 +24,7 @@ export const COUNTER_ヶ国: Counter = {
     additionalKanji: [],
     primaryKanji: "ヶ国"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -51,6 +56,7 @@ export const COUNTER_ヶ所: Counter = {
     additionalKanji: [],
     primaryKanji: "ヶ所"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -80,6 +86,7 @@ export const COUNTER_ヶ月: Counter = {
     {
       additionalDescription: null,
       displayText: "月: Counting Months",
+      language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
       url: "https://www.tofugu.com/japanese/japanese-counter-tsuki-gatsu-getsu/"
     }
@@ -89,6 +96,7 @@ export const COUNTER_ヶ月: Counter = {
     additionalKanji: [],
     primaryKanji: "ヶ月"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -113,15 +121,26 @@ export const COUNTER_ヶ月: Counter = {
 export const COUNTER_人: Counter = {
   counterId: "人",
   disambiguations: {
-    名: DISAMBIGUATIONS.DISAMBIGUATION_人名
+    名: DISAMBIGUATIONS.DISAMBIGUATION_人名,
+    匹: DISAMBIGUATIONS.DISAMBIGUATION_人匹
   },
   englishName: "people",
   externalLinks: [
     {
-      additionalDescription: null,
+      additionalDescription:
+        "Detailed and well-researched article from the kings of Japanese language learning.",
       displayText: "人: Counting People and Smart Animals",
+      language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
       url: "https://www.tofugu.com/japanese/japanese-counter-nin/"
+    },
+    {
+      additionalDescription:
+        "Japanese dictionary entries, compiled from multiple sources.",
+      displayText: "人（読み：ジン）",
+      language: ExternalLinkLanguage.Japanese,
+      siteName: "コトバンク",
+      url: "https://kotobank.jp/word/%E4%BA%BA-536577"
     }
   ],
   irregulars: {},
@@ -129,7 +148,8 @@ export const COUNTER_人: Counter = {
     additionalKanji: [],
     primaryKanji: "人"
   },
-  notes: null,
+  leadIn: "The ubiquitous counter for people and humanoids.",
+  notes: 人Notes,
   readings: [
     {
       counterId: "人",
@@ -166,6 +186,7 @@ export const COUNTER_件: Counter = {
     additionalKanji: [],
     primaryKanji: "件"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -197,6 +218,7 @@ export const COUNTER_円: Counter = {
     additionalKanji: [],
     primaryKanji: "円"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -226,6 +248,7 @@ export const COUNTER_冊: Counter = {
     {
       additionalDescription: null,
       displayText: "冊: Counting Books",
+      language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
       url: "https://www.tofugu.com/japanese/japanese-counter-satsu/"
     }
@@ -235,6 +258,7 @@ export const COUNTER_冊: Counter = {
     additionalKanji: [],
     primaryKanji: "冊"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -264,6 +288,7 @@ export const COUNTER_分: Counter = {
     {
       additionalDescription: null,
       displayText: "分: Counting Minutes and Edo Period Silver Currency",
+      language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
       url: "https://www.tofugu.com/japanese/japanese-counter-fun/"
     }
@@ -273,6 +298,7 @@ export const COUNTER_分: Counter = {
     additionalKanji: [],
     primaryKanji: "分"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -304,6 +330,7 @@ export const COUNTER_切れ: Counter = {
     additionalKanji: [],
     primaryKanji: "切れ"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -327,12 +354,15 @@ export const COUNTER_切れ: Counter = {
 
 export const COUNTER_匹: Counter = {
   counterId: "匹",
-  disambiguations: {},
+  disambiguations: {
+    人: DISAMBIGUATIONS.DISAMBIGUATION_人匹
+  },
   englishName: "small animals",
   externalLinks: [
     {
       additionalDescription: null,
       displayText: "匹: Counting Animals, Bugs, and Wild Children",
+      language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
       url: "https://www.tofugu.com/japanese/japanese-counter-hiki/"
     }
@@ -342,6 +372,7 @@ export const COUNTER_匹: Counter = {
     additionalKanji: [],
     primaryKanji: "匹"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -373,6 +404,7 @@ export const COUNTER_口: Counter = {
     additionalKanji: [],
     primaryKanji: "口"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -402,6 +434,7 @@ export const COUNTER_台: Counter = {
     {
       additionalDescription: null,
       displayText: "台: Counting Machines, Furniture, & Whole Cakes",
+      language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
       url: "https://www.tofugu.com/japanese/japanese-counter-dai/"
     }
@@ -411,6 +444,7 @@ export const COUNTER_台: Counter = {
     additionalKanji: [],
     primaryKanji: "台"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -442,6 +476,7 @@ export const COUNTER_名: Counter = {
     {
       additionalDescription: null,
       displayText: "人: Counting People and Smart Animals",
+      language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
       url: "https://www.tofugu.com/japanese/japanese-counter-nin/"
     }
@@ -451,6 +486,7 @@ export const COUNTER_名: Counter = {
     additionalKanji: [],
     primaryKanji: "名"
   },
+  leadIn: "A situational counter for people, used in formal scenarios.",
   notes: null,
   readings: [
     {
@@ -482,6 +518,7 @@ export const COUNTER_周: Counter = {
     additionalKanji: [],
     primaryKanji: "周"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -511,6 +548,7 @@ export const COUNTER_回: Counter = {
     {
       additionalDescription: null,
       displayText: "回: Repetitive Actions, Regular Events",
+      language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
       url: "https://www.tofugu.com/japanese/japanese-counter-kai-times/"
     }
@@ -520,6 +558,7 @@ export const COUNTER_回: Counter = {
     additionalKanji: [],
     primaryKanji: "回"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -551,6 +590,7 @@ export const COUNTER_巻: Counter = {
     additionalKanji: [],
     primaryKanji: "巻"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -582,6 +622,7 @@ export const COUNTER_席: Counter = {
     additionalKanji: [],
     primaryKanji: "席"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -617,6 +658,7 @@ export const COUNTER_年: Counter = {
     {
       additionalDescription: null,
       displayText: "年: Counting Years and Planetary Orbits",
+      language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
       url: "https://www.tofugu.com/japanese/japanese-counters-nen/"
     }
@@ -626,6 +668,7 @@ export const COUNTER_年: Counter = {
     additionalKanji: [],
     primaryKanji: "年"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -657,6 +700,7 @@ export const COUNTER_戦: Counter = {
     additionalKanji: [],
     primaryKanji: "戦"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -686,6 +730,7 @@ export const COUNTER_日: Counter = {
     {
       additionalDescription: null,
       displayText: "日: Counting Days",
+      language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
       url: "https://www.tofugu.com/japanese/japanese-counter-ka-nichi/"
     }
@@ -813,6 +858,7 @@ export const COUNTER_日: Counter = {
     additionalKanji: [],
     primaryKanji: "日"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -842,6 +888,7 @@ export const COUNTER_時: Counter = {
     {
       additionalDescription: null,
       displayText: "時/時間: Counting Time and Hours",
+      language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
       url: "https://www.tofugu.com/japanese/japanese-counter-ji-jikan/"
     }
@@ -851,6 +898,7 @@ export const COUNTER_時: Counter = {
     additionalKanji: [],
     primaryKanji: "時"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -882,6 +930,7 @@ export const COUNTER_曲: Counter = {
     additionalKanji: [],
     primaryKanji: "曲"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -905,14 +954,26 @@ export const COUNTER_曲: Counter = {
 
 export const COUNTER_本: Counter = {
   counterId: "本",
-  disambiguations: {},
+  disambiguations: {
+    缶: DISAMBIGUATIONS.DISAMBIGUATION_本缶
+  },
   englishName: "long, thin objects",
   externalLinks: [
     {
-      additionalDescription: null,
+      additionalDescription:
+        "Detailed and well-researched article from the kings of Japanese language learning.",
       displayText: "本: Counting Long, Skinny Things",
+      language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
       url: "https://www.tofugu.com/japanese/japanese-counter-hon/"
+    },
+    {
+      additionalDescription:
+        "Japanese dictionary entries, compiled from multiple sources.",
+      displayText: "本（読み：ホン）",
+      language: ExternalLinkLanguage.Japanese,
+      siteName: "コトバンク",
+      url: "https://kotobank.jp/word/%E6%9C%AC-631932"
     }
   ],
   irregulars: {},
@@ -920,7 +981,9 @@ export const COUNTER_本: Counter = {
     additionalKanji: [],
     primaryKanji: "本"
   },
-  notes: null,
+  leadIn:
+    "A highly versatile counter used primarily to count long, thin (usually cylindrical) objects.",
+  notes: 本Notes,
   readings: [
     {
       counterId: "本",
@@ -951,6 +1014,7 @@ export const COUNTER_束: Counter = {
     additionalKanji: [],
     primaryKanji: "束"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -986,6 +1050,7 @@ export const COUNTER_枚: Counter = {
     {
       additionalDescription: null,
       displayText: "枚: Counting Everything Flat",
+      language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
       url: "https://www.tofugu.com/japanese/japanese-counter-mai/"
     }
@@ -995,6 +1060,7 @@ export const COUNTER_枚: Counter = {
     additionalKanji: [],
     primaryKanji: "枚"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -1026,6 +1092,7 @@ export const COUNTER_校: Counter = {
     additionalKanji: [],
     primaryKanji: "校"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -1057,6 +1124,7 @@ export const COUNTER_歳: Counter = {
     additionalKanji: ["才"],
     primaryKanji: "歳"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -1088,6 +1156,7 @@ export const COUNTER_皿: Counter = {
     additionalKanji: [],
     primaryKanji: "皿"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -1125,6 +1194,7 @@ export const COUNTER_社: Counter = {
     additionalKanji: [],
     primaryKanji: "社"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -1156,6 +1226,7 @@ export const COUNTER_組: Counter = {
     additionalKanji: [],
     primaryKanji: "組"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -1179,7 +1250,9 @@ export const COUNTER_組: Counter = {
 
 export const COUNTER_缶: Counter = {
   counterId: "缶",
-  disambiguations: {},
+  disambiguations: {
+    本: DISAMBIGUATIONS.DISAMBIGUATION_本缶
+  },
   englishName: "cans",
   externalLinks: [],
   irregulars: {},
@@ -1187,6 +1260,7 @@ export const COUNTER_缶: Counter = {
     additionalKanji: [],
     primaryKanji: "缶"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -1222,6 +1296,7 @@ export const COUNTER_羽: Counter = {
     {
       additionalDescription: null,
       displayText: "羽: Counting Birds, Bats, and Bun-Buns",
+      language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
       url: "https://www.tofugu.com/japanese/japanese-counter-wa/"
     }
@@ -1231,6 +1306,7 @@ export const COUNTER_羽: Counter = {
     additionalKanji: [],
     primaryKanji: "羽"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -1262,6 +1338,7 @@ export const COUNTER_色: Counter = {
     additionalKanji: [],
     primaryKanji: "色"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -1293,6 +1370,7 @@ export const COUNTER_語: Counter = {
     additionalKanji: [],
     primaryKanji: "語"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -1324,6 +1402,7 @@ export const COUNTER_足: Counter = {
     additionalKanji: [],
     primaryKanji: "足"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -1355,6 +1434,7 @@ export const COUNTER_軒: Counter = {
     additionalKanji: [],
     primaryKanji: "軒"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -1386,6 +1466,7 @@ export const COUNTER_週: Counter = {
     additionalKanji: [],
     primaryKanji: "週"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -1415,6 +1496,7 @@ export const COUNTER_階: Counter = {
     {
       additionalDescription: null,
       displayText: "階: Floors of a Building",
+      language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
       url: "https://www.tofugu.com/japanese/japanese-counter-kai-floors/"
     }
@@ -1424,6 +1506,7 @@ export const COUNTER_階: Counter = {
     additionalKanji: [],
     primaryKanji: "階"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
@@ -1453,6 +1536,7 @@ export const COUNTER_頭: Counter = {
     {
       additionalDescription: null,
       displayText: "頭: Counting Those Big, Professional Animals",
+      language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
       url: "https://www.tofugu.com/japanese/japanese-counter-tou/"
     }
@@ -1462,6 +1546,7 @@ export const COUNTER_頭: Counter = {
     additionalKanji: [],
     primaryKanji: "頭"
   },
+  leadIn: null,
   notes: null,
   readings: [
     {
