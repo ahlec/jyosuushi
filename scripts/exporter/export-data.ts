@@ -3,59 +3,39 @@ import fs from "fs";
 import { WritableStream } from "memory-streams";
 import path from "path";
 import prettier from "prettier";
-import { Writable } from "stream";
 
 import Database from "../database/Database";
 import ValidatedDataSource from "../database/ValidatedDataSource";
 
 import writeCountersFile from "./counters-file";
-import writeCounterNotesComponentFile from "./counter-notes-component-file";
 import writeDisambiguationsFile from "./disambiguations-file";
 import writeItemsFile from "./items-file";
 import writeStudyPacksFile from "./study-packs-file";
-import { DATA_DIRECTORY, getCounterNotesComponent } from "./utils";
+import { FileExportRequest, WriteFileResults } from "./types";
+import { DATA_DIRECTORY } from "./utils";
 
 const FILE_HEADER_COMMENT = `// DO NOT HAND-MODIFY THIS FILE!!
 // This file was built using \`yarn build-data\` from the SQLite database.
 // Modifications will be lost if they are made manually and not through the database.\n\n`;
 
-interface ExportedFile {
-  filename: string;
-  writeFunction: (stream: Writable, dataSource: ValidatedDataSource) => void;
-}
-
-const EXPORTED_FILES: ReadonlyArray<ExportedFile> = [
-  {
-    filename: path.resolve(DATA_DIRECTORY, "counters.ts"),
-    writeFunction: writeCountersFile
-  },
-  {
-    filename: path.resolve(DATA_DIRECTORY, "disambiguations.ts"),
-    writeFunction: writeDisambiguationsFile
-  },
-  {
-    filename: path.resolve(DATA_DIRECTORY, "items.ts"),
-    writeFunction: writeItemsFile
-  },
-  {
-    filename: path.resolve(DATA_DIRECTORY, "studyPacks.ts"),
-    writeFunction: writeStudyPacksFile
-  }
-];
-
-function exportFile(file: ExportedFile, dataSource: ValidatedDataSource): void {
+function exportFile(
+  file: FileExportRequest,
+  dataSource: ValidatedDataSource
+): WriteFileResults {
   const stream = new WritableStream();
-  file.writeFunction(stream, dataSource);
+  const writeResults = file.writeFunction(stream, dataSource);
 
   const rawJavaScript = `${FILE_HEADER_COMMENT}${stream.toString()}`;
   const javaScript = prettier.format(rawJavaScript, { parser: "typescript" });
 
-  const directory = path.dirname(file.filename);
+  const filename = path.resolve(DATA_DIRECTORY, file.relativeFilepath);
+  const directory = path.dirname(filename);
   if (!fs.existsSync(directory)) {
     fs.mkdirSync(directory, { recursive: true });
   }
 
-  fs.writeFileSync(file.filename, javaScript);
+  fs.writeFileSync(filename, javaScript);
+  return writeResults;
 }
 
 async function main(): Promise<void> {
@@ -77,24 +57,33 @@ async function main(): Promise<void> {
     return;
   }
 
-  const files = [...EXPORTED_FILES];
-  for (const { counter_id, notes } of dataSource.counters.valid) {
-    if (!notes) {
-      continue;
+  const queue: FileExportRequest[] = [
+    {
+      relativeFilepath: "counters.ts",
+      writeFunction: writeCountersFile
+    },
+    {
+      relativeFilepath: "disambiguations.ts",
+      writeFunction: writeDisambiguationsFile
+    },
+    {
+      relativeFilepath: "items.ts",
+      writeFunction: writeItemsFile
+    },
+    {
+      relativeFilepath: "studyPacks.ts",
+      writeFunction: writeStudyPacksFile
+    }
+  ];
+
+  while (queue.length) {
+    const file = queue.pop();
+    if (!file) {
+      break;
     }
 
-    const { absoluteFilename, componentName } = getCounterNotesComponent(
-      counter_id
-    );
-    files.push({
-      filename: absoluteFilename,
-      writeFunction: (stream: Writable): void =>
-        writeCounterNotesComponentFile(stream, componentName, notes)
-    });
-  }
-
-  for (const file of files) {
-    exportFile(file, dataSource);
+    const result = exportFile(file, dataSource);
+    queue.push(...result.additionalFileRequests);
   }
 }
 

@@ -3,12 +3,13 @@ import ValidatedDataSource from "../database/ValidatedDataSource";
 
 import { CounterDisambiguation } from "../../src/interfaces";
 
+import { WriteFileResults } from "./types";
 import { getDisambiguationId } from "./utils";
 
 export default function writeDisambiguationsFile(
   stream: Writable,
   dataSource: ValidatedDataSource
-): void {
+): WriteFileResults {
   stream.write('import { CounterDisambiguation } from "../src/interfaces";');
 
   for (const dbDisambiguation of dataSource.counter_disambiguations.valid) {
@@ -31,4 +32,8 @@ export default function writeDisambiguationsFile(
   }
 
   stream.write("\n");
+
+  return {
+    additionalFileRequests: []
+  };
 }

@@ -22,6 +22,7 @@ import {
   CounterIrregular
 } from "../../src/interfaces";
 
+import { WriteFileResults } from "./types";
 import {
   getCounterId,
   getDisambiguationId,
@@ -233,7 +234,7 @@ function isNotNull<T>(value: T | null): value is T {
 export default function writeCountersFile(
   stream: Writable,
   dataSource: ValidatedDataSource
-): void {
+): WriteFileResults {
   stream.write(
     'import { Counter, CounterIrregularType, CountingSystem, ExternalLinkLanguage, WordOrigin } from "../src/interfaces";\n'
   );
@@ -383,4 +384,8 @@ export default function writeCountersFile(
       lookup
     )};`
   );
+
+  return {
+    additionalFileRequests: []
+  };
 }

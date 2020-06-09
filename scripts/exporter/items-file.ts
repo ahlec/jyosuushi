@@ -6,6 +6,7 @@ import ValidatedDataSource from "../database/ValidatedDataSource";
 
 import { Item, ItemCounter } from "../../src/interfaces";
 
+import { WriteFileResults } from "./types";
 import { getItemId, productionStringify, ProductionVariable } from "./utils";
 
 function getProductionRelevance(db: DbItemCounter): string {
@@ -51,7 +52,7 @@ function convertToItemVariable(db: DbItemCounter): ProductionVariable {
 export default function writeItemsFile(
   stream: Writable,
   dataSource: ValidatedDataSource
-): void {
+): WriteFileResults {
   stream.write(
     'import { CounterItemRelevance, Item } from "../src/interfaces";'
   );
@@ -124,4 +125,8 @@ export default function writeItemsFile(
       itemsFromCounter
     )};`
   );
+
+  return {
+    additionalFileRequests: []
+  };
 }
