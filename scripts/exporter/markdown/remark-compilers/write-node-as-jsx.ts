@@ -1,32 +1,12 @@
-import { Processor } from "unified";
-import { Node } from "unist";
-import { VFile } from "vfile";
-import toH, { Properties } from "hast-to-hyperscript";
-import toHast from "mdast-util-to-hast";
+import { Properties } from "hast-to-hyperscript";
 
-import { INTRASITE_LINK_HAST_NODE_NAME } from "./intrasite-link-plugin";
+import { INTRASITE_LINK_HAST_NODE_NAME } from "../intrasite-link-plugin";
 
-interface JSXRepresentation {
-  childrenJsx: string;
-  containsIntrasiteLink: boolean;
-  jsx: string;
-  numChildNodes: number;
-  tag: string;
-}
+import { JSXRepresentation } from "./types";
 
-export interface JsxCompilerVFileData {
-  usesReactRouterLink: boolean;
-}
-
-function isIndexableObject(obj: unknown): obj is { [index: string]: unknown } {
-  return typeof obj === "object" && obj !== null;
-}
-
-function isJsxRepresentation(child: unknown): child is JSXRepresentation {
-  return isIndexableObject(child) && "jsx" in child;
-}
-
-function getChildAsJsx(child: unknown): string | null {
+function getChildAsJsx<T extends JSXRepresentation>(
+  child: string | T
+): string | null {
   if (typeof child === "string") {
     if (!child.trim()) {
       return null;
@@ -35,15 +15,13 @@ function getChildAsJsx(child: unknown): string | null {
     return child;
   }
 
-  if (isJsxRepresentation(child)) {
-    return child.jsx;
-  }
-
-  throw new Error("Unexpected child encountered.");
+  return child.jsx;
 }
 
-function doesChildContainIntrasiteLink(child: unknown): boolean {
-  if (!isJsxRepresentation(child)) {
+function doesChildContainIntrasiteLink<T extends JSXRepresentation>(
+  child: string | T
+): boolean {
+  if (typeof child === "string") {
     return false;
   }
 
@@ -54,10 +32,10 @@ function isNotNull<T>(val: T | null): val is T {
   return val !== null;
 }
 
-function h(
+function writeNodeAsJsx(
   name: string,
   props: Properties | undefined,
-  children: readonly unknown[] | undefined
+  children: readonly (string | JSXRepresentation)[] | undefined
 ): JSXRepresentation {
   let jsxTag: string;
   let isIntrasiteLink: boolean;
@@ -135,38 +113,4 @@ function h(
   };
 }
 
-function jsxCompiler(this: Processor<unknown>): void {
-  this.Compiler = function compile(node: Node, file: VFile): string {
-    const tree = toHast(node);
-    const root = toH(h, tree);
-
-    const data: JsxCompilerVFileData = {
-      usesReactRouterLink: root.containsIntrasiteLink
-    };
-    file.data = data;
-
-    if (root.tag === "div") {
-      if (root.numChildNodes <= 1) {
-        return root.childrenJsx;
-      }
-
-      return `<React.Fragment>${root.childrenJsx}</React.Fragment>`;
-    }
-
-    return root.jsx;
-  };
-}
-
-export function assertJsxCompilerVFileData(
-  data: unknown
-): asserts data is JsxCompilerVFileData {
-  if (!isIndexableObject(data)) {
-    throw new Error("Data must be an indexable object!");
-  }
-
-  if (typeof data["usesReactRouterLink"] !== "boolean") {
-    throw new Error("Data must have the 'usesReactRouterLink' boolean on it.");
-  }
-}
-
-export default jsxCompiler;
+export default writeNodeAsJsx;
