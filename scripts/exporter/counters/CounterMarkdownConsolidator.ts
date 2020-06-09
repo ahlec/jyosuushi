@@ -1,13 +1,13 @@
 import { ProductionVariable } from "../utils";
 
-interface CounterMarkdownComponent {
+export interface CounterMarkdownComponent {
   componentName: string;
   markdown: string;
   footnotesLocalToUniversal: { [localId: string]: string };
 }
 
 class CounterMarkdownConsolidator {
-  private readonly markdownComponents: CounterMarkdownComponent[] = [];
+  public readonly markdownComponents: CounterMarkdownComponent[] = [];
 
   public constructor(public readonly importedNamespace: string) {}
 

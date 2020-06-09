@@ -1,5 +1,7 @@
 import { DbCounter } from "../../database/schemas";
 
+import writeCounterComponentsFile from "../counter-components/write-file";
+
 import { FileExportRequest, WriteFileResults } from "../types";
 import { getCounterId, productionStringify } from "../utils";
 
@@ -42,15 +44,19 @@ function exportSingleCounter(
   let fileExportRequests: ReadonlyArray<FileExportRequest>;
   let imports: ReadonlyArray<Import>;
   if (markdownConsolidator.hasComponents) {
-    const relativeFilepath = `counter-components/${counter.counter_id}`;
+    const baseRelativeFilepath = `counter-components/${counter.counter_id}`;
     fileExportRequests = [
       {
-        relativeFilepath,
-        writeFunction: (): WriteFileResults => ({ additionalFileRequests: [] })
+        relativeFilepath: `./${baseRelativeFilepath}.tsx`,
+        writeFunction: (stream): WriteFileResults =>
+          writeCounterComponentsFile(
+            markdownConsolidator.markdownComponents,
+            stream
+          )
       }
     ];
 
-    const importFilepath = `@data/${relativeFilepath}`;
+    const importFilepath = `@data/${baseRelativeFilepath}`;
     imports = [
       {
         completeImportStatement: `import * as ${markdownConsolidator.importedNamespace} from '${importFilepath}';`,

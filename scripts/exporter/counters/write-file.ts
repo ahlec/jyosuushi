@@ -1,10 +1,10 @@
 import { flatten, sortBy } from "lodash";
 import { Writable } from "stream";
 
-import { DbCounter, DbIrregularType } from "../../database/schemas";
+import { DbCounter } from "../../database/schemas";
 import ValidatedDataSource from "../../database/ValidatedDataSource";
 
-import { WriteFileResults } from "../types";
+import { FileExportRequest, WriteFileResults } from "../types";
 import { productionStringify, ProductionVariable } from "../utils";
 
 import exportSingleCounter, {
@@ -12,19 +12,6 @@ import exportSingleCounter, {
   Import
 } from "./single-counter-export";
 import CounterDataLookup from "./CounterDataLookup";
-
-export function convertToProductionIrregularType(
-  dbType: DbIrregularType
-): ProductionVariable {
-  switch (dbType) {
-    case DbIrregularType.ArbitraryReading: {
-      return new ProductionVariable("CounterIrregularType.ArbitraryReading");
-    }
-    case DbIrregularType.StandardWagoRangeSoundChange: {
-      return new ProductionVariable("CounterIrregularType.SoundChange");
-    }
-  }
-}
 
 function selectCounterId(counter: DbCounter): string {
   return counter.counter_id;
@@ -34,6 +21,12 @@ function selectImports({
   imports
 }: CounterExportResults): ReadonlyArray<Import> {
   return imports;
+}
+
+function selectFileExports({
+  fileExportRequests
+}: CounterExportResults): ReadonlyArray<FileExportRequest> {
+  return fileExportRequests;
 }
 
 function selectImportFilepath(importDefinition: Import): string {
@@ -95,6 +88,6 @@ export default function writeCountersFile(
 
   // Return
   return {
-    additionalFileRequests: []
+    additionalFileRequests: flatten(counters.map(selectFileExports))
   };
 }
