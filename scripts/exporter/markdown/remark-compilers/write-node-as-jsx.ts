@@ -32,10 +32,15 @@ function isNotNull<T>(val: T | null): val is T {
   return val !== null;
 }
 
+export interface WriteNodeAsJsxOptions {
+  footnoteLocalToGlobalMap: { [localRefId: string]: number | undefined };
+}
+
 function writeNodeAsJsx(
   name: string,
   props: Properties | undefined,
-  children: readonly (string | JSXRepresentation)[] | undefined
+  children: readonly (string | JSXRepresentation)[] | undefined,
+  options: WriteNodeAsJsxOptions
 ): JSXRepresentation {
   let jsxTag: string;
   let isIntrasiteLink: boolean;
@@ -63,8 +68,24 @@ function writeNodeAsJsx(
       openingTagPieces.push(`className="${props["class"]}"`);
     }
 
-    if (props["href"]) {
-      openingTagPieces.push(`href="${props["href"]}"`);
+    if (props.href) {
+      let href: string;
+      if (props.href.startsWith("#fnref-") || props.href.startsWith("#fn-")) {
+        const localRefIdIndex = props.href.indexOf("-") + 1;
+        const localRefId = props.href.substr(localRefIdIndex);
+        const globalRefId = options.footnoteLocalToGlobalMap[localRefId];
+        if (typeof globalRefId !== "number") {
+          throw new Error(
+            `Could not find globalRefId for localRefId '${localRefId}'`
+          );
+        }
+
+        href = `${props.href.substring(0, localRefIdIndex)}${globalRefId}`;
+      } else {
+        href = props.href;
+      }
+
+      openingTagPieces.push(`href="${href}"`);
 
       if (!props.href.startsWith("#")) {
         openingTagPieces.push('target="_blank"');

@@ -6,10 +6,10 @@ import toHast from "mdast-util-to-hast";
 
 import { JSXRepresentation } from "../types";
 import { isIndexableObject } from "../utils";
-import writeNodeAsJsx from "../write-node-as-jsx";
+import writeNodeAsJsx, { WriteNodeAsJsxOptions } from "../write-node-as-jsx";
 
-export interface JsxCompilerOptions {
-  footerReflinkPrefix: string;
+interface JsxCompilerOptions {
+  footnoteLocalRefIdToGlobalId: { [localRefId: string]: number | undefined };
 }
 
 export interface JsxCompilerVFileData {
@@ -24,10 +24,10 @@ function isFootnotesContainerDiv(
 }
 
 function h(
-  compilerOptions: JsxCompilerOptions,
   name: string,
   props: Properties | undefined,
-  children: readonly (string | JSXRepresentation)[] | undefined
+  children: readonly (string | JSXRepresentation)[] | undefined,
+  options: WriteNodeAsJsxOptions
 ): JSXRepresentation {
   // Exclude footnotes section from the main body. Footnotes will
   // be extracted in a separate process.
@@ -41,7 +41,7 @@ function h(
     };
   }
 
-  return writeNodeAsJsx(name, props, children);
+  return writeNodeAsJsx(name, props, children, options);
 }
 
 function jsxCompiler(
@@ -50,8 +50,11 @@ function jsxCompiler(
 ): void {
   this.Compiler = function compile(node: Node, file: VFile): string {
     const tree = toHast(node);
+    const writeNodeOptions: WriteNodeAsJsxOptions = {
+      footnoteLocalToGlobalMap: options.footnoteLocalRefIdToGlobalId
+    };
     const root = toH<JSXRepresentation>(
-      (name, props, children) => h(options, name, props, children),
+      (name, props, children) => h(name, props, children, writeNodeOptions),
       tree
     );
 
