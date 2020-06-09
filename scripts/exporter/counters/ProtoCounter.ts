@@ -21,13 +21,13 @@ import {
 } from "../../database/schemas";
 
 import {
-  getCounterNotesComponent,
   getDisambiguationId,
   getWordOrigin,
   ProductionVariable
 } from "../utils";
 
 import { CounterJoinData } from "./CounterDataLookup";
+import { CounterComponentsLookup } from "./types";
 
 type ProtoCounterReading = Omit<CounterReading, "wordOrigin"> & {
   wordOrigin: ProductionVariable;
@@ -219,7 +219,8 @@ function convertToProductionIrregularsMap(
 
 export function convertToProtoCounter(
   counter: DbCounter,
-  joinData: CounterJoinData
+  joinData: CounterJoinData,
+  nestedComponents: CounterComponentsLookup
 ): ProtoCounter {
   return {
     counterId: counter.counter_id,
@@ -237,11 +238,7 @@ export function convertToProtoCounter(
         )
       : null,
     leadIn: counter.lead_in ? counter.lead_in : null,
-    notes: counter.notes
-      ? new ProductionVariable(
-          getCounterNotesComponent(counter.counter_id).componentName
-        )
-      : null,
+    notes: nestedComponents.notesComponent,
     readings: joinData.readings.map(reading =>
       convertToProductionReading(
         counter.counter_id,

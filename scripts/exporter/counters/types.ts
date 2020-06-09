@@ -1,5 +1,5 @@
-interface CounterMarkdownComponent {
-  componentName: string;
-  markdown: string;
-  footnotesLocalToUniversal: { [localId: string]: string };
+import { ProductionVariable } from "../utils";
+
+export interface CounterComponentsLookup {
+  notesComponent: ProductionVariable | null;
 }
