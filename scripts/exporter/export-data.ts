@@ -7,7 +7,7 @@ import prettier from "prettier";
 import Database from "../database/Database";
 import ValidatedDataSource from "../database/ValidatedDataSource";
 
-import writeCountersFile from "./counters-file";
+import writeCountersFile from "./counters/write-file";
 import writeDisambiguationsFile from "./disambiguations-file";
 import writeItemsFile from "./items-file";
 import writeStudyPacksFile from "./study-packs-file";
