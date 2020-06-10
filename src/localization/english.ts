@@ -28,6 +28,7 @@ const ENGLISH: Localization = {
   counterName: (counter: Counter) => counter.englishName,
   counterPageHeaderConjugation: "Conjugations",
   counterPageHeaderDisambiguation: "Similar Counters",
+  counterPageHeaderFootnotes: "References",
   counterPageHeaderInfo: "Details",
   counterPageHeaderItems: "Items",
   countersDisplayHeader: (numCounters: number) =>

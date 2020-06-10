@@ -1,0 +1,11 @@
+.FootnotesSection {
+  list-style: decimal;
+  font-size: 80%;
+  text-align: left;
+  line-height: 1.5;
+  padding-left: 2em;
+
+  .footnote + .footnote {
+    margin-top: 5px;
+  }
+}

@@ -108,7 +108,7 @@ export interface CounterIrregular {
 
 export type MarkdownComponentProps = {};
 
-type MarkdownComponent = ComponentType<MarkdownComponentProps>;
+export type MarkdownComponent = ComponentType<MarkdownComponentProps>;
 
 export interface CounterDisambiguation {
   distinction: MarkdownComponent;

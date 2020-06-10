@@ -35,6 +35,7 @@ export default interface Localization {
   counterName: (counter: Counter) => string;
   counterPageHeaderConjugation: string;
   counterPageHeaderDisambiguation: string;
+  counterPageHeaderFootnotes: string;
   counterPageHeaderInfo: string;
   counterPageHeaderItems: string;
   countersDisplayHeader: (numCounters: number) => string;
