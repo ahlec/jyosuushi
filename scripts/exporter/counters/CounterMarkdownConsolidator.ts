@@ -8,6 +8,7 @@ import { ProductionVariable } from "../utils";
 export interface CounterMarkdownComponent {
   componentName: string;
   jsx: string;
+  requiresReactRouterDomLink: boolean;
 }
 
 class CounterMarkdownConsolidator {
@@ -34,7 +35,8 @@ class CounterMarkdownConsolidator {
       const footnoteComponentName = `Footnote${footnote.globalRefId}`;
       this.markdownComponents.push({
         componentName: footnoteComponentName,
-        jsx: footnote.noteJsx.jsx
+        jsx: footnote.noteJsx.jsx,
+        requiresReactRouterDomLink: footnote.noteJsx.containsIntrasiteLink
       });
       this.footnoteComponentVariables.push(
         new ProductionVariable(
@@ -43,12 +45,14 @@ class CounterMarkdownConsolidator {
       );
     }
 
+    const convertedJsx = convertMarkdownToJSX(
+      markdown,
+      footnoteExtraction.footnoteLocalRefIdToGlobalId
+    );
     this.markdownComponents.push({
       componentName,
-      jsx: convertMarkdownToJSX(
-        markdown,
-        footnoteExtraction.footnoteLocalRefIdToGlobalId
-      ).jsx
+      jsx: convertedJsx.jsx,
+      requiresReactRouterDomLink: convertedJsx.requiresReactRouterLink
     });
     return new ProductionVariable(`${this.importedNamespace}.${componentName}`);
   }
