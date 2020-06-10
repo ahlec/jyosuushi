@@ -112,16 +112,19 @@ export interface CounterIrregular {
   reading: string;
 }
 
-export type CounterNotesComponentProps = {};
+export type MarkdownComponentProps = {};
+
+type MarkdownComponent = ComponentType<MarkdownComponentProps>;
 
 export interface Counter {
   counterId: string;
   englishName: string;
+  footnotes: ReadonlyArray<MarkdownComponent>;
   irregulars: { [amount: number]: ReadonlyArray<CounterIrregular> };
   kanji: CounterKanjiInfo | null;
   readings: ReadonlyArray<CounterReading>;
   leadIn: string | null;
-  notes: ComponentType<CounterNotesComponentProps> | null;
+  notes: MarkdownComponent | null;
   externalLinks: ReadonlyArray<ExternalLink>;
   disambiguations: { [counterId: string]: CounterDisambiguation | undefined };
 }

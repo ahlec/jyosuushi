@@ -11,14 +11,14 @@ function writeCounterComponentsFile(
   // Write out imports
   stream.write('import * as React from "react";\n');
   stream.write(
-    'import { CounterNotesComponentProps } from "@jyosuushi/interfaces";\n'
+    'import { MarkdownComponentProps } from "@jyosuushi/interfaces";\n'
   );
 
   // Write out components
   for (const { componentName, jsx } of components) {
     stream.write("\n\n");
     stream.write(
-      `export class ${componentName} extends React.PureComponent<CounterNotesComponentProps> {\n`
+      `export class ${componentName} extends React.PureComponent<MarkdownComponentProps> {\n`
     );
     stream.write("  public render(): React.ReactNode {\n");
     stream.write(`    return (${jsx});`);

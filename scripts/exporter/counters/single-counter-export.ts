@@ -37,9 +37,14 @@ function exportSingleCounter(
     : null;
 
   const variableName = getCounterId(counter.counter_id);
-  const protoCounter = convertToProtoCounter(counter, joinData, {
-    notesComponent
-  });
+  const protoCounter = convertToProtoCounter(
+    counter,
+    joinData,
+    {
+      notesComponent
+    },
+    markdownConsolidator.footnoteComponentVariables
+  );
 
   let fileExportRequests: ReadonlyArray<FileExportRequest>;
   let imports: ReadonlyArray<Import>;

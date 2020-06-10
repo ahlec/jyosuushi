@@ -47,10 +47,16 @@ type ProtoExternalLink = Omit<ExternalLink, "language"> & {
 
 type ProtoCounter = Omit<
   Counter,
-  "disambiguations" | "externalLinks" | "irregulars" | "notes" | "readings"
+  | "disambiguations"
+  | "externalLinks"
+  | "footnotes"
+  | "irregulars"
+  | "notes"
+  | "readings"
 > & {
   disambiguations: { [counterId: string]: ProductionVariable };
   externalLinks: ReadonlyArray<ProtoExternalLink>;
+  footnotes: ReadonlyArray<ProductionVariable>;
   irregulars: {
     [amount: number]: ReadonlyArray<ProtoCounterIrregular> | undefined;
   };
@@ -220,7 +226,8 @@ function convertToProductionIrregularsMap(
 export function convertToProtoCounter(
   counter: DbCounter,
   joinData: CounterJoinData,
-  nestedComponents: CounterComponentsLookup
+  nestedComponents: CounterComponentsLookup,
+  footnoteComponents: ReadonlyArray<ProductionVariable>
 ): ProtoCounter {
   return {
     counterId: counter.counter_id,
@@ -230,6 +237,7 @@ export function convertToProtoCounter(
     ),
     englishName: counter.english_name,
     externalLinks: joinData.externalLinks.map(convertToProductionExternalLink),
+    footnotes: footnoteComponents,
     irregulars: convertToProductionIrregularsMap(joinData.irregulars),
     kanji: counter.primary_kanji
       ? convertToProductionKanji(
