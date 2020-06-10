@@ -52,6 +52,26 @@ function convertLocalFootnoteIdentifierToGlobal(
   return `${identifierStr.substring(0, localRefIdIndex)}${globalRefId}`;
 }
 
+function isFootnoteRef(
+  name: string,
+  props: Properties | undefined
+): { isFootnoteRef: false } | { isFootnoteRef: true; refId: string } {
+  if (
+    name !== "a" ||
+    !props ||
+    props["class"] !== "footnote-ref" ||
+    !props.href
+  ) {
+    return { isFootnoteRef: false };
+  }
+
+  const localRefIdIndex = props.href.indexOf("-") + 1;
+  return {
+    isFootnoteRef: true,
+    refId: props.href.substr(localRefIdIndex)
+  };
+}
+
 function writeNodeAsJsx(
   name: string,
   props: Properties | undefined,
@@ -75,6 +95,7 @@ function writeNodeAsJsx(
 
   const openingTagPieces: string[] = [jsxTag];
 
+  // Handle props
   if (props) {
     if (props.id) {
       let id: string;
@@ -112,10 +133,24 @@ function writeNodeAsJsx(
     }
   }
 
+  // Handle children
   let jsxChildren: string;
   let numChildNodes: number;
   let childContainsIntrasiteLink: boolean;
-  if (children) {
+
+  const footnoteRef = isFootnoteRef(name, props);
+  if (footnoteRef.isFootnoteRef) {
+    const globalRefId = options.footnoteLocalToGlobalMap[footnoteRef.refId];
+    if (!globalRefId) {
+      throw new Error(
+        `Could not find globalRefId for localRefId '${footnoteRef.refId}'`
+      );
+    }
+
+    jsxChildren = globalRefId.toString();
+    numChildNodes = 1;
+    childContainsIntrasiteLink = false;
+  } else if (children) {
     const consolidatedChildren = children.map(getChildAsJsx).filter(isNotNull);
     jsxChildren = consolidatedChildren.join("");
     numChildNodes = consolidatedChildren.length;
@@ -126,6 +161,7 @@ function writeNodeAsJsx(
     childContainsIntrasiteLink = false;
   }
 
+  // Consolidate together
   const containsIntrasiteLink = isIntrasiteLink || childContainsIntrasiteLink;
 
   const openingTag = openingTagPieces.join(" ");
