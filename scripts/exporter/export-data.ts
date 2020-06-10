@@ -8,7 +8,6 @@ import Database from "../database/Database";
 import ValidatedDataSource from "../database/ValidatedDataSource";
 
 import writeCountersFile from "./counters/write-file";
-import writeDisambiguationsFile from "./disambiguations-file";
 import writeItemsFile from "./items-file";
 import writeStudyPacksFile from "./study-packs-file";
 import { FileExportRequest, WriteFileResults } from "./types";
@@ -61,10 +60,6 @@ async function main(): Promise<void> {
     {
       relativeFilepath: "counters.ts",
       writeFunction: writeCountersFile
-    },
-    {
-      relativeFilepath: "disambiguations.ts",
-      writeFunction: writeDisambiguationsFile
     },
     {
       relativeFilepath: "items.ts",

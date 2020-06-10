@@ -3,11 +3,16 @@ import { DbCounter } from "../../database/schemas";
 import writeCounterComponentsFile from "../counter-components/write-file";
 
 import { FileExportRequest, WriteFileResults } from "../types";
-import { getCounterId, productionStringify } from "../utils";
+import {
+  getCounterId,
+  productionStringify,
+  ProductionVariable
+} from "../utils";
 
 import { CounterJoinData } from "./CounterDataLookup";
 import CounterMarkdownConsolidator from "./CounterMarkdownConsolidator";
 import { convertToProtoCounter } from "./ProtoCounter";
+import { getOtherCounterId } from "./utils";
 
 export interface Import {
   completeImportStatement: string;
@@ -35,12 +40,26 @@ function exportSingleCounter(
   const notesComponent = counter.notes
     ? markdownConsolidator.addMarkdown("CounterNotes", counter.notes)
     : null;
+  const disambiguationComponents: {
+    [otherCounterId: string]: ProductionVariable;
+  } = {};
+  for (const disambiguation of joinData.disambiguations) {
+    const otherCounterId = getOtherCounterId(
+      counter.counter_id,
+      disambiguation
+    );
+    disambiguationComponents[otherCounterId] = markdownConsolidator.addMarkdown(
+      `Disambiguation${otherCounterId}`,
+      disambiguation.distinction
+    );
+  }
 
   const variableName = getCounterId(counter.counter_id);
   const protoCounter = convertToProtoCounter(
     counter,
     joinData,
     {
+      disambiguationComponents,
       notesComponent
     },
     markdownConsolidator.footnoteComponentVariables

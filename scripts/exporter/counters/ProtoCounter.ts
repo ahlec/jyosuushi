@@ -5,29 +5,27 @@ import {
   ExternalLink,
   CounterReading,
   CounterIrregular,
-  CounterKanjiInfo
+  CounterKanjiInfo,
+  CounterDisambiguation
 } from "@jyosuushi/interfaces";
 
 import {
   DbCounter,
   DbCounterAlternativeKanji,
-  DbCounterDisambiguation,
   DbCounterExternalLink,
   DbCounterIrregular,
   DbCounterReading,
   DbExternalLinkLanguage,
   DbIrregularType,
-  DbWagoStyle
+  DbWagoStyle,
+  DbCounterDisambiguation
 } from "../../database/schemas";
 
-import {
-  getDisambiguationId,
-  getWordOrigin,
-  ProductionVariable
-} from "../utils";
+import { getWordOrigin, ProductionVariable } from "../utils";
 
 import { CounterJoinData } from "./CounterDataLookup";
 import { CounterComponentsLookup } from "./types";
+import { getOtherCounterId } from "./utils";
 
 type ProtoCounterReading = Omit<CounterReading, "wordOrigin"> & {
   wordOrigin: ProductionVariable;
@@ -45,6 +43,10 @@ type ProtoExternalLink = Omit<ExternalLink, "language"> & {
   language: ProductionVariable;
 };
 
+type ProtoDisambiguation = Omit<CounterDisambiguation, "distinction"> & {
+  distinction: ProductionVariable;
+};
+
 type ProtoCounter = Omit<
   Counter,
   | "disambiguations"
@@ -54,7 +56,7 @@ type ProtoCounter = Omit<
   | "notes"
   | "readings"
 > & {
-  disambiguations: { [counterId: string]: ProductionVariable };
+  disambiguations: ReadonlyArray<ProtoDisambiguation>;
   externalLinks: ReadonlyArray<ProtoExternalLink>;
   footnotes: ReadonlyArray<ProductionVariable>;
   irregulars: {
@@ -92,26 +94,21 @@ function convertToProductionExternalLink(
   };
 }
 
-function convertToProductionDisambiguations(
+function convertToProductionDisambiguation(
   counterId: string,
-  disambiguations: ReadonlyArray<DbCounterDisambiguation>
-): { [counterId: string]: ProductionVariable } {
-  const lookup: { [counterId: string]: ProductionVariable } = {};
-
-  for (const disambiguation of disambiguations) {
-    lookup[
-      counterId === disambiguation.counter1_id
-        ? disambiguation.counter2_id
-        : disambiguation.counter1_id
-    ] = new ProductionVariable(
-      `DISAMBIGUATIONS.${getDisambiguationId(
-        disambiguation.counter1_id,
-        disambiguation.counter2_id
-      )}`
-    );
+  disambiguation: DbCounterDisambiguation,
+  nestedComponents: CounterComponentsLookup
+): ProtoDisambiguation {
+  const otherCounterId = getOtherCounterId(counterId, disambiguation);
+  const component = nestedComponents.disambiguationComponents[otherCounterId];
+  if (!component) {
+    throw new Error("Could not find disambiguation component");
   }
 
-  return lookup;
+  return {
+    distinction: component,
+    otherCounterId
+  };
 }
 
 export function convertToProductionIrregularType(
@@ -231,9 +228,13 @@ export function convertToProtoCounter(
 ): ProtoCounter {
   return {
     counterId: counter.counter_id,
-    disambiguations: convertToProductionDisambiguations(
-      counter.counter_id,
-      joinData.disambiguations
+    disambiguations: joinData.disambiguations.map(
+      (disambiguation): ProtoDisambiguation =>
+        convertToProductionDisambiguation(
+          counter.counter_id,
+          disambiguation,
+          nestedComponents
+        )
     ),
     englishName: counter.english_name,
     externalLinks: joinData.externalLinks.map(convertToProductionExternalLink),

@@ -1,19 +1,19 @@
-import memoizeOne from "memoize-one";
 import * as React from "react";
 import { Link } from "react-router-dom";
 
 import { COUNTERS_LOOKUP } from "@data/counters";
 
-import { Counter } from "@jyosuushi/interfaces";
+import { Counter, CounterDisambiguation } from "@jyosuushi/interfaces";
 import Localization from "@jyosuushi/localization";
 import { getPrimaryJapaneseRepresentation } from "@jyosuushi/utils";
 
 import { getCounterLink } from "@jyosuushi/ui/main-screen/explore/pathing";
 
 import "./DisambiguationSection.scss";
+import MarkdownPresenter from "./MarkdownPresenter";
 
 export function hasDisambiguationSection(counter: Counter): boolean {
-  return !!Object.keys(counter.disambiguations).length;
+  return counter.disambiguations.length > 0;
 }
 
 interface ComponentProps {
@@ -21,37 +21,13 @@ interface ComponentProps {
   localization: Localization;
 }
 
-interface Disambiguation {
-  distinction: string;
-  otherCounter: Counter;
-}
-
 export default class DisambiguationSection extends React.PureComponent<
   ComponentProps
 > {
-  private readonly getDisambiguations = memoizeOne(
-    (counter: Counter): ReadonlyArray<Disambiguation> => {
-      const disambiguations: Disambiguation[] = [];
-
-      const entries = Object.entries(counter.disambiguations);
-      for (const [otherCounterId, info] of entries) {
-        if (!info) {
-          continue;
-        }
-
-        disambiguations.push({
-          distinction: info.disambiguation,
-          otherCounter: COUNTERS_LOOKUP[otherCounterId]
-        });
-      }
-
-      return disambiguations;
-    }
-  );
-
   public render(): React.ReactNode {
-    const { counter } = this.props;
-    const disambiguations = this.getDisambiguations(counter);
+    const {
+      counter: { disambiguations }
+    } = this.props;
     if (!disambiguations.length) {
       return null;
     }
@@ -65,8 +41,9 @@ export default class DisambiguationSection extends React.PureComponent<
 
   private renderDisambiguation = ({
     distinction,
-    otherCounter
-  }: Disambiguation): React.ReactNode => {
+    otherCounterId
+  }: CounterDisambiguation): React.ReactNode => {
+    const otherCounter = COUNTERS_LOOKUP[otherCounterId];
     return (
       <div key={otherCounter.counterId} className="disambiguation">
         <div className="counterContainer">
@@ -74,7 +51,7 @@ export default class DisambiguationSection extends React.PureComponent<
             {getPrimaryJapaneseRepresentation(otherCounter)}
           </Link>
         </div>
-        <div className="distinction">{distinction}</div>
+        <MarkdownPresenter className="distinction" component={distinction} />
       </div>
     );
   };

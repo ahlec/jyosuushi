@@ -14,12 +14,6 @@ export interface ExternalLink {
   language: ExternalLinkLanguage;
 }
 
-export interface CounterDisambiguation {
-  counter1Id: string;
-  counter2Id: string;
-  disambiguation: string;
-}
-
 export enum WordOrigin {
   Japanese = "japanese",
   Chinese = "chinese",
@@ -116,6 +110,11 @@ export type MarkdownComponentProps = {};
 
 type MarkdownComponent = ComponentType<MarkdownComponentProps>;
 
+export interface CounterDisambiguation {
+  distinction: MarkdownComponent;
+  otherCounterId: string;
+}
+
 export interface Counter {
   counterId: string;
   englishName: string;
@@ -126,7 +125,7 @@ export interface Counter {
   leadIn: string | null;
   notes: MarkdownComponent | null;
   externalLinks: ReadonlyArray<ExternalLink>;
-  disambiguations: { [counterId: string]: CounterDisambiguation | undefined };
+  disambiguations: ReadonlyArray<CounterDisambiguation>;
 }
 
 export enum CounterItemRelevance {
