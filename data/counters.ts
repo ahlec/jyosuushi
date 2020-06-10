@@ -9,16 +9,19 @@ import {
   ExternalLinkLanguage,
   WordOrigin
 } from "../src/interfaces";
-import * as DISAMBIGUATIONS from "./disambiguations";
 
-import 人Notes from "@data/counter-notes/人Notes";
-import 本Notes from "@data/counter-notes/本Notes";
+import * as 人Components from "@data/counter-components/人";
+import * as 匹Components from "@data/counter-components/匹";
+import * as 名Components from "@data/counter-components/名";
+import * as 本Components from "@data/counter-components/本";
+import * as 缶Components from "@data/counter-components/缶";
 
 export const COUNTER_ヶ国: Counter = {
   counterId: "ヶ国",
-  disambiguations: {},
+  disambiguations: [],
   englishName: "countries",
   externalLinks: [],
+  footnotes: [],
   irregulars: {},
   kanji: {
     additionalKanji: [],
@@ -48,9 +51,10 @@ export const COUNTER_ヶ国: Counter = {
 
 export const COUNTER_ヶ所: Counter = {
   counterId: "ヶ所",
-  disambiguations: {},
+  disambiguations: [],
   englishName: "places",
   externalLinks: [],
+  footnotes: [],
   irregulars: {},
   kanji: {
     additionalKanji: [],
@@ -80,7 +84,7 @@ export const COUNTER_ヶ所: Counter = {
 
 export const COUNTER_ヶ月: Counter = {
   counterId: "ヶ月",
-  disambiguations: {},
+  disambiguations: [],
   englishName: "months",
   externalLinks: [
     {
@@ -91,6 +95,7 @@ export const COUNTER_ヶ月: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-tsuki-gatsu-getsu/"
     }
   ],
+  footnotes: [],
   irregulars: {},
   kanji: {
     additionalKanji: [],
@@ -120,10 +125,16 @@ export const COUNTER_ヶ月: Counter = {
 
 export const COUNTER_人: Counter = {
   counterId: "人",
-  disambiguations: {
-    名: DISAMBIGUATIONS.DISAMBIGUATION_人名,
-    匹: DISAMBIGUATIONS.DISAMBIGUATION_人匹
-  },
+  disambiguations: [
+    {
+      distinction: 人Components.Disambiguation名,
+      otherCounterId: "名"
+    },
+    {
+      distinction: 人Components.Disambiguation匹,
+      otherCounterId: "匹"
+    }
+  ],
   englishName: "people",
   externalLinks: [
     {
@@ -143,13 +154,20 @@ export const COUNTER_人: Counter = {
       url: "https://kotobank.jp/word/%E4%BA%BA-536577"
     }
   ],
+  footnotes: [
+    人Components.Footnote1,
+    人Components.Footnote2,
+    人Components.Footnote3,
+    人Components.Footnote4,
+    人Components.Footnote5
+  ],
   irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "人"
   },
   leadIn: "The ubiquitous counter for people and humanoids.",
-  notes: 人Notes,
+  notes: 人Components.CounterNotes,
   readings: [
     {
       counterId: "人",
@@ -178,9 +196,10 @@ export const COUNTER_人: Counter = {
 
 export const COUNTER_件: Counter = {
   counterId: "件",
-  disambiguations: {},
+  disambiguations: [],
   englishName: "matters",
   externalLinks: [],
+  footnotes: [],
   irregulars: {},
   kanji: {
     additionalKanji: [],
@@ -210,9 +229,10 @@ export const COUNTER_件: Counter = {
 
 export const COUNTER_円: Counter = {
   counterId: "円",
-  disambiguations: {},
+  disambiguations: [],
   englishName: "yen",
   externalLinks: [],
+  footnotes: [],
   irregulars: {},
   kanji: {
     additionalKanji: [],
@@ -242,7 +262,7 @@ export const COUNTER_円: Counter = {
 
 export const COUNTER_冊: Counter = {
   counterId: "冊",
-  disambiguations: {},
+  disambiguations: [],
   englishName: "books",
   externalLinks: [
     {
@@ -253,6 +273,7 @@ export const COUNTER_冊: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-satsu/"
     }
   ],
+  footnotes: [],
   irregulars: {},
   kanji: {
     additionalKanji: [],
@@ -282,7 +303,7 @@ export const COUNTER_冊: Counter = {
 
 export const COUNTER_分: Counter = {
   counterId: "分",
-  disambiguations: {},
+  disambiguations: [],
   englishName: "minutes",
   externalLinks: [
     {
@@ -293,6 +314,7 @@ export const COUNTER_分: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-fun/"
     }
   ],
+  footnotes: [],
   irregulars: {},
   kanji: {
     additionalKanji: [],
@@ -322,9 +344,10 @@ export const COUNTER_分: Counter = {
 
 export const COUNTER_切れ: Counter = {
   counterId: "切れ",
-  disambiguations: {},
+  disambiguations: [],
   englishName: "cuts of meat",
   externalLinks: [],
+  footnotes: [],
   irregulars: {},
   kanji: {
     additionalKanji: [],
@@ -354,9 +377,12 @@ export const COUNTER_切れ: Counter = {
 
 export const COUNTER_匹: Counter = {
   counterId: "匹",
-  disambiguations: {
-    人: DISAMBIGUATIONS.DISAMBIGUATION_人匹
-  },
+  disambiguations: [
+    {
+      distinction: 匹Components.Disambiguation人,
+      otherCounterId: "人"
+    }
+  ],
   englishName: "small animals",
   externalLinks: [
     {
@@ -367,6 +393,7 @@ export const COUNTER_匹: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-hiki/"
     }
   ],
+  footnotes: [],
   irregulars: {},
   kanji: {
     additionalKanji: [],
@@ -396,9 +423,10 @@ export const COUNTER_匹: Counter = {
 
 export const COUNTER_口: Counter = {
   counterId: "口",
-  disambiguations: {},
+  disambiguations: [],
   englishName: "bites",
   externalLinks: [],
+  footnotes: [],
   irregulars: {},
   kanji: {
     additionalKanji: [],
@@ -428,7 +456,7 @@ export const COUNTER_口: Counter = {
 
 export const COUNTER_台: Counter = {
   counterId: "台",
-  disambiguations: {},
+  disambiguations: [],
   englishName: "machines and large objects",
   externalLinks: [
     {
@@ -439,6 +467,7 @@ export const COUNTER_台: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-dai/"
     }
   ],
+  footnotes: [],
   irregulars: {},
   kanji: {
     additionalKanji: [],
@@ -468,9 +497,12 @@ export const COUNTER_台: Counter = {
 
 export const COUNTER_名: Counter = {
   counterId: "名",
-  disambiguations: {
-    人: DISAMBIGUATIONS.DISAMBIGUATION_人名
-  },
+  disambiguations: [
+    {
+      distinction: 名Components.Disambiguation人,
+      otherCounterId: "人"
+    }
+  ],
   englishName: "people",
   externalLinks: [
     {
@@ -481,6 +513,7 @@ export const COUNTER_名: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-nin/"
     }
   ],
+  footnotes: [],
   irregulars: {},
   kanji: {
     additionalKanji: [],
@@ -510,9 +543,10 @@ export const COUNTER_名: Counter = {
 
 export const COUNTER_周: Counter = {
   counterId: "周",
-  disambiguations: {},
+  disambiguations: [],
   englishName: "laps and circuits",
   externalLinks: [],
+  footnotes: [],
   irregulars: {},
   kanji: {
     additionalKanji: [],
@@ -542,7 +576,7 @@ export const COUNTER_周: Counter = {
 
 export const COUNTER_回: Counter = {
   counterId: "回",
-  disambiguations: {},
+  disambiguations: [],
   englishName: "times (occurrences)",
   externalLinks: [
     {
@@ -553,6 +587,7 @@ export const COUNTER_回: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-kai-times/"
     }
   ],
+  footnotes: [],
   irregulars: {},
   kanji: {
     additionalKanji: [],
@@ -582,9 +617,10 @@ export const COUNTER_回: Counter = {
 
 export const COUNTER_巻: Counter = {
   counterId: "巻",
-  disambiguations: {},
+  disambiguations: [],
   englishName: "volumes",
   externalLinks: [],
+  footnotes: [],
   irregulars: {},
   kanji: {
     additionalKanji: [],
@@ -614,9 +650,10 @@ export const COUNTER_巻: Counter = {
 
 export const COUNTER_席: Counter = {
   counterId: "席",
-  disambiguations: {},
+  disambiguations: [],
   englishName: "seats",
   externalLinks: [],
+  footnotes: [],
   irregulars: {},
   kanji: {
     additionalKanji: [],
@@ -652,7 +689,7 @@ export const COUNTER_席: Counter = {
 
 export const COUNTER_年: Counter = {
   counterId: "年",
-  disambiguations: {},
+  disambiguations: [],
   englishName: "years",
   externalLinks: [
     {
@@ -663,6 +700,7 @@ export const COUNTER_年: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counters-nen/"
     }
   ],
+  footnotes: [],
   irregulars: {},
   kanji: {
     additionalKanji: [],
@@ -692,9 +730,10 @@ export const COUNTER_年: Counter = {
 
 export const COUNTER_戦: Counter = {
   counterId: "戦",
-  disambiguations: {},
+  disambiguations: [],
   englishName: "battles",
   externalLinks: [],
+  footnotes: [],
   irregulars: {},
   kanji: {
     additionalKanji: [],
@@ -724,7 +763,7 @@ export const COUNTER_戦: Counter = {
 
 export const COUNTER_日: Counter = {
   counterId: "日",
-  disambiguations: {},
+  disambiguations: [],
   englishName: "days of the month",
   externalLinks: [
     {
@@ -735,6 +774,7 @@ export const COUNTER_日: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-ka-nichi/"
     }
   ],
+  footnotes: [],
   irregulars: {
     1: [
       {
@@ -882,7 +922,7 @@ export const COUNTER_日: Counter = {
 
 export const COUNTER_時: Counter = {
   counterId: "時",
-  disambiguations: {},
+  disambiguations: [],
   englishName: "hours",
   externalLinks: [
     {
@@ -893,6 +933,7 @@ export const COUNTER_時: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-ji-jikan/"
     }
   ],
+  footnotes: [],
   irregulars: {},
   kanji: {
     additionalKanji: [],
@@ -922,9 +963,10 @@ export const COUNTER_時: Counter = {
 
 export const COUNTER_曲: Counter = {
   counterId: "曲",
-  disambiguations: {},
+  disambiguations: [],
   englishName: "songs",
   externalLinks: [],
+  footnotes: [],
   irregulars: {},
   kanji: {
     additionalKanji: [],
@@ -954,9 +996,12 @@ export const COUNTER_曲: Counter = {
 
 export const COUNTER_本: Counter = {
   counterId: "本",
-  disambiguations: {
-    缶: DISAMBIGUATIONS.DISAMBIGUATION_本缶
-  },
+  disambiguations: [
+    {
+      distinction: 本Components.Disambiguation缶,
+      otherCounterId: "缶"
+    }
+  ],
   englishName: "long, thin objects",
   externalLinks: [
     {
@@ -976,6 +1021,12 @@ export const COUNTER_本: Counter = {
       url: "https://kotobank.jp/word/%E6%9C%AC-631932"
     }
   ],
+  footnotes: [
+    本Components.Footnote1,
+    本Components.Footnote2,
+    本Components.Footnote3,
+    本Components.Footnote4
+  ],
   irregulars: {},
   kanji: {
     additionalKanji: [],
@@ -983,7 +1034,7 @@ export const COUNTER_本: Counter = {
   },
   leadIn:
     "A highly versatile counter used primarily to count long, thin (usually cylindrical) objects.",
-  notes: 本Notes,
+  notes: 本Components.CounterNotes,
   readings: [
     {
       counterId: "本",
@@ -1006,9 +1057,10 @@ export const COUNTER_本: Counter = {
 
 export const COUNTER_束: Counter = {
   counterId: "束",
-  disambiguations: {},
+  disambiguations: [],
   englishName: "bundles",
   externalLinks: [],
+  footnotes: [],
   irregulars: {},
   kanji: {
     additionalKanji: [],
@@ -1044,7 +1096,7 @@ export const COUNTER_束: Counter = {
 
 export const COUNTER_枚: Counter = {
   counterId: "枚",
-  disambiguations: {},
+  disambiguations: [],
   englishName: "flat objects",
   externalLinks: [
     {
@@ -1055,6 +1107,7 @@ export const COUNTER_枚: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-mai/"
     }
   ],
+  footnotes: [],
   irregulars: {},
   kanji: {
     additionalKanji: [],
@@ -1084,9 +1137,10 @@ export const COUNTER_枚: Counter = {
 
 export const COUNTER_校: Counter = {
   counterId: "校",
-  disambiguations: {},
+  disambiguations: [],
   englishName: "schools",
   externalLinks: [],
+  footnotes: [],
   irregulars: {},
   kanji: {
     additionalKanji: [],
@@ -1116,9 +1170,10 @@ export const COUNTER_校: Counter = {
 
 export const COUNTER_歳: Counter = {
   counterId: "歳",
-  disambiguations: {},
+  disambiguations: [],
   englishName: "age",
   externalLinks: [],
+  footnotes: [],
   irregulars: {},
   kanji: {
     additionalKanji: ["才"],
@@ -1148,9 +1203,10 @@ export const COUNTER_歳: Counter = {
 
 export const COUNTER_皿: Counter = {
   counterId: "皿",
-  disambiguations: {},
+  disambiguations: [],
   englishName: "plates of food",
   externalLinks: [],
+  footnotes: [],
   irregulars: {},
   kanji: {
     additionalKanji: [],
@@ -1186,9 +1242,10 @@ export const COUNTER_皿: Counter = {
 
 export const COUNTER_社: Counter = {
   counterId: "社",
-  disambiguations: {},
+  disambiguations: [],
   englishName: "companies and temples",
   externalLinks: [],
+  footnotes: [],
   irregulars: {},
   kanji: {
     additionalKanji: [],
@@ -1218,9 +1275,10 @@ export const COUNTER_社: Counter = {
 
 export const COUNTER_組: Counter = {
   counterId: "組",
-  disambiguations: {},
+  disambiguations: [],
   englishName: "groups and pairs",
   externalLinks: [],
+  footnotes: [],
   irregulars: {},
   kanji: {
     additionalKanji: [],
@@ -1250,11 +1308,15 @@ export const COUNTER_組: Counter = {
 
 export const COUNTER_缶: Counter = {
   counterId: "缶",
-  disambiguations: {
-    本: DISAMBIGUATIONS.DISAMBIGUATION_本缶
-  },
+  disambiguations: [
+    {
+      distinction: 缶Components.Disambiguation本,
+      otherCounterId: "本"
+    }
+  ],
   englishName: "cans",
   externalLinks: [],
+  footnotes: [缶Components.Footnote1],
   irregulars: {},
   kanji: {
     additionalKanji: [],
@@ -1290,7 +1352,7 @@ export const COUNTER_缶: Counter = {
 
 export const COUNTER_羽: Counter = {
   counterId: "羽",
-  disambiguations: {},
+  disambiguations: [],
   englishName: "birds and rabbits",
   externalLinks: [
     {
@@ -1301,6 +1363,7 @@ export const COUNTER_羽: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-wa/"
     }
   ],
+  footnotes: [],
   irregulars: {},
   kanji: {
     additionalKanji: [],
@@ -1330,9 +1393,10 @@ export const COUNTER_羽: Counter = {
 
 export const COUNTER_色: Counter = {
   counterId: "色",
-  disambiguations: {},
+  disambiguations: [],
   englishName: "colours",
   externalLinks: [],
+  footnotes: [],
   irregulars: {},
   kanji: {
     additionalKanji: [],
@@ -1362,9 +1426,10 @@ export const COUNTER_色: Counter = {
 
 export const COUNTER_語: Counter = {
   counterId: "語",
-  disambiguations: {},
+  disambiguations: [],
   englishName: "words",
   externalLinks: [],
+  footnotes: [],
   irregulars: {},
   kanji: {
     additionalKanji: [],
@@ -1394,9 +1459,10 @@ export const COUNTER_語: Counter = {
 
 export const COUNTER_足: Counter = {
   counterId: "足",
-  disambiguations: {},
+  disambiguations: [],
   englishName: "pairs of footwear",
   externalLinks: [],
+  footnotes: [],
   irregulars: {},
   kanji: {
     additionalKanji: [],
@@ -1426,9 +1492,10 @@ export const COUNTER_足: Counter = {
 
 export const COUNTER_軒: Counter = {
   counterId: "軒",
-  disambiguations: {},
+  disambiguations: [],
   englishName: "houses and buildings",
   externalLinks: [],
+  footnotes: [],
   irregulars: {},
   kanji: {
     additionalKanji: [],
@@ -1458,9 +1525,10 @@ export const COUNTER_軒: Counter = {
 
 export const COUNTER_週: Counter = {
   counterId: "週",
-  disambiguations: {},
+  disambiguations: [],
   englishName: "weeks",
   externalLinks: [],
+  footnotes: [],
   irregulars: {},
   kanji: {
     additionalKanji: [],
@@ -1490,7 +1558,7 @@ export const COUNTER_週: Counter = {
 
 export const COUNTER_階: Counter = {
   counterId: "階",
-  disambiguations: {},
+  disambiguations: [],
   englishName: "floors",
   externalLinks: [
     {
@@ -1501,6 +1569,7 @@ export const COUNTER_階: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-kai-floors/"
     }
   ],
+  footnotes: [],
   irregulars: {},
   kanji: {
     additionalKanji: [],
@@ -1530,7 +1599,7 @@ export const COUNTER_階: Counter = {
 
 export const COUNTER_頭: Counter = {
   counterId: "頭",
-  disambiguations: {},
+  disambiguations: [],
   englishName: "large animals",
   externalLinks: [
     {
@@ -1541,6 +1610,7 @@ export const COUNTER_頭: Counter = {
       url: "https://www.tofugu.com/japanese/japanese-counter-tou/"
     }
   ],
+  footnotes: [],
   irregulars: {},
   kanji: {
     additionalKanji: [],
