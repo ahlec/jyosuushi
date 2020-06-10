@@ -1,3 +1,4 @@
+import toH from "hast-to-hyperscript";
 import { isArray } from "lodash";
 import toHast from "mdast-util-to-hast";
 import { Processor } from "unified";
@@ -6,7 +7,7 @@ import { VFile } from "vfile";
 
 import { JSXRepresentation } from "../types";
 import { isIndexableObject } from "../utils";
-import writeNodeAsJsx from "../write-node-as-jsx";
+import writeNodeAsJsx, { WriteNodeAsJsxOptions } from "../write-node-as-jsx";
 
 interface FootnoteExtractorCompilerOptions {
   refnoteStart: number;
@@ -116,14 +117,20 @@ function convertNodeToFootnote(node: Node, globalRefId: number): Footnote {
   }
 
   const localRefId = properties["id"].substring("fn-".length);
+  const writeNodeOptions: WriteNodeAsJsxOptions = {
+    footnoteLocalToGlobalMap: {
+      [localRefId]: globalRefId
+    }
+  };
+  const noteJsx = toH<JSXRepresentation>(
+    (name, props, children) =>
+      writeNodeAsJsx(name, props, children, writeNodeOptions),
+    node
+  );
   return {
     globalRefId,
     localRefId,
-    noteJsx: writeNodeAsJsx("li", properties, children, {
-      footnoteLocalToGlobalMap: {
-        [localRefId]: globalRefId
-      }
-    })
+    noteJsx
   };
 }
 
