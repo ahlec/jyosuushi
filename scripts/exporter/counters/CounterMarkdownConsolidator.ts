@@ -28,7 +28,7 @@ class CounterMarkdownConsolidator {
     const footnoteExtraction = retrieveFootnotesFromMarkdown(
       markdown,
       // This should be consecutive and 1-based
-      this.footnoteComponentVariables.length + 17
+      this.footnoteComponentVariables.length + 1
     );
 
     for (const footnote of footnoteExtraction.footnotes) {
