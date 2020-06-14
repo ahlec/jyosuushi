@@ -12,14 +12,18 @@ import footnoteExtractorCompiler, {
   Footnote
 } from "./remark-compilers/footnote-extractor-compiler";
 
-export interface JsxResults {
+export interface JsxComponent {
   jsx: string;
   requiresReactRouterLink: boolean;
 }
 
-export interface ExtractFootnotesResults {
-  footnotes: ReadonlyArray<Footnote>;
-  footnoteLocalRefIdToGlobalId: { [localRefId: string]: number | undefined };
+export interface FootnoteJsxComponent extends JsxComponent {
+  footnoteId: number;
+}
+
+export interface MarkdownToJsxResults {
+  body: JsxComponent;
+  footnotes: ReadonlyArray<FootnoteJsxComponent>;
 }
 
 function processMarkdown<TCompilerOptions, TVFileData>(
@@ -46,11 +50,43 @@ function processMarkdown<TCompilerOptions, TVFileData>(
   };
 }
 
+interface ConvertMarkdownToJsxOptions {
+  footnotesCountingStart: number;
+}
+
+function convertFootnoteToJsxComponent(
+  footnote: Footnote
+): FootnoteJsxComponent {
+  return {
+    footnoteId: footnote.globalRefId,
+    jsx: footnote.noteJsx.jsx,
+    requiresReactRouterLink: footnote.noteJsx.containsIntrasiteLink
+  };
+}
+
 export function convertMarkdownToJSX(
   markdown: string,
-  footnoteLocalRefIdToGlobalId: { [localRefId: string]: number | undefined }
-): JsxResults {
-  const { data, output } = processMarkdown(
+  options: ConvertMarkdownToJsxOptions
+): MarkdownToJsxResults {
+  // Process footnotes
+  const { data: footnotesData } = processMarkdown(
+    markdown,
+    footnoteExtractorCompiler,
+    {
+      refnoteStart: options.footnotesCountingStart
+    },
+    assertFootnoteExtractorCompilerVFileData
+  );
+
+  const footnoteLocalRefIdToGlobalId: {
+    [localRefId: string]: number | undefined;
+  } = {};
+  for (const footnote of footnotesData.footnotes) {
+    footnoteLocalRefIdToGlobalId[footnote.localRefId] = footnote.globalRefId;
+  }
+
+  // Process body
+  const { data: bodyData, output } = processMarkdown(
     markdown,
     jsxCompiler,
     {
@@ -60,33 +96,10 @@ export function convertMarkdownToJSX(
   );
 
   return {
-    jsx: output,
-    requiresReactRouterLink: data.usesReactRouterLink
-  };
-}
-
-export function retrieveFootnotesFromMarkdown(
-  markdown: string,
-  refnoteStart: number
-): ExtractFootnotesResults {
-  const { data } = processMarkdown(
-    markdown,
-    footnoteExtractorCompiler,
-    {
-      refnoteStart
+    body: {
+      jsx: output,
+      requiresReactRouterLink: bodyData.usesReactRouterLink
     },
-    assertFootnoteExtractorCompilerVFileData
-  );
-
-  const footnoteLocalRefIdToGlobalId: {
-    [localRefId: string]: number | undefined;
-  } = {};
-  for (const footnote of data.footnotes) {
-    footnoteLocalRefIdToGlobalId[footnote.localRefId] = footnote.globalRefId;
-  }
-
-  return {
-    footnoteLocalRefIdToGlobalId,
-    footnotes: data.footnotes
+    footnotes: footnotesData.footnotes.map(convertFootnoteToJsxComponent)
   };
 }

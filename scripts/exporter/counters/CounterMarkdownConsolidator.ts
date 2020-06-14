@@ -1,7 +1,4 @@
-import {
-  convertMarkdownToJSX,
-  retrieveFootnotesFromMarkdown
-} from "../markdown";
+import { convertMarkdownToJSX } from "../markdown";
 
 import { ProductionVariable } from "../utils";
 
@@ -12,31 +9,38 @@ export interface CounterMarkdownComponent {
 }
 
 class CounterMarkdownConsolidator {
-  public readonly markdownComponents: CounterMarkdownComponent[] = [];
   public readonly footnoteComponentVariables: ProductionVariable[] = [];
+
+  private readonly primaryComponents: CounterMarkdownComponent[] = [];
+  private readonly footnoteComponents: CounterMarkdownComponent[] = [];
 
   public constructor(public readonly importedNamespace: string) {}
 
+  public get markdownComponents(): ReadonlyArray<CounterMarkdownComponent> {
+    return [...this.primaryComponents, ...this.footnoteComponents];
+  }
+
   public get hasComponents(): boolean {
-    return this.markdownComponents.length > 0;
+    return (
+      this.primaryComponents.length > 0 || this.footnoteComponents.length > 0
+    );
   }
 
   public addMarkdown(
     componentName: string,
     markdown: string
   ): ProductionVariable {
-    const footnoteExtraction = retrieveFootnotesFromMarkdown(
-      markdown,
+    const { body, footnotes } = convertMarkdownToJSX(markdown, {
       // This should be consecutive and 1-based
-      this.footnoteComponentVariables.length + 1
-    );
+      footnotesCountingStart: this.footnoteComponentVariables.length + 1
+    });
 
-    for (const footnote of footnoteExtraction.footnotes) {
-      const footnoteComponentName = `Footnote${footnote.globalRefId}`;
-      this.markdownComponents.push({
+    for (const footnote of footnotes) {
+      const footnoteComponentName = `Footnote${footnote.footnoteId}`;
+      this.footnoteComponents.push({
         componentName: footnoteComponentName,
-        jsx: footnote.noteJsx.jsx,
-        requiresReactRouterDomLink: footnote.noteJsx.containsIntrasiteLink
+        jsx: footnote.jsx,
+        requiresReactRouterDomLink: footnote.requiresReactRouterLink
       });
       this.footnoteComponentVariables.push(
         new ProductionVariable(
@@ -45,14 +49,10 @@ class CounterMarkdownConsolidator {
       );
     }
 
-    const convertedJsx = convertMarkdownToJSX(
-      markdown,
-      footnoteExtraction.footnoteLocalRefIdToGlobalId
-    );
-    this.markdownComponents.push({
+    this.primaryComponents.push({
       componentName,
-      jsx: convertedJsx.jsx,
-      requiresReactRouterDomLink: convertedJsx.requiresReactRouterLink
+      jsx: body.jsx,
+      requiresReactRouterDomLink: body.requiresReactRouterLink
     });
     return new ProductionVariable(`${this.importedNamespace}.${componentName}`);
   }

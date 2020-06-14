@@ -6,65 +6,6 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import { MarkdownComponentProps } from "@jyosuushi/interfaces";
 
-export class Footnote1 extends React.PureComponent<MarkdownComponentProps> {
-  public render(): React.ReactNode {
-    return (
-      <li id="fn-1">
-        「数え方の辞典」飯田 朝子　（出版：小学館）
-        <a className="footnote-backref" href="#fnref-1">
-          ↩
-        </a>
-      </li>
-    );
-  }
-}
-
-export class Footnote2 extends React.PureComponent<MarkdownComponentProps> {
-  public render(): React.ReactNode {
-    return (
-      <li id="fn-2">
-        <a
-          href="https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q108182870"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Chiebukuro
-        </a>
-        :
-        昔、まだ紙が発明されていなかった頃は、人々は木や竹を細長い板状（冊、さく）にして、それに字を書いて、ヒモで編んで書物にしたよ。その、「冊」から来た数え方だよ。
-        <a className="footnote-backref" href="#fnref-2">
-          ↩
-        </a>
-      </li>
-    );
-  }
-}
-
-export class Footnote3 extends React.PureComponent<MarkdownComponentProps> {
-  public render(): React.ReactNode {
-    return (
-      <li id="fn-3">
-        <a
-          href="https://kagiroi.com/publishing-times/7464/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          出版 TIMES
-        </a>
-        :
-        印刷技術が発達する以前、経典など貴重な書籍・書物は、すべて手で「書写」され、複製していました。その{" "}
-        <strong>
-          「書写」のときに、「お手本」になるものを「もと（本）」と呼び
-        </strong>
-        、その流れで「本」＝「書籍、書物」という概念が一般化したようです。
-        <a className="footnote-backref" href="#fnref-3">
-          ↩
-        </a>
-      </li>
-    );
-  }
-}
-
 export class CounterNotes extends React.PureComponent<MarkdownComponentProps> {
   public render(): React.ReactNode {
     return (
@@ -310,27 +251,6 @@ export class CounterNotes extends React.PureComponent<MarkdownComponentProps> {
   }
 }
 
-export class Footnote4 extends React.PureComponent<MarkdownComponentProps> {
-  public render(): React.ReactNode {
-    return (
-      <li id="fn-4">
-        <a
-          href="https://japanknowledge.com/articles/kze/column_kaz_03.html#:~:text=%E7%BC%B6%E3%81%AE%E4%B8%AD%E8%BA%AB%E3%81%8C%E3%82%B8%E3%83%A5%E3%83%BC%E3%82%B9,%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E3%81%AE%E3%81%A7%E3%81%99%E3%80%82"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          JapanKnowledge
-        </a>
-        :
-        これは、話し手が単純に缶だけを数えているのではなく、缶の中身によって数え分けていることを示しています。缶の中身がジュースのような液体だと「本」で数えますが、中身がアスパラガスのように固体だと「個」や「缶」で数えます。また、中身の入っていない空き缶は「本」では数えず、「空き缶1個」のように数えます。
-        <a className="footnote-backref" href="#fnref-4">
-          ↩
-        </a>
-      </li>
-    );
-  }
-}
-
 export class Disambiguation缶 extends React.PureComponent<
   MarkdownComponentProps
 > {
@@ -352,6 +272,86 @@ export class Disambiguation缶 extends React.PureComponent<
           </sup>
         </p>
       </React.Fragment>
+    );
+  }
+}
+
+export class Footnote1 extends React.PureComponent<MarkdownComponentProps> {
+  public render(): React.ReactNode {
+    return (
+      <li id="fn-1">
+        「数え方の辞典」飯田 朝子　（出版：小学館）
+        <a className="footnote-backref" href="#fnref-1">
+          ↩
+        </a>
+      </li>
+    );
+  }
+}
+
+export class Footnote2 extends React.PureComponent<MarkdownComponentProps> {
+  public render(): React.ReactNode {
+    return (
+      <li id="fn-2">
+        <a
+          href="https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q108182870"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Chiebukuro
+        </a>
+        :
+        昔、まだ紙が発明されていなかった頃は、人々は木や竹を細長い板状（冊、さく）にして、それに字を書いて、ヒモで編んで書物にしたよ。その、「冊」から来た数え方だよ。
+        <a className="footnote-backref" href="#fnref-2">
+          ↩
+        </a>
+      </li>
+    );
+  }
+}
+
+export class Footnote3 extends React.PureComponent<MarkdownComponentProps> {
+  public render(): React.ReactNode {
+    return (
+      <li id="fn-3">
+        <a
+          href="https://kagiroi.com/publishing-times/7464/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          出版 TIMES
+        </a>
+        :
+        印刷技術が発達する以前、経典など貴重な書籍・書物は、すべて手で「書写」され、複製していました。その{" "}
+        <strong>
+          「書写」のときに、「お手本」になるものを「もと（本）」と呼び
+        </strong>
+        、その流れで「本」＝「書籍、書物」という概念が一般化したようです。
+        <a className="footnote-backref" href="#fnref-3">
+          ↩
+        </a>
+      </li>
+    );
+  }
+}
+
+export class Footnote4 extends React.PureComponent<MarkdownComponentProps> {
+  public render(): React.ReactNode {
+    return (
+      <li id="fn-4">
+        <a
+          href="https://japanknowledge.com/articles/kze/column_kaz_03.html#:~:text=%E7%BC%B6%E3%81%AE%E4%B8%AD%E8%BA%AB%E3%81%8C%E3%82%B8%E3%83%A5%E3%83%BC%E3%82%B9,%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E3%81%AE%E3%81%A7%E3%81%99%E3%80%82"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          JapanKnowledge
+        </a>
+        :
+        これは、話し手が単純に缶だけを数えているのではなく、缶の中身によって数え分けていることを示しています。缶の中身がジュースのような液体だと「本」で数えますが、中身がアスパラガスのように固体だと「個」や「缶」で数えます。また、中身の入っていない空き缶は「本」では数えず、「空き缶1個」のように数えます。
+        <a className="footnote-backref" href="#fnref-4">
+          ↩
+        </a>
+      </li>
     );
   }
 }
