@@ -13,6 +13,7 @@ import {
   TAB_SIZE,
   MAX_SLICE
 } from "./constants";
+import IdTracker from "./IdTracker";
 
 type InterruptorsArray = readonly (readonly string[])[];
 
@@ -179,7 +180,8 @@ function parseContentLines(
 
 export function createFootnoteDefinitionTokenizer(
   interruptors: InterruptorsArray,
-  blockToknenizers: { [method: string]: BlockTokenizer }
+  blockToknenizers: { [method: string]: BlockTokenizer },
+  idTracker: IdTracker
 ): BlockTokenizer {
   return function footnoteDefinition(
     this: RemarkParser,
@@ -247,10 +249,11 @@ export function createFootnoteDefinitionTokenizer(
     const children = this.tokenizeBlock(content.join(""), now);
     exit();
 
+    const refId = idTracker.getId(label.value.toLowerCase());
     return add({
       children,
-      identifier: label.value.toLowerCase(),
-      label: label,
+      identifier: refId,
+      label: refId,
       type: "footnoteDefinition"
     });
   };

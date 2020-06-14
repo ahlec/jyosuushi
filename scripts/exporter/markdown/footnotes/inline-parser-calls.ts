@@ -1,6 +1,8 @@
 import { Node } from "unist";
 
-import { Eat, RemarkParser } from "../interfaces";
+import { Eat, RemarkParser, InlineTokenizer } from "../interfaces";
+
+import IdTracker from "./IdTracker";
 
 import {
   KEYCODE_RIGHT_SQUARE_BRACKET,
@@ -58,31 +60,36 @@ function parseLabel(value: string): ParsedLabelInfo | null {
   return null;
 }
 
-// Parse a footnote call / footnote reference, such as `[^label]`
-function footnoteCall(
-  this: RemarkParser,
-  eat: Eat,
-  value: string,
-  silent: boolean
-): Node | boolean | void {
-  const label = parseLabel(value);
-  if (!label) {
-    return;
+export function createFootnoteCallsTokenizer(
+  idTracker: IdTracker
+): InlineTokenizer {
+  // Parse a footnote call / footnote reference, such as `[^label]`
+  function footnoteCall(
+    this: RemarkParser,
+    eat: Eat,
+    value: string,
+    silent: boolean
+  ): Node | boolean | void {
+    const label = parseLabel(value);
+    if (!label) {
+      return;
+    }
+
+    if (silent) {
+      return true;
+    }
+
+    const refId = idTracker.getId(label.value.toLowerCase());
+    return eat(value.slice(0, label.end + 1))({
+      identifier: refId,
+      label: refId,
+      type: "footnoteReference"
+    });
   }
 
-  if (silent) {
-    return true;
-  }
+  footnoteCall.locator = (value: string, fromIndex: number): number => {
+    return value.indexOf("[", fromIndex);
+  };
 
-  return eat(value.slice(0, label.end + 1))({
-    identifier: label.value.toLowerCase(),
-    label: label,
-    type: "footnoteReference"
-  });
+  return footnoteCall;
 }
-
-footnoteCall.locator = (value: string, fromIndex: number): number => {
-  return value.indexOf("[", fromIndex);
-};
-
-export default footnoteCall;

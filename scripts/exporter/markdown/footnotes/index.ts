@@ -1,9 +1,11 @@
 import { ParserConstructor, ParserFunction, Processor } from "unified";
 
-import footnoteCall from "./inline-parser-calls";
+import { createFootnoteCallsTokenizer } from "./inline-parser-calls";
 import { createFootnoteDefinitionTokenizer } from "./block-parser-definitions";
 import { createReplacementDefinitionParser } from "./replacement-block-parser-definition";
 import { createReplacementReferenceParser } from "./replacement-inline-parser-reference";
+
+import IdTracker from "./IdTracker";
 
 interface FootnoteOptions {
   footnotesCountingStart: number;
@@ -15,13 +17,15 @@ function insertBefore<T>(list: T[], before: T, value: T): void {
 
 function attachParser(
   parser: ParserConstructor | ParserFunction,
-  options: FootnoteOptions
+  { footnotesCountingStart }: FootnoteOptions
 ): void {
   const proto = parser.prototype;
   const blocks = proto.blockTokenizers;
   const spans = proto.inlineTokenizers;
   const blockMethods = proto.blockMethods;
   const inlineMethods = proto.inlineMethods;
+  const idTracker = new IdTracker(footnotesCountingStart);
+
   // Interrupt by anything except for indented code or paragraphs.
   const interruptors: string[][] = [];
   for (let index = 0; index < blockMethods.length; ++index) {
@@ -50,9 +54,10 @@ function attachParser(
   blocks.definition = createReplacementDefinitionParser(blocks.definition);
   blocks.footnoteDefinition = createFootnoteDefinitionTokenizer(
     interruptors,
-    blocks
+    blocks,
+    idTracker
   );
-  spans.footnoteCall = footnoteCall;
+  spans.footnoteCall = createFootnoteCallsTokenizer(idTracker);
   spans.reference = reference;
 
   proto.interruptFootnoteDefinition = interruptors;
