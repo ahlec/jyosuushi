@@ -1,9 +1,9 @@
 import unified from "unified";
 import { VFile } from "vfile";
-import footnotes from "remark-footnotes";
 import parse from "remark-parse";
 import ruby from "remark-ruby";
 
+import footnotes from "./footnotes";
 import intrasiteLinkMarkdownPlugin from "./intrasite-link-plugin";
 import jsxCompiler, {
   assertJsxCompilerVFileData
@@ -33,7 +33,7 @@ function processMarkdown<TCompilerOptions>(
 ): VFile {
   return unified()
     .use(parse)
-    .use(footnotes)
+    .use(footnotes, {})
     .use(ruby)
     .use(intrasiteLinkMarkdownPlugin)
     .use(compiler, compilerOptions)
