@@ -1,5 +1,4 @@
 import unified from "unified";
-import { VFile } from "vfile";
 import parse from "remark-parse";
 import ruby from "remark-ruby";
 
@@ -23,36 +22,46 @@ export interface ExtractFootnotesResults {
   footnoteLocalRefIdToGlobalId: { [localRefId: string]: number | undefined };
 }
 
-function processMarkdown<TCompilerOptions>(
+function processMarkdown<TCompilerOptions, TVFileData>(
   markdown: string,
   compiler: (
     this: unified.Processor<unknown>,
     options: TCompilerOptions
   ) => void,
-  compilerOptions: TCompilerOptions
-): VFile {
-  return unified()
+  compilerOptions: TCompilerOptions,
+  dataAsserter: (value: unknown) => asserts value is TVFileData
+): { output: string; data: TVFileData } {
+  const result = unified()
     .use(parse)
     .use(footnotes, {})
     .use(ruby)
     .use(intrasiteLinkMarkdownPlugin)
     .use(compiler, compilerOptions)
     .processSync(markdown);
+  dataAsserter(result.data);
+
+  return {
+    data: result.data,
+    output: result.contents.toString()
+  };
 }
 
 export function convertMarkdownToJSX(
   markdown: string,
   footnoteLocalRefIdToGlobalId: { [localRefId: string]: number | undefined }
 ): JsxResults {
-  const result = processMarkdown(markdown, jsxCompiler, {
-    footnoteLocalRefIdToGlobalId
-  });
-
-  assertJsxCompilerVFileData(result.data);
+  const { data, output } = processMarkdown(
+    markdown,
+    jsxCompiler,
+    {
+      footnoteLocalRefIdToGlobalId
+    },
+    assertJsxCompilerVFileData
+  );
 
   return {
-    jsx: result.contents.toString(),
-    requiresReactRouterLink: result.data.usesReactRouterLink
+    jsx: output,
+    requiresReactRouterLink: data.usesReactRouterLink
   };
 }
 
@@ -60,20 +69,24 @@ export function retrieveFootnotesFromMarkdown(
   markdown: string,
   refnoteStart: number
 ): ExtractFootnotesResults {
-  const result = processMarkdown(markdown, footnoteExtractorCompiler, {
-    refnoteStart
-  });
-  assertFootnoteExtractorCompilerVFileData(result.data);
+  const { data } = processMarkdown(
+    markdown,
+    footnoteExtractorCompiler,
+    {
+      refnoteStart
+    },
+    assertFootnoteExtractorCompilerVFileData
+  );
 
   const footnoteLocalRefIdToGlobalId: {
     [localRefId: string]: number | undefined;
   } = {};
-  for (const footnote of result.data.footnotes) {
+  for (const footnote of data.footnotes) {
     footnoteLocalRefIdToGlobalId[footnote.localRefId] = footnote.globalRefId;
   }
 
   return {
     footnoteLocalRefIdToGlobalId,
-    footnotes: result.data.footnotes
+    footnotes: data.footnotes
   };
 }
