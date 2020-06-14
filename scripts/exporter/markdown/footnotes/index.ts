@@ -5,7 +5,9 @@ import { createFootnoteDefinitionTokenizer } from "./block-parser-definitions";
 import { createReplacementDefinitionParser } from "./replacement-block-parser-definition";
 import { createReplacementReferenceParser } from "./replacement-inline-parser-reference";
 
-type FootnoteOptions = {};
+interface FootnoteOptions {
+  footnotesCountingStart: number;
+}
 
 function insertBefore<T>(list: T[], before: T, value: T): void {
   list.splice(list.indexOf(before), 0, value);

@@ -28,19 +28,18 @@ export interface MarkdownToJsxResults {
 
 function processMarkdown<TCompilerOptions, TVFileData>(
   markdown: string,
-  compiler: (
-    this: unified.Processor<unknown>,
-    options: TCompilerOptions
-  ) => void,
-  compilerOptions: TCompilerOptions,
+  footnotesCountingStart: number,
+  compiler: (this: unified.Processor<unknown>) => void,
   dataAsserter: (value: unknown) => asserts value is TVFileData
 ): { output: string; data: TVFileData } {
   const result = unified()
     .use(parse)
-    .use(footnotes, {})
+    .use(footnotes, {
+      footnotesCountingStart
+    })
     .use(ruby)
     .use(intrasiteLinkMarkdownPlugin)
-    .use(compiler, compilerOptions)
+    .use(compiler)
     .processSync(markdown);
   dataAsserter(result.data);
 
@@ -58,7 +57,7 @@ function convertFootnoteToJsxComponent(
   footnote: Footnote
 ): FootnoteJsxComponent {
   return {
-    footnoteId: footnote.globalRefId,
+    footnoteId: footnote.refId,
     jsx: footnote.noteJsx.jsx,
     requiresReactRouterLink: footnote.noteJsx.containsIntrasiteLink
   };
@@ -71,27 +70,16 @@ export function convertMarkdownToJSX(
   // Process footnotes
   const { data: footnotesData } = processMarkdown(
     markdown,
+    options.footnotesCountingStart,
     footnoteExtractorCompiler,
-    {
-      refnoteStart: options.footnotesCountingStart
-    },
     assertFootnoteExtractorCompilerVFileData
   );
-
-  const footnoteLocalRefIdToGlobalId: {
-    [localRefId: string]: number | undefined;
-  } = {};
-  for (const footnote of footnotesData.footnotes) {
-    footnoteLocalRefIdToGlobalId[footnote.localRefId] = footnote.globalRefId;
-  }
 
   // Process body
   const { data: bodyData, output } = processMarkdown(
     markdown,
+    options.footnotesCountingStart,
     jsxCompiler,
-    {
-      footnoteLocalRefIdToGlobalId
-    },
     assertJsxCompilerVFileData
   );
 

@@ -7,15 +7,10 @@ import { VFile } from "vfile";
 
 import { JSXRepresentation } from "../types";
 import { isIndexableObject } from "../utils";
-import writeNodeAsJsx, { WriteNodeAsJsxOptions } from "../write-node-as-jsx";
-
-interface FootnoteExtractorCompilerOptions {
-  refnoteStart: number;
-}
+import writeNodeAsJsx from "../write-node-as-jsx";
 
 export interface Footnote {
-  localRefId: string;
-  globalRefId: number;
+  refId: number;
   noteJsx: JSXRepresentation;
 }
 
@@ -102,7 +97,7 @@ function collectFootnoteNodes(tree: Node): ReadonlyArray<Node> {
   return findAllNodes(container, isFootnoteLiElement);
 }
 
-function convertNodeToFootnote(node: Node, globalRefId: number): Footnote {
+function convertNodeToFootnote(node: Node): Footnote {
   const properties = node["properties"];
   const children = node["children"];
   if (
@@ -117,36 +112,20 @@ function convertNodeToFootnote(node: Node, globalRefId: number): Footnote {
   }
 
   const localRefId = properties["id"].substring("fn-".length);
-  const writeNodeOptions: WriteNodeAsJsxOptions = {
-    footnoteLocalToGlobalMap: {
-      [localRefId]: globalRefId
-    }
-  };
-  const noteJsx = toH<JSXRepresentation>(
-    (name, props, children) =>
-      writeNodeAsJsx(name, props, children, writeNodeOptions),
-    node
-  );
+  const noteJsx = toH<JSXRepresentation>(writeNodeAsJsx, node);
   return {
-    globalRefId,
-    localRefId,
-    noteJsx
+    noteJsx,
+    refId: parseInt(localRefId)
   };
 }
 
-function footnoteExtractorCompiler(
-  this: Processor<unknown>,
-  options: FootnoteExtractorCompilerOptions
-): void {
+function footnoteExtractorCompiler(this: Processor<unknown>): void {
   this.Compiler = function compile(node: Node, file: VFile): string {
     const tree = toHast(node);
     const footnoteNodes = collectFootnoteNodes(tree);
 
     const data: FootnoteExtractorCompilerVFileData = {
-      footnotes: footnoteNodes.map(
-        (node, index): Footnote =>
-          convertNodeToFootnote(node, options.refnoteStart + index)
-      )
+      footnotes: footnoteNodes.map(convertNodeToFootnote)
     };
     file.data = data;
 
