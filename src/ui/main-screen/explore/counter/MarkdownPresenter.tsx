@@ -1,12 +1,12 @@
 import classnames from "classnames";
 import * as React from "react";
 
-import { CounterNotesComponentProps } from "@jyosuushi/interfaces";
+import { MarkdownComponentProps } from "@jyosuushi/interfaces";
 
 import "./MarkdownPresenter.scss";
 
 interface ComponentProps {
-  component: React.ComponentType<CounterNotesComponentProps>;
+  component: React.ComponentType<MarkdownComponentProps>;
   className: string;
 }
 

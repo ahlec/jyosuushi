@@ -6,6 +6,7 @@ import ValidatedDataSource from "../database/ValidatedDataSource";
 
 import { StudyPack } from "../../src/interfaces";
 
+import { WriteFileResults } from "./types";
 import {
   getCounterId,
   getStudyPackId,
@@ -24,7 +25,7 @@ function convertToCounterVariable(db: DbStudyPackContent): ProductionVariable {
 export default function writeStudyPacksFile(
   stream: Writable,
   dataSource: ValidatedDataSource
-): void {
+): WriteFileResults {
   stream.write('import { StudyPack } from "../src/interfaces";\n');
   stream.write('import * as COUNTERS from "./counters";');
 
@@ -78,4 +79,8 @@ export default function writeStudyPacksFile(
       lookup
     )};`
   );
+
+  return {
+    additionalFileRequests: []
+  };
 }

@@ -12,7 +12,7 @@ export default function toH<T>(
   h: (
     name: string,
     props: Properties | undefined,
-    children: readonly unknown[] | undefined
+    children: readonly (string | T)[] | undefined
   ) => T,
   tree: Node
 ): T;

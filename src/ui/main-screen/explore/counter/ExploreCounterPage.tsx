@@ -15,6 +15,7 @@ import ConjugationsSection from "./ConjugationsSection";
 import DisambiguationSection, {
   hasDisambiguationSection
 } from "./DisambiguationSection";
+import FootnotesSection from "./FootnotesSection";
 import InfoSection, { hasInfoSectionContents } from "./InfoSection";
 import ItemsSection, { hasItemsSectionContents } from "./ItemsSection";
 import SectionContainer from "./SectionContainer";
@@ -85,6 +86,11 @@ class ExploreCounterPage extends React.PureComponent<ComponentProps> {
                 counter={counter}
                 localization={localization}
               />
+            </SectionContainer>
+          )}
+          {counter.footnotes.length > 0 && (
+            <SectionContainer header={localization.counterPageHeaderFootnotes}>
+              <FootnotesSection footnotes={counter.footnotes} />
             </SectionContainer>
           )}
         </div>
