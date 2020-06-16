@@ -18,7 +18,7 @@ import SettingsPage from "./settings/SettingsPage";
 export interface PageDefinition {
   component:
     | React.ComponentClass
-    | ConnectedComponent<React.ComponentClass, {}>;
+    | ConnectedComponent<React.ComponentClass, unknown>;
   icon: React.ComponentClass<React.SVGProps<SVGSVGElement>>;
   getName: (localization: Localization) => string;
   path: string;

@@ -46,7 +46,7 @@ export function createRedux(): Redux {
     user: userReducer,
     userAnswers: userAnswersReducer,
   });
-  const store = createStore<State, Action, {}, {}>(
+  const store = createStore<State, Action, unknown, unknown>(
     persistReducer(
       {
         key: "root",
