@@ -59,10 +59,16 @@ module.exports = {
       },
       {
         test: /\.(png|jpg)$/,
+        options: {
+          esModule: false
+        },
         loader: "url-loader"
       },
       {
         test: /\.svg$/,
+        options: {
+          esModule: false
+        },
         loader: "@svgr/webpack"
       }
     ]
@@ -98,16 +104,18 @@ module.exports = {
       ),
       JYOSUUSHI_CURRENT_SEMVER: JSON.stringify(process.env.npm_package_version)
     }),
-    new CopyWebpackPlugin([
-      {
-        from: FAVICON_DIRECTORY,
-        to: BUILD_DIRECTORY
-      },
-      {
-        from: path.resolve(ROOT_DIRECTORY, "./.htaccess"),
-        to: path.resolve(BUILD_DIRECTORY)
-      }
-    ]),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: FAVICON_DIRECTORY,
+          to: BUILD_DIRECTORY
+        },
+        {
+          from: path.resolve(ROOT_DIRECTORY, "./.htaccess"),
+          to: path.resolve(BUILD_DIRECTORY)
+        }
+      ]
+    }),
     new HtmlWebpackPlugin({
       template: path.resolve(SOURCE_DIRECTORY, "index.html")
     })
