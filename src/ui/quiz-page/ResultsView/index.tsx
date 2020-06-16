@@ -9,7 +9,7 @@ import {
   CountersState,
   State,
   UserAnswer,
-  UserAnswerJudgment
+  UserAnswerJudgment,
 } from "@jyosuushi/redux";
 import { ignoreLastAnswer } from "@jyosuushi/redux/actions";
 import { Dispatch } from "@jyosuushi/redux/store";
@@ -33,7 +33,7 @@ interface ReduxProps {
 function mapStateToProps(state: State): ReduxProps {
   return {
     counters: state.counters,
-    usersAnswer: state.userAnswers[state.userAnswers.length - 1]
+    usersAnswer: state.userAnswers[state.userAnswers.length - 1],
   };
 }
 
@@ -42,10 +42,10 @@ type ComponentProps = ProvidedProps & ReduxProps & { dispatch: Dispatch };
 const HEADERS: {
   [judgment in UserAnswerJudgment]: (localization: Localization) => string;
 } = {
-  correct: localization => localization.resultCorrectHeader,
-  ignored: localization => localization.resultIncorrectHeader,
-  incorrect: localization => localization.resultIncorrectHeader,
-  skipped: localization => localization.resultSkippedHeader
+  correct: (localization) => localization.resultCorrectHeader,
+  ignored: (localization) => localization.resultIncorrectHeader,
+  incorrect: (localization) => localization.resultIncorrectHeader,
+  skipped: (localization) => localization.resultSkippedHeader,
 };
 
 class ResultsView extends React.PureComponent<ComponentProps> {
@@ -97,7 +97,7 @@ class ResultsView extends React.PureComponent<ComponentProps> {
     ReactGA.event({
       action: "Answer Ignored",
       category: "Quiz",
-      label: `${currentQuestion.amount} of '${currentQuestion.itemId}'`
+      label: `${currentQuestion.amount} of '${currentQuestion.itemId}'`,
     });
 
     dispatch(ignoreLastAnswer(counters));

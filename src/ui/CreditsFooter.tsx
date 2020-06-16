@@ -9,7 +9,7 @@ import Localization, {
   VARIABLE_ALEC_DEITLOFF,
   VARIABLE_FAVICON_CREDIT_LINK,
   VARIABLE_ICON_CREDIT_LINK,
-  VARIABLE_SILK_ICONS_CREDIT_LINK
+  VARIABLE_SILK_ICONS_CREDIT_LINK,
 } from "@jyosuushi/localization";
 
 import "./CreditsFooter.scss";
@@ -20,7 +20,7 @@ interface ReduxProps {
 
 function mapStateToProps(state: State): ReduxProps {
   return {
-    localization: getLocalization(state)
+    localization: getLocalization(state),
   };
 }
 

@@ -4,7 +4,7 @@ import {
   DbCounterReading,
   DbCounterAlternativeKanji,
   DbCounterIrregular,
-  DbWagoStyle
+  DbWagoStyle,
 } from "../../database/schemas";
 import ValidatedDataSource from "../../database/ValidatedDataSource";
 
@@ -100,7 +100,7 @@ class CounterDataLookup {
       disambiguations: this.disambiguationsLookup[counterId] || [],
       externalLinks: this.externalLinksLookup[counterId] || [],
       irregulars: this.irregularsLookup[counterId] || [],
-      readings: this.readingsLookup[counterId] || []
+      readings: this.readingsLookup[counterId] || [],
     };
   }
 }

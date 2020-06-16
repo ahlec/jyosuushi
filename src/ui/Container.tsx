@@ -16,7 +16,7 @@ interface ReduxProps {
 
 function mapStateToProps(state: State): ReduxProps {
   return {
-    isQuizActive: getIsQuizActive(state)
+    isQuizActive: getIsQuizActive(state),
   };
 }
 

@@ -23,7 +23,7 @@ import {
   DbStudyPack,
   EnumSchemas,
   DbCounterAlternativeKanji,
-  DbWagoStyle
+  DbWagoStyle,
 } from "./schemas";
 
 const ROOT_DIRECTORY = path.resolve(__dirname, "../../");
@@ -43,7 +43,7 @@ type AsyncDatabaseIndexer = {
 
 const ALL_SCHEMAS: ReadonlyArray<Schemas | EnumSchemas> = [
   ...Object.values(Schemas),
-  ...Object.values(EnumSchemas)
+  ...Object.values(EnumSchemas),
 ];
 
 function formatSqlValueForDump(value: unknown): string {
@@ -71,7 +71,7 @@ export default class Database implements AsyncDatabaseIndexer {
 
     const db = await openSQLite({
       driver: sqlite3.Database,
-      filename: DATABASE_FILE
+      filename: DATABASE_FILE,
     });
     for (const schema of ALL_SCHEMAS) {
       const file = path.resolve(SQL_DIRECTORY, `./${schema}.sql`);
@@ -86,7 +86,7 @@ export default class Database implements AsyncDatabaseIndexer {
   public static async open(): Promise<Database> {
     const db = await openSQLite({
       driver: sqlite3.Database,
-      filename: DATABASE_FILE
+      filename: DATABASE_FILE,
     });
     return new Database(db);
   }
@@ -168,7 +168,7 @@ export default class Database implements AsyncDatabaseIndexer {
   public async getSnapshot(): Promise<DatabaseSnapshot> {
     const snapshot: any = {};
 
-    const asyncTasks = Object.values(Schemas).map(async schema => {
+    const asyncTasks = Object.values(Schemas).map(async (schema) => {
       const rows = await this.retrieve(schema);
       snapshot[schema] = rows;
     });
@@ -248,7 +248,7 @@ export default class Database implements AsyncDatabaseIndexer {
         "BEGIN TRANSACTION;",
         creation.sql.endsWith(";") ? creation.sql : `${creation.sql};`,
         ...insertStatements,
-        "COMMIT;"
+        "COMMIT;",
       ].join("\n")
     );
   }

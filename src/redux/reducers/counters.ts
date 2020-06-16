@@ -15,12 +15,12 @@ export default function countersReducer(
           if (next[counter.counterId]) {
             next[counter.counterId] = {
               counter,
-              studyPacks: [...next[counter.counterId].studyPacks, packId]
+              studyPacks: [...next[counter.counterId].studyPacks, packId],
             };
           } else {
             next[counter.counterId] = {
               counter,
-              studyPacks: [packId]
+              studyPacks: [packId],
             };
           }
         }

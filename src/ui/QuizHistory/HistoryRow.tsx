@@ -24,7 +24,7 @@ export default class HistoryRow extends React.PureComponent<ComponentProps> {
       localization,
       question: { amount, itemId },
       questionNo,
-      usersAnswer: { input, judgment }
+      usersAnswer: { input, judgment },
     } = this.props;
     const item = ITEMS_LOOKUP[itemId];
     const itemName =

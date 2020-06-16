@@ -29,10 +29,10 @@ const STUDY_PACK_COMMON: StudyPack = {
     COUNTERS.COUNTER_語,
     COUNTERS.COUNTER_足,
     COUNTERS.COUNTER_軒,
-    COUNTERS.COUNTER_週
+    COUNTERS.COUNTER_週,
   ],
   englishName: "Common",
-  packId: "common"
+  packId: "common",
 };
 
 const STUDY_PACK_ESSENTIAL: StudyPack = {
@@ -52,16 +52,16 @@ const STUDY_PACK_ESSENTIAL: StudyPack = {
     COUNTERS.COUNTER_歳,
     COUNTERS.COUNTER_羽,
     COUNTERS.COUNTER_階,
-    COUNTERS.COUNTER_頭
+    COUNTERS.COUNTER_頭,
   ],
   englishName: "Essential",
-  packId: "essential"
+  packId: "essential",
 };
 
 const STUDY_PACK_N4: StudyPack = {
   counters: [COUNTERS.COUNTER_冊, COUNTERS.COUNTER_羽, COUNTERS.COUNTER_頭],
   englishName: "JLPT N4",
-  packId: "n4"
+  packId: "n4",
 };
 
 const STUDY_PACK_N5: StudyPack = {
@@ -74,22 +74,22 @@ const STUDY_PACK_N5: StudyPack = {
     COUNTERS.COUNTER_日,
     COUNTERS.COUNTER_時,
     COUNTERS.COUNTER_本,
-    COUNTERS.COUNTER_枚
+    COUNTERS.COUNTER_枚,
   ],
   englishName: "JLPT N5",
-  packId: "n5"
+  packId: "n5",
 };
 
 export const STUDY_PACKS: ReadonlyArray<StudyPack> = [
   STUDY_PACK_COMMON,
   STUDY_PACK_ESSENTIAL,
   STUDY_PACK_N4,
-  STUDY_PACK_N5
+  STUDY_PACK_N5,
 ];
 
 export const STUDY_PACK_LOOKUP: { [packId: string]: StudyPack } = {
   common: STUDY_PACK_COMMON,
   essential: STUDY_PACK_ESSENTIAL,
   n4: STUDY_PACK_N4,
-  n5: STUDY_PACK_N5
+  n5: STUDY_PACK_N5,
 };

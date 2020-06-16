@@ -26,38 +26,38 @@ export interface PageDefinition {
 
 const PREPARE_PAGE: PageDefinition = {
   component: PreparePage,
-  getName: localization => localization.pagePrepare,
+  getName: (localization) => localization.pagePrepare,
   icon: PreparePageIcon,
-  path: ""
+  path: "",
 };
 
 const EXPLORE_PAGE: PageDefinition = {
   component: ExplorePage,
-  getName: localization => localization.pageExplore,
+  getName: (localization) => localization.pageExplore,
   icon: ExplorePageIcon,
-  path: EXPLORE_PAGE_PATH
+  path: EXPLORE_PAGE_PATH,
 };
 
 const SETTINGS_PAGE: PageDefinition = {
   component: SettingsPage,
-  getName: localization => localization.pageSettings,
+  getName: (localization) => localization.pageSettings,
   icon: SettingsPageIcon,
-  path: "/settings"
+  path: "/settings",
 };
 
 export const RELEASE_NOTES_PATH = "/release-notes";
 const RELEASE_NOTES_PAGE: PageDefinition = {
   component: ReleaseNotesPage,
-  getName: localization => localization.pageReleaseNotes,
+  getName: (localization) => localization.pageReleaseNotes,
   icon: ReleaseNotesPageIcon,
-  path: RELEASE_NOTES_PATH
+  path: RELEASE_NOTES_PATH,
 };
 
 const FEEDBACK_PAGE: PageDefinition = {
   component: FeedbackPage,
-  getName: localization => localization.pageFeedback,
+  getName: (localization) => localization.pageFeedback,
   icon: FeedbackPageIcon,
-  path: "/feedback"
+  path: "/feedback",
 };
 
 export const LANDING_PAGE = PREPARE_PAGE;
@@ -65,7 +65,7 @@ export const UNORDERED_NESTED_PAGES: ReadonlyArray<PageDefinition> = [
   EXPLORE_PAGE,
   SETTINGS_PAGE,
   RELEASE_NOTES_PAGE,
-  FEEDBACK_PAGE
+  FEEDBACK_PAGE,
 ];
 
 export const ORDERED_SIDEBAR_PAGES: ReadonlyArray<PageDefinition> = [
@@ -73,5 +73,5 @@ export const ORDERED_SIDEBAR_PAGES: ReadonlyArray<PageDefinition> = [
   EXPLORE_PAGE,
   SETTINGS_PAGE,
   RELEASE_NOTES_PAGE,
-  FEEDBACK_PAGE
+  FEEDBACK_PAGE,
 ];

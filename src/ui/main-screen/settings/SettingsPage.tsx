@@ -25,7 +25,7 @@ function mapStateToProps(state: State): ReduxProps {
   return {
     currentInfiniteMode: state.settings.infiniteMode,
     currentRange: state.settings.amountRange,
-    localization: getLocalization(state)
+    localization: getLocalization(state),
   };
 }
 
@@ -39,29 +39,29 @@ const AMOUNT_RANGE_CHOICES = memoize(
           AMOUNT_RANGES[AmountRange.Small].max
         }`,
         title: localization.amountRangeSmall,
-        value: AmountRange.Small
+        value: AmountRange.Small,
       },
       {
         subtext: `${AMOUNT_RANGES[AmountRange.Medium].min}–${
           AMOUNT_RANGES[AmountRange.Medium].max
         }`,
         title: localization.amountRangeMedium,
-        value: AmountRange.Medium
+        value: AmountRange.Medium,
       },
       {
         subtext: `${AMOUNT_RANGES[AmountRange.Large].min}–${
           AMOUNT_RANGES[AmountRange.Large].max
         }`,
         title: localization.amountRangeLarge,
-        value: AmountRange.Large
+        value: AmountRange.Large,
       },
       {
         subtext: `${AMOUNT_RANGES[AmountRange.Giant].min}–${
           AMOUNT_RANGES[AmountRange.Giant].max
         }`,
         title: localization.amountRangeGiant,
-        value: AmountRange.Giant
-      }
+        value: AmountRange.Giant,
+      },
     ];
 
     return choices;

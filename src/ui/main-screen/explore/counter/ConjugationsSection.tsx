@@ -6,7 +6,7 @@ import {
   Conjugation,
   Counter,
   CounterIrregular,
-  CountingSystem
+  CountingSystem,
 } from "@jyosuushi/interfaces";
 import Localization from "@jyosuushi/localization";
 import { conjugateCounter } from "@jyosuushi/japanese/counters";
@@ -39,7 +39,7 @@ export default class ConjugationsSection extends React.PureComponent<
   ComponentState
 > {
   public state: ComponentState = {
-    currentUserInput: AMOUNTS_TO_DISPLAY + 1
+    currentUserInput: AMOUNTS_TO_DISPLAY + 1,
   };
 
   private readonly memoizeExamplesTable = memoizeOne(
@@ -67,7 +67,7 @@ export default class ConjugationsSection extends React.PureComponent<
   private readonly memoizeIrregularsBeyondExampleTable = memoizeOne(
     (counter: Counter): ReadonlyArray<CounterIrregular> => {
       const results: CounterIrregular[] = [];
-      Object.keys(counter.irregulars).forEach(amountStr => {
+      Object.keys(counter.irregulars).forEach((amountStr) => {
         const amount = parseInt(amountStr, 10);
         if (amount <= AMOUNTS_TO_DISPLAY) {
           return;
@@ -130,7 +130,7 @@ export default class ConjugationsSection extends React.PureComponent<
 
   private renderIrregularsWarning(counter: Counter): React.ReactNode {
     const {
-      props: { localization }
+      props: { localization },
     } = this;
     const numIrregulars = this.memoizeNumIrregulars(counter);
     if (!numIrregulars) {
@@ -157,7 +157,7 @@ export default class ConjugationsSection extends React.PureComponent<
 
   private renderFurtherIrregular = ({
     amount,
-    reading
+    reading,
   }: CounterIrregular): React.ReactNode => {
     return (
       <div className="conjugation-container" key={amount}>
@@ -190,7 +190,7 @@ export default class ConjugationsSection extends React.PureComponent<
   private renderConjugation = ({
     countingSystem,
     irregularType,
-    reading
+    reading,
   }: Conjugation): React.ReactNode => {
     return (
       <div
@@ -222,7 +222,7 @@ export default class ConjugationsSection extends React.PureComponent<
     }
 
     this.setState({
-      currentUserInput: clamp(newValue, MIN_USER_INPUT, MAX_USER_INPUT)
+      currentUserInput: clamp(newValue, MIN_USER_INPUT, MAX_USER_INPUT),
     });
   };
 }

@@ -59,16 +59,16 @@ async function main(): Promise<void> {
   const queue: FileExportRequest[] = [
     {
       relativeFilepath: "counters.ts",
-      writeFunction: writeCountersFile
+      writeFunction: writeCountersFile,
     },
     {
       relativeFilepath: "items.ts",
-      writeFunction: writeItemsFile
+      writeFunction: writeItemsFile,
     },
     {
       relativeFilepath: "studyPacks.ts",
-      writeFunction: writeStudyPacksFile
-    }
+      writeFunction: writeStudyPacksFile,
+    },
   ];
 
   while (queue.length) {

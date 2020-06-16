@@ -13,7 +13,7 @@ import {
   Schemas,
   DbCounterReading,
   DbCounterAlternativeKanji,
-  DbWagoStyle
+  DbWagoStyle,
 } from "./schemas";
 import { analyzeText } from "./validation-utils";
 
@@ -55,7 +55,7 @@ function validateWagoStyles(
     if (wagoStyle.range_end_inclusive <= 0) {
       errorReasons.push({
         showsInAudit: true,
-        text: "Wago range cannot be negative or zero."
+        text: "Wago range cannot be negative or zero.",
       });
     }
 
@@ -63,14 +63,14 @@ function validateWagoStyles(
       errorReasons.push({
         showsInAudit: true,
         text:
-          "Standard wago range cannot go above 10 (these values require being listed as irregular)"
+          "Standard wago range cannot go above 10 (these values require being listed as irregular)",
       });
     }
 
     if (errorReasons.length) {
       error.push({
         entry: wagoStyle,
-        reasons: errorReasons
+        reasons: errorReasons,
       });
 
       continue;
@@ -80,7 +80,7 @@ function validateWagoStyles(
       warnings.push({
         entry: wagoStyle,
         text:
-          "range_end_inclusive was less than 2, but was configured with `also_uses_kango_two` anyways"
+          "range_end_inclusive was less than 2, but was configured with `also_uses_kango_two` anyways",
       });
     }
 
@@ -88,7 +88,7 @@ function validateWagoStyles(
       warnings.push({
         entry: wagoStyle,
         text:
-          "range_end_inclusive was less than 3, but was configured with `also_uses_kango_three` anyways"
+          "range_end_inclusive was less than 3, but was configured with `also_uses_kango_three` anyways",
       });
     }
 
@@ -99,7 +99,7 @@ function validateWagoStyles(
     error,
     ignored: [],
     valid,
-    warnings
+    warnings,
   };
 }
 
@@ -131,14 +131,14 @@ function validateCounters(
     if (!counter.lead_in) {
       warnings.push({
         entry: counter,
-        text: "Counter does not have lead-in text defined."
+        text: "Counter does not have lead-in text defined.",
       });
     }
 
     if (!counter.notes) {
       warnings.push({
         entry: counter,
-        text: "Counter does not have notes defined."
+        text: "Counter does not have notes defined.",
       });
     }
 
@@ -149,7 +149,7 @@ function validateCounters(
     ) {
       errorReasons.push({
         showsInAudit: true,
-        text: "Included in a study pack but does not define any items."
+        text: "Included in a study pack but does not define any items.",
       });
     }
 
@@ -157,7 +157,7 @@ function validateCounters(
     if (!numReadings) {
       errorReasons.push({
         showsInAudit: true,
-        text: "Counter does not have any defined readings."
+        text: "Counter does not have any defined readings.",
       });
     }
 
@@ -166,7 +166,7 @@ function validateCounters(
       errorReasons.push({
         showsInAudit: true,
         text:
-          "Counters without primary kanji must have no more than one reading."
+          "Counters without primary kanji must have no more than one reading.",
       });
     }
 
@@ -176,7 +176,7 @@ function validateCounters(
       if (analysis.numSentences > 2) {
         errorReasons.push({
           showsInAudit: true,
-          text: `Lead-in text should be no longer than two sentences. (Actually: ${analysis.numSentences} sentences)`
+          text: `Lead-in text should be no longer than two sentences. (Actually: ${analysis.numSentences} sentences)`,
         });
       }
 
@@ -185,14 +185,14 @@ function validateCounters(
           showsInAudit: true,
           text: `Lead-in text should be short, but at least 4+ words. (Actually: ${
             analysis.numWords
-          } ${analysis.numWords !== 1 ? "words" : "word"})`
+          } ${analysis.numWords !== 1 ? "words" : "word"})`,
         });
       }
 
       if (analysis.numWords > 50) {
         errorReasons.push({
           showsInAudit: true,
-          text: `Lead-in text should be no longer than 50 words. (Actually: ${analysis.numWords} words)`
+          text: `Lead-in text should be no longer than 50 words. (Actually: ${analysis.numWords} words)`,
         });
       }
     }
@@ -200,7 +200,7 @@ function validateCounters(
     if (errorReasons.length) {
       error.push({
         entry: counter,
-        reasons: errorReasons
+        reasons: errorReasons,
       });
 
       continue;
@@ -211,21 +211,21 @@ function validateCounters(
     if (!counterHasItems.has(counter.counter_id)) {
       ignoredReasons.push({
         showsInAudit: true,
-        text: "No associated items."
+        text: "No associated items.",
       });
     }
 
     if (!counterInStudyPack.has(counter.counter_id)) {
       ignoredReasons.push({
         showsInAudit: true,
-        text: "Not part of a study pack."
+        text: "Not part of a study pack.",
       });
     }
 
     if (ignoredReasons.length) {
       ignored.push({
         entry: counter,
-        reasons: ignoredReasons
+        reasons: ignoredReasons,
       });
 
       continue;
@@ -238,7 +238,7 @@ function validateCounters(
     error,
     ignored,
     valid,
-    warnings
+    warnings,
   };
 }
 
@@ -260,21 +260,21 @@ function validateCounterReadings(
     ) {
       errorReasons.push({
         showsInAudit: true,
-        text: "Counter reading doesn't use 'yon', 'yo', or 'shi'."
+        text: "Counter reading doesn't use 'yon', 'yo', or 'shi'.",
       });
     }
 
     if (!counterReading.kango_uses_nana && !counterReading.kango_uses_shichi) {
       errorReasons.push({
         showsInAudit: true,
-        text: "Counter reading doesn't use either 'nana' or 'shichi'."
+        text: "Counter reading doesn't use either 'nana' or 'shichi'.",
       });
     }
 
     if (!counterReading.kango_uses_kyuu && !counterReading.kango_uses_ku) {
       errorReasons.push({
         showsInAudit: true,
-        text: "Counter reading doesn't use either 'kyuu' or 'ku'."
+        text: "Counter reading doesn't use either 'kyuu' or 'ku'.",
       });
     }
 
@@ -285,14 +285,14 @@ function validateCounterReadings(
       errorReasons.push({
         showsInAudit: true,
         text:
-          "Counter reading is configured to use wago style that doesn't exist or isn't valid."
+          "Counter reading is configured to use wago style that doesn't exist or isn't valid.",
       });
     }
 
     if (errorReasons.length) {
       error.push({
         entry: counterReading,
-        reasons: errorReasons
+        reasons: errorReasons,
       });
 
       continue;
@@ -304,9 +304,9 @@ function validateCounterReadings(
         reasons: [
           {
             showsInAudit: false,
-            text: "Counter is not being exported."
-          }
-        ]
+            text: "Counter is not being exported.",
+          },
+        ],
       });
 
       continue;
@@ -319,7 +319,7 @@ function validateCounterReadings(
     error,
     ignored,
     valid,
-    warnings: []
+    warnings: [],
   };
 }
 
@@ -347,9 +347,9 @@ function validateCounterAlternativeKanji(
         reasons: [
           {
             showsInAudit: true,
-            text: `Counter '${entry.counter_id}' doesn't have a primary kanji but has alternative kanji listed.`
-          }
-        ]
+            text: `Counter '${entry.counter_id}' doesn't have a primary kanji but has alternative kanji listed.`,
+          },
+        ],
       });
 
       continue;
@@ -361,9 +361,9 @@ function validateCounterAlternativeKanji(
         reasons: [
           {
             showsInAudit: false,
-            text: "Counter is not being exported."
-          }
-        ]
+            text: "Counter is not being exported.",
+          },
+        ],
       });
 
       continue;
@@ -376,7 +376,7 @@ function validateCounterAlternativeKanji(
     error,
     ignored,
     valid,
-    warnings: []
+    warnings: [],
   };
 }
 
@@ -407,9 +407,9 @@ function validateItems(
         reasons: [
           {
             showsInAudit: true,
-            text: "No counters use this item (exported or otherwise)."
-          }
-        ]
+            text: "No counters use this item (exported or otherwise).",
+          },
+        ],
       });
 
       continue;
@@ -421,9 +421,9 @@ function validateItems(
         reasons: [
           {
             showsInAudit: false,
-            text: "No exported counters use this item."
-          }
-        ]
+            text: "No exported counters use this item.",
+          },
+        ],
       });
 
       continue;
@@ -436,7 +436,7 @@ function validateItems(
     error,
     ignored,
     valid,
-    warnings: []
+    warnings: [],
   };
 }
 
@@ -456,9 +456,9 @@ function validateSingleCounterDependentDb<
         reasons: [
           {
             showsInAudit: false,
-            text: "Counter is not being exported."
-          }
-        ]
+            text: "Counter is not being exported.",
+          },
+        ],
       });
 
       continue;
@@ -471,7 +471,7 @@ function validateSingleCounterDependentDb<
     error: [],
     ignored,
     valid,
-    warnings: []
+    warnings: [],
   };
 }
 
@@ -497,9 +497,9 @@ function validateCounterDisambiguations(
         reasons: [
           {
             showsInAudit: true,
-            text: "The inverse of this combination is also defined."
-          }
-        ]
+            text: "The inverse of this combination is also defined.",
+          },
+        ],
       });
 
       continue;
@@ -510,21 +510,21 @@ function validateCounterDisambiguations(
     if (!validCounterIds.has(disambiguation.counter1_id)) {
       ignoredReasons.push({
         showsInAudit: false,
-        text: "Counter 1 is not being exported."
+        text: "Counter 1 is not being exported.",
       });
     }
 
     if (!validCounterIds.has(disambiguation.counter2_id)) {
       ignoredReasons.push({
         showsInAudit: false,
-        text: "Counter 2 is not being exported."
+        text: "Counter 2 is not being exported.",
       });
     }
 
     if (ignoredReasons.length) {
       ignored.push({
         entry: disambiguation,
-        reasons: ignoredReasons
+        reasons: ignoredReasons,
       });
 
       continue;
@@ -537,7 +537,7 @@ function validateCounterDisambiguations(
     error,
     ignored,
     valid,
-    warnings: []
+    warnings: [],
   };
 }
 
@@ -553,14 +553,14 @@ function validateCounterIrregulars(
     if (!validCounterIds.has(irregular.counter_id)) {
       ignoredReasons.push({
         showsInAudit: false,
-        text: "Counter is not being exported."
+        text: "Counter is not being exported.",
       });
     }
 
     if (ignoredReasons.length) {
       ignored.push({
         entry: irregular,
-        reasons: ignoredReasons
+        reasons: ignoredReasons,
       });
 
       continue;
@@ -573,7 +573,7 @@ function validateCounterIrregulars(
     error: [],
     ignored,
     valid,
-    warnings: []
+    warnings: [],
   };
 }
 
@@ -588,7 +588,7 @@ function validateItemCounters(
     if (!validItemIds.has(itemCounter.item_id)) {
       ignored.push({
         entry: itemCounter,
-        reasons: [{ showsInAudit: false, text: "Item is not being exported" }]
+        reasons: [{ showsInAudit: false, text: "Item is not being exported" }],
       });
 
       continue;
@@ -601,7 +601,7 @@ function validateItemCounters(
     error: [],
     ignored,
     valid,
-    warnings: []
+    warnings: [],
   };
 }
 
@@ -624,9 +624,9 @@ function validateStudyPacks(
         reasons: [
           {
             showsInAudit: true,
-            text: "No exported counters in study pack."
-          }
-        ]
+            text: "No exported counters in study pack.",
+          },
+        ],
       });
 
       continue;
@@ -639,7 +639,7 @@ function validateStudyPacks(
     error: [],
     ignored,
     valid,
-    warnings: []
+    warnings: [],
   };
 }
 
@@ -735,8 +735,8 @@ export default class ValidatedDataSource implements Indexer {
     public readonly wago_style: ValidatedResult<DbWagoStyle>
   ) {
     this.hasErrors = Object.values(Schemas)
-      .map(schema => this.getSchema(schema))
-      .some(results => !!results.error.length);
+      .map((schema) => this.getSchema(schema))
+      .some((results) => !!results.error.length);
   }
 
   public getSchema<TSchema extends Schemas>(

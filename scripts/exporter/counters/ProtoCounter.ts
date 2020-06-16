@@ -6,7 +6,7 @@ import {
   CounterReading,
   CounterIrregular,
   CounterKanjiInfo,
-  CounterDisambiguation
+  CounterDisambiguation,
 } from "@jyosuushi/interfaces";
 
 import {
@@ -18,7 +18,7 @@ import {
   DbExternalLinkLanguage,
   DbIrregularType,
   DbWagoStyle,
-  DbCounterDisambiguation
+  DbCounterDisambiguation,
 } from "../../database/schemas";
 
 import { getWordOrigin, ProductionVariable } from "../utils";
@@ -90,7 +90,7 @@ function convertToProductionExternalLink(
       `ExternalLinkLanguage.${externalLinkLanguageEnumField}`
     ),
     siteName: db.site_name,
-    url: db.url
+    url: db.url,
   };
 }
 
@@ -107,7 +107,7 @@ function convertToProductionDisambiguation(
 
   return {
     distinction: component,
-    otherCounterId
+    otherCounterId,
   };
 }
 
@@ -152,7 +152,7 @@ function convertToProductionReading(
       allowsShiFor4: !!dbReading.kango_uses_shi,
       allowsShichiFor7: !!dbReading.kango_uses_shichi,
       allowsYoFor4: !!dbReading.kango_uses_yo,
-      allowsYonFor4: !!dbReading.kango_uses_yon
+      allowsYonFor4: !!dbReading.kango_uses_yon,
     },
     readingId: dbReading.reading_id,
     wagoStyle: dbWagoStyle
@@ -167,10 +167,10 @@ function convertToProductionReading(
             dbWagoStyle.range_end_inclusive >= 3 &&
             !!dbWagoStyle.also_uses_kango_three,
           kana: dbReading.wago_custom_base || dbReading.kana,
-          rangeEndInclusive: dbWagoStyle.range_end_inclusive
+          rangeEndInclusive: dbWagoStyle.range_end_inclusive,
         }
       : null,
-    wordOrigin: getWordOrigin(dbReading.word_origin)
+    wordOrigin: getWordOrigin(dbReading.word_origin),
   };
 }
 
@@ -180,7 +180,7 @@ function convertToProductionKanji(
 ): CounterKanjiInfo {
   return {
     additionalKanji: alternativeKanji.map(({ kanji }) => kanji),
-    primaryKanji
+    primaryKanji,
   };
 }
 
@@ -212,7 +212,7 @@ function convertToProductionIrregularsMap(
         countingSystem: getIrregularCountingSystem(dbIrregular.irregular_type),
         doesPresenceEraseRegularConjugations: !!dbIrregular.does_presence_erase_regular_conjugations,
         reading: dbIrregular.kana,
-        type: convertToProductionIrregularType(dbIrregular.irregular_type)
+        type: convertToProductionIrregularType(dbIrregular.irregular_type),
       })
     );
   }
@@ -248,7 +248,7 @@ export function convertToProtoCounter(
       : null,
     leadIn: counter.lead_in ? counter.lead_in : null,
     notes: nestedComponents.notesComponent,
-    readings: joinData.readings.map(reading =>
+    readings: joinData.readings.map((reading) =>
       convertToProductionReading(
         counter.counter_id,
         reading,
@@ -256,6 +256,6 @@ export function convertToProtoCounter(
           ? joinData.allDefinedWagoStyles[reading.wago_style]
           : undefined
       )
-    )
+    ),
   };
 }

@@ -5,11 +5,11 @@ import ruby from "remark-ruby";
 import footnotes from "./footnotes";
 import intrasiteLinkMarkdownPlugin from "./intrasite-link-plugin";
 import jsxCompiler, {
-  assertJsxCompilerVFileData
+  assertJsxCompilerVFileData,
 } from "./remark-compilers/jsx-compiler";
 import footnoteExtractorCompiler, {
   assertFootnoteExtractorCompilerVFileData,
-  Footnote
+  Footnote,
 } from "./remark-compilers/footnote-extractor-compiler";
 
 export interface JsxComponent {
@@ -35,7 +35,7 @@ function processMarkdown<TCompilerOptions, TVFileData>(
   const result = unified()
     .use(parse)
     .use(footnotes, {
-      footnotesCountingStart
+      footnotesCountingStart,
     })
     .use(ruby)
     .use(intrasiteLinkMarkdownPlugin)
@@ -45,7 +45,7 @@ function processMarkdown<TCompilerOptions, TVFileData>(
 
   return {
     data: result.data,
-    output: result.contents.toString()
+    output: result.contents.toString(),
   };
 }
 
@@ -59,7 +59,7 @@ function convertFootnoteToJsxComponent(
   return {
     footnoteId: footnote.refId,
     jsx: footnote.noteJsx.jsx,
-    requiresReactRouterLink: footnote.noteJsx.containsIntrasiteLink
+    requiresReactRouterLink: footnote.noteJsx.containsIntrasiteLink,
   };
 }
 
@@ -86,8 +86,8 @@ export function convertMarkdownToJSX(
   return {
     body: {
       jsx: output,
-      requiresReactRouterLink: bodyData.usesReactRouterLink
+      requiresReactRouterLink: bodyData.usesReactRouterLink,
     },
-    footnotes: footnotesData.footnotes.map(convertFootnoteToJsxComponent)
+    footnotes: footnotesData.footnotes.map(convertFootnoteToJsxComponent),
   };
 }

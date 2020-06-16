@@ -18,7 +18,7 @@ const TAG_INCOMPATIBILITIES: { [tag in Tag]: ReadonlySet<Tag> } = {
   "counter-wa-6-8-wa": new Set<Tag>(["counter-wa-6-8-small-tsu"]),
   hyaku: new Set<Tag>(["ippyaku"]),
   ippyaku: new Set<Tag>(["hyaku"]),
-  strange: new Set<Tag>()
+  strange: new Set<Tag>(),
 };
 
 function checkCompatibility(

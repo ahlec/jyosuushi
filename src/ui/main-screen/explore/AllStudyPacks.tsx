@@ -19,7 +19,7 @@ interface ReduxProps {
 
 function mapStateToProps(state: State): ReduxProps {
   return {
-    localization: getLocalization(state)
+    localization: getLocalization(state),
   };
 }
 

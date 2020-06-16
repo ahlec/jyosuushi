@@ -32,7 +32,7 @@ class CounterMarkdownConsolidator {
   ): ProductionVariable {
     const { body, footnotes } = convertMarkdownToJSX(markdown, {
       // This should be consecutive and 1-based
-      footnotesCountingStart: this.footnoteComponentVariables.length + 1
+      footnotesCountingStart: this.footnoteComponentVariables.length + 1,
     });
 
     for (const footnote of footnotes) {
@@ -40,7 +40,7 @@ class CounterMarkdownConsolidator {
       this.footnoteComponents.push({
         componentName: footnoteComponentName,
         jsx: footnote.jsx,
-        requiresReactRouterDomLink: footnote.requiresReactRouterLink
+        requiresReactRouterDomLink: footnote.requiresReactRouterLink,
       });
       this.footnoteComponentVariables.push(
         new ProductionVariable(
@@ -52,7 +52,7 @@ class CounterMarkdownConsolidator {
     this.primaryComponents.push({
       componentName,
       jsx: body.jsx,
-      requiresReactRouterDomLink: body.requiresReactRouterLink
+      requiresReactRouterDomLink: body.requiresReactRouterLink,
     });
     return new ProductionVariable(`${this.importedNamespace}.${componentName}`);
   }

@@ -39,7 +39,7 @@ function writeCounterComponentsFile(
 
   // Return
   return {
-    additionalFileRequests: []
+    additionalFileRequests: [],
   };
 }
 

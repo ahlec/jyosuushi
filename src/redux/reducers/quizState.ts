@@ -8,7 +8,7 @@ import {
   ActionSkipQuestion,
   ActionStartQuiz,
   ActionSubmitCorrectAnswer,
-  ActionSubmitIncorrectAnswer
+  ActionSubmitIncorrectAnswer,
 } from "@jyosuushi/redux/actions";
 
 type ReducerAction =
@@ -24,7 +24,7 @@ type ReducerAction =
 
 const DEFAULT_STATE: QuizState = {
   isInfinite: false,
-  state: "not-in-quiz"
+  state: "not-in-quiz",
 };
 
 export default function quizStateReducer(
@@ -35,31 +35,31 @@ export default function quizStateReducer(
     case "start-quiz":
       return {
         isInfinite: action.isInfinite,
-        state: "waiting-for-answer"
+        state: "waiting-for-answer",
       };
     case "restart-quiz":
     case "next-question":
       return {
         ...state,
-        state: "waiting-for-answer"
+        state: "waiting-for-answer",
       };
     case "skip-question":
     case "submit-correct-answer":
     case "submit-incorrect-answer":
       return {
         ...state,
-        state: "reviewing-answer"
+        state: "reviewing-answer",
       };
     case "end-quiz":
       return {
         ...state,
-        state: "quiz-wrapup"
+        state: "quiz-wrapup",
       };
     case "set-enabled-packs":
     case "leave-quiz":
       return {
         ...state,
-        state: "not-in-quiz"
+        state: "not-in-quiz",
       };
     default:
       return state;

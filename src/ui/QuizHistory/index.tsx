@@ -28,7 +28,7 @@ function mapStateToProps(state: State): ReduxProps {
     currentQuestion: includeCurrentQuestion
       ? state.questions.currentQuestion
       : null,
-    userAnswers: state.userAnswers
+    userAnswers: state.userAnswers,
   };
 }
 

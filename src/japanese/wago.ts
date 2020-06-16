@@ -11,7 +11,7 @@ const BASE_TEN: ReadonlyArray<ReadonlyArray<string>> = [
   ["む"],
   ["なな"],
   ["や"],
-  ["ここの"]
+  ["ここの"],
 ];
 
 function createRank(
@@ -28,7 +28,7 @@ function createRank(
   }
 
   return validEndingsForEverythingElse.map(
-    ending => `${BASE_TEN[amount]}${ending}`
+    (ending) => `${BASE_TEN[amount]}${ending}`
   );
 }
 

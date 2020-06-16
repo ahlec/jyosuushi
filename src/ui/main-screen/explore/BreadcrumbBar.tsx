@@ -16,7 +16,7 @@ import {
   EXPLORE_COUNTER_PATH,
   EXPLORE_PAGE_PATH,
   EXPLORE_STUDY_PACK_PATH,
-  getStudyPackLink
+  getStudyPackLink,
 } from "./pathing";
 
 import "./BreadcrumbBar.scss";
@@ -27,7 +27,7 @@ interface ReduxProps {
 
 function mapStateToProps(state: State): ReduxProps {
   return {
-    localization: getLocalization(state)
+    localization: getLocalization(state),
   };
 }
 
@@ -67,7 +67,7 @@ class BreadcrumbBar extends React.PureComponent<ComponentProps> {
     const links: React.ReactNode[] = [
       <NavLink key={EXPLORE_PAGE_PATH} exact={true} to={EXPLORE_PAGE_PATH}>
         {localization.pageExplore}
-      </NavLink>
+      </NavLink>,
     ];
 
     switch (match.path) {

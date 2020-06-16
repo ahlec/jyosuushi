@@ -5,7 +5,7 @@ import {
   Counter,
   Conjugation,
   CounterWagoStyle,
-  CountingSystem
+  CountingSystem,
 } from "@jyosuushi/interfaces";
 
 import { getLeadingConsonant } from "./hepburn";
@@ -20,7 +20,7 @@ import {
   castAwayTaggable,
   permutateTaggableWords,
   TaggableJapaneseWord,
-  uniqueWords
+  uniqueWords,
 } from "./words";
 
 /* eslint-disable sort-keys */
@@ -31,9 +31,9 @@ const KANGO_COUNTER_K_P_CHANGES: FinalNumberChanges = {
   8: [[{ type: "trailing-small-tsu" }], [{ type: "preserve" }]],
   [JYUU]: [
     [{ type: "trailing-small-tsu" }],
-    [{ type: "replace", kana: "じっ", kanji: "十" }]
+    [{ type: "replace", kana: "じっ", kanji: "十" }],
   ],
-  [HYAKU]: [[{ type: "trailing-small-tsu" }]]
+  [HYAKU]: [[{ type: "trailing-small-tsu" }]],
 };
 
 const KANGO_COUNTER_S_T_CHANGES: FinalNumberChanges = {
@@ -41,8 +41,8 @@ const KANGO_COUNTER_S_T_CHANGES: FinalNumberChanges = {
   8: [[{ type: "trailing-small-tsu" }]],
   [JYUU]: [
     [{ type: "trailing-small-tsu" }],
-    [{ type: "replace", kana: "じっ", kanji: "十" }]
-  ]
+    [{ type: "replace", kana: "じっ", kanji: "十" }],
+  ],
 };
 
 const KANGO_COUNTER_H_CHANGES: FinalNumberChanges = {
@@ -51,9 +51,9 @@ const KANGO_COUNTER_H_CHANGES: FinalNumberChanges = {
   8: [[{ type: "trailing-small-tsu" }]],
   [JYUU]: [
     [{ type: "trailing-small-tsu" }],
-    [{ type: "replace", kana: "じっ", kanji: "十" }]
+    [{ type: "replace", kana: "じっ", kanji: "十" }],
   ],
-  [HYAKU]: [[{ type: "trailing-small-tsu" }]]
+  [HYAKU]: [[{ type: "trailing-small-tsu" }]],
 };
 
 const KANGO_COUNTER_W_CHANGES: FinalNumberChanges = {
@@ -62,55 +62,55 @@ const KANGO_COUNTER_W_CHANGES: FinalNumberChanges = {
       {
         kana: "よ",
         kanji: "四",
-        type: "replace"
+        type: "replace",
       },
-      { type: "tag", tag: "counter-wa-4-yo" }
+      { type: "tag", tag: "counter-wa-4-yo" },
     ],
     [
       {
         kana: "よん",
         kanji: "四",
-        type: "replace"
-      }
-    ]
+        type: "replace",
+      },
+    ],
   ],
   6: [
     [
       {
-        type: "trailing-small-tsu"
+        type: "trailing-small-tsu",
       },
-      { type: "tag", tag: "counter-wa-6-8-small-tsu" }
+      { type: "tag", tag: "counter-wa-6-8-small-tsu" },
     ],
     [
       {
         kana: "ろく",
         kanji: "六",
-        type: "replace"
+        type: "replace",
       },
       {
         tag: "counter-wa-6-8-full-num",
-        type: "tag"
-      }
-    ]
+        type: "tag",
+      },
+    ],
   ],
   8: [
     [
       { type: "trailing-small-tsu" },
-      { type: "tag", tag: "counter-wa-6-8-small-tsu" }
+      { type: "tag", tag: "counter-wa-6-8-small-tsu" },
     ],
     [
       {
         kana: "はち",
         kanji: "八",
-        type: "replace"
+        type: "replace",
       },
       {
         tag: "counter-wa-6-8-full-num",
-        type: "tag"
-      }
-    ]
+        type: "tag",
+      },
+    ],
   ],
-  [JYUU]: [[{ type: "replace", kana: "じっ", kanji: "十" }]]
+  [JYUU]: [[{ type: "replace", kana: "じっ", kanji: "十" }]],
 };
 /* eslint-enable sort-keys */
 
@@ -120,11 +120,11 @@ interface CounterChange {
 }
 
 const COUNTER_BA_GYOU: Readonly<CounterChange> = {
-  gyou: "ba"
+  gyou: "ba",
 };
 
 const COUNTER_PA_GYOU: Readonly<CounterChange> = {
-  gyou: "pa"
+  gyou: "pa",
 };
 
 function conjugateRegularWagoReading(
@@ -141,7 +141,7 @@ function conjugateRegularWagoReading(
       countingSystem: CountingSystem.Wago,
       irregularType: null,
       kanji,
-      reading: `${numberBase}${style.kana}`
+      reading: `${numberBase}${style.kana}`,
     })
   );
 }
@@ -234,7 +234,7 @@ function conjugateRegularKangoReading(
             case 8: {
               counterChanges = [
                 { tag: "counter-wa-6-8-wa" },
-                { gyou: "pa", tag: "counter-wa-6-8-pa" }
+                { gyou: "pa", tag: "counter-wa-6-8-pa" },
               ];
               break;
             }
@@ -255,21 +255,21 @@ function conjugateRegularKangoReading(
         kana: gyou
           ? HIRAGANA.changeGyou(firstKana, gyou) + followingKana
           : readingKana,
-        tags: tag ? new Set([tag]) : new Set()
+        tags: tag ? new Set([tag]) : new Set(),
       })
     );
   } else {
     finalizedCounter = [
       {
         kana: readingKana,
-        tags: new Set()
-      }
+        tags: new Set(),
+      },
     ];
   }
 
   const words = permutateTaggableWords([
     conjugateKangoNumber(amount, conjugationOptions, numberChanges),
-    finalizedCounter
+    finalizedCounter,
   ]);
 
   return uniqueWords(castAwayTaggable(words)).map(({ kana }) => ({
@@ -278,7 +278,7 @@ function conjugateRegularKangoReading(
     countingSystem: CountingSystem.Kango,
     irregularType: null,
     kanji,
-    reading: kana
+    reading: kana,
   }));
 }
 
@@ -366,7 +366,7 @@ export const conjugateCounter: (
           countingSystem: irregular.countingSystem,
           irregularType: irregular.type,
           kanji: null,
-          reading: irregular.reading
+          reading: irregular.reading,
         });
 
         if (irregular.doesPresenceEraseRegularConjugations) {
@@ -385,7 +385,7 @@ export const conjugateCounter: (
          */
         kanji = [
           counter.kanji.primaryKanji,
-          ...counter.kanji.additionalKanji
+          ...counter.kanji.additionalKanji,
         ].map((counterKanji): string => `${amountKanji}${counterKanji}`);
       } else {
         kanji = null;
@@ -393,7 +393,7 @@ export const conjugateCounter: (
 
       results.push(
         ...flatten(
-          counter.readings.map(reading =>
+          counter.readings.map((reading) =>
             conjugateRegularReadings(amount, counter.counterId, kanji, reading)
           )
         )

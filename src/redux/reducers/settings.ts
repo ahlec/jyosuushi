@@ -2,7 +2,7 @@ import { AmountRange, Settings } from "@jyosuushi/redux";
 import {
   ActionSetAmountRange,
   ActionSetInfiniteMode,
-  ActionSetLocalizationLanguage
+  ActionSetLocalizationLanguage,
 } from "@jyosuushi/redux/actions";
 
 type ReducerAction =
@@ -13,7 +13,7 @@ type ReducerAction =
 const DEFAULT_SETTINGS: Settings = {
   amountRange: AmountRange.Medium,
   infiniteMode: false,
-  localization: "english"
+  localization: "english",
 };
 
 export default function settingsReducer(
@@ -24,19 +24,19 @@ export default function settingsReducer(
     case "set-amount-range": {
       return {
         ...state,
-        amountRange: action.amountRange
+        amountRange: action.amountRange,
       };
     }
     case "set-infinite-mode": {
       return {
         ...state,
-        infiniteMode: action.infiniteMode
+        infiniteMode: action.infiniteMode,
       };
     }
     case "set-localization": {
       return {
         ...state,
-        localization: action.language
+        localization: action.language,
       };
     }
     default:

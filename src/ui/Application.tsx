@@ -6,7 +6,7 @@ import {
   Route,
   RouteComponentProps,
   Switch,
-  withRouter
+  withRouter,
 } from "react-router-dom";
 
 import { State } from "@jyosuushi/redux";
@@ -26,7 +26,7 @@ interface ReduxProps {
 
 function mapStateToProps(state: State): ReduxProps {
   return {
-    isQuizActive: getIsQuizActive(state)
+    isQuizActive: getIsQuizActive(state),
   };
 }
 
@@ -38,7 +38,7 @@ type ComponentProps = ReduxProps & RouteComponentProps;
 
 class Application extends React.PureComponent<ComponentProps, ComponentState> {
   public state: ComponentState = {
-    isModalOpen: false
+    isModalOpen: false,
   };
 
   public render(): React.ReactNode {
@@ -62,7 +62,7 @@ class Application extends React.PureComponent<ComponentProps, ComponentState> {
   private renderNecessaryRedirect = (): React.ReactNode => {
     const {
       location: { pathname },
-      isQuizActive
+      isQuizActive,
     } = this.props;
     const isOnQuizScreen = pathname === QUIZ_SCREEN_PATH;
     if (isOnQuizScreen && !isQuizActive) {

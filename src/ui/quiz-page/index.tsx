@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Question } from "@jyosuushi/interfaces";
 import Localization from "@jyosuushi/localization";
 import withQuizManager, {
-  InjectedProps
+  InjectedProps,
 } from "@jyosuushi/quiz/withQuizManager";
 import { QuizState, State } from "@jyosuushi/redux";
 import { getLocalization } from "@jyosuushi/redux/selectors";
@@ -33,7 +33,7 @@ function mapStateToProps(state: State): ReduxProps {
   return {
     currentQuestion: state.questions.currentQuestion,
     localization: getLocalization(state),
-    quizState: state.quizState
+    quizState: state.quizState,
   };
 }
 
@@ -54,7 +54,7 @@ class QuizPage extends React.PureComponent<ComponentProps> {
       enabled,
       localization,
       quizManager,
-      quizState
+      quizState,
     } = this.props;
     if (quizState.state === "not-in-quiz") {
       return null;

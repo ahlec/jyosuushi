@@ -16,8 +16,8 @@ import "./index.scss";
 
 ReactGA.initialize(CONFIG_GOOGLE_ANALYTICS_TRACKING_ID, {
   gaOptions: {
-    siteSpeedSampleRate: 100
-  }
+    siteSpeedSampleRate: 100,
+  },
 });
 
 const redux = createRedux();

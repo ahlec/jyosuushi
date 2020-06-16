@@ -11,7 +11,7 @@ import {
   KEYCODE_RIGHT_SQUARE_BRACKET,
   KEYCODE_COLON,
   TAB_SIZE,
-  MAX_SLICE
+  MAX_SLICE,
 } from "./constants";
 import IdTracker from "./IdTracker";
 
@@ -85,7 +85,7 @@ function parseLabel(value: string, valueStart: number): ParsedLabelInfo | null {
   return {
     end: index, // Also include trimming the optional following colon
     start: labelStart,
-    value: value.slice(labelStart, labelEnd)
+    value: value.slice(labelStart, labelEnd),
   };
 }
 
@@ -131,7 +131,7 @@ function parseContentLines(
         contentEnd: index,
         contentStart: contentStart || index,
         end: index,
-        start
+        start,
       };
 
       lines.push(mostRecentLine);
@@ -254,7 +254,7 @@ export function createFootnoteDefinitionTokenizer(
       children,
       identifier: refId,
       label: refId,
-      type: "footnoteDefinition"
+      type: "footnoteDefinition",
     });
   };
 }

@@ -17,13 +17,13 @@ const CONVERTED_COUNTER_IDS: { [oldCounterId: string]: string } = {
   "long, thin object": "本",
   minute: "分",
   "people-mei": "名",
-  "people-nin": "人"
+  "people-nin": "人",
 };
 
 const AMOUNT_RANGE_STRINGS: ReadonlyArray<string> = [
   "small",
   "medium",
-  "large"
+  "large",
 ];
 
 function convertCounterId(counterId: string): string {
@@ -37,7 +37,7 @@ function updateQuestionLikeObject(questionLike: any): any {
     possibleAmounts: range(
       interestRegion.startInclusive,
       interestRegion.endInclusive + 1
-    )
+    ),
   };
 }
 
@@ -50,8 +50,8 @@ function updateCountersState(counters: any): any {
         ...obj[newCounterId],
         counter: {
           ...obj[newCounterId].counter,
-          counterId: newCounterId
-        }
+          counterId: newCounterId,
+        },
       };
     }
 
@@ -78,11 +78,11 @@ export default function migrateV1(state: any): any {
         ? updateQuestionLikeObject(state.questions.currentQuestion)
         : null,
       enabledCounters: state.questions.enabledCounters.map(convertCounterId),
-      queue: state.questions.queue.map(updateQuestionLikeObject)
+      queue: state.questions.queue.map(updateQuestionLikeObject),
     },
     quizState: {
       isInfinite: false,
-      state: state.quizState
+      state: state.quizState,
     },
     scorecard: {
       ...state.scorecard,
@@ -91,12 +91,12 @@ export default function migrateV1(state: any): any {
       ),
       mostMissedCounterId: state.scorecard.mostMissedCounterId
         ? convertCounterId(state.scorecard.mostMissedCounterId)
-        : null
+        : null,
     },
     settings: {
       ...state.settings,
       amountRange: AMOUNT_RANGE_STRINGS[state.settings.amountRange],
-      infiniteMode: false
-    }
+      infiniteMode: false,
+    },
   };
 }

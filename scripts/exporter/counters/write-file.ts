@@ -9,7 +9,7 @@ import { productionStringify, ProductionVariable } from "../utils";
 
 import exportSingleCounter, {
   CounterExportResults,
-  Import
+  Import,
 } from "./single-counter-export";
 import CounterDataLookup from "./CounterDataLookup";
 
@@ -18,13 +18,13 @@ function selectCounterId(counter: DbCounter): string {
 }
 
 function selectImports({
-  imports
+  imports,
 }: CounterExportResults): ReadonlyArray<Import> {
   return imports;
 }
 
 function selectFileExports({
-  fileExportRequests
+  fileExportRequests,
 }: CounterExportResults): ReadonlyArray<FileExportRequest> {
   return fileExportRequests;
 }
@@ -88,6 +88,6 @@ export default function writeCountersFile(
 
   // Return
   return {
-    additionalFileRequests: flatten(counters.map(selectFileExports))
+    additionalFileRequests: flatten(counters.map(selectFileExports)),
   };
 }

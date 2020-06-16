@@ -104,7 +104,7 @@ function writeNodeAsJsx(
       containsIntrasiteLink,
       jsx: `<${openingTag} />`,
       numChildNodes: 0,
-      tag: jsxTag
+      tag: jsxTag,
     };
   }
 
@@ -113,7 +113,7 @@ function writeNodeAsJsx(
     containsIntrasiteLink,
     jsx: `<${openingTag}>${jsxChildren}</${jsxTag}>`,
     numChildNodes,
-    tag: jsxTag
+    tag: jsxTag,
   };
 }
 

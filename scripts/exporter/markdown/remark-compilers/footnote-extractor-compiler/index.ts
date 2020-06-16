@@ -115,7 +115,7 @@ function convertNodeToFootnote(node: Node): Footnote {
   const noteJsx = toH<JSXRepresentation>(writeNodeAsJsx, node);
   return {
     noteJsx,
-    refId: parseInt(localRefId)
+    refId: parseInt(localRefId),
   };
 }
 
@@ -125,7 +125,7 @@ function footnoteExtractorCompiler(this: Processor<unknown>): void {
     const footnoteNodes = collectFootnoteNodes(tree);
 
     const data: FootnoteExtractorCompilerVFileData = {
-      footnotes: footnoteNodes.map(convertNodeToFootnote)
+      footnotes: footnoteNodes.map(convertNodeToFootnote),
     };
     file.data = data;
 

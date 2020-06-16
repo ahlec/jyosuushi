@@ -10,7 +10,7 @@ import {
   KEYCODE_TAB,
   KEYCODE_SPACE,
   KEYCODE_LEFT_SQUARE_BRACKET,
-  KEYCODE_CARET
+  KEYCODE_CARET,
 } from "./constants";
 
 interface ParsedLabelInfo {
@@ -50,7 +50,7 @@ function parseLabel(value: string): ParsedLabelInfo | null {
       return {
         end: index,
         start: labelStart,
-        value: value.slice(labelStart, index)
+        value: value.slice(labelStart, index),
       };
     }
 
@@ -83,7 +83,7 @@ export function createFootnoteCallsTokenizer(
     return eat(value.slice(0, label.end + 1))({
       identifier: refId,
       label: refId,
-      type: "footnoteReference"
+      type: "footnoteReference",
     });
   }
 

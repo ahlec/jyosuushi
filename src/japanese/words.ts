@@ -42,7 +42,7 @@ function japaneseNumberCombiner(
 
   return {
     kana: first.kana + second.kana,
-    tags
+    tags,
   };
 }
 
@@ -57,7 +57,7 @@ function castAwayTaggableInternal(
 ): ConjugatedJapaneseWord {
   return {
     isStrange: word.tags.has("strange"),
-    kana: word.kana
+    kana: word.kana,
   };
 }
 
@@ -72,7 +72,7 @@ function castToTaggableInternal(
 ): TaggableJapaneseWord {
   return {
     ...word,
-    tags: "tags" in word ? word.tags : new Set()
+    tags: "tags" in word ? word.tags : new Set(),
   };
 }
 

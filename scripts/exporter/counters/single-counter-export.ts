@@ -6,7 +6,7 @@ import { FileExportRequest, WriteFileResults } from "../types";
 import {
   getCounterId,
   productionStringify,
-  ProductionVariable
+  ProductionVariable,
 } from "../utils";
 
 import { CounterJoinData } from "./CounterDataLookup";
@@ -60,7 +60,7 @@ function exportSingleCounter(
     joinData,
     {
       disambiguationComponents,
-      notesComponent
+      notesComponent,
     },
     markdownConsolidator.footnoteComponentVariables
   );
@@ -76,16 +76,16 @@ function exportSingleCounter(
           writeCounterComponentsFile(
             markdownConsolidator.markdownComponents,
             stream
-          )
-      }
+          ),
+      },
     ];
 
     const importFilepath = `@data/${baseRelativeFilepath}`;
     imports = [
       {
         completeImportStatement: `import * as ${markdownConsolidator.importedNamespace} from '${importFilepath}';`,
-        importFilepath
-      }
+        importFilepath,
+      },
     ];
   } else {
     fileExportRequests = [];
@@ -97,7 +97,7 @@ function exportSingleCounter(
     declaredValue: productionStringify(protoCounter),
     fileExportRequests,
     imports,
-    variableName
+    variableName,
   };
 }
 

@@ -12,20 +12,20 @@ const RESULT_BUBBLE_CONTENTS: {
 } = {
   correct: {
     kana: "せいかい",
-    kanji: "正解"
+    kanji: "正解",
   },
   ignored: {
     kana: "むし",
-    kanji: "無視"
+    kanji: "無視",
   },
   incorrect: {
     kana: "ふせいかい",
-    kanji: "不正解"
+    kanji: "不正解",
   },
   skipped: {
     kana: "みかいとう",
-    kanji: "未回答"
-  }
+    kanji: "未回答",
+  },
 };
 
 interface ComponentProps {

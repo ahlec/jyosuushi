@@ -62,7 +62,7 @@ function mapStateToProps(state: State): ReduxProps {
     totalNumberQuestions:
       state.questions.asked.length +
       (state.questions.currentQuestion ? 1 : 0) +
-      state.questions.queue.length
+      state.questions.queue.length,
   };
 }
 
@@ -92,7 +92,7 @@ const SUBSEQUENT_LAYOUT_STAGE: { [stage in Stage]: Stage | null } = {
   "transitioning-to-quiz": "resting-quiz",
   "resting-quiz": null,
   "transitioning-from-quiz": "transitioning-to-home",
-  "transitioning-to-home": "resting-home"
+  "transitioning-to-home": "resting-home",
 };
 /* eslint-enable sort-keys */
 
@@ -104,25 +104,25 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
     this.state = {
       isPromptingToLeave: false,
       showHistoryModal: false,
-      stage: props.isQuizActive ? "resting-quiz" : "resting-home"
+      stage: props.isQuizActive ? "resting-quiz" : "resting-home",
     };
   }
 
   public componentDidUpdate({
-    isQuizActive: wasQuizActive
+    isQuizActive: wasQuizActive,
   }: ComponentProps): void {
     const { hasAnsweredQuestion, isQuizActive, onModalOpened } = this.props;
     if (wasQuizActive !== isQuizActive) {
       this.setState({
         stage: isQuizActive
           ? "transitioning-from-home"
-          : "transitioning-from-quiz"
+          : "transitioning-from-quiz",
       });
     }
 
     if (!hasAnsweredQuestion && this.state.showHistoryModal) {
       this.setState({
-        showHistoryModal: false
+        showHistoryModal: false,
       });
       onModalOpened(false);
     }
@@ -166,7 +166,7 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
     const {
       hasAnsweredQuestion,
       localization,
-      scorecard: { numCorrectAnswers, numIncorrectAnswers }
+      scorecard: { numCorrectAnswers, numIncorrectAnswers },
     } = this.props;
     const { isPromptingToLeave, showHistoryModal, stage } = this.state;
     const enabled = stage === "resting-quiz";
@@ -287,7 +287,7 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
         scorecard.numSkippedQuestions
       }, Ignored: ${
         scorecard.numIgnoredAnswers
-      }, Total: ${totalNumberQuestions}`
+      }, Total: ${totalNumberQuestions}`,
     });
   }
 }

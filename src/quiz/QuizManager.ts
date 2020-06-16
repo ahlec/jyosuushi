@@ -8,7 +8,7 @@ import {
   nextQuestion,
   replenishInfiniteQuiz,
   restartQuiz,
-  startQuiz
+  startQuiz,
 } from "@jyosuushi/redux/actions";
 import { Store } from "@jyosuushi/redux/store";
 import makeQuiz from "./QuizMaker";
@@ -39,7 +39,7 @@ export default class QuizManager {
   public startNewQuiz(): void {
     const state = this.store.getState();
     const studyPacks = state.enabledPacks.map(
-      packId => STUDY_PACK_LOOKUP[packId]
+      (packId) => STUDY_PACK_LOOKUP[packId]
     );
 
     if (!studyPacks.length) {
@@ -55,7 +55,7 @@ export default class QuizManager {
       category: GOOGLE_ANALYTICS_CATEGORY,
       label: `[${studyPacks.map(({ packId }) => packId).join(", ")}] ${
         isInfinite ? "infinite mode" : `Questions: ${questions.length}`
-      }`
+      }`,
     });
   }
 
@@ -70,7 +70,7 @@ export default class QuizManager {
         ", "
       )}] Answered: ${numQuestionsAnswered}, Skipped: ${
         scorecard.numSkippedQuestions
-      }, Ignored: ${scorecard.numIgnoredAnswers}`
+      }, Ignored: ${scorecard.numIgnoredAnswers}`,
     });
 
     this.store.dispatch(endQuiz());
@@ -78,7 +78,7 @@ export default class QuizManager {
 
   public restart(): void {
     const state = this.store.getState();
-    const packs = state.enabledPacks.map(packId => STUDY_PACK_LOOKUP[packId]);
+    const packs = state.enabledPacks.map((packId) => STUDY_PACK_LOOKUP[packId]);
     const questions = makeQuiz(packs, this.amountRange);
     const isInfinite = state.settings.infiniteMode;
     this.store.dispatch(restartQuiz(questions));
@@ -88,7 +88,7 @@ export default class QuizManager {
       category: GOOGLE_ANALYTICS_CATEGORY,
       label: `[${packs.map(({ packId }) => packId).join(", ")}] ${
         isInfinite ? "infinite mode" : `Questions: ${questions.length}`
-      }`
+      }`,
     });
   }
 
@@ -99,7 +99,9 @@ export default class QuizManager {
 
     const state = this.store.getState();
     if (state.quizState.isInfinite && !state.questions.queue.length) {
-      const packs = state.enabledPacks.map(packId => STUDY_PACK_LOOKUP[packId]);
+      const packs = state.enabledPacks.map(
+        (packId) => STUDY_PACK_LOOKUP[packId]
+      );
       const questions = makeQuiz(packs, this.amountRange);
       this.store.dispatch(replenishInfiniteQuiz(questions));
     }

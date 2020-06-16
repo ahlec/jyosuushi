@@ -41,7 +41,7 @@ export function getCounterNotesComponent(
       `./${componentName}.tsx`
     ),
     componentName,
-    importPath: `@data/counter-notes/${componentName}`
+    importPath: `@data/counter-notes/${componentName}`,
   };
 }
 

@@ -2,18 +2,18 @@ export type DbBoolean = 0 | 1;
 
 export enum DbIrregularType {
   ArbitraryReading = "arbitrary-reading",
-  StandardWagoRangeSoundChange = "standard-wago-range-sound-change"
+  StandardWagoRangeSoundChange = "standard-wago-range-sound-change",
 }
 
 export enum DbWordOrigin {
   Japanese = "和語",
   Chinese = "漢語",
-  Foreign = "外来語"
+  Foreign = "外来語",
 }
 
 export enum DbExternalLinkLanguage {
   Japanese = "japanese",
-  English = "english"
+  English = "english",
 }
 
 export interface DbCounterAdditionalReading {
@@ -132,13 +132,13 @@ export enum Schemas {
   Items = "items",
   StudyPackContents = "study_pack_contents",
   StudyPacks = "study_packs",
-  WagoStyle = "wago_style"
+  WagoStyle = "wago_style",
 }
 
 export enum EnumSchemas {
   EnumExternalLinkLanguage = "enum_external_link_language",
   EnumIrregularType = "enum_irregular_type",
-  EnumWordOrigin = "enum_word_origin"
+  EnumWordOrigin = "enum_word_origin",
 }
 
 export interface SchemaEntryTypes {
@@ -169,45 +169,45 @@ export const ENTRY_IDENTIFIERS_RETRIEVER: {
     entry: SchemaEntryTypes[schema]
   ) => ReadonlyArray<IdentifierField>;
 } = {
-  [Schemas.CounterAdditionalReadings]: entry => [
+  [Schemas.CounterAdditionalReadings]: (entry) => [
     { name: "counter_id", value: entry.counter_id },
-    { name: "kana", value: entry.kana }
+    { name: "kana", value: entry.kana },
   ],
-  [Schemas.CounterAlternativeKanji]: entry => [
+  [Schemas.CounterAlternativeKanji]: (entry) => [
     { name: "counter_id", value: entry.counter_id },
-    { name: "kanji", value: entry.kanji }
+    { name: "kanji", value: entry.kanji },
   ],
-  [Schemas.CounterDisambiguations]: entry => [
+  [Schemas.CounterDisambiguations]: (entry) => [
     { name: "counter1_id", value: entry.counter1_id },
-    { name: "counter2_id", value: entry.counter2_id }
+    { name: "counter2_id", value: entry.counter2_id },
   ],
-  [Schemas.CounterExternalLinks]: entry => [
+  [Schemas.CounterExternalLinks]: (entry) => [
     { name: "counter_id", value: entry.counter_id },
-    { name: "url", value: entry.url }
+    { name: "url", value: entry.url },
   ],
-  [Schemas.CounterIrregulars]: entry => [
+  [Schemas.CounterIrregulars]: (entry) => [
     { name: "counter_id", value: entry.counter_id },
     { name: "number", value: entry.number.toString() },
-    { name: "kana", value: entry.kana }
+    { name: "kana", value: entry.kana },
   ],
-  [Schemas.CounterReadings]: entry => [
+  [Schemas.CounterReadings]: (entry) => [
     { name: "counter_id", value: entry.counter_id },
-    { name: "reading_id", value: entry.reading_id }
+    { name: "reading_id", value: entry.reading_id },
   ],
-  [Schemas.Counters]: entry => [
-    { name: "counter_id", value: entry.counter_id }
-  ],
-  [Schemas.ItemCounters]: entry => [
+  [Schemas.Counters]: (entry) => [
     { name: "counter_id", value: entry.counter_id },
-    { name: "item_id", value: entry.item_id }
   ],
-  [Schemas.Items]: entry => [{ name: "item_id", value: entry.item_id }],
-  [Schemas.StudyPackContents]: entry => [
+  [Schemas.ItemCounters]: (entry) => [
     { name: "counter_id", value: entry.counter_id },
-    { name: "pack_id", value: entry.pack_id }
+    { name: "item_id", value: entry.item_id },
   ],
-  [Schemas.StudyPacks]: entry => [{ name: "pack_id", value: entry.pack_id }],
-  [Schemas.WagoStyle]: entry => [
-    { name: "wago_style_handle", value: entry.wago_style_handle }
-  ]
+  [Schemas.Items]: (entry) => [{ name: "item_id", value: entry.item_id }],
+  [Schemas.StudyPackContents]: (entry) => [
+    { name: "counter_id", value: entry.counter_id },
+    { name: "pack_id", value: entry.pack_id },
+  ],
+  [Schemas.StudyPacks]: (entry) => [{ name: "pack_id", value: entry.pack_id }],
+  [Schemas.WagoStyle]: (entry) => [
+    { name: "wago_style_handle", value: entry.wago_style_handle },
+  ],
 };

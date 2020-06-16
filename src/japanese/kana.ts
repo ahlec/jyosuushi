@@ -32,106 +32,106 @@ const GOJYUUON_HIRAGANA_CODEPOINTS: GoJyuuOn<number> = {
     i: 0x3044,
     u: 0x3046,
     e: 0x3048,
-    o: 0x304a
+    o: 0x304a,
   },
   ka: {
     a: 0x304b,
     i: 0x304d,
     u: 0x304f,
     e: 0x3051,
-    o: 0x3053
+    o: 0x3053,
   },
   ga: {
     a: 0x304c,
     i: 0x304e,
     u: 0x3050,
     e: 0x3052,
-    o: 0x3054
+    o: 0x3054,
   },
   sa: {
     a: 0x3055,
     i: 0x3057,
     u: 0x3059,
     e: 0x305b,
-    o: 0x305d
+    o: 0x305d,
   },
   za: {
     a: 0x3056,
     i: 0x3058,
     u: 0x305a,
     e: 0x305c,
-    o: 0x305e
+    o: 0x305e,
   },
   ta: {
     a: 0x305f,
     i: 0x3061,
     u: 0x3064, // Deviation from previous pattern! Small TSU to blame!
     e: 0x3066,
-    o: 0x3068
+    o: 0x3068,
   },
   da: {
     a: 0x3060,
     i: 0x3062,
     u: 0x3065,
     e: 0x3067,
-    o: 0x3069
+    o: 0x3069,
   },
   na: {
     a: 0x306a,
     i: 0x306b,
     u: 0x306c,
     e: 0x306d,
-    o: 0x306e
+    o: 0x306e,
   },
   ha: {
     a: 0x306f,
     i: 0x3072,
     u: 0x3075,
     e: 0x3078,
-    o: 0x307b
+    o: 0x307b,
   },
   ba: {
     a: 0x3070,
     i: 0x3073,
     u: 0x3076,
     e: 0x3079,
-    o: 0x307c
+    o: 0x307c,
   },
   pa: {
     a: 0x3071,
     i: 0x3074,
     u: 0x3077,
     e: 0x307a,
-    o: 0x307d
+    o: 0x307d,
   },
   ma: {
     a: 0x307e,
     i: 0x307f,
     u: 0x3080,
     e: 0x3081,
-    o: 0x3082
+    o: 0x3082,
   },
   ya: {
     a: 0x3084,
     i: null,
     u: 0x3086,
     e: null,
-    o: 0x3088
+    o: 0x3088,
   },
   ra: {
     a: 0x3089,
     i: 0x308a,
     u: 0x308b,
     e: 0x308c,
-    o: 0x308d
+    o: 0x308d,
   },
   wa: {
     a: 0x308f,
     i: null,
     u: null,
     e: null,
-    o: 0x3092
-  }
+    o: 0x3092,
+  },
 };
 /* eslint-enable sort-keys */
 
@@ -146,7 +146,7 @@ const GOJYUUON_FROM_CODEPOINTS: GoJyuuOnLookup = Object.keys(
     if (codepoint) {
       lookup[codepoint] = {
         dan,
-        gyou
+        gyou,
       };
     }
   });
@@ -526,7 +526,7 @@ export const HIRAGANA = new KanaDefinition(HIRAGANA_CODEPOINT_START, 0x309f, {
   nä: "んä",
   nö: "んö",
   nø: "んø",
-  næ: "んæ"
+  næ: "んæ",
 });
 /* eslint-enable sort-keys */
 

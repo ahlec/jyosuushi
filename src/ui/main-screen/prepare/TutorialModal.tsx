@@ -35,9 +35,9 @@ export default class TutorialModal extends React.PureComponent<
   public state: ComponentState = {
     currentPage: 0,
     previousPage: 0,
-    transition: null
+    transition: null,
   };
-  private onClickPageLink = memoize(pageNumber => (): void => {
+  private onClickPageLink = memoize((pageNumber) => (): void => {
     const { currentPage, transition } = this.state;
     if (
       transition !== null ||
@@ -51,7 +51,7 @@ export default class TutorialModal extends React.PureComponent<
     this.setState({
       currentPage: pageNumber,
       previousPage: currentPage,
-      transition: "replace"
+      transition: "replace",
     });
   });
 
@@ -169,7 +169,7 @@ export default class TutorialModal extends React.PureComponent<
     this.setState({
       currentPage: currentPage - 1,
       previousPage: currentPage,
-      transition: "right"
+      transition: "right",
     });
   };
 
@@ -193,7 +193,7 @@ export default class TutorialModal extends React.PureComponent<
 
     if (finishesTransition) {
       this.setState({
-        transition: null
+        transition: null,
       });
     }
   };
@@ -213,7 +213,7 @@ export default class TutorialModal extends React.PureComponent<
     this.setState({
       currentPage: currentPage + 1,
       previousPage: currentPage,
-      transition: "left"
+      transition: "left",
     });
   };
 }

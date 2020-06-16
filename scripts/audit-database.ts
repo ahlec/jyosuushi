@@ -6,11 +6,11 @@ import {
   ENTRY_IDENTIFIERS_RETRIEVER,
   IdentifierField,
   SchemaEntryTypes,
-  Schemas
+  Schemas,
 } from "./database/schemas";
 import ValidatedDataSource, {
   InvalidResultEntry,
-  Warning
+  Warning,
 } from "./database/ValidatedDataSource";
 
 const LINE_WIDTH = 80;
@@ -36,7 +36,7 @@ function appendInvalidEntries<TSchema extends Schemas>(
       arr.push({
         id: ENTRY_IDENTIFIERS_RETRIEVER[schema](dbEntry.entry as any), // TODO: Better typing
         reasons: auditableReasons.map(({ text }) => text),
-        schema
+        schema,
       });
     }
   }
@@ -66,7 +66,7 @@ function groupAndAppendWarnings<TSchema extends Schemas>(
     if (!lookup[lookupKey]) {
       lookup[lookupKey] = {
         id,
-        warnings: []
+        warnings: [],
       };
     }
 
@@ -78,7 +78,7 @@ function groupAndAppendWarnings<TSchema extends Schemas>(
     arr.push({
       id: group.id,
       reasons: group.warnings,
-      schema
+      schema,
     });
   }
 }
@@ -86,7 +86,7 @@ function groupAndAppendWarnings<TSchema extends Schemas>(
 function printInvalidEntry(entry: InvalidEntry): void {
   const firstLine = [
     ` * [${chalk.cyan(entry.schema)}]`,
-    ...entry.id.map(({ name, value }) => `[${name}: ${chalk.cyan(value)}]`)
+    ...entry.id.map(({ name, value }) => `[${name}: ${chalk.cyan(value)}]`),
   ].join("");
   const isFirstEntryOnSameLine =
     firstLine.length + entry.reasons[0].length <= LINE_WIDTH;

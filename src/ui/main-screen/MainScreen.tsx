@@ -10,7 +10,7 @@ import {
   LANDING_PAGE,
   PageDefinition,
   RELEASE_NOTES_PATH,
-  UNORDERED_NESTED_PAGES
+  UNORDERED_NESTED_PAGES,
 } from "./pages";
 
 import "./MainScreen.scss";
@@ -23,7 +23,7 @@ function mapStateToProps(state: State): ReduxProps {
   const { lastAccessedVersion } = state.user;
   return {
     shouldRedirectToReleaseNotes:
-      !!lastAccessedVersion && lastAccessedVersion !== JYOSUUSHI_CURRENT_SEMVER
+      !!lastAccessedVersion && lastAccessedVersion !== JYOSUUSHI_CURRENT_SEMVER,
   };
 }
 
@@ -46,7 +46,7 @@ class MainScreen extends React.PureComponent<ReduxProps> {
 
   private renderRoute = ({
     component,
-    path
+    path,
   }: PageDefinition): React.ReactNode => {
     return <Route key={path} path={path || "/"} component={component} />;
   };

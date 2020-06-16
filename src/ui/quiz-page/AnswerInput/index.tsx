@@ -11,7 +11,7 @@ import { State } from "@jyosuushi/redux";
 import {
   skipQuestion,
   submitCorrectAnswer,
-  submitIncorrectAnswer
+  submitIncorrectAnswer,
 } from "@jyosuushi/redux/actions";
 import { Dispatch } from "@jyosuushi/redux/store";
 import KanaInput, { KanaInputValue } from "./KanaInput";
@@ -37,7 +37,7 @@ interface ReduxProps {
 
 function mapStateToProps(state: State): ReduxProps {
   return {
-    numQuestionsAsked: state.user.numQuestionsAsked
+    numQuestionsAsked: state.user.numQuestionsAsked,
   };
 }
 
@@ -53,11 +53,11 @@ function getCounterId(answer: Answer): string {
 
 class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
   public state: ComponentState = {
-    value: null
+    value: null,
   };
 
   public componentDidUpdate({
-    numQuestionsAsked: prevNumQuestionsAsked
+    numQuestionsAsked: prevNumQuestionsAsked,
   }: ComponentProps): void {
     const { numQuestionsAsked } = this.props;
     if (numQuestionsAsked !== prevNumQuestionsAsked) {
@@ -114,7 +114,7 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
 
   private onChange = (value: KanaInputValue): void =>
     this.setState({
-      value
+      value,
     });
 
   private onClickSubmitButton = (event: React.MouseEvent): void => {
@@ -171,7 +171,7 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
     ReactGA.event({
       action: "Question Skipped",
       category: "Quiz",
-      label: `${currentQuestion.amount} of '${currentQuestion.itemId}'`
+      label: `${currentQuestion.amount} of '${currentQuestion.itemId}'`,
     });
 
     this.props.dispatch(skipQuestion());

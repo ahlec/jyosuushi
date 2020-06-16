@@ -5,7 +5,7 @@ const VOWELS_HEPBURN: ReadonlySet<string> = new Set(["a", "e", "i", "o", "u"]);
 const SMALL_YS: { [kana: string]: { withY: string; withoutY: string } } = {
   ゃ: { withY: "ya", withoutY: "a" },
   ゅ: { withY: "yu", withoutY: "u" },
-  ょ: { withY: "yo", withoutY: "o" }
+  ょ: { withY: "yo", withoutY: "o" },
 };
 const N_CONSONANT_IS: {
   [kana: string]: { consonant: string; includeY: boolean };
@@ -21,7 +21,7 @@ const N_CONSONANT_IS: {
   び: { consonant: "b", includeY: true },
   ぴ: { consonant: "p", includeY: true },
   み: { consonant: "m", includeY: true },
-  り: { consonant: "r", includeY: true }
+  り: { consonant: "r", includeY: true },
 };
 
 /* eslint-disable sort-keys */
@@ -97,7 +97,7 @@ const HepburnChart: { [kana: string]: string } = {
   ろ: "ro",
   わ: "wa",
   を: "wo",
-  ん: "n"
+  ん: "n",
 };
 /* eslint-enable sort-keys */
 

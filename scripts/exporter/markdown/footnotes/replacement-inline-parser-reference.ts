@@ -5,7 +5,7 @@ import { Eat, InlineTokenizer, RemarkParser } from "../interfaces";
 import {
   KEYCODE_EXCLAMATION_MARK,
   KEYCODE_LEFT_SQUARE_BRACKET,
-  KEYCODE_CARET
+  KEYCODE_CARET,
 } from "./constants";
 
 export function createReplacementReferenceParser(

@@ -5,7 +5,7 @@ export enum AmountRange {
   Small = "small",
   Medium = "medium",
   Large = "large",
-  Giant = "giant"
+  Giant = "giant",
 }
 
 export interface Settings {

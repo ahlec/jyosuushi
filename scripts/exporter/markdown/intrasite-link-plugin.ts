@@ -57,16 +57,16 @@ function intrasiteLinkTokenizer(
       children: [
         {
           type: "text",
-          value: contentPieces[1]
-        }
+          value: contentPieces[1],
+        },
       ],
       data: {
         hName: INTRASITE_LINK_HAST_NODE_NAME,
         hProperties: {
-          to
-        }
+          to,
+        },
       },
-      type: "intrasite-link"
+      type: "intrasite-link",
     });
   }
 }

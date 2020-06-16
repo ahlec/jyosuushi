@@ -8,7 +8,7 @@ import Localization, {
   VARIABLE_ICON_CREDIT_LINK,
   VARIABLE_REPORT_BUG_LINK,
   VARIABLE_SILK_ICONS_CREDIT_LINK,
-  VARIABLE_SUBMIT_FEEDBACK_LINK
+  VARIABLE_SUBMIT_FEEDBACK_LINK,
 } from "./index";
 
 const ENGLISH: Localization = {
@@ -21,7 +21,7 @@ const ENGLISH: Localization = {
   beta: "Beta",
   buttonIgnoreAnswer: "Ignore Answer",
   buttonNextQuestion: "Next Question",
-  counterItemsPrefix: numCounters =>
+  counterItemsPrefix: (numCounters) =>
     `The following ${
       numCounters === 1 ? "is an example" : "are examples"
     } of what this is used to count:`,
@@ -42,7 +42,7 @@ const ENGLISH: Localization = {
     VARIABLE_FAVICON_CREDIT_LINK,
     ". Small icons are part of the ",
     VARIABLE_SILK_ICONS_CREDIT_LINK,
-    " collection."
+    " collection.",
   ],
   customCounterAmountInputPrefix:
     "Or you can try out any number you'd like to here:",
@@ -52,7 +52,7 @@ const ENGLISH: Localization = {
     VARIABLE_REPORT_BUG_LINK,
     " or ",
     VARIABLE_SUBMIT_FEEDBACK_LINK,
-    "."
+    ".",
   ],
   feedbackPageHelpContributeDescription:
     "The project is open source, and if you'd like to join in on working on the project, check out my GitHub!",
@@ -77,7 +77,7 @@ const ENGLISH: Localization = {
     "That was astounding, really.",
     "Look at how far you've come on your journey!",
     "This stuff isn't easy, and you're aceing it!",
-    "It's taken a lot of work to get here; pat yourself on the back."
+    "It's taken a lot of work to get here; pat yourself on the back.",
   ],
   irregularsWarning: (
     numIrregulars: number,
@@ -89,7 +89,7 @@ const ENGLISH: Localization = {
         numIrregulars === 1 ? "conjugation" : "conjugations"
       }`
     ),
-    "."
+    ".",
   ],
   irregularsWarningNoIrregulars:
     "Luckily, there are no irregular conjugations with this counter!",
@@ -98,7 +98,7 @@ const ENGLISH: Localization = {
   lowScoreEncouragements: [
     "You're trying your best, and that's the key to success!",
     "You've learned so much to get here, I know you'll get to where you want to go!",
-    "This stuff isn't easy; practice WILL make perfect."
+    "This stuff isn't easy; practice WILL make perfect.",
   ],
   pageExplore: "Explore",
   pageExploreCounter: "Counter:",
@@ -151,7 +151,7 @@ const ENGLISH: Localization = {
     "If you made a typo or a genuine mistake, hit 'Ignore Answer'. It won't penalize you, and it will shuffle that question in for later to try again. It's up to you to stay honest!",
   tutorialPage6:
     "When you've gone through all of your questions, you'll have a chance to see your overall results. From there, you can choose to change your study packs, or try this quiz again with new numbers and items.",
-  xOfYCorrect: (x, y) => `${x} / ${y} correct`
+  xOfYCorrect: (x, y) => `${x} / ${y} correct`,
 };
 
 export default ENGLISH;

@@ -11,18 +11,18 @@ export const AMOUNT_RANGES: {
 } = {
   [AmountRange.Small]: {
     max: 25,
-    min: 1
+    min: 1,
   },
   [AmountRange.Medium]: {
     max: 50,
-    min: 1
+    min: 1,
   },
   [AmountRange.Large]: {
     max: 100,
-    min: 1
+    min: 1,
   },
   [AmountRange.Giant]: {
     max: 1000,
-    min: 1
-  }
+    min: 1,
+  },
 };

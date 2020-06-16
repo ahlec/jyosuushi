@@ -11,7 +11,7 @@ const FIRST_TEN_NUMBER_KANJI: ReadonlyArray<string | null> = [
   "六",
   "七",
   "八",
-  "九"
+  "九",
 ];
 
 export const getKanjiForNumber: (amount: number) => string = memoize(

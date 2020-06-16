@@ -3,7 +3,7 @@ import { KangoConjugationOptions } from "./japanese/interfaces";
 
 export enum ExternalLinkLanguage {
   Japanese = "japanese",
-  English = "english"
+  English = "english",
 }
 
 export interface ExternalLink {
@@ -17,7 +17,7 @@ export interface ExternalLink {
 export enum WordOrigin {
   Japanese = "japanese",
   Chinese = "chinese",
-  Foreign = "foreign"
+  Foreign = "foreign",
 }
 
 export interface CounterWagoStyle {
@@ -83,7 +83,7 @@ export interface CounterKanjiInfo {
 
 export enum CounterIrregularType {
   ArbitraryReading = "arbitrary-reading",
-  SoundChange = "sound-change"
+  SoundChange = "sound-change",
 }
 
 export interface CounterIrregular {
@@ -133,7 +133,7 @@ export enum CounterItemRelevance {
   RarelyUsed,
   Situational,
   Common,
-  Best
+  Best,
 }
 
 export interface ItemCounter {
@@ -164,7 +164,7 @@ export interface PendingQuestion {
 export enum CountingSystem {
   Kango = "kango",
   Wago = "wago",
-  Eigo = "Eigo"
+  Eigo = "Eigo",
 }
 
 export interface Conjugation {

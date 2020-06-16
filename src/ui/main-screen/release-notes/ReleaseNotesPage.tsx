@@ -6,7 +6,7 @@ import CHANGELOG, {
   isFirstVersion,
   ConsumerFacingEntry,
   BugFixEntry,
-  BugFixBrowser
+  BugFixBrowser,
 } from "@changelog";
 
 import { State } from "@jyosuushi/redux";
@@ -26,7 +26,7 @@ interface ReduxProps {
 
 function mapStateToProps(state: State): ReduxProps {
   return {
-    localization: getLocalization(state)
+    localization: getLocalization(state),
   };
 }
 
@@ -37,7 +37,7 @@ const BROWSER_NAMES: { [browser in BugFixBrowser]: string } = {
   edge: "Microsoft Edge",
   firefox: "Firefox",
   ie: "Internet Explorer",
-  safari: "Safari"
+  safari: "Safari",
 };
 
 class ReleaseNotesPage extends React.PureComponent<ComponentProps> {

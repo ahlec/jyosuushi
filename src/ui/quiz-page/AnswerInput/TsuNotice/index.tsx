@@ -18,7 +18,7 @@ interface ReduxProps {
 
 function mapStateToProps(state: State): ReduxProps {
   return {
-    numQuestionsAsked: state.user.numQuestionsAsked
+    numQuestionsAsked: state.user.numQuestionsAsked,
   };
 }
 
@@ -33,7 +33,7 @@ class TsuNotice extends React.PureComponent<ComponentProps> {
   }
 
   public componentDidUpdate({
-    numQuestionsAsked: prevNumQuestionsAsked
+    numQuestionsAsked: prevNumQuestionsAsked,
   }: ComponentProps): void {
     const { numQuestionsAsked } = this.props;
     if (numQuestionsAsked > prevNumQuestionsAsked) {
@@ -52,7 +52,7 @@ class TsuNotice extends React.PureComponent<ComponentProps> {
       <div
         className="TsuNotice"
         style={{
-          opacity: this.model.numWarnings / NUM_DEFAULT_WARNINGS
+          opacity: this.model.numWarnings / NUM_DEFAULT_WARNINGS,
         }}
       >
         {localization.tsuNotice}

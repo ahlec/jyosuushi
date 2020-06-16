@@ -13,7 +13,7 @@ import BreadcrumbBar from "@jyosuushi/ui/main-screen/explore/BreadcrumbBar";
 
 import ConjugationsSection from "./ConjugationsSection";
 import DisambiguationSection, {
-  hasDisambiguationSection
+  hasDisambiguationSection,
 } from "./DisambiguationSection";
 import FootnotesSection from "./FootnotesSection";
 import InfoSection, { hasInfoSectionContents } from "./InfoSection";
@@ -28,7 +28,7 @@ interface ReduxProps {
 
 function mapStateToProps(state: State): ReduxProps {
   return {
-    localization: getLocalization(state)
+    localization: getLocalization(state),
   };
 }
 
@@ -38,8 +38,8 @@ class ExploreCounterPage extends React.PureComponent<ComponentProps> {
   private get counter(): Counter | null {
     const {
       match: {
-        params: { counterId }
-      }
+        params: { counterId },
+      },
     } = this.props;
     return COUNTERS_LOOKUP[counterId] || null;
   }
@@ -47,7 +47,7 @@ class ExploreCounterPage extends React.PureComponent<ComponentProps> {
   public render(): React.ReactNode {
     const {
       counter,
-      props: { localization }
+      props: { localization },
     } = this;
     if (!counter) {
       return <Redirect to="/explore" />;

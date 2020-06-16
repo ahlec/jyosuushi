@@ -8,7 +8,7 @@ import {
   ActionSkipQuestion,
   ActionStartQuiz,
   ActionSubmitCorrectAnswer,
-  ActionSubmitIncorrectAnswer
+  ActionSubmitIncorrectAnswer,
 } from "@jyosuushi/redux/actions";
 
 type ReducerAction =
@@ -26,7 +26,7 @@ const DEFAULT_SCORECARD: Scorecard = {
   numCorrectAnswers: 0,
   numIgnoredAnswers: 0,
   numIncorrectAnswers: 0,
-  numSkippedQuestions: 0
+  numSkippedQuestions: 0,
 };
 
 export default function scorecardReducer(
@@ -41,7 +41,7 @@ export default function scorecardReducer(
     case "submit-correct-answer": {
       return {
         ...state,
-        numCorrectAnswers: state.numCorrectAnswers + 1
+        numCorrectAnswers: state.numCorrectAnswers + 1,
       };
     }
     case "submit-incorrect-answer": {
@@ -59,7 +59,7 @@ export default function scorecardReducer(
         ...state,
         missedCounterTallies: nextCounterTallies,
         mostMissedCounterId,
-        numIncorrectAnswers: state.numIncorrectAnswers + 1
+        numIncorrectAnswers: state.numIncorrectAnswers + 1,
       };
     }
     case "ignore-last-answer": {
@@ -82,13 +82,13 @@ export default function scorecardReducer(
         missedCounterTallies: nextCounterTallies,
         mostMissedCounterId,
         numIgnoredAnswers: state.numIgnoredAnswers + 1,
-        numIncorrectAnswers: Math.max(0, state.numIncorrectAnswers - 1)
+        numIncorrectAnswers: Math.max(0, state.numIncorrectAnswers - 1),
       };
     }
     case "skip-question": {
       return {
         ...state,
-        numSkippedQuestions: state.numSkippedQuestions + 1
+        numSkippedQuestions: state.numSkippedQuestions + 1,
       };
     }
     default:

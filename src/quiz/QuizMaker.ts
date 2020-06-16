@@ -8,7 +8,7 @@ import {
   Counter,
   Item,
   PendingQuestion,
-  StudyPack
+  StudyPack,
 } from "@jyosuushi/interfaces";
 import { AmountRange } from "@jyosuushi/redux";
 import { getDistinctCounters, randomFromArray } from "@jyosuushi/utils";
@@ -59,7 +59,7 @@ function planOutItems(items: ReadonlyArray<Item>): QuizItems {
     quizItems[item.itemId] = {
       item,
       numRemaining: Math.min(maxPossibleItems, MAX_NUMBER_QUESTIONS_PER_ITEM),
-      usedAmountRegions: new Set()
+      usedAmountRegions: new Set(),
     };
   }
 
@@ -127,7 +127,7 @@ function getRandomAmount(
       counter,
       Math.max(item.minQuantity, 1),
       Math.min(item.maxQuantity, AMOUNT_RANGES[amountRange].max)
-    )
+    ),
   ];
 
   let possibleAmounts: ReadonlyArray<number>;
@@ -147,7 +147,7 @@ function getRandomAmount(
   return {
     amounts: possibleAmounts,
     id: possibleAmountsId,
-    success: true
+    success: true,
   };
 }
 
@@ -179,7 +179,7 @@ function makeQuestionsForCounter(
     if (randomAmount.success) {
       questions.push({
         itemId: item.itemId,
-        possibleAmounts: randomAmount.amounts
+        possibleAmounts: randomAmount.amounts,
       });
 
       quizItems[item.itemId].usedAmountRegions.add(randomAmount.id);

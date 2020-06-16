@@ -25,14 +25,14 @@ const LINKS: ReadonlyArray<LinkEntry> = [
     icon: CommentsIcon,
     linkText: (localization): string =>
       localization.feedbackPageSubmitFeedbackLink,
-    url: CONFIG_FEEDBACK_FORM_LINK
+    url: CONFIG_FEEDBACK_FORM_LINK,
   },
   {
     description: (localization): string =>
       localization.feedbackPageReportBugDescription,
     icon: BugIcon,
     linkText: (localization): string => localization.feedbackPageReportBugLink,
-    url: CONFIG_BUG_REPORT_FORM_LINK
+    url: CONFIG_BUG_REPORT_FORM_LINK,
   },
   {
     description: (localization): string =>
@@ -40,8 +40,8 @@ const LINKS: ReadonlyArray<LinkEntry> = [
     icon: CodeIcon,
     linkText: (localization): string =>
       localization.feedbackPageHelpContributeLink,
-    url: "https://github.com/ahlec/jyosuushi"
-  }
+    url: "https://github.com/ahlec/jyosuushi",
+  },
 ];
 
 interface ReduxProps {
@@ -50,7 +50,7 @@ interface ReduxProps {
 
 function mapStateToProps(state: State): ReduxProps {
   return {
-    localization: getLocalization(state)
+    localization: getLocalization(state),
   };
 }
 

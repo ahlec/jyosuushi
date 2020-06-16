@@ -6,7 +6,7 @@ import {
   castToTaggable,
   JapaneseWord,
   permutateTaggableWords,
-  TaggableJapaneseWord
+  TaggableJapaneseWord,
 } from "./words";
 
 interface FirstTenWords extends JapaneseWord {
@@ -19,157 +19,157 @@ const FIRST_TEN_NUMBERS: ReadonlyArray<ReadonlyArray<
 >> = [
   [
     {
-      kana: "ゼロ"
+      kana: "ゼロ",
     },
     {
-      kana: "れい"
-    }
+      kana: "れい",
+    },
   ],
   [
     {
-      kana: "いち"
-    }
+      kana: "いち",
+    },
   ],
   [
     {
-      kana: "に"
-    }
+      kana: "に",
+    },
   ],
   [
     {
-      kana: "さん"
-    }
+      kana: "さん",
+    },
   ],
   [
     {
       isValid: (options): boolean => options.allowsYonFor4,
-      kana: "よん"
+      kana: "よん",
     },
     {
       isValid: (options): boolean => options.allowsYoFor4,
       kana: "よ",
-      strange: true
+      strange: true,
     },
     {
       isValid: (options): boolean => options.allowsShiFor4,
       kana: "し",
-      strange: true
-    }
+      strange: true,
+    },
   ],
   [
     {
-      kana: "ご"
-    }
+      kana: "ご",
+    },
   ],
   [
     {
-      kana: "ろく"
-    }
+      kana: "ろく",
+    },
   ],
   [
     {
       isValid: (options): boolean => options.allowsShichiFor7,
       kana: "しち",
-      strange: true
+      strange: true,
     },
     {
       isValid: (options): boolean => options.allowsNanaFor7,
-      kana: "なな"
-    }
+      kana: "なな",
+    },
   ],
   [
     {
-      kana: "はち"
-    }
+      kana: "はち",
+    },
   ],
   [
     {
       isValid: (options): boolean => options.allowsKyuuFor9,
-      kana: "きゅう"
+      kana: "きゅう",
     },
     {
       isValid: (options): boolean => options.allowsKuFor9,
       kana: "く",
-      strange: true
-    }
-  ]
+      strange: true,
+    },
+  ],
 ];
 
 const OKU_NUMBER: ReadonlyArray<Readonly<JapaneseWord>> = [
   {
-    kana: "おく"
-  }
+    kana: "おく",
+  },
 ];
 
 const MAN_NUMBER: ReadonlyArray<Readonly<JapaneseWord>> = [
   {
-    kana: "まん"
-  }
+    kana: "まん",
+  },
 ];
 
 const SEN_NUMBER: ReadonlyArray<Readonly<JapaneseWord>> = [
   {
-    kana: "せん"
-  }
+    kana: "せん",
+  },
 ];
 
 const ZEN_NUMBER: ReadonlyArray<Readonly<JapaneseWord>> = [
   {
-    kana: "ぜん"
-  }
+    kana: "ぜん",
+  },
 ];
 
 const SEN_CHANGES: FinalNumberChanges = {
   1: [[{ type: "omit" }], [{ type: "trailing-small-tsu" }]],
-  8: [[{ type: "trailing-small-tsu" }]]
+  8: [[{ type: "trailing-small-tsu" }]],
 };
 
 const HYAKU_NUMBER: ReadonlyArray<Readonly<JapaneseWord>> = [
   {
-    kana: "ひゃく"
-  }
+    kana: "ひゃく",
+  },
 ];
 
 const IPPYAKU_NUMBER: ReadonlyArray<TaggableJapaneseWord> = [
   {
     kana: "ひゃく",
-    tags: new Set<Tag>(["hyaku"])
+    tags: new Set<Tag>(["hyaku"]),
   },
   {
     kana: "ぴゃく",
-    tags: new Set<Tag>(["ippyaku"])
-  }
+    tags: new Set<Tag>(["ippyaku"]),
+  },
 ];
 
 const BYAKU_NUMBER: ReadonlyArray<Readonly<JapaneseWord>> = [
   {
-    kana: "びゃく"
-  }
+    kana: "びゃく",
+  },
 ];
 
 const PYAKU_NUMBER: ReadonlyArray<Readonly<JapaneseWord>> = [
   {
-    kana: "ぴゃく"
-  }
+    kana: "ぴゃく",
+  },
 ];
 
 const JYUU_NUMBER: ReadonlyArray<Readonly<JapaneseWord>> = [
   {
-    kana: "じゅう"
-  }
+    kana: "じゅう",
+  },
 ];
 
 const HYAKU_CHANGES: FinalNumberChanges = {
   1: [
     [{ type: "omit" }, { tag: "hyaku", type: "tag" }],
-    [{ type: "trailing-small-tsu" }, { tag: "ippyaku", type: "tag" }]
+    [{ type: "trailing-small-tsu" }, { tag: "ippyaku", type: "tag" }],
   ],
   6: [[{ type: "trailing-small-tsu" }]],
-  8: [[{ type: "trailing-small-tsu" }]]
+  8: [[{ type: "trailing-small-tsu" }]],
 };
 
 const OMIT_ONE: FinalNumberChanges = {
-  1: [[{ type: "omit" }]]
+  1: [[{ type: "omit" }]],
 };
 
 type NumberChange =
@@ -192,7 +192,7 @@ function applySingleChange(
       return words.map(
         ({ kana, tags }): TaggableJapaneseWord => ({
           kana: kana.slice(0, -1) + "っ",
-          tags
+          tags,
         })
       );
     }
@@ -203,15 +203,15 @@ function applySingleChange(
       return [
         {
           kana: change.kana,
-          tags: new Set()
-        }
+          tags: new Set(),
+        },
       ];
     }
     case "tag": {
       return words.map(
         (word): TaggableJapaneseWord => ({
           ...word,
-          tags: new Set(word.tags).add(change.tag)
+          tags: new Set(word.tags).add(change.tag),
         })
       );
     }
@@ -251,7 +251,7 @@ const TYPICAL_COUNTING_CONJUGATION_OPTIONS: KangoConjugationOptions = {
   allowsShiFor4: false,
   allowsShichiFor7: false,
   allowsYoFor4: false,
-  allowsYonFor4: true
+  allowsYonFor4: true,
 };
 
 function conjugateKangoNumberInternal(
@@ -376,11 +376,11 @@ function conjugateKangoNumberInternal(
     chunks.push(
       applyUniqueChanges(
         FIRST_TEN_NUMBERS[breakdown.solo]
-          .filter(word => !word.isValid || word.isValid(options))
+          .filter((word) => !word.isValid || word.isValid(options))
           .map(
             (word: Readonly<FirstTenWords>): TaggableJapaneseWord => ({
               kana: word.kana,
-              tags: word.strange ? new Set<Tag>(["strange"]) : new Set()
+              tags: word.strange ? new Set<Tag>(["strange"]) : new Set(),
             })
           ),
         change
@@ -424,7 +424,7 @@ export const conjugateKangoNumber: (
       Number(options.allowsNanaFor7),
       Number(options.allowsShichiFor7),
       Number(options.allowsKyuuFor9),
-      Number(options.allowsKuFor9)
+      Number(options.allowsKuFor9),
     ].join()}`;
 
     return id;

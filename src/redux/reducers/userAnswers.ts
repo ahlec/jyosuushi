@@ -5,7 +5,7 @@ import {
   ActionSkipQuestion,
   ActionStartQuiz,
   ActionSubmitCorrectAnswer,
-  ActionSubmitIncorrectAnswer
+  ActionSubmitIncorrectAnswer,
 } from "@jyosuushi/redux/actions";
 
 type ReducerAction =
@@ -28,7 +28,7 @@ function updateJudgmentOnLast(
   const next = [...state];
   next[next.length - 1] = {
     input: next[next.length - 1].input,
-    judgment
+    judgment,
   };
   return next;
 }
@@ -46,16 +46,16 @@ export default function userAnswersReducer(
         ...state,
         {
           input: action.providedAnswer,
-          judgment: "correct"
-        }
+          judgment: "correct",
+        },
       ];
     case "submit-incorrect-answer":
       return [
         ...state,
         {
           input: action.providedAnswer,
-          judgment: "incorrect"
-        }
+          judgment: "incorrect",
+        },
       ];
     case "ignore-last-answer":
       return updateJudgmentOnLast(state, "ignored");
@@ -64,8 +64,8 @@ export default function userAnswersReducer(
         ...state,
         {
           input: null,
-          judgment: "skipped"
-        }
+          judgment: "skipped",
+        },
       ];
     default:
       return state;

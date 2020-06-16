@@ -58,7 +58,7 @@ export default class TsuWarningModel {
   private save(): void {
     const storageFormat: LocalStorageFormat = {
       lastAccessedTimestamp: Date.now(),
-      numWarningsRemaining: this.numWarnings
+      numWarningsRemaining: this.numWarnings,
     };
     const json = JSON.stringify(storageFormat);
     localStorage.setItem(LOCAL_STORAGE_KEY, json);

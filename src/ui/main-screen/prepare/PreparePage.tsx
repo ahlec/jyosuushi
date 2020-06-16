@@ -6,7 +6,7 @@ import { STUDY_PACK_LOOKUP } from "@data/studyPacks";
 import { StudyPack } from "@jyosuushi/interfaces";
 import Localization from "@jyosuushi/localization";
 import withQuizManager, {
-  InjectedProps
+  InjectedProps,
 } from "@jyosuushi/quiz/withQuizManager";
 import { State } from "@jyosuushi/redux";
 import { setEnabledPacks } from "@jyosuushi/redux/actions";
@@ -22,7 +22,7 @@ import "./PreparePage.scss";
 function getPacksFromArray(
   packs: ReadonlyArray<string>
 ): ReadonlyArray<StudyPack> {
-  return packs.map(packId => STUDY_PACK_LOOKUP[packId]);
+  return packs.map((packId) => STUDY_PACK_LOOKUP[packId]);
 }
 
 const getPacksFromSet = memoize(
@@ -38,7 +38,7 @@ interface ReduxProps {
 function mapStateToProps(state: State): ReduxProps {
   return {
     enabledPacks: getPacksFromSet(state.enabledPacks),
-    localization: getLocalization(state)
+    localization: getLocalization(state),
   };
 }
 
@@ -53,7 +53,7 @@ class PreparePage extends React.PureComponent<ComponentProps, ComponentState> {
     super(props);
 
     this.state = {
-      showingTutorial: false
+      showingTutorial: false,
     };
   }
 

@@ -11,7 +11,7 @@ import {
   getCounterId,
   getStudyPackId,
   productionStringify,
-  ProductionVariable
+  ProductionVariable,
 } from "./utils";
 
 type ProtoStudyPack = Omit<StudyPack, "counters"> & {
@@ -44,10 +44,10 @@ export default function writeStudyPacksFile(
 
     const studyPack: ProtoStudyPack = {
       counters: sortBy(countersLookup[dbStudyPack.pack_id] || [], [
-        "counter_id"
+        "counter_id",
       ]).map(convertToCounterVariable),
       englishName: dbStudyPack.english_name,
-      packId: dbStudyPack.pack_id
+      packId: dbStudyPack.pack_id,
     };
 
     stream.write(
@@ -81,6 +81,6 @@ export default function writeStudyPacksFile(
   );
 
   return {
-    additionalFileRequests: []
+    additionalFileRequests: [],
   };
 }

@@ -37,7 +37,7 @@ export default class MultiPageModal<TSubpageData> extends React.Component<
   public state: ComponentState<TSubpageData> = {
     displaySubpage: false,
     isTransitioning: false,
-    subpageData: null
+    subpageData: null,
   };
   private transitionTimeout = 0;
   private contentRef = React.createRef<HTMLDivElement>();
@@ -53,7 +53,7 @@ export default class MultiPageModal<TSubpageData> extends React.Component<
       isOpen,
       mainPageHeader,
       mainPageRenderer,
-      subpageRenderer
+      subpageRenderer,
     } = this.props;
     const { displaySubpage, isTransitioning, subpageData } = this.state;
     return (
@@ -127,7 +127,7 @@ export default class MultiPageModal<TSubpageData> extends React.Component<
     this.setState({
       displaySubpage: true,
       isTransitioning: true,
-      subpageData: data
+      subpageData: data,
     });
     this.transitionTimeout = window.setTimeout(
       this.stopTransitioning,
@@ -157,7 +157,7 @@ export default class MultiPageModal<TSubpageData> extends React.Component<
     this.setState({
       displaySubpage: false,
       isTransitioning: false,
-      subpageData: null
+      subpageData: null,
     });
 
   private onRequestClose = (): void => {
@@ -172,7 +172,7 @@ export default class MultiPageModal<TSubpageData> extends React.Component<
     this.setState({
       displaySubpage: false,
       isTransitioning: false,
-      subpageData: null
+      subpageData: null,
     });
     onRequestClose();
   };

@@ -18,7 +18,7 @@ interface ReduxProps {
 
 function mapStateToProps(state: State): ReduxProps {
   return {
-    scorecard: state.scorecard
+    scorecard: state.scorecard,
   };
 }
 
@@ -30,7 +30,7 @@ class Score extends React.PureComponent<ComponentProps> {
   public render(): React.ReactNode {
     const {
       localization,
-      scorecard: { numCorrectAnswers, numIncorrectAnswers }
+      scorecard: { numCorrectAnswers, numIncorrectAnswers },
     } = this.props;
     const numAnswered = numCorrectAnswers + numIncorrectAnswers;
     if (numAnswered <= 0) {

@@ -2,14 +2,14 @@ import {
   BlockTokenizer,
   Eat,
   RemarkParser,
-  TokenizerReturnType
+  TokenizerReturnType,
 } from "../interfaces";
 
 import {
   KEYCODE_TAB,
   KEYCODE_SPACE,
   KEYCODE_LEFT_SQUARE_BRACKET,
-  KEYCODE_CARET
+  KEYCODE_CARET,
 } from "./constants";
 
 export function createReplacementDefinitionParser(

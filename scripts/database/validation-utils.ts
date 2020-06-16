@@ -24,6 +24,6 @@ export function analyzeText(str: string): TextAnalysis {
   const words = str.split(WORD_SEPARATOR_REGEX);
   return {
     numSentences: sentences.filter(isNotEmptyString).length,
-    numWords: words.filter(isNotEmptyString).length
+    numWords: words.filter(isNotEmptyString).length,
   };
 }

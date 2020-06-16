@@ -32,7 +32,7 @@ function h(
       containsIntrasiteLink: false,
       jsx: "",
       numChildNodes: 0,
-      tag: ""
+      tag: "",
     };
   }
 
@@ -45,7 +45,7 @@ function jsxCompiler(this: Processor<unknown>): void {
     const root = toH<JSXRepresentation>(h, tree);
 
     const data: JsxCompilerVFileData = {
-      usesReactRouterLink: root.containsIntrasiteLink
+      usesReactRouterLink: root.containsIntrasiteLink,
     };
     file.data = data;
 

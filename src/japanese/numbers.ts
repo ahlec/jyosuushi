@@ -57,7 +57,7 @@ export const breakDownNumber: (value: number) => NumberBreakdown = memoize(
         ? "man"
         : oku
         ? "oku"
-        : "solo"
+        : "solo",
     };
     /* eslint-enable sort-keys */
   }

@@ -15,7 +15,7 @@ export interface ActionSetAmountRange {
 export function setAmountRange(amountRange: AmountRange): ActionSetAmountRange {
   return {
     amountRange,
-    type: "set-amount-range"
+    type: "set-amount-range",
   };
 }
 
@@ -27,7 +27,7 @@ export interface ActionSetInfiniteMode {
 export function setInfiniteMode(infiniteMode: boolean): ActionSetInfiniteMode {
   return {
     infiniteMode,
-    type: "set-infinite-mode"
+    type: "set-infinite-mode",
   };
 }
 
@@ -41,7 +41,7 @@ export function setEnabledPacks(
 ): ActionSetEnabledPacks {
   return {
     enabledPacks,
-    type: "set-enabled-packs"
+    type: "set-enabled-packs",
   };
 }
 
@@ -58,7 +58,7 @@ export function startQuiz(
   return {
     isInfinite,
     questions,
-    type: "start-quiz"
+    type: "start-quiz",
   };
 }
 
@@ -72,7 +72,7 @@ export function restartQuiz(
 ): ActionRestartQuiz {
   return {
     questions,
-    type: "restart-quiz"
+    type: "restart-quiz",
   };
 }
 
@@ -86,7 +86,7 @@ export function replenishInfiniteQuiz(
 ): ActionReplenishInfiniteQuiz {
   return {
     questions,
-    type: "replenish-infinite-quiz"
+    type: "replenish-infinite-quiz",
   };
 }
 
@@ -100,7 +100,7 @@ export function submitCorrectAnswer(
 ): ActionSubmitCorrectAnswer {
   return {
     providedAnswer,
-    type: "submit-correct-answer"
+    type: "submit-correct-answer",
   };
 }
 
@@ -117,7 +117,7 @@ export function submitIncorrectAnswer(
   return {
     possibleCounters,
     providedAnswer,
-    type: "submit-incorrect-answer"
+    type: "submit-incorrect-answer",
   };
 }
 
@@ -131,7 +131,7 @@ export function ignoreLastAnswer(
 ): ActionIgnoreLastAnswer {
   return {
     possibleCounters,
-    type: "ignore-last-answer"
+    type: "ignore-last-answer",
   };
 }
 
@@ -141,7 +141,7 @@ export interface ActionSkipQuestion {
 
 export function skipQuestion(): ActionSkipQuestion {
   return {
-    type: "skip-question"
+    type: "skip-question",
   };
 }
 
@@ -151,7 +151,7 @@ export interface ActionNextQuestion {
 
 export function nextQuestion(): ActionNextQuestion {
   return {
-    type: "next-question"
+    type: "next-question",
   };
 }
 
@@ -169,7 +169,7 @@ export interface ActionLeaveQuiz {
 
 export function leaveQuiz(): ActionLeaveQuiz {
   return {
-    type: "leave-quiz"
+    type: "leave-quiz",
   };
 }
 
@@ -179,6 +179,6 @@ export interface ActionMarkLatestVersion {
 
 export function markLatestVersion(): ActionMarkLatestVersion {
   return {
-    type: "mark-latest-version"
+    type: "mark-latest-version",
   };
 }

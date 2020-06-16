@@ -26,7 +26,7 @@ export default class DisambiguationSection extends React.PureComponent<
 > {
   public render(): React.ReactNode {
     const {
-      counter: { disambiguations }
+      counter: { disambiguations },
     } = this.props;
     if (!disambiguations.length) {
       return null;
@@ -41,7 +41,7 @@ export default class DisambiguationSection extends React.PureComponent<
 
   private renderDisambiguation = ({
     distinction,
-    otherCounterId
+    otherCounterId,
   }: CounterDisambiguation): React.ReactNode => {
     const otherCounter = COUNTERS_LOOKUP[otherCounterId];
     return (

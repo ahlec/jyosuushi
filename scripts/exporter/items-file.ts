@@ -41,7 +41,7 @@ type ProtoItem = Omit<Item, "counters"> & {
 function convertToProductionCounterLink(db: DbItemCounter): ProtoItemCounter {
   return {
     counterId: db.counter_id,
-    relevance: new ProductionVariable(getProductionRelevance(db))
+    relevance: new ProductionVariable(getProductionRelevance(db)),
   };
 }
 
@@ -85,7 +85,7 @@ export default function writeItemsFile(
       englishSingular: dbItem.english_singular,
       itemId: dbItem.item_id,
       maxQuantity: dbItem.custom_max_amount || 100,
-      minQuantity: dbItem.custom_min_amount || 1
+      minQuantity: dbItem.custom_min_amount || 1,
     };
 
     stream.write(
@@ -127,6 +127,6 @@ export default function writeItemsFile(
   );
 
   return {
-    additionalFileRequests: []
+    additionalFileRequests: [],
   };
 }

@@ -10,7 +10,7 @@ import {
   Question,
   Counter,
   StudyPack,
-  CountingSystem
+  CountingSystem,
 } from "@jyosuushi/interfaces";
 import Localization from "@jyosuushi/localization";
 import { CountersState, State, UserAnswer } from "@jyosuushi/redux";
@@ -31,7 +31,7 @@ interface ReduxProps {
 
 function mapStateToProps(state: State): ReduxProps {
   return {
-    counters: state.counters
+    counters: state.counters,
   };
 }
 
@@ -65,7 +65,7 @@ class AnswersTable extends React.PureComponent<ComponentProps> {
     ): ReadonlyArray<AnswerTableRow> => {
       const answersByCounterId = groupBy(
         validAnswers,
-        answer => answer.counterId
+        (answer) => answer.counterId
       );
 
       return Object.keys(answersByCounterId).map(
@@ -75,7 +75,7 @@ class AnswersTable extends React.PureComponent<ComponentProps> {
           return {
             counter,
             kanaAnswers: answers,
-            studyPacks: studyPacks.map(packId => STUDY_PACK_LOOKUP[packId]),
+            studyPacks: studyPacks.map((packId) => STUDY_PACK_LOOKUP[packId]),
             validKanji: uniq(
               flatten(
                 answers.map(
@@ -86,7 +86,7 @@ class AnswersTable extends React.PureComponent<ComponentProps> {
             ),
             wasUsersCorrectAnswer:
               usersAnswer.judgment === "correct" &&
-              !!answers.find(answer => answer.kana === usersAnswer.input)
+              !!answers.find((answer) => answer.kana === usersAnswer.input),
           };
         }
       );
@@ -162,7 +162,7 @@ class AnswersTable extends React.PureComponent<ComponentProps> {
   private renderKana = ({
     countingSystem,
     irregularType,
-    kana
+    kana,
   }: Answer): React.ReactNode => {
     const { localization, usersAnswer } = this.props;
     return (

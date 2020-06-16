@@ -137,7 +137,7 @@ export default class KanaInput extends React.PureComponent<ComponentProps> {
         conversionBuffer: buffer,
         lastPosition,
         rawValue,
-        validValue: isValid ? validValue : null
+        validValue: isValid ? validValue : null,
       });
     }
   };

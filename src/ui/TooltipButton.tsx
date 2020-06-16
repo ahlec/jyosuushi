@@ -19,7 +19,7 @@ export default class TooltipButton extends React.PureComponent<
   ComponentState
 > {
   public state: ComponentState = {
-    tooltipVisible: false
+    tooltipVisible: false,
   };
 
   public render(): React.ReactNode {

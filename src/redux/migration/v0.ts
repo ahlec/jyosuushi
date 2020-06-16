@@ -21,17 +21,17 @@ export default function migrateV0(state: any): any {
       asked: [],
       currentQuestion: null,
       enabledCounters: [],
-      queue: []
+      queue: [],
     },
     quizState: "not-in-quiz",
     settings: {
       ...state.settings,
-      amountRange: AmountRange.Medium
+      amountRange: AmountRange.Medium,
     },
     user: {
       ...session,
-      lastAccessedVersion: "2.0.0"
+      lastAccessedVersion: "2.0.0",
     },
-    userAnswers: []
+    userAnswers: [],
   };
 }

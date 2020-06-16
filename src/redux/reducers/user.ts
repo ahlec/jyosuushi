@@ -1,14 +1,14 @@
 import { User } from "@jyosuushi/redux";
 import {
   ActionMarkLatestVersion,
-  ActionNextQuestion
+  ActionNextQuestion,
 } from "@jyosuushi/redux/actions";
 
 type ReducerAction = ActionMarkLatestVersion | ActionNextQuestion;
 
 const DEFAULT_STATE: User = {
   lastAccessedVersion: JYOSUUSHI_CURRENT_SEMVER,
-  numQuestionsAsked: 0
+  numQuestionsAsked: 0,
 };
 
 export default function userReducer(
@@ -19,12 +19,12 @@ export default function userReducer(
     case "mark-latest-version":
       return {
         ...state,
-        lastAccessedVersion: JYOSUUSHI_CURRENT_SEMVER
+        lastAccessedVersion: JYOSUUSHI_CURRENT_SEMVER,
       };
     case "next-question":
       return {
         ...state,
-        numQuestionsAsked: state.numQuestionsAsked + 1
+        numQuestionsAsked: state.numQuestionsAsked + 1,
       };
     default:
       return state;

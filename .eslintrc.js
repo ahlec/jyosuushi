@@ -5,13 +5,14 @@ module.exports = {
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
-    "prettier/@typescript-eslint"
+    "prettier/@typescript-eslint",
+    "plugin:prettier/recommended",
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaFeatures: {
-      jsx: true
-    }
+      jsx: true,
+    },
   },
   plugins: ["@typescript-eslint", "react"],
   rules: {
@@ -19,13 +20,13 @@ module.exports = {
       "error",
       "asc",
       {
-        natural: true
-      }
-    ]
+        natural: true,
+      },
+    ],
   },
   settings: {
     react: {
-      version: "detect"
-    }
-  }
+      version: "detect",
+    },
+  },
 };

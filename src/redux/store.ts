@@ -3,14 +3,14 @@ import {
   combineReducers,
   createStore,
   Dispatch as ReduxDispatch,
-  Store as ReduxStore
+  Store as ReduxStore,
 } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension/logOnlyInProduction";
 import {
   createMigrate,
   Persistor,
   persistReducer,
-  persistStore
+  persistStore,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { State } from "./index";
@@ -44,7 +44,7 @@ export function createRedux(): Redux {
     scorecard: scorecardReducer,
     settings: settingsReducer,
     user: userReducer,
-    userAnswers: userAnswersReducer
+    userAnswers: userAnswersReducer,
   });
   const store = createStore<State, Action, {}, {}>(
     persistReducer(
@@ -52,10 +52,10 @@ export function createRedux(): Redux {
         key: "root",
         migrate: createMigrate({
           0: migrateV0,
-          1: migrateV1
+          1: migrateV1,
         }),
         storage,
-        version: 1
+        version: 1,
       },
       reducers
     ),
@@ -64,6 +64,6 @@ export function createRedux(): Redux {
   const persistor = persistStore(store);
   return {
     persistor,
-    store
+    store,
   };
 }

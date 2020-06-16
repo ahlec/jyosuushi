@@ -15,7 +15,7 @@ import {
   ActionReplenishInfiniteQuiz,
   ActionRestartQuiz,
   ActionSetEnabledPacks,
-  ActionStartQuiz
+  ActionStartQuiz,
 } from "@jyosuushi/redux/actions";
 
 const getEnabledCountersSet = memoize(
@@ -31,8 +31,8 @@ function makeQuestion(
   const enabledCountersSet = getEnabledCountersSet(enabledCounters);
   const counters = ITEMS_LOOKUP[itemId].counters
     .map(({ counterId }) => counterId)
-    .filter(counterId => enabledCountersSet.has(counterId))
-    .map(counterId => COUNTERS_LOOKUP[counterId]);
+    .filter((counterId) => enabledCountersSet.has(counterId))
+    .map((counterId) => COUNTERS_LOOKUP[counterId]);
   const validAnswers: Answer[] = [];
   for (const counter of counters) {
     const answers = conjugateCounter(amount, counter);
@@ -42,7 +42,7 @@ function makeQuestion(
         countingSystem: answer.countingSystem,
         irregularType: answer.irregularType,
         kana: answer.reading,
-        kanji: answer.kanji
+        kanji: answer.kanji,
       });
     }
   }
@@ -51,7 +51,7 @@ function makeQuestion(
     amount,
     itemId,
     possibleAmounts,
-    validAnswers
+    validAnswers,
   };
 }
 
@@ -67,7 +67,7 @@ const DEFAULT_STATE: QuestionsState = {
   asked: [],
   currentQuestion: null,
   enabledCounters: [],
-  queue: []
+  queue: [],
 };
 
 export default function questionsReducer(
@@ -80,7 +80,7 @@ export default function questionsReducer(
         ...state,
         enabledCounters: getDistinctCounters(action.enabledPacks).map(
           ({ counterId }) => counterId
-        )
+        ),
       };
     }
     case "start-quiz": {
@@ -89,7 +89,7 @@ export default function questionsReducer(
         asked: [],
         currentQuestion: makeQuestion(first, state.enabledCounters),
         enabledCounters: state.enabledCounters,
-        queue: rest
+        queue: rest,
       };
     }
     case "restart-quiz": {
@@ -98,7 +98,7 @@ export default function questionsReducer(
         asked: [],
         currentQuestion: makeQuestion(first, state.enabledCounters),
         enabledCounters: state.enabledCounters,
-        queue: rest
+        queue: rest,
       };
     }
     case "replenish-infinite-quiz": {
@@ -111,7 +111,7 @@ export default function questionsReducer(
 
       return {
         ...state,
-        queue
+        queue,
       };
     }
     case "next-question": {
@@ -124,7 +124,7 @@ export default function questionsReducer(
         asked: [...state.asked, state.currentQuestion],
         currentQuestion: makeQuestion(next, state.enabledCounters),
         enabledCounters: state.enabledCounters,
-        queue: rest
+        queue: rest,
       };
     }
     case "ignore-last-answer": {
@@ -134,7 +134,7 @@ export default function questionsReducer(
 
       const pending: PendingQuestion = {
         itemId: state.currentQuestion.itemId,
-        possibleAmounts: state.currentQuestion.possibleAmounts
+        possibleAmounts: state.currentQuestion.possibleAmounts,
       };
       const insertIndex = random(0, state.queue.length - 1);
       const queue = [...state.queue];
@@ -146,7 +146,7 @@ export default function questionsReducer(
 
       return {
         ...state,
-        queue
+        queue,
       };
     }
     default:

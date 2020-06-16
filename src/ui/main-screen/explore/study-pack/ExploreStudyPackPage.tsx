@@ -24,7 +24,7 @@ interface ReduxProps {
 
 function mapStateToProps(state: State): ReduxProps {
   return {
-    localization: getLocalization(state)
+    localization: getLocalization(state),
   };
 }
 
@@ -34,8 +34,8 @@ class ExploreStudyPackPage extends React.PureComponent<ComponentProps> {
   private get studyPack(): StudyPack | null {
     const {
       match: {
-        params: { packId }
-      }
+        params: { packId },
+      },
     } = this.props;
     return STUDY_PACK_LOOKUP[packId] || null;
   }
@@ -44,21 +44,21 @@ class ExploreStudyPackPage extends React.PureComponent<ComponentProps> {
     const {
       history,
       match: {
-        params: { packId }
-      }
+        params: { packId },
+      },
     } = this.props;
     history.push({
       pathname: getCounterLink(counter),
       state: {
-        fromStudyPack: packId
-      }
+        fromStudyPack: packId,
+      },
     });
   });
 
   public render(): React.ReactNode {
     const {
       studyPack,
-      props: { localization }
+      props: { localization },
     } = this;
     if (!studyPack) {
       return <Redirect to="/explore" />;
