@@ -13,7 +13,10 @@ import { LANDING_PAGE, ORDERED_SIDEBAR_PAGES, PageDefinition } from "./pages";
 import "./Sidebar.scss";
 
 const isPageActive = memoize(
-  (page: PageDefinition) => (match: Match, { pathname }: Location): boolean => {
+  (page: PageDefinition) => (
+    match: Match | null,
+    { pathname }: Location
+  ): boolean => {
     if (match && match.url) {
       return true;
     }
