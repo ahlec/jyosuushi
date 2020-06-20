@@ -1,10 +1,10 @@
 import { Processor } from "unified";
 import { Node } from "unist";
 import { VFile } from "vfile";
-import toH, { Properties } from "hast-to-hyperscript";
+import toH from "hast-to-hyperscript";
 import toHast from "mdast-util-to-hast";
 
-import { JSXRepresentation } from "../types";
+import { HastToHyperscriptProperties, JSXRepresentation } from "../types";
 import { isIndexableObject } from "../utils";
 import writeNodeAsJsx from "../write-node-as-jsx";
 
@@ -14,14 +14,14 @@ export interface JsxCompilerVFileData {
 
 function isFootnotesContainerDiv(
   name: string,
-  props: Properties | undefined
+  props: HastToHyperscriptProperties | undefined
 ): boolean {
   return name === "div" && !!props && props["class"] === "footnotes";
 }
 
 function h(
   name: string,
-  props: Properties | undefined,
+  props: HastToHyperscriptProperties | undefined,
   children: readonly (string | JSXRepresentation)[] | undefined
 ): JSXRepresentation {
   // Exclude footnotes section from the main body. Footnotes will
@@ -42,7 +42,7 @@ function h(
 function jsxCompiler(this: Processor<unknown>): void {
   this.Compiler = function compile(node: Node, file: VFile): string {
     const tree = toHast(node);
-    const root = toH<JSXRepresentation>(h, tree);
+    const root = toH(h, tree);
 
     const data: JsxCompilerVFileData = {
       usesReactRouterLink: root.containsIntrasiteLink,

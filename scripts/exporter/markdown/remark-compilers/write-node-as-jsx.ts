@@ -1,8 +1,6 @@
-import { Properties } from "hast-to-hyperscript";
-
 import { INTRASITE_LINK_HAST_NODE_NAME } from "../intrasite-link-plugin";
 
-import { JSXRepresentation } from "./types";
+import { HastToHyperscriptProperties, JSXRepresentation } from "./types";
 
 function getChildAsJsx<T extends JSXRepresentation>(
   child: string | T
@@ -34,7 +32,7 @@ function isNotNull<T>(val: T | null): val is T {
 
 function writeNodeAsJsx(
   name: string,
-  props: Properties | undefined,
+  props: HastToHyperscriptProperties | undefined,
   children: readonly (string | JSXRepresentation)[] | undefined
 ): JSXRepresentation {
   let jsxTag: string;

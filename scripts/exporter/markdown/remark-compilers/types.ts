@@ -10,3 +10,10 @@ export interface Footnote {
   refId: string;
   backrefId: string;
 }
+
+export interface HastToHyperscriptProperties {
+  ["class"]?: string;
+  id?: string;
+  href?: string;
+  to?: string;
+}

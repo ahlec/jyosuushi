@@ -112,7 +112,7 @@ function convertNodeToFootnote(node: Node): Footnote {
   }
 
   const localRefId = properties["id"].substring("fn-".length);
-  const noteJsx = toH<JSXRepresentation>(writeNodeAsJsx, node);
+  const noteJsx = toH(writeNodeAsJsx, node);
   return {
     noteJsx,
     refId: parseInt(localRefId),
