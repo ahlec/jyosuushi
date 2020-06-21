@@ -36,4 +36,18 @@ VALUES(
     '歳',
     'While both words mean "year," {歳}^(さい) as a counter is used specifically to express a living being''s age in years while {年}^(ねん) is the counter for years themselves.'
   );
+INSERT INTO
+  "counter_disambiguations" (counter1_id, counter2_id, distinction)
+VALUES(
+    '戦',
+    '試合',
+    'Both {試合}^(しあい)　and {戦}^(せん) can be used to count sports matches/sports games. For the prototypical sports, such as baseball or basketball, these can be used interchangeably. However, some sport matches cannot be counted with {試合}^(しあい), most noteably racing competitions, board game matches (such as Go or Shogi), and sports where individual compete without direct opponents (such as figure skating).[^thesis-shiai] On the other hand, {戦}^(せん) is able to be used for most games and matches, but not all; games that are performed without the purpose of declaring a winner/loser (such as exhibition matches or practice games) would use {試合}^(しあい) instead.[^thesis-sen]
+
+Additionally, though it does not reflect a difference in meaning between the two counters, {戦}^(せん) is used ordinally ({第１戦}^(だいいっせん), {３戦目}^(さんせんめ)) significantly more than {試合}^(しあい).[^thesis-ordinal]
+
+[^thesis-shiai]: [近現代日本語における新たな助数詞の成立と定着](http://hdl.handle.net/2241/00128666): 「-試合」は〚囲碁・将棋〛（「対局」）や〚相撲〛（「取組」）、〚競馬〛〚F1〛（「レース」）など、その勝負を「試合」以外の名詞で指示する競技には用いることができない。また、「互いに相手に対して何かをする」という意味と馴染まない〚フィギュアスケート〛のような競技には用いにくい。(p. 105)
+[^thesis-sen]: [近現代日本語における新たな助数詞の成立と定着](http://hdl.handle.net/2241/00128666): 「-戦」は、文脈上、勝敗を決することを目的としないことが含意されると用いにくくなる。(p. 105)
+[^thesis-ordinal]: [近現代日本語における新たな助数詞の成立と定着](http://hdl.handle.net/2241/00128666): 〔表 5-1〕から「-試合」は数量を表す際に、「-戦」は順序を表す際によく用いられていることがわかる。しかし、このような差異は 2 つの助数詞の使用傾向の一端を表すものではあるが、意味的な違いを表すものではないと考えられる。 (p. 91-92)
+'
+  );
 COMMIT;

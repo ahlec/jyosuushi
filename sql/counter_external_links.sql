@@ -331,4 +331,38 @@ VALUES(
     'Japanese dictionary entries, compiled from multiple sources.',
     'japanese'
   );
+INSERT INTO
+  "counter_external_links" (
+    counter_id,
+    url,
+    site_name,
+    link_text,
+    additional_description,
+    language
+  )
+VALUES(
+    '戦',
+    'http://hdl.handle.net/2241/00128666',
+    '筑波大学',
+    '近現代日本語における新たな助数詞の成立と定着',
+    'Masters thesis that focuses on the establishment of new counters, in particular <counter:店> and <counter:試合>. Has a lengthy comparison of {試合}^(しあい) and {戦}^(せん) as counters.',
+    'japanese'
+  );
+INSERT INTO
+  "counter_external_links" (
+    counter_id,
+    url,
+    site_name,
+    link_text,
+    additional_description,
+    language
+  )
+VALUES(
+    '試合',
+    'http://hdl.handle.net/2241/00128666',
+    '筑波大学',
+    '近現代日本語における新たな助数詞の成立と定着',
+    'Masters thesis that focuses on the establishment of new counters, in particular <counter:店> and <counter:試合>.',
+    'japanese'
+  );
 COMMIT;

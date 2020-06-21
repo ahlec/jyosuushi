@@ -14,6 +14,7 @@ import * as 人Components from "@data/counter-components/人";
 import * as 匹Components from "@data/counter-components/匹";
 import * as 名Components from "@data/counter-components/名";
 import * as 年Components from "@data/counter-components/年";
+import * as 戦Components from "@data/counter-components/戦";
 import * as 本Components from "@data/counter-components/本";
 import * as 歳Components from "@data/counter-components/歳";
 import * as 缶Components from "@data/counter-components/缶";
@@ -740,15 +741,30 @@ export const COUNTER_戦: Counter = {
   counterId: "戦",
   disambiguations: [],
   englishName: "battles",
-  externalLinks: [],
-  footnotes: [],
+  externalLinks: [
+    {
+      additionalDescription:
+        "Masters thesis that focuses on the establishment of new counters, in particular <counter:店> and <counter:試合>. Has a lengthy comparison of {試合}^(しあい) and {戦}^(せん) as counters.",
+      displayText: "近現代日本語における新たな助数詞の成立と定着",
+      language: ExternalLinkLanguage.Japanese,
+      siteName: "筑波大学",
+      url: "http://hdl.handle.net/2241/00128666",
+    },
+  ],
+  footnotes: [
+    戦Components.Footnote1,
+    戦Components.Footnote2,
+    戦Components.Footnote3,
+    戦Components.Footnote4,
+  ],
   irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "戦",
   },
-  leadIn: null,
-  notes: null,
+  leadIn:
+    "A counter used for both conflicts in war and matches in sports/competitions.",
+  notes: 戦Components.CounterNotes,
   readings: [
     {
       counterId: "戦",

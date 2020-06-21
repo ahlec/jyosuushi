@@ -475,4 +475,25 @@ VALUES('sutra', '巻', NULL);
 INSERT INTO
   "item_counters" (item_id, counter_id, relevance)
 VALUES('fire extinguisher', '本', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('conflict', '戦', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('Shogi match', '戦', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('horse race', '戦', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('basketball game', '戦', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('baseball game', '戦', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('Go game', '戦', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('figure skating competition', '戦', NULL);
 COMMIT;

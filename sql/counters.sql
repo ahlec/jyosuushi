@@ -445,7 +445,22 @@ INSERT INTO
     notes,
     primary_kanji
   )
-VALUES('戦', 'battles', NULL, NULL, '戦');
+VALUES(
+    '戦',
+    'battles',
+    'A counter used for both conflicts in war and matches in sports/competitions.',
+    'Found as a word under its kunyomi reading, {戦}^(いくさ) as a noun means conflict, battle, and warfare. Indeed, the kanji 戦 unambiguously points towards war and fighting when found in compound words. The counter {戦}^(せん) does not have a dictionary entry in any major Japanese dictionaries. {一戦}^(いっせん) is also not just a usage of this counter but a noun in its own right, meaning "a battle." It''s therefore easy to see that this counter will be used to count battles in a war.
+
+{戦}^(せん) is used beyond counting battles, however. This counter is also (frequently) used to count games and matches in sports, or competitions. In this usage, it is very similar *(though not entirely interchangeable)*, with the counter <counter:試合>. Overall, {戦}^(せん) tends to be used more frequently than {試合}^(しあい).[^thesis-frequency] There are many instances where either counter can be used interchangeably, but {試合}^(しあい) sees more limitations in terms of *which* sports or competitions it can be used for, making {戦}^(せん) a more broadly-applicable counter. In particular, {戦}^(せん) *is* able to be used to count races (such as horse racing or auto racing), board-based games (such as Go or Shogi), or sporting competitions where participants don''t directly interact but instead compete individually and win/lose via some proxy scoring (such as figure skating).[^thesis-shiai-limitations] However, {戦}^(せん) is not without its own limitations. At its core the kanji 戦 talks about warfare and conflict, fights where the whole purpose is to win; it can''t be used to count exhibition matches, timed matches, practices, or other competitions where the goal of the encounter isn''t to determine a winner/loser.[^thesis-sen-limitations] 
+
+The primary nuance with this counter is centered around that need-to-win aspect. While it isn''t the case that choosing {試合}^(しあい) over {戦}^(せん) automatically indicates that the matches weren''t for the purpose of deciding who won, it *is* the case that choosing {戦}^(せん) over {試合}^(しあい) *does* raise the stakes and inject that the matches were about winning/losing.[^thesis-nuance]
+
+[^thesis-shiai-limitations]: [近現代日本語における新たな助数詞の成立と定着](http://hdl.handle.net/2241/00128666): 「-試合」は〚囲碁・将棋〛（「対局」）や〚相撲〛（「取組」）、〚競馬〛〚F1〛（「レース」）など、その勝負を「試合」以外の名詞で指示する競技には用いることができない。また、「互いに相手に対して何かをする」という意味と馴染まない〚フィギュアスケート〛のような競技には用いにくい。(p. 105)
+[^thesis-sen-limitations]: [近現代日本語における新たな助数詞の成立と定着](http://hdl.handle.net/2241/00128666): 「-戦」は、文脈上、勝敗を決することを目的としないことが含意され ると用いにくくなる。これは、「-戦」が〚スポーツの勝負〛の数を表 現する前から有していた〚いくさ〛の数を表現するという用法に起因 する意味的制約である。(p. 105)
+[^thesis-frequency]: [近現代日本語における新たな助数詞の成立と定着](http://hdl.handle.net/2241/00128666): 先にも述べたように、得られたデータは「-試合」が 3,326 例、「-戦」が 1,742 例であり、「-試合」の方が多く用いられている。それを基準として、比率が逆転しているもの（「-戦」の用例が「-試合」の用例よりも多いもの）を斜体で示し... (p. 92)
+[^thesis-nuance]: [近現代日本語における新たな助数詞の成立と定着](http://hdl.handle.net/2241/00128666): (5.29a)は「エンジョイグループに参 戦する」という勝敗を問題にしないという文脈によって許容度が落ちているこ とが(5.29b)との対比からわかる。(p. 100)',
+    '戦'
+  );
 INSERT INTO
   "counters" (
     counter_id,

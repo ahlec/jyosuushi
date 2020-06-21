@@ -2630,4 +2630,99 @@ VALUES(
     NULL,
     NULL
   );
+INSERT INTO
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'horse race',
+    'horse race',
+    'horse races',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
+INSERT INTO
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'Shogi match',
+    'Shogi match',
+    'Shogi matches',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
+INSERT INTO
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'conflict',
+    'conflict',
+    'conflicts',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
+INSERT INTO
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'Go game',
+    'Go game',
+    'Go games',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
+INSERT INTO
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'figure skating competition',
+    'figure skating competition',
+    'figure skating competitions',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
 COMMIT;

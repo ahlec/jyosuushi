@@ -4,6 +4,34 @@
 
 import { CounterItemRelevance, Item } from "../src/interfaces";
 
+const ITEM_GO_GAME: Item = {
+  counters: [
+    {
+      counterId: "戦",
+      relevance: CounterItemRelevance.Unknown,
+    },
+  ],
+  englishPlural: "Go games",
+  englishSingular: "Go game",
+  itemId: "Go game",
+  maxQuantity: 100,
+  minQuantity: 1,
+};
+
+const ITEM_SHOGI_MATCH: Item = {
+  counters: [
+    {
+      counterId: "戦",
+      relevance: CounterItemRelevance.Unknown,
+    },
+  ],
+  englishPlural: "Shogi matches",
+  englishSingular: "Shogi match",
+  itemId: "Shogi match",
+  maxQuantity: 100,
+  minQuantity: 1,
+};
+
 const ITEM_APARTMENT: Item = {
   counters: [
     {
@@ -112,6 +140,42 @@ const ITEM_BARN: Item = {
   englishPlural: "barns",
   englishSingular: "barn",
   itemId: "barn",
+  maxQuantity: 100,
+  minQuantity: 1,
+};
+
+const ITEM_BASEBALL_GAME: Item = {
+  counters: [
+    {
+      counterId: "試合",
+      relevance: CounterItemRelevance.Unknown,
+    },
+    {
+      counterId: "戦",
+      relevance: CounterItemRelevance.Unknown,
+    },
+  ],
+  englishPlural: "baseball games",
+  englishSingular: "baseball game",
+  itemId: "baseball game",
+  maxQuantity: 100,
+  minQuantity: 1,
+};
+
+const ITEM_BASKETBALL_GAME: Item = {
+  counters: [
+    {
+      counterId: "ゲーム",
+      relevance: CounterItemRelevance.Unknown,
+    },
+    {
+      counterId: "戦",
+      relevance: CounterItemRelevance.Unknown,
+    },
+  ],
+  englishPlural: "basketball games",
+  englishSingular: "basketball game",
+  itemId: "basketball game",
   maxQuantity: 100,
   minQuantity: 1,
 };
@@ -470,6 +534,20 @@ const ITEM_COMPANY: Item = {
   minQuantity: 1,
 };
 
+const ITEM_CONFLICT: Item = {
+  counters: [
+    {
+      counterId: "戦",
+      relevance: CounterItemRelevance.Unknown,
+    },
+  ],
+  englishPlural: "conflicts",
+  englishSingular: "conflict",
+  itemId: "conflict",
+  maxQuantity: 100,
+  minQuantity: 1,
+};
+
 const ITEM_COUNTRY: Item = {
   counters: [
     {
@@ -694,6 +772,20 @@ const ITEM_EMPTY_CAN: Item = {
   minQuantity: 1,
 };
 
+const ITEM_FIGURE_SKATING_COMPETITION: Item = {
+  counters: [
+    {
+      counterId: "戦",
+      relevance: CounterItemRelevance.Unknown,
+    },
+  ],
+  englishPlural: "figure skating competitions",
+  englishSingular: "figure skating competition",
+  itemId: "figure skating competition",
+  maxQuantity: 100,
+  minQuantity: 1,
+};
+
 const ITEM_FILET: Item = {
   counters: [
     {
@@ -816,6 +908,20 @@ const ITEM_HORSE: Item = {
   englishPlural: "horses",
   englishSingular: "horse",
   itemId: "horse",
+  maxQuantity: 100,
+  minQuantity: 1,
+};
+
+const ITEM_HORSE_RACE: Item = {
+  counters: [
+    {
+      counterId: "戦",
+      relevance: CounterItemRelevance.Unknown,
+    },
+  ],
+  englishPlural: "horse races",
+  englishSingular: "horse race",
+  itemId: "horse race",
   maxQuantity: 100,
   minQuantity: 1,
 };
@@ -2075,6 +2181,8 @@ const ITEM_YEN: Item = {
 };
 
 export const ITEMS_LOOKUP: { [itemId: string]: Item } = {
+  "Go game": ITEM_GO_GAME,
+  "Shogi match": ITEM_SHOGI_MATCH,
   apartment: ITEM_APARTMENT,
   appointment: ITEM_APPOINTMENT,
   arcade: ITEM_ARCADE,
@@ -2083,6 +2191,8 @@ export const ITEMS_LOOKUP: { [itemId: string]: Item } = {
   banquet: ITEM_BANQUET,
   "bar of chocolate": ITEM_BAR_OF_CHOCOLATE,
   barn: ITEM_BARN,
+  "baseball game": ITEM_BASEBALL_GAME,
+  "basketball game": ITEM_BASKETBALL_GAME,
   bat: ITEM_BAT,
   bathroom: ITEM_BATHROOM,
   battle: ITEM_BATTLE,
@@ -2108,6 +2218,7 @@ export const ITEMS_LOOKUP: { [itemId: string]: Item } = {
   circuit: ITEM_CIRCUIT,
   colour: ITEM_COLOUR,
   company: ITEM_COMPANY,
+  conflict: ITEM_CONFLICT,
   country: ITEM_COUNTRY,
   "couple (people)": ITEM_COUPLE_PEOPLE_,
   cow: ITEM_COW,
@@ -2124,6 +2235,7 @@ export const ITEMS_LOOKUP: { [itemId: string]: Item } = {
   "elementary school": ITEM_ELEMENTARY_SCHOOL,
   elephant: ITEM_ELEPHANT,
   "empty can": ITEM_EMPTY_CAN,
+  "figure skating competition": ITEM_FIGURE_SKATING_COMPETITION,
   filet: ITEM_FILET,
   "fire extinguisher": ITEM_FIRE_EXTINGUISHER,
   "floor (building)": ITEM_FLOOR_BUILDING_,
@@ -2133,6 +2245,7 @@ export const ITEMS_LOOKUP: { [itemId: string]: Item } = {
   "high school": ITEM_HIGH_SCHOOL,
   home: ITEM_HOME,
   horse: ITEM_HORSE,
+  "horse race": ITEM_HORSE_RACE,
   house: ITEM_HOUSE,
   hue: ITEM_HUE,
   idiom: ITEM_IDIOM,
@@ -2226,6 +2339,7 @@ export const ITEMS_LOOKUP: { [itemId: string]: Item } = {
 export const ITEMS_FROM_COUNTER: {
   [counterId: string]: ReadonlyArray<Item>;
 } = {
+  ゲーム: [ITEM_BASKETBALL_GAME],
   ヶ国: [ITEM_COUNTRY, ITEM_NATION],
   ヶ所: [
     ITEM_BATHROOM,
@@ -2272,7 +2386,18 @@ export const ITEMS_FROM_COUNTER: {
   巻: [ITEM_SUTRA],
   席: [ITEM_SEAT, ITEM_MEETING, ITEM_ASSEMBLY, ITEM_BANQUET],
   年: [ITEM_YEAR],
-  戦: [ITEM_BATTLE, ITEM_SKIRMISH, ITEM_BOSS_FIGHT],
+  戦: [
+    ITEM_BATTLE,
+    ITEM_SKIRMISH,
+    ITEM_BOSS_FIGHT,
+    ITEM_CONFLICT,
+    ITEM_SHOGI_MATCH,
+    ITEM_HORSE_RACE,
+    ITEM_BASKETBALL_GAME,
+    ITEM_BASEBALL_GAME,
+    ITEM_GO_GAME,
+    ITEM_FIGURE_SKATING_COMPETITION,
+  ],
   日: [ITEM_DAY_OF_THE_MONTH],
   時: [ITEM_O_CLOCK],
   曲: [ITEM_SONG, ITEM_TUNE, ITEM_MELODY, ITEM_JINGLE],
@@ -2333,6 +2458,7 @@ export const ITEMS_FROM_COUNTER: {
   ],
   羽: [ITEM_CHICKEN, ITEM_PENGUIN, ITEM_RABBIT, ITEM_ORIGAMI_CRANE, ITEM_BAT],
   色: [ITEM_TINT, ITEM_HUE, ITEM_COLOUR],
+  試合: [ITEM_BASEBALL_GAME],
   語: [ITEM_WORD, ITEM_PROVERB, ITEM_SAYING, ITEM_KEYWORD, ITEM_IDIOM],
   足: [ITEM_PAIR_OF_SHOES, ITEM_PAIR_OF_SANDALS, ITEM_PAIR_OF_SOCKS],
   軒: [
