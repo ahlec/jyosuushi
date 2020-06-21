@@ -5,6 +5,15 @@
   line-height: 1.5;
   padding-left: 2em;
 
+  img {
+    // Currently the only use case we have is to display Japanese
+    // characters that don't have unicode representations, so the image
+    // size should be the same height as the text. If our use case ever
+    // changes, introduce a backwards compatible implementation.
+    // Test case: footnotes for 歳
+    max-height: 13px;
+  }
+
   .footnote + .footnote {
     margin-top: 5px;
   }
