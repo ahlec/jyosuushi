@@ -2,12 +2,7 @@ import { clamp, sortBy } from "lodash";
 import memoizeOne from "memoize-one";
 import * as React from "react";
 
-import {
-  Conjugation,
-  Counter,
-  CounterIrregular,
-  CountingSystem,
-} from "@jyosuushi/interfaces";
+import { Conjugation, Counter, CountingSystem } from "@jyosuushi/interfaces";
 import Localization from "@jyosuushi/localization";
 import { conjugateCounter } from "@jyosuushi/japanese/counters";
 
@@ -34,6 +29,11 @@ interface ComponentState {
   currentUserInput: number;
 }
 
+interface ConjugationTile {
+  amount: number;
+  conjugations: ReadonlyArray<Conjugation>;
+}
+
 export default class ConjugationsSection extends React.PureComponent<
   ComponentProps,
   ComponentState
@@ -43,10 +43,13 @@ export default class ConjugationsSection extends React.PureComponent<
   };
 
   private readonly memoizeExamplesTable = memoizeOne(
-    (counter: Counter): ReadonlyArray<ReadonlyArray<Conjugation>> => {
-      const results: Array<ReadonlyArray<Conjugation>> = [];
+    (counter: Counter): ReadonlyArray<ConjugationTile> => {
+      const results: Array<ConjugationTile> = [];
       for (let amount = 1; amount <= AMOUNTS_TO_DISPLAY; ++amount) {
-        results.push(conjugateCounter(amount, counter));
+        results.push({
+          amount,
+          conjugations: conjugateCounter(amount, counter),
+        });
       }
 
       return results;
@@ -65,20 +68,21 @@ export default class ConjugationsSection extends React.PureComponent<
   );
 
   private readonly memoizeIrregularsBeyondExampleTable = memoizeOne(
-    (counter: Counter): ReadonlyArray<CounterIrregular> => {
-      const results: CounterIrregular[] = [];
+    (counter: Counter): ReadonlyArray<ConjugationTile> => {
+      const results: ConjugationTile[] = [];
       Object.keys(counter.irregulars).forEach((amountStr) => {
         const amount = parseInt(amountStr, 10);
         if (amount <= AMOUNTS_TO_DISPLAY) {
           return;
         }
 
-        // TODO: This won't group multiple irregulars of the same amount so
-        // they'll appear on different lines.
-        results.push(...counter.irregulars[amount]);
+        results.push({
+          amount,
+          conjugations: conjugateCounter(amount, counter),
+        });
       });
 
-      return sortBy(results, (irregular): number => irregular.amount);
+      return sortBy(results, ({ amount }: ConjugationTile): number => amount);
     }
   );
 
@@ -95,7 +99,7 @@ export default class ConjugationsSection extends React.PureComponent<
           {this.renderIrregularsWarning(counter)}
         </p>
         <div className="examples-table">
-          {this.memoizeExamplesTable(counter).map(this.renderAmountTile)}
+          {this.memoizeExamplesTable(counter).map(this.renderConjugationTile)}
           <div className="etc">{localization.andSoForth}</div>
         </div>
         {!!furtherIrregulars.length && (
@@ -104,7 +108,7 @@ export default class ConjugationsSection extends React.PureComponent<
               {localization.furtherIrregulars}
             </p>
             <div className="examples-table">
-              {furtherIrregulars.map(this.renderFurtherIrregular)}
+              {furtherIrregulars.map(this.renderConjugationTile)}
             </div>
           </React.Fragment>
         )}
@@ -140,30 +144,15 @@ export default class ConjugationsSection extends React.PureComponent<
     return localization.irregularsWarning(numIrregulars, highlightIrregular);
   }
 
-  private renderAmountTile = (
-    conjugations: ReadonlyArray<Conjugation>,
-    index: number
-  ): React.ReactNode => {
-    const amount = index + 1;
-    return (
-      <div className="conjugation-container" key={index}>
-        <div className="amount">{amount}</div>
-        <div className="conjugations">
-          {conjugations.map(this.renderConjugation)}
-        </div>
-      </div>
-    );
-  };
-
-  private renderFurtherIrregular = ({
+  private renderConjugationTile = ({
     amount,
-    reading,
-  }: CounterIrregular): React.ReactNode => {
+    conjugations,
+  }: ConjugationTile): React.ReactNode => {
     return (
       <div className="conjugation-container" key={amount}>
         <div className="amount">{amount}</div>
         <div className="conjugations">
-          <div className="irregular">{reading}</div>
+          {conjugations.map(this.renderConjugation)}
         </div>
       </div>
     );
