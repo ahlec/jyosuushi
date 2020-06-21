@@ -15,5 +15,7 @@ export interface HastToHyperscriptProperties {
   ["class"]?: string;
   id?: string;
   href?: string;
+  src?: string;
+  alt?: string;
   to?: string;
 }

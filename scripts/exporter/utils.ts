@@ -18,7 +18,8 @@ export function getStudyPackId(id: string): string {
   return getVariableFromId("STUDY_PACK_", id);
 }
 
-export const DATA_DIRECTORY = path.resolve(__dirname, "./../../data");
+export const ROOT_DIRECTORY = path.resolve(__dirname, "./../../");
+export const DATA_DIRECTORY = path.resolve(ROOT_DIRECTORY, "./data");
 
 const COUNTER_NOTES_COMPONENTS_DIRECTORY = path.resolve(
   DATA_DIRECTORY,

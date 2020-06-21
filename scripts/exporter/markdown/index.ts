@@ -1,7 +1,11 @@
+import path from "path";
 import unified from "unified";
 import parse from "remark-parse";
 import ruby from "remark-ruby";
 
+import { ROOT_DIRECTORY } from "../utils";
+
+import embededImages from "./embeded-images";
 import footnotes from "./footnotes";
 import intrasiteLinkMarkdownPlugin from "./intrasite-link-plugin";
 import jsxCompiler, {
@@ -26,6 +30,9 @@ export interface MarkdownToJsxResults {
   footnotes: ReadonlyArray<FootnoteJsxComponent>;
 }
 
+const MARKDOWN_DATA_DIRECTORY = path.resolve(ROOT_DIRECTORY, "./markdown-data");
+const IMAGE_FILES_DIRECTORY = path.resolve(MARKDOWN_DATA_DIRECTORY, "./images");
+
 function processMarkdown<TCompilerOptions, TVFileData>(
   markdown: string,
   footnotesCountingStart: number,
@@ -36,6 +43,9 @@ function processMarkdown<TCompilerOptions, TVFileData>(
     .use(parse)
     .use(footnotes, {
       footnotesCountingStart,
+    })
+    .use(embededImages, {
+      rootDirectory: IMAGE_FILES_DIRECTORY,
     })
     .use(ruby)
     .use(intrasiteLinkMarkdownPlugin)

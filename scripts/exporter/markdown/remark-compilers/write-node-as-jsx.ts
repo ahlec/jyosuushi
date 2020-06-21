@@ -71,6 +71,14 @@ function writeNodeAsJsx(
       }
     }
 
+    if (props.src) {
+      openingTagPieces.push(`src="${props.src}"`);
+    }
+
+    if (props.alt) {
+      openingTagPieces.push(`alt="${props.alt}"`);
+    }
+
     if (props.to) {
       openingTagPieces.push(`to="${props.to}"`);
     }
