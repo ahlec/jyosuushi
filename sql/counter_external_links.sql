@@ -314,4 +314,21 @@ VALUES(
     'Japanese dictionary entries, compiled from multiple sources.',
     'japanese'
   );
+INSERT INTO
+  "counter_external_links" (
+    counter_id,
+    url,
+    site_name,
+    link_text,
+    additional_description,
+    language
+  )
+VALUES(
+    '歳',
+    'https://kotobank.jp/word/%E6%AD%B3-507098',
+    'コトバンク',
+    '歳（読み：サイ）',
+    'Japanese dictionary entries, compiled from multiple sources.',
+    'japanese'
+  );
 COMMIT;

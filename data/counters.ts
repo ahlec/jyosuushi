@@ -13,7 +13,9 @@ import {
 import * as 人Components from "@data/counter-components/人";
 import * as 匹Components from "@data/counter-components/匹";
 import * as 名Components from "@data/counter-components/名";
+import * as 年Components from "@data/counter-components/年";
 import * as 本Components from "@data/counter-components/本";
+import * as 歳Components from "@data/counter-components/歳";
 import * as 缶Components from "@data/counter-components/缶";
 
 export const COUNTER_ヶ国: Counter = {
@@ -690,7 +692,12 @@ export const COUNTER_席: Counter = {
 
 export const COUNTER_年: Counter = {
   counterId: "年",
-  disambiguations: [],
+  disambiguations: [
+    {
+      distinction: 年Components.Disambiguation歳,
+      otherCounterId: "歳",
+    },
+  ],
   englishName: "years",
   externalLinks: [
     {
@@ -1171,17 +1178,51 @@ export const COUNTER_校: Counter = {
 
 export const COUNTER_歳: Counter = {
   counterId: "歳",
-  disambiguations: [],
+  disambiguations: [
+    {
+      distinction: 歳Components.Disambiguation年,
+      otherCounterId: "年",
+    },
+  ],
   englishName: "age",
-  externalLinks: [],
-  footnotes: [],
-  irregulars: {},
+  externalLinks: [
+    {
+      additionalDescription:
+        "Japanese dictionary entries, compiled from multiple sources.",
+      displayText: "歳（読み：サイ）",
+      language: ExternalLinkLanguage.Japanese,
+      siteName: "コトバンク",
+      url: "https://kotobank.jp/word/%E6%AD%B3-507098",
+    },
+  ],
+  footnotes: [
+    歳Components.Footnote1,
+    歳Components.Footnote2,
+    歳Components.Footnote3,
+    歳Components.Footnote4,
+    歳Components.Footnote5,
+    歳Components.Footnote6,
+    歳Components.Footnote7,
+    歳Components.Footnote8,
+  ],
+  irregulars: {
+    20: [
+      {
+        amount: 20,
+        countingSystem: null,
+        doesPresenceEraseRegularConjugations: false,
+        reading: "はたち",
+        type: CounterIrregularType.ArbitraryReading,
+      },
+    ],
+  },
   kanji: {
     additionalKanji: ["才"],
     primaryKanji: "歳",
   },
-  leadIn: null,
-  notes: null,
+  leadIn:
+    'The counter for expressing age in years, and thus the primary "age" counter.',
+  notes: 歳Components.CounterNotes,
   readings: [
     {
       counterId: "歳",

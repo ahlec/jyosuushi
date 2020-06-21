@@ -203,7 +203,33 @@ INSERT INTO
     notes,
     primary_kanji
   )
-VALUES('歳', 'age', NULL, NULL, '歳');
+VALUES(
+    '歳',
+    'age',
+    'The counter for expressing age in years, and thus the primary "age" counter.',
+    '
+歳 is a very focused kanji that has one primary meaning: year. As a counter, {歳}^(さい) is laser-focused, only being used to count age in years. And while 歳 is technically an uncommon alternate kanji for {年}^(とし) (noun: year), 歳 is not usually a word that stands on its own. It can be found as part of other words, such as {歳計}^(さいけい) (annual government-provided stipend) or {歳首}^(さいしゅ) (beginning of the year). While it''s technically the case that {歳星}^(さいせい) is an uncommon name for Jupiter, in all cases where you''re not working with ancient Chinese astrology, 歳 meaning years is appropriate.
+
+*However*, 歳 is not the only kanji that represents this counter. Enter: {才}^(さい) (same reading). Though the counter has two distinct kanji, the meaning of the counter does not change: 17{歳}^(さい) is the same as 17{才}^(さい) (17 years old). The difference is all about complexity. The kanji 歳 is written with 13 strokes; 才 is only three. While 歳 is the "true" character for this counter, children are first taught 才 in primary school, and 歳 later in middle school.[^chigai] Because of these two factors, 才 is viewed in Japanese as more "immature," leading to the adage of: "Children receive {才}^(さい), adults receive {歳}^(さい)."[^sanseido] Confusingly, the kanji 才 actually has no relation to "year" or "age," instead having a meaning of "talent" (as seen most commonly in {才能}^(さいのう)). The origin for this alternative kanji is that the kanji 歳 contains ![戈 without 丶](./notes-歳1.png), which was originally how this was simplified.[^sanseido-origin] Over time, this simply began to be written as 才. Evidence for this theory is that elderly Japanese speakers will still often write ![戈 without 丶](./notes-歳1.png) instead of 才.
+
+The only thing that this counter counts is age in years; to measure age in months, you would use <counter:ヶ月>. One minor point worth mentioning is that newborn children enter life at ０歳. Additionally, this counter can be used for both humans and animals: animals will have their ages counted with 歳 as well, and there do not appear to be any nuances around which kanji is used for non-humans. However, {歳}^(さい) is not used for inanimate objects such as buildings.[^je-inanimate] How long ago a building was built would be expressed with the phrase 「{築}^(ちく)X{年}^(ねん)」 (lit. "constructed X years"), like in 「{築三年}^(ちくさんねん)の{図書館}^(としょかん)」 ("a three-year old library"). For other inanimate objects, age would be specified with 「X{年物}^(ねんもの)」, or the sentence itself would be reworded to utilize dependent clauses to describe how long ago an item was built.
+
+The one reading for {歳}^(さい) that you will need to watch out for is 20. While the expected readings of にじゅっさい and にじっさい are both valid, the most common reading for 20 years old is **はたち**.[^zatugaku-reading] This reading comes from old Japanese, when the number 20 was read as はた and was often followed by the suffix ち.[^chiebukuro-hata] Over time, the meaning of はたち narrowed to only being used to refer to mean "20 years old" from its broader origin. Sociolinguistically there are numerous theories as to how this came to be and why it has persisted; a generalized belief as to why はたち exclusively has survived as an irregular reading where the other readings have been replaced is 20 years old being seen as the age of maturity. Modern laws and customs focus on 20 being a sociolegal turning point, and historically 20 was seen as the age when one was able to decide to risk their life in war.[^allguide] However, to make matters more confusing, only 二十歳 (all kanji) can be read as はたち; when it is written as ２０歳, it can only be read as にじゅっさい or にじっさい.[^zatugaku-hatachi] This is because the reading as はたち is a reading strictly for the kanji compound of 二十歳; when the compound is not present, the reading is not valid.
+
+When using this counter, the primary thing to keep in mind is 歳 versus 才. The latter is seen as somewhat slang-y and is best to avoid in formal situations. Additionally, it is safest to reserve 才 exclusively for the younger years, as some see the kanji as exclusively for children,[^sanseido] though what age *exactly* is a subjective and loosely-felt rule. 
+
+[^chigai]: [違いがわかる事典](https://chigai-allguide.com/%E6%AD%B3%E3%81%A8%E6%89%8D/): 年齢を表す「さい」は日常で頻繁に使い、小学校低学年には覚えておきたい言葉だが、「歳」の漢字は画数が多く、小学生には難しいため、小学校では「才」と教えている。
+[^sanseido]: [三省堂 辞書ウェブ編集部による](https://dictionary.sanseido-publ.co.jp/column/kanji_genzai008): 「サイ」については、「子供には才、お年寄りには歳」と感じるという人も少なからずいる。
+[^sanseido-origin]: [三省堂 辞書ウェブ編集部による](https://dictionary.sanseido-publ.co.jp/column/kanji_genzai008): 「歳」の中に含まれる「![「戈」－「、」](https://dictionary.sanseido-publ.co.jp/wp/wp-content/uploads/2008/01/sasa_08_sai.jpg)」の部分を引っこ抜いてきたのだという。なるほど、今でも年配の方々に残されている字体は「才」ではなく「![「戈」－「、」](https://dictionary.sanseido-publ.co.jp/wp/wp-content/uploads/2008/01/sasa_08_sai.jpg)」という字体だったりするが、この説の当否は如何に。
+[^je-inanimate]: [Japanese Language StackExchange](https://japanese.stackexchange.com/questions/67911/can-the-%E6%AD%B3-counter-be-used-for-architecture-furniture-etc-to-tell-its-age):  As you said, 「N {歳}^(さい)」 is reserved for humans and other animals.For other objects, it is not used except for when one personifies them humorously (or for other literary effects).
+[^zatugaku-reading]: [二十歳の正しい読み方は「はたち」「にじゅっさい」？](https://zatugaku-gimonn.com/entry1051.html): 結論から言ってしまうと、二十歳の正しい読み方は「はたち」「にじっさい」「にじゅっさい」になります。一般的には二十歳は「はたち」と読むことが多いです。
+[^zatugaku-hatachi]:  [二十歳の正しい読み方は「はたち」「にじゅっさい」？](https://zatugaku-gimonn.com/entry1051.html): ただ”二十歳”と書くと「はたち」「にじっさい」「にじゅっさい」と読みますが、”２０歳”と書くと「にじっさい」「にじゅっさい」としか読まないので注意が必要です。
+[^chiebukuro-hata]: [２０歳はなぜ「はたち」](https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q1010445335): 「はた」は、非常に古くからある日本語で、「20」の意味を表します。  
+「はた」を単独で使うことは少なく、多く「はたち」というように、  
+「ち」という接尾語をつけて用います。... その「はたち」の意味が次第に狭まって、「二十歳」を意味するようになりました。
+[^allguide]: [はたちの語源](http://gogen-allguide.com/ha/hatachi.html): その旗には「旗乳（はたち）」と呼ばれる竿を通す輪が、年齢に合わせて20個ついており、「命を賭けた決断のできる年齢（成人）」という意味で「はたち」と言うようになったという説である。',
+    '歳'
+  );
 INSERT INTO
   "counters" (
     counter_id,

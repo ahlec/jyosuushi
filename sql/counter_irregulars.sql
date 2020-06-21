@@ -173,4 +173,13 @@ INSERT INTO
     does_presence_erase_regular_conjugations
   )
 VALUES('日', 14, 'じゅうよっか', 'arbitrary-reading', 0);
+INSERT INTO
+  "counter_irregulars" (
+    counter_id,
+    number,
+    kana,
+    irregular_type,
+    does_presence_erase_regular_conjugations
+  )
+VALUES('歳', 20, 'はたち', 'arbitrary-reading', 0);
 COMMIT;
