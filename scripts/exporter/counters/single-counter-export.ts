@@ -2,7 +2,11 @@ import { DbCounter } from "../../database/schemas";
 
 import writeCounterComponentsFile from "../counter-components/write-file";
 
-import { FileExportRequest, WriteFileResults } from "../types";
+import {
+  ExportOutputEntry,
+  FileExportRequest,
+  WriteFileResults,
+} from "../types";
 import {
   getCounterId,
   productionStringify,
@@ -20,6 +24,7 @@ export interface Import {
 }
 
 export interface CounterExportResults {
+  consoleOutput: ReadonlyArray<ExportOutputEntry>;
   counterId: string;
   declaredValue: string;
   fileExportRequests: ReadonlyArray<FileExportRequest>;
@@ -29,13 +34,15 @@ export interface CounterExportResults {
 
 function exportSingleCounter(
   counter: DbCounter,
-  joinData: CounterJoinData
+  joinData: CounterJoinData,
+  allExportedCounterIds: ReadonlySet<string>
 ): CounterExportResults {
   // ORDER MATTERS HERE!
   // Add things to the consolidator in the order they'll appear in
   // the DOM so as to ensure correct numbering of footnotes.
   const markdownConsolidator = new CounterMarkdownConsolidator(
-    `${counter.counter_id}Components`
+    `${counter.counter_id}Components`,
+    allExportedCounterIds
   );
   const notesComponent = counter.notes
     ? markdownConsolidator.addMarkdown("CounterNotes", counter.notes)
@@ -93,6 +100,7 @@ function exportSingleCounter(
   }
 
   return {
+    consoleOutput: markdownConsolidator.consoleOutput,
     counterId: counter.counter_id,
     declaredValue: productionStringify(protoCounter),
     fileExportRequests,

@@ -4,7 +4,11 @@ import { Writable } from "stream";
 import { DbCounter } from "../../database/schemas";
 import ValidatedDataSource from "../../database/ValidatedDataSource";
 
-import { FileExportRequest, WriteFileResults } from "../types";
+import {
+  ExportOutputEntry,
+  FileExportRequest,
+  WriteFileResults,
+} from "../types";
 import { productionStringify, ProductionVariable } from "../utils";
 
 import exportSingleCounter, {
@@ -33,14 +37,35 @@ function selectImportFilepath(importDefinition: Import): string {
   return importDefinition.importFilepath;
 }
 
+function onlyCountersWithOutput(results: CounterExportResults): boolean {
+  return results.consoleOutput.length > 0;
+}
+
+function convertCounterResultsToOutput(
+  results: CounterExportResults
+): ExportOutputEntry {
+  return {
+    contents: results.consoleOutput,
+    header: `Counter '${results.counterId}'`,
+    type: "group",
+  };
+}
+
 export default function writeCountersFile(
   stream: Writable,
   dataSource: ValidatedDataSource
 ): WriteFileResults {
   const dataLookup = new CounterDataLookup(dataSource);
+  const allExportedCounterIds = new Set(
+    dataSource.counters.valid.map(selectCounterId)
+  );
   const counters = sortBy(dataSource.counters.valid, selectCounterId).map(
     (counter): CounterExportResults =>
-      exportSingleCounter(counter, dataLookup.getJoinData(counter.counter_id))
+      exportSingleCounter(
+        counter,
+        dataLookup.getJoinData(counter.counter_id),
+        allExportedCounterIds
+      )
   );
 
   // Write out imports
@@ -89,6 +114,8 @@ export default function writeCountersFile(
   // Return
   return {
     additionalFileRequests: flatten(counters.map(selectFileExports)),
-    output: [],
+    output: counters
+      .filter(onlyCountersWithOutput)
+      .map(convertCounterResultsToOutput),
   };
 }

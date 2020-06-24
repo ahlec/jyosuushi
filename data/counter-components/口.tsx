@@ -75,10 +75,9 @@ export class CounterNotes extends React.PureComponent<MarkdownComponentProps> {
             </a>
           </sup>{" "}
           From an early point, then 口 was the kanji used to count these swords
-          (taken from the meaning "opening") but was read as ふり; the counter{" "}
-          <Link to="/explore/counter/口ふり">口ふり</Link> is still seen today
-          in places like museum plaques, where it's seen as a polished and
-          refined counter to be used.
+          (taken from the meaning "opening") but was read as ふり; the counter
+          口ふり is still seen today in places like museum plaques, where it's
+          seen as a polished and refined counter to be used.
           <sup id="fnref-2">
             <a className="footnote-ref" href="#fn-2">
               2
@@ -108,10 +107,9 @@ export class CounterNotes extends React.PureComponent<MarkdownComponentProps> {
             <rt>くち</rt>
             <rp>)</rp>
           </ruby>{" "}
-          or <Link to="/explore/counter/口ふり">口ふり</Link>, counting swords
-          with the kanji 口 is typically a writing-only style; when speaking,
-          it's better to use <Link to="/explore/counter/本">本</Link> or{" "}
-          <Link to="/explore/counter/振り">振り</Link>.
+          or 口ふり, counting swords with the kanji 口 is typically a
+          writing-only style; when speaking, it's better to use{" "}
+          <Link to="/explore/counter/本">本</Link> or 振り.
           <sup id="fnref-3">
             <a className="footnote-ref" href="#fn-3">
               3
@@ -167,8 +165,8 @@ export class CounterNotes extends React.PureComponent<MarkdownComponentProps> {
             <rt>くち</rt>
             <rp>)</rp>
           </ruby>{" "}
-          in the same way that <Link to="/explore/counter/株">株</Link> is used
-          for counting shares of publicly-traded stock.
+          in the same way that 株 is used for counting shares of publicly-traded
+          stock.
           <sup id="fnref-5">
             <a className="footnote-ref" href="#fn-5">
               5

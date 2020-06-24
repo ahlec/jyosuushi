@@ -242,9 +242,8 @@ export class CounterNotes extends React.PureComponent<MarkdownComponentProps> {
             <rt>ほん</rt>
             <rp>)</rp>
           </ruby>{" "}
-          can carry meaning. By counting pencils with{" "}
-          <Link to="/explore/counter/個">個</Link>, you are describing pencils
-          which are very short or <em>very</em> thick.
+          can carry meaning. By counting pencils with 個, you are describing
+          pencils which are very short or <em>very</em> thick.
         </p>
       </React.Fragment>
     );

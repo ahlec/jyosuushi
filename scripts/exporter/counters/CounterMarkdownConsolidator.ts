@@ -1,5 +1,6 @@
 import { convertMarkdownToJSX } from "../markdown";
 
+import { ExportOutputEntry } from "../types";
 import { ProductionVariable } from "../utils";
 
 export interface CounterMarkdownComponent {
@@ -8,13 +9,24 @@ export interface CounterMarkdownComponent {
   requiresReactRouterDomLink: boolean;
 }
 
+function convertToWarningOutput(warning: string): ExportOutputEntry {
+  return {
+    message: warning,
+    type: "warning",
+  };
+}
+
 class CounterMarkdownConsolidator {
   public readonly footnoteComponentVariables: ProductionVariable[] = [];
+  public readonly consoleOutput: ExportOutputEntry[] = [];
 
   private readonly primaryComponents: CounterMarkdownComponent[] = [];
   private readonly footnoteComponents: CounterMarkdownComponent[] = [];
 
-  public constructor(public readonly importedNamespace: string) {}
+  public constructor(
+    public readonly importedNamespace: string,
+    public readonly allExportedCounterIds: ReadonlySet<string>
+  ) {}
 
   public get markdownComponents(): ReadonlyArray<CounterMarkdownComponent> {
     return [...this.primaryComponents, ...this.footnoteComponents];
@@ -30,10 +42,19 @@ class CounterMarkdownConsolidator {
     componentName: string,
     markdown: string
   ): ProductionVariable {
-    const { body, footnotes } = convertMarkdownToJSX(markdown, {
+    const { body, footnotes, warnings } = convertMarkdownToJSX(markdown, {
+      allExportedCounterIds: this.allExportedCounterIds,
       // This should be consecutive and 1-based
       footnotesCountingStart: this.footnoteComponentVariables.length + 1,
     });
+
+    if (warnings.length) {
+      this.consoleOutput.push({
+        contents: warnings.map(convertToWarningOutput),
+        header: `'${componentName}' Markdown`,
+        type: "group",
+      });
+    }
 
     for (const footnote of footnotes) {
       const footnoteComponentName = `Footnote${footnote.footnoteId}`;

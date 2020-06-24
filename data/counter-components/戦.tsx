@@ -3,7 +3,6 @@
 // Modifications will be lost if they are made manually and not through the database.
 
 import * as React from "react";
-import { Link } from "react-router-dom";
 import { MarkdownComponentProps } from "@jyosuushi/interfaces";
 
 export class CounterNotes extends React.PureComponent<MarkdownComponentProps> {
@@ -44,8 +43,8 @@ export class CounterNotes extends React.PureComponent<MarkdownComponentProps> {
           is used beyond counting battles, however. This counter is also
           (frequently) used to count games and matches in sports, or
           competitions. In this usage, it is very similar{" "}
-          <em>(though not entirely interchangeable)</em>, with the counter{" "}
-          <Link to="/explore/counter/試合">試合</Link>. Overall,{" "}
+          <em>(though not entirely interchangeable)</em>, with the counter 試合.
+          Overall,{" "}
           <ruby>
             戦<rp>(</rp>
             <rt>せん</rt>
