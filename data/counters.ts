@@ -12,6 +12,7 @@ import {
 
 import * as 人Components from "@data/counter-components/人";
 import * as 匹Components from "@data/counter-components/匹";
+import * as 口Components from "@data/counter-components/口";
 import * as 名Components from "@data/counter-components/名";
 import * as 年Components from "@data/counter-components/年";
 import * as 戦Components from "@data/counter-components/戦";
@@ -427,17 +428,44 @@ export const COUNTER_匹: Counter = {
 
 export const COUNTER_口: Counter = {
   counterId: "口",
-  disambiguations: [],
+  disambiguations: [
+    {
+      distinction: 口Components.Disambiguation本,
+      otherCounterId: "本",
+    },
+  ],
   englishName: "bites",
-  externalLinks: [],
-  footnotes: [],
+  externalLinks: [
+    {
+      additionalDescription:
+        "Japanese dictionary entries, compiled from multiple sources.",
+      displayText: "口（読み：くち）",
+      language: ExternalLinkLanguage.Japanese,
+      siteName: "コトバンク",
+      url: "https://kotobank.jp/word/%E5%8F%A3-55470",
+    },
+  ],
+  footnotes: [
+    口Components.Footnote1,
+    口Components.Footnote2,
+    口Components.Footnote3,
+    口Components.Footnote4,
+    口Components.Footnote5,
+    口Components.Footnote6,
+    口Components.Footnote7,
+    口Components.Footnote8,
+    口Components.Footnote9,
+    口Components.Footnote10,
+    口Components.Footnote11,
+  ],
   irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "口",
   },
-  leadIn: null,
-  notes: null,
+  leadIn:
+    "A multi-use counter which primarily counts bites of food or sips of drinks, but can also count swords or sums of money.",
+  notes: 口Components.CounterNotes,
   readings: [
     {
       counterId: "口",
@@ -452,7 +480,13 @@ export const COUNTER_口: Counter = {
         allowsYonFor4: true,
       },
       readingId: "くち",
-      wagoStyle: null,
+      wagoStyle: {
+        alsoUsesKangoIchi: false,
+        alsoUsesKangoNi: false,
+        alsoUsesKangoSan: true,
+        kana: "くち",
+        rangeEndInclusive: 3,
+      },
       wordOrigin: WordOrigin.Japanese,
     },
   ],
@@ -1025,6 +1059,10 @@ export const COUNTER_本: Counter = {
       distinction: 本Components.Disambiguation缶,
       otherCounterId: "缶",
     },
+    {
+      distinction: 本Components.Disambiguation口,
+      otherCounterId: "口",
+    },
   ],
   englishName: "long, thin objects",
   externalLinks: [
@@ -1050,6 +1088,8 @@ export const COUNTER_本: Counter = {
     本Components.Footnote2,
     本Components.Footnote3,
     本Components.Footnote4,
+    本Components.Footnote5,
+    本Components.Footnote6,
   ],
   irregulars: {},
   kanji: {

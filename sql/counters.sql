@@ -328,7 +328,34 @@ INSERT INTO
     notes,
     primary_kanji
   )
-VALUES('口', 'bites', NULL, NULL, '口');
+VALUES(
+    '口',
+    'bites',
+    'A multi-use counter which primarily counts bites of food or sips of drinks, but can also count swords or sums of money.',
+    '{口}^(くち), as a noun, means most simply "mouth;" this familiar and simplistic word is first learned when talking about the orifice on the body. But, just as with English, the word is multi-faceted and has many further meanings. Like English, this word is also used as a noun to refer to things that _look_ like mouths -- entrances and exits, openings on bottles and cans -- pretty much anything that has an opening (even the muzzle of guns). It can mean a vacancy like a job opening, or refer to flavours, or be used to talk about the amount of food. In the same way that English uses "mouths to feed" to refer to people, {口}^(くち) can also refer to the number of people that need to be fed. It''s an extremely versatile word as a noun; as a counter, it is just as nebulous:
+1. Counting the number of bites of food;
+2. Counting swords;
+3. Counting portions/shares of donations or expenses.
+
+In daily life, the most commonly-used usage of this counter is the first one, referring to an amount of food in terms of how many bites were involved; the reasoning for counting these using the noun for *mouth* is self-explanatory. And while the dictionary might focus on bites of food, this counter is equally capable of counting sips of a drink.
+
+As for why {口}^(くち) is used to count swords, this dates back to the warriors of Japan''s past. The warrior''s sword was viewed as something that was swung downwards in attack ({振り下ろす}^(ふりおろす)) to cut open the opponent ({切り口}^(きりくち), "cut end/opening").[^sanabo-kuchi] From an early point, then 口 was the kanji used to count these swords (taken from the meaning "opening") but was read as ふり; the counter <counter:口ふり> is still seen today in places like museum plaques, where it''s seen as a polished and refined counter to be used.[^chiebukuro-museum-plaques] {口}^(くち) (with the reading of くち) serves as an alternative reading, as 「くち」 and 「こう」are the typical readings for the counter.[^sanabo-kuchi] In this way, the counter {口}^(くち) has come to be capable of counting swords. All the same, whether {口}^(くち) or <counter:口ふり>, counting swords with the kanji 口 is typically a writing-only style; when speaking, it''s better to use <counter:本> or <counter:振り>.[^chiebukuro-swords-usage]
+
+The final usage of {口}^(くち) is in finance. Here, there are a couple of disjoint meanings that are all bound together by a common thread: {口}^(くち) is used to refer to an amount of money (or something of monetary value) as a single unit.[^chiebukuro-finance-usage] Most commonly, you will see it in fundraising campaigns that feature a fixed price per donation. Donation pages might say 「{一口}^(ひとくち)１０００{円}^(えん)」. In these cases, the price of each donation is fixed at ¥1000 and you as the donor determine how many donations you want to make; if you choose {三口}^(みつくち), you''ll be spending ¥3000. In the case of investment funds, shares of the fund are counted with {口}^(くち) in the same way that <counter:株> is used for counting shares of publicly-traded stock.[^kuchi-vs-kabu] For holding companies -- companies with monthly investments that will automatically purchase stock -- {口}^(くち) is used as a unit of measurement for how much money must (at minimum) be invested. If the equivalency were {一口}^(ひとくち)２０００{円}^(えん), you might choose {五口}^(ごくち) which would mean that you''d be investing ¥10,000 every month to be used to purchase stock.[^holding-company-equivalency] In similar fashion, this can go on to count other things such as monetary transactions, university tuition fees,[^matriculation-fees] or even bank accounts.[^bank-accounts]
+
+In terms of readings, the first two readings for {口}^(くち) exclusively use {和語}^(わご) and are read as {一口}^(ひとくち) and {二口}^(ふたくち) exclusively. While three has also historically been read using {和語}^(わご), the younger generations are starting to use the {漢語}^(かんご) reading {三口}^(みつくち) instead. All numbers beyond three are read using {漢語}^(かんご).[^chiebukuro-reading]
+
+[^sanabo-kuchi]: [アレってなんて数える？を解決：刀](https://www.sanabo.com/kazoekata/ct_ka/ka/katana/): 武士の携 (たずさ) えた刀は、振り下ろして切り口をつけることから、「口」という漢字を使って数えますが、「ふり」と読むのが一般的です。「振り」の古来の用字が「口」で、「くち」「こう」と読むこともあります。
+[^chiebukuro-museum-plaques]: [日本刀の数えかたで一振と一本があるのを見たんですが、どう違うのですか？？](https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q11185226526): 美術館などで目録に記載されている単位は、「口（ふり）」が多いです。この「口（ふり）」は、いわゆる雅語（かご）と呼ばれる洗練された上品な言葉にあたります。
+[^chiebukuro-swords-usage]: [刀の数え方を教えて下さい。](https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q11100671126): 口語なら振り、本。書き言葉なら腰、口。
+[^chiebukuro-reading]: [「口」の読み方について日本語を勉強している外国人です。](https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q10119783700): 読み方は「ひとくち/ふたくち/みくち(若い人はさんくち)/よんくち/ごくち/ろっくち/ななくち/はっくち/きゅうくち/じゅっくち」「くちすう」「なんくち」
+[^chiebukuro-finance-usage]: [「口」の読み方について日本語を勉強している外国人です。](https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q10119783700): つまりお金(あるいはお金に準ずるもの)の扱い単位を「口(くち)」と呼びます。
+[^kuchi-vs-kabu]: [口数って何？](https://info.monex.co.jp/fund/beginner/faq/qa11.html): 株式の場合、「**1株**」ですが、投資信託は「**1口**」となります。
+[^holding-company-equivalency]: [一株と一口の違いを教えてください](https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q13190338998): 最低限の拠出する単位を口数といいます。「毎月1万円給料天引きで買っているので10口と書けばよいのでしょうか？」
+[^matriculation-fees]: [寄付の数え方は？](https://ameblo.jp/watashibon/entry-10484097094.html): 「寄付は30人から計40口集まった」とか、「入学金は、１口５万円、３口以上をお願いします」とか。
+[^bank-accounts]: [数詞・助数詞の読み方 あ行](https://hiramatu-hifuka.com/onyak/onyak2/josu-aka.html): 分担の単位　寄付・口座など',
+    '口'
+  );
 INSERT INTO
   "counters" (
     counter_id,
@@ -479,4 +506,22 @@ INSERT INTO
     primary_kanji
   )
 VALUES('束', 'bundles', NULL, NULL, '束');
+INSERT INTO
+  "counters" (
+    counter_id,
+    english_name,
+    lead_in,
+    notes,
+    primary_kanji
+  )
+VALUES('杯', 'cups', NULL, NULL, '杯');
+INSERT INTO
+  "counters" (
+    counter_id,
+    english_name,
+    lead_in,
+    notes,
+    primary_kanji
+  )
+VALUES('株', 'stocks', NULL, NULL, '株');
 COMMIT;

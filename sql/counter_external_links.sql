@@ -365,4 +365,21 @@ VALUES(
     'Masters thesis that focuses on the establishment of new counters, in particular <counter:店> and <counter:試合>.',
     'japanese'
   );
+INSERT INTO
+  "counter_external_links" (
+    counter_id,
+    url,
+    site_name,
+    link_text,
+    additional_description,
+    language
+  )
+VALUES(
+    '口',
+    'https://kotobank.jp/word/%E5%8F%A3-55470',
+    'コトバンク',
+    '口（読み：くち）',
+    'Japanese dictionary entries, compiled from multiple sources.',
+    'japanese'
+  );
 COMMIT;

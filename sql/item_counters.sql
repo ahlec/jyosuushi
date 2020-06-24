@@ -496,4 +496,16 @@ VALUES('Go game', '戦', NULL);
 INSERT INTO
   "item_counters" (item_id, counter_id, relevance)
 VALUES('figure skating competition', '戦', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('sword', '口', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('katana', '口', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('sword', '本', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('katana', '本', NULL);
 COMMIT;

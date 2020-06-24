@@ -996,6 +996,24 @@ const ITEM_JINGLE: Item = {
   minQuantity: 1,
 };
 
+const ITEM_KATANA: Item = {
+  counters: [
+    {
+      counterId: "口",
+      relevance: CounterItemRelevance.Unknown,
+    },
+    {
+      counterId: "本",
+      relevance: CounterItemRelevance.Unknown,
+    },
+  ],
+  englishPlural: "katanas",
+  englishSingular: "katana",
+  itemId: "katana",
+  maxQuantity: 100,
+  minQuantity: 1,
+};
+
 const ITEM_KEYWORD: Item = {
   counters: [
     {
@@ -1956,6 +1974,24 @@ const ITEM_SUTRA: Item = {
   minQuantity: 1,
 };
 
+const ITEM_SWORD: Item = {
+  counters: [
+    {
+      counterId: "口",
+      relevance: CounterItemRelevance.Unknown,
+    },
+    {
+      counterId: "本",
+      relevance: CounterItemRelevance.Unknown,
+    },
+  ],
+  englishPlural: "swords",
+  englishSingular: "sword",
+  itemId: "sword",
+  maxQuantity: 100,
+  minQuantity: 1,
+};
+
 const ITEM_TASK: Item = {
   counters: [
     {
@@ -2251,6 +2287,7 @@ export const ITEMS_LOOKUP: { [itemId: string]: Item } = {
   idiom: ITEM_IDIOM,
   izakaya: ITEM_IZAKAYA,
   jingle: ITEM_JINGLE,
+  katana: ITEM_KATANA,
   keyword: ITEM_KEYWORD,
   lap: ITEM_LAP,
   law: ITEM_LAW,
@@ -2319,6 +2356,7 @@ export const ITEMS_LOOKUP: { [itemId: string]: Item } = {
   straw: ITEM_STRAW,
   street: ITEM_STREET,
   sutra: ITEM_SUTRA,
+  sword: ITEM_SWORD,
   task: ITEM_TASK,
   "tea house": ITEM_TEA_HOUSE,
   textbook: ITEM_TEXTBOOK,
@@ -2371,7 +2409,7 @@ export const ITEMS_FROM_COUNTER: {
     ITEM_SLICE_OF_SASHIMI,
   ],
   匹: [ITEM_RABBIT, ITEM_DOG, ITEM_CAT, ITEM_SHEEP, ITEM_DEER, ITEM_OTTER],
-  口: [ITEM_BITE_OF_FOOD, ITEM_SIP_OF_WATER],
+  口: [ITEM_BITE_OF_FOOD, ITEM_SIP_OF_WATER, ITEM_SWORD, ITEM_KATANA],
   台: [
     ITEM_WASHING_MACHINE,
     ITEM_OVEN,
@@ -2411,6 +2449,8 @@ export const ITEMS_FROM_COUNTER: {
     ITEM_STREET,
     ITEM_STRAW,
     ITEM_FIRE_EXTINGUISHER,
+    ITEM_SWORD,
+    ITEM_KATANA,
   ],
   束: [ITEM_BUNDLE_OF_WOOD, ITEM_BUNDLE_OF_GREEN_ONIONS],
   枚: [

@@ -2725,4 +2725,42 @@ VALUES(
     NULL,
     NULL
   );
+INSERT INTO
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'katana',
+    'katana',
+    'katanas',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
+INSERT INTO
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'sword',
+    'sword',
+    'swords',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
 COMMIT;

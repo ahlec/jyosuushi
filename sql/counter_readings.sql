@@ -533,7 +533,7 @@ VALUES(
     'くち',
     '和語',
     'くち',
-    NULL,
+    'ひと、ふた、み(サン)',
     NULL,
     1,
     0,
@@ -1340,6 +1340,68 @@ VALUES(
     '漢語',
     'にち',
     NULL,
+    NULL,
+    1,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0
+  );
+INSERT INTO
+  "counter_readings" (
+    counter_id,
+    reading_id,
+    word_origin,
+    kana,
+    wago_style,
+    wago_custom_base,
+    kango_uses_yon,
+    kango_uses_yo,
+    kango_uses_shi,
+    kango_uses_nana,
+    kango_uses_shichi,
+    kango_uses_kyuu,
+    kango_uses_ku
+  )
+VALUES(
+    '杯',
+    'はい',
+    '漢語',
+    'はい',
+    NULL,
+    NULL,
+    1,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0
+  );
+INSERT INTO
+  "counter_readings" (
+    counter_id,
+    reading_id,
+    word_origin,
+    kana,
+    wago_style,
+    wago_custom_base,
+    kango_uses_yon,
+    kango_uses_yo,
+    kango_uses_shi,
+    kango_uses_nana,
+    kango_uses_shichi,
+    kango_uses_kyuu,
+    kango_uses_ku
+  )
+VALUES(
+    '株',
+    'かぶ',
+    '和語',
+    'かぶ',
+    'ひと、ふた',
     NULL,
     1,
     0,

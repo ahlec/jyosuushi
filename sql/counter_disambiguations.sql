@@ -50,4 +50,23 @@ Additionally, though it does not reflect a difference in meaning between the two
 [^thesis-ordinal]: [近現代日本語における新たな助数詞の成立と定着](http://hdl.handle.net/2241/00128666): 〔表 5-1〕から「-試合」は数量を表す際に、「-戦」は順序を表す際によく用いられていることがわかる。しかし、このような差異は 2 つの助数詞の使用傾向の一端を表すものではあるが、意味的な違いを表すものではないと考えられる。 (p. 91-92)
 '
   );
+INSERT INTO
+  "counter_disambiguations" (counter1_id, counter2_id, distinction)
+VALUES(
+    '口',
+    '杯',
+    'While liquids to be drunk can both be counted with {杯}^(はい) and {口}^(くち), these two are not interchangeable. {杯}^(はい) refers to the glass as a whole, as in "a glass of water" or "two cups of juice." {口}^(くち), meanwhile, refers to a single sip of a drink -- "a sip of water" or "two sips of juice."'
+  );
+INSERT INTO
+  "counter_disambiguations" (counter1_id, counter2_id, distinction)
+VALUES(
+    '口',
+    '本',
+    'Both {口}^(くち) and {本}^(ほん) can be used to count swords. The difference here is that {本}^(ほん) is primarily used when speaking, whereas {口}^(くち) is used exclusively in writing.[^chiebukuro-swords]
+
+The media will usually used {本}^(ほん) to count swords.[^usage]
+
+[^chiebukuro-swords]: [刀の数え方を教えて下さい。](https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q11100671126): 口語なら振り、本。書き言葉なら腰、口。
+[^usage]: [日本刀の数え方](https://oshiete.goo.ne.jp/qa/815510.html#an2540582): マスメディアでは基本的に「本」と言っているようですね。'
+  );
 COMMIT;

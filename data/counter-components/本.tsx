@@ -276,6 +276,63 @@ export class Disambiguation缶 extends React.PureComponent<
   }
 }
 
+export class Disambiguation口 extends React.PureComponent<
+  MarkdownComponentProps
+> {
+  public render(): React.ReactNode {
+    return (
+      <React.Fragment>
+        <p>
+          Both{" "}
+          <ruby>
+            口<rp>(</rp>
+            <rt>くち</rt>
+            <rp>)</rp>
+          </ruby>{" "}
+          and{" "}
+          <ruby>
+            本<rp>(</rp>
+            <rt>ほん</rt>
+            <rp>)</rp>
+          </ruby>{" "}
+          can be used to count swords. The difference here is that{" "}
+          <ruby>
+            本<rp>(</rp>
+            <rt>ほん</rt>
+            <rp>)</rp>
+          </ruby>{" "}
+          is primarily used when speaking, whereas{" "}
+          <ruby>
+            口<rp>(</rp>
+            <rt>くち</rt>
+            <rp>)</rp>
+          </ruby>{" "}
+          is used exclusively in writing.
+          <sup id="fnref-5">
+            <a className="footnote-ref" href="#fn-5">
+              5
+            </a>
+          </sup>
+        </p>
+        <p>
+          The media will usually used{" "}
+          <ruby>
+            本<rp>(</rp>
+            <rt>ほん</rt>
+            <rp>)</rp>
+          </ruby>{" "}
+          to count swords.
+          <sup id="fnref-6">
+            <a className="footnote-ref" href="#fn-6">
+              6
+            </a>
+          </sup>
+        </p>
+      </React.Fragment>
+    );
+  }
+}
+
 export class Footnote1 extends React.PureComponent<MarkdownComponentProps> {
   public render(): React.ReactNode {
     return (
@@ -349,6 +406,46 @@ export class Footnote4 extends React.PureComponent<MarkdownComponentProps> {
         :
         これは、話し手が単純に缶だけを数えているのではなく、缶の中身によって数え分けていることを示しています。缶の中身がジュースのような液体だと「本」で数えますが、中身がアスパラガスのように固体だと「個」や「缶」で数えます。また、中身の入っていない空き缶は「本」では数えず、「空き缶1個」のように数えます。
         <a className="footnote-backref" href="#fnref-4">
+          ↩
+        </a>
+      </li>
+    );
+  }
+}
+
+export class Footnote5 extends React.PureComponent<MarkdownComponentProps> {
+  public render(): React.ReactNode {
+    return (
+      <li id="fn-5">
+        <a
+          href="https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q11100671126"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          刀の数え方を教えて下さい。
+        </a>
+        : 口語なら振り、本。書き言葉なら腰、口。
+        <a className="footnote-backref" href="#fnref-5">
+          ↩
+        </a>
+      </li>
+    );
+  }
+}
+
+export class Footnote6 extends React.PureComponent<MarkdownComponentProps> {
+  public render(): React.ReactNode {
+    return (
+      <li id="fn-6">
+        <a
+          href="https://oshiete.goo.ne.jp/qa/815510.html#an2540582"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          日本刀の数え方
+        </a>
+        : マスメディアでは基本的に「本」と言っているようですね。
+        <a className="footnote-backref" href="#fnref-6">
           ↩
         </a>
       </li>
