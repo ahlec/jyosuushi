@@ -40,6 +40,7 @@ function writeCounterComponentsFile(
   // Return
   return {
     additionalFileRequests: [],
+    output: [],
   };
 }
 

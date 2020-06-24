@@ -89,5 +89,6 @@ export default function writeCountersFile(
   // Return
   return {
     additionalFileRequests: flatten(counters.map(selectFileExports)),
+    output: [],
   };
 }

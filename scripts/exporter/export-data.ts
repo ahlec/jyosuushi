@@ -10,7 +10,11 @@ import ValidatedDataSource from "../database/ValidatedDataSource";
 import writeCountersFile from "./counters/write-file";
 import writeItemsFile from "./items-file";
 import writeStudyPacksFile from "./study-packs-file";
-import { FileExportRequest, WriteFileResults } from "./types";
+import {
+  ExportOutputEntry,
+  FileExportRequest,
+  WriteFileResults,
+} from "./types";
 import { DATA_DIRECTORY } from "./utils";
 
 const FILE_HEADER_COMMENT = `// DO NOT HAND-MODIFY THIS FILE!!
@@ -35,6 +39,49 @@ function exportFile(
 
   fs.writeFileSync(filename, javaScript);
   return writeResults;
+}
+
+interface ExportFileOutput {
+  relativeFilepath: string;
+  outputEntries: ReadonlyArray<ExportOutputEntry>;
+}
+
+function printExportOutputEntry(
+  output: ExportOutputEntry,
+  indentationLevel: number,
+  bullet: string
+): void {
+  const indentation = "  ".repeat(indentationLevel);
+  if (typeof output === "string") {
+    console.log(`${indentation}${bullet}${output}`);
+    return;
+  }
+
+  switch (output.type) {
+    case "warning": {
+      console.log(`${indentation}${bullet}${chalk.yellow(output.message)}`);
+      break;
+    }
+    case "error": {
+      console.log(`${indentation}${bullet}${chalk.red(output.message)}`);
+      break;
+    }
+    case "group": {
+      console.log(`${indentation}${chalk.blueBright(output.header)}`);
+      for (const child of output.contents) {
+        printExportOutputEntry(child, indentationLevel + 1, "•");
+      }
+
+      break;
+    }
+  }
+}
+
+function printFileOutput(output: ExportFileOutput): void {
+  console.log(`[${chalk.greenBright(output.relativeFilepath)}]`);
+  for (const entry of output.outputEntries) {
+    printExportOutputEntry(entry, 1, "");
+  }
 }
 
 async function main(): Promise<void> {
@@ -71,6 +118,7 @@ async function main(): Promise<void> {
     },
   ];
 
+  const output: ExportFileOutput[] = [];
   while (queue.length) {
     const file = queue.pop();
     if (!file) {
@@ -78,8 +126,17 @@ async function main(): Promise<void> {
     }
 
     const result = exportFile(file, dataSource);
+    if (result.output.length) {
+      output.push({
+        outputEntries: result.output,
+        relativeFilepath: file.relativeFilepath,
+      });
+    }
+
     queue.push(...result.additionalFileRequests);
   }
+
+  output.forEach(printFileOutput);
 }
 
 main();

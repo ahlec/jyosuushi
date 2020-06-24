@@ -128,5 +128,6 @@ export default function writeItemsFile(
 
   return {
     additionalFileRequests: [],
+    output: [],
   };
 }
