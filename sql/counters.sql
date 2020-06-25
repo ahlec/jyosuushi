@@ -5,7 +5,7 @@ CREATE TABLE counters (
   english_name STRING NOT NULL,
   lead_in STRING,
   notes TEXT,
-  primary_kanji STRING UNIQUE
+  primary_kanji STRING
 );
 INSERT INTO
   "counters" (
@@ -524,4 +524,13 @@ INSERT INTO
     primary_kanji
   )
 VALUES('株', 'stocks', NULL, NULL, '株');
+INSERT INTO
+  "counters" (
+    counter_id,
+    english_name,
+    lead_in,
+    notes,
+    primary_kanji
+  )
+VALUES('口ふり', 'swords', NULL, NULL, '口');
 COMMIT;
