@@ -4,6 +4,8 @@ import { Node } from "unist";
 import { Eat, RemarkParser } from "./interfaces";
 import PluginWarningsCollector from "./PluginWarningsCollector";
 
+import { IntrasiteLinkProps } from "./remark-compilers/types";
+
 export const INTRASITE_LINK_HAST_NODE_NAME = "intrasiteLink";
 
 interface IntrasiteLinkConfig {
@@ -55,11 +57,13 @@ function intrasiteLinkMarkdownPlugin(
       }
 
       let isContentExported: boolean;
-      let to: string;
+      let intrasiteLinkProps: IntrasiteLinkProps;
       switch (contentPieces[0]) {
         case "counter": {
           isContentExported = config.exportedCounterIds.has(contentPieces[1]);
-          to = `/explore/counter/${contentPieces[1]}`;
+          intrasiteLinkProps = {
+            counterId: contentPieces[1],
+          };
           break;
         }
         default: {
@@ -94,7 +98,7 @@ function intrasiteLinkMarkdownPlugin(
         data: {
           hName: INTRASITE_LINK_HAST_NODE_NAME,
           hProperties: {
-            to,
+            intrasiteLink: intrasiteLinkProps,
           },
         },
         type: "intrasite-link",

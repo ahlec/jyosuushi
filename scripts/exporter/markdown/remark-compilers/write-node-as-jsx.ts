@@ -16,14 +16,14 @@ function getChildAsJsx<T extends JSXRepresentation>(
   return child.jsx;
 }
 
-function doesChildContainIntrasiteLink<T extends JSXRepresentation>(
+function doesChildContainCounterLink<T extends JSXRepresentation>(
   child: string | T
 ): boolean {
   if (typeof child === "string") {
     return false;
   }
 
-  return child.containsIntrasiteLink;
+  return child.containsCounterLink;
 }
 
 function isNotNull<T>(val: T | null): val is T {
@@ -36,16 +36,16 @@ function writeNodeAsJsx(
   children: readonly (string | JSXRepresentation)[] | undefined
 ): JSXRepresentation {
   let jsxTag: string;
-  let isIntrasiteLink: boolean;
+  let isCounterLink: boolean;
   switch (name) {
     case INTRASITE_LINK_HAST_NODE_NAME: {
-      jsxTag = "Link";
-      isIntrasiteLink = true;
+      jsxTag = "CounterLink";
+      isCounterLink = true;
       break;
     }
     default: {
       jsxTag = name;
-      isIntrasiteLink = false;
+      isCounterLink = false;
       break;
     }
   }
@@ -79,35 +79,35 @@ function writeNodeAsJsx(
       openingTagPieces.push(`alt="${props.alt}"`);
     }
 
-    if (props.to) {
-      openingTagPieces.push(`to="${props.to}"`);
+    if (props.intrasiteLink) {
+      openingTagPieces.push(`counterId="${props.intrasiteLink.counterId}"`);
     }
   }
 
   // Handle children
   let jsxChildren: string;
   let numChildNodes: number;
-  let childContainsIntrasiteLink: boolean;
+  let childContainsCounterLink: boolean;
 
   if (children) {
     const consolidatedChildren = children.map(getChildAsJsx).filter(isNotNull);
     jsxChildren = consolidatedChildren.join("");
     numChildNodes = consolidatedChildren.length;
-    childContainsIntrasiteLink = children.some(doesChildContainIntrasiteLink);
+    childContainsCounterLink = children.some(doesChildContainCounterLink);
   } else {
     jsxChildren = "";
     numChildNodes = 0;
-    childContainsIntrasiteLink = false;
+    childContainsCounterLink = false;
   }
 
   // Consolidate together
-  const containsIntrasiteLink = isIntrasiteLink || childContainsIntrasiteLink;
+  const containsCounterLink = isCounterLink || childContainsCounterLink;
 
   const openingTag = openingTagPieces.join(" ");
   if (!jsxChildren) {
     return {
       childrenJsx: "",
-      containsIntrasiteLink,
+      containsCounterLink,
       jsx: `<${openingTag} />`,
       numChildNodes: 0,
       tag: jsxTag,
@@ -116,7 +116,7 @@ function writeNodeAsJsx(
 
   return {
     childrenJsx: jsxChildren,
-    containsIntrasiteLink,
+    containsCounterLink,
     jsx: `<${openingTag}>${jsxChildren}</${jsxTag}>`,
     numChildNodes,
     tag: jsxTag,

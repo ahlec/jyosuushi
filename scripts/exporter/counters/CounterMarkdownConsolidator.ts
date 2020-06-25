@@ -6,7 +6,7 @@ import { ProductionVariable } from "../utils";
 export interface CounterMarkdownComponent {
   componentName: string;
   jsx: string;
-  requiresReactRouterDomLink: boolean;
+  requiresCounterLink: boolean;
 }
 
 function convertToWarningOutput(warning: string): ExportOutputEntry {
@@ -61,7 +61,7 @@ class CounterMarkdownConsolidator {
       this.footnoteComponents.push({
         componentName: footnoteComponentName,
         jsx: footnote.jsx,
-        requiresReactRouterDomLink: footnote.requiresReactRouterLink,
+        requiresCounterLink: footnote.requiresCounterLink,
       });
       this.footnoteComponentVariables.push(
         new ProductionVariable(
@@ -73,7 +73,7 @@ class CounterMarkdownConsolidator {
     this.primaryComponents.push({
       componentName,
       jsx: body.jsx,
-      requiresReactRouterDomLink: body.requiresReactRouterLink,
+      requiresCounterLink: body.requiresCounterLink,
     });
     return new ProductionVariable(`${this.importedNamespace}.${componentName}`);
   }

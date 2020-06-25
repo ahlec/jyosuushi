@@ -9,7 +9,7 @@ import { isIndexableObject } from "../utils";
 import writeNodeAsJsx from "../write-node-as-jsx";
 
 export interface JsxCompilerVFileData {
-  usesReactRouterLink: boolean;
+  usesCounterLink: boolean;
 }
 
 function isFootnotesContainerDiv(
@@ -29,7 +29,7 @@ function h(
   if (isFootnotesContainerDiv(name, props)) {
     return {
       childrenJsx: "",
-      containsIntrasiteLink: false,
+      containsCounterLink: false,
       jsx: "",
       numChildNodes: 0,
       tag: "",
@@ -45,7 +45,7 @@ function jsxCompiler(this: Processor<unknown>): void {
     const root = toH(h, tree);
 
     const data: JsxCompilerVFileData = {
-      usesReactRouterLink: root.containsIntrasiteLink,
+      usesCounterLink: root.containsCounterLink,
     };
     file.data = data;
 
@@ -68,8 +68,8 @@ export function assertJsxCompilerVFileData(
     throw new Error("Data must be an indexable object!");
   }
 
-  if (typeof data["usesReactRouterLink"] !== "boolean") {
-    throw new Error("Data must have the 'usesReactRouterLink' boolean on it.");
+  if (typeof data["usesCounterLink"] !== "boolean") {
+    throw new Error("Data must have the 'usesCounterLink' boolean on it.");
   }
 }
 

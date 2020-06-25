@@ -4,10 +4,8 @@ import { CounterMarkdownComponent } from "../counters/CounterMarkdownConsolidato
 
 import { WriteFileResults } from "../types";
 
-function requiresReactRouterDomLink(
-  component: CounterMarkdownComponent
-): boolean {
-  return component.requiresReactRouterDomLink;
+function requiresCounterLink(component: CounterMarkdownComponent): boolean {
+  return component.requiresCounterLink;
 }
 
 function writeCounterComponentsFile(
@@ -16,13 +14,14 @@ function writeCounterComponentsFile(
 ): WriteFileResults {
   // Write out imports
   stream.write('import * as React from "react";\n');
-  if (components.some(requiresReactRouterDomLink)) {
-    stream.write('import { Link } from "react-router-dom";\n');
-  }
-
   stream.write(
     'import { MarkdownComponentProps } from "@jyosuushi/interfaces";\n'
   );
+  if (components.some(requiresCounterLink)) {
+    stream.write(
+      'import CounterLink from "@jyosuushi/ui/components/CounterLink";\n'
+    );
+  }
 
   // Write out components
   for (const { componentName, jsx } of components) {

@@ -1,6 +1,6 @@
 export interface JSXRepresentation {
   childrenJsx: string;
-  containsIntrasiteLink: boolean;
+  containsCounterLink: boolean;
   jsx: string;
   numChildNodes: number;
   tag: string;
@@ -17,5 +17,9 @@ export interface HastToHyperscriptProperties {
   href?: string;
   src?: string;
   alt?: string;
-  to?: string;
+  intrasiteLink?: IntrasiteLinkProps;
+}
+
+export interface IntrasiteLinkProps {
+  counterId: string;
 }

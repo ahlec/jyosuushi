@@ -3,8 +3,8 @@
 // Modifications will be lost if they are made manually and not through the database.
 
 import * as React from "react";
-import { Link } from "react-router-dom";
 import { MarkdownComponentProps } from "@jyosuushi/interfaces";
+import CounterLink from "@jyosuushi/ui/components/CounterLink";
 
 export class CounterNotes extends React.PureComponent<MarkdownComponentProps> {
   public render(): React.ReactNode {
@@ -139,7 +139,7 @@ export class CounterNotes extends React.PureComponent<MarkdownComponentProps> {
         </p>
         <p>
           So, why are books counted with{" "}
-          <Link to="/explore/counter/冊">冊</Link> instead of{" "}
+          <CounterLink counterId="冊">冊</CounterLink> instead of{" "}
           <ruby>
             本<rp>(</rp>
             <rt>ほん</rt>
@@ -161,8 +161,8 @@ export class CounterNotes extends React.PureComponent<MarkdownComponentProps> {
           </ruby>
           ; the legacy of this is seen today by the continued counting of all
           books (regardless of style) using{" "}
-          <Link to="/explore/counter/冊">冊</Link>. The meaning of "book" was a
-          much later association with{" "}
+          <CounterLink counterId="冊">冊</CounterLink>. The meaning of "book"
+          was a much later association with{" "}
           <ruby>
             本<rp>(</rp>
             <rt>ほん</rt>
@@ -222,7 +222,7 @@ export class CounterNotes extends React.PureComponent<MarkdownComponentProps> {
           as a counter is the image of something long and skinny. This provides
           a specific image to listeners when it is used. For example, buildings
           can be counted with a number of other counters, such as{" "}
-          <Link to="/explore/counter/軒">軒</Link>; by choosing to refer to
+          <CounterLink counterId="軒">軒</CounterLink>; by choosing to refer to
           buildings with{" "}
           <ruby>
             本<rp>(</rp>

@@ -10,7 +10,7 @@ import { getPrimaryJapaneseRepresentation } from "@jyosuushi/utils";
 
 import { getCounterLink } from "./explore/pathing";
 
-import "./CounterLink.scss";
+import "./CounterTile.scss";
 
 interface ProvidedProps {
   counter: Counter;
@@ -28,11 +28,11 @@ function mapStateToProps(state: State): ReduxProps {
 
 type ComponentProps = ProvidedProps & ReduxProps;
 
-class CounterLink extends React.PureComponent<ComponentProps> {
+class CounterTile extends React.PureComponent<ComponentProps> {
   public render(): React.ReactNode {
     const { counter, localization } = this.props;
     return (
-      <Link className="CounterLink" to={getCounterLink(counter)}>
+      <Link className="CounterTile" to={getCounterLink(counter)}>
         <div className="kanji">{getPrimaryJapaneseRepresentation(counter)}</div>
         <div className="name">{localization.counterName(counter)}</div>
       </Link>
@@ -40,4 +40,4 @@ class CounterLink extends React.PureComponent<ComponentProps> {
   }
 }
 
-export default connect(mapStateToProps)(CounterLink);
+export default connect(mapStateToProps)(CounterTile);

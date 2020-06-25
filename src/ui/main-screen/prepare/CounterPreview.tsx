@@ -5,7 +5,7 @@ import { Counter, StudyPack } from "@jyosuushi/interfaces";
 import Localization from "@jyosuushi/localization";
 import { getDistinctCounters } from "@jyosuushi/utils";
 
-import CounterLink from "@jyosuushi/ui/main-screen/CounterLink";
+import CounterTile from "@jyosuushi/ui/main-screen/CounterTile";
 
 import "./CounterPreview.scss";
 
@@ -40,6 +40,6 @@ export default class CounterPreview extends React.PureComponent<
   }
 
   private renderCounter = (counter: Counter): React.ReactNode => {
-    return <CounterLink key={counter.counterId} counter={counter} />;
+    return <CounterTile key={counter.counterId} counter={counter} />;
   };
 }

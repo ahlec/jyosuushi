@@ -8,7 +8,7 @@ import Localization from "@jyosuushi/localization";
 import { State } from "@jyosuushi/redux";
 import { getLocalization } from "@jyosuushi/redux/selectors";
 
-import CounterLink from "@jyosuushi/ui/main-screen/CounterLink";
+import CounterTile from "@jyosuushi/ui/main-screen/CounterTile";
 
 import "./AllCounters.scss";
 
@@ -37,13 +37,13 @@ class AllCounters extends React.PureComponent<ReduxProps> {
     return (
       <div className="AllCounters">
         <h3>Counters</h3>
-        <div className="list">{allCounters.map(this.renderStudyPack)}</div>
+        <div className="list">{allCounters.map(this.renderCounter)}</div>
       </div>
     );
   }
 
-  private renderStudyPack = (counter: Counter): React.ReactNode => {
-    return <CounterLink key={counter.counterId} counter={counter} />;
+  private renderCounter = (counter: Counter): React.ReactNode => {
+    return <CounterTile key={counter.counterId} counter={counter} />;
   };
 }
 

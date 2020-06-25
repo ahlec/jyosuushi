@@ -3,8 +3,8 @@
 // Modifications will be lost if they are made manually and not through the database.
 
 import * as React from "react";
-import { Link } from "react-router-dom";
 import { MarkdownComponentProps } from "@jyosuushi/interfaces";
+import CounterLink from "@jyosuushi/ui/components/CounterLink";
 
 export class CounterNotes extends React.PureComponent<MarkdownComponentProps> {
   public render(): React.ReactNode {
@@ -109,7 +109,7 @@ export class CounterNotes extends React.PureComponent<MarkdownComponentProps> {
           </ruby>{" "}
           or 口ふり, counting swords with the kanji 口 is typically a
           writing-only style; when speaking, it's better to use{" "}
-          <Link to="/explore/counter/本">本</Link> or 振り.
+          <CounterLink counterId="本">本</CounterLink> or 振り.
           <sup id="fnref-3">
             <a className="footnote-ref" href="#fn-3">
               3

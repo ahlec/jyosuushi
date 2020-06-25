@@ -20,7 +20,7 @@ import PluginWarningsCollector from "./PluginWarningsCollector";
 
 export interface JsxComponent {
   jsx: string;
-  requiresReactRouterLink: boolean;
+  requiresCounterLink: boolean;
 }
 
 export interface FootnoteJsxComponent extends JsxComponent {
@@ -94,7 +94,7 @@ function convertFootnoteToJsxComponent(
   return {
     footnoteId: footnote.refId,
     jsx: footnote.noteJsx.jsx,
-    requiresReactRouterLink: footnote.noteJsx.containsIntrasiteLink,
+    requiresCounterLink: footnote.noteJsx.containsCounterLink,
   };
 }
 
@@ -129,7 +129,7 @@ export function convertMarkdownToJSX(
   return {
     body: {
       jsx: output,
-      requiresReactRouterLink: bodyData.usesReactRouterLink,
+      requiresCounterLink: bodyData.usesCounterLink,
     },
     footnotes: footnotesData.footnotes.map(convertFootnoteToJsxComponent),
     warnings: warningsCollector.warnings,

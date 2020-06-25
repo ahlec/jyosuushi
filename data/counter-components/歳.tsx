@@ -3,8 +3,8 @@
 // Modifications will be lost if they are made manually and not through the database.
 
 import * as React from "react";
-import { Link } from "react-router-dom";
 import { MarkdownComponentProps } from "@jyosuushi/interfaces";
+import CounterLink from "@jyosuushi/ui/components/CounterLink";
 
 export class CounterNotes extends React.PureComponent<MarkdownComponentProps> {
   public render(): React.ReactNode {
@@ -125,11 +125,12 @@ export class CounterNotes extends React.PureComponent<MarkdownComponentProps> {
         <p>
           The only thing that this counter counts is age in years; to measure
           age in months, you would use{" "}
-          <Link to="/explore/counter/ヶ月">ヶ月</Link>. One minor point worth
-          mentioning is that newborn children enter life at ０歳. Additionally,
-          this counter can be used for both humans and animals: animals will
-          have their ages counted with 歳 as well, and there do not appear to be
-          any nuances around which kanji is used for non-humans. However,{" "}
+          <CounterLink counterId="ヶ月">ヶ月</CounterLink>. One minor point
+          worth mentioning is that newborn children enter life at ０歳.
+          Additionally, this counter can be used for both humans and animals:
+          animals will have their ages counted with 歳 as well, and there do not
+          appear to be any nuances around which kanji is used for non-humans.
+          However,{" "}
           <ruby>
             歳<rp>(</rp>
             <rt>さい</rt>
