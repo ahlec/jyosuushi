@@ -20,8 +20,8 @@ export class CounterNotes extends React.PureComponent<MarkdownComponentProps> {
           word is first learned when talking about the orifice on the body. But,
           just as with English, the word is multi-faceted and has many further
           meanings. Like English, this word is also used as a noun to refer to
-          things that <em>look</em> like mouths -- entrances and exits, openings
-          on bottles and cans -- pretty much anything that has an opening (even
+          things that <em>look</em> like mouths — entrances and exits, openings
+          on bottles and cans — pretty much anything that has an opening (even
           the muzzle of guns). It can mean a vacancy like a job opening, or
           refer to flavours, or be used to talk about the amount of food. In the
           same way that English uses "mouths to feed" to refer to people,{" "}
@@ -172,8 +172,8 @@ export class CounterNotes extends React.PureComponent<MarkdownComponentProps> {
               5
             </a>
           </sup>{" "}
-          For holding companies -- companies with monthly investments that will
-          automatically purchase stock --{" "}
+          For holding companies — companies with monthly investments that will
+          automatically purchase stock —{" "}
           <ruby>
             口<rp>(</rp>
             <rt>くち</rt>

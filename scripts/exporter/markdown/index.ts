@@ -8,6 +8,7 @@ import { ROOT_DIRECTORY } from "../utils";
 import embededImages from "./embeded-images";
 import footnotes from "./footnotes";
 import intrasiteLinkMarkdownPlugin from "./intrasite-link-plugin";
+import mdashPlugin from "./mdash-plugin";
 import jsxCompiler, {
   assertJsxCompilerVFileData,
 } from "./remark-compilers/jsx-compiler";
@@ -51,6 +52,7 @@ function processMarkdown<TCompilerOptions, TVFileData>(
     .use(embededImages, {
       rootDirectory: IMAGE_FILES_DIRECTORY,
     })
+    .use(mdashPlugin)
     .use(ruby)
     .use(intrasiteLinkMarkdownPlugin, {
       exportedCounterIds,
