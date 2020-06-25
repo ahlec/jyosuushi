@@ -8,6 +8,7 @@
     "build": "webpack --config webpack.prod.js",
     "db:create": "ts-node ./scripts/create-database.ts",
     "db:audit": "ts-node ./scripts/audit-database.ts",
+    "db:rate-completion": "ts-node ./scripts/database-completion.ts",
     "db:export": "ts-node ./scripts/exporter/export-data.ts",
     "db:dump": "ts-node ./scripts/dump-database.ts",
     "clean": "rimraf ./build",
