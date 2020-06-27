@@ -199,8 +199,8 @@ export class CounterNotes extends React.PureComponent<MarkdownComponentProps> {
             </a>
           </sup>{" "}
           Over time, the meaning of はたち narrowed to only being used to refer
-          to mean "20 years old" from its broader origin. Sociolinguistically
-          there are numerous theories as to how this came to be and why it has
+          to "20 years old" from its broader origin. Sociolinguistically there
+          are numerous theories as to how this came to be and why it has
           persisted; a generalized belief as to why はたち exclusively has
           survived as an irregular reading where the other readings have been
           replaced is 20 years old being seen as the age of maturity. Modern
