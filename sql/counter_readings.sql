@@ -1428,7 +1428,7 @@ INSERT INTO
     kango_uses_ku
   )
 VALUES(
-    '口ふり',
+    '振り',
     'ふり',
     '和語',
     'ふり',

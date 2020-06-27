@@ -508,4 +508,10 @@ VALUES('sword', '本', NULL);
 INSERT INTO
   "item_counters" (item_id, counter_id, relevance)
 VALUES('katana', '本', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('sword', '振り', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('katana', '振り', NULL);
 COMMIT;

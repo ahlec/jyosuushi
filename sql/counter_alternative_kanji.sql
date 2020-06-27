@@ -8,4 +8,7 @@ CREATE TABLE counter_alternative_kanji (
 INSERT INTO
   "counter_alternative_kanji" (counter_id, kanji)
 VALUES('歳', '才');
+INSERT INTO
+  "counter_alternative_kanji" (counter_id, kanji)
+VALUES('振り', '口');
 COMMIT;

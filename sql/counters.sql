@@ -533,5 +533,5 @@ INSERT INTO
     notes,
     primary_kanji
   )
-VALUES('口ふり', 'swords', NULL, NULL, '口');
+VALUES('振り', 'swords', NULL, NULL, '振り');
 COMMIT;
