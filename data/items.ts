@@ -147,10 +147,6 @@ const ITEM_BARN: Item = {
 const ITEM_BASEBALL_GAME: Item = {
   counters: [
     {
-      counterId: "試合",
-      relevance: CounterItemRelevance.Unknown,
-    },
-    {
       counterId: "戦",
       relevance: CounterItemRelevance.Unknown,
     },
@@ -164,10 +160,6 @@ const ITEM_BASEBALL_GAME: Item = {
 
 const ITEM_BASKETBALL_GAME: Item = {
   counters: [
-    {
-      counterId: "ゲーム",
-      relevance: CounterItemRelevance.Unknown,
-    },
     {
       counterId: "戦",
       relevance: CounterItemRelevance.Unknown,
@@ -2377,7 +2369,6 @@ export const ITEMS_LOOKUP: { [itemId: string]: Item } = {
 export const ITEMS_FROM_COUNTER: {
   [counterId: string]: ReadonlyArray<Item>;
 } = {
-  ゲーム: [ITEM_BASKETBALL_GAME],
   ヶ国: [ITEM_COUNTRY, ITEM_NATION],
   ヶ所: [
     ITEM_BATHROOM,
@@ -2498,7 +2489,6 @@ export const ITEMS_FROM_COUNTER: {
   ],
   羽: [ITEM_CHICKEN, ITEM_PENGUIN, ITEM_RABBIT, ITEM_ORIGAMI_CRANE, ITEM_BAT],
   色: [ITEM_TINT, ITEM_HUE, ITEM_COLOUR],
-  試合: [ITEM_BASEBALL_GAME],
   語: [ITEM_WORD, ITEM_PROVERB, ITEM_SAYING, ITEM_KEYWORD, ITEM_IDIOM],
   足: [ITEM_PAIR_OF_SHOES, ITEM_PAIR_OF_SANDALS, ITEM_PAIR_OF_SOCKS],
   軒: [

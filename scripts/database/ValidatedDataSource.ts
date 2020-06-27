@@ -579,18 +579,34 @@ function validateCounterIrregulars(
 
 function validateItemCounters(
   snapshot: DatabaseSnapshot,
-  validItemIds: ReadonlySet<string>
+  validItemIds: ReadonlySet<string>,
+  validCounterIds: ReadonlySet<string>
 ): ValidatedResult<DbItemCounter> {
   const valid: DbItemCounter[] = [];
   const ignored: Array<InvalidResultEntry<DbItemCounter>> = [];
 
   for (const itemCounter of snapshot.item_counters) {
+    const ignoredReasons: Reason[] = [];
+
     if (!validItemIds.has(itemCounter.item_id)) {
+      ignoredReasons.push({
+        showsInAudit: false,
+        text: "Item is not being exported",
+      });
+    }
+
+    if (!validCounterIds.has(itemCounter.counter_id)) {
+      ignoredReasons.push({
+        showsInAudit: false,
+        text: "Counter is not being exported",
+      });
+    }
+
+    if (ignoredReasons.length) {
       ignored.push({
         entry: itemCounter,
-        reasons: [{ showsInAudit: false, text: "Item is not being exported" }],
+        reasons: ignoredReasons,
       });
-
       continue;
     }
 
@@ -686,7 +702,11 @@ export default class ValidatedDataSource implements Indexer {
 
     const items = validateItems(snapshot, validCounterIds);
     const validItemIds = new Set(items.valid.map(({ item_id }) => item_id));
-    const item_counters = validateItemCounters(snapshot, validItemIds);
+    const item_counters = validateItemCounters(
+      snapshot,
+      validItemIds,
+      validCounterIds
+    );
 
     const study_pack_contents = validateSingleCounterDependentDb(
       snapshot.study_pack_contents,
