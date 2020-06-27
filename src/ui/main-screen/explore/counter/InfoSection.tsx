@@ -1,7 +1,14 @@
 import * as React from "react";
 
-import { Counter, ExternalLink } from "@jyosuushi/interfaces";
+import {
+  Counter,
+  ExternalLink,
+  ExternalLinkLanguage,
+} from "@jyosuushi/interfaces";
 import Localization from "@jyosuushi/localization";
+
+import IconFlagJapan from "@jyosuushi/icons/flag-japan.png";
+import IconFlagUsa from "@jyosuushi/icons/flag-usa.png";
 
 import MarkdownPresenter from "./MarkdownPresenter";
 
@@ -46,9 +53,22 @@ export default class InfoSection extends React.PureComponent<ComponentProps> {
   }
 
   private renderLink = (link: ExternalLink): React.ReactNode => {
+    let languageIconSrc: string;
+    switch (link.language) {
+      case ExternalLinkLanguage.Japanese: {
+        languageIconSrc = IconFlagJapan;
+        break;
+      }
+      case ExternalLinkLanguage.English: {
+        languageIconSrc = IconFlagUsa;
+        break;
+      }
+    }
+
     return (
       <li key={link.url}>
         <a href={link.url} target="_blank" rel="noopener noreferrer">
+          <img src={languageIconSrc} className="language-icon" />
           <strong className="site">[{link.siteName}]</strong>
           {link.displayText}
         </a>
