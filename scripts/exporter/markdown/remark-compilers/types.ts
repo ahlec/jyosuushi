@@ -22,4 +22,6 @@ export interface HastToHyperscriptProperties {
 
 export interface IntrasiteLinkProps {
   counterId: string;
+  specificKanji: string | null;
+  specificReading: string | null;
 }

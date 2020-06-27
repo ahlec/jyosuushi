@@ -138,8 +138,8 @@ export class CounterNotes extends React.PureComponent<MarkdownComponentProps> {
           </sup>
         </p>
         <p>
-          So, why are books counted with{" "}
-          <CounterLink counterId="冊">冊</CounterLink> instead of{" "}
+          So, why are books counted with <CounterLink counterId="冊" /> instead
+          of{" "}
           <ruby>
             本<rp>(</rp>
             <rt>ほん</rt>
@@ -160,9 +160,8 @@ export class CounterNotes extends React.PureComponent<MarkdownComponentProps> {
             <rp>)</rp>
           </ruby>
           ; the legacy of this is seen today by the continued counting of all
-          books (regardless of style) using{" "}
-          <CounterLink counterId="冊">冊</CounterLink>. The meaning of "book"
-          was a much later association with{" "}
+          books (regardless of style) using <CounterLink counterId="冊" />. The
+          meaning of "book" was a much later association with{" "}
           <ruby>
             本<rp>(</rp>
             <rt>ほん</rt>
@@ -222,8 +221,7 @@ export class CounterNotes extends React.PureComponent<MarkdownComponentProps> {
           as a counter is the image of something long and skinny. This provides
           a specific image to listeners when it is used. For example, buildings
           can be counted with a number of other counters, such as{" "}
-          <CounterLink counterId="軒">軒</CounterLink>; by choosing to refer to
-          buildings with{" "}
+          <CounterLink counterId="軒" />; by choosing to refer to buildings with{" "}
           <ruby>
             本<rp>(</rp>
             <rt>ほん</rt>

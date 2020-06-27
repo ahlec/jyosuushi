@@ -76,7 +76,7 @@ export class CounterNotes extends React.PureComponent<MarkdownComponentProps> {
           </sup>{" "}
           From an early point, then 口 was the kanji used to count these swords
           (taken from the meaning "opening") but was read as ふり; the counter
-          口ふり is still seen today in places like museum plaques, where it's
+          振り is still seen today in places like museum plaques, where it's
           seen as a polished and refined counter to be used.
           <sup id="fnref-2">
             <a className="footnote-ref" href="#fn-2">
@@ -107,9 +107,9 @@ export class CounterNotes extends React.PureComponent<MarkdownComponentProps> {
             <rt>くち</rt>
             <rp>)</rp>
           </ruby>{" "}
-          or 口ふり, counting swords with the kanji 口 is typically a
-          writing-only style; when speaking, it's better to use{" "}
-          <CounterLink counterId="本">本</CounterLink> or 振り.
+          or 振り, counting swords with the kanji 口 is typically a writing-only
+          style; when speaking, it's better to use{" "}
+          <CounterLink counterId="本" /> or 振り.
           <sup id="fnref-3">
             <a className="footnote-ref" href="#fn-3">
               3

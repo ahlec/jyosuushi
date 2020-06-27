@@ -81,6 +81,18 @@ function writeNodeAsJsx(
 
     if (props.intrasiteLink) {
       openingTagPieces.push(`counterId="${props.intrasiteLink.counterId}"`);
+
+      if (props.intrasiteLink.specificKanji) {
+        openingTagPieces.push(
+          `specificKanji="${props.intrasiteLink.specificKanji}"`
+        );
+      }
+
+      if (props.intrasiteLink.specificReading) {
+        openingTagPieces.push(
+          `specificReading="${props.intrasiteLink.specificReading}"`
+        );
+      }
     }
   }
 

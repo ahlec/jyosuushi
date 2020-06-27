@@ -118,25 +118,35 @@ async function main(): Promise<void> {
     },
   ];
 
-  const output: ExportFileOutput[] = [];
-  while (queue.length) {
-    const file = queue.pop();
-    if (!file) {
-      break;
+  try {
+    const output: ExportFileOutput[] = [];
+    while (queue.length) {
+      const file = queue.pop();
+      if (!file) {
+        break;
+      }
+
+      const result = exportFile(file, dataSource);
+      if (result.output.length) {
+        output.push({
+          outputEntries: result.output,
+          relativeFilepath: file.relativeFilepath,
+        });
+      }
+
+      queue.push(...result.additionalFileRequests);
     }
 
-    const result = exportFile(file, dataSource);
-    if (result.output.length) {
-      output.push({
-        outputEntries: result.output,
-        relativeFilepath: file.relativeFilepath,
-      });
+    output.forEach(printFileOutput);
+  } catch (err) {
+    console.log(
+      `${chalk.red("FATAL ERROR")}.`,
+      err instanceof Error ? err.message : err
+    );
+    if (err instanceof Error && err.stack) {
+      console.log(chalk.gray(err.stack));
     }
-
-    queue.push(...result.additionalFileRequests);
   }
-
-  output.forEach(printFileOutput);
 }
 
 main();
