@@ -541,6 +541,65 @@ function validateCounterDisambiguations(
   };
 }
 
+function validateCounterExternalLinks(
+  snapshot: DatabaseSnapshot,
+  validCounterIds: ReadonlySet<string>
+): ValidatedResult<DbCounterExternalLink> {
+  const valid: DbCounterExternalLink[] = [];
+  const ignored: Array<InvalidResultEntry<DbCounterExternalLink>> = [];
+  const error: Array<InvalidResultEntry<DbCounterExternalLink>> = [];
+
+  const urlsEncounteredPerCounter = new Map<string, Set<string>>();
+
+  for (const entry of snapshot.counter_external_links) {
+    let encounteredUrls = urlsEncounteredPerCounter.get(entry.counter_id);
+    if (!encounteredUrls) {
+      encounteredUrls = new Set<string>();
+      urlsEncounteredPerCounter.set(entry.counter_id, encounteredUrls);
+    }
+
+    if (encounteredUrls.has(entry.url)) {
+      error.push({
+        entry,
+        reasons: [
+          {
+            showsInAudit: true,
+            text:
+              "Two (or more) external links for this counter share this URL (URLs must be unique per counter)",
+          },
+        ],
+      });
+
+      continue;
+    }
+
+    encounteredUrls.add(entry.url);
+
+    if (!validCounterIds.has(entry.counter_id)) {
+      ignored.push({
+        entry,
+        reasons: [
+          {
+            showsInAudit: false,
+            text: "Counter is not being exported.",
+          },
+        ],
+      });
+
+      continue;
+    }
+
+    valid.push(entry);
+  }
+
+  return {
+    error,
+    ignored,
+    valid,
+    warnings: [],
+  };
+}
+
 function validateCounterIrregulars(
   snapshot: DatabaseSnapshot,
   validCounterIds: ReadonlySet<string>
@@ -687,8 +746,8 @@ export default class ValidatedDataSource implements Indexer {
       snapshot,
       validCounterIds
     );
-    const counter_external_links = validateSingleCounterDependentDb(
-      snapshot.counter_external_links,
+    const counter_external_links = validateCounterExternalLinks(
+      snapshot,
       validCounterIds
     );
     const counter_alternative_kanji = validateCounterAlternativeKanji(
