@@ -5,7 +5,7 @@ CREATE TABLE counter_external_links (
   url STRING NOT NULL,
   site_name STRING NOT NULL,
   link_text STRING NOT NULL,
-  additional_description STRING,
+  description STRING NOT NULL,
   language STRING REFERENCES enum_external_link_language (language) NOT NULL
 );
 INSERT INTO
@@ -14,7 +14,7 @@ INSERT INTO
     url,
     site_name,
     link_text,
-    additional_description,
+    description,
     language
   )
 VALUES(
@@ -31,7 +31,7 @@ INSERT INTO
     url,
     site_name,
     link_text,
-    additional_description,
+    description,
     language
   )
 VALUES(
@@ -39,7 +39,7 @@ VALUES(
     'https://www.tofugu.com/japanese/japanese-counter-wa/',
     'Tofugu',
     '羽: Counting Birds, Bats, and Bun-Buns',
-    NULL,
+    'Detailed and well-researched article from the kings of Japanese language learning.',
     'english'
   );
 INSERT INTO
@@ -48,7 +48,7 @@ INSERT INTO
     url,
     site_name,
     link_text,
-    additional_description,
+    description,
     language
   )
 VALUES(
@@ -56,7 +56,7 @@ VALUES(
     'https://www.tofugu.com/japanese/japanese-counter-hiki/',
     'Tofugu',
     '匹: Counting Animals, Bugs, and Wild Children',
-    NULL,
+    'Detailed and well-researched article from the kings of Japanese language learning.',
     'english'
   );
 INSERT INTO
@@ -65,7 +65,7 @@ INSERT INTO
     url,
     site_name,
     link_text,
-    additional_description,
+    description,
     language
   )
 VALUES(
@@ -73,7 +73,7 @@ VALUES(
     'https://www.tofugu.com/japanese/japanese-counter-dai/',
     'Tofugu',
     '台: Counting Machines, Furniture, & Whole Cakes',
-    NULL,
+    'Detailed and well-researched article from the kings of Japanese language learning.',
     'english'
   );
 INSERT INTO
@@ -82,7 +82,7 @@ INSERT INTO
     url,
     site_name,
     link_text,
-    additional_description,
+    description,
     language
   )
 VALUES(
@@ -90,7 +90,7 @@ VALUES(
     'https://www.tofugu.com/japanese/japanese-counter-tou/',
     'Tofugu',
     '頭: Counting Those Big, Professional Animals',
-    NULL,
+    'Detailed and well-researched article from the kings of Japanese language learning.',
     'english'
   );
 INSERT INTO
@@ -99,7 +99,7 @@ INSERT INTO
     url,
     site_name,
     link_text,
-    additional_description,
+    description,
     language
   )
 VALUES(
@@ -107,7 +107,7 @@ VALUES(
     'https://www.tofugu.com/japanese/japanese-counter-mai/',
     'Tofugu',
     '枚: Counting Everything Flat',
-    NULL,
+    'Detailed and well-researched article from the kings of Japanese language learning.',
     'english'
   );
 INSERT INTO
@@ -116,7 +116,7 @@ INSERT INTO
     url,
     site_name,
     link_text,
-    additional_description,
+    description,
     language
   )
 VALUES(
@@ -124,7 +124,7 @@ VALUES(
     'https://www.tofugu.com/japanese/japanese-counter-kai-floors/',
     'Tofugu',
     '階: Floors of a Building',
-    NULL,
+    'Detailed and well-researched article from the kings of Japanese language learning.',
     'english'
   );
 INSERT INTO
@@ -133,7 +133,7 @@ INSERT INTO
     url,
     site_name,
     link_text,
-    additional_description,
+    description,
     language
   )
 VALUES(
@@ -141,7 +141,7 @@ VALUES(
     'https://www.tofugu.com/japanese/japanese-counter-tsuki-gatsu-getsu/',
     'Tofugu',
     '月: Counting Months',
-    NULL,
+    'Detailed and well-researched article from the kings of Japanese language learning.',
     'english'
   );
 INSERT INTO
@@ -150,7 +150,7 @@ INSERT INTO
     url,
     site_name,
     link_text,
-    additional_description,
+    description,
     language
   )
 VALUES(
@@ -158,7 +158,7 @@ VALUES(
     'https://www.tofugu.com/japanese/japanese-counter-ka-nichi/',
     'Tofugu',
     '日: Counting Days',
-    NULL,
+    'Detailed and well-researched article from the kings of Japanese language learning.',
     'english'
   );
 INSERT INTO
@@ -167,7 +167,7 @@ INSERT INTO
     url,
     site_name,
     link_text,
-    additional_description,
+    description,
     language
   )
 VALUES(
@@ -175,7 +175,7 @@ VALUES(
     'https://www.tofugu.com/japanese/japanese-counter-nin/',
     'Tofugu',
     '人: Counting People and Smart Animals',
-    NULL,
+    'Detailed and well-researched article from the kings of Japanese language learning.',
     'english'
   );
 INSERT INTO
@@ -184,7 +184,7 @@ INSERT INTO
     url,
     site_name,
     link_text,
-    additional_description,
+    description,
     language
   )
 VALUES(
@@ -201,7 +201,7 @@ INSERT INTO
     url,
     site_name,
     link_text,
-    additional_description,
+    description,
     language
   )
 VALUES(
@@ -209,7 +209,7 @@ VALUES(
     'https://www.tofugu.com/japanese/japanese-counter-satsu/',
     'Tofugu',
     '冊: Counting Books',
-    NULL,
+    'Detailed and well-researched article from the kings of Japanese language learning.',
     'english'
   );
 INSERT INTO
@@ -218,7 +218,7 @@ INSERT INTO
     url,
     site_name,
     link_text,
-    additional_description,
+    description,
     language
   )
 VALUES(
@@ -226,7 +226,7 @@ VALUES(
     'https://www.tofugu.com/japanese/japanese-counter-kai-times/',
     'Tofugu',
     '回: Repetitive Actions, Regular Events',
-    NULL,
+    'Detailed and well-researched article from the kings of Japanese language learning.',
     'english'
   );
 INSERT INTO
@@ -235,7 +235,7 @@ INSERT INTO
     url,
     site_name,
     link_text,
-    additional_description,
+    description,
     language
   )
 VALUES(
@@ -243,7 +243,7 @@ VALUES(
     'https://www.tofugu.com/japanese/japanese-counter-ji-jikan/',
     'Tofugu',
     '時/時間: Counting Time and Hours',
-    NULL,
+    'Detailed and well-researched article from the kings of Japanese language learning.',
     'english'
   );
 INSERT INTO
@@ -252,7 +252,7 @@ INSERT INTO
     url,
     site_name,
     link_text,
-    additional_description,
+    description,
     language
   )
 VALUES(
@@ -260,7 +260,7 @@ VALUES(
     'https://www.tofugu.com/japanese/japanese-counters-nen/',
     'Tofugu',
     '年: Counting Years and Planetary Orbits',
-    NULL,
+    'Detailed and well-researched article from the kings of Japanese language learning.',
     'english'
   );
 INSERT INTO
@@ -269,7 +269,7 @@ INSERT INTO
     url,
     site_name,
     link_text,
-    additional_description,
+    description,
     language
   )
 VALUES(
@@ -277,7 +277,7 @@ VALUES(
     'https://www.tofugu.com/japanese/japanese-counter-fun/',
     'Tofugu',
     '分: Counting Minutes and Edo Period Silver Currency',
-    NULL,
+    'Detailed and well-researched article from the kings of Japanese language learning.',
     'english'
   );
 INSERT INTO
@@ -286,7 +286,7 @@ INSERT INTO
     url,
     site_name,
     link_text,
-    additional_description,
+    description,
     language
   )
 VALUES(
@@ -303,7 +303,7 @@ INSERT INTO
     url,
     site_name,
     link_text,
-    additional_description,
+    description,
     language
   )
 VALUES(
@@ -320,7 +320,7 @@ INSERT INTO
     url,
     site_name,
     link_text,
-    additional_description,
+    description,
     language
   )
 VALUES(
@@ -337,7 +337,7 @@ INSERT INTO
     url,
     site_name,
     link_text,
-    additional_description,
+    description,
     language
   )
 VALUES(
@@ -354,7 +354,7 @@ INSERT INTO
     url,
     site_name,
     link_text,
-    additional_description,
+    description,
     language
   )
 VALUES(
@@ -371,7 +371,7 @@ INSERT INTO
     url,
     site_name,
     link_text,
-    additional_description,
+    description,
     language
   )
 VALUES(

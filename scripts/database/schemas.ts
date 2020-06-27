@@ -33,7 +33,7 @@ export interface DbCounterExternalLink {
   url: string;
   site_name: string;
   link_text: string;
-  additional_description: string | null;
+  description: string;
   language: DbExternalLinkLanguage;
 }
 

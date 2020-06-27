@@ -82,9 +82,7 @@ function convertToProductionExternalLink(
   }
 
   return {
-    additionalDescription: db.additional_description
-      ? db.additional_description
-      : null,
+    description: db.description,
     displayText: db.link_text,
     language: new ProductionVariable(
       `ExternalLinkLanguage.${externalLinkLanguageEnumField}`
