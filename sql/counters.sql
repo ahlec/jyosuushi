@@ -365,7 +365,29 @@ INSERT INTO
     notes,
     primary_kanji
   )
-VALUES('切れ', 'cuts of meat', NULL, NULL, '切れ');
+VALUES(
+    '切れ',
+    'slices',
+    'A counter used for counting slices of something, usually food.',
+    '{切れ}^(きれ) derives from the verb {切る}^(きる) (to cut), and as a noun might most simplistically be translated as "cut." {切れ}^(きれ) as a noun sees many of the same usages as its English counterpart. The most common usage is to refer to anything that is cut off of a larger piece -- meats, wood, cloth. In fact, another usage of {切れ}^(きれ) as a noun is *as* "cloth" or "fabric." It can also be used to refer to sharpness -- both in the literal sense (the sharpness of a blade) and in the metaphorical (the sharpness of someone''s wit). {切れ}^(きれ) also refers to the act of draining/making something go away (eg, water, laundry detergent). Finally, as a noun {切れ}^(きれ) is a unit of measurement for concrete or stone used for building/crafting, equivalent to roughly 0.028m^3^/1ft^3^. Used as a counter, {切れ}^(きれ) retains its primary meaning as a noun, being used to count things that have been cut from a larger whole. As with many other counters, it was also used in Edo period Japan (1603-1868) to count gold coins.
+
+When used as a counter, {切れ}^(きれ) will primarily be counting cuts/slices of some larger whole, and most commonly (though not exclusively) foods at that. A slice of bread ({一切れ}^(ひときれ)のパン); two slices of cheese ({二切れ}^(ふたきれ)のチーズ); three slices of cake; four slices of beef -- this counter is very common to see used to count individual pieces of food. How much food that is varies dramatically, from a single slice of sashimi to a slice of watermelon and beyond.
+
+As a counter read with {訓読み}^(くんよみ) readings, {切れ}^(きれ) also uses {和語}^(わご) readings for 1-3: {一切れ}^(ひときれ), {二切れ}^(ふたきれ), and {三切れ}^(みきれ).[^hinative-readings] Recently, the {漢語}^(かんご) reading of {三切れ}^(さんきれ) has started to take off. After three, it will exclusively use {漢語}^(かんご) readings for the numbers, though with numerous (but predictable) sound changes. As an interesting aside, the many of these early readings produce violent homophones: {一切れ}^(ひときれ) could be read the same as {人}^(ひと){切れ}^(きれ) ("cutting a person") or sounding like {人}^(ひと)を{斬れ}^(きれ) ("kill him!"); {三切れ}^(みきれ) could be read the same as {身}^(み){切れ}^(きれ) ("slicing the body"), evoking thoughts of {切腹}^(せっぷく) (ritual suicide for samurai); and though 4 is read as {四切れ}^(よきれ), superstition surrounding 4={四}^(し)={死}^(し) (death) invokes thoughts of {死}^(し){切れ}^(きれ) ("hacked to death").[^omen-breakdown] Because of these ominous readings, the superstition goes that it''s safest to always use two pieces of {お漬物}^(おつけもの) (pickled vegetable) on dishes.[^chiebukuro-otsukemono] While this superstition is still going strong today, it''s seen as only typically applying to {お漬物}^(おつけもの), and other toppings are exempt from this.[^omen-exemption]
+
+[^hinative-readings]: [「～切れ」を数えるときは、下のように発音して大丈夫ですか。](https://hinative.com/ja/questions/6692862) 
+＊「みきれ」が本来的な言い方だが、最近は「さんきれ」と言う人もいる。  
+＊「よきれ」。ただし、「よんきれ」もかなり多い。  
+＊「ろっきれ」です。  
+＊「ななきれ」が普通。  
+＊「はっきれ」「はちきれ」どちらも言う。  
+＊「きゅうきれ」です。  
+＊「じっきれ」が本来の言い方だか、今は「じゅっきれ」が多数派。
+[^omen-breakdown]: [沢庵は二切れが良い](https://ameblo.jp/hosodakouhei122/entry-11361071083.html): 私が子供の頃、両親に、「お漬物などの切り物は、一切れは、人切れ 三切れは、身切れ 四切れは、死着れで、縁起が悪い。」と教わりました。
+[^chiebukuro-otsukemono]: [物の数え方について「切れ」は？](https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q1091354630) ちなみに、定食屋などで、丼物にお漬物がつきますが、それはいつも「２切れ」です。
+[^omen-exemption]: [お漬物など、切り物の枚数で。](https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q1139904296) 漬物だけの話であって、かまぼこなどまでは気にしなくていいということではないでしょうか。',
+    '切れ'
+  );
 INSERT INTO
   "counters" (
     counter_id,

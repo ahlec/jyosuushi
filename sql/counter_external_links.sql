@@ -382,4 +382,21 @@ VALUES(
     'Japanese dictionary entries, compiled from multiple sources.',
     'japanese'
   );
+INSERT INTO
+  "counter_external_links" (
+    counter_id,
+    url,
+    site_name,
+    link_text,
+    description,
+    language
+  )
+VALUES(
+    '切れ',
+    'https://kotobank.jp/word/%E5%88%87%E3%82%8C-480539',
+    'コトバンク',
+    '切れ（読み：きれ）',
+    'Japanese dictionary entries, compiled from multiple sources.',
+    'japanese'
+  );
 COMMIT;

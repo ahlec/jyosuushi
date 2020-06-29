@@ -69,4 +69,13 @@ The media will usually used {本}^(ほん) to count swords.[^usage]
 [^chiebukuro-swords]: [刀の数え方を教えて下さい。](https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q11100671126): 口語なら振り、本。書き言葉なら腰、口。
 [^usage]: [日本刀の数え方](https://oshiete.goo.ne.jp/qa/815510.html#an2540582): マスメディアでは基本的に「本」と言っているようですね。'
   );
+INSERT INTO
+  "counter_disambiguations" (counter1_id, counter2_id, distinction)
+VALUES(
+    '切れ',
+    '口',
+    'Since we often cut things into smaller, bite-size pieces, the distinction between {切れ}^(きれ) and {口}^(くち) can often feel blurry. {切れ}^(きれ) is used to count slices of something, whereas {口}^(くち) is used to count single bites of food. A good example is watermelon. A single slice of watermelon is counted as {一切れ}^(ひときれ), though it will certainly be more than one bite to eat.[^suika]
+
+[^suika]: [カットしたスイカの数え方・単位は？](https://www.seikatu-cb.com/kazoe/suika.html#a04): 食べやすいようにカットしたスイカを数えるときは一切れ、二切れと数えます。'
+  );
 COMMIT;

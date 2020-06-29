@@ -337,6 +337,57 @@ export class Disambiguation本 extends React.PureComponent<
   }
 }
 
+export class Disambiguation切れ extends React.PureComponent<
+  MarkdownComponentProps
+> {
+  public render(): React.ReactNode {
+    return (
+      <React.Fragment>
+        <p>
+          Since we often cut things into smaller, bite-size pieces, the
+          distinction between{" "}
+          <ruby>
+            切れ<rp>(</rp>
+            <rt>きれ</rt>
+            <rp>)</rp>
+          </ruby>{" "}
+          and{" "}
+          <ruby>
+            口<rp>(</rp>
+            <rt>くち</rt>
+            <rp>)</rp>
+          </ruby>{" "}
+          can often feel blurry.{" "}
+          <ruby>
+            切れ<rp>(</rp>
+            <rt>きれ</rt>
+            <rp>)</rp>
+          </ruby>{" "}
+          is used to count slices of something, whereas{" "}
+          <ruby>
+            口<rp>(</rp>
+            <rt>くち</rt>
+            <rp>)</rp>
+          </ruby>{" "}
+          is used to count single bites of food. A good example is watermelon. A
+          single slice of watermelon is counted as{" "}
+          <ruby>
+            一切れ<rp>(</rp>
+            <rt>ひときれ</rt>
+            <rp>)</rp>
+          </ruby>
+          , though it will certainly be more than one bite to eat.
+          <sup id="fnref-12">
+            <a className="footnote-ref" href="#fn-12">
+              12
+            </a>
+          </sup>
+        </p>
+      </React.Fragment>
+    );
+  }
+}
+
 export class Footnote1 extends React.PureComponent<MarkdownComponentProps> {
   public render(): React.ReactNode {
     return (
@@ -557,6 +608,27 @@ export class Footnote11 extends React.PureComponent<MarkdownComponentProps> {
         </a>
         : マスメディアでは基本的に「本」と言っているようですね。
         <a className="footnote-backref" href="#fnref-11">
+          ↩
+        </a>
+      </li>
+    );
+  }
+}
+
+export class Footnote12 extends React.PureComponent<MarkdownComponentProps> {
+  public render(): React.ReactNode {
+    return (
+      <li id="fn-12">
+        <a
+          href="https://www.seikatu-cb.com/kazoe/suika.html#a04"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          カットしたスイカの数え方・単位は？
+        </a>
+        :
+        食べやすいようにカットしたスイカを数えるときは一切れ、二切れと数えます。
+        <a className="footnote-backref" href="#fnref-12">
           ↩
         </a>
       </li>

@@ -11,6 +11,7 @@ import {
 } from "../src/interfaces";
 
 import * as 人Components from "@data/counter-components/人";
+import * as 切れComponents from "@data/counter-components/切れ";
 import * as 匹Components from "@data/counter-components/匹";
 import * as 口Components from "@data/counter-components/口";
 import * as 名Components from "@data/counter-components/名";
@@ -352,17 +353,37 @@ export const COUNTER_分: Counter = {
 
 export const COUNTER_切れ: Counter = {
   counterId: "切れ",
-  disambiguations: [],
-  englishName: "cuts of meat",
-  externalLinks: [],
-  footnotes: [],
+  disambiguations: [
+    {
+      distinction: 切れComponents.Disambiguation口,
+      otherCounterId: "口",
+    },
+  ],
+  englishName: "slices",
+  externalLinks: [
+    {
+      description:
+        "Japanese dictionary entries, compiled from multiple sources.",
+      displayText: "切れ（読み：きれ）",
+      language: ExternalLinkLanguage.Japanese,
+      siteName: "コトバンク",
+      url: "https://kotobank.jp/word/%E5%88%87%E3%82%8C-480539",
+    },
+  ],
+  footnotes: [
+    切れComponents.Footnote1,
+    切れComponents.Footnote2,
+    切れComponents.Footnote3,
+    切れComponents.Footnote4,
+    切れComponents.Footnote5,
+  ],
   irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "切れ",
   },
-  leadIn: null,
-  notes: null,
+  leadIn: "A counter used for counting slices of something, usually food.",
+  notes: 切れComponents.CounterNotes,
   readings: [
     {
       counterId: "切れ",
@@ -373,11 +394,17 @@ export const COUNTER_切れ: Counter = {
         allowsNanaFor7: true,
         allowsShiFor4: false,
         allowsShichiFor7: false,
-        allowsYoFor4: false,
+        allowsYoFor4: true,
         allowsYonFor4: true,
       },
       readingId: "きれ",
-      wagoStyle: null,
+      wagoStyle: {
+        alsoUsesKangoIchi: false,
+        alsoUsesKangoNi: false,
+        alsoUsesKangoSan: true,
+        kana: "きれ",
+        rangeEndInclusive: 3,
+      },
       wordOrigin: WordOrigin.Japanese,
     },
   ],
@@ -437,6 +464,10 @@ export const COUNTER_口: Counter = {
       distinction: 口Components.Disambiguation本,
       otherCounterId: "本",
     },
+    {
+      distinction: 口Components.Disambiguation切れ,
+      otherCounterId: "切れ",
+    },
   ],
   englishName: "bites",
   externalLinks: [
@@ -461,6 +492,7 @@ export const COUNTER_口: Counter = {
     口Components.Footnote9,
     口Components.Footnote10,
     口Components.Footnote11,
+    口Components.Footnote12,
   ],
   irregulars: {},
   kanji: {
