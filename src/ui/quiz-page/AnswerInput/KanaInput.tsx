@@ -53,7 +53,11 @@ export default class KanaInput extends React.PureComponent<ComponentProps> {
     if (enabled !== wasEnabled) {
       const { current: input } = this.inputRef;
       if (input) {
-        input.focus();
+        if (enabled) {
+          input.focus();
+        } else {
+          input.blur();
+        }
       }
     }
   }
