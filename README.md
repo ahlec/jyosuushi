@@ -1,6 +1,7 @@
 # 助数詞を練習: Let's Review Japanese Counters!
 
 [![CircleCI](https://circleci.com/gh/ahlec/jyosuushi.svg?style=svg)](https://circleci.com/gh/ahlec/jyosuushi)
+[![Twitter Follow](https://img.shields.io/twitter/follow/Jyosuushi.svg?style=social)](https://twitter.com/Jyosuushi)
 
 A browser-based webapp to facilitate studying [Japanese counters](https://en.wikipedia.org/wiki/Japanese_counter_word). A lightweight app inspired by the simplicity of [WaniKani](https://www.wanikani.com/), this application allows the user to select packs of counters they would like to study, and then presents a quiz with random amounts of random items, requiring the user to correctly count the specified item in Japanese.
 
