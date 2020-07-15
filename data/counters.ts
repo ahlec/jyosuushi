@@ -11,10 +11,12 @@ import {
 } from "../src/interfaces";
 
 import * as 人Components from "@data/counter-components/人";
+import * as 冊Components from "@data/counter-components/冊";
 import * as 切れComponents from "@data/counter-components/切れ";
 import * as 匹Components from "@data/counter-components/匹";
 import * as 口Components from "@data/counter-components/口";
 import * as 名Components from "@data/counter-components/名";
+import * as 巻Components from "@data/counter-components/巻";
 import * as 年Components from "@data/counter-components/年";
 import * as 戦Components from "@data/counter-components/戦";
 import * as 本Components from "@data/counter-components/本";
@@ -269,7 +271,12 @@ export const COUNTER_円: Counter = {
 
 export const COUNTER_冊: Counter = {
   counterId: "冊",
-  disambiguations: [],
+  disambiguations: [
+    {
+      distinction: 冊Components.Disambiguation巻,
+      otherCounterId: "巻",
+    },
+  ],
   englishName: "books",
   externalLinks: [
     {
@@ -280,15 +287,29 @@ export const COUNTER_冊: Counter = {
       siteName: "Tofugu",
       url: "https://www.tofugu.com/japanese/japanese-counter-satsu/",
     },
+    {
+      description:
+        "Japanese dictionary entries, compiled from multiple sources.",
+      displayText: "冊（読み：サク）",
+      language: ExternalLinkLanguage.Japanese,
+      siteName: "コトバンク",
+      url: "https://kotobank.jp/word/%E5%86%8A-509491",
+    },
   ],
-  footnotes: [],
+  footnotes: [
+    冊Components.Footnote1,
+    冊Components.Footnote2,
+    冊Components.Footnote3,
+    冊Components.Footnote4,
+    冊Components.Footnote5,
+  ],
   irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "冊",
   },
-  leadIn: null,
-  notes: null,
+  leadIn: "The primary common-use counter for books.",
+  notes: 冊Components.CounterNotes,
   readings: [
     {
       counterId: "冊",
@@ -694,10 +715,15 @@ export const COUNTER_回: Counter = {
 
 export const COUNTER_巻: Counter = {
   counterId: "巻",
-  disambiguations: [],
+  disambiguations: [
+    {
+      distinction: 巻Components.Disambiguation冊,
+      otherCounterId: "冊",
+    },
+  ],
   englishName: "volumes",
   externalLinks: [],
-  footnotes: [],
+  footnotes: [巻Components.Footnote1, 巻Components.Footnote2],
   irregulars: {},
   kanji: {
     additionalKanji: [],

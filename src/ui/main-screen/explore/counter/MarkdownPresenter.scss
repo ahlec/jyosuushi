@@ -1,6 +1,16 @@
+@import "../../../../palette.scss";
+
 .MarkdownPresenter {
   p {
     line-height: 2;
+
+    > img:only-child {
+      max-height: unset;
+      max-width: 80%;
+      margin: auto;
+      display: block;
+      border: 1px solid $black-base;
+    }
   }
 
   rt {
@@ -29,11 +39,8 @@
   }
 
   img {
-    // Currently the only use case we have is to display Japanese
-    // characters that don't have unicode representations, so the image
-    // size should be the same height as the text. If our use case ever
-    // changes, introduce a backwards compatible implementation.
-    // Test case: counter notes for 歳
+    // If the image element isn't the only child of a block element, then we need
+    // to size the image so that it's inline with the rest of the text.
     max-height: 16px;
   }
 

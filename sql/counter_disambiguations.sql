@@ -78,4 +78,28 @@ VALUES(
 
 [^suika]: [カットしたスイカの数え方・単位は？](https://www.seikatu-cb.com/kazoe/suika.html#a04): 食べやすいようにカットしたスイカを数えるときは一切れ、二切れと数えます。'
   );
+INSERT INTO
+  "counter_disambiguations" (counter1_id, counter2_id, distinction)
+VALUES(
+    '冊',
+    '巻',
+    'Both {冊}^(さつ) and {巻}^(かん) can be used to count books, though their usages differ. Today, {巻}^(かん) would be used primarily to count individual books within a continuation -- be that a single story/collection split across multiple volumes, or a series (such as manga).[^kann-continuation] This can be seen with phrases like 「 {全７巻}^(ぜんななかん
+)の{事典}^(じてん)」(lit. seven-volume encyclopedia) or, used ordinally, {第一巻}^(だいいっかん) (the first volume in a series). {巻}^(かん) would therefore be limited to when you are counting things from the same continuation, but wouldn''t be used to count things from separate collections.
+
+{冊}^(さつ) meanwhile is more around counting the book itself. It can be used to count books from the same collection or from multiple separate collections. Like {巻}^(かん), it _can_ be used in phrases like 「 {全７冊}^(ぜんななさつ)の{事典}^(じてん)」, but it _cannot_ be used with ordinal numbers to refer to a particular issue in a series.[^interchangeable]
+
+[^kann-continuation]: [巻と冊の違い](http://www.st38.net/sukkiri-chigai/z0186.html): 巻は数冊でひとまとまりになる書物のひとつずつを表すときにも使われる。例えば、「これは全１２巻の小説だ」などという時である。
+[^interchangeable]: [巻と冊の違い](http://www.st38.net/sukkiri-chigai/z0186.html): 例えば、「これは全１２巻の小説だ」などという時である。この場合、「全１２冊」と冊を使って言うこともできる。しかし、「この本は人気シリーズ漫画の第５巻だ」のようにシリーズの何番目にあたる書籍なのか、という序数で示すときには巻を使うが、冊に置き換えて使うことはできない。'
+  );
+INSERT INTO
+  "counter_disambiguations" (counter1_id, counter2_id, distinction)
+VALUES(
+    '冊',
+    '部',
+    '{冊}^(さつ) and {部}^(ぶ) can both be used to count books, but the context of when you''d use one over the other differentiates them. {冊}^(さつ) would typically be used to count the books themselves, their physical form[^satsu-physical-form] -- the thing that a person buys and reads.[^thing-people-read] This would be used to count the books on your shelves or your tables. {部}^(ぶ), meanwhile, is used more to refer to the production of the books. {部}^(ぶ) is used to count the number of copies of a book that have been published by the publisher or the number of copies printed at a print shop.[^bu-usage] While this latter counter is more of an industry term, this will nevertheless be seen publicly when talking about the success a book has seen.
+
+[^satsu-physical-form]: [# 本を数える単位は「冊」？「部」？](https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q1430706134): 本を物体として数えるなら「冊」で、本を発行物として数えるなら「部」です。
+[^thing-people-read]: [冊と部の違い](http://naniga-chigauno.st042.net/z230.html): 冊とは、本の数を数える時の助数詞で、主に個人が買ったり読んだりする本の数を示す時に使う。
+[^bu-usage]: [冊と部の違い](http://naniga-chigauno.st042.net/z230.html): 一方部とは、こちらも書籍、本の数を数える時の助数詞であるが、冊とは違って、主に出版社が発行した本の数や、印刷所が印刷した本の数等を表す時に使う。'
+  );
 COMMIT;

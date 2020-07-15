@@ -152,7 +152,23 @@ INSERT INTO
     notes,
     primary_kanji
   )
-VALUES('冊', 'books', NULL, NULL, '冊');
+VALUES(
+    '冊',
+    'books',
+    'The primary common-use counter for books.',
+    '{冊}^(さつ) exists solely in the dictionary as a counter, dedicated specifically to counting books, magazines, journals, and the like. In its most literal definition, this counter is used for any object that is a bound collection of papers. However, don''t let that technicality over complicate things much -- this is the counter for books.
+
+The first question on everybody''s mind when encountering this counter will be the same: why are books ({本}^(ほん)) not counted with <counter:本>? Prior to the invention of paper, there was not a large corpus of writing in the Japanese language.[^why-no-chikukan] In China, however, pre-paper writing was done on {竹簡}^(ちくかん) -- small, thin, flat bamboo rods just a few centimeters thick and bound together by string.
+
+![竹簡, pre-paper ancient Chinese books](./chikukan-冊1.jpg)
+
+It is from the appearance of the {竹簡}^(ちくかん) that the character 冊 was made.[^satsu-kanji-origin] Following the invention of paper, bookmaking in Japan followed two pathways: scrolls ({巻子本}^(かんすぼん)) and books ({冊子}^(そうし)). The link between {本}^(ほん) and "book" is an association that came later on. 本 as a character carries a meaning of "origin," and when books were copied by hand, the source materials were referred to as {本}^(もと) (lit. origin).[^hon-association] Over time, the link became widespread and entered the Japanese language with a new meaning.
+
+[^why-no-chikukan]: 冨谷 至著『木簡・竹簡の語る中国古代』「竹簡は、中国で紙の発明される以前につかわれた書写材料であり、日本に文字が大量に伝わった時代には、すでに中国には紙があった」([citation](https://blog.goo.ne.jp/ishiseiji/e/0545ff49e2019de318f355db2c329976))
+[^satsu-kanji-origin]: [世界史の窓](https://www.y-history.net/appendix/wh0203-072_1.html): 木簡・竹簡は木または竹を薄く短冊状にしてひもでつなげ、文字を書いた。それをつなげた形から作られた象形文字が「冊」である。
+[^hon-association]: [出版 TIMES](https://kagiroi.com/publishing-times/7464/): 印刷技術が発達する以前、経典など貴重な書籍・書物は、すべて手で「書写」され、複製していました。その「書写」のときに、「お手本」になるものを「もと（本）」と呼び、その流れで「本」＝「書籍、書物」という概念が一般化したようです。',
+    '冊'
+  );
 INSERT INTO
   "counters" (
     counter_id,
@@ -556,4 +572,13 @@ INSERT INTO
     primary_kanji
   )
 VALUES('振り', 'swords', NULL, NULL, '振り');
+INSERT INTO
+  "counters" (
+    counter_id,
+    english_name,
+    lead_in,
+    notes,
+    primary_kanji
+  )
+VALUES('部', 'parts, copies', NULL, NULL, '部');
 COMMIT;
