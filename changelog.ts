@@ -52,6 +52,20 @@ export function isFirstVersion(
 
 const CHANGELOG: readonly ChangelogVersion[] = [
   {
+    version: "v2.5.3",
+    date: "15 July 2020",
+    newFeatures: [],
+    improvements: [],
+    bugFixes: [
+      {
+        browser: "firefox",
+        text:
+          "Fixed a bug that prevented using the enter key to progress to the next question during quizzes.",
+      },
+    ],
+    developerChanges: [],
+  },
+  {
     version: "v2.5.2",
     date: "26 May 2020",
     newFeatures: [],
