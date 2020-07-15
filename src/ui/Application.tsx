@@ -14,6 +14,7 @@ import { getIsQuizActive } from "@jyosuushi/redux/selectors";
 
 import Header from "./Header";
 import MainScreen from "./main-screen/MainScreen";
+import NavigationManager from "./NavigationManager";
 import QuizPage from "./quiz-page";
 
 import "./Application.scss";
@@ -46,6 +47,7 @@ class Application extends React.PureComponent<ComponentProps, ComponentState> {
 
     return (
       <div className={classnames("Application", isQuizActive && "quiz-active")}>
+        <NavigationManager />
         <Header
           isQuizActive={isQuizActive}
           onModalOpened={this.onHeaderModalOpened}
