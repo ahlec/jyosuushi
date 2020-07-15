@@ -1,3 +1,9 @@
+### v2.5.3
+
+Bug Fixes:
+
+- [Firefox] Fixed a bug that prevented using the enter key to progress to the next question during quizzes.
+
 ### v2.5.2
 
 Bug Fixes:
