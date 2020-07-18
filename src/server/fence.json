@@ -1,0 +1,6 @@
+{
+  "tags": ["server"],
+  "exports": [],
+  "imports": [],
+  "dependencies": ["apollo-server", "graphql"]
+}

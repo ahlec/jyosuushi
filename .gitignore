@@ -18,3 +18,6 @@ build/
 
 # Configuration files
 config.json
+
+# Codegen files
+*.generated.ts

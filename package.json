@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.js",
+    "start:server": "nodemon ./src/server/main.ts",
     "build": "webpack --config webpack.prod.js",
     "db:create": "ts-node ./scripts/create-database.ts",
     "db:audit": "ts-node ./scripts/audit-database.ts",
@@ -14,7 +15,8 @@
     "clean": "rimraf ./build",
     "lint": "eslint \"./{changelog,src,scripts}/**/*.{js,jsx,ts,tsx}\"",
     "check-project-boundaries": "gf",
-    "favicon": "rimraf ./favicons && real-favicon generate faviconDescription.json faviconData.json favicons"
+    "favicon": "rimraf ./favicons && real-favicon generate faviconDescription.json faviconData.json favicons",
+    "gql:codegen": "graphql-codegen"
   },
   "devDependencies": {
     "@svgr/webpack": "^5.4.0",
@@ -74,10 +76,16 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
+    "@graphql-codegen/cli": "^1.17.0",
+    "@graphql-codegen/typescript": "^1.17.0",
+    "@graphql-codegen/typescript-resolvers": "^1.17.0",
+    "apollo-server": "^2.16.0",
     "classnames": "^2.2.6",
+    "graphql": "^15.3.0",
     "lodash": "^4.17.15",
     "memoize-one": "^5.1.1",
     "meyer-reset-scss": "^2.0.4",
+    "nodemon": "^2.0.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-ga": "^3.0.0",
@@ -90,7 +98,8 @@
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "redux-persist": "^6.0.0",
-    "shallow-equals": "^1.0.0"
+    "shallow-equals": "^1.0.0",
+    "tsconfig-paths": "^3.9.0"
   },
   "browserslist": [
     "last 4 versions",
@@ -100,5 +109,8 @@
     "type": "git",
     "url": "https://github.com/ahlec/jyosuushi.git"
   },
-  "prettier": {}
+  "prettier": {},
+  "nodemonConfig": {
+    "exec": "ts-node -r tsconfig-paths/register"
+  }
 }
