@@ -8,7 +8,7 @@ import {
   CountingSystem,
   ExternalLinkLanguage,
   WordOrigin,
-} from "../src/interfaces";
+} from "@jyosuushi/interfaces";
 
 import * as 人Components from "@data/counter-components/人";
 import * as 冊Components from "@data/counter-components/冊";

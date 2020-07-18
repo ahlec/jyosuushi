@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@jyosuushi/*": ["src/*"],
+      "@jyosuushi/*": ["src/client/*"],
       "@data/*": ["data/*"],
       "@changelog": ["changelog.ts"]
     },
@@ -19,6 +19,6 @@
     "target": "ES2017",
     "typeRoots": ["node_modules/@types", "./types"]
   },
-  "include": ["data/**/*", "src/**/*", "scripts/**/*"],
+  "include": ["data/**/*", "src/client/**/*", "scripts/**/*"],
   "exclude": ["**/@types.ts"]
 }

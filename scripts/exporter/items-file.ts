@@ -4,7 +4,7 @@ import { Writable } from "stream";
 import { DbItemCounter } from "../database/schemas";
 import ValidatedDataSource from "../database/ValidatedDataSource";
 
-import { Item, ItemCounter } from "../../src/interfaces";
+import { Item, ItemCounter } from "../../src/client/interfaces";
 
 import { WriteFileResults } from "./types";
 import { getItemId, productionStringify, ProductionVariable } from "./utils";
@@ -54,7 +54,7 @@ export default function writeItemsFile(
   dataSource: ValidatedDataSource
 ): WriteFileResults {
   stream.write(
-    'import { CounterItemRelevance, Item } from "../src/interfaces";'
+    'import { CounterItemRelevance, Item } from "@jyosuushi/interfaces";'
   );
 
   const countersLookup: { [itemId: string]: DbItemCounter[] } = {};

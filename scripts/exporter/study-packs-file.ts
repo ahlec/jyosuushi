@@ -4,7 +4,7 @@ import { Writable } from "stream";
 import { DbStudyPackContent } from "../database/schemas";
 import ValidatedDataSource from "../database/ValidatedDataSource";
 
-import { StudyPack } from "../../src/interfaces";
+import { StudyPack } from "../../src/client/interfaces";
 
 import { WriteFileResults } from "./types";
 import {
@@ -26,7 +26,7 @@ export default function writeStudyPacksFile(
   stream: Writable,
   dataSource: ValidatedDataSource
 ): WriteFileResults {
-  stream.write('import { StudyPack } from "../src/interfaces";\n');
+  stream.write('import { StudyPack } from "@jyosuushi/interfaces";\n');
   stream.write('import * as COUNTERS from "./counters";');
 
   const countersLookup: { [packId: string]: DbStudyPackContent[] } = {};

@@ -2,7 +2,7 @@
 // This file was built using `yarn build-data` from the SQLite database.
 // Modifications will be lost if they are made manually and not through the database.
 
-import { StudyPack } from "../src/interfaces";
+import { StudyPack } from "@jyosuushi/interfaces";
 import * as COUNTERS from "./counters";
 
 const STUDY_PACK_COMMON: StudyPack = {

@@ -7,7 +7,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const ROOT_DIRECTORY = __dirname;
 const BUILD_DIRECTORY = path.resolve(ROOT_DIRECTORY, "build");
 const FAVICON_DIRECTORY = path.resolve(ROOT_DIRECTORY, "favicons");
-const SOURCE_DIRECTORY = path.resolve(ROOT_DIRECTORY, "src");
+const SOURCE_CLIENT_DIRECTORY = path.resolve(ROOT_DIRECTORY, "src/client");
 const DATA_DIRECTORY = path.resolve(ROOT_DIRECTORY, "data");
 const CONFIG_JSON_FILE = path.resolve(ROOT_DIRECTORY, "config.json");
 const CHANGELOG_FILE = path.resolve(ROOT_DIRECTORY, "changelog.ts");
@@ -27,51 +27,51 @@ if (!process.env.CI) {
 
 module.exports = {
   entry: {
-    app: SOURCE_DIRECTORY,
+    app: SOURCE_CLIENT_DIRECTORY,
     data: [
       path.resolve(DATA_DIRECTORY, "counters.ts"),
       path.resolve(DATA_DIRECTORY, "items.ts"),
-      path.resolve(DATA_DIRECTORY, "studyPacks.ts")
-    ]
+      path.resolve(DATA_DIRECTORY, "studyPacks.ts"),
+    ],
   },
   output: {
     path: BUILD_DIRECTORY,
     filename: "[name].[hash].js",
-    publicPath: "/"
+    publicPath: "/",
   },
   resolve: {
     alias: {
       "@changelog": CHANGELOG_FILE,
       "@data": DATA_DIRECTORY,
-      "@jyosuushi": SOURCE_DIRECTORY
+      "@jyosuushi": SOURCE_CLIENT_DIRECTORY,
     },
-    extensions: [".js", ".jsx", ".json", ".ts", ".tsx", ".scss"]
+    extensions: [".js", ".jsx", ".json", ".ts", ".tsx", ".scss"],
   },
   module: {
     rules: [
       {
         test: /\.(ts|tsx)$/,
-        loader: "ts-loader"
+        loader: "ts-loader",
       },
       {
         test: /\.scss$/,
-        use: ["style-loader", "css-loader", "postcss-loader", "sass-loader"]
+        use: ["style-loader", "css-loader", "postcss-loader", "sass-loader"],
       },
       {
         test: /\.(png|jpg)$/,
         options: {
-          esModule: false
+          esModule: false,
         },
-        loader: "url-loader"
+        loader: "url-loader",
       },
       {
         test: /\.svg$/,
         options: {
-          esModule: false
+          esModule: false,
         },
-        loader: "@svgr/webpack"
-      }
-    ]
+        loader: "@svgr/webpack",
+      },
+    ],
   },
   optimization: {
     runtimeChunk: "single",
@@ -82,15 +82,15 @@ module.exports = {
       cacheGroups: {
         vendor: {
           test: /[\\/]node_modules[\\]/,
-          name: function(module) {
+          name: function (module) {
             const packageName = module.context.match(
               /[\\/]node_modules[\\/](.*?)([\\/]|$)/
             )[1];
             return packageName;
-          }
-        }
-      }
-    }
+          },
+        },
+      },
+    },
   },
   plugins: [
     new webpack.HashedModuleIdsPlugin(),
@@ -102,22 +102,22 @@ module.exports = {
       CONFIG_GOOGLE_ANALYTICS_TRACKING_ID: JSON.stringify(
         configJson.GOOGLE_ANALYTICS_TRACKING_ID
       ),
-      JYOSUUSHI_CURRENT_SEMVER: JSON.stringify(process.env.npm_package_version)
+      JYOSUUSHI_CURRENT_SEMVER: JSON.stringify(process.env.npm_package_version),
     }),
     new CopyWebpackPlugin({
       patterns: [
         {
           from: FAVICON_DIRECTORY,
-          to: BUILD_DIRECTORY
+          to: BUILD_DIRECTORY,
         },
         {
           from: path.resolve(ROOT_DIRECTORY, "./.htaccess"),
-          to: path.resolve(BUILD_DIRECTORY)
-        }
-      ]
+          to: path.resolve(BUILD_DIRECTORY),
+        },
+      ],
     }),
     new HtmlWebpackPlugin({
-      template: path.resolve(SOURCE_DIRECTORY, "index.html")
-    })
-  ]
+      template: path.resolve(SOURCE_CLIENT_DIRECTORY, "index.html"),
+    }),
+  ],
 };
