@@ -4,7 +4,7 @@
     "paths": {
       "@jyosuushi/*": ["src/client/*"],
       "@data/*": ["data/*"],
-      "@changelog": ["changelog.ts"]
+      "@changelog": ["changelog/index.ts"]
     },
     "esModuleInterop": true,
     "jsx": "react",

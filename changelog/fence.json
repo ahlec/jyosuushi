@@ -1,0 +1,6 @@
+{
+  "tags": ["changelog"],
+  "exports": ["index"],
+  "imports": [],
+  "dependencies": []
+}

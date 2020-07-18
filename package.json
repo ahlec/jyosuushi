@@ -12,7 +12,8 @@
     "db:export": "ts-node ./scripts/exporter/export-data.ts",
     "db:dump": "ts-node ./scripts/dump-database.ts",
     "clean": "rimraf ./build",
-    "lint": "eslint \"./{src,scripts}/**/*.{js,jsx,ts,tsx}\"",
+    "lint": "eslint \"./{changelog,src,scripts}/**/*.{js,jsx,ts,tsx}\"",
+    "check-project-boundaries": "gf",
     "favicon": "rimraf ./favicons && real-favicon generate faviconDescription.json faviconData.json favicons"
   },
   "devDependencies": {
@@ -40,6 +41,7 @@
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.20.0",
+    "good-fences": "^0.9.1",
     "hast-to-hyperscript": "^9.0.0",
     "html-webpack-plugin": "^4.3.0",
     "mdast-util-to-hast": "^9.1.0",

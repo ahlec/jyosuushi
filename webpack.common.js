@@ -10,7 +10,7 @@ const FAVICON_DIRECTORY = path.resolve(ROOT_DIRECTORY, "favicons");
 const SOURCE_CLIENT_DIRECTORY = path.resolve(ROOT_DIRECTORY, "src/client");
 const DATA_DIRECTORY = path.resolve(ROOT_DIRECTORY, "data");
 const CONFIG_JSON_FILE = path.resolve(ROOT_DIRECTORY, "config.json");
-const CHANGELOG_FILE = path.resolve(ROOT_DIRECTORY, "changelog.ts");
+const CHANGELOG_FILE = path.resolve(ROOT_DIRECTORY, "changelog/index.ts");
 
 let configJson;
 if (!process.env.CI) {

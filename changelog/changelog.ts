@@ -14,43 +14,9 @@
  */
 /* eslint-disable sort-keys */
 
-export interface ConsumerFacingEntry {
-  label: string;
-  details: string;
-  nestedListItems?: readonly string[];
-}
+import { ChangelogVersion } from "./types";
 
-export type BugFixBrowser = "chrome" | "firefox" | "safari" | "edge" | "ie";
-
-export interface BugFixEntry {
-  browser?: BugFixBrowser;
-  text: string;
-}
-
-export interface IncrementalVersion {
-  date: string;
-  version: string;
-  bugFixes: readonly BugFixEntry[];
-  newFeatures: readonly ConsumerFacingEntry[];
-  improvements: readonly ConsumerFacingEntry[];
-  developerChanges: readonly string[];
-}
-
-export interface FirstVersion {
-  version: string;
-  date: string;
-  isInitialRelease: true;
-}
-
-export type ChangelogVersion = Readonly<FirstVersion | IncrementalVersion>;
-
-export function isFirstVersion(
-  version: ChangelogVersion
-): version is FirstVersion {
-  return "isInitialRelease" in version && version.isInitialRelease === true;
-}
-
-const CHANGELOG: readonly ChangelogVersion[] = [
+export const CHANGELOG: readonly ChangelogVersion[] = [
   {
     version: "v2.5.3",
     date: "15 July 2020",
@@ -255,5 +221,3 @@ const CHANGELOG: readonly ChangelogVersion[] = [
     isInitialRelease: true,
   },
 ];
-
-export default CHANGELOG;
