@@ -1,0 +1,7 @@
+type SubmitSuggestionResult {
+  success: Boolean!
+}
+
+extend type Mutation {
+  submitSuggestion(suggestion: String!): SubmitSuggestionResult!
+}

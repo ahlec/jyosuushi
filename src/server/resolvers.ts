@@ -5,7 +5,8 @@
  */
 import { Resolvers } from "./graphql.generated";
 
-import { SANDBOX_RESOLVERS } from "./modules/sandbox/resolvers";
+import { SERVER_MODULES } from "./modules";
+import { ServerModule } from "./modules/ServerModule";
 
 /**
  * Address issues with TypeScript and string-indexed lookup objects
@@ -17,4 +18,6 @@ type StringIndexed<T> = T & {
   [index: string]: any;
 };
 
-export const RESOLVERS: StringIndexed<Resolvers>[] = [SANDBOX_RESOLVERS];
+export const RESOLVERS: StringIndexed<Resolvers>[] = SERVER_MODULES.map(
+  (module: ServerModule) => module.resolvers
+);

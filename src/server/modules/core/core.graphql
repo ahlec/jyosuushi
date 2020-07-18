@@ -1,0 +1,9 @@
+# This is where we define the BASE `Query` type.
+# All other modules EXTEND from this
+type Query {
+  serverVersion: String!
+}
+
+# This is where we define the BASE `Mutation` type.
+# All other modules EXTEND from this
+type Mutation

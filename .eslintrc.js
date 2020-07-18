@@ -16,6 +16,12 @@ module.exports = {
   },
   plugins: ["@typescript-eslint", "react"],
   rules: {
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        args: "after-used",
+      },
+    ],
     "sort-keys": [
       "error",
       "asc",

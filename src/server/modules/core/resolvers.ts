@@ -5,8 +5,8 @@
  */
 import { Resolvers } from "@server/graphql.generated";
 
-export const SANDBOX_RESOLVERS: Resolvers = {
+export const CORE_RESOLVERS: Resolvers = {
   Query: {
-    hello: (_, { name }): string => `Hello, ${name}!`,
+    serverVersion: (): string => "blah",
   },
 };

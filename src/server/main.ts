@@ -1,12 +1,13 @@
 import { ApolloServer } from "apollo-server";
 
-import { SANDBOX_GQL } from "./modules/sandbox/gql";
+import { SERVER_MODULES } from "./modules";
 import { RESOLVERS } from "./resolvers";
+import { ServerModule } from "./modules/ServerModule";
 
 async function main(): Promise<void> {
   const server = new ApolloServer({
     resolvers: RESOLVERS,
-    typeDefs: [SANDBOX_GQL],
+    typeDefs: SERVER_MODULES.map((module: ServerModule) => module.typeDefs),
   });
 
   const { url } = await server.listen();
