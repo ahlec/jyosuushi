@@ -88,7 +88,7 @@
     "bowser": "^2.10.0",
     "classnames": "^2.2.6",
     "graphql": "^15.3.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "memoize-one": "^5.1.1",
     "meyer-reset-scss": "^2.0.4",
     "nodemon": "^2.0.4",
