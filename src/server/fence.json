@@ -2,5 +2,10 @@
   "tags": ["server"],
   "exports": [],
   "imports": [],
-  "dependencies": ["apollo-server", "graphql"]
+  "dependencies": [
+    "@prisma/client",
+    "apollo-datasource",
+    "apollo-server",
+    "graphql"
+  ]
 }

@@ -9,16 +9,38 @@ import {
   SubmitBugReportResult,
 } from "@server/graphql.generated";
 
+import { ServerContext } from "@server/context";
+
 export const BUG_REPORT_RESOLVERS: Resolvers = {
   Mutation: {
-    submitBugReport: (
+    submitBugReport: async (
       _: unknown,
-      { message, os, browser, userAgent }: MutationSubmitBugReportArgs
-    ): SubmitBugReportResult => {
-      console.log("bug report:", message, os, browser, userAgent);
-      return {
-        success: true,
-      };
+      {
+        message,
+        os,
+        browser,
+        userAgent,
+        clientVersion,
+      }: MutationSubmitBugReportArgs,
+      { dataSources: { database } }: ServerContext
+    ): Promise<SubmitBugReportResult> => {
+      try {
+        await database.addBugReport({
+          browser,
+          clientVersion,
+          message,
+          os,
+          userAgent,
+        });
+        return {
+          success: true,
+        };
+      } catch (err) {
+        console.error("submitBugReport error", err);
+        return {
+          success: false,
+        };
+      }
     },
   },
 };

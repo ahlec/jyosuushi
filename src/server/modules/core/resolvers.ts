@@ -7,6 +7,6 @@ import { Resolvers } from "@server/graphql.generated";
 
 export const CORE_RESOLVERS: Resolvers = {
   Query: {
-    serverVersion: (): string => "blah",
+    serverVersion: (): string => process.env.npm_package_version || "<unknown>",
   },
 };

@@ -19,6 +19,7 @@
     "gql:codegen": "graphql-codegen"
   },
   "devDependencies": {
+    "@prisma/cli": "2.2.2",
     "@svgr/webpack": "^5.4.0",
     "@types/classnames": "^2.2.10",
     "@types/lodash": "^4.14.155",
@@ -79,6 +80,7 @@
     "@graphql-codegen/cli": "^1.17.0",
     "@graphql-codegen/typescript": "^1.17.0",
     "@graphql-codegen/typescript-resolvers": "^1.17.0",
+    "@prisma/client": "2.2.2",
     "apollo-server": "^2.16.0",
     "classnames": "^2.2.6",
     "graphql": "^15.3.0",

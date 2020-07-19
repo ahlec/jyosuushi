@@ -27,5 +27,6 @@ extend type Mutation {
     browser: BugReportBrowser!
     os: BugReportOperatingSystem!
     userAgent: String!
+    clientVersion: String!
   ): SubmitBugReportResult!
 }
