@@ -6,6 +6,7 @@
     "@prisma/client",
     "apollo-datasource",
     "apollo-server",
+    "bowser",
     "graphql"
   ]
 }
