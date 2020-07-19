@@ -1,31 +1,67 @@
-import { noop } from "lodash";
-import * as React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 
 import Localization from "@jyosuushi/localization";
 import { State } from "@jyosuushi/redux";
 import { getLocalization } from "@jyosuushi/redux/selectors";
 
+import BugIcon from "@jyosuushi/icons/bug.png";
+import CommentsIcon from "@jyosuushi/icons/comments.png";
 import CodeIcon from "@jyosuushi/icons/code.png";
 
-import { BugReportForm } from "@jyosuushi/ui/feedback/BugReport";
+import { BugReportModal } from "@jyosuushi/ui/feedback/BugReport";
+import { FeatureSuggestionModal } from "@jyosuushi/ui/feedback/FeatureSuggestion";
 
 import "./FeedbackPage.scss";
 
-interface LinkEntry {
+enum FeedbackPageModal {
+  BugReport = "bug-report",
+  FeatureSuggestion = "feature-suggestion",
+}
+
+type LinkEntry = {
   description: (localization: Localization) => string;
   icon: string;
   linkText: (localization: Localization) => string;
-  url: string;
-}
+} & (
+  | {
+      type: "external-link";
+      url: string;
+    }
+  | {
+      type: "modal";
+      id: FeedbackPageModal;
+      modal: React.ComponentType<{ onRequestClose: () => void }>;
+    }
+);
 
 const LINKS: ReadonlyArray<LinkEntry> = [
+  {
+    description: (localization): string =>
+      localization.feedbackPageSubmitFeedbackDescription,
+    icon: CommentsIcon,
+    id: FeedbackPageModal.FeatureSuggestion,
+    linkText: (localization): string =>
+      localization.feedbackPageSubmitFeedbackLink,
+    modal: FeatureSuggestionModal,
+    type: "modal",
+  },
+  {
+    description: (localization): string =>
+      localization.feedbackPageReportBugDescription,
+    icon: BugIcon,
+    id: FeedbackPageModal.BugReport,
+    linkText: (localization): string => localization.feedbackPageReportBugLink,
+    modal: BugReportModal,
+    type: "modal",
+  },
   {
     description: (localization): string =>
       localization.feedbackPageHelpContributeDescription,
     icon: CodeIcon,
     linkText: (localization): string =>
       localization.feedbackPageHelpContributeLink,
+    type: "external-link",
     url: "https://github.com/ahlec/jyosuushi",
   },
 ];
@@ -40,32 +76,74 @@ function mapStateToProps(state: State): ReduxProps {
   };
 }
 
-class FeedbackPage extends React.PureComponent<ReduxProps> {
-  public render(): React.ReactNode {
-    const { localization } = this.props;
-    return (
-      <div className="FeedbackPage">
-        <p className="intro">{localization.feedbackPageIntro}</p>
-        <hr />
-        {LINKS.map(this.renderLink)}
-        <hr />
-        <BugReportForm onSuccess={noop} />
-      </div>
-    );
-  }
+type ComponentProps = ReduxProps;
 
-  private renderLink = (link: LinkEntry): React.ReactNode => {
-    const { localization } = this.props;
+function FeedbackPage({ localization }: ComponentProps): React.ReactElement {
+  // Define state
+  const [openModal, setOpenModal] = useState<FeedbackPageModal | null>(null);
+
+  // Handle events
+  const handleRequestCloseModal = (): void => setOpenModal(null);
+
+  // Render an individual link
+  const renderLink = (link: LinkEntry, index: number): React.ReactNode => {
+    let linkComponent: React.ReactElement;
+    let followupComponent: React.ReactNode;
+    switch (link.type) {
+      case "external-link": {
+        linkComponent = (
+          <a
+            className="link"
+            href={link.url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src={link.icon} />{" "}
+            <strong>{link.linkText(localization)}</strong>
+          </a>
+        );
+        followupComponent = null;
+        break;
+      }
+      case "modal": {
+        linkComponent = (
+          <span className="link" onClick={(): void => setOpenModal(link.id)}>
+            <img src={link.icon} />{" "}
+            <strong>{link.linkText(localization)}</strong>
+          </span>
+        );
+
+        if (openModal && link.id === openModal) {
+          const { modal: ModalComponent } = link;
+          followupComponent = (
+            <ModalComponent onRequestClose={handleRequestCloseModal} />
+          );
+        } else {
+          followupComponent = null;
+        }
+
+        break;
+      }
+    }
+
     return (
-      <p key={link.url} className="link-entry">
-        <a href={link.url} target="_blank" rel="noopener noreferrer">
-          <img src={link.icon} /> <strong>{link.linkText(localization)}</strong>
-        </a>
+      <p key={index} className="link-entry">
+        {linkComponent}
         {". "}
         <span className="small">{link.description(localization)}</span>
+        {followupComponent}
       </p>
     );
   };
+
+  // Render this component
+  return (
+    <div className="FeedbackPage">
+      <p className="intro">{localization.feedbackPageIntro}</p>
+      <hr />
+      {LINKS.map(renderLink)}
+    </div>
+  );
 }
 
 export default connect(mapStateToProps)(FeedbackPage);
