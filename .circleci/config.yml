@@ -32,6 +32,9 @@ jobs:
           name: Ensure repository data files are up to date
           command: git diff --exit-code data/*
       - run:
+          name: Generate GraphQL TypeScript bindings
+          command: yarn gql:codegen
+      - run:
           name: Lint code
           command: yarn lint
       - run:
