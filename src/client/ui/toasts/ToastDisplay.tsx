@@ -50,7 +50,7 @@ function ToastDisplay({
       displayTime
     );
     return (): void => window.clearTimeout(timeoutId);
-  }, [toast.id, closeToast]);
+  }, [toast.id, toast.message, closeToast]);
 
   // Handle the user dismissing this toast
   const handleDismissClick = (): void => closeToast(toast.id);

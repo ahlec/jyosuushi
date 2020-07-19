@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from "react";
+import React, { useMemo, useState } from "react";
 
 import { TOAST_CONTEXT } from "./context";
 import { Toast, ToastContext, ToastDefinition } from "./types";
@@ -12,7 +12,7 @@ const { Provider: ToastContextProvider } = TOAST_CONTEXT;
 function ToastManager({ children }: ComponentProps): React.ReactElement {
   // Define state and variables
   const [openToasts, setOpenToasts] = useState<readonly Toast[]>([]);
-  const nextToastId = useRef<number>(0);
+  const [nextToastId, setNextToastId] = useState<number>(0);
 
   // Manage the value of the context being provided
   const contextValue = useMemo<ToastContext>(
@@ -32,15 +32,15 @@ function ToastManager({ children }: ComponentProps): React.ReactElement {
       },
       currentToasts: openToasts,
       openToast: (definition: ToastDefinition): void => {
-        const toastId = nextToastId.current;
-        nextToastId.current++;
+        const toastId = nextToastId;
+        setNextToastId(nextToastId + 1);
         setOpenToasts([
           ...openToasts,
           { ...definition, id: `toast-${toastId}` },
         ]);
       },
     }),
-    [nextToastId.current, openToasts]
+    [nextToastId, openToasts]
   );
 
   // Provide context and continue to render DOM
