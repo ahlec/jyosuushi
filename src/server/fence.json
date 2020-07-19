@@ -1,7 +1,7 @@
 {
   "tags": ["server"],
   "exports": [],
-  "imports": [],
+  "imports": ["shared"],
   "dependencies": [
     "@prisma/client",
     "apollo-datasource",

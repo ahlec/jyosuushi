@@ -8,6 +8,7 @@ const ROOT_DIRECTORY = __dirname;
 const BUILD_DIRECTORY = path.resolve(ROOT_DIRECTORY, "build");
 const FAVICON_DIRECTORY = path.resolve(ROOT_DIRECTORY, "favicons");
 const SOURCE_CLIENT_DIRECTORY = path.resolve(ROOT_DIRECTORY, "src/client");
+const SOURCE_SHARED_DIRECTORY = path.resolve(ROOT_DIRECTORY, "src/shared");
 const DATA_DIRECTORY = path.resolve(ROOT_DIRECTORY, "data");
 const CONFIG_JSON_FILE = path.resolve(ROOT_DIRECTORY, "config.json");
 const CHANGELOG_FILE = path.resolve(ROOT_DIRECTORY, "changelog/index.ts");
@@ -44,6 +45,7 @@ module.exports = {
       "@changelog": CHANGELOG_FILE,
       "@data": DATA_DIRECTORY,
       "@jyosuushi": SOURCE_CLIENT_DIRECTORY,
+      "@shared": SOURCE_SHARED_DIRECTORY,
     },
     extensions: [".js", ".jsx", ".json", ".ts", ".tsx", ".scss"],
   },

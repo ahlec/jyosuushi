@@ -1,0 +1,63 @@
+@import "../../constants.scss";
+@import "../../palette.scss";
+
+$textarea-padding: 4px;
+$textarea-border-width: 1px;
+
+.BaseUserFeedbackForm {
+  .explanation {
+    color: $black-lightest;
+    font-size: 13px;
+    text-align: center;
+  }
+
+  .message-input {
+    .field-label {
+      font-weight: bold;
+      font-size: 13px;
+    }
+
+    .input-element {
+      border: $textarea-border-width solid $black-light;
+      border-radius: 4px;
+      resize: none;
+      display: block;
+      width: calc(100% - #{($textarea-padding + $textarea-border-width) * 2});
+      padding: $textarea-padding;
+      font-family: $font-family;
+      margin: 4px 0px;
+
+      &:focus {
+        outline: 2px solid $blue-base;
+      }
+    }
+
+    .context-footer {
+      font-size: 11px;
+      text-align: right;
+      color: $black-light;
+    }
+  }
+
+  .action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 6px;
+
+    button {
+      width: 80px;
+    }
+
+    button + button {
+      margin-left: 6px;
+    }
+  }
+
+  .success-container {
+    margin-top: 6px;
+    text-align: center;
+    border: 1px solid $green-darkest;
+    background-color: $green-lightest;
+    padding: 8px;
+  }
+}

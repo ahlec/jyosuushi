@@ -7,7 +7,7 @@
       "accessibleTo": ["data"]
     }
   ],
-  "imports": ["changelog", "data"],
+  "imports": ["changelog", "data", "shared"],
   "dependencies": [
     "@apollo/client",
     "classnames",

@@ -9,7 +9,7 @@ import BugIcon from "@jyosuushi/ui/FeedbackFooter/bug.png";
 import CommentsIcon from "@jyosuushi/ui/FeedbackFooter/comments.png";
 import CodeIcon from "./code.png";
 
-import BugReportForm from "./BugReportForm";
+import BugReportForm from "@jyosuushi/ui/feedback/BugReportForm";
 
 import "./FeedbackPage.scss";
 

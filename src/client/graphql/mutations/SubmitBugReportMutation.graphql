@@ -3,7 +3,7 @@ mutation SubmitBugReport(
   $userAgent: String!
   $clientVersion: String!
 ) {
-  submitBugReport(
+  result: submitBugReport(
     message: $message
     userAgent: $userAgent
     clientVersion: $clientVersion

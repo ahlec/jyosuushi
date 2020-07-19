@@ -5,7 +5,8 @@
       "@jyosuushi/*": ["src/client/*"],
       "@data/*": ["data/*"],
       "@changelog": ["changelog/index.ts"],
-      "@server/*": ["src/server/*"]
+      "@server/*": ["src/server/*"],
+      "@shared/*": ["src/shared/*"]
     },
     "esModuleInterop": true,
     "jsx": "react",
@@ -24,6 +25,7 @@
     "data/**/*",
     "src/client/**/*",
     "src/server/**/*",
+    "src/shared/**/*",
     "scripts/**/*"
   ],
   "exclude": ["**/@types.ts"]
