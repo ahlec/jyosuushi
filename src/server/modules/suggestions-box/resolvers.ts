@@ -9,16 +9,31 @@ import {
   SubmitSuggestionResult,
 } from "@server/graphql.generated";
 
+import { ServerContext } from "@server/context";
+
 export const SUGGESTIONS_BOX_RESOLVERS: Resolvers = {
   Mutation: {
-    submitSuggestion: (
+    submitSuggestion: async (
       _: unknown,
-      { suggestion }: MutationSubmitSuggestionArgs
-    ): SubmitSuggestionResult => {
-      console.log("suggestion:", suggestion);
-      return {
-        success: !!suggestion,
-      };
+      { clientVersion, suggestion, userAgent }: MutationSubmitSuggestionArgs,
+      { dataSources: { database } }: ServerContext
+    ): Promise<SubmitSuggestionResult> => {
+      try {
+        await database.addSuggestion({
+          clientVersion,
+          message: suggestion,
+          userAgent,
+        });
+
+        return {
+          success: true,
+        };
+      } catch (err) {
+        console.error("submitSuggestion", err);
+        return {
+          success: false,
+        };
+      }
     },
   },
 };

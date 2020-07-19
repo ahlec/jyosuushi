@@ -3,5 +3,9 @@ type SubmitSuggestionResult {
 }
 
 extend type Mutation {
-  submitSuggestion(suggestion: String!): SubmitSuggestionResult!
+  submitSuggestion(
+    suggestion: String!
+    userAgent: String!
+    clientVersion: String!
+  ): SubmitSuggestionResult!
 }

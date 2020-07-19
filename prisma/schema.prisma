@@ -16,3 +16,10 @@ model BugReport {
   os            String
   userAgent     String
 }
+
+model Suggestion {
+  clientVersion String
+  id            Int    @default(autoincrement()) @id
+  message       String
+  userAgent     String
+}
