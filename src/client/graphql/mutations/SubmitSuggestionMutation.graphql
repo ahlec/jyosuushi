@@ -1,0 +1,13 @@
+mutation SubmitSuggestion(
+  $message: String!
+  $userAgent: String!
+  $clientVersion: String!
+) {
+  result: submitSuggestion(
+    suggestion: $message
+    userAgent: $userAgent
+    clientVersion: $clientVersion
+  ) {
+    success
+  }
+}

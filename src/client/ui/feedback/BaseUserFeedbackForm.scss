@@ -53,11 +53,11 @@ $textarea-border-width: 1px;
     }
   }
 
-  .success-container {
+  .error-container {
     margin-top: 6px;
     text-align: center;
-    border: 1px solid $green-darkest;
-    background-color: $green-lightest;
+    border: 1px solid $incorrect-dark;
+    background-color: $incorrect-light;
     padding: 8px;
   }
 }

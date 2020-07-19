@@ -1,3 +1,4 @@
+import { noop } from "lodash";
 import * as React from "react";
 import { connect } from "react-redux";
 
@@ -5,11 +6,9 @@ import Localization from "@jyosuushi/localization";
 import { State } from "@jyosuushi/redux";
 import { getLocalization } from "@jyosuushi/redux/selectors";
 
-import BugIcon from "@jyosuushi/ui/FeedbackFooter/bug.png";
-import CommentsIcon from "@jyosuushi/ui/FeedbackFooter/comments.png";
-import CodeIcon from "./code.png";
+import CodeIcon from "@jyosuushi/icons/code.png";
 
-import BugReportForm from "@jyosuushi/ui/feedback/BugReportForm";
+import { BugReportForm } from "@jyosuushi/ui/feedback/BugReport";
 
 import "./FeedbackPage.scss";
 
@@ -21,21 +20,6 @@ interface LinkEntry {
 }
 
 const LINKS: ReadonlyArray<LinkEntry> = [
-  {
-    description: (localization): string =>
-      localization.feedbackPageSubmitFeedbackDescription,
-    icon: CommentsIcon,
-    linkText: (localization): string =>
-      localization.feedbackPageSubmitFeedbackLink,
-    url: CONFIG_FEEDBACK_FORM_LINK,
-  },
-  {
-    description: (localization): string =>
-      localization.feedbackPageReportBugDescription,
-    icon: BugIcon,
-    linkText: (localization): string => localization.feedbackPageReportBugLink,
-    url: CONFIG_BUG_REPORT_FORM_LINK,
-  },
   {
     description: (localization): string =>
       localization.feedbackPageHelpContributeDescription,
@@ -65,7 +49,7 @@ class FeedbackPage extends React.PureComponent<ReduxProps> {
         <hr />
         {LINKS.map(this.renderLink)}
         <hr />
-        <BugReportForm />
+        <BugReportForm onSuccess={noop} />
       </div>
     );
   }

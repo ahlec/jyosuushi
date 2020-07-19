@@ -48,7 +48,7 @@ const ENGLISH: Localization = {
     "Or you can try out any number you'd like to here:",
   externalLinksHeader: "External Links",
   feedbackFooter: [
-    "Your thoughts are super appreciated! Click here to ",
+    "Your thoughts are super appreciated! ",
     VARIABLE_REPORT_BUG_LINK,
     " or ",
     VARIABLE_SUBMIT_FEEDBACK_LINK,

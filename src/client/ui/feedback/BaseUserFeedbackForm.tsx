@@ -7,12 +7,20 @@ import {
   MIN_USER_FEEDBACK_MESSAGE_LENGTH,
 } from "@shared/constants";
 
+import useToast from "@jyosuushi/ui/toasts/useToast";
+
 import "./BaseUserFeedbackForm.scss";
 
 const CONSECUTIVE_WHITESPACE_REGEX = /\s+/g;
 
 function sanitizeUserInput(raw: string): string {
   return raw.replace(CONSECUTIVE_WHITESPACE_REGEX, " ");
+}
+
+interface MutationData {
+  result: {
+    success: boolean;
+  };
 }
 
 interface ComponentProps {
@@ -29,15 +37,21 @@ interface ComponentProps {
   mutationHook: (
     options?: MutationHookOptions
   ) => MutationTuple<
-    { result: { success: boolean } },
+    MutationData,
     { clientVersion: string; message: string; userAgent: string }
   >;
 
   /**
-   * Localized text to appear at the bottom of the form
-   * if the user has successfully submitted their feedback.
+   * An optional callback to be invoked when the user has successfully
+   * submitted their feedback.
    */
-  successMessage: string;
+  onSuccess?: () => void;
+
+  /**
+   * Localized text to be opened as a toast in the application when
+   * the user has successfully submitted their feedback.
+   */
+  successToast: string;
 }
 
 function getMessageContextFooterText(sanitizedMessageLength: number): string {
@@ -63,7 +77,8 @@ function getMessageContextFooterText(sanitizedMessageLength: number): string {
 function BaseUserFeedbackForm({
   explanation,
   mutationHook,
-  successMessage,
+  onSuccess,
+  successToast,
 }: ComponentProps): React.ReactElement {
   // Define state
   const [userInput, setUserInput] = useState<string>("");
@@ -74,12 +89,27 @@ function BaseUserFeedbackForm({
     sanitizedMessage.length >= MIN_USER_FEEDBACK_MESSAGE_LENGTH &&
     sanitizedMessage.length <= MAX_USER_FEEDBACK_MESSAGE_LENGTH;
 
-  //
+  // Connect with the rest of the app
+  const { openToast } = useToast();
+
+  // Integrate with GraphQL
   const [
-    reportBug,
-    { data: mutationResult, loading: isMutating },
+    submitFeedback,
+    { data: mutationResults, error: mutationError, loading: isMutating },
   ] = mutationHook({
-    onCompleted: () => setUserInput(""),
+    onCompleted: (data: MutationData) => {
+      if (data.result.success) {
+        setUserInput("");
+        openToast({
+          message: successToast,
+          variant: "success",
+        });
+
+        if (onSuccess) {
+          onSuccess();
+        }
+      }
+    },
   });
 
   // Handle events
@@ -106,7 +136,7 @@ function BaseUserFeedbackForm({
       return;
     }
 
-    reportBug({
+    submitFeedback({
       variables: {
         clientVersion: JYOSUUSHI_CURRENT_SEMVER,
         message: sanitizedMessage,
@@ -138,7 +168,11 @@ function BaseUserFeedbackForm({
       </label>
       <div className="action-buttons">
         {!!userInput && (
-          <button className="secondary" onClick={handleClearClick}>
+          <button
+            className="secondary"
+            disabled={isMutating}
+            onClick={handleClearClick}
+          >
             Clear
           </button>
         )}
@@ -150,9 +184,16 @@ function BaseUserFeedbackForm({
           Submit
         </button>
       </div>
-      {!!mutationResult && mutationResult.result.success && (
-        <div className="success-container">{successMessage}</div>
-      )}
+      {mutationError ? (
+        <div className="error-container">
+          There was an error with the server when trying to submit your
+          feedback. Please try again later.
+        </div>
+      ) : !!mutationResults && !mutationResults.result.success ? (
+        <div className="error-container">
+          Your feedback was unable to be saved. Please try again.
+        </div>
+      ) : null}
     </div>
   );
 }

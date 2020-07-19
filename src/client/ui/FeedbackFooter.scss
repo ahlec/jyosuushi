@@ -1,19 +1,22 @@
-@import "../../palette.scss";
+@import "../palette.scss";
 
 .FeedbackFooter {
   text-align: center;
   margin: 20px;
   font-size: 12px;
 
-  a {
+  .modal-link {
+    color: $pink-darkest;
+    font-weight: 600;
+    cursor: pointer;
     text-decoration: none;
 
-    img {
+    .icon {
       position: relative;
       top: 3px;
     }
 
-    span {
+    .label {
       text-decoration: underline;
     }
   }
