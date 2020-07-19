@@ -1,0 +1,34 @@
+@import "../../palette";
+
+$padding: 10px;
+$icon-dimension: 20px;
+
+.ToastDisplay {
+  display: grid;
+  grid-template-columns: 1fr $icon-dimension;
+  gap: $padding;
+  padding: $padding;
+  border-width: 3px;
+  border-style: solid;
+
+  &.success {
+    border-color: $green-darkest;
+    background-color: $green-lightest;
+  }
+
+  .message {
+    align-self: center;
+  }
+
+  .dismiss-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .icon {
+      width: $icon-dimension;
+      height: $icon-dimension;
+      cursor: pointer;
+    }
+  }
+}

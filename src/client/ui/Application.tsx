@@ -16,6 +16,8 @@ import Header from "./Header";
 import MainScreen from "./main-screen/MainScreen";
 import NavigationManager from "./NavigationManager";
 import QuizPage from "./quiz-page";
+import ToastDisplayContainer from "./toasts/ToastDisplayContainer";
+import ToastManager from "./toasts/ToastManager";
 
 import "./Application.scss";
 
@@ -46,18 +48,23 @@ class Application extends React.PureComponent<ComponentProps, ComponentState> {
     const { isQuizActive } = this.props;
 
     return (
-      <div className={classnames("Application", isQuizActive && "quiz-active")}>
-        <NavigationManager />
-        <Header
-          isQuizActive={isQuizActive}
-          onModalOpened={this.onHeaderModalOpened}
-        />
-        {this.renderNecessaryRedirect()}
-        <Switch>
-          <Route path={QUIZ_SCREEN_PATH} render={this.renderQuizPage} />
-          <Route render={this.renderMainScreen} />
-        </Switch>
-      </div>
+      <ToastManager>
+        <div
+          className={classnames("Application", isQuizActive && "quiz-active")}
+        >
+          <NavigationManager />
+          <Header
+            isQuizActive={isQuizActive}
+            onModalOpened={this.onHeaderModalOpened}
+          />
+          {this.renderNecessaryRedirect()}
+          <Switch>
+            <Route path={QUIZ_SCREEN_PATH} render={this.renderQuizPage} />
+            <Route render={this.renderMainScreen} />
+          </Switch>
+          <ToastDisplayContainer />
+        </div>
+      </ToastManager>
     );
   }
 
