@@ -26,6 +26,13 @@ if (!process.env.CI) {
   );
 }
 
+if (
+  typeof process.env.API_SERVER_URL !== "string" ||
+  !process.env.API_SERVER_URL
+) {
+  throw new Error("API_SERVER_URL environment variable must be set.");
+}
+
 module.exports = {
   entry: {
     app: SOURCE_CLIENT_DIRECTORY,
@@ -97,6 +104,7 @@ module.exports = {
   plugins: [
     new webpack.HashedModuleIdsPlugin(),
     new webpack.DefinePlugin({
+      API_SERVER_URL: JSON.stringify(process.env.API_SERVER_URL),
       CONFIG_GOOGLE_ANALYTICS_TRACKING_ID: JSON.stringify(
         configJson.GOOGLE_ANALYTICS_TRACKING_ID
       ),

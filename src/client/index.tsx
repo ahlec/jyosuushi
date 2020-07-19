@@ -26,7 +26,7 @@ const quizManager = new QuizManager(redux.store);
 
 const apollo = new ApolloClient({
   cache: new InMemoryCache(),
-  uri: "http://localhost:4000",
+  uri: API_SERVER_URL,
 });
 
 const rootElement = document.getElementById("root");

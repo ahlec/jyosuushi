@@ -4,9 +4,9 @@
   "author": "Alec Jacob Deitloff <alec.deitloff@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server --config webpack.dev.js",
+    "start": "API_SERVER_URL=http://localhost:4000 webpack-dev-server --config webpack.dev.js",
     "start:server": "nodemon ./src/server/main.ts",
-    "build": "webpack --config webpack.prod.js",
+    "build": "API_SERVER_URL=https://api.jyosuushi.com webpack --config webpack.prod.js",
     "db:create": "ts-node ./scripts/create-database.ts",
     "db:audit": "ts-node ./scripts/audit-database.ts",
     "db:rate-completion": "ts-node ./scripts/database-completion.ts",
