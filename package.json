@@ -19,6 +19,8 @@
     "gql:codegen": "graphql-codegen"
   },
   "devDependencies": {
+    "@graphql-codegen/typescript-operations": "^1.17.0",
+    "@graphql-codegen/typescript-react-apollo": "^1.17.0",
     "@prisma/cli": "2.2.2",
     "@svgr/webpack": "^5.4.0",
     "@types/classnames": "^2.2.10",
@@ -77,6 +79,7 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
+    "@apollo/client": "^3.0.2",
     "@graphql-codegen/cli": "^1.17.0",
     "@graphql-codegen/typescript": "^1.17.0",
     "@graphql-codegen/typescript-resolvers": "^1.17.0",

@@ -9,6 +9,8 @@ import BugIcon from "@jyosuushi/ui/FeedbackFooter/bug.png";
 import CommentsIcon from "@jyosuushi/ui/FeedbackFooter/comments.png";
 import CodeIcon from "./code.png";
 
+import BugReportForm from "./BugReportForm";
+
 import "./FeedbackPage.scss";
 
 interface LinkEntry {
@@ -62,6 +64,8 @@ class FeedbackPage extends React.PureComponent<ReduxProps> {
         <p className="intro">{localization.feedbackPageIntro}</p>
         <hr />
         {LINKS.map(this.renderLink)}
+        <hr />
+        <BugReportForm />
       </div>
     );
   }

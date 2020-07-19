@@ -1,6 +1,10 @@
 module.exports = {
   root: true,
-  ignorePatterns: ["**/.eslintrc.js", "**/*.generated.ts"],
+  ignorePatterns: [
+    "**/.eslintrc.js",
+    "**/*.generated.ts",
+    "**/*.generated.tsx",
+  ],
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",

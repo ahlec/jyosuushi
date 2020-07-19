@@ -9,7 +9,9 @@
   ],
   "imports": ["changelog", "data"],
   "dependencies": [
+    "@apollo/client",
     "classnames",
+    "graphql-tag",
     "history",
     "lodash",
     "memoize-one",

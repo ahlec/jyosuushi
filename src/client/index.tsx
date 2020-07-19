@@ -1,3 +1,4 @@
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import * as ReactGA from "react-ga";
@@ -23,20 +24,27 @@ ReactGA.initialize(CONFIG_GOOGLE_ANALYTICS_TRACKING_ID, {
 const redux = createRedux();
 const quizManager = new QuizManager(redux.store);
 
+const apollo = new ApolloClient({
+  cache: new InMemoryCache(),
+  uri: "http://localhost:4000",
+});
+
 const rootElement = document.getElementById("root");
 if (rootElement) {
   Modal.setAppElement(rootElement);
 }
 
 ReactDOM.render(
-  <Provider store={redux.store}>
-    <PersistGate loading={null} persistor={redux.persistor}>
-      <BrowserRouter>
-        <QuizManagerContext.Provider value={quizManager}>
-          <Container />
-        </QuizManagerContext.Provider>
-      </BrowserRouter>
-    </PersistGate>
-  </Provider>,
+  <ApolloProvider client={apollo}>
+    <Provider store={redux.store}>
+      <PersistGate loading={null} persistor={redux.persistor}>
+        <BrowserRouter>
+          <QuizManagerContext.Provider value={quizManager}>
+            <Container />
+          </QuizManagerContext.Provider>
+        </BrowserRouter>
+      </PersistGate>
+    </Provider>
+  </ApolloProvider>,
   rootElement
 );

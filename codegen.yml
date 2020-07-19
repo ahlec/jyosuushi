@@ -7,3 +7,15 @@ generates:
     plugins:
       - "typescript"
       - "typescript-resolvers"
+  src/client/graphql/types.generated.tsx:
+    config:
+      reactApolloVersion: 3
+      withComponent: false
+      withHOC: false
+      withHooks: true
+    documents:
+      - src/client/graphql/mutations/*.graphql
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"

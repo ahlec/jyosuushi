@@ -21,3 +21,4 @@ config.json
 
 # Codegen files
 *.generated.ts
+*.generated.tsx

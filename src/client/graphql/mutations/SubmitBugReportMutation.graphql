@@ -1,0 +1,13 @@
+mutation SubmitBugReport(
+  $message: String!
+  $userAgent: String!
+  $clientVersion: String!
+) {
+  submitBugReport(
+    message: $message
+    userAgent: $userAgent
+    clientVersion: $clientVersion
+  ) {
+    success
+  }
+}
