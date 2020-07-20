@@ -1,23 +1,23 @@
-@import "../../../../palette.scss";
+@import "../../../../palette";
 
 .InfoSection {
   .notes {
-    margin: 6px;
     color: $black-lightest;
     font-size: 15px;
+    margin: 6px;
     text-align: left;
   }
 
   h6 {
-    text-align: left;
     font-weight: bold;
-    margin: 15px 0px 5px;
+    margin: 15px 0 5px;
+    text-align: left;
   }
 
-  ul.external-links {
+  .external-links {
+    list-style: circle;
     margin-left: 2rem;
     text-align: left;
-    list-style: circle;
 
     li + li {
       margin-top: 5px;
@@ -31,7 +31,7 @@
       font-weight: normal;
       text-decoration: none;
 
-      strong.site {
+      .site {
         font-weight: bold;
         padding-right: 5px;
       }

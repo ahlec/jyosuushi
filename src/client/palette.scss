@@ -2,6 +2,8 @@
 // monochromatic (1-color)
 // preset: lightest pale pastel
 
+$white: #fff;
+
 $pink-lightest: #fee5eb;
 $pink-light: #fdd1db;
 $pink-base: #fbbdcb;
@@ -27,7 +29,7 @@ $black-dark: #101010;
 $black-darkest: #060606;
 
 // Colours for displaying judgments
-$incorrect-light: #ffcccc;
+$incorrect-light: #fcc;
 $incorrect-medium: #ee6363;
 $incorrect-dark: #a02422;
 
@@ -42,6 +44,9 @@ $skipped-dark: #6c788e;
 $ignored-light: #ffeda3;
 $ignored-medium: #d3b747;
 $ignored-dark: #8f750d;
+
+$counter-irregular: #f00;
+$counter-non-kango: #00f;
 
 // Shared colours
 $app-outline: $black-lightest;

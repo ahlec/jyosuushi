@@ -1,34 +1,34 @@
-@import "_constants";
-@import "../palette";
+@use "constants";
+@use "../palette";
 
 $border-radius: 6px;
 
 .Application {
-  position: relative;
-  background-color: white;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  border: 1px solid $app-outline;
-  border-top: 0px;
-  color: $black-darkest;
+  background-color: palette.$white;
+  border: 1px solid palette.$app-outline;
   border-bottom-left-radius: $border-radius;
   border-bottom-right-radius: $border-radius;
+  border-top: 0;
+  color: palette.$black-darkest;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
 
-  @media (max-width: $normal-container-width) {
+  @media (max-width: constants.$normal-container-width) {
     &:not(.quiz-active) {
-      border-left: 0px;
-      border-right: 0px;
-      border-radius: 0px;
+      border-left: 0;
+      border-radius: 0;
+      border-right: 0;
     }
   }
 
-  @media (max-width: $quiz-container-width) {
+  @media (max-width: constants.$quiz-container-width) {
     &.quiz-active {
-      border-left: 0px;
-      border-right: 0px;
-      border-radius: 0px;
+      border-left: 0;
+      border-radius: 0;
+      border-right: 0;
     }
   }
 }

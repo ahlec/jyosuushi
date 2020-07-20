@@ -1,11 +1,11 @@
-@import "_constants";
+@import "constants";
 
 .Container {
-  min-height: 100%;
   display: flex;
   flex-direction: column;
-  max-width: $normal-container-width;
   margin: auto;
+  max-width: $normal-container-width;
+  min-height: 100%;
   transition: max-width 0.25s ease-in;
 
   &.quiz-active {

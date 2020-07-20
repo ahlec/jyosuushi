@@ -1,4 +1,4 @@
-@import "../../../palette.scss";
+@import "../../../palette";
 
 .AnswerInput {
   &.disabled {
@@ -6,48 +6,48 @@
   }
 
   .KanaInput {
-    position: relative;
     display: flex;
+    position: relative;
 
     input {
-      flex: 1;
-      font-size: 48px;
-      text-align: center;
-      outline: none;
-      color: $black-base;
       background-color: $blue-light;
       border: 3px solid $blue-dark;
-      border-left: 0px;
-      border-right: 0px;
-      padding: 10px 0px;
+      border-left: 0;
+      border-right: 0;
+      color: $black-base;
+      flex: 1;
+      font-size: 48px;
+      outline: none;
+      padding: 10px 0;
+      text-align: center;
     }
 
     .submit-button-container {
-      position: absolute;
-      top: 0px;
-      bottom: 0px;
-      right: 10px;
-      width: 48px;
-      touch-events: none;
-      display: flex;
       align-items: center;
+      bottom: 0;
+      display: flex;
+      pointer-events: none;
+      position: absolute;
+      right: 10px;
+      top: 0;
+      width: 48px;
 
       .submit-button {
-        right: 10px;
-        width: 48px;
-        height: 48px;
         background-color: $blue-base;
-        transition: opacity 0.2s, transform 0.2s;
+        border: 0;
+        height: 48px;
         opacity: 0;
-        transform: translateX(10px);
-        border: 0px;
-        pointer-events: none;
         outline-color: $black-dark;
+        pointer-events: none;
+        right: 10px;
+        transform: translateX(10px);
+        transition: opacity 0.2s, transform 0.2s;
+        width: 48px;
 
         &.show {
           opacity: 1;
-          transform: none;
           pointer-events: auto;
+          transform: none;
         }
 
         &:hover {
@@ -59,11 +59,11 @@
 
   .submit-instructions {
     font-size: 12px;
-    transition: opacity 0.2s, transform 0.2s;
     margin-top: 6px;
     opacity: 0;
-    transform: translateY(-10px);
     text-align: center;
+    transform: translateY(-10px);
+    transition: opacity 0.2s, transform 0.2s;
 
     &.has-value {
       opacity: 0.8;

@@ -1,12 +1,12 @@
-@import "../../palette.scss";
+@import "../../palette";
 
 .BetaBanner {
-  position: absolute;
-  border: 2px solid $blue-darkest;
-  padding: 6px 40px;
   background-color: $blue-lightest;
+  border: 2px solid $blue-darkest;
+  left: -20px;
+  padding: 6px 40px;
+  position: absolute;
   text-transform: uppercase;
   top: 6px;
-  left: -20px;
   transform: rotateZ(-35deg);
 }

@@ -1,6 +1,6 @@
-@import "../../ModalShared.scss";
+@import "../../ModalShared";
 
-@mixin animateElement($keyframe) {
+@mixin animate-element($keyframe) {
   animation-duration: 0.2s;
   animation-fill-mode: forwards;
   animation-name: $keyframe;
@@ -71,11 +71,11 @@
     .content {
       .viewport {
         .current {
-          @include animateElement(transition-right-current);
+          @include animate-element(transition-right-current);
         }
 
         .previous {
-          @include animateElement(transition-right-previous);
+          @include animate-element(transition-right-previous);
         }
       }
     }
@@ -85,11 +85,11 @@
     .content {
       .viewport {
         .current {
-          @include animateElement(transition-left-current);
+          @include animate-element(transition-left-current);
         }
 
         .previous {
-          @include animateElement(transition-left-previous);
+          @include animate-element(transition-left-previous);
         }
       }
     }
@@ -99,36 +99,37 @@
     .content {
       .viewport {
         .current {
-          @include animateElement(transition-replace-current);
+          @include animate-element(transition-replace-current);
         }
 
         .previous {
-          @include animateElement(transition-replace-previous);
+          @include animate-element(transition-replace-previous);
         }
       }
     }
   }
 
   .content {
-    display: flex;
     $button-inset-margin: 5px;
+    display: flex;
 
     .left,
     .right {
-      flex: 0 0 75px;
-      display: flex;
       align-items: center;
-      justify-content: center;
-      user-select: none;
-      margin: $button-inset-margin 0px;
-      transition: background-color 0.2s;
       border-radius: 5px;
+      display: flex;
+      flex: 0 0 75px;
+      justify-content: center;
+      margin: $button-inset-margin 0;
+      transition: background-color 0.2s;
+      user-select: none;
 
       &.enabled {
         cursor: pointer;
 
         &:hover {
           background-color: $modal-header;
+
           svg {
             opacity: 1;
           }
@@ -140,9 +141,9 @@
       }
 
       svg {
-        width: 48px;
-        transition: opacity 0.1s;
         opacity: 0.2;
+        transition: opacity 0.1s;
+        width: 48px;
       }
     }
 
@@ -156,48 +157,48 @@
 
     .viewport {
       flex: 1;
-      position: relative;
       overflow: hidden;
+      position: relative;
 
       .current,
       .previous {
-        position: absolute;
-        top: 0px;
-        height: 100%;
-        width: 100%;
+        $separation-padding: 6px;
+        align-items: center;
         display: flex;
         flex-direction: column;
-        align-items: center;
+        height: 100%;
         justify-content: center;
-        $separation-padding: 6px;
+        position: absolute;
+        top: 0;
+        width: 100%;
 
         .picture {
-          margin: 15px 0px;
+          margin: 15px 0;
 
           img {
             border: 1px solid $modal-border;
-            width: 400px;
             height: 307px;
+            width: 400px;
           }
         }
 
         .text {
           flex: 1;
-          width: 80%;
           text-align: center;
           white-space: pre-wrap;
+          width: 80%;
         }
 
         .navigation {
-          margin: 10px 0px;
+          margin: 10px 0;
 
           .navigation-link {
-            width: 12px;
-            height: 12px;
-            margin: 0px 3px;
             cursor: pointer;
-            transition: opacity 0.1s;
+            height: 12px;
+            margin: 0 3px;
             opacity: 0.8;
+            transition: opacity 0.1s;
+            width: 12px;
 
             &.active {
               cursor: default;

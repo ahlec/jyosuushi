@@ -1,9 +1,9 @@
-@import "../palette.scss";
+@import "../palette";
 
 .CreditsFooter {
-  text-align: center;
   font-size: 12px;
-  margin: 15px 0px;
+  margin: 15px 0;
+  text-align: center;
 
   a,
   a:visited {
@@ -12,7 +12,7 @@
   }
 
   a:hover {
-    text-decoration: underline;
     color: $green-dark;
+    text-decoration: underline;
   }
 }

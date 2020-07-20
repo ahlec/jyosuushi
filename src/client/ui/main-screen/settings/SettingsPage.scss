@@ -1,21 +1,21 @@
-@import "../../../palette.scss";
+@import "../../../palette";
 
 .SettingsPage {
   h1 {
+    border-bottom: 1px solid $app-outline;
     font-size: 24px;
     font-weight: bold;
-    border-bottom: 1px solid $app-outline;
-    width: 50%;
-    margin: 0px auto 15px;
+    margin: 0 auto 15px;
     text-align: center;
+    width: 50%;
   }
 
   .section {
     margin-bottom: 25px;
 
     h3 {
-      font-weight: bold;
       font-size: 20px;
+      font-weight: bold;
     }
 
     .description {

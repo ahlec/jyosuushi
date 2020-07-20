@@ -1,4 +1,4 @@
-@import "../../../../palette.scss";
+@import "../../../../palette";
 
 .ExploreCounterPage {
   .contents {
@@ -6,31 +6,31 @@
     text-align: center;
 
     h3 {
+      border-bottom: 1px solid $app-outline;
       font-size: 24px;
       font-weight: bold;
-      border-bottom: 1px solid $app-outline;
-      width: 50%;
-      margin: 0px auto 20px;
+      margin: 0 auto 20px;
       text-align: center;
+      width: 50%;
     }
 
     .kanji {
-      font-size: 72px;
-      display: inline-block;
-      padding: 17px;
-      border-radius: 100%;
       border: 8px solid $pink-light;
+      border-radius: 100%;
+      display: inline-block;
+      font-size: 72px;
       font-weight: bold;
+      padding: 17px;
     }
 
     .leadIn {
-      margin: 30px 0px;
       font-size: 18px;
+      margin: 30px 0;
     }
 
     section + section {
-      margin-top: 25px;
       border-top: 1px solid $black-light;
+      margin-top: 25px;
       padding-top: 25px;
     }
   }

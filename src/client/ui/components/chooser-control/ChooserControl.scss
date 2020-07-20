@@ -1,4 +1,4 @@
-@import "../../../palette.scss";
+@import "../../../palette";
 
 $border-radius: 6px;
 
@@ -6,27 +6,27 @@ $border-radius: 6px;
   display: flex;
 
   .choice {
-    border: 1px solid $green-darkest;
     background-color: $green-lightest;
+    border: 1px solid $green-darkest;
+    border-left-width: 0;
     cursor: pointer;
     flex: 1;
+    padding: 15px 0;
     text-align: center;
-    padding: 15px 0px;
-    border-left-width: 0px;
 
     &:hover {
       background-color: $green-light;
     }
 
     &:first-child {
-      border-top-left-radius: $border-radius;
       border-bottom-left-radius: $border-radius;
       border-left-width: 1px;
+      border-top-left-radius: $border-radius;
     }
 
     &:last-child {
-      border-top-right-radius: $border-radius;
       border-bottom-right-radius: $border-radius;
+      border-top-right-radius: $border-radius;
     }
 
     &.selected {

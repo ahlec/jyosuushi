@@ -1,4 +1,4 @@
-@import "../palette.scss";
+@import "../palette";
 
 $modal-border: $green-darkest;
 $modal-background: $green-lightest;
@@ -7,7 +7,7 @@ $modal-button: $black-darkest;
 $modal-button-hover: $green-darkest;
 
 .ReactModal__Overlay {
+  align-items: center;
   display: flex;
   justify-content: center;
-  align-items: center;
 }

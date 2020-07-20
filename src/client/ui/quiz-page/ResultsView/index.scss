@@ -1,4 +1,4 @@
-@import "../../../palette.scss";
+@import "../../../palette";
 
 .ResultsView {
   display: flex;
@@ -8,40 +8,40 @@
     display: flex;
 
     .info {
-      margin-left: 20px;
       flex: 1;
+      margin-left: 20px;
 
       h3 {
-        font-weight: bold;
+        border-bottom: 1px solid $black-darkest;
         font-size: 40px;
+        font-weight: bold;
         margin-top: 20px;
-        border-bottom: 1px solid black;
 
         &.incorrect {
-          color: $incorrect-dark;
           border-color: $incorrect-medium;
+          color: $incorrect-dark;
         }
 
         &.correct {
-          color: $correct-dark;
           border-color: $correct-medium;
+          color: $correct-dark;
         }
 
         &.skipped {
-          color: $skipped-dark;
           border-color: $skipped-medium;
+          color: $skipped-dark;
         }
       }
 
       p {
-        margin: 20px 0px;
+        margin: 20px 0;
       }
     }
   }
 
-  button.ignore-answer {
-    margin-right: 10px;
+  .ignore-answer {
     background-color: $skipped-light;
     border-color: $skipped-medium;
+    margin-right: 10px;
   }
 }

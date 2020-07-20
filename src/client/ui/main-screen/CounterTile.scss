@@ -1,18 +1,18 @@
-@import "../../palette.scss";
+@import "../../palette";
 
 $min-counter-height: 75px;
 
 .CounterTile {
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: 6px;
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  width: calc((100% - 6px) / 3);
   max-width: calc((100% - 6px) / 3);
   min-height: $min-counter-height;
   text-decoration: none;
-  border-radius: 6px;
-  border: 1px solid transparent;
+  width: calc((100% - 6px) / 3);
 
   &:hover {
     background-color: $blue-lightest;
@@ -20,10 +20,10 @@ $min-counter-height: 75px;
   }
 
   .kanji {
-    font-weight: bold;
-    font-size: 24px;
-    margin-bottom: 5px;
     color: $black-base;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
   }
 
   .name {

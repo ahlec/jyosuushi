@@ -1,14 +1,14 @@
-@import "../palette.scss";
+@import "../palette";
 
 .FeedbackFooter {
-  text-align: center;
-  margin: 20px;
   font-size: 12px;
+  margin: 20px;
+  text-align: center;
 
   .modal-link {
     color: $pink-darkest;
-    font-weight: 600;
     cursor: pointer;
+    font-weight: 600;
     text-decoration: none;
 
     .icon {

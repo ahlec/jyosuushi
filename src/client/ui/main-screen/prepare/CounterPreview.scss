@@ -1,20 +1,20 @@
-@import "../../../palette.scss";
-@import "../CounterTile.scss";
+@import "../../../palette";
+@import "../CounterTile";
 
 .CounterPreview {
-  width: 70%;
   margin: auto;
+  width: 70%;
 
   h3 {
     border-bottom: 1px solid $black-base;
-    padding-bottom: 2px;
     color: $black-base;
     margin-bottom: 8px;
+    padding-bottom: 2px;
   }
 
   .counters {
-    text-align: center;
     max-height: $min-counter-height * 3;
     overflow-y: auto;
+    text-align: center;
   }
 }

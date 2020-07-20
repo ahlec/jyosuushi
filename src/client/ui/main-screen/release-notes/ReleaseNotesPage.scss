@@ -1,40 +1,40 @@
-@import "../../../palette.scss";
+@import "../../../palette";
 
 .ReleaseNotesPage {
   .version-container {
     .version-header {
+      color: $pink-darkest;
       font-size: 1.5em;
       font-weight: 600;
       line-height: 1.5;
-      color: $pink-darkest;
 
       .date {
-        font-size: 13px;
-        font-weight: normal;
-        font-style: italic;
         color: $black-lightest;
+        font-size: 13px;
+        font-style: italic;
+        font-weight: normal;
       }
     }
 
     .contents {
+      border-left: 2px solid $pink-light;
       margin-left: 3px;
       padding-left: 15px;
-      border-left: 2px solid $pink-light;
 
       .notes-container {
         .notes-header {
-          font-weight: bold;
-          font-size: 15px;
           border-bottom: 1px solid $black-lightest;
           display: inline-block;
-          padding: 0px 2px;
+          font-size: 15px;
+          font-weight: bold;
+          padding: 0 2px;
         }
 
         ol,
         ul {
-          padding-left: 2em;
           line-height: 1.5;
           list-style: disc;
+          padding-left: 2em;
         }
 
         .entry {
@@ -44,7 +44,7 @@
             .browser {
               color: $green-darkest;
               display: inline-block;
-              padding: 0px 3px;
+              padding: 0 3px;
             }
           }
 

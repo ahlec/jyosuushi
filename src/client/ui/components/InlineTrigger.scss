@@ -1,13 +1,13 @@
-@import "../../palette.scss";
+@import "../../palette";
 
 .InlineTrigger {
-  text-decoration: underline;
   color: $pink-darkest;
-  font-weight: 600;
   cursor: pointer;
+  font-weight: 600;
+  text-decoration: underline;
 
   &:hover {
-    text-decoration: none;
     color: $pink-dark;
+    text-decoration: none;
   }
 }

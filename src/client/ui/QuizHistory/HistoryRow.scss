@@ -7,8 +7,8 @@
 
   .number {
     font-size: 16px;
-    vertical-align: top;
     padding-top: 4px;
+    vertical-align: top;
 
     .pound {
       font-size: 12px;
@@ -16,8 +16,8 @@
   }
 
   .judgment {
-    width: 80px;
     height: 44px;
+    width: 80px;
 
     .JudgmentBubble {
       display: flex;
@@ -27,8 +27,8 @@
 
   .details {
     .question {
-      font-weight: bold;
       font-size: 20px;
+      font-weight: bold;
     }
   }
 }

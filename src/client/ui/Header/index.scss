@@ -1,4 +1,4 @@
-@import "../../palette.scss";
+@import "../../palette";
 
 // Constants
 $header-vertical-padding: 12px;
@@ -13,7 +13,7 @@ $font-size-quiz: 20px;
   }
 
   to {
-    font-size: 0px;
+    font-size: 0;
   }
 }
 
@@ -24,8 +24,8 @@ $font-size-quiz: 20px;
   }
 
   to {
-    font-size: 0px;
-    margin-top: 0px;
+    font-size: 0;
+    margin-top: 0;
   }
 }
 
@@ -47,6 +47,7 @@ $font-size-quiz: 20px;
   from {
     opacity: 1;
   }
+
   to {
     opacity: 1;
   }
@@ -79,6 +80,7 @@ $font-size-quiz: 20px;
   from {
     opacity: 1;
   }
+
   to {
     opacity: 1;
   }
@@ -90,6 +92,7 @@ $font-size-quiz: 20px;
   from {
     opacity: 1;
   }
+
   to {
     opacity: 1;
   }
@@ -101,6 +104,7 @@ $font-size-quiz: 20px;
   from {
     opacity: 1;
   }
+
   to {
     opacity: 1;
   }
@@ -111,9 +115,9 @@ $font-size-quiz: 20px;
   background-color: $pink-dark;
   border-bottom: 1px solid $app-outline;
   color: $black-dark;
+  overflow: hidden;
   padding: $header-vertical-padding $header-horizontal-padding;
   position: relative;
-  overflow: hidden;
 
   &.home {
     text-align: center;
@@ -148,10 +152,10 @@ $font-size-quiz: 20px;
     }
 
     .sakura {
-      width: 250px;
-      top: -80px;
       left: -45px;
+      top: -80px;
       transform: rotateZ(55deg);
+      width: 250px;
     }
 
     .BetaBanner {
@@ -168,17 +172,17 @@ $font-size-quiz: 20px;
       position: relative;
 
       .site-name {
+        padding-left: 30px;
         text-align: center;
         white-space: nowrap;
-        padding-left: 30px;
       }
 
       .scorecard {
-        position: absolute;
-        top: $header-vertical-padding;
-        right: $header-horizontal-padding;
         bottom: $header-vertical-padding;
         opacity: 0;
+        position: absolute;
+        right: $header-horizontal-padding;
+        top: $header-vertical-padding;
       }
     }
 
@@ -200,20 +204,20 @@ $font-size-quiz: 20px;
     }
 
     .scorecard {
+      align-items: center;
       display: flex;
       justify-content: flex-end;
-      align-items: center;
     }
 
     .sakura {
       height: 90%;
-      top: 5%;
       left: 5px;
+      top: 5%;
     }
   }
 
   // Animations
-  @mixin animateElement($keyframe, $duration: 0.5s) {
+  @mixin animate-element($keyframe, $duration: 0.5s) {
     animation-duration: $duration;
     animation-fill-mode: forwards;
     animation-name: $keyframe;
@@ -223,46 +227,46 @@ $font-size-quiz: 20px;
     animation: 0.4s transitioning-from-home;
 
     .main {
-      @include animateElement(home-main-shrink, 0.25s);
+      @include animate-element(home-main-shrink, 0.25s);
     }
 
     .subheader {
-      @include animateElement(home-subheader-disappear, 0.25s);
+      @include animate-element(home-subheader-disappear, 0.25s);
     }
 
     rt {
-      @include animateElement(home-rt-disappear, 0.25s);
+      @include animate-element(home-rt-disappear, 0.25s);
     }
   }
 
   &.transitioning-to-quiz {
-    @include animateElement(transitioning-to-quiz);
+    @include animate-element(transitioning-to-quiz);
 
     .site-name {
-      @include animateElement(sliding-site-name-left);
+      @include animate-element(sliding-site-name-left);
     }
 
     .scorecard {
+      animation-delay: 0.1s;
       animation-duration: 0.4s;
       animation-fill-mode: forwards;
       animation-name: scorecard-fade-in;
-      animation-delay: 0.1s;
     }
   }
 
   &.transitioning-from-quiz {
-    @include animateElement(transitioning-from-quiz, 0.25s);
+    @include animate-element(transitioning-from-quiz, 0.25s);
 
     .site-name {
-      @include animateElement(sliding-site-name-left, 0.25s);
+      @include animate-element(sliding-site-name-left, 0.25s);
       animation-direction: reverse;
     }
 
     .scorecard {
+      animation-direction: reverse;
       animation-duration: 0.15s;
       animation-fill-mode: forwards;
       animation-name: scorecard-fade-in;
-      animation-direction: reverse;
     }
   }
 
@@ -270,17 +274,17 @@ $font-size-quiz: 20px;
     animation: 0.5s transitioning-to-home;
 
     .main {
-      @include animateElement(home-main-shrink, 0.3s);
+      @include animate-element(home-main-shrink, 0.3s);
       animation-direction: reverse;
     }
 
     .subheader {
-      @include animateElement(home-subheader-disappear, 0.3s);
+      @include animate-element(home-subheader-disappear, 0.3s);
       animation-direction: reverse;
     }
 
     rt {
-      @include animateElement(home-rt-disappear, 0.3s);
+      @include animate-element(home-rt-disappear, 0.3s);
       animation-direction: reverse;
     }
   }
@@ -300,14 +304,14 @@ $font-size-quiz: 20px;
       }
 
       .button-wrapper {
-        border-left-color: black;
+        border-left-color: $black-darkest;
       }
     }
 
     .only-if-answered {
+      display: flex;
       opacity: 0;
       transition: opacity 0.3s;
-      display: flex;
 
       .TooltipButton {
         cursor: default;
@@ -315,9 +319,9 @@ $font-size-quiz: 20px;
     }
 
     .button-wrapper {
-      padding: 0px 8px;
       border-left: 1px solid transparent;
       height: 20px;
+      padding: 0 8px;
     }
 
     .Score {
@@ -327,13 +331,13 @@ $font-size-quiz: 20px;
 
   .HistoryModal {
     .rows {
-      margin: 10px 20px 0px;
+      margin: 10px 20px 0;
     }
   }
 
   .sakura {
+    opacity: 0;
     position: absolute;
     transition: opacity 0.2s;
-    opacity: 0;
   }
 }

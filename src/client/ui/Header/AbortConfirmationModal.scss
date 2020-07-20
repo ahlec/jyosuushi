@@ -1,4 +1,4 @@
-@import "../../palette.scss";
+@import "../../palette";
 
 .AbortConfirmationModal {
   .content {
@@ -11,10 +11,10 @@
       margin-top: 15px;
 
       button {
-        width: 70px;
-        font-size: 18px;
         background-color: $green-base;
         border-color: $green-dark;
+        font-size: 18px;
+        width: 70px;
 
         &.confirm {
           background-color: $green-dark;

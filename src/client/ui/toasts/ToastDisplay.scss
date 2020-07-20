@@ -4,16 +4,16 @@ $padding: 10px;
 $icon-dimension: 20px;
 
 .ToastDisplay {
-  display: grid;
-  grid-template-columns: 1fr $icon-dimension;
-  gap: $padding;
-  padding: $padding;
-  border-width: 3px;
   border-style: solid;
+  border-width: 3px;
+  display: grid;
+  gap: $padding;
+  grid-template-columns: 1fr $icon-dimension;
+  padding: $padding;
 
   &.success {
-    border-color: $green-darkest;
     background-color: $green-lightest;
+    border-color: $green-darkest;
   }
 
   .message {
@@ -21,14 +21,14 @@ $icon-dimension: 20px;
   }
 
   .dismiss-container {
-    display: flex;
     align-items: center;
+    display: flex;
     justify-content: center;
 
     .icon {
-      width: $icon-dimension;
-      height: $icon-dimension;
       cursor: pointer;
+      height: $icon-dimension;
+      width: $icon-dimension;
     }
   }
 }

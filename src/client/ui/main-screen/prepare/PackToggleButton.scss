@@ -1,35 +1,35 @@
-@import "../../../palette.scss";
+@use "../../../palette";
 
 .PackToggleButton {
+  border: 1px solid palette.$black-dark;
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   min-height: 120px;
-  border: 1px solid $black-dark;
+  overflow: hidden;
 
   .front {
-    background-color: $blue-light;
-    color: $black-dark;
-    flex: 1;
-    position: relative;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
     align-items: center;
+    background-color: palette.$blue-light;
+    color: palette.$black-dark;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
     justify-content: center;
     padding-top: 15px;
+    position: relative;
+    width: 100%;
 
     &:hover {
-      background-color: $blue-lightest;
+      background-color: palette.$blue-lightest;
 
       &.checked {
-        background-color: $blue-base;
+        background-color: palette.$blue-base;
       }
     }
 
     &.checked {
-      background-color: $blue-dark;
+      background-color: palette.$blue-dark;
 
       .check {
         opacity: 0.7;
@@ -37,19 +37,19 @@
     }
 
     .check {
-      position: absolute;
-      top: -7px;
+      height: 45px;
       left: -7px;
       opacity: 0;
+      position: absolute;
+      top: -7px;
       width: 45px;
-      height: 45px;
 
       path {
-        fill: white;
+        fill: palette.$white;
       }
 
       circle {
-        stroke: white;
+        stroke: palette.$white;
       }
     }
 
@@ -60,17 +60,17 @@
   }
 
   .view-details {
-    border-top: 1px solid $black-dark;
-    text-align: center;
-    padding: 3px;
+    background-color: palette.$blue-darkest;
+    border-top: 1px solid palette.$black-dark;
+    color: palette.$white;
     font-size: 14px;
-    width: 100%;
-    background-color: $blue-darkest;
-    color: white;
+    padding: 3px;
+    text-align: center;
     text-decoration: none;
+    width: 100%;
 
     &:hover {
-      background-color: $blue-dark;
+      background-color: palette.$blue-dark;
     }
   }
 }

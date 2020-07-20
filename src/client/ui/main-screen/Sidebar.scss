@@ -1,25 +1,25 @@
 @import "../../palette";
 
 .Sidebar {
-  width: 90px;
-  min-width: 90px;
+  background-color: $blue-lightest;
+  border-right: 1px solid $app-outline;
   display: flex;
   flex-direction: column;
-  border-right: 1px solid $app-outline;
-  background-color: $blue-lightest;
+  min-width: 90px;
+  width: 90px;
 
   .entry {
-    height: 90px;
+    align-items: center;
+    border-bottom: 1px solid transparent;
+    color: $black-base;
     cursor: pointer;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-bottom: 1px solid transparent;
-    text-decoration: none;
     font-size: 14px;
-    color: $black-base;
+    height: 90px;
+    justify-content: center;
     text-align: center;
+    text-decoration: none;
 
     &:hover {
       background-color: $blue-light;
@@ -40,8 +40,8 @@
     }
 
     svg {
-      width: 48px;
       height: 48px;
+      width: 48px;
     }
   }
 }

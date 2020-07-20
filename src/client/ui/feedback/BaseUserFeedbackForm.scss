@@ -1,5 +1,5 @@
-@import "../../constants.scss";
-@import "../../palette.scss";
+@import "../../constants";
+@import "../../palette";
 
 $textarea-padding: 4px;
 $textarea-border-width: 1px;
@@ -13,19 +13,19 @@ $textarea-border-width: 1px;
 
   .message-input {
     .field-label {
-      font-weight: bold;
       font-size: 13px;
+      font-weight: bold;
     }
 
     .input-element {
       border: $textarea-border-width solid $black-light;
       border-radius: 4px;
-      resize: none;
       display: block;
-      width: calc(100% - #{($textarea-padding + $textarea-border-width) * 2});
-      padding: $textarea-padding;
       font-family: $font-family;
-      margin: 4px 0px;
+      margin: 4px 0;
+      padding: $textarea-padding;
+      resize: none;
+      width: calc(100% - #{($textarea-padding + $textarea-border-width) * 2});
 
       &:focus {
         outline: 2px solid $blue-base;
@@ -33,9 +33,9 @@ $textarea-border-width: 1px;
     }
 
     .context-footer {
+      color: $black-light;
       font-size: 11px;
       text-align: right;
-      color: $black-light;
     }
   }
 
@@ -54,10 +54,10 @@ $textarea-border-width: 1px;
   }
 
   .error-container {
-    margin-top: 6px;
-    text-align: center;
-    border: 1px solid $incorrect-dark;
     background-color: $incorrect-light;
+    border: 1px solid $incorrect-dark;
+    margin-top: 6px;
     padding: 8px;
+    text-align: center;
   }
 }

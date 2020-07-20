@@ -1,38 +1,38 @@
-@import "../../../palette.scss";
+@import "../../../palette";
 
 .PackSelection {
-  width: 70%;
   margin: auto;
+  width: 70%;
 
   .fieldset {
-    border-top: 1px solid $black-dark;
-    border-bottom: 1px solid $black-dark;
     background-color: $pink-light;
-    padding: 15px 30px 10px;
-    position: relative;
-    margin-top: 20px;
-    user-select: none;
+    border-bottom: 1px solid $black-dark;
+    border-top: 1px solid $black-dark;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
     grid-column-gap: 5px;
     grid-row-gap: 5px;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 20px;
+    padding: 15px 30px 10px;
+    position: relative;
+    user-select: none;
 
     .header {
-      position: absolute;
-      border: 1px solid $black-dark;
       background-color: $pink-base;
-      left: 20px;
-      top: -15px;
-      padding: 5px;
+      border: 1px solid $black-dark;
       font-size: 14px;
+      left: 20px;
+      padding: 5px;
+      position: absolute;
+      top: -15px;
 
       strong {
         font-weight: bold;
       }
 
       .subheader {
-        font-style: italic;
         font-size: 80%;
+        font-style: italic;
       }
     }
   }

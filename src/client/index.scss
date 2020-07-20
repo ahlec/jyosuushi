@@ -1,24 +1,25 @@
-@import "constants.scss";
-@import "palette.scss";
+@import "constants";
+@import "palette";
 
 html,
 body {
-  height: 100%;
   background-color: $pink-light;
+  height: 100%;
 }
 
 html {
-  overflow: hidden;
   background-color: $pink-light;
+  overflow: hidden;
 }
 
 body {
-  overflow-x: auto;
-  overflow-y: scroll;
   background: url("diag.png");
   font-family: $font-family;
+  overflow-x: auto;
+  overflow-y: scroll;
 }
 
+/* stylelint-disable-next-line selector-max-id */
 #root {
   height: 100%;
 }
@@ -30,26 +31,26 @@ body {
 a,
 a:visited,
 .link {
-  text-decoration: underline;
   color: $pink-darkest;
-  font-weight: 600;
   cursor: pointer;
+  font-weight: 600;
+  text-decoration: underline;
 }
 
 a:hover,
 .link:hover {
-  text-decoration: none;
   color: $pink-dark;
+  text-decoration: none;
 }
 
 button {
   background-color: $pink-light;
   border: 1px solid $pink-base;
   border-radius: 4px;
-  padding: 6px;
+  color: $black-lightest;
   cursor: pointer;
   font-family: $font-family;
-  color: $black-lightest;
+  padding: 6px;
 
   &:hover:not(:disabled) {
     border-width: 2px;
@@ -59,8 +60,8 @@ button {
   &:disabled {
     background-color: $pink-lightest;
     border-color: $pink-light;
-    cursor: default;
     color: $pink-dark;
+    cursor: default;
     opacity: 0.5;
   }
 }

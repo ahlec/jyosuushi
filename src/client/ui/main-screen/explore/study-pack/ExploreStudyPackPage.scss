@@ -1,20 +1,20 @@
-@import "../../../../palette.scss";
-@import "../../../ModalShared.scss";
+@import "../../../../palette";
+@import "../../../ModalShared";
 
 .ExploreStudyPackPage {
   overflow-y: auto;
 
   h3 {
+    border-bottom: 1px solid $app-outline;
     font-size: 24px;
     font-weight: bold;
-    border-bottom: 1px solid $app-outline;
-    width: 50%;
-    margin: 0px auto 20px;
+    margin: 0 auto 20px;
     text-align: center;
+    width: 50%;
   }
 
   p {
-    margin: 8px 0px;
+    margin: 8px 0;
     text-align: center;
 
     strong {
@@ -30,8 +30,8 @@
 
     .counter {
       &:hover:not(.disabled) {
-        cursor: pointer;
         background-color: $green-light;
+        cursor: pointer;
 
         svg {
           opacity: 1;
@@ -47,17 +47,17 @@
       }
 
       .jp {
-        padding-left: $horizontal-padding;
         font-size: 32px;
+        padding-left: $horizontal-padding;
         padding-right: 20px;
-        width: 1px;
-        white-space: nowrap;
         text-align: center;
+        white-space: nowrap;
+        width: 1px;
 
         .Furigana {
           display: inline-block;
-          margin-top: $vertical-padding;
           margin-bottom: $vertical-padding;
+          margin-top: $vertical-padding;
         }
       }
 
@@ -70,9 +70,9 @@
         width: 1px;
 
         svg {
-          width: 32px;
           height: 32px;
           opacity: 0.65;
+          width: 32px;
 
           path {
             fill: $modal-button;

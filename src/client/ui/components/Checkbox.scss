@@ -1,20 +1,20 @@
-@import "../../palette.scss";
+@import "../../palette";
 
 $checkbox-height: 50px;
 $box-dimension: $checkbox-height - 15px;
 $horizontal-padding: 10px;
 
 .Checkbox {
-  border: 1px solid $green-darkest;
+  align-items: center;
   background-color: $green-lightest;
+  border: 1px solid $green-darkest;
   border-radius: 6px;
-  width: 250px;
-  height: $checkbox-height;
-  margin: auto;
   cursor: pointer;
   display: flex;
-  align-items: center;
-  padding: 0px $horizontal-padding;
+  height: $checkbox-height;
+  margin: auto;
+  padding: 0 $horizontal-padding;
+  width: 250px;
 
   &:hover {
     background-color: $green-light;
@@ -29,12 +29,12 @@ $horizontal-padding: 10px;
   }
 
   .icon {
-    width: $box-dimension;
     height: $box-dimension;
     margin-right: ($horizontal-padding / 2);
+    width: $box-dimension;
 
     circle {
-      fill: white;
+      fill: $white;
     }
   }
 

@@ -1,49 +1,49 @@
-@import "../palette.scss";
+@import "../palette";
 
 .JudgmentBubble {
   align-items: center;
   justify-content: center;
 
   &.block-circle {
-    width: 200px;
-    height: 200px;
-    font-size: 60px;
+    border: 15px solid $black-darkest;
     border-radius: 200px;
     display: flex;
-    border: 15px solid black;
+    font-size: 60px;
+    height: 200px;
+    width: 200px;
   }
 
   &.inline {
-    border: 2px solid black;
-    padding: 6px;
+    border: 2px solid $black-darkest;
     border-radius: 4px;
     display: inline-flex;
-    font-weight: bold;
     font-size: 18px;
+    font-weight: bold;
+    padding: 6px;
   }
 
   &.incorrect {
-    color: $incorrect-dark;
-    border-color: $incorrect-medium;
     background-color: $incorrect-light;
+    border-color: $incorrect-medium;
+    color: $incorrect-dark;
   }
 
   &.correct {
-    color: $correct-dark;
-    border-color: $correct-medium;
     background-color: $correct-light;
+    border-color: $correct-medium;
+    color: $correct-dark;
   }
 
   &.skipped {
-    color: $skipped-dark;
-    border-color: $skipped-medium;
     background-color: $skipped-light;
+    border-color: $skipped-medium;
+    color: $skipped-dark;
   }
 
   &.ignored {
-    color: $ignored-dark;
-    border-color: $ignored-medium;
     background-color: $ignored-light;
+    border-color: $ignored-medium;
+    color: $ignored-dark;
   }
 
   rt {

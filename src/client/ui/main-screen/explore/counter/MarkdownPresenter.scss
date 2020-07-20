@@ -1,15 +1,15 @@
-@import "../../../../palette.scss";
+@import "../../../../palette";
 
 .MarkdownPresenter {
   p {
     line-height: 2;
 
     > img:only-child {
+      border: 1px solid $black-base;
+      display: block;
+      margin: auto;
       max-height: unset;
       max-width: 80%;
-      margin: auto;
-      display: block;
-      border: 1px solid $black-base;
     }
   }
 
@@ -30,8 +30,8 @@
   }
 
   sup {
-    vertical-align: super;
     font-size: 60%;
+    vertical-align: super;
 
     a {
       text-decoration: none;
@@ -46,8 +46,8 @@
 
   ol,
   ul {
-    padding-left: 2em;
     line-height: 1.5;
+    padding-left: 2em;
   }
 
   ul {
