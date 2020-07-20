@@ -22,8 +22,6 @@ import TsuNotice from "./TsuNotice";
 
 import "./index.scss";
 
-const KEY_ENTER = 13;
-
 interface ProvidedProps {
   currentQuestion: Question;
   enabled: boolean;
@@ -69,14 +67,12 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
     const { enabled, localization } = this.props;
     const { value } = this.state;
     return (
-      <div
-        className={classnames("AnswerInput", !enabled && "disabled")}
-        onKeyDown={this.onKeyDown}
-      >
+      <div className={classnames("AnswerInput", !enabled && "disabled")}>
         <KanaInput
           enabled={enabled}
           kana={HIRAGANA}
           onChange={this.onChange}
+          onSubmit={this.handleInputSubmit}
           value={value}
         >
           <div className="submit-button-container">
@@ -122,12 +118,13 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
     event.preventDefault();
   };
 
-  private onKeyDown = (event: React.KeyboardEvent): void => {
+  private handleInputSubmit = (): void => {
     const { enabled } = this.props;
-    if (enabled && event.keyCode === KEY_ENTER) {
-      this.submit();
-      event.stopPropagation();
+    if (!enabled) {
+      return;
     }
+
+    this.submit();
   };
 
   private submit(): void {

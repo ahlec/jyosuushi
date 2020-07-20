@@ -10,10 +10,11 @@ import { leaveQuiz } from "@jyosuushi/redux/actions";
 import { getLocalization } from "@jyosuushi/redux/selectors";
 import { Dispatch } from "@jyosuushi/redux/store";
 
+import TooltipButton from "@jyosuushi/ui/components/TooltipButton";
+
 import Furigana from "@jyosuushi/ui/Furigana";
 import Modal from "@jyosuushi/ui/Modal";
 import QuizHistory from "@jyosuushi/ui/QuizHistory";
-import TooltipButton from "@jyosuushi/ui/TooltipButton";
 
 import AbortConfirmationModal from "./AbortConfirmationModal";
 import BetaBanner from "./BetaBanner";

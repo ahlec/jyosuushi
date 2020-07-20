@@ -54,13 +54,16 @@ export default class InfoSection extends React.PureComponent<ComponentProps> {
 
   private renderLink = (link: ExternalLink): React.ReactNode => {
     let languageIconSrc: string;
+    let languageAlt: string;
     switch (link.language) {
       case ExternalLinkLanguage.Japanese: {
         languageIconSrc = IconFlagJapan;
+        languageAlt = "[日本語]";
         break;
       }
       case ExternalLinkLanguage.English: {
         languageIconSrc = IconFlagUsa;
+        languageAlt = "[English]";
         break;
       }
     }
@@ -68,7 +71,11 @@ export default class InfoSection extends React.PureComponent<ComponentProps> {
     return (
       <li key={link.url}>
         <a href={link.url} target="_blank" rel="noopener noreferrer">
-          <img src={languageIconSrc} className="language-icon" />
+          <img
+            src={languageIconSrc}
+            className="language-icon"
+            alt={languageAlt}
+          />
           <strong className="site">[{link.siteName}]</strong>
           {link.displayText}
         </a>

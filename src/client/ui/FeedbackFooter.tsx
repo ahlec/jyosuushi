@@ -6,6 +6,8 @@ import Localization, {
   VARIABLE_SUBMIT_FEEDBACK_LINK,
 } from "@jyosuushi/localization";
 
+import InlineTrigger from "@jyosuushi/ui/components/InlineTrigger";
+
 import { BugReportModal } from "@jyosuushi/ui/feedback/BugReport";
 import { FeatureSuggestionModal } from "@jyosuushi/ui/feedback/FeatureSuggestion";
 
@@ -44,25 +46,25 @@ function FeedbackFooter({ localization }: ComponentProps): React.ReactElement {
           switch (piece) {
             case VARIABLE_REPORT_BUG_LINK:
               return (
-                <span
+                <InlineTrigger
                   key={VARIABLE_REPORT_BUG_LINK}
                   className="modal-link"
-                  onClick={handleReportBugClick}
+                  onTrigger={handleReportBugClick}
                 >
-                  <img className="icon" src={BugIcon} />{" "}
+                  <img className="icon" src={BugIcon} alt="" />{" "}
                   <span className="label">{localization.reportABug}</span>
-                </span>
+                </InlineTrigger>
               );
             case VARIABLE_SUBMIT_FEEDBACK_LINK:
               return (
-                <span
+                <InlineTrigger
                   key={VARIABLE_SUBMIT_FEEDBACK_LINK}
                   className="modal-link"
-                  onClick={handleSuggestFeedbackClick}
+                  onTrigger={handleSuggestFeedbackClick}
                 >
-                  <img className="icon" src={CommentsIcon} />{" "}
+                  <img className="icon" src={CommentsIcon} alt="" />{" "}
                   <span className="label">{localization.submitFeedback}</span>
-                </span>
+                </InlineTrigger>
               );
             default:
               return piece;

@@ -5,6 +5,7 @@ import ReactModal from "react-modal";
 import CloseIcon from "@jyosuushi/icons/close.svg";
 
 import "./Modal.scss";
+import { KeyCode } from "@jyosuushi/constants";
 
 interface ComponentProps {
   className?: string;
@@ -23,7 +24,13 @@ export default class Modal extends React.Component<ComponentProps> {
         onRequestClose={this.onRequestClose}
       >
         <header>
-          <div className="button" onClick={this.onRequestClose}>
+          <div
+            className="button"
+            onClick={this.onRequestClose}
+            onKeyPress={this.handleCloseButtonKeyPress}
+            role="button"
+            tabIndex={0}
+          >
             <CloseIcon />
           </div>
           {header}
@@ -32,6 +39,18 @@ export default class Modal extends React.Component<ComponentProps> {
       </ReactModal>
     );
   }
+
+  private handleCloseButtonKeyPress = (
+    e: React.KeyboardEvent<HTMLDivElement>
+  ): void => {
+    switch (e.which) {
+      case KeyCode.Space:
+      case KeyCode.Enter: {
+        this.onRequestClose();
+        break;
+      }
+    }
+  };
 
   private onRequestClose = (): void => {
     const { isOpen, onRequestClose } = this.props;

@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import { KanaDefinition } from "@jyosuushi/japanese/kana";
+import { KeyCode } from "@jyosuushi/constants";
 
 export interface KanaInputValue {
   conversionBuffer: string;
@@ -13,7 +14,8 @@ interface ComponentProps {
   children?: React.ReactNode;
   enabled: boolean;
   kana: KanaDefinition;
-  onChange?: (value: KanaInputValue) => void;
+  onChange: (value: KanaInputValue) => void;
+  onSubmit: () => void;
   value: KanaInputValue | null | undefined;
 }
 
@@ -72,6 +74,7 @@ export default class KanaInput extends React.PureComponent<ComponentProps> {
           disabled={!enabled}
           value={value ? value.rawValue : ""}
           onChange={this.handleChange}
+          onKeyPress={this.handleKeyPress}
         />
         {children}
       </div>
@@ -144,6 +147,15 @@ export default class KanaInput extends React.PureComponent<ComponentProps> {
         validValue: isValid ? validValue : null,
       });
     }
+  };
+
+  private handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>): void => {
+    if (e.which !== KeyCode.Enter) {
+      return;
+    }
+
+    e.stopPropagation();
+    this.props.onSubmit();
   };
 
   private applyChangeEventToBuffer(

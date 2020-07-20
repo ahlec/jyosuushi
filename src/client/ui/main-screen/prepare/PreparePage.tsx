@@ -13,6 +13,8 @@ import { setEnabledPacks } from "@jyosuushi/redux/actions";
 import { getLocalization } from "@jyosuushi/redux/selectors";
 import { Dispatch } from "@jyosuushi/redux/store";
 
+import InlineTrigger from "@jyosuushi/ui/components/InlineTrigger";
+
 import CounterPreview from "./CounterPreview";
 import PackSelection from "./PackSelection";
 import TutorialModal from "./TutorialModal";
@@ -74,9 +76,9 @@ class PreparePage extends React.PureComponent<ComponentProps, ComponentState> {
           </a>
           . You&apos;ll be given a random item and a random number, and then you
           tell us how you&apos;d count that in Japanese.{" "}
-          <span className="link" onClick={this.showTutorialModal}>
+          <InlineTrigger onTrigger={this.showTutorialModal}>
             Click here to read the tutorial.
-          </span>
+          </InlineTrigger>
         </p>
         <PackSelection
           localization={localization}

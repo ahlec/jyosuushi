@@ -2,6 +2,7 @@ import classnames from "classnames";
 import { memoize } from "lodash";
 import * as React from "react";
 
+import { KeyCode } from "@jyosuushi/constants";
 import Localization from "@jyosuushi/localization";
 
 import Modal from "@jyosuushi/ui/Modal";
@@ -12,9 +13,6 @@ import RightIcon from "@jyosuushi/ui/right.svg";
 import { TUTORIAL_PAGES } from "./tutorial";
 
 import "./TutorialModal.scss";
-
-const KEYCODE_LEFT_ARROW = 37;
-const KEYCODE_RIGHT_ARROW = 39;
 
 interface ComponentProps {
   isOpen: boolean;
@@ -55,6 +53,27 @@ export default class TutorialModal extends React.PureComponent<
     });
   });
 
+  private handleNavigationButtonKeyPress = memoize(
+    (direction: "left" | "right") => (
+      e: React.KeyboardEvent<HTMLDivElement>
+    ): void => {
+      if (e.which !== KeyCode.Enter && e.which !== KeyCode.Space) {
+        return;
+      }
+
+      switch (direction) {
+        case "left": {
+          this.onClickLeft();
+          break;
+        }
+        case "right": {
+          this.onClickRight();
+          break;
+        }
+      }
+    }
+  );
+
   public componentDidMount(): void {
     window.addEventListener("keydown", this.onKeyDown);
   }
@@ -68,6 +87,9 @@ export default class TutorialModal extends React.PureComponent<
     const { currentPage, previousPage, transition } = this.state;
     const isChangingPage = transition !== null;
 
+    const isLeftButtonEnabled = !isChangingPage && currentPage > 0;
+    const isRightButtonEnabled =
+      !isChangingPage && currentPage < TUTORIAL_PAGES.length - 1;
     return (
       <Modal
         className={classnames(
@@ -84,6 +106,9 @@ export default class TutorialModal extends React.PureComponent<
             !isChangingPage && currentPage > 0 && "enabled"
           )}
           onClick={this.onClickLeft}
+          onKeyPress={this.handleNavigationButtonKeyPress("left")}
+          role="button"
+          tabIndex={isLeftButtonEnabled ? 0 : undefined}
         >
           <LeftIcon />
         </div>
@@ -96,13 +121,11 @@ export default class TutorialModal extends React.PureComponent<
           </div>
         </div>
         <div
-          className={classnames(
-            "right",
-            !isChangingPage &&
-              currentPage < TUTORIAL_PAGES.length - 1 &&
-              "enabled"
-          )}
+          className={classnames("right", isRightButtonEnabled && "enabled")}
           onClick={this.onClickRight}
+          onKeyPress={this.handleNavigationButtonKeyPress("right")}
+          role="button"
+          tabIndex={isRightButtonEnabled ? 0 : undefined}
         >
           <RightIcon />
         </div>
@@ -116,7 +139,7 @@ export default class TutorialModal extends React.PureComponent<
     return (
       <React.Fragment>
         <div className="picture">
-          <img src={page.image} />
+          <img src={page.image} alt="" />
         </div>
         <div className="text">{page.getText(localization)}</div>
         <div className="navigation">
@@ -148,12 +171,12 @@ export default class TutorialModal extends React.PureComponent<
   };
 
   private onKeyDown = (event: KeyboardEvent): void => {
-    switch (event.keyCode) {
-      case KEYCODE_LEFT_ARROW: {
+    switch (event.which) {
+      case KeyCode.LeftArrow: {
         this.onClickLeft();
         break;
       }
-      case KEYCODE_RIGHT_ARROW: {
+      case KeyCode.RightArrow: {
         this.onClickRight();
         break;
       }

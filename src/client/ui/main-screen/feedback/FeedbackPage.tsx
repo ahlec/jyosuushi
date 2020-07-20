@@ -5,6 +5,8 @@ import Localization from "@jyosuushi/localization";
 import { State } from "@jyosuushi/redux";
 import { getLocalization } from "@jyosuushi/redux/selectors";
 
+import InlineTrigger from "@jyosuushi/ui/components/InlineTrigger";
+
 import BugIcon from "@jyosuushi/icons/bug.png";
 import CommentsIcon from "@jyosuushi/icons/comments.png";
 import CodeIcon from "@jyosuushi/icons/code.png";
@@ -93,12 +95,12 @@ function FeedbackPage({ localization }: ComponentProps): React.ReactElement {
       case "external-link": {
         linkComponent = (
           <a
-            className="link"
+            className="feedback-link"
             href={link.url}
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img src={link.icon} />{" "}
+            <img src={link.icon} alt="" />{" "}
             <strong>{link.linkText(localization)}</strong>
           </a>
         );
@@ -107,10 +109,13 @@ function FeedbackPage({ localization }: ComponentProps): React.ReactElement {
       }
       case "modal": {
         linkComponent = (
-          <span className="link" onClick={(): void => setOpenModal(link.id)}>
-            <img src={link.icon} />{" "}
+          <InlineTrigger
+            className="feedback-link"
+            onTrigger={(): void => setOpenModal(link.id)}
+          >
+            <img src={link.icon} alt="" />{" "}
             <strong>{link.linkText(localization)}</strong>
-          </span>
+          </InlineTrigger>
         );
 
         if (openModal && link.id === openModal) {

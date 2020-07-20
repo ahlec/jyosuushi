@@ -7,11 +7,13 @@ import { setAmountRange, setInfiniteMode } from "@jyosuushi/redux/actions";
 import { getLocalization } from "@jyosuushi/redux/selectors";
 import { Dispatch } from "@jyosuushi/redux/store";
 
+import Checkbox from "@jyosuushi/ui/components/Checkbox";
+import ChooserControl, {
+  Choice,
+} from "@jyosuushi/ui/components/chooser-control/ChooserControl";
+
 import { AMOUNT_RANGES } from "@jyosuushi/constants";
 import Localization from "@jyosuushi/localization";
-
-import Checkbox from "./Checkbox";
-import ChooserControl, { Choice } from "./ChooserControl";
 
 import "./SettingsPage.scss";
 
