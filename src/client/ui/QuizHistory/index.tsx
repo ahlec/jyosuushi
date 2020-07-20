@@ -7,10 +7,11 @@ import { State, UserAnswer } from "@jyosuushi/redux";
 
 import HistoryRow from "./HistoryRow";
 
-import "./index.scss";
+import styles from "./index.scss";
 
 interface ProvidedProps {
   localization: Localization;
+  rowClassName: string;
 }
 
 interface ReduxProps {
@@ -48,17 +49,18 @@ class QuizHistory extends React.PureComponent<ComponentProps> {
     }
 
     return (
-      <table className="QuizHistory">
+      <table className={styles.quizHistory}>
         <tbody>{rows}</tbody>
       </table>
     );
   }
 
   private renderQuestionRow(index: number, question: Question): JSX.Element {
-    const { localization, userAnswers } = this.props;
+    const { localization, rowClassName, userAnswers } = this.props;
     return (
       <HistoryRow
         key={index}
+        className={rowClassName}
         localization={localization}
         question={question}
         questionNo={index + 1}

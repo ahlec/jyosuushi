@@ -12,7 +12,7 @@ import RightIcon from "@jyosuushi/ui/right.svg";
 
 import { TUTORIAL_PAGES } from "./tutorial";
 
-import "./TutorialModal.scss";
+import styles from "./TutorialModal.scss";
 
 interface ComponentProps {
   isOpen: boolean;
@@ -23,8 +23,16 @@ interface ComponentProps {
 interface ComponentState {
   currentPage: number;
   previousPage: number;
-  transition: "left" | "right" | "replace" | null;
+  transition: Transition | null;
 }
+
+type Transition = "left" | "right" | "replace";
+
+const TRANSITION_TO_CSS_CLASS_NAMES: { [transition in Transition]: string } = {
+  left: styles.transitioningLeft,
+  replace: styles.transitioningReplace,
+  right: styles.transitioningRight,
+};
 
 export default class TutorialModal extends React.PureComponent<
   ComponentProps,
@@ -93,17 +101,18 @@ export default class TutorialModal extends React.PureComponent<
     return (
       <Modal
         className={classnames(
-          "TutorialModal",
-          transition && `transitioning-${transition}`
+          styles.tutorialModal,
+          transition && TRANSITION_TO_CSS_CLASS_NAMES[transition]
         )}
+        contentClassName={styles.content}
         header={localization.tutorial}
         isOpen={isOpen}
         onRequestClose={this.onRequestClose}
       >
         <div
           className={classnames(
-            "left",
-            !isChangingPage && currentPage > 0 && "enabled"
+            styles.left,
+            !isChangingPage && currentPage > 0 && styles.enabled
           )}
           onClick={this.onClickLeft}
           onKeyPress={this.handleNavigationButtonKeyPress("left")}
@@ -112,16 +121,21 @@ export default class TutorialModal extends React.PureComponent<
         >
           <LeftIcon />
         </div>
-        <div className="viewport">
+        <div className={styles.viewport}>
           {transition && (
-            <div className="previous">{this.renderPage(previousPage)}</div>
+            <div className={styles.previous}>
+              {this.renderPage(previousPage)}
+            </div>
           )}
-          <div className="current" onAnimationEnd={this.onAnimationEnd}>
+          <div className={styles.current} onAnimationEnd={this.onAnimationEnd}>
             {this.renderPage(currentPage)}
           </div>
         </div>
         <div
-          className={classnames("right", isRightButtonEnabled && "enabled")}
+          className={classnames(
+            styles.right,
+            isRightButtonEnabled && styles.enabled
+          )}
           onClick={this.onClickRight}
           onKeyPress={this.handleNavigationButtonKeyPress("right")}
           role="button"
@@ -138,11 +152,11 @@ export default class TutorialModal extends React.PureComponent<
     const page = TUTORIAL_PAGES[pageNumber];
     return (
       <React.Fragment>
-        <div className="picture">
+        <div className={styles.picture}>
           <img src={page.image} alt="" />
         </div>
-        <div className="text">{page.getText(localization)}</div>
-        <div className="navigation">
+        <div className={styles.text}>{page.getText(localization)}</div>
+        <div className={styles.navigation}>
           {TUTORIAL_PAGES.map((_, index) =>
             this.renderNavigationLink(pageNumber, index)
           )}
@@ -159,8 +173,8 @@ export default class TutorialModal extends React.PureComponent<
       <svg
         key={linkedPageNumber}
         className={classnames(
-          "navigation-link",
-          linkedPageNumber === onPageNumber && "active"
+          styles.navigationLink,
+          linkedPageNumber === onPageNumber && styles.active
         )}
         viewBox="0 0 10 10"
         onClick={this.onClickPageLink(linkedPageNumber)}
@@ -200,15 +214,15 @@ export default class TutorialModal extends React.PureComponent<
     const { transition } = this.state;
     let finishesTransition = false;
     switch (animationName) {
-      case "transition-left-current": {
+      case styles.transitionLeftCurrent: {
         finishesTransition = transition === "left";
         break;
       }
-      case "transition-right-current": {
+      case styles.transitionRightCurrent: {
         finishesTransition = transition === "right";
         break;
       }
-      case "transition-replace-current": {
+      case styles.transitionReplaceCurrent: {
         finishesTransition = transition === "replace";
         break;
       }

@@ -6,7 +6,7 @@ import { State } from "@jyosuushi/redux";
 
 import TsuWarningModel, { NUM_DEFAULT_WARNINGS } from "./model";
 
-import "./index.scss";
+import styles from "./index.scss";
 
 interface ProvidedProps {
   localization: Localization;
@@ -50,7 +50,7 @@ class TsuNotice extends React.PureComponent<ComponentProps> {
     const { localization } = this.props;
     return (
       <div
-        className="TsuNotice"
+        className={styles.tsuNotice}
         style={{
           opacity: this.model.numWarnings / NUM_DEFAULT_WARNINGS,
         }}

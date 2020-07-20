@@ -4,7 +4,7 @@ import { ITEMS_LOOKUP } from "@data/items";
 import { Question } from "@jyosuushi/interfaces";
 import Localization from "@jyosuushi/localization";
 
-import "./QuestionDisplay.scss";
+import styles from "./QuestionDisplay.scss";
 
 interface ComponentProps {
   currentQuestion: Question;
@@ -20,7 +20,7 @@ export default class QuestionPanel extends React.PureComponent<ComponentProps> {
         ? localization.itemSingular(item)
         : localization.itemPlural(item);
     return (
-      <div className="QuestionDisplay">
+      <div className={styles.questionDisplay}>
         {currentQuestion.amount} {name}
       </div>
     );

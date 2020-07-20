@@ -14,7 +14,7 @@ import CodeIcon from "@jyosuushi/icons/code.png";
 import { BugReportModal } from "@jyosuushi/ui/feedback/BugReport";
 import { FeatureSuggestionModal } from "@jyosuushi/ui/feedback/FeatureSuggestion";
 
-import "./FeedbackPage.scss";
+import styles from "./FeedbackPage.scss";
 
 enum FeedbackPageModal {
   BugReport = "bug-report",
@@ -95,7 +95,7 @@ function FeedbackPage({ localization }: ComponentProps): React.ReactElement {
       case "external-link": {
         linkComponent = (
           <a
-            className="feedback-link"
+            className={styles.feedbackLink}
             href={link.url}
             target="_blank"
             rel="noopener noreferrer"
@@ -110,7 +110,7 @@ function FeedbackPage({ localization }: ComponentProps): React.ReactElement {
       case "modal": {
         linkComponent = (
           <InlineTrigger
-            className="feedback-link"
+            className={styles.feedbackLink}
             onTrigger={(): void => setOpenModal(link.id)}
           >
             <img src={link.icon} alt="" />{" "}
@@ -132,10 +132,10 @@ function FeedbackPage({ localization }: ComponentProps): React.ReactElement {
     }
 
     return (
-      <p key={index} className="link-entry">
+      <p key={index} className={styles.linkEntry}>
         {linkComponent}
         {". "}
-        <span className="small">{link.description(localization)}</span>
+        <span className={styles.small}>{link.description(localization)}</span>
         {followupComponent}
       </p>
     );
@@ -143,8 +143,8 @@ function FeedbackPage({ localization }: ComponentProps): React.ReactElement {
 
   // Render this component
   return (
-    <div className="FeedbackPage">
-      <p className="intro">{localization.feedbackPageIntro}</p>
+    <div className={styles.feedbackPage}>
+      <p className={styles.intro}>{localization.feedbackPageIntro}</p>
       <hr />
       {LINKS.map(renderLink)}
     </div>

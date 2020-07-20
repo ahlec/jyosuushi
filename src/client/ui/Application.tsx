@@ -19,7 +19,7 @@ import QuizPage from "./quiz-page";
 import ToastDisplayContainer from "./toasts/ToastDisplayContainer";
 import ToastManager from "./toasts/ToastManager";
 
-import "./Application.scss";
+import styles from "./Application.scss";
 
 const QUIZ_SCREEN_PATH = "/quiz";
 
@@ -50,7 +50,10 @@ class Application extends React.PureComponent<ComponentProps, ComponentState> {
     return (
       <ToastManager>
         <div
-          className={classnames("Application", isQuizActive && "quiz-active")}
+          className={classnames(
+            styles.application,
+            isQuizActive && styles.quizActive
+          )}
         >
           <NavigationManager />
           <Header

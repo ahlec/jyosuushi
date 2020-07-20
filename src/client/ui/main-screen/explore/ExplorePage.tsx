@@ -9,7 +9,7 @@ import BreadcrumbBar from "./BreadcrumbBar";
 import ExploreCounterPage from "./counter/ExploreCounterPage";
 import ExploreStudyPackPage from "./study-pack/ExploreStudyPackPage";
 
-import "./ExplorePage.scss";
+import styles from "./ExplorePage.scss";
 
 export default class ExplorePage extends React.PureComponent {
   public render(): React.ReactNode {
@@ -27,9 +27,9 @@ export default class ExplorePage extends React.PureComponent {
 
   private renderLandingPage = (): React.ReactNode => {
     return (
-      <div className="ExplorePageLanding">
+      <div className={styles.explorePageLanding}>
         <BreadcrumbBar />
-        <div className="contents">
+        <div className={styles.contents}>
           <AllStudyPacks />
           <AllCounters />
         </div>

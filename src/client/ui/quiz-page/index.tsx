@@ -15,7 +15,7 @@ import QuestionDisplay from "./QuestionDisplay";
 import QuizWrapup from "./QuizWrapup";
 import ResultsView from "./ResultsView";
 
-import "./index.scss";
+import styles from "./index.scss";
 
 const KEY_ENTER = 13;
 
@@ -71,24 +71,26 @@ class QuizPage extends React.PureComponent<ComponentProps> {
     }
 
     return (
-      <div className="QuestionPage">
+      <div className={styles.questionPage}>
         <QuestionDisplay
           currentQuestion={currentQuestion}
           localization={localization}
         />
         <AnswerInput
+          buttonsClassName={styles.buttons}
           currentQuestion={currentQuestion}
           enabled={enabled && quizState.state === "waiting-for-answer"}
           localization={localization}
         />
         {quizState.state === "reviewing-answer" && (
           <ResultsView
+            className={styles.resultsView}
             currentQuestion={currentQuestion}
             localization={localization}
             onClickNextQuestion={this.onClickNextQuestion}
           />
         )}
-        <div className="flex" />
+        <div className={styles.flex} />
         <FeedbackFooter localization={localization} />
       </div>
     );

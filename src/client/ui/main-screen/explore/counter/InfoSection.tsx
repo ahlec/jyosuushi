@@ -12,7 +12,7 @@ import IconFlagUsa from "@jyosuushi/icons/flag-usa.png";
 
 import MarkdownPresenter from "./MarkdownPresenter";
 
-import "./InfoSection.scss";
+import styles from "./InfoSection.scss";
 
 interface ComponentProps {
   counter: Counter;
@@ -32,9 +32,12 @@ export default class InfoSection extends React.PureComponent<ComponentProps> {
     }
 
     return (
-      <section className="InfoSection">
+      <section className={styles.infoSection}>
         {counter.notes && (
-          <MarkdownPresenter component={counter.notes} className="notes" />
+          <MarkdownPresenter
+            component={counter.notes}
+            className={styles.notes}
+          />
         )}
         {counter.externalLinks.length ? (
           <React.Fragment>
@@ -43,7 +46,7 @@ export default class InfoSection extends React.PureComponent<ComponentProps> {
                 ? localization.furtherReading
                 : localization.externalLinksHeader}
             </h6>
-            <ul className="external-links">
+            <ul className={styles.externalLinks}>
               {counter.externalLinks.map(this.renderLink)}
             </ul>
           </React.Fragment>
@@ -73,13 +76,13 @@ export default class InfoSection extends React.PureComponent<ComponentProps> {
         <a href={link.url} target="_blank" rel="noopener noreferrer">
           <img
             src={languageIconSrc}
-            className="language-icon"
+            className={styles.languageIcon}
             alt={languageAlt}
           />
-          <strong className="site">[{link.siteName}]</strong>
+          <strong className={styles.site}>[{link.siteName}]</strong>
           {link.displayText}
         </a>
-        <div className="description">{link.description}</div>
+        <div className={styles.description}>{link.description}</div>
       </li>
     );
   };

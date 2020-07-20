@@ -19,7 +19,7 @@ import {
   getStudyPackLink,
 } from "./pathing";
 
-import "./BreadcrumbBar.scss";
+import styles from "./BreadcrumbBar.scss";
 
 interface ReduxProps {
   localization: Localization;
@@ -44,6 +44,7 @@ function makeStudyPackDomLink(
       key={EXPLORE_STUDY_PACK_PATH}
       exact={true}
       to={getStudyPackLink(studyPack)}
+      activeClassName={styles.active}
     >
       {localization.pageExploreStudyPack}{" "}
       {localization.studyPackName(studyPack)}
@@ -65,7 +66,12 @@ class BreadcrumbBar extends React.PureComponent<ComponentProps> {
     const { localization, location, match } = this.props;
 
     const links: React.ReactNode[] = [
-      <NavLink key={EXPLORE_PAGE_PATH} exact={true} to={EXPLORE_PAGE_PATH}>
+      <NavLink
+        key={EXPLORE_PAGE_PATH}
+        exact={true}
+        to={EXPLORE_PAGE_PATH}
+        activeClassName={styles.active}
+      >
         {localization.pageExplore}
       </NavLink>,
     ];
@@ -86,7 +92,12 @@ class BreadcrumbBar extends React.PureComponent<ComponentProps> {
         assertParamDefined("counterId", match.params.counterId);
         const counter = COUNTERS_LOOKUP[match.params.counterId];
         links.push(
-          <NavLink key={EXPLORE_COUNTER_PATH} exact={true} to={location}>
+          <NavLink
+            key={EXPLORE_COUNTER_PATH}
+            exact={true}
+            to={location}
+            activeClassName={styles.active}
+          >
             {localization.pageExploreCounter}{" "}
             {localization.counterName(counter)}【
             {getPrimaryJapaneseRepresentation(counter)}】
@@ -98,8 +109,8 @@ class BreadcrumbBar extends React.PureComponent<ComponentProps> {
     }
 
     return (
-      <div className="BreadcrumbBar">
-        <span className="flourish">⁜</span> {interleave(links, " » ")}
+      <div className={styles.breadcrumbBar}>
+        <span className={styles.flourish}>⁜</span> {interleave(links, " » ")}
       </div>
     );
   }

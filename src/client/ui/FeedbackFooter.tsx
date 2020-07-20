@@ -14,7 +14,7 @@ import { FeatureSuggestionModal } from "@jyosuushi/ui/feedback/FeatureSuggestion
 import BugIcon from "@jyosuushi/icons/bug.png";
 import CommentsIcon from "@jyosuushi/icons/comments.png";
 
-import "./FeedbackFooter.scss";
+import styles from "./FeedbackFooter.scss";
 
 interface ComponentProps {
   localization: Localization;
@@ -40,7 +40,7 @@ function FeedbackFooter({ localization }: ComponentProps): React.ReactElement {
 
   // Render the component
   return (
-    <div className="FeedbackFooter">
+    <div className={styles.feedbackFooter}>
       {localization.feedbackFooter.map(
         (piece: FeedbackFooterPiece): React.ReactNode => {
           switch (piece) {
@@ -48,22 +48,26 @@ function FeedbackFooter({ localization }: ComponentProps): React.ReactElement {
               return (
                 <InlineTrigger
                   key={VARIABLE_REPORT_BUG_LINK}
-                  className="modal-link"
+                  className={styles.modalLink}
                   onTrigger={handleReportBugClick}
                 >
-                  <img className="icon" src={BugIcon} alt="" />{" "}
-                  <span className="label">{localization.reportABug}</span>
+                  <img className={styles.icon} src={BugIcon} alt="" />{" "}
+                  <span className={styles.label}>
+                    {localization.reportABug}
+                  </span>
                 </InlineTrigger>
               );
             case VARIABLE_SUBMIT_FEEDBACK_LINK:
               return (
                 <InlineTrigger
                   key={VARIABLE_SUBMIT_FEEDBACK_LINK}
-                  className="modal-link"
+                  className={styles.modalLink}
                   onTrigger={handleSuggestFeedbackClick}
                 >
-                  <img className="icon" src={CommentsIcon} alt="" />{" "}
-                  <span className="label">{localization.submitFeedback}</span>
+                  <img className={styles.icon} src={CommentsIcon} alt="" />{" "}
+                  <span className={styles.label}>
+                    {localization.submitFeedback}
+                  </span>
                 </InlineTrigger>
               );
             default:

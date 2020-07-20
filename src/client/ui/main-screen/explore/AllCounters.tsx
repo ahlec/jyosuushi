@@ -10,7 +10,7 @@ import { getLocalization } from "@jyosuushi/redux/selectors";
 
 import CounterTile from "@jyosuushi/ui/main-screen/CounterTile";
 
-import "./AllCounters.scss";
+import styles from "./AllCounters.scss";
 
 interface ReduxProps {
   localization: Localization;
@@ -35,9 +35,9 @@ class AllCounters extends React.PureComponent<ReduxProps> {
     const { localization } = this.props;
     const allCounters = getAllCountersSorted(localization);
     return (
-      <div className="AllCounters">
+      <div className={styles.allCounters}>
         <h3>Counters</h3>
-        <div className="list">{allCounters.map(this.renderCounter)}</div>
+        <div className={styles.list}>{allCounters.map(this.renderCounter)}</div>
       </div>
     );
   }

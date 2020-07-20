@@ -10,7 +10,7 @@ import { getLocalization } from "@jyosuushi/redux/selectors";
 
 import { LANDING_PAGE, ORDERED_SIDEBAR_PAGES, PageDefinition } from "./pages";
 
-import "./Sidebar.scss";
+import styles from "./Sidebar.scss";
 
 const isPageActive = memoize(
   (page: PageDefinition) => (
@@ -44,7 +44,7 @@ type ComponentProps = ReduxProps;
 class Sidebar extends React.Component<ComponentProps> {
   public render(): React.ReactNode {
     return (
-      <div className="Sidebar">
+      <div className={styles.sidebar}>
         {ORDERED_SIDEBAR_PAGES.map(this.renderLink)}
       </div>
     );
@@ -57,7 +57,8 @@ class Sidebar extends React.Component<ComponentProps> {
       <NavLink
         key={path}
         to={path}
-        className="entry"
+        className={styles.entry}
+        activeClassName={styles.active}
         isActive={isPageActive(page)}
       >
         <Icon />

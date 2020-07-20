@@ -6,7 +6,7 @@ import { KeyCode } from "@jyosuushi/constants";
 import CheckIcon from "@jyosuushi/ui/main-screen/check.svg";
 import CircleIcon from "@jyosuushi/ui/main-screen/circle.svg";
 
-import "./Checkbox.scss";
+import styles from "./Checkbox.scss";
 
 interface ComponentProps {
   checked: boolean;
@@ -35,7 +35,7 @@ function Checkbox({
   // Render component
   return (
     <div
-      className={classnames("Checkbox", checked && "checked")}
+      className={classnames(styles.checkbox, checked && styles.checked)}
       onClick={handleClick}
       onKeyPress={handleKeyPress}
       role="checkbox"
@@ -43,11 +43,11 @@ function Checkbox({
       tabIndex={0}
     >
       {checked ? (
-        <CheckIcon className="icon" />
+        <CheckIcon className={styles.icon} />
       ) : (
-        <CircleIcon className="icon" />
+        <CircleIcon className={styles.icon} />
       )}
-      <div className="label">{label}</div>
+      <div className={styles.label}>{label}</div>
     </div>
   );
 }

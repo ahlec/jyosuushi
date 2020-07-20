@@ -1,3 +1,4 @@
+import classnames from "classnames";
 import { uniq } from "lodash";
 import * as React from "react";
 import * as ReactGA from "react-ga";
@@ -17,9 +18,11 @@ import { Dispatch } from "@jyosuushi/redux/store";
 import JudgmentBubble from "@jyosuushi/ui/JudgmentBubble";
 
 import AnswersTable from "./AnswersTable";
-import "./index.scss";
+
+import styles from "./index.scss";
 
 interface ProvidedProps {
+  className: string;
   currentQuestion: Question;
   localization: Localization;
   onClickNextQuestion: () => void;
@@ -50,15 +53,20 @@ const HEADERS: {
 
 class ResultsView extends React.PureComponent<ComponentProps> {
   public render(): React.ReactNode {
-    const { currentQuestion, localization, usersAnswer } = this.props;
+    const {
+      className,
+      currentQuestion,
+      localization,
+      usersAnswer,
+    } = this.props;
     return (
-      <div className="ResultsView">
-        <div className="results">
+      <div className={classnames(styles.resultsView, className)}>
+        <div className={styles.results}>
           <JudgmentBubble
             judgment={usersAnswer.judgment}
             shape="block-circle"
           />
-          <div className="info">
+          <div className={styles.info}>
             <h3>{HEADERS[usersAnswer.judgment](localization)}</h3>
             {usersAnswer.judgment !== "skipped" ? (
               <React.Fragment>
@@ -74,13 +82,16 @@ class ResultsView extends React.PureComponent<ComponentProps> {
             )}
           </div>
         </div>
-        <div className="buttons">
+        <div className={styles.buttons}>
           {usersAnswer.judgment === "incorrect" && (
-            <button className="ignore-answer" onClick={this.onIgnoreClicked}>
+            <button
+              className={styles.ignoreAnswer}
+              onClick={this.onIgnoreClicked}
+            >
               {localization.buttonIgnoreAnswer}
             </button>
           )}
-          <button className="next-question" onClick={this.onClickNextQuestion}>
+          <button onClick={this.onClickNextQuestion}>
             {localization.buttonNextQuestion}
           </button>
         </div>

@@ -2,13 +2,15 @@ import classnames from "classnames";
 import * as React from "react";
 import ReactModal from "react-modal";
 
+import { KeyCode } from "@jyosuushi/constants";
+
 import CloseIcon from "@jyosuushi/icons/close.svg";
 
-import "./Modal.scss";
-import { KeyCode } from "@jyosuushi/constants";
+import styles from "./Modal.scss";
 
 interface ComponentProps {
   className?: string;
+  contentClassName?: string;
   header: string;
   isOpen: boolean;
   onRequestClose: () => void;
@@ -16,16 +18,22 @@ interface ComponentProps {
 
 export default class Modal extends React.Component<ComponentProps> {
   public render(): React.ReactNode {
-    const { children, className, header, isOpen } = this.props;
+    const {
+      children,
+      className,
+      contentClassName,
+      header,
+      isOpen,
+    } = this.props;
     return (
       <ReactModal
-        className={classnames("Modal", className)}
+        className={classnames(styles.modal, className)}
         isOpen={isOpen}
         onRequestClose={this.onRequestClose}
       >
-        <header>
+        <header className={styles.header}>
           <div
-            className="button"
+            className={styles.closeButton}
             onClick={this.onRequestClose}
             onKeyPress={this.handleCloseButtonKeyPress}
             role="button"
@@ -35,7 +43,9 @@ export default class Modal extends React.Component<ComponentProps> {
           </div>
           {header}
         </header>
-        <div className="content">{children}</div>
+        <div className={classnames(styles.content, contentClassName)}>
+          {children}
+        </div>
       </ReactModal>
     );
   }

@@ -11,7 +11,7 @@ import { STUDY_PACKS } from "@data/studyPacks";
 
 import { getStudyPackLink } from "./pathing";
 
-import "./AllStudyPacks.scss";
+import styles from "./AllStudyPacks.scss";
 
 interface ReduxProps {
   localization: Localization;
@@ -26,9 +26,11 @@ function mapStateToProps(state: State): ReduxProps {
 class AllStudyPacks extends React.PureComponent<ReduxProps> {
   public render(): React.ReactNode {
     return (
-      <div className="AllStudyPacks">
+      <div className={styles.allStudyPacks}>
         <h3>Study Packs</h3>
-        <div className="list">{STUDY_PACKS.map(this.renderStudyPack)}</div>
+        <div className={styles.list}>
+          {STUDY_PACKS.map(this.renderStudyPack)}
+        </div>
       </div>
     );
   }
@@ -39,11 +41,13 @@ class AllStudyPacks extends React.PureComponent<ReduxProps> {
     return (
       <Link
         key={studyPack.packId}
-        className="StudyPackLink"
+        className={styles.studyPackLink}
         to={getStudyPackLink(studyPack)}
       >
-        <div className="name">{localization.studyPackName(studyPack)}</div>
-        <div className="count">
+        <div className={styles.name}>
+          {localization.studyPackName(studyPack)}
+        </div>
+        <div className={styles.count}>
           {localization.studyPackSize(studyPack.counters.length)}
         </div>
       </Link>

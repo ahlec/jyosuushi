@@ -7,7 +7,7 @@ import Localization from "@jyosuushi/localization";
 
 import PackToggleButton from "./PackToggleButton";
 
-import "./PackSelection.scss";
+import styles from "./PackSelection.scss";
 
 interface ComponentProps {
   localization: Localization;
@@ -38,11 +38,11 @@ export default class PackSelection extends React.PureComponent<ComponentProps> {
   public render(): React.ReactNode {
     const { localization } = this.props;
     return (
-      <div className="PackSelection">
-        <div className="fieldset">
-          <div className="header">
+      <div className={styles.packSelection}>
+        <div className={styles.fieldset}>
+          <div className={styles.header}>
             <strong>{localization.studyPackSelectionHeader}</strong>{" "}
-            <span className="subheader">
+            <span className={styles.subheader}>
               {localization.studyPackSelectionSubheader}
             </span>
           </div>

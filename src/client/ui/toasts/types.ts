@@ -1,6 +1,8 @@
+export type ToastVariant = "success";
+
 export interface ToastDefinition {
   message: string;
-  variant: "success";
+  variant: ToastVariant;
 }
 
 export interface Toast extends ToastDefinition {

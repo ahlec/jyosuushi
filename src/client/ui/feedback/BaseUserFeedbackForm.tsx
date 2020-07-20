@@ -1,5 +1,4 @@
 import { MutationHookOptions, MutationTuple } from "@apollo/client";
-import classnames from "classnames";
 import React, { useState } from "react";
 
 import {
@@ -9,7 +8,7 @@ import {
 
 import useToast from "@jyosuushi/ui/toasts/useToast";
 
-import "./BaseUserFeedbackForm.scss";
+import styles from "./BaseUserFeedbackForm.scss";
 
 const CONSECUTIVE_WHITESPACE_REGEX = /\s+/g;
 
@@ -147,37 +146,27 @@ function BaseUserFeedbackForm({
 
   // Render form
   return (
-    <div className="BaseUserFeedbackForm">
-      <p className="explanation">{explanation}</p>
-      <label className="message-input">
-        <div className="field-label">Message</div>
+    <div className={styles.baseUserFeedbackForm}>
+      <p className={styles.explanation}>{explanation}</p>
+      <label className={styles.messageInput}>
+        <div className={styles.fieldLabel}>Message</div>
         <textarea
-          className="input-element"
+          className={styles.inputElement}
           disabled={isMutating}
           onChange={handleTextareaChange}
           value={userInput}
         />
-        <div
-          className={classnames(
-            "context-footer",
-            canUserSubmit && "can-submit"
-          )}
-        >
+        <div className={styles.contextFooter}>
           {getMessageContextFooterText(sanitizedMessage.length)}
         </div>
       </label>
-      <div className="action-buttons">
+      <div className={styles.actionButtons}>
         {!!userInput && (
-          <button
-            className="secondary"
-            disabled={isMutating}
-            onClick={handleClearClick}
-          >
+          <button disabled={isMutating} onClick={handleClearClick}>
             Clear
           </button>
         )}
         <button
-          className="primary"
           disabled={isMutating || !canUserSubmit}
           onClick={handleSubmitClick}
         >
@@ -185,12 +174,12 @@ function BaseUserFeedbackForm({
         </button>
       </div>
       {mutationError ? (
-        <div className="error-container">
+        <div className={styles.errorContainer}>
           There was an error with the server when trying to submit your
           feedback. Please try again later.
         </div>
       ) : !!mutationResults && !mutationResults.result.success ? (
-        <div className="error-container">
+        <div className={styles.errorContainer}>
           Your feedback was unable to be saved. Please try again.
         </div>
       ) : null}

@@ -1,6 +1,6 @@
-import * as React from "react";
+import React from "react";
 
-import "./SectionContainer.scss";
+import styles from "./SectionContainer.scss";
 
 interface ComponentProps {
   children?: React.ReactNode;
@@ -11,9 +11,9 @@ class SectionContainer extends React.PureComponent<ComponentProps> {
   public render(): React.ReactNode {
     const { children, header } = this.props;
     return (
-      <div className="SectionContainer">
-        <div className="header">{header}</div>
-        <div className="contents">{children}</div>
+      <div className={styles.sectionContainer}>
+        <div className={styles.header}>{header}</div>
+        <div className={styles.contents}>{children}</div>
       </div>
     );
   }

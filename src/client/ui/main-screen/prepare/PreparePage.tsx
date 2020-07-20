@@ -19,7 +19,7 @@ import CounterPreview from "./CounterPreview";
 import PackSelection from "./PackSelection";
 import TutorialModal from "./TutorialModal";
 
-import "./PreparePage.scss";
+import styles from "./PreparePage.scss";
 
 function getPacksFromArray(
   packs: ReadonlyArray<string>
@@ -63,7 +63,7 @@ class PreparePage extends React.PureComponent<ComponentProps, ComponentState> {
     const { enabledPacks, localization } = this.props;
     const { showingTutorial } = this.state;
     return (
-      <div className="PreparePage">
+      <div className={styles.preparePage}>
         <p>
           Welcome to <strong>助数詞を練習</strong>! This is a tool that&apos;s
           meant to help you study{" "}
@@ -85,13 +85,17 @@ class PreparePage extends React.PureComponent<ComponentProps, ComponentState> {
           onSelectionChanged={this.onSelectionChanged}
           selection={enabledPacks}
         />
-        <div className="start">
+        <div className={styles.start}>
           <button disabled={!enabledPacks.length} onClick={this.onStartQuiz}>
             {localization.startQuiz}
           </button>
         </div>
-        <CounterPreview localization={localization} packs={enabledPacks} />
-        <div className="flex" />
+        <CounterPreview
+          className={styles.counterPreview}
+          localization={localization}
+          packs={enabledPacks}
+        />
+        <div className={styles.flex} />
         <TutorialModal
           isOpen={showingTutorial}
           localization={localization}

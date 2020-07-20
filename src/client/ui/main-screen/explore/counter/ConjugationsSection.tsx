@@ -1,12 +1,12 @@
 import { clamp, sortBy } from "lodash";
 import memoizeOne from "memoize-one";
-import * as React from "react";
+import React from "react";
 
 import { Conjugation, Counter, CountingSystem } from "@jyosuushi/interfaces";
 import Localization from "@jyosuushi/localization";
 import { conjugateCounter } from "@jyosuushi/japanese/counters";
 
-import "./ConjugationsSection.scss";
+import styles from "./ConjugationsSection.scss";
 
 const AMOUNTS_TO_DISPLAY = 17;
 const MIN_USER_INPUT = 1;
@@ -14,7 +14,7 @@ const MAX_USER_INPUT = 999_999_999;
 
 function highlightIrregular(contents: string): React.ReactNode {
   return (
-    <span className="irregular" key={contents}>
+    <span className={styles.irregular} key={contents}>
       {contents}
     </span>
   );
@@ -93,36 +93,36 @@ export default class ConjugationsSection extends React.PureComponent<
     const furtherIrregulars = this.memoizeIrregularsBeyondExampleTable(counter);
 
     return (
-      <section className="ConjugationsSection">
-        <p className="examples-prefix">
+      <section className={styles.conjugationsSection}>
+        <p className={styles.examplesPrefix}>
           {localization.hereAreTheFirstXNumbers(AMOUNTS_TO_DISPLAY)}{" "}
           {this.renderIrregularsWarning(counter)}
         </p>
-        <div className="examples-table">
+        <div className={styles.examplesTable}>
           {this.memoizeExamplesTable(counter).map(this.renderConjugationTile)}
-          <div className="etc">{localization.andSoForth}</div>
+          <div>{localization.andSoForth}</div>
         </div>
         {!!furtherIrregulars.length && (
           <React.Fragment>
-            <p className="further-irregulars">
+            <p className={styles.furtherIrregulars}>
               {localization.furtherIrregulars}
             </p>
-            <div className="examples-table">
+            <div className={styles.examplesTable}>
               {furtherIrregulars.map(this.renderConjugationTile)}
             </div>
           </React.Fragment>
         )}
-        <p className="custom-input-prefix">
+        <p className={styles.customInputPrefix}>
           {localization.customCounterAmountInputPrefix}
         </p>
-        <div className="conjugated-user-input">
+        <div className={styles.conjugatedUserInput}>
           {conjugateCounter(currentUserInput, counter).map(
             this.renderCurrentUserInputItem
           )}
         </div>
         <input
           type="number"
-          className="current-user-input"
+          className={styles.currentUserInput}
           min={MIN_USER_INPUT}
           max={MAX_USER_INPUT}
           value={currentUserInput}
@@ -149,11 +149,9 @@ export default class ConjugationsSection extends React.PureComponent<
     conjugations,
   }: ConjugationTile): React.ReactNode => {
     return (
-      <div className="conjugation-container" key={amount}>
-        <div className="amount">{amount}</div>
-        <div className="conjugations">
-          {conjugations.map(this.renderConjugation)}
-        </div>
+      <div className={styles.conjugationContainer} key={amount}>
+        <div className={styles.amount}>{amount}</div>
+        <div>{conjugations.map(this.renderConjugation)}</div>
       </div>
     );
   };
@@ -166,9 +164,9 @@ export default class ConjugationsSection extends React.PureComponent<
       key={index}
       className={
         conjugation.irregularType
-          ? "irregular"
+          ? styles.irregular
           : conjugation.countingSystem !== CountingSystem.Kango
-          ? "non-kango"
+          ? styles.nonKango
           : ""
       }
     >
@@ -186,9 +184,9 @@ export default class ConjugationsSection extends React.PureComponent<
         key={reading}
         className={
           irregularType
-            ? "irregular"
+            ? styles.irregular
             : countingSystem !== CountingSystem.Kango
-            ? "non-kango"
+            ? styles.nonKango
             : ""
         }
       >

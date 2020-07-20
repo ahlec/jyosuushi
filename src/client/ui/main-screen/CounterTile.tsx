@@ -10,7 +10,7 @@ import { getPrimaryJapaneseRepresentation } from "@jyosuushi/utils";
 
 import { getCounterLink } from "./explore/pathing";
 
-import "./CounterTile.scss";
+import styles from "./CounterTile.scss";
 
 interface ProvidedProps {
   counter: Counter;
@@ -32,9 +32,11 @@ class CounterTile extends React.PureComponent<ComponentProps> {
   public render(): React.ReactNode {
     const { counter, localization } = this.props;
     return (
-      <Link className="CounterTile" to={getCounterLink(counter)}>
-        <div className="kanji">{getPrimaryJapaneseRepresentation(counter)}</div>
-        <div className="name">{localization.counterName(counter)}</div>
+      <Link className={styles.counterTile} to={getCounterLink(counter)}>
+        <div className={styles.kanji}>
+          {getPrimaryJapaneseRepresentation(counter)}
+        </div>
+        <div className={styles.name}>{localization.counterName(counter)}</div>
       </Link>
     );
   }

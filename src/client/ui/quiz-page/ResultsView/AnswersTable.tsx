@@ -17,7 +17,7 @@ import { CountersState, State, UserAnswer } from "@jyosuushi/redux";
 
 import CounterDisplay from "@jyosuushi/ui/components/CounterDisplay";
 
-import "./AnswersTable.scss";
+import styles from "./AnswersTable.scss";
 
 interface ProvidedProps {
   currentQuestion: Question;
@@ -101,7 +101,7 @@ class AnswersTable extends React.PureComponent<ComponentProps> {
       counters
     );
     return (
-      <table className="AnswersTable">
+      <table className={styles.answersTable}>
         <tbody>
           <tr>
             <th>{localization.resultColumnHeaderCounter}</th>
@@ -121,21 +121,23 @@ class AnswersTable extends React.PureComponent<ComponentProps> {
     return (
       <tr
         key={row.counter.counterId}
-        className={classnames(row.wasUsersCorrectAnswer && "correct")}
+        className={classnames(row.wasUsersCorrectAnswer && styles.correct)}
       >
-        <td className="cell-counter">
+        <td className={styles.cellCounter}>
           <CounterDisplay counter={row.counter} />
         </td>
-        <td className="cell-rule">{localization.counterName(row.counter)}</td>
-        <td className="cell-study-pack">
+        <td className={styles.cellRule}>
+          {localization.counterName(row.counter)}
+        </td>
+        <td className={styles.cellStudyPack}>
           {row.studyPacks.map(this.renderStudyPack)}
         </td>
-        <td className="cell-kanji">
+        <td className={styles.cellKanji}>
           {row.validKanji.length
             ? row.validKanji.map(this.renderKanji)
             : "(none)"}
         </td>
-        <td className="cell-hiragana">
+        <td className={styles.cellHiragana}>
           {row.kanaAnswers.map(this.renderKana)}
         </td>
       </tr>
@@ -169,19 +171,19 @@ class AnswersTable extends React.PureComponent<ComponentProps> {
       <div
         key={kana}
         className={classnames(
-          "kana",
+          styles.kana,
           usersAnswer.judgment === "correct" &&
             usersAnswer.input === kana &&
-            "correct"
+            styles.correct
         )}
       >
         {kana}
         {irregularType ? (
-          <span className="irregular">
+          <span className={styles.irregular}>
             {localization.resultTableIrregularLabel}
           </span>
         ) : countingSystem !== CountingSystem.Kango ? (
-          <span className="non-kango">
+          <span className={styles.nonKango}>
             {localization.resultTableNonKangoLabel}
           </span>
         ) : null}

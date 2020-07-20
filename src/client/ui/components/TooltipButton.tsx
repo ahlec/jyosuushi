@@ -3,7 +3,7 @@ import ReactTooltip from "react-tooltip";
 
 import { KeyCode } from "@jyosuushi/constants";
 
-import "./TooltipButton.scss";
+import styles from "./TooltipButton.scss";
 
 interface ComponentProps {
   enabled: boolean;
@@ -39,7 +39,7 @@ function TooltipButton({
   const id = `tb-${text}`;
   return (
     <div
-      className="TooltipButton"
+      className={styles.tooltipButton}
       onClick={handleClick}
       onKeyPress={handleKeyPress}
       role="button"

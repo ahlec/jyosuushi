@@ -13,7 +13,7 @@ import {
   UNORDERED_NESTED_PAGES,
 } from "./pages";
 
-import "./MainScreen.scss";
+import styles from "./MainScreen.scss";
 
 interface ReduxProps {
   shouldRedirectToReleaseNotes: boolean;
@@ -31,9 +31,9 @@ class MainScreen extends React.PureComponent<ReduxProps> {
   public render(): React.ReactNode {
     const { shouldRedirectToReleaseNotes } = this.props;
     return (
-      <div className="MainScreen">
+      <div className={styles.mainScreen}>
         <Sidebar />
-        <div className="content">
+        <div className={styles.content}>
           <Switch>
             {UNORDERED_NESTED_PAGES.map(this.renderRoute)}
             {this.renderRoute(LANDING_PAGE)}

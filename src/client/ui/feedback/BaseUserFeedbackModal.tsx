@@ -2,7 +2,7 @@ import React from "react";
 
 import Modal from "@jyosuushi/ui/Modal";
 
-import "./BaseUserFeedbackModal.scss";
+import styles from "./BaseUserFeedbackModal.scss";
 
 interface ComponentProps {
   /**
@@ -33,7 +33,8 @@ function BaseUserFeedbackModal({
 }: ComponentProps): React.ReactElement {
   return (
     <Modal
-      className="BaseUserFeedbackModal"
+      className={styles.baseUserFeedbackModal}
+      contentClassName={styles.content}
       header={header}
       isOpen={true}
       onRequestClose={onRequestClose}

@@ -1,4 +1,3 @@
-import classnames from "classnames";
 import * as React from "react";
 
 interface ComponentProps {
@@ -16,7 +15,7 @@ export default class Furigana extends React.PureComponent<ComponentProps> {
   public render(): React.ReactNode {
     const { className, furigana, text } = this.props;
     return (
-      <span className={classnames("Furigana", className)}>
+      <span className={className}>
         <ruby>
           {text}
           {furigana ? <rt>{furigana}</rt> : null}

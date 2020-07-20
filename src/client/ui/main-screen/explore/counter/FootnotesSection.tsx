@@ -1,10 +1,10 @@
-import * as React from "react";
+import React from "react";
 
 import { MarkdownComponent } from "@jyosuushi/interfaces";
 
 import MarkdownPresenter from "./MarkdownPresenter";
 
-import "./FootnotesSection.scss";
+import styles from "./FootnotesSection.scss";
 
 interface ComponentProps {
   footnotes: ReadonlyArray<MarkdownComponent>;
@@ -14,7 +14,9 @@ class FootnotesSection extends React.PureComponent<ComponentProps> {
   public render(): React.ReactNode {
     const { footnotes } = this.props;
     return (
-      <ol className="FootnotesSection">{footnotes.map(this.renderFootnote)}</ol>
+      <ol className={styles.footnotesSection}>
+        {footnotes.map(this.renderFootnote)}
+      </ol>
     );
   }
 
@@ -25,7 +27,7 @@ class FootnotesSection extends React.PureComponent<ComponentProps> {
     return (
       <MarkdownPresenter
         key={index}
-        className="footnote"
+        className={styles.footnote}
         component={component}
       />
     );

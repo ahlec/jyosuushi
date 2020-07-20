@@ -9,8 +9,8 @@ import { getPrimaryJapaneseRepresentation } from "@jyosuushi/utils";
 
 import { getCounterLink } from "@jyosuushi/ui/main-screen/explore/pathing";
 
-import "./DisambiguationSection.scss";
 import MarkdownPresenter from "./MarkdownPresenter";
+import styles from "./DisambiguationSection.scss";
 
 export function hasDisambiguationSection(counter: Counter): boolean {
   return counter.disambiguations.length > 0;
@@ -33,7 +33,7 @@ export default class DisambiguationSection extends React.PureComponent<
     }
 
     return (
-      <section className="DisambiguationSection">
+      <section className={styles.disambiguationSection}>
         {disambiguations.map(this.renderDisambiguation)}
       </section>
     );
@@ -45,13 +45,16 @@ export default class DisambiguationSection extends React.PureComponent<
   }: CounterDisambiguation): React.ReactNode => {
     const otherCounter = COUNTERS_LOOKUP[otherCounterId];
     return (
-      <div key={otherCounter.counterId} className="disambiguation">
-        <div className="counterContainer">
-          <Link className="counter" to={getCounterLink(otherCounter)}>
+      <div key={otherCounter.counterId} className={styles.disambiguation}>
+        <div className={styles.counterContainer}>
+          <Link className={styles.counter} to={getCounterLink(otherCounter)}>
             {getPrimaryJapaneseRepresentation(otherCounter)}
           </Link>
         </div>
-        <MarkdownPresenter className="distinction" component={distinction} />
+        <MarkdownPresenter
+          className={styles.distinction}
+          component={distinction}
+        />
       </div>
     );
   };

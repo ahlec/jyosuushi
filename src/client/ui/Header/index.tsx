@@ -24,7 +24,7 @@ import HistoryIcon from "./history.svg";
 import HomeIcon from "./home.svg";
 import SakuraIcon from "./sakura.svg";
 
-import "./index.scss";
+import styles from "./index.scss";
 
 interface ProvidedProps {
   isQuizActive: boolean;
@@ -69,13 +69,14 @@ function mapStateToProps(state: State): ReduxProps {
 
 type ComponentProps = ProvidedProps & ReduxProps & { dispatch: Dispatch };
 
-type Stage =
-  | "resting-home"
-  | "transitioning-from-home"
-  | "transitioning-to-quiz"
-  | "resting-quiz"
-  | "transitioning-from-quiz"
-  | "transitioning-to-home";
+enum Stage {
+  RestingHome = "resting-home",
+  TransitioningFromHome = "transitioning-from-home",
+  TransitioningToQuiz = "transitioning-to-quiz",
+  RestingQuiz = "resting-quiz",
+  TransitioningFromQuiz = "transitioning-from-quiz",
+  TransitioningToHome = "transitioning-to-home",
+}
 
 type Layout = "home" | "quiz";
 
@@ -85,17 +86,49 @@ interface ComponentState {
   stage: Stage;
 }
 
-/* eslint-disable sort-keys */
-// JUSTIFICATION: Allows the object to follow a linear progression through animations.
-const SUBSEQUENT_LAYOUT_STAGE: { [stage in Stage]: Stage | null } = {
-  "resting-home": null,
-  "transitioning-from-home": "transitioning-to-quiz",
-  "transitioning-to-quiz": "resting-quiz",
-  "resting-quiz": null,
-  "transitioning-from-quiz": "transitioning-to-home",
-  "transitioning-to-home": "resting-home",
+const STAGE_DEFINITIONS: {
+  [stage in Stage]: {
+    animationName: string;
+    cssClassName: string;
+    followingStage: Stage | null;
+  };
+} = {
+  [Stage.RestingHome]: {
+    animationName: styles.restingHome,
+    cssClassName: styles.restingHome,
+    followingStage: null,
+  },
+  [Stage.TransitioningFromHome]: {
+    animationName: styles.transitioningFromHomeKeyframes,
+    cssClassName: styles.transitioningFromHome,
+    followingStage: Stage.TransitioningToQuiz,
+  },
+  [Stage.TransitioningToQuiz]: {
+    animationName: styles.transitioningToQuizKeyframes,
+    cssClassName: styles.transitioningToQuiz,
+    followingStage: Stage.RestingQuiz,
+  },
+  [Stage.RestingQuiz]: {
+    animationName: styles.restingQuiz,
+    cssClassName: styles.restingQuiz,
+    followingStage: null,
+  },
+  [Stage.TransitioningFromQuiz]: {
+    animationName: styles.transitioningFromQuizKeyframes,
+    cssClassName: styles.transitioningFromQuiz,
+    followingStage: Stage.TransitioningToHome,
+  },
+  [Stage.TransitioningToHome]: {
+    animationName: styles.transitioningToHomeKeyframes,
+    cssClassName: styles.transitioningToHome,
+    followingStage: Stage.RestingHome,
+  },
 };
-/* eslint-enable sort-keys */
+
+const LAYOUT_TO_CSS_CLASS_NAME: { [layout in Layout]: string } = {
+  home: styles.home,
+  quiz: styles.quiz,
+};
 
 class Header extends React.PureComponent<ComponentProps, ComponentState> {
   public state: ComponentState;
@@ -105,7 +138,7 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
     this.state = {
       isPromptingToLeave: false,
       showHistoryModal: false,
-      stage: props.isQuizActive ? "resting-quiz" : "resting-home",
+      stage: props.isQuizActive ? Stage.RestingQuiz : Stage.RestingHome,
     };
   }
 
@@ -116,8 +149,8 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
     if (wasQuizActive !== isQuizActive) {
       this.setState({
         stage: isQuizActive
-          ? "transitioning-from-home"
-          : "transitioning-from-quiz",
+          ? Stage.TransitioningFromHome
+          : Stage.TransitioningFromQuiz,
       });
     }
 
@@ -140,10 +173,14 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
         : "quiz";
     return (
       <div
-        className={classnames("Header", layout, stage)}
+        className={classnames(
+          styles.header,
+          LAYOUT_TO_CSS_CLASS_NAME[layout],
+          STAGE_DEFINITIONS[stage].cssClassName
+        )}
         onAnimationEnd={this.onAnimationEnd}
       >
-        <SakuraIcon className="sakura" />
+        <SakuraIcon className={styles.sakura} />
         {layout === "home" ? this.renderHomeLayout() : this.renderQuizLayout()}
       </div>
     );
@@ -153,12 +190,12 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
     const { localization } = this.props;
     return (
       <React.Fragment>
-        <div className="main">
+        <div className={styles.main}>
           <Furigana furigana="じょすうし" text="助数詞" />を
           <Furigana furigana="れんしゅう" text="練習" />
         </div>
-        <div className="subheader">{localization.siteTagline}</div>
-        <BetaBanner localization={localization} />
+        <div className={styles.subheader}>{localization.siteTagline}</div>
+        <BetaBanner className={styles.betaBanner} localization={localization} />
       </React.Fragment>
     );
   }
@@ -175,17 +212,17 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
 
     return (
       <React.Fragment>
-        <div className="site-name">助数詞を練習</div>
+        <div className={styles.siteName}>助数詞を練習</div>
         <div
           className={classnames(
-            "scorecard",
-            hasAnsweredQuestion && "has-answered-question",
-            numAnswered > 0 && "has-score"
+            styles.scorecard,
+            hasAnsweredQuestion && styles.hasAnsweredQuestion,
+            numAnswered > 0 && styles.hasScore
           )}
         >
-          <div className="only-if-answered">
-            <Score localization={localization} />
-            <span className="button-wrapper">
+          <div className={styles.onlyIfAnswered}>
+            <Score className={styles.score} localization={localization} />
+            <span className={styles.buttonWrapper}>
               <TooltipButton
                 enabled={enabled}
                 icon={HistoryIcon}
@@ -194,7 +231,7 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
               />
             </span>
           </div>
-          <span className="button-wrapper">
+          <span className={styles.buttonWrapper}>
             <TooltipButton
               enabled={enabled}
               icon={HomeIcon}
@@ -204,12 +241,12 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
           </span>
         </div>
         <Modal
-          className="HistoryModal"
+          className={styles.historyModal}
           header="History"
           isOpen={showHistoryModal}
           onRequestClose={this.onCloseHistory}
         >
-          <QuizHistory localization={localization} />
+          <QuizHistory localization={localization} rowClassName={styles.rows} />
         </Modal>
         <AbortConfirmationModal
           isOpen={isPromptingToLeave}
@@ -221,9 +258,18 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
   }
 
   private onAnimationEnd = ({ animationName }: React.AnimationEvent): void => {
-    const nextStage = SUBSEQUENT_LAYOUT_STAGE[animationName as Stage];
-    if (!nextStage) {
+    const completedStage = Object.values(Stage).find(
+      (stage: Stage): boolean =>
+        STAGE_DEFINITIONS[stage].animationName === animationName
+    );
+
+    if (!completedStage) {
       // A nested animation, we'll just ignore
+      return;
+    }
+
+    const nextStage = STAGE_DEFINITIONS[completedStage].followingStage;
+    if (!nextStage) {
       return;
     }
 

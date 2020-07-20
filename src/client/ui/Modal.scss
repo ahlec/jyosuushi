@@ -8,7 +8,7 @@
   max-width: 600px;
   outline: none;
 
-  header {
+  .header {
     align-items: center;
     background-color: $modal-header;
     border-bottom: 1px solid $modal-border;
@@ -22,7 +22,7 @@
     text-align: center;
     user-select: none;
 
-    .button {
+    .close-button {
       align-items: center;
       cursor: pointer;
       display: flex;
@@ -33,7 +33,7 @@
       top: 0;
       width: 40px;
 
-      &:hover:not(.disabled) {
+      &:hover {
         path {
           fill: $modal-button-hover;
         }

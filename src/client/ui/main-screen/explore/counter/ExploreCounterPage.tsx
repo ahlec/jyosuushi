@@ -20,7 +20,7 @@ import InfoSection, { hasInfoSectionContents } from "./InfoSection";
 import ItemsSection, { hasItemsSectionContents } from "./ItemsSection";
 import SectionContainer from "./SectionContainer";
 
-import "./ExploreCounterPage.scss";
+import styles from "./ExploreCounterPage.scss";
 
 interface ReduxProps {
   localization: Localization;
@@ -54,14 +54,16 @@ class ExploreCounterPage extends React.PureComponent<ComponentProps> {
     }
 
     return (
-      <div className="ExploreCounterPage">
+      <div className={styles.exploreCounterPage}>
         <BreadcrumbBar />
-        <div className="contents">
+        <div className={styles.contents}>
           <h3>{localization.counterName(counter)}</h3>
-          <div className="kanji">
+          <div className={styles.kanji}>
             {getPrimaryJapaneseRepresentation(counter)}
           </div>
-          {counter.leadIn && <div className="leadIn">{counter.leadIn}</div>}
+          {counter.leadIn && (
+            <div className={styles.leadIn}>{counter.leadIn}</div>
+          )}
           {hasInfoSectionContents(counter) && (
             <SectionContainer header={localization.counterPageHeaderInfo}>
               <InfoSection counter={counter} localization={localization} />

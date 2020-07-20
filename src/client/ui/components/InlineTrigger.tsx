@@ -2,7 +2,7 @@ import classnames from "classnames";
 import React from "react";
 import { KeyCode } from "@jyosuushi/constants";
 
-import "./InlineTrigger.scss";
+import styles from "./InlineTrigger.scss";
 
 interface ComponentProps {
   children: React.ReactNode;
@@ -34,7 +34,7 @@ function InlineTrigger({
   // Render the trigger
   return (
     <span
-      className={classnames("InlineTrigger", className)}
+      className={classnames(styles.inlineTrigger, className)}
       onClick={onTrigger}
       onKeyPress={handleKeyPress}
       role="link"

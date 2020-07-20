@@ -3,7 +3,7 @@
   flex: 1;
   flex-direction: column;
 
-  .ResultsView {
+  .resultsView {
     margin: 20px;
   }
 
@@ -11,4 +11,8 @@
     margin-top: 15px;
     text-align: center;
   }
+}
+
+.flex {
+  flex: 1;
 }

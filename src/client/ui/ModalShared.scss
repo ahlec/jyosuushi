@@ -6,7 +6,7 @@ $modal-header: $green-base;
 $modal-button: $black-darkest;
 $modal-button-hover: $green-darkest;
 
-.ReactModal__Overlay {
+:global(.ReactModal__Overlay) {
   align-items: center;
   display: flex;
   justify-content: center;

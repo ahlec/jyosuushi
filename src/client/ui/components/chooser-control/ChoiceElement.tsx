@@ -6,7 +6,7 @@ import { KeyCode } from "@jyosuushi/constants";
 
 import { Choice } from "./types";
 
-import "./ChooserControl.scss";
+import styles from "./ChooserControl.scss";
 
 interface ComponentProps<TValue> {
   choice: Choice<TValue>;
@@ -38,7 +38,7 @@ function ChoiceElement<TValue>({
   return (
     <div
       key={choice.title}
-      className={classnames("choice", isSelected && "selected")}
+      className={classnames(styles.choice, isSelected && styles.selected)}
       onClick={handleClick}
       onKeyPress={handleKeyPress}
       role="option"
@@ -46,7 +46,7 @@ function ChoiceElement<TValue>({
       tabIndex={0}
     >
       {choice.title}
-      {choice.subtext && <div className="subtext">{choice.subtext}</div>}
+      {choice.subtext && <div className={styles.subtext}>{choice.subtext}</div>}
     </div>
   );
 }

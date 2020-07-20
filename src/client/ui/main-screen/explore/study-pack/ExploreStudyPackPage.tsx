@@ -16,7 +16,7 @@ import RightIcon from "@jyosuushi/ui/right.svg";
 import BreadcrumbBar from "@jyosuushi/ui/main-screen/explore/BreadcrumbBar";
 import { getCounterLink } from "@jyosuushi/ui/main-screen/explore/pathing";
 
-import "./ExploreStudyPackPage.scss";
+import styles from "./ExploreStudyPackPage.scss";
 
 interface ReduxProps {
   localization: Localization;
@@ -66,7 +66,7 @@ class ExploreStudyPackPage extends React.PureComponent<ComponentProps> {
 
     const { counters } = studyPack;
     return (
-      <div className="ExploreStudyPackPage">
+      <div className={styles.exploreStudyPackPage}>
         <BreadcrumbBar />
         <h3>{localization.studyPackName(studyPack)}</h3>
         <p>
@@ -88,14 +88,14 @@ class ExploreStudyPackPage extends React.PureComponent<ComponentProps> {
     return (
       <tr
         key={counter.counterId}
-        className="counter"
+        className={styles.counter}
         onClick={this.onClickInvestigate(counter)}
       >
-        <td className="jp">
-          <CounterDisplay counter={counter} />
+        <td className={styles.jp}>
+          <CounterDisplay className={styles.counterDisplay} counter={counter} />
         </td>
-        <td className="name">{localization.counterName(counter)}</td>
-        <td className="button">
+        <td className={styles.name}>{localization.counterName(counter)}</td>
+        <td className={styles.button}>
           <RightIcon />
         </td>
       </tr>

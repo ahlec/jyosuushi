@@ -8,7 +8,7 @@ import { getIsQuizActive } from "@jyosuushi/redux/selectors";
 import Application from "./Application";
 import CreditsFooter from "./CreditsFooter";
 
-import "./Container.scss";
+import styles from "./Container.scss";
 
 interface ReduxProps {
   isQuizActive: boolean;
@@ -24,7 +24,12 @@ class Container extends React.PureComponent<ReduxProps> {
   public render(): React.ReactNode {
     const { isQuizActive } = this.props;
     return (
-      <div className={classnames("Container", isQuizActive && "quiz-active")}>
+      <div
+        className={classnames(
+          styles.container,
+          isQuizActive && styles.quizActive
+        )}
+      >
         <Application />
         <CreditsFooter />
       </div>

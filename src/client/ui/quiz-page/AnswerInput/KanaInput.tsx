@@ -1,4 +1,5 @@
-import * as React from "react";
+import classnames from "classnames";
+import React from "react";
 
 import { KanaDefinition } from "@jyosuushi/japanese/kana";
 import { KeyCode } from "@jyosuushi/constants";
@@ -12,6 +13,7 @@ export interface KanaInputValue {
 
 interface ComponentProps {
   children?: React.ReactNode;
+  className: string;
   enabled: boolean;
   kana: KanaDefinition;
   onChange: (value: KanaInputValue) => void;
@@ -65,9 +67,9 @@ export default class KanaInput extends React.PureComponent<ComponentProps> {
   }
 
   public render(): React.ReactNode {
-    const { children, enabled, value } = this.props;
+    const { children, className, enabled, value } = this.props;
     return (
-      <div className="KanaInput">
+      <div className={classnames("KanaInput", className)}>
         <input
           ref={this.inputRef}
           type="text"

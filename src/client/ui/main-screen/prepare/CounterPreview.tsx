@@ -1,3 +1,4 @@
+import classnames from "classnames";
 import { memoize } from "lodash";
 import * as React from "react";
 
@@ -7,7 +8,7 @@ import { getDistinctCounters } from "@jyosuushi/utils";
 
 import CounterTile from "@jyosuushi/ui/main-screen/CounterTile";
 
-import "./CounterPreview.scss";
+import styles from "./CounterPreview.scss";
 
 const getCountersForPacks = memoize(
   (packs: ReadonlyArray<StudyPack>) => getDistinctCounters(packs),
@@ -16,6 +17,7 @@ const getCountersForPacks = memoize(
 );
 
 interface ComponentProps {
+  className?: string;
   localization: Localization;
   packs: ReadonlyArray<StudyPack>;
 }
@@ -24,7 +26,7 @@ export default class CounterPreview extends React.PureComponent<
   ComponentProps
 > {
   public render(): React.ReactNode {
-    const { localization, packs } = this.props;
+    const { className, localization, packs } = this.props;
     const counters = getCountersForPacks(packs);
 
     if (!counters.length) {
@@ -32,9 +34,11 @@ export default class CounterPreview extends React.PureComponent<
     }
 
     return (
-      <div className="CounterPreview">
+      <div className={classnames(styles.counterPreview, className)}>
         <h3>{localization.countersDisplayHeader(counters.length)}</h3>
-        <div className="counters">{counters.map(this.renderCounter)}</div>
+        <div className={styles.counters}>
+          {counters.map(this.renderCounter)}
+        </div>
       </div>
     );
   }

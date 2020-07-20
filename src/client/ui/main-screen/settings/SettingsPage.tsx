@@ -15,7 +15,7 @@ import ChooserControl, {
 import { AMOUNT_RANGES } from "@jyosuushi/constants";
 import Localization from "@jyosuushi/localization";
 
-import "./SettingsPage.scss";
+import styles from "./SettingsPage.scss";
 
 interface ReduxProps {
   currentInfiniteMode: boolean;
@@ -74,7 +74,7 @@ class SettingsPage extends React.PureComponent<ComponentProps> {
   public render(): React.ReactNode {
     const { localization } = this.props;
     return (
-      <div className="SettingsPage">
+      <div className={styles.settingsPage}>
         <h1>{localization.pageSettings}</h1>
         {this.renderAmountRangeSelector()}
         {this.renderInfiniteModeSelector()}
@@ -85,9 +85,11 @@ class SettingsPage extends React.PureComponent<ComponentProps> {
   private renderAmountRangeSelector(): React.ReactNode {
     const { currentRange, localization } = this.props;
     return (
-      <div className="section">
-        <h3>{localization.settingAmountRange}</h3>
-        <div className="description">
+      <div className={styles.section}>
+        <h3 className={styles.sectionHeader}>
+          {localization.settingAmountRange}
+        </h3>
+        <div className={styles.description}>
           {localization.settingAmountRangeDescription}
         </div>
         <ChooserControl
@@ -107,9 +109,11 @@ class SettingsPage extends React.PureComponent<ComponentProps> {
   private renderInfiniteModeSelector(): React.ReactNode {
     const { currentInfiniteMode, localization } = this.props;
     return (
-      <div className="section">
-        <h3>{localization.settingInfiniteMode}</h3>
-        <div className="description">
+      <div className={styles.section}>
+        <h3 className={styles.sectionHeader}>
+          {localization.settingInfiniteMode}
+        </h3>
+        <div className={styles.description}>
           {localization.settingInfiniteModeDescription}
         </div>
         <Checkbox

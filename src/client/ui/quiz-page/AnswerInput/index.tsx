@@ -20,9 +20,10 @@ import RightIcon from "@jyosuushi/ui/right.svg";
 
 import TsuNotice from "./TsuNotice";
 
-import "./index.scss";
+import styles from "./index.scss";
 
 interface ProvidedProps {
+  buttonsClassName: string;
   currentQuestion: Question;
   enabled: boolean;
   localization: Localization;
@@ -64,22 +65,25 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
   }
 
   public render(): React.ReactNode {
-    const { enabled, localization } = this.props;
+    const { buttonsClassName, enabled, localization } = this.props;
     const { value } = this.state;
     return (
-      <div className={classnames("AnswerInput", !enabled && "disabled")}>
+      <div
+        className={classnames(styles.answerInput, !enabled && styles.disabled)}
+      >
         <KanaInput
+          className={styles.kanaInput}
           enabled={enabled}
           kana={HIRAGANA}
           onChange={this.onChange}
           onSubmit={this.handleInputSubmit}
           value={value}
         >
-          <div className="submit-button-container">
+          <div className={styles.submitButtonContainer}>
             <button
               className={classnames(
-                "submit-button",
-                !!value && enabled && "show"
+                styles.submitButton,
+                !!value && enabled && styles.show
               )}
               onClick={this.onClickSubmitButton}
               disabled={!enabled}
@@ -90,8 +94,8 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
         </KanaInput>
         <div
           className={classnames(
-            "submit-instructions",
-            !!value && enabled && "has-value",
+            styles.submitInstructions,
+            !!value && enabled && styles.hasValue,
             !!value && !value.validValue && enabled && "invalid"
           )}
         >
@@ -99,7 +103,7 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
           button to submit.
         </div>
         <TsuNotice localization={localization} />
-        <div className="buttons">
+        <div className={buttonsClassName}>
           {enabled && (
             <button onClick={this.onSkipClicked}>Skip this question</button>
           )}

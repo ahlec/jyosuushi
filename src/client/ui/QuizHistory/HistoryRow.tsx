@@ -9,9 +9,10 @@ import { UserAnswer } from "@jyosuushi/redux";
 
 import JudgmentBubble from "@jyosuushi/ui/JudgmentBubble";
 
-import "./HistoryRow.scss";
+import styles from "./HistoryRow.scss";
 
 interface ComponentProps {
+  className: string;
   localization: Localization;
   question: Question;
   questionNo: number;
@@ -21,6 +22,7 @@ interface ComponentProps {
 export default class HistoryRow extends React.PureComponent<ComponentProps> {
   public render(): React.ReactNode {
     const {
+      className,
       localization,
       question: { amount, itemId },
       questionNo,
@@ -32,22 +34,25 @@ export default class HistoryRow extends React.PureComponent<ComponentProps> {
         ? localization.itemSingular(item)
         : localization.itemPlural(item);
     return (
-      <tr className={classnames("HistoryRow", judgment)}>
-        <td className="number">
-          <span className="pound">#</span>
+      <tr className={classnames(styles.historyRow, judgment, className)}>
+        <td className={styles.number}>
+          <span className={styles.pound}>#</span>
           {questionNo}
         </td>
-        <td className="judgment">
-          <JudgmentBubble judgment={judgment} shape="inline" />
+        <td className={styles.judgment}>
+          <JudgmentBubble
+            className={styles.judgmentBubble}
+            judgment={judgment}
+            shape="inline"
+          />
         </td>
-        <td className="details">
-          <div className="question">
+        <td className={styles.details}>
+          <div className={styles.question}>
             {amount} {itemName}
           </div>
           {input && (
-            <div className="users-answer">
-              <span className="label">{localization.submittedLabel}</span> 『
-              {input}』
+            <div>
+              <span>{localization.submittedLabel}</span> 『{input}』
             </div>
           )}
         </td>

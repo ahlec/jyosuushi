@@ -12,7 +12,7 @@ import Localization, {
   VARIABLE_SILK_ICONS_CREDIT_LINK,
 } from "@jyosuushi/localization";
 
-import "./CreditsFooter.scss";
+import styles from "./CreditsFooter.scss";
 
 interface ReduxProps {
   localization: Localization;
@@ -28,7 +28,7 @@ class CreditsFooter extends React.PureComponent<ReduxProps> {
   public render(): React.ReactNode {
     const { localization } = this.props;
     return (
-      <div className="CreditsFooter">
+      <div className={styles.creditsFooter}>
         {localization.credits.map(this.renderCredit)}
       </div>
     );

@@ -6,7 +6,7 @@ import { Choice } from "./types";
 
 export { Choice };
 
-import "./ChooserControl.scss";
+import styles from "./ChooserControl.scss";
 
 interface ComponentProps<TValue> {
   choices: ReadonlyArray<Choice<TValue>>;
@@ -21,7 +21,7 @@ function ChooserControl<TValue>({
 }: ComponentProps<TValue>): React.ReactElement {
   // Render component
   return (
-    <div className="ChooserControl">
+    <div className={styles.chooserControl}>
       {choices.map(
         (choice: Choice<TValue>): React.ReactNode => {
           const isSelected = choice.value === currentValue;

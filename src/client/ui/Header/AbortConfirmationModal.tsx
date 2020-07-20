@@ -1,8 +1,8 @@
-import * as React from "react";
+import React from "react";
 
 import Modal from "@jyosuushi/ui/Modal";
 
-import "./AbortConfirmationModal.scss";
+import styles from "./AbortConfirmationModal.scss";
 
 interface ComponentProps {
   isOpen: boolean;
@@ -17,17 +17,16 @@ export default class AbortConfirmationModal extends React.PureComponent<
     const { isOpen, onRequestClose } = this.props;
     return (
       <Modal
-        className="AbortConfirmationModal"
+        className={styles.abortConfirmationModal}
+        contentClassName={styles.content}
         header="End Quiz Early?"
         isOpen={isOpen}
         onRequestClose={onRequestClose}
       >
         <p>Are you sure you want to end the current quiz early?</p>
-        <div className="buttons">
-          <button className="cancel" onClick={onRequestClose}>
-            No
-          </button>
-          <button className="confirm" onClick={this.onClickConfirm}>
+        <div className={styles.buttons}>
+          <button onClick={onRequestClose}>No</button>
+          <button className={styles.confirm} onClick={this.onClickConfirm}>
             Yes
           </button>
         </div>

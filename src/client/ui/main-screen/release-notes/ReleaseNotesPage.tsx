@@ -1,4 +1,5 @@
-import * as React from "react";
+import classnames from "classnames";
+import React from "react";
 import { connect } from "react-redux";
 
 import CHANGELOG, {
@@ -18,7 +19,7 @@ import Localization from "@jyosuushi/localization";
 
 import Markdown from "./Markdown";
 
-import "./ReleaseNotesPage.scss";
+import styles from "./ReleaseNotesPage.scss";
 
 interface ReduxProps {
   localization: Localization;
@@ -48,7 +49,7 @@ class ReleaseNotesPage extends React.PureComponent<ComponentProps> {
 
   public render(): React.ReactNode {
     return (
-      <div className="ReleaseNotesPage">
+      <div className={styles.releaseNotesPage}>
         {CHANGELOG.map(this.renderVersion)}
       </div>
     );
@@ -56,11 +57,12 @@ class ReleaseNotesPage extends React.PureComponent<ComponentProps> {
 
   private renderVersion = (version: ChangelogVersion): React.ReactNode => {
     return (
-      <div key={version.version} className="version-container">
-        <div className="version-header">
-          {version.version} <span className="date">({version.date})</span>
+      <div key={version.version} className={styles.versionContainer}>
+        <div className={styles.versionHeader}>
+          {version.version}{" "}
+          <span className={styles.date}>({version.date})</span>
         </div>
-        <div className="contents">
+        <div className={styles.contents}>
           {isFirstVersion(version) ? (
             "Initial release."
           ) : (
@@ -97,8 +99,8 @@ class ReleaseNotesPage extends React.PureComponent<ComponentProps> {
     }
 
     return (
-      <div className="notes-container">
-        <div className="notes-header">{header}:</div>
+      <div className={styles.notesContainer}>
+        <div className={styles.notesHeader}>{header}:</div>
         <ul>{entries.map(renderEntry)}</ul>
       </div>
     );
@@ -109,8 +111,8 @@ class ReleaseNotesPage extends React.PureComponent<ComponentProps> {
     index: number
   ): React.ReactNode {
     return (
-      <li key={index} className="entry">
-        <span className="label">{entry.label}</span>{" "}
+      <li key={index} className={styles.entry}>
+        <span className={styles.label}>{entry.label}</span>{" "}
         <Markdown source={entry.details} />
       </li>
     );
@@ -121,10 +123,14 @@ class ReleaseNotesPage extends React.PureComponent<ComponentProps> {
     index: number
   ): React.ReactNode {
     return (
-      <li key={index} className="entry bugfix">
+      <li key={index} className={classnames(styles.entry, styles.bugfix)}>
         {entry.browser && (
           <React.Fragment>
-            [<span className="browser">{BROWSER_NAMES[entry.browser]}</span>]{" "}
+            [
+            <span className={styles.browser}>
+              {BROWSER_NAMES[entry.browser]}
+            </span>
+            ]{" "}
           </React.Fragment>
         )}
         <Markdown source={entry.text} />

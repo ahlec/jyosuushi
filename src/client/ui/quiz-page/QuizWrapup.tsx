@@ -11,7 +11,7 @@ import { randomFromArray } from "@jyosuushi/utils";
 
 import QuizHistory from "@jyosuushi/ui/QuizHistory";
 
-import "./QuizWrapup.scss";
+import styles from "./QuizWrapup.scss";
 
 interface ProvidedProps {
   localization: Localization;
@@ -42,20 +42,20 @@ class QuizWrapup extends React.PureComponent<ComponentProps> {
       : 0;
 
     return (
-      <div className="QuizWrapup">
-        <div className="score">{grade}%</div>
-        <div className="encouragement">
+      <div className={styles.quizWrapup}>
+        <div className={styles.score}>{grade}%</div>
+        <div>
           {randomFromArray(
             grade <= 50
               ? localization.lowScoreEncouragements
               : localization.highScoreEncouragements
           )}
         </div>
-        <div className="buttons">
+        <div className={styles.buttons}>
           <button onClick={this.onClickRestart}>Restart</button>
           <button onClick={this.onClickLeave}>Leave</button>
         </div>
-        <QuizHistory localization={localization} />
+        <QuizHistory localization={localization} rowClassName="" />
       </div>
     );
   }

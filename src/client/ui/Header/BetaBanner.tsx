@@ -1,16 +1,24 @@
-import * as React from "react";
+import classnames from "classnames";
+import React from "react";
 
 import Localization from "@jyosuushi/localization";
 
-import "./BetaBanner.scss";
+import styles from "./BetaBanner.scss";
 
 interface ComponentProps {
+  className: string;
   localization: Localization;
 }
 
-export default class BetaBanner extends React.PureComponent<ComponentProps> {
-  public render(): React.ReactNode {
-    const { localization } = this.props;
-    return <div className="BetaBanner">{localization.beta}</div>;
-  }
+function BetaBanner({
+  className,
+  localization,
+}: ComponentProps): React.ReactElement {
+  return (
+    <div className={classnames(styles.betaBanner, className)}>
+      {localization.beta}
+    </div>
+  );
 }
+
+export default BetaBanner;

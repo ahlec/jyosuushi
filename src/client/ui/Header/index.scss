@@ -41,7 +41,7 @@ $font-size-quiz: 20px;
   }
 }
 
-@keyframes transitioning-from-home {
+@keyframes transitioning-from-home-keyframes {
   // Need something in here in order for Safari to get onAnimationEnd.
   // Make it be a transition from something to same value, we just need something.
   from {
@@ -74,7 +74,7 @@ $font-size-quiz: 20px;
   }
 }
 
-@keyframes transitioning-to-quiz {
+@keyframes transitioning-to-quiz-keyframes {
   // Need something in here in order for Safari to get onAnimationEnd.
   // Make it be a transition from something to same value, we just need something.
   from {
@@ -86,7 +86,7 @@ $font-size-quiz: 20px;
   }
 }
 
-@keyframes transitioning-from-quiz {
+@keyframes transitioning-from-quiz-keyframes {
   // Need something in here in order for Safari to get onAnimationEnd.
   // Make it be a transition from something to same value, we just need something.
   from {
@@ -98,7 +98,7 @@ $font-size-quiz: 20px;
   }
 }
 
-@keyframes transitioning-to-home {
+@keyframes transitioning-to-home-keyframes {
   // Need something in here in order for Safari to get onAnimationEnd.
   // Make it be a transition from something to same value, we just need something.
   from {
@@ -127,7 +127,7 @@ $font-size-quiz: 20px;
         opacity: 0.5;
       }
 
-      .BetaBanner {
+      .betaBanner {
         opacity: 1;
       }
     }
@@ -158,7 +158,7 @@ $font-size-quiz: 20px;
       width: 250px;
     }
 
-    .BetaBanner {
+    .betaBanner {
       opacity: 0;
       transition: opacity 0.1s;
     }
@@ -224,7 +224,7 @@ $font-size-quiz: 20px;
   }
 
   &.transitioning-from-home {
-    animation: 0.4s transitioning-from-home;
+    @include animate-element(transitioning-from-home-keyframes, 0.4s);
 
     .main {
       @include animate-element(home-main-shrink, 0.25s);
@@ -240,7 +240,7 @@ $font-size-quiz: 20px;
   }
 
   &.transitioning-to-quiz {
-    @include animate-element(transitioning-to-quiz);
+    @include animate-element(transitioning-to-quiz-keyframes);
 
     .site-name {
       @include animate-element(sliding-site-name-left);
@@ -255,7 +255,7 @@ $font-size-quiz: 20px;
   }
 
   &.transitioning-from-quiz {
-    @include animate-element(transitioning-from-quiz, 0.25s);
+    @include animate-element(transitioning-from-quiz-keyframes, 0.25s);
 
     .site-name {
       @include animate-element(sliding-site-name-left, 0.25s);
@@ -271,7 +271,7 @@ $font-size-quiz: 20px;
   }
 
   &.transitioning-to-home {
-    animation: 0.5s transitioning-to-home;
+    @include animate-element(transitioning-to-home-keyframes, 0.5s);
 
     .main {
       @include animate-element(home-main-shrink, 0.3s);
@@ -324,7 +324,7 @@ $font-size-quiz: 20px;
       padding: 0 8px;
     }
 
-    .Score {
+    .score {
       margin-right: 8px;
     }
   }

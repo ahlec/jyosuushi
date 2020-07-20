@@ -5,7 +5,7 @@ import { ITEMS_FROM_COUNTER } from "@data/items";
 import { Counter, Item } from "@jyosuushi/interfaces";
 import Localization from "@jyosuushi/localization";
 
-import "./ItemsSection.scss";
+import styles from "./ItemsSection.scss";
 
 export function hasItemsSectionContents(counter: Counter): boolean {
   const items = ITEMS_FROM_COUNTER[counter.counterId];
@@ -27,11 +27,11 @@ export default class ItemsSection extends React.PureComponent<ComponentProps> {
 
     const items = ITEMS_FROM_COUNTER[counter.counterId];
     return (
-      <section className="ItemsSection">
-        <p className="items-prefix">
+      <section className={styles.itemsSection}>
+        <p className={styles.itemsPrefix}>
           {localization.counterItemsPrefix(items.length)}
         </p>
-        <div className="items-list">{items.map(this.renderItem)}</div>
+        <div className={styles.itemsList}>{items.map(this.renderItem)}</div>
       </section>
     );
   }

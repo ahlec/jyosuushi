@@ -6,10 +6,10 @@ import IconClose from "@jyosuushi/icons/close.svg";
 
 import { ONE_SECOND } from "@jyosuushi/constants";
 
-import { Toast } from "./types";
+import { Toast, ToastVariant } from "./types";
 import useToast from "./useToast";
 
-import "./ToastDisplay.scss";
+import styles from "./ToastDisplay.scss";
 
 interface ComponentProps {
   /**
@@ -29,6 +29,10 @@ const MAX_DISPLAY_TIME = ONE_SECOND * 16;
 
 const TIME_TO_READ_FLAT_OFFSET = ONE_SECOND * 2;
 const TIME_TO_READ_PER_CHARACTER = 75;
+
+const VARIANT_TO_CSS_CLASS_NAME: { [variant in ToastVariant]: string } = {
+  success: styles.success,
+};
 
 function ToastDisplay({
   className,
@@ -57,10 +61,16 @@ function ToastDisplay({
 
   // Render the component
   return (
-    <div className={classnames("ToastDisplay", toast.variant, className)}>
-      <div className="message">{toast.message}</div>
-      <div className="dismiss-container">
-        <IconClose className="icon" onClick={handleDismissClick} />
+    <div
+      className={classnames(
+        styles.toastDisplay,
+        VARIANT_TO_CSS_CLASS_NAME[toast.variant],
+        className
+      )}
+    >
+      <div className={styles.message}>{toast.message}</div>
+      <div className={styles.dismissContainer}>
+        <IconClose className={styles.icon} onClick={handleDismissClick} />
       </div>
     </div>
   );
