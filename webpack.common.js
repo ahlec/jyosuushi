@@ -66,7 +66,13 @@ module.exports = {
         test: /\.scss$/,
         use: [
           "style-loader",
-          "css-loader",
+          {
+            loader: "css-loader",
+            options: {
+              localsConvention: "camelCase",
+              modules: true,
+            },
+          },
           "postcss-loader",
           {
             loader: "sass-loader",
