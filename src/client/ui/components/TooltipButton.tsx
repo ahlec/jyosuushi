@@ -1,4 +1,6 @@
-import React from "react";
+import { uniqueId } from "lodash";
+import React, { useMemo } from "react";
+import { FormattedMessage, MessageDescriptor } from "react-intl";
 import ReactTooltip from "react-tooltip";
 
 import { KeyCode } from "@jyosuushi/constants";
@@ -9,7 +11,7 @@ interface ComponentProps {
   enabled: boolean;
   icon: React.ComponentClass<React.SVGProps<SVGSVGElement>>;
   onClick: () => void;
-  text: string;
+  text: MessageDescriptor;
 }
 
 function TooltipButton({
@@ -18,6 +20,10 @@ function TooltipButton({
   onClick,
   text,
 }: ComponentProps): React.ReactElement {
+  // Use a unique ID for this instance of the TooltipButton, since we need to rely on
+  // DOM `id` attribute which requires global uniqueness.
+  const id = useMemo(() => uniqueId("tb-"), []);
+
   // Handle events
   const handleClick = (): void => onClick();
 
@@ -36,7 +42,6 @@ function TooltipButton({
   };
 
   // Render this component
-  const id = `tb-${text}`;
   return (
     <div
       className={styles.tooltipButton}
@@ -46,9 +51,13 @@ function TooltipButton({
       tabIndex={0}
     >
       <Icon data-tip data-for={id} />
-      <ReactTooltip id={id} place="bottom" type="dark" effect="solid">
-        {text}
-      </ReactTooltip>
+      <FormattedMessage {...text}>
+        {(localizedText) => (
+          <ReactTooltip id={id} place="bottom" type="dark" effect="solid">
+            {localizedText}
+          </ReactTooltip>
+        )}
+      </FormattedMessage>
     </div>
   );
 }

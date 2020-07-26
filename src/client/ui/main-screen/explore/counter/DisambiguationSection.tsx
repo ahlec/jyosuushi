@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { COUNTERS_LOOKUP } from "@data/counters";
 
 import { Counter, CounterDisambiguation } from "@jyosuushi/interfaces";
-import Localization from "@jyosuushi/localization";
 import { getPrimaryJapaneseRepresentation } from "@jyosuushi/utils";
 
 import { getCounterLink } from "@jyosuushi/ui/main-screen/explore/pathing";
@@ -18,7 +17,6 @@ export function hasDisambiguationSection(counter: Counter): boolean {
 
 interface ComponentProps {
   counter: Counter;
-  localization: Localization;
 }
 
 export default class DisambiguationSection extends React.PureComponent<

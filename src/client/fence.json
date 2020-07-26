@@ -18,6 +18,7 @@
     "react",
     "react-dom",
     "react-ga",
+    "react-intl",
     "react-markdown",
     "react-modal",
     "react-router-dom",

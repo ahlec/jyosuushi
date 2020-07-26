@@ -1,16 +1,15 @@
 import { memoize } from "lodash";
 import * as React from "react";
+import { defineMessages, FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 
 import { STUDY_PACK_LOOKUP } from "@data/studyPacks";
 import { StudyPack } from "@jyosuushi/interfaces";
-import Localization from "@jyosuushi/localization";
 import withQuizManager, {
   InjectedProps,
 } from "@jyosuushi/quiz/withQuizManager";
 import { State } from "@jyosuushi/redux";
 import { setEnabledPacks } from "@jyosuushi/redux/actions";
-import { getLocalization } from "@jyosuushi/redux/selectors";
 import { Dispatch } from "@jyosuushi/redux/store";
 
 import InlineTrigger from "@jyosuushi/ui/components/InlineTrigger";
@@ -34,13 +33,11 @@ const getPacksFromSet = memoize(
 
 interface ReduxProps {
   enabledPacks: ReadonlyArray<StudyPack>;
-  localization: Localization;
 }
 
 function mapStateToProps(state: State): ReduxProps {
   return {
     enabledPacks: getPacksFromSet(state.enabledPacks),
-    localization: getLocalization(state),
   };
 }
 
@@ -49,6 +46,13 @@ type ComponentProps = ReduxProps & InjectedProps & { dispatch: Dispatch };
 interface ComponentState {
   showingTutorial: boolean;
 }
+
+const INTL_MESSAGES = defineMessages({
+  buttonStartQuiz: {
+    defaultMessage: "Start Quiz!",
+    id: "preparePage.buttonStartQuiz",
+  },
+});
 
 class PreparePage extends React.PureComponent<ComponentProps, ComponentState> {
   public constructor(props: ComponentProps) {
@@ -60,7 +64,7 @@ class PreparePage extends React.PureComponent<ComponentProps, ComponentState> {
   }
 
   public render(): React.ReactNode {
-    const { enabledPacks, localization } = this.props;
+    const { enabledPacks } = this.props;
     const { showingTutorial } = this.state;
     return (
       <div className={styles.preparePage}>
@@ -81,24 +85,28 @@ class PreparePage extends React.PureComponent<ComponentProps, ComponentState> {
           </InlineTrigger>
         </p>
         <PackSelection
-          localization={localization}
           onSelectionChanged={this.onSelectionChanged}
           selection={enabledPacks}
         />
         <div className={styles.start}>
-          <button disabled={!enabledPacks.length} onClick={this.onStartQuiz}>
-            {localization.startQuiz}
-          </button>
+          <FormattedMessage {...INTL_MESSAGES.buttonStartQuiz}>
+            {(text) => (
+              <button
+                disabled={!enabledPacks.length}
+                onClick={this.onStartQuiz}
+              >
+                {text}
+              </button>
+            )}
+          </FormattedMessage>
         </div>
         <CounterPreview
           className={styles.counterPreview}
-          localization={localization}
           packs={enabledPacks}
         />
         <div className={styles.flex} />
         <TutorialModal
           isOpen={showingTutorial}
-          localization={localization}
           onRequestClose={this.hideTutorialModal}
         />
       </div>

@@ -1,11 +1,6 @@
 import { PendingQuestion, StudyPack } from "@jyosuushi/interfaces";
 
-import { AmountRange, LocalizationLanguage } from "./index";
-
-export interface ActionSetLocalizationLanguage {
-  type: "set-localization";
-  language: LocalizationLanguage;
-}
+import { AmountRange } from "./index";
 
 export interface ActionSetAmountRange {
   type: "set-amount-range";

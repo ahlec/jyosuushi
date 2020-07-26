@@ -1,4 +1,5 @@
 import React from "react";
+import { defineMessages } from "react-intl";
 
 import { useSubmitBugReportMutation } from "@jyosuushi/graphql/types.generated";
 
@@ -12,6 +13,13 @@ interface FormProps {
    */
   onSuccess: () => void;
 }
+
+const INTL_MESSAGES = defineMessages({
+  modalHeader: {
+    defaultMessage: "Report a Bug",
+    id: "feedback.bugReport.modalHeader",
+  },
+});
 
 export function BugReportForm({ onSuccess }: FormProps): React.ReactElement {
   return (
@@ -38,7 +46,7 @@ export function BugReportModal({
   return (
     <BaseUserFeedbackModal
       formComponent={BugReportForm}
-      header="Report a Bug"
+      header={INTL_MESSAGES.modalHeader}
       onRequestClose={onRequestClose}
     />
   );

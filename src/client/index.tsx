@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
 
+import IntlProvider from "./i18n/IntlProvider";
 import QuizManagerContext from "./quiz/context";
 import QuizManager from "./quiz/QuizManager";
 import { createRedux } from "./redux/store";
@@ -38,11 +39,13 @@ ReactDOM.render(
   <ApolloProvider client={apollo}>
     <Provider store={redux.store}>
       <PersistGate loading={null} persistor={redux.persistor}>
-        <BrowserRouter>
-          <QuizManagerContext.Provider value={quizManager}>
-            <Container />
-          </QuizManagerContext.Provider>
-        </BrowserRouter>
+        <IntlProvider>
+          <BrowserRouter>
+            <QuizManagerContext.Provider value={quizManager}>
+              <Container />
+            </QuizManagerContext.Provider>
+          </BrowserRouter>
+        </IntlProvider>
       </PersistGate>
     </Provider>
   </ApolloProvider>,

@@ -1,4 +1,5 @@
 import React from "react";
+import { defineMessages } from "react-intl";
 
 import { useSubmitSuggestionMutation } from "@jyosuushi/graphql/types.generated";
 
@@ -12,6 +13,13 @@ interface FormProps {
    */
   onSuccess: () => void;
 }
+
+const INTL_MESSAGES = defineMessages({
+  modalHeader: {
+    defaultMessage: "Submit Feedback",
+    id: "feedback.submitFeedback.modalHeader",
+  },
+});
 
 export function FeatureSuggestionForm({
   onSuccess,
@@ -40,7 +48,7 @@ export function FeatureSuggestionModal({
   return (
     <BaseUserFeedbackModal
       formComponent={FeatureSuggestionForm}
-      header="Submit Feedback"
+      header={INTL_MESSAGES.modalHeader}
       onRequestClose={onRequestClose}
     />
   );

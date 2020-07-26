@@ -1,9 +1,9 @@
 import { clamp, sortBy } from "lodash";
 import memoizeOne from "memoize-one";
 import React from "react";
+import { defineMessages, FormattedMessage } from "react-intl";
 
 import { Conjugation, Counter, CountingSystem } from "@jyosuushi/interfaces";
-import Localization from "@jyosuushi/localization";
 import { conjugateCounter } from "@jyosuushi/japanese/counters";
 
 import styles from "./ConjugationsSection.scss";
@@ -12,17 +12,8 @@ const AMOUNTS_TO_DISPLAY = 17;
 const MIN_USER_INPUT = 1;
 const MAX_USER_INPUT = 999_999_999;
 
-function highlightIrregular(contents: string): React.ReactNode {
-  return (
-    <span className={styles.irregular} key={contents}>
-      {contents}
-    </span>
-  );
-}
-
 interface ComponentProps {
   counter: Counter;
-  localization: Localization;
 }
 
 interface ComponentState {
@@ -33,6 +24,40 @@ interface ConjugationTile {
   amount: number;
   conjugations: ReadonlyArray<Conjugation>;
 }
+
+const INTL_MESSAGES = defineMessages({
+  andSoForth: {
+    defaultMessage: "... and so forth",
+    id: "explorePage.counter.conjugationSection.andSoForth",
+  },
+  customCounterAmountInputPrefix: {
+    defaultMessage: "Or you can try out any number you'd like to here:",
+    id: "explorePage.counter.conjugationSection.customCounterAmountInputPrefix",
+  },
+  furtherIrregulars: {
+    defaultMessage: "There are some more irregulars later on as well though:",
+    id: "explorePage.counter.conjugationSection.furtherIrregulars",
+  },
+  hereAreTheFirstXNumbers: {
+    defaultMessage:
+      "Here {amount, plural, one {is} other {are}} the first {amount, plural, one {# number} other {# numbers}}.",
+    id: "explorePage.counter.conjugationSection.hereAreTheFirstXNumbers",
+  },
+  introNoIrregulars: {
+    defaultMessage:
+      "Luckily, there are no irregular conjugations with this counter!",
+    id: "explorePage.counter.conjugationSection.introNoIrregulars",
+  },
+  introWithIrregulars: {
+    defaultMessage: "Make note of the {highlightedElement}.",
+    id: "explorePage.counter.conjugationSection.introWithIrregulars",
+  },
+  numIrregulars: {
+    defaultMessage:
+      "{numIrregulars, plural, one {1 irregular conjugation} other {# irregular conjugations}}",
+    id: "explorePage.counter.conjugationSection.numIrregulars",
+  },
+});
 
 export default class ConjugationsSection extends React.PureComponent<
   ComponentProps,
@@ -87,7 +112,7 @@ export default class ConjugationsSection extends React.PureComponent<
   );
 
   public render(): React.ReactNode {
-    const { counter, localization } = this.props;
+    const { counter } = this.props;
     const { currentUserInput } = this.state;
 
     const furtherIrregulars = this.memoizeIrregularsBeyondExampleTable(counter);
@@ -95,17 +120,20 @@ export default class ConjugationsSection extends React.PureComponent<
     return (
       <section className={styles.conjugationsSection}>
         <p className={styles.examplesPrefix}>
-          {localization.hereAreTheFirstXNumbers(AMOUNTS_TO_DISPLAY)}{" "}
+          <FormattedMessage
+            {...INTL_MESSAGES.hereAreTheFirstXNumbers}
+            values={{ amount: AMOUNTS_TO_DISPLAY }}
+          />{" "}
           {this.renderIrregularsWarning(counter)}
         </p>
         <div className={styles.examplesTable}>
           {this.memoizeExamplesTable(counter).map(this.renderConjugationTile)}
-          <div>{localization.andSoForth}</div>
+          <FormattedMessage {...INTL_MESSAGES.andSoForth} tagName="div" />
         </div>
         {!!furtherIrregulars.length && (
           <React.Fragment>
             <p className={styles.furtherIrregulars}>
-              {localization.furtherIrregulars}
+              <FormattedMessage {...INTL_MESSAGES.furtherIrregulars} />
             </p>
             <div className={styles.examplesTable}>
               {furtherIrregulars.map(this.renderConjugationTile)}
@@ -113,7 +141,7 @@ export default class ConjugationsSection extends React.PureComponent<
           </React.Fragment>
         )}
         <p className={styles.customInputPrefix}>
-          {localization.customCounterAmountInputPrefix}
+          <FormattedMessage {...INTL_MESSAGES.customCounterAmountInputPrefix} />
         </p>
         <div className={styles.conjugatedUserInput}>
           {conjugateCounter(currentUserInput, counter).map(
@@ -132,16 +160,29 @@ export default class ConjugationsSection extends React.PureComponent<
     );
   }
 
-  private renderIrregularsWarning(counter: Counter): React.ReactNode {
-    const {
-      props: { localization },
-    } = this;
+  private renderIrregularsWarning(counter: Counter): React.ReactElement {
     const numIrregulars = this.memoizeNumIrregulars(counter);
     if (!numIrregulars) {
-      return localization.irregularsWarningNoIrregulars;
+      return <FormattedMessage {...INTL_MESSAGES.introNoIrregulars} />;
     }
 
-    return localization.irregularsWarning(numIrregulars, highlightIrregular);
+    return (
+      <FormattedMessage
+        {...INTL_MESSAGES.introWithIrregulars}
+        values={{
+          highlightedElement: (
+            <FormattedMessage
+              {...INTL_MESSAGES.numIrregulars}
+              values={{
+                numIrregulars,
+              }}
+            >
+              {(text) => <span className={styles.irregular}>{text}</span>}
+            </FormattedMessage>
+          ),
+        }}
+      />
+    );
   }
 
   private renderConjugationTile = ({

@@ -2,18 +2,13 @@ import { AmountRange, Settings } from "@jyosuushi/redux";
 import {
   ActionSetAmountRange,
   ActionSetInfiniteMode,
-  ActionSetLocalizationLanguage,
 } from "@jyosuushi/redux/actions";
 
-type ReducerAction =
-  | ActionSetAmountRange
-  | ActionSetInfiniteMode
-  | ActionSetLocalizationLanguage;
+type ReducerAction = ActionSetAmountRange | ActionSetInfiniteMode;
 
 const DEFAULT_SETTINGS: Settings = {
   amountRange: AmountRange.Medium,
   infiniteMode: false,
-  localization: "english",
 };
 
 export default function settingsReducer(
@@ -31,12 +26,6 @@ export default function settingsReducer(
       return {
         ...state,
         infiniteMode: action.infiniteMode,
-      };
-    }
-    case "set-localization": {
-      return {
-        ...state,
-        localization: action.language,
       };
     }
     default:

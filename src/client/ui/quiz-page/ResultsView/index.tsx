@@ -1,11 +1,15 @@
 import classnames from "classnames";
 import { uniq } from "lodash";
 import * as React from "react";
+import {
+  defineMessages,
+  FormattedMessage,
+  MessageDescriptor,
+} from "react-intl";
 import * as ReactGA from "react-ga";
 import { connect } from "react-redux";
 
 import { Answer, Question } from "@jyosuushi/interfaces";
-import Localization from "@jyosuushi/localization";
 import {
   CountersState,
   State,
@@ -24,7 +28,6 @@ import styles from "./index.scss";
 interface ProvidedProps {
   className: string;
   currentQuestion: Question;
-  localization: Localization;
   onClickNextQuestion: () => void;
 }
 
@@ -42,23 +45,50 @@ function mapStateToProps(state: State): ReduxProps {
 
 type ComponentProps = ProvidedProps & ReduxProps & { dispatch: Dispatch };
 
+const INTL_MESSAGES = defineMessages({
+  buttonIgnoreAnswer: {
+    defaultMessage: "Ignore Answer",
+    id: "quiz-page.results.buttonIgnoreAnswer",
+  },
+  buttonNextQuestion: {
+    defaultMessage: "Next Question",
+    id: "quiz-page.results.buttonNextQuestion",
+  },
+  headerCorrect: {
+    defaultMessage: "Correct!",
+    id: "quiz-page.results.header.correct",
+  },
+  headerIncorrect: {
+    defaultMessage: "Not quite right...",
+    id: "quiz-page.results.header.incorrect",
+  },
+  headerSkipped: {
+    defaultMessage: "Skipped",
+    id: "quiz-page.results.header.skipped",
+  },
+  resultsTableIntro: {
+    defaultMessage:
+      "Here are all of the possible answers based on the sets you have enabled:",
+    id: "quiz-page.results.table.intro",
+  },
+  skippedQuestionResult: {
+    defaultMessage: "Alright! You don't need to worry about this question!",
+    id: "quiz-page.results.skippedQuestion",
+  },
+});
+
 const HEADERS: {
-  [judgment in UserAnswerJudgment]: (localization: Localization) => string;
+  [judgment in UserAnswerJudgment]: MessageDescriptor;
 } = {
-  correct: (localization) => localization.resultCorrectHeader,
-  ignored: (localization) => localization.resultIncorrectHeader,
-  incorrect: (localization) => localization.resultIncorrectHeader,
-  skipped: (localization) => localization.resultSkippedHeader,
+  correct: INTL_MESSAGES.headerCorrect,
+  ignored: INTL_MESSAGES.headerIncorrect, // Since you can only ignore something if you got it wrong, don't change the header
+  incorrect: INTL_MESSAGES.headerIncorrect,
+  skipped: INTL_MESSAGES.headerSkipped,
 };
 
 class ResultsView extends React.PureComponent<ComponentProps> {
   public render(): React.ReactNode {
-    const {
-      className,
-      currentQuestion,
-      localization,
-      usersAnswer,
-    } = this.props;
+    const { className, currentQuestion, usersAnswer } = this.props;
     return (
       <div className={classnames(styles.resultsView, className)}>
         <div className={styles.results}>
@@ -67,33 +97,44 @@ class ResultsView extends React.PureComponent<ComponentProps> {
             shape="block-circle"
           />
           <div className={styles.info}>
-            <h3>{HEADERS[usersAnswer.judgment](localization)}</h3>
+            <FormattedMessage {...HEADERS[usersAnswer.judgment]} tagName="h3" />
             {usersAnswer.judgment !== "skipped" ? (
               <React.Fragment>
-                <p>{localization.resultTableIntro}</p>
+                <FormattedMessage
+                  {...INTL_MESSAGES.resultsTableIntro}
+                  tagName="p"
+                />
                 <AnswersTable
                   currentQuestion={currentQuestion}
-                  localization={localization}
                   usersAnswer={usersAnswer}
                 />
               </React.Fragment>
             ) : (
-              <p>{localization.skippedQuestionResult}</p>
+              <FormattedMessage
+                {...INTL_MESSAGES.skippedQuestionResult}
+                tagName="p"
+              />
             )}
           </div>
         </div>
         <div className={styles.buttons}>
           {usersAnswer.judgment === "incorrect" && (
-            <button
-              className={styles.ignoreAnswer}
-              onClick={this.onIgnoreClicked}
-            >
-              {localization.buttonIgnoreAnswer}
-            </button>
+            <FormattedMessage {...INTL_MESSAGES.buttonIgnoreAnswer}>
+              {(ignoreAnswer) => (
+                <button
+                  className={styles.ignoreAnswer}
+                  onClick={this.onIgnoreClicked}
+                >
+                  {ignoreAnswer}
+                </button>
+              )}
+            </FormattedMessage>
           )}
-          <button onClick={this.onClickNextQuestion}>
-            {localization.buttonNextQuestion}
-          </button>
+          <FormattedMessage {...INTL_MESSAGES.buttonNextQuestion}>
+            {(nextQuestion) => (
+              <button onClick={this.onClickNextQuestion}>{nextQuestion}</button>
+            )}
+          </FormattedMessage>
         </div>
       </div>
     );

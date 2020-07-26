@@ -1,12 +1,10 @@
 import * as React from "react";
-import { connect } from "react-redux";
+import { defineMessages } from "react-intl";
 import { Redirect, RouteComponentProps } from "react-router-dom";
 
 import { COUNTERS_LOOKUP } from "@data/counters";
-import { Counter } from "@jyosuushi/interfaces";
-import Localization from "@jyosuushi/localization";
-import { State } from "@jyosuushi/redux";
-import { getLocalization } from "@jyosuushi/redux/selectors";
+import useLocale from "@jyosuushi/i18n/useLocale";
+
 import { getPrimaryJapaneseRepresentation } from "@jyosuushi/utils";
 
 import BreadcrumbBar from "@jyosuushi/ui/main-screen/explore/BreadcrumbBar";
@@ -22,83 +20,85 @@ import SectionContainer from "./SectionContainer";
 
 import styles from "./ExploreCounterPage.scss";
 
-interface ReduxProps {
-  localization: Localization;
-}
+type ComponentProps = RouteComponentProps<{ counterId: string }>;
 
-function mapStateToProps(state: State): ReduxProps {
-  return {
-    localization: getLocalization(state),
-  };
-}
+const INTL_MESSAGES = defineMessages({
+  headerConjugations: {
+    defaultMessage: "Conjugations",
+    id: "explorePage.counter.conjugations.header",
+  },
+  headerDisambiguation: {
+    defaultMessage: "Similar Counters",
+    id: "explorePage.counter.disambiguation.header",
+  },
+  headerFootnotes: {
+    defaultMessage: "References",
+    id: "explorePage.counter.footnotes.header",
+  },
+  headerInfo: {
+    defaultMessage: "Details",
+    id: "explorePage.counter.info.header",
+  },
+  headerItems: {
+    defaultMessage: "Items",
+    id: "explorePage.counter.items.header",
+  },
+});
 
-type ComponentProps = ReduxProps & RouteComponentProps<{ counterId: string }>;
+function ExploreCounterPage({
+  match: {
+    params: { counterId },
+  },
+}: ComponentProps): React.ReactElement {
+  // Find the counter based on the URL
+  const counter = COUNTERS_LOOKUP[counterId] || null;
 
-class ExploreCounterPage extends React.PureComponent<ComponentProps> {
-  private get counter(): Counter | null {
-    const {
-      match: {
-        params: { counterId },
-      },
-    } = this.props;
-    return COUNTERS_LOOKUP[counterId] || null;
+  // Connect to the rest of the app
+  const locale = useLocale();
+
+  // Redirect if the counter doesn't exist.
+  if (!counter) {
+    return <Redirect to="/explore" />;
   }
 
-  public render(): React.ReactNode {
-    const {
-      counter,
-      props: { localization },
-    } = this;
-    if (!counter) {
-      return <Redirect to="/explore" />;
-    }
-
-    return (
-      <div className={styles.exploreCounterPage}>
-        <BreadcrumbBar />
-        <div className={styles.contents}>
-          <h3>{localization.counterName(counter)}</h3>
-          <div className={styles.kanji}>
-            {getPrimaryJapaneseRepresentation(counter)}
-          </div>
-          {counter.leadIn && (
-            <div className={styles.leadIn}>{counter.leadIn}</div>
-          )}
-          {hasInfoSectionContents(counter) && (
-            <SectionContainer header={localization.counterPageHeaderInfo}>
-              <InfoSection counter={counter} localization={localization} />
-            </SectionContainer>
-          )}
-          <SectionContainer header={localization.counterPageHeaderConjugation}>
-            <ConjugationsSection
-              counter={counter}
-              localization={localization}
-            />
-          </SectionContainer>
-          {hasItemsSectionContents(counter) && (
-            <SectionContainer header={localization.counterPageHeaderItems}>
-              <ItemsSection counter={counter} localization={localization} />
-            </SectionContainer>
-          )}
-          {hasDisambiguationSection(counter) && (
-            <SectionContainer
-              header={localization.counterPageHeaderDisambiguation}
-            >
-              <DisambiguationSection
-                counter={counter}
-                localization={localization}
-              />
-            </SectionContainer>
-          )}
-          {counter.footnotes.length > 0 && (
-            <SectionContainer header={localization.counterPageHeaderFootnotes}>
-              <FootnotesSection footnotes={counter.footnotes} />
-            </SectionContainer>
-          )}
+  // Render the component
+  return (
+    <div className={styles.exploreCounterPage}>
+      <BreadcrumbBar />
+      <div className={styles.contents}>
+        <h3>{locale.dataLocalizers.getCounterName(counter)}</h3>
+        <div className={styles.kanji}>
+          {getPrimaryJapaneseRepresentation(counter)}
         </div>
+        {counter.leadIn && (
+          <div className={styles.leadIn}>{counter.leadIn}</div>
+        )}
+        {hasInfoSectionContents(counter) && (
+          <SectionContainer header={INTL_MESSAGES.headerInfo}>
+            <InfoSection counter={counter} />
+          </SectionContainer>
+        )}
+        <SectionContainer header={INTL_MESSAGES.headerConjugations}>
+          <ConjugationsSection counter={counter} />
+        </SectionContainer>
+        {hasItemsSectionContents(counter) && (
+          <SectionContainer header={INTL_MESSAGES.headerItems}>
+            <ItemsSection counter={counter} />
+          </SectionContainer>
+        )}
+        {hasDisambiguationSection(counter) && (
+          <SectionContainer header={INTL_MESSAGES.headerDisambiguation}>
+            <DisambiguationSection counter={counter} />
+          </SectionContainer>
+        )}
+        {counter.footnotes.length > 0 && (
+          <SectionContainer header={INTL_MESSAGES.headerFootnotes}>
+            <FootnotesSection footnotes={counter.footnotes} />
+          </SectionContainer>
+        )}
       </div>
-    );
-  }
+    </div>
+  );
 }
 
-export default connect(mapStateToProps)(ExploreCounterPage);
+export default ExploreCounterPage;

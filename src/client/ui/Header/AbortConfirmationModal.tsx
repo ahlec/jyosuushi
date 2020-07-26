@@ -1,8 +1,32 @@
 import React from "react";
+import { defineMessages, FormattedMessage } from "react-intl";
 
 import Modal from "@jyosuushi/ui/Modal";
 
 import styles from "./AbortConfirmationModal.scss";
+
+const INTL_MESSAGES = defineMessages({
+  buttonNo: {
+    defaultMessage: "No",
+    description:
+      "Clicking this buttons indicates the user wants to stay in the quiz.",
+    id: "header.AbortConfirmationModal.buttonNo",
+  },
+  buttonYes: {
+    defaultMessage: "Yes",
+    description:
+      "Clicking this button confirms the user's intent to leave the quiz.",
+    id: "header.AbortConfirmationModal.buttonYes",
+  },
+  modalHeader: {
+    defaultMessage: "End Quiz Early?",
+    id: "header.AbortConfirmationModal.header",
+  },
+  question: {
+    defaultMessage: "Are you sure you want to end the current quiz early?",
+    id: "header.AbortConfirmationModal.question",
+  },
+});
 
 interface ComponentProps {
   isOpen: boolean;
@@ -19,16 +43,22 @@ export default class AbortConfirmationModal extends React.PureComponent<
       <Modal
         className={styles.abortConfirmationModal}
         contentClassName={styles.content}
-        header="End Quiz Early?"
+        header={INTL_MESSAGES.modalHeader}
         isOpen={isOpen}
         onRequestClose={onRequestClose}
       >
-        <p>Are you sure you want to end the current quiz early?</p>
+        <FormattedMessage {...INTL_MESSAGES.question} tagName="p" />
         <div className={styles.buttons}>
-          <button onClick={onRequestClose}>No</button>
-          <button className={styles.confirm} onClick={this.onClickConfirm}>
-            Yes
-          </button>
+          <FormattedMessage {...INTL_MESSAGES.buttonNo}>
+            {(no) => <button onClick={onRequestClose}>{no}</button>}
+          </FormattedMessage>
+          <FormattedMessage {...INTL_MESSAGES.buttonYes}>
+            {(yes) => (
+              <button className={styles.confirm} onClick={this.onClickConfirm}>
+                {yes}
+              </button>
+            )}
+          </FormattedMessage>
         </div>
       </Modal>
     );

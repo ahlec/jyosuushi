@@ -1,6 +1,7 @@
 import classnames from "classnames";
 import { noop } from "lodash";
 import React from "react";
+import { FormattedMessage } from "react-intl";
 
 import { KeyCode } from "@jyosuushi/constants";
 
@@ -37,7 +38,6 @@ function ChoiceElement<TValue>({
   // Render component
   return (
     <div
-      key={choice.title}
       className={classnames(styles.choice, isSelected && styles.selected)}
       onClick={handleClick}
       onKeyPress={handleKeyPress}
@@ -45,8 +45,18 @@ function ChoiceElement<TValue>({
       aria-selected={isSelected}
       tabIndex={0}
     >
-      {choice.title}
-      {choice.subtext && <div className={styles.subtext}>{choice.subtext}</div>}
+      <FormattedMessage
+        {...choice.title.descriptor}
+        values={choice.title.values}
+      />
+      {choice.subtext && (
+        <FormattedMessage
+          {...choice.subtext.descriptor}
+          values={choice.subtext.values}
+        >
+          {(subtext) => <div className={styles.subtext}>{subtext}</div>}
+        </FormattedMessage>
+      )}
     </div>
   );
 }

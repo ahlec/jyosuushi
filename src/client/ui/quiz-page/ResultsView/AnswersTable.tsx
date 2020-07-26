@@ -1,195 +1,100 @@
-import classnames from "classnames";
 import { flatten, groupBy, uniq } from "lodash";
-import memoizeOne from "memoize-one";
-import * as React from "react";
-import { connect } from "react-redux";
+import React, { useMemo } from "react";
+import { defineMessages, FormattedMessage } from "react-intl";
+import { useSelector } from "react-redux";
 
 import { STUDY_PACK_LOOKUP } from "@data/studyPacks";
-import {
-  Answer,
-  Question,
-  Counter,
-  StudyPack,
-  CountingSystem,
-} from "@jyosuushi/interfaces";
-import Localization from "@jyosuushi/localization";
-import { CountersState, State, UserAnswer } from "@jyosuushi/redux";
+import { Question } from "@jyosuushi/interfaces";
+import { State, UserAnswer } from "@jyosuushi/redux";
 
-import CounterDisplay from "@jyosuushi/ui/components/CounterDisplay";
-
+import AnswersTableRow, { AnswersTableRowData } from "./AnswersTableRow";
 import styles from "./AnswersTable.scss";
 
-interface ProvidedProps {
+interface ComponentProps {
   currentQuestion: Question;
-  localization: Localization;
   usersAnswer: UserAnswer;
 }
 
-interface ReduxProps {
-  counters: CountersState;
-}
+const INTL_MESSAGES = defineMessages({
+  headerCounter: {
+    defaultMessage: "Counter",
+    id: "quiz-page.results.AnswersTable.columnHeaders.counter",
+  },
+  headerHiragana: {
+    defaultMessage: "Hiragana",
+    id: "quiz-page.results.AnswersTable.columnHeaders.hiragana",
+  },
+  headerKanji: {
+    defaultMessage: "Kanji",
+    id: "quiz-page.results.AnswersTable.columnHeaders.kanji",
+  },
+  headerRule: {
+    defaultMessage: "Rule",
+    id: "quiz-page.results.AnswersTable.columnHeaders.rule",
+  },
+  headerStudyPack: {
+    defaultMessage: "Study Pack",
+    id: "quiz-page.results.AnswersTable.columnHeaders.studyPack",
+  },
+});
 
-function mapStateToProps(state: State): ReduxProps {
-  return {
-    counters: state.counters,
-  };
-}
+function AnswersTable({
+  currentQuestion,
+  usersAnswer,
+}: ComponentProps): React.ReactElement {
+  // Connect to the rest of the app
+  const counters = useSelector((state: State) => state.counters);
 
-type ComponentProps = ProvidedProps & ReduxProps;
-
-interface AnswerTableRow {
-  counter: Counter;
-  studyPacks: ReadonlyArray<StudyPack>;
-
-  kanaAnswers: ReadonlyArray<Answer>;
-
-  /**
-   * An array of all of the valid kanji answers usable for this
-   * counter row.
-   */
-  validKanji: ReadonlyArray<string>;
-
-  /**
-   * A boolean that is true iff the user's answer was correct
-   * AND this row includes the answer that the user typed in.
-   */
-  wasUsersCorrectAnswer: boolean;
-}
-
-class AnswersTable extends React.PureComponent<ComponentProps> {
-  private readonly getRows = memoizeOne(
-    (
-      usersAnswer: UserAnswer,
-      validAnswers: ReadonlyArray<Answer>,
-      counters: CountersState
-    ): ReadonlyArray<AnswerTableRow> => {
-      const answersByCounterId = groupBy(
-        validAnswers,
-        (answer) => answer.counterId
-      );
-
-      return Object.keys(answersByCounterId).map(
-        (counterId): AnswerTableRow => {
-          const { counter, studyPacks } = counters[counterId];
-          const answers = answersByCounterId[counterId];
-          return {
-            counter,
-            kanaAnswers: answers,
-            studyPacks: studyPacks.map((packId) => STUDY_PACK_LOOKUP[packId]),
-            validKanji: uniq(
-              flatten(
-                answers.map(
-                  ({ kanji }): ReadonlyArray<string> =>
-                    kanji === null ? [] : kanji
-                )
-              )
-            ),
-            wasUsersCorrectAnswer:
-              usersAnswer.judgment === "correct" &&
-              !!answers.find((answer) => answer.kana === usersAnswer.input),
-          };
-        }
-      );
-    }
-  );
-
-  public render(): React.ReactNode {
-    const { counters, currentQuestion, localization, usersAnswer } = this.props;
-    const rows = this.getRows(
-      usersAnswer,
+  // Determine the rows that should appear in the table
+  const rows = useMemo((): readonly AnswersTableRowData[] => {
+    const answersByCounterId = groupBy(
       currentQuestion.validAnswers,
-      counters
+      (answer) => answer.counterId
     );
-    return (
-      <table className={styles.answersTable}>
-        <tbody>
-          <tr>
-            <th>{localization.resultColumnHeaderCounter}</th>
-            <th>{localization.resultColumnHeaderRule}</th>
-            <th>{localization.resultColumnHeaderStudyPack}</th>
-            <th>{localization.resultColumnHeaderKanji}</th>
-            <th>{localization.resultColumnHeaderHiragana}</th>
-          </tr>
-          {rows.map(this.renderRow)}
-        </tbody>
-      </table>
-    );
-  }
 
-  private renderRow = (row: AnswerTableRow): React.ReactNode => {
-    const { localization } = this.props;
-    return (
-      <tr
-        key={row.counter.counterId}
-        className={classnames(row.wasUsersCorrectAnswer && styles.correct)}
-      >
-        <td className={styles.cellCounter}>
-          <CounterDisplay counter={row.counter} />
-        </td>
-        <td className={styles.cellRule}>
-          {localization.counterName(row.counter)}
-        </td>
-        <td className={styles.cellStudyPack}>
-          {row.studyPacks.map(this.renderStudyPack)}
-        </td>
-        <td className={styles.cellKanji}>
-          {row.validKanji.length
-            ? row.validKanji.map(this.renderKanji)
-            : "(none)"}
-        </td>
-        <td className={styles.cellHiragana}>
-          {row.kanaAnswers.map(this.renderKana)}
-        </td>
-      </tr>
+    return Object.keys(answersByCounterId).map(
+      (counterId): AnswersTableRowData => {
+        const { counter, studyPacks } = counters[counterId];
+        const answers = answersByCounterId[counterId];
+        return {
+          counter,
+          kanaAnswers: answers,
+          studyPacks: studyPacks.map((packId) => STUDY_PACK_LOOKUP[packId]),
+          validKanji: uniq(
+            flatten(
+              answers.map(
+                ({ kanji }): ReadonlyArray<string> =>
+                  kanji === null ? [] : kanji
+              )
+            )
+          ),
+          wasUsersCorrectAnswer:
+            usersAnswer.judgment === "correct" &&
+            !!answers.find((answer) => answer.kana === usersAnswer.input),
+        };
+      }
     );
-  };
+  }, [counters, currentQuestion, usersAnswer.input, usersAnswer.judgment]);
 
-  private renderStudyPack = (pack: StudyPack): React.ReactNode => {
-    const { localization } = this.props;
-    return (
-      <div key={pack.packId} className="study-pack">
-        {localization.studyPackName(pack)}
-      </div>
-    );
-  };
-
-  private renderKanji = (kanji: string): React.ReactNode => {
-    return (
-      <div key={kanji} className="kanji">
-        {kanji}
-      </div>
-    );
-  };
-
-  private renderKana = ({
-    countingSystem,
-    irregularType,
-    kana,
-  }: Answer): React.ReactNode => {
-    const { localization, usersAnswer } = this.props;
-    return (
-      <div
-        key={kana}
-        className={classnames(
-          styles.kana,
-          usersAnswer.judgment === "correct" &&
-            usersAnswer.input === kana &&
-            styles.correct
+  // Render the component
+  return (
+    <table className={styles.answersTable}>
+      <tbody>
+        <tr>
+          <FormattedMessage {...INTL_MESSAGES.headerCounter} tagName="th" />
+          <FormattedMessage {...INTL_MESSAGES.headerRule} tagName="th" />
+          <FormattedMessage {...INTL_MESSAGES.headerStudyPack} tagName="th" />
+          <FormattedMessage {...INTL_MESSAGES.headerKanji} tagName="th" />
+          <FormattedMessage {...INTL_MESSAGES.headerHiragana} tagName="th" />
+        </tr>
+        {rows.map(
+          (data): React.ReactElement => (
+            <AnswersTableRow key={data.counter.counterId} data={data} />
+          )
         )}
-      >
-        {kana}
-        {irregularType ? (
-          <span className={styles.irregular}>
-            {localization.resultTableIrregularLabel}
-          </span>
-        ) : countingSystem !== CountingSystem.Kango ? (
-          <span className={styles.nonKango}>
-            {localization.resultTableNonKangoLabel}
-          </span>
-        ) : null}
-      </div>
-    );
-  };
+      </tbody>
+    </table>
+  );
 }
 
-export default connect(mapStateToProps)(AnswersTable);
+export default AnswersTable;

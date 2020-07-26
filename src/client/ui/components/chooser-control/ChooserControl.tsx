@@ -27,7 +27,7 @@ function ChooserControl<TValue>({
           const isSelected = choice.value === currentValue;
           return (
             <ChoiceElement
-              key={choice.title}
+              key={choice.id}
               choice={choice}
               isSelected={isSelected}
               onSelected={

@@ -1,9 +1,10 @@
 import * as React from "react";
+import { defineMessages, FormattedMessage } from "react-intl";
 
 import { ITEMS_FROM_COUNTER } from "@data/items";
 
+import useLocale from "@jyosuushi/i18n/useLocale";
 import { Counter, Item } from "@jyosuushi/interfaces";
-import Localization from "@jyosuushi/localization";
 
 import styles from "./ItemsSection.scss";
 
@@ -14,30 +15,52 @@ export function hasItemsSectionContents(counter: Counter): boolean {
 
 interface ComponentProps {
   counter: Counter;
-  localization: Localization;
 }
 
-export default class ItemsSection extends React.PureComponent<ComponentProps> {
-  public render(): React.ReactNode {
-    const { counter, localization } = this.props;
+const INTL_MESSAGES = defineMessages({
+  introText: {
+    defaultMessage:
+      "The following {numItems, plural, one {is an example} other {are examples}} of what this is used to count:",
+    id: "explorePage.counter.itemsSection.introText",
+  },
+});
 
-    if (!hasItemsSectionContents(counter)) {
-      return null;
-    }
+function ItemsSection({ counter }: ComponentProps): React.ReactElement {
+  // Connect to the rest of the app
+  const locale = useLocale();
 
-    const items = ITEMS_FROM_COUNTER[counter.counterId];
-    return (
-      <section className={styles.itemsSection}>
-        <p className={styles.itemsPrefix}>
-          {localization.counterItemsPrefix(items.length)}
-        </p>
-        <div className={styles.itemsList}>{items.map(this.renderItem)}</div>
-      </section>
-    );
-  }
-
-  private renderItem = (item: Item): React.ReactNode => {
-    const { localization } = this.props;
-    return <div key={item.itemId}>{localization.itemPlural(item)}</div>;
-  };
+  // Render the component
+  const items = ITEMS_FROM_COUNTER[counter.counterId];
+  return (
+    <section className={styles.itemsSection}>
+      <FormattedMessage
+        {...INTL_MESSAGES.introText}
+        values={{
+          numItems: items.length,
+        }}
+      >
+        {(text) => <p className={styles.itemsPrefix}>{text}</p>}
+      </FormattedMessage>
+      <div className={styles.itemsList}>
+        {items.map(
+          (item: Item): React.ReactNode => {
+            return (
+              <div key={item.itemId}>
+                {locale.dataLocalizers.getItemName(
+                  item,
+                  /**
+                   * Random number, but let's try to get the unambiguously-large
+                   * plural in all languages.
+                   **/
+                  100
+                )}
+              </div>
+            );
+          }
+        )}
+      </div>
+    </section>
+  );
 }
+
+export default ItemsSection;

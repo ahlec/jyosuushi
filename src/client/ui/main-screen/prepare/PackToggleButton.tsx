@@ -1,10 +1,12 @@
 import classnames from "classnames";
 import React from "react";
+import { defineMessages, FormattedMessage } from "react-intl";
 import { Link } from "react-router-dom";
 
 import { KeyCode } from "@jyosuushi/constants";
 import { StudyPack } from "@jyosuushi/interfaces";
-import Localization from "@jyosuushi/localization";
+
+import useLocale from "@jyosuushi/i18n/useLocale";
 
 import { getStudyPackLink } from "@jyosuushi/ui/main-screen/explore/pathing";
 
@@ -14,17 +16,25 @@ import styles from "./PackToggleButton.scss";
 
 interface ComponentProps {
   isEnabled: boolean;
-  localization: Localization;
   onToggle: () => void;
   pack: StudyPack;
 }
 
+const INTL_MESSAGES = defineMessages({
+  packSize: {
+    defaultMessage: "{size, plural, one {# counter} other {# counters}}",
+    id: "preparePage.PackToggleButton.studyPackSizeLabel",
+  },
+});
+
 function PackToggleButton({
   isEnabled,
-  localization,
   onToggle,
   pack,
 }: ComponentProps): React.ReactElement {
+  // Connect to the rest of the app
+  const locale = useLocale();
+
   // Handle events
   const handleKeyPress = (e: React.KeyboardEvent<HTMLDivElement>): void => {
     switch (e.which) {
@@ -47,8 +57,14 @@ function PackToggleButton({
         tabIndex={0}
       >
         <CheckIcon className={styles.check} />
-        <div className={styles.name}>{localization.studyPackName(pack)}</div>
-        <div>{localization.studyPackSize(pack.counters.length)}</div>
+        <div className={styles.name}>
+          {locale.dataLocalizers.getStudyPackName(pack)}
+        </div>
+        <FormattedMessage
+          {...INTL_MESSAGES.packSize}
+          values={{ size: pack.counters.length }}
+          tagName="div"
+        />
       </div>
       <Link className={styles.viewDetails} to={getStudyPackLink(pack)}>
         View Details

@@ -1,5 +1,6 @@
 import classnames from "classnames";
 import * as React from "react";
+import { FormattedMessage, MessageDescriptor } from "react-intl";
 import ReactModal from "react-modal";
 
 import { KeyCode } from "@jyosuushi/constants";
@@ -11,7 +12,7 @@ import styles from "./Modal.scss";
 interface ComponentProps {
   className?: string;
   contentClassName?: string;
-  header: string;
+  header: MessageDescriptor;
   isOpen: boolean;
   onRequestClose: () => void;
 }
@@ -41,7 +42,7 @@ export default class Modal extends React.Component<ComponentProps> {
           >
             <CloseIcon />
           </div>
-          {header}
+          <FormattedMessage {...header} />
         </header>
         <div className={classnames(styles.content, contentClassName)}>
           {children}

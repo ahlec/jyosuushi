@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-
-import Localization, {
-  FeedbackFooterPiece,
-  VARIABLE_REPORT_BUG_LINK,
-  VARIABLE_SUBMIT_FEEDBACK_LINK,
-} from "@jyosuushi/localization";
+import { FormattedMessage } from "react-intl";
 
 import InlineTrigger from "@jyosuushi/ui/components/InlineTrigger";
 
@@ -16,16 +11,12 @@ import CommentsIcon from "@jyosuushi/icons/comments.png";
 
 import styles from "./FeedbackFooter.scss";
 
-interface ComponentProps {
-  localization: Localization;
-}
-
 enum UserFeedbackModal {
   BugReport = "bug-report",
   Suggestion = "suggestion",
 }
 
-function FeedbackFooter({ localization }: ComponentProps): React.ReactElement {
+function FeedbackFooter(): React.ReactElement {
   // Define component state
   const [currentModal, setCurrentModal] = useState<UserFeedbackModal | null>(
     null
@@ -41,40 +32,40 @@ function FeedbackFooter({ localization }: ComponentProps): React.ReactElement {
   // Render the component
   return (
     <div className={styles.feedbackFooter}>
-      {localization.feedbackFooter.map(
-        (piece: FeedbackFooterPiece): React.ReactNode => {
-          switch (piece) {
-            case VARIABLE_REPORT_BUG_LINK:
-              return (
-                <InlineTrigger
-                  key={VARIABLE_REPORT_BUG_LINK}
-                  className={styles.modalLink}
-                  onTrigger={handleReportBugClick}
-                >
-                  <img className={styles.icon} src={BugIcon} alt="" />{" "}
-                  <span className={styles.label}>
-                    {localization.reportABug}
-                  </span>
-                </InlineTrigger>
-              );
-            case VARIABLE_SUBMIT_FEEDBACK_LINK:
-              return (
-                <InlineTrigger
-                  key={VARIABLE_SUBMIT_FEEDBACK_LINK}
-                  className={styles.modalLink}
-                  onTrigger={handleSuggestFeedbackClick}
-                >
-                  <img className={styles.icon} src={CommentsIcon} alt="" />{" "}
-                  <span className={styles.label}>
-                    {localization.submitFeedback}
-                  </span>
-                </InlineTrigger>
-              );
-            default:
-              return piece;
-          }
-        }
-      )}
+      <FormattedMessage
+        id="FeedbackFooter.contents"
+        defaultMessage="Your thoughts are super appreciated! {reportBug} or {submitFeedback}."
+        values={{
+          reportBug: (
+            <InlineTrigger
+              className={styles.modalLink}
+              onTrigger={handleReportBugClick}
+            >
+              <img className={styles.icon} src={BugIcon} alt="" />{" "}
+              <span className={styles.label}>
+                <FormattedMessage
+                  id="FeedbackFooter.reportBugLink"
+                  defaultMessage="Report a Bug"
+                />
+              </span>
+            </InlineTrigger>
+          ),
+          submitFeedback: (
+            <InlineTrigger
+              className={styles.modalLink}
+              onTrigger={handleSuggestFeedbackClick}
+            >
+              <img className={styles.icon} src={CommentsIcon} alt="" />{" "}
+              <span className={styles.label}>
+                <FormattedMessage
+                  id="FeedbackFooter.submitFeedbackLink"
+                  defaultMessage="Submit Feedback"
+                />
+              </span>
+            </InlineTrigger>
+          ),
+        }}
+      />
       {currentModal === UserFeedbackModal.BugReport && (
         <BugReportModal onRequestClose={handleRequestCloseModal} />
       )}

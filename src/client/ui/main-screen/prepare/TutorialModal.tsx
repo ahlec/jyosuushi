@@ -1,9 +1,9 @@
 import classnames from "classnames";
 import { memoize } from "lodash";
 import * as React from "react";
+import { defineMessages, FormattedMessage } from "react-intl";
 
 import { KeyCode } from "@jyosuushi/constants";
-import Localization from "@jyosuushi/localization";
 
 import Modal from "@jyosuushi/ui/Modal";
 
@@ -16,7 +16,6 @@ import styles from "./TutorialModal.scss";
 
 interface ComponentProps {
   isOpen: boolean;
-  localization: Localization;
   onRequestClose: () => void;
 }
 
@@ -33,6 +32,13 @@ const TRANSITION_TO_CSS_CLASS_NAMES: { [transition in Transition]: string } = {
   replace: styles.transitioningReplace,
   right: styles.transitioningRight,
 };
+
+const INTL_MESSAGES = defineMessages({
+  modalHeader: {
+    defaultMessage: "Tutorial",
+    id: "mainScreen.tutorial.modalHeader",
+  },
+});
 
 export default class TutorialModal extends React.PureComponent<
   ComponentProps,
@@ -91,7 +97,7 @@ export default class TutorialModal extends React.PureComponent<
   }
 
   public render(): React.ReactNode {
-    const { isOpen, localization } = this.props;
+    const { isOpen } = this.props;
     const { currentPage, previousPage, transition } = this.state;
     const isChangingPage = transition !== null;
 
@@ -105,7 +111,7 @@ export default class TutorialModal extends React.PureComponent<
           transition && TRANSITION_TO_CSS_CLASS_NAMES[transition]
         )}
         contentClassName={styles.content}
-        header={localization.tutorial}
+        header={INTL_MESSAGES.modalHeader}
         isOpen={isOpen}
         onRequestClose={this.onRequestClose}
       >
@@ -148,14 +154,15 @@ export default class TutorialModal extends React.PureComponent<
   }
 
   private renderPage = (pageNumber: number): React.ReactNode => {
-    const { localization } = this.props;
     const page = TUTORIAL_PAGES[pageNumber];
     return (
       <React.Fragment>
         <div className={styles.picture}>
           <img src={page.image} alt="" />
         </div>
-        <div className={styles.text}>{page.getText(localization)}</div>
+        <FormattedMessage {...page.text}>
+          {(text) => <div className={styles.text}>{text}</div>}
+        </FormattedMessage>
         <div className={styles.navigation}>
           {TUTORIAL_PAGES.map((_, index) =>
             this.renderNavigationLink(pageNumber, index)

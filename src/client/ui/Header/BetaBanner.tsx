@@ -1,22 +1,17 @@
 import classnames from "classnames";
 import React from "react";
-
-import Localization from "@jyosuushi/localization";
+import { FormattedMessage } from "react-intl";
 
 import styles from "./BetaBanner.scss";
 
 interface ComponentProps {
   className: string;
-  localization: Localization;
 }
 
-function BetaBanner({
-  className,
-  localization,
-}: ComponentProps): React.ReactElement {
+function BetaBanner({ className }: ComponentProps): React.ReactElement {
   return (
     <div className={classnames(styles.betaBanner, className)}>
-      {localization.beta}
+      <FormattedMessage id="header.betaBanner.contents" defaultMessage="Beta" />
     </div>
   );
 }

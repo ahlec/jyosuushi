@@ -1,16 +1,12 @@
 import * as React from "react";
+import { defineMessages, FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 
-import Localization from "@jyosuushi/localization";
 import { State } from "@jyosuushi/redux";
 
 import TsuWarningModel, { NUM_DEFAULT_WARNINGS } from "./model";
 
 import styles from "./index.scss";
-
-interface ProvidedProps {
-  localization: Localization;
-}
 
 interface ReduxProps {
   numQuestionsAsked: number;
@@ -22,7 +18,15 @@ function mapStateToProps(state: State): ReduxProps {
   };
 }
 
-type ComponentProps = ProvidedProps & ReduxProps;
+type ComponentProps = ReduxProps;
+
+const INTL_MESSAGES = defineMessages({
+  text: {
+    defaultMessage:
+      "While 〜つ and 〜個 are always valid counters, you can't use them here. You'll have to be more specific!",
+    id: "quiz-page.AnswerInput.TsuNotice.text",
+  },
+});
 
 class TsuNotice extends React.PureComponent<ComponentProps> {
   private readonly model: TsuWarningModel;
@@ -47,16 +51,19 @@ class TsuNotice extends React.PureComponent<ComponentProps> {
       return null;
     }
 
-    const { localization } = this.props;
     return (
-      <div
-        className={styles.tsuNotice}
-        style={{
-          opacity: this.model.numWarnings / NUM_DEFAULT_WARNINGS,
-        }}
-      >
-        {localization.tsuNotice}
-      </div>
+      <FormattedMessage {...INTL_MESSAGES.text}>
+        {(text) => (
+          <div
+            className={styles.tsuNotice}
+            style={{
+              opacity: this.model.numWarnings / NUM_DEFAULT_WARNINGS,
+            }}
+          >
+            {text}
+          </div>
+        )}
+      </FormattedMessage>
     );
   }
 }

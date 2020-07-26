@@ -1,13 +1,11 @@
 import classnames from "classnames";
 import * as React from "react";
 import * as ReactGA from "react-ga";
+import { defineMessages, FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
-
-import Localization from "@jyosuushi/localization";
 
 import { Scorecard, State } from "@jyosuushi/redux";
 import { leaveQuiz } from "@jyosuushi/redux/actions";
-import { getLocalization } from "@jyosuushi/redux/selectors";
 import { Dispatch } from "@jyosuushi/redux/store";
 
 import TooltipButton from "@jyosuushi/ui/components/TooltipButton";
@@ -35,7 +33,6 @@ interface ReduxProps {
   enabledPacks: ReadonlyArray<string>;
   hasAnsweredQuestion: boolean;
   isOnQuizWrapup: boolean;
-  localization: Localization;
   scorecard: Scorecard;
   totalNumberQuestions: number;
 }
@@ -58,7 +55,6 @@ function mapStateToProps(state: State): ReduxProps {
     enabledPacks: state.enabledPacks,
     hasAnsweredQuestion,
     isOnQuizWrapup: state.quizState.state === "quiz-wrapup",
-    localization: getLocalization(state),
     scorecard: state.scorecard,
     totalNumberQuestions:
       state.questions.asked.length +
@@ -130,6 +126,25 @@ const LAYOUT_TO_CSS_CLASS_NAME: { [layout in Layout]: string } = {
   quiz: styles.quiz,
 };
 
+const INTL_MESSAGES = defineMessages({
+  historyModalHeader: {
+    defaultMessage: "History",
+    id: "header.historyModalHeader",
+  },
+  tagline: {
+    defaultMessage: "Let's review Japanese counters!",
+    id: "header.siteTagLine",
+  },
+  tooltipButtonHistory: {
+    defaultMessage: "History",
+    id: "header.quiz-buttons.historyButtonTooltip",
+  },
+  tooltipButtonHome: {
+    defaultMessage: "Home",
+    id: "header.quiz-buttons.homeButtonTooltip",
+  },
+});
+
 class Header extends React.PureComponent<ComponentProps, ComponentState> {
   public state: ComponentState;
 
@@ -187,15 +202,16 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
   }
 
   private renderHomeLayout(): React.ReactNode {
-    const { localization } = this.props;
     return (
       <React.Fragment>
         <div className={styles.main}>
           <Furigana furigana="じょすうし" text="助数詞" />を
           <Furigana furigana="れんしゅう" text="練習" />
         </div>
-        <div className={styles.subheader}>{localization.siteTagline}</div>
-        <BetaBanner className={styles.betaBanner} localization={localization} />
+        <FormattedMessage {...INTL_MESSAGES.tagline}>
+          {(tagline) => <div className={styles.subheader}>{tagline}</div>}
+        </FormattedMessage>
+        <BetaBanner className={styles.betaBanner} />
       </React.Fragment>
     );
   }
@@ -203,7 +219,6 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
   private renderQuizLayout(): React.ReactNode {
     const {
       hasAnsweredQuestion,
-      localization,
       scorecard: { numCorrectAnswers, numIncorrectAnswers },
     } = this.props;
     const { isPromptingToLeave, showHistoryModal, stage } = this.state;
@@ -221,13 +236,13 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
           )}
         >
           <div className={styles.onlyIfAnswered}>
-            <Score className={styles.score} localization={localization} />
+            <Score className={styles.score} />
             <span className={styles.buttonWrapper}>
               <TooltipButton
                 enabled={enabled}
                 icon={HistoryIcon}
                 onClick={this.onClickHistory}
-                text="History"
+                text={INTL_MESSAGES.tooltipButtonHistory}
               />
             </span>
           </div>
@@ -236,17 +251,17 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
               enabled={enabled}
               icon={HomeIcon}
               onClick={this.onClickHome}
-              text="Home"
+              text={INTL_MESSAGES.tooltipButtonHome}
             />
           </span>
         </div>
         <Modal
           className={styles.historyModal}
-          header="History"
+          header={INTL_MESSAGES.historyModalHeader}
           isOpen={showHistoryModal}
           onRequestClose={this.onCloseHistory}
         >
-          <QuizHistory localization={localization} rowClassName={styles.rows} />
+          <QuizHistory rowClassName={styles.rows} />
         </Modal>
         <AbortConfirmationModal
           isOpen={isPromptingToLeave}

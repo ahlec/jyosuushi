@@ -1,4 +1,5 @@
 import React from "react";
+import { MessageDescriptor } from "react-intl";
 
 import Modal from "@jyosuushi/ui/Modal";
 
@@ -17,7 +18,7 @@ interface ComponentProps {
    * Localized text that should appear as the header for this
    * modal.
    */
-  header: string;
+  header: MessageDescriptor;
 
   /**
    * A callback that should be invoked when the user has indicated

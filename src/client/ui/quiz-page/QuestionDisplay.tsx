@@ -2,27 +2,29 @@ import * as React from "react";
 
 import { ITEMS_LOOKUP } from "@data/items";
 import { Question } from "@jyosuushi/interfaces";
-import Localization from "@jyosuushi/localization";
 
 import styles from "./QuestionDisplay.scss";
+import useLocale from "@jyosuushi/i18n/useLocale";
 
 interface ComponentProps {
   currentQuestion: Question;
-  localization: Localization;
 }
 
-export default class QuestionPanel extends React.PureComponent<ComponentProps> {
-  public render(): React.ReactNode {
-    const { localization, currentQuestion } = this.props;
-    const item = ITEMS_LOOKUP[currentQuestion.itemId];
-    const name =
-      currentQuestion.amount === 1
-        ? localization.itemSingular(item)
-        : localization.itemPlural(item);
-    return (
-      <div className={styles.questionDisplay}>
-        {currentQuestion.amount} {name}
-      </div>
-    );
-  }
+function QuestionDisplay({
+  currentQuestion,
+}: ComponentProps): React.ReactElement {
+  const item = ITEMS_LOOKUP[currentQuestion.itemId];
+
+  // Connect to the rest of the app
+  const locale = useLocale();
+
+  // Render the component
+  return (
+    <div className={styles.questionDisplay}>
+      {currentQuestion.amount}{" "}
+      {locale.dataLocalizers.getItemName(item, currentQuestion.amount)}
+    </div>
+  );
 }
+
+export default QuestionDisplay;

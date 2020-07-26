@@ -1,3 +1,5 @@
+import { defineMessages, MessageDescriptor } from "react-intl";
+
 import { AmountRange } from "./redux";
 
 export const ONE_SECOND = 1000;
@@ -13,23 +15,46 @@ export enum KeyCode {
   RightArrow = 39,
 }
 
+const INTL_MESSAGES = defineMessages({
+  amountRangeGiant: {
+    defaultMessage: "Gigantic",
+    id: "constants.quizAmountRanges.nameGiant",
+  },
+  amountRangeLarge: {
+    defaultMessage: "Massive",
+    id: "constants.quizAmountRanges.nameLarge",
+  },
+  amountRangeMedium: {
+    defaultMessage: "Average",
+    id: "constants.quizAmountRanges.nameMedium",
+  },
+  amountRangeSmall: {
+    defaultMessage: "Tiny",
+    id: "constants.quizAmountRanges.nameSmall",
+  },
+});
+
 export const AMOUNT_RANGES: {
-  [range in AmountRange]: { min: number; max: number };
+  [range in AmountRange]: { min: number; max: number; name: MessageDescriptor };
 } = {
   [AmountRange.Small]: {
     max: 25,
     min: 1,
+    name: INTL_MESSAGES.amountRangeSmall,
   },
   [AmountRange.Medium]: {
     max: 50,
     min: 1,
+    name: INTL_MESSAGES.amountRangeMedium,
   },
   [AmountRange.Large]: {
     max: 100,
     min: 1,
+    name: INTL_MESSAGES.amountRangeLarge,
   },
   [AmountRange.Giant]: {
     max: 1000,
     min: 1,
+    name: INTL_MESSAGES.amountRangeGiant,
   },
 };

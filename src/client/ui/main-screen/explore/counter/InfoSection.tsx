@@ -1,11 +1,11 @@
 import * as React from "react";
+import { defineMessages, FormattedMessage } from "react-intl";
 
 import {
   Counter,
   ExternalLink,
   ExternalLinkLanguage,
 } from "@jyosuushi/interfaces";
-import Localization from "@jyosuushi/localization";
 
 import IconFlagJapan from "@jyosuushi/icons/flag-japan.png";
 import IconFlagUsa from "@jyosuushi/icons/flag-usa.png";
@@ -16,8 +16,14 @@ import styles from "./InfoSection.scss";
 
 interface ComponentProps {
   counter: Counter;
-  localization: Localization;
 }
+
+const INTL_MESSAGES = defineMessages({
+  externalLinksHeader: {
+    defaultMessage: "Further Reading",
+    id: "explorePage.counter.info.externalLinksHeader",
+  },
+});
 
 export function hasInfoSectionContents(counter: Counter): boolean {
   return !!counter.notes || !!counter.externalLinks.length;
@@ -25,7 +31,7 @@ export function hasInfoSectionContents(counter: Counter): boolean {
 
 export default class InfoSection extends React.PureComponent<ComponentProps> {
   public render(): React.ReactNode {
-    const { counter, localization } = this.props;
+    const { counter } = this.props;
 
     if (!counter.notes && !counter.externalLinks.length) {
       return null;
@@ -41,11 +47,10 @@ export default class InfoSection extends React.PureComponent<ComponentProps> {
         )}
         {counter.externalLinks.length ? (
           <React.Fragment>
-            <h6>
-              {counter.notes
-                ? localization.furtherReading
-                : localization.externalLinksHeader}
-            </h6>
+            <FormattedMessage
+              {...INTL_MESSAGES.externalLinksHeader}
+              tagName="h6"
+            />
             <ul className={styles.externalLinks}>
               {counter.externalLinks.map(this.renderLink)}
             </ul>

@@ -1,5 +1,6 @@
 import classnames from "classnames";
-import * as React from "react";
+import React from "react";
+import { FormattedMessage, MessageDescriptor } from "react-intl";
 
 import { KeyCode } from "@jyosuushi/constants";
 
@@ -10,7 +11,7 @@ import styles from "./Checkbox.scss";
 
 interface ComponentProps {
   checked: boolean;
-  label: string;
+  label: MessageDescriptor;
   onChange: (checked: boolean) => void;
 }
 
@@ -47,7 +48,11 @@ function Checkbox({
       ) : (
         <CircleIcon className={styles.icon} />
       )}
-      <div className={styles.label}>{label}</div>
+      <FormattedMessage {...label}>
+        {(localizedLabel) => (
+          <div className={styles.label}>{localizedLabel}</div>
+        )}
+      </FormattedMessage>
     </div>
   );
 }

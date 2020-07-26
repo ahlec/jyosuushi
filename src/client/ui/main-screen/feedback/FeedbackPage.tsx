@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
-
-import Localization from "@jyosuushi/localization";
-import { State } from "@jyosuushi/redux";
-import { getLocalization } from "@jyosuushi/redux/selectors";
+import {
+  defineMessages,
+  FormattedMessage,
+  MessageDescriptor,
+} from "react-intl";
 
 import InlineTrigger from "@jyosuushi/ui/components/InlineTrigger";
 
@@ -22,9 +22,9 @@ enum FeedbackPageModal {
 }
 
 type LinkEntry = {
-  description: (localization: Localization) => string;
+  description: MessageDescriptor;
   icon: string;
-  linkText: (localization: Localization) => string;
+  linkText: MessageDescriptor;
 } & (
   | {
       type: "external-link";
@@ -37,50 +37,68 @@ type LinkEntry = {
     }
 );
 
+const INTL_MESSAGES = defineMessages({
+  contributeDescription: {
+    defaultMessage:
+      "The project is open source, and if you'd like to join in on working on the project, check out my GitHub!",
+    id: "feedbackPage.links.contribute.description",
+  },
+  contributeLink: {
+    defaultMessage: "Help contribute",
+    id: "feedbackPage.links.contribute.link",
+  },
+  pageIntro: {
+    defaultMessage:
+      "We're in open beta right now and I hope you enjoy the application! Expect updates frequently!",
+    id: "feedbackPage.intro",
+  },
+  reportBugDescription: {
+    defaultMessage:
+      "Please help me make a more perfect service! A brief description of the problem (or a mistake with Japanese!) will help me track it down and fix it right away!",
+    id: "feedbackPage.links.reportBug.description",
+  },
+  reportBugLink: {
+    defaultMessage: "Report a bug",
+    id: "feedbackPage.links.reportBug.link",
+  },
+  submitFeedbackDescription: {
+    defaultMessage:
+      "Share with me anything that you'd like to see happen, or any ideas on how I can improve this service!",
+    id: "feedbackPage.links.submitFeedback.description",
+  },
+  submitFeedbackLink: {
+    defaultMessage: "Submit feedback and ideas",
+    id: "feedbackPage.links.submitFeedback.linkText",
+  },
+});
+
 const LINKS: ReadonlyArray<LinkEntry> = [
   {
-    description: (localization): string =>
-      localization.feedbackPageSubmitFeedbackDescription,
+    description: INTL_MESSAGES.submitFeedbackDescription,
     icon: CommentsIcon,
     id: FeedbackPageModal.FeatureSuggestion,
-    linkText: (localization): string =>
-      localization.feedbackPageSubmitFeedbackLink,
+    linkText: INTL_MESSAGES.submitFeedbackLink,
     modal: FeatureSuggestionModal,
     type: "modal",
   },
   {
-    description: (localization): string =>
-      localization.feedbackPageReportBugDescription,
+    description: INTL_MESSAGES.reportBugDescription,
     icon: BugIcon,
     id: FeedbackPageModal.BugReport,
-    linkText: (localization): string => localization.feedbackPageReportBugLink,
+    linkText: INTL_MESSAGES.reportBugLink,
     modal: BugReportModal,
     type: "modal",
   },
   {
-    description: (localization): string =>
-      localization.feedbackPageHelpContributeDescription,
+    description: INTL_MESSAGES.contributeDescription,
     icon: CodeIcon,
-    linkText: (localization): string =>
-      localization.feedbackPageHelpContributeLink,
+    linkText: INTL_MESSAGES.contributeLink,
     type: "external-link",
     url: "https://github.com/ahlec/jyosuushi",
   },
 ];
 
-interface ReduxProps {
-  localization: Localization;
-}
-
-function mapStateToProps(state: State): ReduxProps {
-  return {
-    localization: getLocalization(state),
-  };
-}
-
-type ComponentProps = ReduxProps;
-
-function FeedbackPage({ localization }: ComponentProps): React.ReactElement {
+function FeedbackPage(): React.ReactElement {
   // Define state
   const [openModal, setOpenModal] = useState<FeedbackPageModal | null>(null);
 
@@ -101,7 +119,7 @@ function FeedbackPage({ localization }: ComponentProps): React.ReactElement {
             rel="noopener noreferrer"
           >
             <img src={link.icon} alt="" />{" "}
-            <strong>{link.linkText(localization)}</strong>
+            <FormattedMessage {...link.linkText} tagName="strong" />
           </a>
         );
         followupComponent = null;
@@ -114,7 +132,7 @@ function FeedbackPage({ localization }: ComponentProps): React.ReactElement {
             onTrigger={(): void => setOpenModal(link.id)}
           >
             <img src={link.icon} alt="" />{" "}
-            <strong>{link.linkText(localization)}</strong>
+            <FormattedMessage {...link.linkText} tagName="strong" />
           </InlineTrigger>
         );
 
@@ -135,7 +153,9 @@ function FeedbackPage({ localization }: ComponentProps): React.ReactElement {
       <p key={index} className={styles.linkEntry}>
         {linkComponent}
         {". "}
-        <span className={styles.small}>{link.description(localization)}</span>
+        <FormattedMessage {...link.description}>
+          {(text) => <span className={styles.small}>{text}</span>}
+        </FormattedMessage>
         {followupComponent}
       </p>
     );
@@ -144,11 +164,13 @@ function FeedbackPage({ localization }: ComponentProps): React.ReactElement {
   // Render this component
   return (
     <div className={styles.feedbackPage}>
-      <p className={styles.intro}>{localization.feedbackPageIntro}</p>
+      <FormattedMessage {...INTL_MESSAGES.pageIntro}>
+        {(text) => <p className={styles.intro}>{text}</p>}
+      </FormattedMessage>
       <hr />
       {LINKS.map(renderLink)}
     </div>
   );
 }
 
-export default connect(mapStateToProps)(FeedbackPage);
+export default FeedbackPage;

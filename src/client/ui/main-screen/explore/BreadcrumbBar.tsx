@@ -1,14 +1,12 @@
 import * as React from "react";
-import { connect } from "react-redux";
+import { defineMessages, FormattedMessage } from "react-intl";
 import { NavLink, RouteComponentProps, withRouter } from "react-router-dom";
 
 import { COUNTERS_LOOKUP } from "@data/counters";
 import { STUDY_PACK_LOOKUP } from "@data/studyPacks";
 
-import { State } from "@jyosuushi/redux";
-import { getLocalization } from "@jyosuushi/redux/selectors";
-
-import Localization from "@jyosuushi/localization";
+import { Locale } from "@jyosuushi/i18n/types";
+import useLocale from "@jyosuushi/i18n/useLocale";
 
 import { getPrimaryJapaneseRepresentation, interleave } from "@jyosuushi/utils";
 
@@ -21,23 +19,27 @@ import {
 
 import styles from "./BreadcrumbBar.scss";
 
-interface ReduxProps {
-  localization: Localization;
-}
+type ComponentProps = RouteComponentProps<{
+  counterId?: string;
+  packId?: string;
+}>;
 
-function mapStateToProps(state: State): ReduxProps {
-  return {
-    localization: getLocalization(state),
-  };
-}
+const INTL_MESSAGES = defineMessages({
+  categoryPrefixCounter: {
+    defaultMessage: "Counter:",
+    id: "explorePage.BreadcrumbBar.counter.prefix",
+  },
+  categoryPrefixStudyPack: {
+    defaultMessage: "Study Pack:",
+    id: "explorePage.BreadcrumbBar.studyPack.prefix",
+  },
+  explorePageName: {
+    defaultMessage: "Explore",
+    id: "explorePage.BreadcrumbBar.explorePageName",
+  },
+});
 
-type ComponentProps = ReduxProps &
-  RouteComponentProps<{ counterId?: string; packId?: string }>;
-
-function makeStudyPackDomLink(
-  localization: Localization,
-  packId: string
-): React.ReactNode {
+function makeStudyPackDomLink(locale: Locale, packId: string): React.ReactNode {
   const studyPack = STUDY_PACK_LOOKUP[packId];
   return (
     <NavLink
@@ -46,8 +48,8 @@ function makeStudyPackDomLink(
       to={getStudyPackLink(studyPack)}
       activeClassName={styles.active}
     >
-      {localization.pageExploreStudyPack}{" "}
-      {localization.studyPackName(studyPack)}
+      <FormattedMessage {...INTL_MESSAGES.categoryPrefixStudyPack} />{" "}
+      {locale.dataLocalizers.getStudyPackName(studyPack)}
     </NavLink>
   );
 }
@@ -61,59 +63,61 @@ function assertParamDefined<
   }
 }
 
-class BreadcrumbBar extends React.PureComponent<ComponentProps> {
-  public render(): React.ReactNode {
-    const { localization, location, match } = this.props;
+function BreadcrumbBar({
+  location,
+  match,
+}: ComponentProps): React.ReactElement {
+  // Connect to the rest of the app
+  const locale = useLocale();
 
-    const links: React.ReactNode[] = [
-      <NavLink
-        key={EXPLORE_PAGE_PATH}
-        exact={true}
-        to={EXPLORE_PAGE_PATH}
-        activeClassName={styles.active}
-      >
-        {localization.pageExplore}
-      </NavLink>,
-    ];
+  // Determine which links should appear on the bar
+  const links: React.ReactNode[] = [
+    <NavLink
+      key={EXPLORE_PAGE_PATH}
+      exact={true}
+      to={EXPLORE_PAGE_PATH}
+      activeClassName={styles.active}
+    >
+      <FormattedMessage {...INTL_MESSAGES.explorePageName} />
+    </NavLink>,
+  ];
 
-    switch (match.path) {
-      case EXPLORE_STUDY_PACK_PATH: {
-        assertParamDefined("packId", match.params.packId);
-        links.push(makeStudyPackDomLink(localization, match.params.packId));
-        break;
-      }
-      case EXPLORE_COUNTER_PATH: {
-        if (location.state && location.state.fromStudyPack) {
-          links.push(
-            makeStudyPackDomLink(localization, location.state.fromStudyPack)
-          );
-        }
-
-        assertParamDefined("counterId", match.params.counterId);
-        const counter = COUNTERS_LOOKUP[match.params.counterId];
-        links.push(
-          <NavLink
-            key={EXPLORE_COUNTER_PATH}
-            exact={true}
-            to={location}
-            activeClassName={styles.active}
-          >
-            {localization.pageExploreCounter}{" "}
-            {localization.counterName(counter)}【
-            {getPrimaryJapaneseRepresentation(counter)}】
-          </NavLink>
-        );
-
-        break;
-      }
+  switch (match.path) {
+    case EXPLORE_STUDY_PACK_PATH: {
+      assertParamDefined("packId", match.params.packId);
+      links.push(makeStudyPackDomLink(locale, match.params.packId));
+      break;
     }
+    case EXPLORE_COUNTER_PATH: {
+      if (location.state && location.state.fromStudyPack) {
+        links.push(makeStudyPackDomLink(locale, location.state.fromStudyPack));
+      }
 
-    return (
-      <div className={styles.breadcrumbBar}>
-        <span className={styles.flourish}>⁜</span> {interleave(links, " » ")}
-      </div>
-    );
+      assertParamDefined("counterId", match.params.counterId);
+      const counter = COUNTERS_LOOKUP[match.params.counterId];
+      links.push(
+        <NavLink
+          key={EXPLORE_COUNTER_PATH}
+          exact={true}
+          to={location}
+          activeClassName={styles.active}
+        >
+          <FormattedMessage {...INTL_MESSAGES.categoryPrefixCounter} />{" "}
+          {locale.dataLocalizers.getCounterName(counter)}【
+          {getPrimaryJapaneseRepresentation(counter)}】
+        </NavLink>
+      );
+
+      break;
+    }
   }
+
+  // Render the component
+  return (
+    <div className={styles.breadcrumbBar}>
+      <span className={styles.flourish}>⁜</span> {interleave(links, " » ")}
+    </div>
+  );
 }
 
-export default connect(mapStateToProps)(withRouter(BreadcrumbBar));
+export default withRouter(BreadcrumbBar);

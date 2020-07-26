@@ -1,6 +1,5 @@
 import { Counter, PendingQuestion, Question } from "@jyosuushi/interfaces";
 
-export type LocalizationLanguage = "english";
 export enum AmountRange {
   Small = "small",
   Medium = "medium",
@@ -11,7 +10,6 @@ export enum AmountRange {
 export interface Settings {
   amountRange: AmountRange;
   infiniteMode: boolean;
-  localization: LocalizationLanguage;
 }
 
 export interface Scorecard {

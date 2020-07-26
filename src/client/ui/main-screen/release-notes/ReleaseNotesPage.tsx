@@ -10,28 +10,12 @@ import CHANGELOG, {
   BugFixBrowser,
 } from "@changelog";
 
-import { State } from "@jyosuushi/redux";
 import { markLatestVersion } from "@jyosuushi/redux/actions";
-import { getLocalization } from "@jyosuushi/redux/selectors";
 import { Dispatch } from "@jyosuushi/redux/store";
-
-import Localization from "@jyosuushi/localization";
 
 import Markdown from "./Markdown";
 
 import styles from "./ReleaseNotesPage.scss";
-
-interface ReduxProps {
-  localization: Localization;
-}
-
-function mapStateToProps(state: State): ReduxProps {
-  return {
-    localization: getLocalization(state),
-  };
-}
-
-type ComponentProps = ReduxProps & { dispatch: Dispatch };
 
 const BROWSER_NAMES: { [browser in BugFixBrowser]: string } = {
   chrome: "Chrome",
@@ -40,6 +24,8 @@ const BROWSER_NAMES: { [browser in BugFixBrowser]: string } = {
   ie: "Internet Explorer",
   safari: "Safari",
 };
+
+type ComponentProps = { dispatch: Dispatch };
 
 class ReleaseNotesPage extends React.PureComponent<ComponentProps> {
   public componentDidMount(): void {
@@ -139,4 +125,4 @@ class ReleaseNotesPage extends React.PureComponent<ComponentProps> {
   }
 }
 
-export default connect(mapStateToProps)(ReleaseNotesPage);
+export default connect()(ReleaseNotesPage);

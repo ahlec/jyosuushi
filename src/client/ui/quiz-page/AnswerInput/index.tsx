@@ -2,11 +2,11 @@ import classnames from "classnames";
 import { uniq } from "lodash";
 import * as React from "react";
 import * as ReactGA from "react-ga";
+import { defineMessages, FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 
 import { Answer, Question } from "@jyosuushi/interfaces";
 import { HIRAGANA } from "@jyosuushi/japanese/kana";
-import Localization from "@jyosuushi/localization";
 import { State } from "@jyosuushi/redux";
 import {
   skipQuestion,
@@ -26,7 +26,6 @@ interface ProvidedProps {
   buttonsClassName: string;
   currentQuestion: Question;
   enabled: boolean;
-  localization: Localization;
   onAnswerSubmitted?: (usersCorrectAnswer: Answer | null) => void;
 }
 
@@ -50,6 +49,18 @@ function getCounterId(answer: Answer): string {
   return answer.counterId;
 }
 
+const INTL_MESSAGES = defineMessages({
+  buttonSkip: {
+    defaultMessage: "Skip this question",
+    id: "quiz-page.AnswerInput.buttonSkipQuestion",
+  },
+  howToSubmit: {
+    defaultMessage:
+      "Press the [enter] key when you're finished, or click the arrow button to submit.",
+    id: "quiz-page.AnswerInput.howToSubmit",
+  },
+});
+
 class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
   public state: ComponentState = {
     value: null,
@@ -65,7 +76,7 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
   }
 
   public render(): React.ReactNode {
-    const { buttonsClassName, enabled, localization } = this.props;
+    const { buttonsClassName, enabled } = this.props;
     const { value } = this.state;
     return (
       <div
@@ -92,20 +103,25 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
             </button>
           </div>
         </KanaInput>
-        <div
-          className={classnames(
-            styles.submitInstructions,
-            !!value && enabled && styles.hasValue,
-            !!value && !value.validValue && enabled && "invalid"
+        <FormattedMessage {...INTL_MESSAGES.howToSubmit}>
+          {(text) => (
+            <div
+              className={classnames(
+                styles.submitInstructions,
+                !!value && enabled && styles.hasValue,
+                !!value && !value.validValue && enabled && "invalid"
+              )}
+            >
+              {text}
+            </div>
           )}
-        >
-          Press the [enter] key when you&apos;re finished, or click the arrow
-          button to submit.
-        </div>
-        <TsuNotice localization={localization} />
+        </FormattedMessage>
+        <TsuNotice />
         <div className={buttonsClassName}>
           {enabled && (
-            <button onClick={this.onSkipClicked}>Skip this question</button>
+            <FormattedMessage {...INTL_MESSAGES.buttonSkip}>
+              {(text) => <button onClick={this.onSkipClicked}>{text}</button>}
+            </FormattedMessage>
           )}
         </div>
       </div>
