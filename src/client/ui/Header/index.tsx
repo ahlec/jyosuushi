@@ -208,9 +208,9 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
           <Furigana furigana="じょすうし" text="助数詞" />を
           <Furigana furigana="れんしゅう" text="練習" />
         </div>
-        <FormattedMessage {...INTL_MESSAGES.tagline}>
-          {(tagline) => <div className={styles.subheader}>{tagline}</div>}
-        </FormattedMessage>
+        <div className={styles.subheader}>
+          <FormattedMessage {...INTL_MESSAGES.tagline} />
+        </div>
         <BetaBanner className={styles.betaBanner} />
       </React.Fragment>
     );

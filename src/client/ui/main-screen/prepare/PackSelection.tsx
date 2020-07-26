@@ -51,9 +51,9 @@ export default class PackSelection extends React.PureComponent<ComponentProps> {
         <div className={styles.fieldset}>
           <div className={styles.header}>
             <FormattedMessage {...INTL_MESSAGES.header} tagName="strong" />{" "}
-            <FormattedMessage {...INTL_MESSAGES.subheader}>
-              {(text) => <span className={styles.subheader}>{text}</span>}
-            </FormattedMessage>
+            <span className={styles.subheader}>
+              <FormattedMessage {...INTL_MESSAGES.subheader} />
+            </span>
           </div>
           {STUDY_PACKS.map(this.renderPack)}
         </div>

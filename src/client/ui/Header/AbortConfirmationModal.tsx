@@ -49,16 +49,12 @@ export default class AbortConfirmationModal extends React.PureComponent<
       >
         <FormattedMessage {...INTL_MESSAGES.question} tagName="p" />
         <div className={styles.buttons}>
-          <FormattedMessage {...INTL_MESSAGES.buttonNo}>
-            {(no) => <button onClick={onRequestClose}>{no}</button>}
-          </FormattedMessage>
-          <FormattedMessage {...INTL_MESSAGES.buttonYes}>
-            {(yes) => (
-              <button className={styles.confirm} onClick={this.onClickConfirm}>
-                {yes}
-              </button>
-            )}
-          </FormattedMessage>
+          <button onClick={onRequestClose}>
+            <FormattedMessage {...INTL_MESSAGES.buttonNo} />
+          </button>
+          <button className={styles.confirm} onClick={this.onClickConfirm}>
+            <FormattedMessage {...INTL_MESSAGES.buttonYes} />
+          </button>
         </div>
       </Modal>
     );

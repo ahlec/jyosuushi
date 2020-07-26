@@ -51,13 +51,9 @@ function TooltipButton({
       tabIndex={0}
     >
       <Icon data-tip data-for={id} />
-      <FormattedMessage {...text}>
-        {(localizedText) => (
-          <ReactTooltip id={id} place="bottom" type="dark" effect="solid">
-            {localizedText}
-          </ReactTooltip>
-        )}
-      </FormattedMessage>
+      <ReactTooltip id={id} place="bottom" type="dark" effect="solid">
+        <FormattedMessage {...text} />
+      </ReactTooltip>
     </div>
   );
 }

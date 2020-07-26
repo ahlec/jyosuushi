@@ -48,11 +48,9 @@ function Checkbox({
       ) : (
         <CircleIcon className={styles.icon} />
       )}
-      <FormattedMessage {...label}>
-        {(localizedLabel) => (
-          <div className={styles.label}>{localizedLabel}</div>
-        )}
-      </FormattedMessage>
+      <div className={styles.label}>
+        <FormattedMessage {...label} />
+      </div>
     </div>
   );
 }

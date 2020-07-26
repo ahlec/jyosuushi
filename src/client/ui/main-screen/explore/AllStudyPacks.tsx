@@ -42,14 +42,14 @@ function AllStudyPacks(): React.ReactElement {
                 <div className={styles.name}>
                   {locale.dataLocalizers.getStudyPackName(studyPack)}
                 </div>
-                <FormattedMessage
-                  {...INTL_MESSAGES.packSize}
-                  values={{
-                    size: studyPack.counters.length,
-                  }}
-                >
-                  {(text) => <div className={styles.count}>{text}</div>}
-                </FormattedMessage>
+                <div className={styles.count}>
+                  <FormattedMessage
+                    {...INTL_MESSAGES.packSize}
+                    values={{
+                      size: studyPack.counters.length,
+                    }}
+                  />
+                </div>
               </Link>
             );
           }

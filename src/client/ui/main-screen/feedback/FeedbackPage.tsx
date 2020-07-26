@@ -153,9 +153,9 @@ function FeedbackPage(): React.ReactElement {
       <p key={index} className={styles.linkEntry}>
         {linkComponent}
         {". "}
-        <FormattedMessage {...link.description}>
-          {(text) => <span className={styles.small}>{text}</span>}
-        </FormattedMessage>
+        <span className={styles.small}>
+          <FormattedMessage {...link.description} />
+        </span>
         {followupComponent}
       </p>
     );
@@ -164,9 +164,9 @@ function FeedbackPage(): React.ReactElement {
   // Render this component
   return (
     <div className={styles.feedbackPage}>
-      <FormattedMessage {...INTL_MESSAGES.pageIntro}>
-        {(text) => <p className={styles.intro}>{text}</p>}
-      </FormattedMessage>
+      <p className={styles.intro}>
+        <FormattedMessage {...INTL_MESSAGES.pageIntro} />
+      </p>
       <hr />
       {LINKS.map(renderLink)}
     </div>

@@ -18,12 +18,12 @@ function Setting({
 }: ComponentProps): React.ReactElement {
   return (
     <div className={className}>
-      <FormattedMessage {...header}>
-        {(text) => <h3 className={styles.header}>{text}</h3>}
-      </FormattedMessage>
-      <FormattedMessage {...description}>
-        {(text) => <div className={styles.description}>{text}</div>}
-      </FormattedMessage>
+      <h3 className={styles.header}>
+        <FormattedMessage {...header} />
+      </h3>
+      <div className={styles.description}>
+        <FormattedMessage {...description} />
+      </div>
       {children}
     </div>
   );

@@ -160,9 +160,9 @@ export default class TutorialModal extends React.PureComponent<
         <div className={styles.picture}>
           <img src={page.image} alt="" />
         </div>
-        <FormattedMessage {...page.text}>
-          {(text) => <div className={styles.text}>{text}</div>}
-        </FormattedMessage>
+        <div className={styles.text}>
+          <FormattedMessage {...page.text} />
+        </div>
         <div className={styles.navigation}>
           {TUTORIAL_PAGES.map((_, index) =>
             this.renderNavigationLink(pageNumber, index)

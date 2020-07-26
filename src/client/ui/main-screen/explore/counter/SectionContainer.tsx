@@ -13,9 +13,9 @@ class SectionContainer extends React.PureComponent<ComponentProps> {
     const { children, header } = this.props;
     return (
       <div className={styles.sectionContainer}>
-        <FormattedMessage {...header}>
-          {(text) => <div className={styles.header}>{text}</div>}
-        </FormattedMessage>
+        <div className={styles.header}>
+          <FormattedMessage {...header} />
+        </div>
         <div className={styles.contents}>{children}</div>
       </div>
     );
