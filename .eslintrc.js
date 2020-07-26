@@ -20,7 +20,13 @@ module.exports = {
       jsx: true,
     },
   },
-  plugins: ["@typescript-eslint", "react", "react-hooks", "jsx-a11y"],
+  plugins: [
+    "@typescript-eslint",
+    "react",
+    "react-hooks",
+    "jsx-a11y",
+    "@calm/react-intl",
+  ],
   rules: {
     "@typescript-eslint/no-unused-vars": [
       "warn",
@@ -35,6 +41,28 @@ module.exports = {
         natural: true,
       },
     ],
+    "@calm/react-intl/missing-formatted-message": [
+      "error",
+      {
+        noTrailingWhitespace: true,
+        ignoreLinks: false,
+        enforceLabels: true,
+        enforceImageAlts: false,
+        enforceInputProps: true,
+      },
+    ],
+    "@calm/react-intl/missing-attribute": [
+      "error",
+      {
+        noTrailingWhitespace: true,
+        noSpreadOperator: false,
+        requireDescription: false,
+        formatDefineMessages: true,
+        requireDefaultMessage: true,
+        requireIdAsString: true,
+      },
+    ],
+    "@calm/react-intl/missing-values": "error",
   },
   settings: {
     react: {

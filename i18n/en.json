@@ -12,10 +12,7 @@
     "defaultMessage": "Tiny"
   },
   "CreditsFooter.credits": {
-    "defaultMessage": "Application designed and coded by {alec}. Vector icons were taken from the {vectorIcons} collection. Sakura icon was made by {sakura}. Small icons are part of the {silk} collection."
-  },
-  "CreditsFooter.alec": {
-    "defaultMessage": "Alec Deitloff"
+    "defaultMessage": "Application designed and coded by <alec>Alec Deitloff</alec>. Vector icons were taken from the <vectorIcons>Core - UI - Outlined</vectorIcons> collection. Sakura icon was made by <sakura>Freepik</sakura>. Small icons are part of the <silk>Silk</silk> collection."
   },
   "feedback.BaseUserFeedbackForm.buttons.clearMessage": {
     "defaultMessage": "Clear"

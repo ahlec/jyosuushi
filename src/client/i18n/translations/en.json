@@ -29,42 +29,60 @@
       "value": "Application designed and coded by "
     },
     {
-      "type": 1,
-      "value": "alec"
+      "type": 8,
+      "value": "alec",
+      "children": [
+        {
+          "type": 0,
+          "value": "Alec Deitloff"
+        }
+      ]
     },
     {
       "type": 0,
       "value": ". Vector icons were taken from the "
     },
     {
-      "type": 1,
-      "value": "vectorIcons"
+      "type": 8,
+      "value": "vectorIcons",
+      "children": [
+        {
+          "type": 0,
+          "value": "Core - UI - Outlined"
+        }
+      ]
     },
     {
       "type": 0,
       "value": " collection. Sakura icon was made by "
     },
     {
-      "type": 1,
-      "value": "sakura"
+      "type": 8,
+      "value": "sakura",
+      "children": [
+        {
+          "type": 0,
+          "value": "Freepik"
+        }
+      ]
     },
     {
       "type": 0,
       "value": ". Small icons are part of the "
     },
     {
-      "type": 1,
-      "value": "silk"
+      "type": 8,
+      "value": "silk",
+      "children": [
+        {
+          "type": 0,
+          "value": "Silk"
+        }
+      ]
     },
     {
       "type": 0,
       "value": " collection."
-    }
-  ],
-  "CreditsFooter.alec": [
-    {
-      "type": 0,
-      "value": "Alec Deitloff"
     }
   ],
   "feedback.BaseUserFeedbackForm.buttons.clearMessage": [

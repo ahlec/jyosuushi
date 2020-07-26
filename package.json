@@ -30,6 +30,7 @@
     "i18n:compile": "Relative path is because current version of @formatjs/cli uses regular JS `require`, and since it's installed locally it's based out of node_modules, so we need to exit from there. This can/will likely break on upgrades so be cautious (but there's nothing we can do ATM)."
   },
   "devDependencies": {
+    "@calm/eslint-plugin-react-intl": "^1.4.1",
     "@formatjs/cli": "^2.0.0",
     "@graphql-codegen/typescript-operations": "^1.17.0",
     "@graphql-codegen/typescript-react-apollo": "^1.17.0",
