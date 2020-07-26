@@ -34,6 +34,14 @@ function mapStateToProps(state: State): ReduxProps {
 type ComponentProps = ProvidedProps & ReduxProps & { dispatch: Dispatch };
 
 const INTL_MESSAGES = defineMessages({
+  buttonQuit: {
+    defaultMessage: "Leave",
+    id: "quiz-page.QuizWrapup.quitQuiz",
+  },
+  buttonRestart: {
+    defaultMessage: "Restart",
+    id: "quiz-page.QuizWrapup.restartQuiz",
+  },
   highScoreEncouragement1: {
     defaultMessage: "That was astounding, really.",
     description:
@@ -112,8 +120,12 @@ class QuizWrapup extends React.PureComponent<ComponentProps> {
         <div className={styles.score}>{grade}%</div>
         <FormattedMessage {...encouragementDescriptor} tagName="div" />
         <div className={styles.buttons}>
-          <button onClick={this.onClickRestart}>Restart</button>
-          <button onClick={this.onClickLeave}>Leave</button>
+          <FormattedMessage {...INTL_MESSAGES.buttonRestart}>
+            {(text) => <button onClick={this.onClickRestart}>{text}</button>}
+          </FormattedMessage>
+          <FormattedMessage {...INTL_MESSAGES.buttonQuit}>
+            {(text) => <button onClick={this.onClickLeave}>{text}</button>}
+          </FormattedMessage>
         </div>
         <QuizHistory rowClassName="" />
       </div>

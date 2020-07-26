@@ -1,5 +1,6 @@
 import { orderBy, values } from "lodash";
 import React, { useMemo } from "react";
+import { defineMessages, FormattedMessage } from "react-intl";
 
 import { COUNTERS_LOOKUP } from "@data/counters";
 
@@ -9,6 +10,13 @@ import { Counter } from "@jyosuushi/interfaces";
 import CounterTile from "@jyosuushi/ui/main-screen/CounterTile";
 
 import styles from "./AllCounters.scss";
+
+const INTL_MESSAGES = defineMessages({
+  pageHeader: {
+    defaultMessage: "Counters",
+    id: "explorePage.allCounters.pageHeader",
+  },
+});
 
 function AllCounters(): React.ReactElement {
   // Connect to the rest of the app
@@ -26,7 +34,7 @@ function AllCounters(): React.ReactElement {
   // Render component
   return (
     <div className={styles.allCounters}>
-      <h3>Counters</h3>
+      <FormattedMessage {...INTL_MESSAGES.pageHeader} tagName="h3" />
       <div className={styles.list}>
         {allSortedCounters.map(
           (counter): React.ReactElement => (

@@ -25,6 +25,10 @@ const INTL_MESSAGES = defineMessages({
     defaultMessage: "{size, plural, one {# counter} other {# counters}}",
     id: "preparePage.PackToggleButton.studyPackSizeLabel",
   },
+  viewPackContentsLink: {
+    defaultMessage: "View Details",
+    id: "preparePage.PackToggleButton.viewPackContentsLink",
+  },
 });
 
 function PackToggleButton({
@@ -67,7 +71,7 @@ function PackToggleButton({
         />
       </div>
       <Link className={styles.viewDetails} to={getStudyPackLink(pack)}>
-        View Details
+        <FormattedMessage {...INTL_MESSAGES.viewPackContentsLink} />
       </Link>
     </div>
   );

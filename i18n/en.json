@@ -17,11 +17,48 @@
   "CreditsFooter.alec": {
     "defaultMessage": "Alec Deitloff"
   },
+  "feedback.BaseUserFeedbackForm.buttons.clearMessage": {
+    "defaultMessage": "Clear"
+  },
+  "feedback.BaseUserFeedbackForm.buttons.submit": {
+    "defaultMessage": "Submit"
+  },
+  "feedback.BaseUserFeedbackForm.errors.serverCommunicationFailed": {
+    "defaultMessage": "There was an error with the server when trying to submit your feedback. Please try again later."
+  },
+  "feedback.BaseUserFeedbackForm.errors.submissionFailed": {
+    "defaultMessage": "Your feedback was unable to be saved. Please try again.",
+    "description": "Could communicate with the server, but the server rejected the submission because of validation reasons."
+  },
+  "feedback.BaseUserFeedbackForm.fields.message.label": {
+    "defaultMessage": "Message"
+  },
+  "feedback.BaseUserFeedbackForm.fields.message.numRemainingCharacters": {
+    "defaultMessage": "You have {numRemaining, plural, one {# character} other {# characters}} remaining."
+  },
+  "feedback.BaseUserFeedbackForm.fields.message.validation.tooLong": {
+    "defaultMessage": "Your message is too long to submit."
+  },
+  "feedback.BaseUserFeedbackForm.fields.message.validation.tooShort": {
+    "defaultMessage": "Your message requires {numMoreCharactersRequired, plural, one {# more character} other {# more characters}}."
+  },
+  "feedback.bugReport.formExplanation": {
+    "defaultMessage": "Please describe the bug that you've encountered, including what you were doing when it happened. The more details you give, the more likely we'll be able to fix it."
+  },
   "feedback.bugReport.modalHeader": {
     "defaultMessage": "Report a Bug"
   },
+  "feedback.bugReport.successToast": {
+    "defaultMessage": "Your bug report has been submitted."
+  },
+  "feedback.submitFeedback.formExplanation": {
+    "defaultMessage": "What would you like to see come to this site?"
+  },
   "feedback.submitFeedback.modalHeader": {
     "defaultMessage": "Submit Feedback"
+  },
+  "feedback.submitFeedback.successToast": {
+    "defaultMessage": "Your suggestion has been submitted."
   },
   "FeedbackFooter.contents": {
     "defaultMessage": "Your thoughts are super appreciated! {reportBug} or {submitFeedback}."
@@ -64,8 +101,14 @@
   "header.score.xOfYCorrect": {
     "defaultMessage": "{x} / {y} correct"
   },
+  "explorePage.allCounters.pageHeader": {
+    "defaultMessage": "Counters"
+  },
   "explorePage.AllStudyPacks.studyPackSizeLabel": {
     "defaultMessage": "{size, plural, one {# counter} other {# counters}}"
+  },
+  "explorePage.AllStudyPacks.pageHeader": {
+    "defaultMessage": "Study Packs"
   },
   "explorePage.BreadcrumbBar.counter.prefix": {
     "defaultMessage": "Counter:"
@@ -118,6 +161,9 @@
   "explorePage.counter.itemsSection.introText": {
     "defaultMessage": "The following {numItems, plural, one {is an example} other {are examples}} of what this is used to count:"
   },
+  "explorePage.studyPackPage.contentsIntro": {
+    "defaultMessage": "This pack contains <bold>{numCounters, plural, one {# counter} other {# counters}}</bold>:"
+  },
   "feedbackPage.links.contribute.description": {
     "defaultMessage": "The project is open source, and if you'd like to join in on working on the project, check out my GitHub!"
   },
@@ -166,8 +212,20 @@
   "preparePage.PackToggleButton.studyPackSizeLabel": {
     "defaultMessage": "{size, plural, one {# counter} other {# counters}}"
   },
+  "preparePage.PackToggleButton.viewPackContentsLink": {
+    "defaultMessage": "View Details"
+  },
   "preparePage.buttonStartQuiz": {
     "defaultMessage": "Start Quiz!"
+  },
+  "preparePage.links.jyosuushiWikipediaPage": {
+    "defaultMessage": "Japanese counters"
+  },
+  "preparePage.links.tutorial": {
+    "defaultMessage": "Click here to read the tutorial."
+  },
+  "preparePage.welcomeMessage": {
+    "defaultMessage": "Welcome to <bold>助数詞を練習</bold>! This is a tool that's meant to help you study {jyosuushiWikipediaLink}. You'll be given a random item and a random number, and then you tell us how you'd count that in Japanese. {tutorialLink}"
   },
   "mainScreen.tutorial.page1": {
     "defaultMessage": "On the main screen, find conveniently made packs of counters. Explore each of their details, and then choose the ones that contain the counters you want to study."
@@ -189,6 +247,34 @@
   },
   "mainScreen.tutorial.modalHeader": {
     "defaultMessage": "Tutorial"
+  },
+  "releaseNotes.browserNames.chrome": {
+    "defaultMessage": "Chrome"
+  },
+  "releaseNotes.browserNames.edge": {
+    "defaultMessage": "Microsoft Edge"
+  },
+  "releaseNotes.browserNames.firefox": {
+    "defaultMessage": "Firefox"
+  },
+  "releaseNotes.browserNames.ie": {
+    "defaultMessage": "Internet Explorer"
+  },
+  "releaseNotes.browserNames.safari": {
+    "defaultMessage": "Safari"
+  },
+  "releaseNotes.sectionHeaders.bugFixes": {
+    "defaultMessage": "Bug Fixes"
+  },
+  "releaseNotes.sectionHeaders.improvements": {
+    "defaultMessage": "Improvements"
+  },
+  "releaseNotes.sectionHeaders.newFeatures": {
+    "defaultMessage": "New Features"
+  },
+  "releaseNotes.specialVersionNotes.initialRelease": {
+    "defaultMessage": "Initial release.",
+    "description": "Text to appear in place of release notes for the version that was the initial release."
   },
   "settings.quiz.amountRange.choiceRange": {
     "defaultMessage": "{min}-{max}"
@@ -219,6 +305,15 @@
   },
   "quiz-page.AnswerInput.TsuNotice.text": {
     "defaultMessage": "While 〜つ and 〜個 are always valid counters, you can't use them here. You'll have to be more specific!"
+  },
+  "quizPage.QuestionDisplay.text": {
+    "defaultMessage": "{amount} {itemName}"
+  },
+  "quiz-page.QuizWrapup.quitQuiz": {
+    "defaultMessage": "Leave"
+  },
+  "quiz-page.QuizWrapup.restartQuiz": {
+    "defaultMessage": "Restart"
   },
   "quiz-page.QuizWrapup.encouragement.highScore1": {
     "defaultMessage": "That was astounding, really.",
@@ -262,6 +357,9 @@
   },
   "quiz-page.results.AnswersTable.columnHeaders.studyPack": {
     "defaultMessage": "Study Pack"
+  },
+  "quiz-page.results.AnswersTable.kanji.noKanjiForCounter": {
+    "defaultMessage": "(none)"
   },
   "quiz-page.results.AnswersTable.readingsLabels.irregular": {
     "defaultMessage": "(irregular)"

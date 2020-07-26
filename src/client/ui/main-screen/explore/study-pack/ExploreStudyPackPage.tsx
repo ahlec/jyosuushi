@@ -1,4 +1,5 @@
 import React from "react";
+import { defineMessages, FormattedMessage } from "react-intl";
 import { Redirect, RouteComponentProps, useHistory } from "react-router-dom";
 
 import { STUDY_PACK_LOOKUP } from "@data/studyPacks";
@@ -15,6 +16,20 @@ import styles from "./ExploreStudyPackPage.scss";
 import useLocale from "@jyosuushi/i18n/useLocale";
 
 type ComponentProps = RouteComponentProps<{ packId: string }>;
+
+const INTL_MESSAGES = defineMessages({
+  contentsIntro: {
+    defaultMessage:
+      "This pack contains <bold>{numCounters, plural, one {# counter} other {# counters}}</bold>:",
+    id: "explorePage.studyPackPage.contentsIntro",
+  },
+});
+
+function FormattedMessageBold(
+  chunks: readonly React.ReactNode[]
+): React.ReactElement {
+  return <strong>{chunks}</strong>;
+}
 
 function ExploreStudyPackPage({
   match: {
@@ -38,13 +53,14 @@ function ExploreStudyPackPage({
     <div className={styles.exploreStudyPackPage}>
       <BreadcrumbBar />
       <h3>{locale.dataLocalizers.getStudyPackName(studyPack)}</h3>
-      <p>
-        This pack contains{" "}
-        <strong>
-          {counters.length} {counters.length === 1 ? "counter" : "counters"}
-        </strong>
-        :
-      </p>
+      <FormattedMessage
+        {...INTL_MESSAGES.contentsIntro}
+        values={{
+          bold: FormattedMessageBold,
+          numCounters: counters.length,
+        }}
+        tagName="p"
+      />
       <table>
         <tbody>
           {counters.map(

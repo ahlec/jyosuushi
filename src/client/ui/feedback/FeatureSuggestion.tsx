@@ -15,9 +15,17 @@ interface FormProps {
 }
 
 const INTL_MESSAGES = defineMessages({
+  formExplanation: {
+    defaultMessage: "What would you like to see come to this site?",
+    id: "feedback.submitFeedback.formExplanation",
+  },
   modalHeader: {
     defaultMessage: "Submit Feedback",
     id: "feedback.submitFeedback.modalHeader",
+  },
+  successToast: {
+    defaultMessage: "Your suggestion has been submitted.",
+    id: "feedback.submitFeedback.successToast",
   },
 });
 
@@ -26,10 +34,10 @@ export function FeatureSuggestionForm({
 }: FormProps): React.ReactElement {
   return (
     <BaseUserFeedbackForm
-      explanation="What would you like to see come to this site?"
+      explanation={INTL_MESSAGES.formExplanation}
       mutationHook={useSubmitSuggestionMutation}
       onSuccess={onSuccess}
-      successToast="Your suggestion has been submitted."
+      successToast={INTL_MESSAGES.successToast}
     />
   );
 }

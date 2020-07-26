@@ -38,6 +38,10 @@ interface ComponentProps {
 }
 
 const INTL_MESSAGES = defineMessages({
+  noKanjiForCounter: {
+    defaultMessage: "(none)",
+    id: "quiz-page.results.AnswersTable.kanji.noKanjiForCounter",
+  },
   readingLabelIrregular: {
     defaultMessage: "(irregular)",
     id: "quiz-page.results.AnswersTable.readingsLabels.irregular",
@@ -77,15 +81,17 @@ function AnswersTableRow({ data }: ComponentProps): React.ReactElement {
         )}
       </td>
       <td className={styles.cellKanji}>
-        {data.validKanji.length
-          ? data.validKanji.map(
-              (kanji: string): React.ReactNode => (
-                <div key={kanji} className="kanji">
-                  {kanji}
-                </div>
-              )
+        {data.validKanji.length ? (
+          data.validKanji.map(
+            (kanji: string): React.ReactNode => (
+              <div key={kanji} className="kanji">
+                {kanji}
+              </div>
             )
-          : "(none)"}
+          )
+        ) : (
+          <FormattedMessage {...INTL_MESSAGES.noKanjiForCounter} />
+        )}
       </td>
       <td className={styles.cellHiragana}>
         {data.kanaAnswers.map(

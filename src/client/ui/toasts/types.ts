@@ -1,7 +1,9 @@
+import { MessageDescriptor } from "react-intl";
+
 export type ToastVariant = "success";
 
 export interface ToastDefinition {
-  message: string;
+  message: MessageDescriptor;
   variant: ToastVariant;
 }
 

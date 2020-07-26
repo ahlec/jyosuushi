@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FormattedMessage } from "react-intl";
+import { defineMessages, FormattedMessage } from "react-intl";
 
 import InlineTrigger from "@jyosuushi/ui/components/InlineTrigger";
 
@@ -15,6 +15,22 @@ enum UserFeedbackModal {
   BugReport = "bug-report",
   Suggestion = "suggestion",
 }
+
+const INTL_MESSAGES = defineMessages({
+  contents: {
+    defaultMessage:
+      "Your thoughts are super appreciated! {reportBug} or {submitFeedback}.",
+    id: "FeedbackFooter.contents",
+  },
+  reportBugLink: {
+    defaultMessage: "Report a Bug",
+    id: "FeedbackFooter.reportBugLink",
+  },
+  submitFeedbackLink: {
+    defaultMessage: "Submit Feedback",
+    id: "FeedbackFooter.submitFeedbackLink",
+  },
+});
 
 function FeedbackFooter(): React.ReactElement {
   // Define component state
@@ -33,8 +49,7 @@ function FeedbackFooter(): React.ReactElement {
   return (
     <div className={styles.feedbackFooter}>
       <FormattedMessage
-        id="FeedbackFooter.contents"
-        defaultMessage="Your thoughts are super appreciated! {reportBug} or {submitFeedback}."
+        {...INTL_MESSAGES.contents}
         values={{
           reportBug: (
             <InlineTrigger
@@ -43,10 +58,7 @@ function FeedbackFooter(): React.ReactElement {
             >
               <img className={styles.icon} src={BugIcon} alt="" />{" "}
               <span className={styles.label}>
-                <FormattedMessage
-                  id="FeedbackFooter.reportBugLink"
-                  defaultMessage="Report a Bug"
-                />
+                <FormattedMessage {...INTL_MESSAGES.reportBugLink} />
               </span>
             </InlineTrigger>
           ),
@@ -57,10 +69,7 @@ function FeedbackFooter(): React.ReactElement {
             >
               <img className={styles.icon} src={CommentsIcon} alt="" />{" "}
               <span className={styles.label}>
-                <FormattedMessage
-                  id="FeedbackFooter.submitFeedbackLink"
-                  defaultMessage="Submit Feedback"
-                />
+                <FormattedMessage {...INTL_MESSAGES.submitFeedbackLink} />
               </span>
             </InlineTrigger>
           ),

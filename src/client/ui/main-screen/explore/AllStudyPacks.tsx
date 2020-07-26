@@ -16,6 +16,10 @@ const INTL_MESSAGES = defineMessages({
     defaultMessage: "{size, plural, one {# counter} other {# counters}}",
     id: "explorePage.AllStudyPacks.studyPackSizeLabel",
   },
+  pageHeader: {
+    defaultMessage: "Study Packs",
+    id: "explorePage.AllStudyPacks.pageHeader",
+  },
 });
 
 function AllStudyPacks(): React.ReactElement {
@@ -25,7 +29,7 @@ function AllStudyPacks(): React.ReactElement {
   // Render the component
   return (
     <div className={styles.allStudyPacks}>
-      <h3>Study Packs</h3>
+      <FormattedMessage {...INTL_MESSAGES.pageHeader} tagName="h3" />
       <div className={styles.list}>
         {STUDY_PACKS.map(
           (studyPack: StudyPack): React.ReactNode => {

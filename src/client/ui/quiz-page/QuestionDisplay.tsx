@@ -1,4 +1,5 @@
 import * as React from "react";
+import { defineMessages, FormattedMessage } from "react-intl";
 
 import { ITEMS_LOOKUP } from "@data/items";
 import { Question } from "@jyosuushi/interfaces";
@@ -10,6 +11,13 @@ interface ComponentProps {
   currentQuestion: Question;
 }
 
+const INTL_MESSAGES = defineMessages({
+  questionDisplay: {
+    defaultMessage: "{amount} {itemName}",
+    id: "quizPage.QuestionDisplay.text",
+  },
+});
+
 function QuestionDisplay({
   currentQuestion,
 }: ComponentProps): React.ReactElement {
@@ -20,10 +28,18 @@ function QuestionDisplay({
 
   // Render the component
   return (
-    <div className={styles.questionDisplay}>
-      {currentQuestion.amount}{" "}
-      {locale.dataLocalizers.getItemName(item, currentQuestion.amount)}
-    </div>
+    <FormattedMessage
+      {...INTL_MESSAGES.questionDisplay}
+      values={{
+        amount: currentQuestion.amount,
+        itemName: locale.dataLocalizers.getItemName(
+          item,
+          currentQuestion.amount
+        ),
+      }}
+    >
+      {(text) => <div className={styles.questionDisplay}>{text}</div>}
+    </FormattedMessage>
   );
 }
 

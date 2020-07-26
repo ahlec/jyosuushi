@@ -52,7 +52,26 @@ const INTL_MESSAGES = defineMessages({
     defaultMessage: "Start Quiz!",
     id: "preparePage.buttonStartQuiz",
   },
+  linksJyosuushiWikipedia: {
+    defaultMessage: "Japanese counters",
+    id: "preparePage.links.jyosuushiWikipediaPage",
+  },
+  linksTutorial: {
+    defaultMessage: "Click here to read the tutorial.",
+    id: "preparePage.links.tutorial",
+  },
+  welcomeMessage: {
+    defaultMessage:
+      "Welcome to <bold>助数詞を練習</bold>! This is a tool that's meant to help you study {jyosuushiWikipediaLink}. You'll be given a random item and a random number, and then you tell us how you'd count that in Japanese. {tutorialLink}",
+    id: "preparePage.welcomeMessage",
+  },
 });
+
+function FormattedMessageBold(
+  chunks: readonly React.ReactNode[]
+): React.ReactElement {
+  return <strong>{chunks}</strong>;
+}
 
 class PreparePage extends React.PureComponent<ComponentProps, ComponentState> {
   public constructor(props: ComponentProps) {
@@ -68,22 +87,27 @@ class PreparePage extends React.PureComponent<ComponentProps, ComponentState> {
     const { showingTutorial } = this.state;
     return (
       <div className={styles.preparePage}>
-        <p>
-          Welcome to <strong>助数詞を練習</strong>! This is a tool that&apos;s
-          meant to help you study{" "}
-          <a
-            href="https://en.wikipedia.org/wiki/Japanese_counter_word"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Japanese counters
-          </a>
-          . You&apos;ll be given a random item and a random number, and then you
-          tell us how you&apos;d count that in Japanese.{" "}
-          <InlineTrigger onTrigger={this.showTutorialModal}>
-            Click here to read the tutorial.
-          </InlineTrigger>
-        </p>
+        <FormattedMessage
+          {...INTL_MESSAGES.welcomeMessage}
+          values={{
+            bold: FormattedMessageBold,
+            jyosuushiWikipediaLink: (
+              <a
+                href="https://en.wikipedia.org/wiki/Japanese_counter_word"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FormattedMessage {...INTL_MESSAGES.linksJyosuushiWikipedia} />
+              </a>
+            ),
+            tutorialLink: (
+              <InlineTrigger onTrigger={this.showTutorialModal}>
+                <FormattedMessage {...INTL_MESSAGES.linksTutorial} />
+              </InlineTrigger>
+            ),
+          }}
+          tagName="p"
+        />
         <PackSelection
           onSelectionChanged={this.onSelectionChanged}
           selection={enabledPacks}

@@ -67,16 +67,156 @@
       "value": "Alec Deitloff"
     }
   ],
+  "feedback.BaseUserFeedbackForm.buttons.clearMessage": [
+    {
+      "type": 0,
+      "value": "Clear"
+    }
+  ],
+  "feedback.BaseUserFeedbackForm.buttons.submit": [
+    {
+      "type": 0,
+      "value": "Submit"
+    }
+  ],
+  "feedback.BaseUserFeedbackForm.errors.serverCommunicationFailed": [
+    {
+      "type": 0,
+      "value": "There was an error with the server when trying to submit your feedback. Please try again later."
+    }
+  ],
+  "feedback.BaseUserFeedbackForm.errors.submissionFailed": [
+    {
+      "type": 0,
+      "value": "Your feedback was unable to be saved. Please try again."
+    }
+  ],
+  "feedback.BaseUserFeedbackForm.fields.message.label": [
+    {
+      "type": 0,
+      "value": "Message"
+    }
+  ],
+  "feedback.BaseUserFeedbackForm.fields.message.numRemainingCharacters": [
+    {
+      "type": 0,
+      "value": "You have "
+    },
+    {
+      "type": 6,
+      "pluralType": "cardinal",
+      "value": "numRemaining",
+      "offset": 0,
+      "options": {
+        "one": {
+          "value": [
+            {
+              "type": 7
+            },
+            {
+              "type": 0,
+              "value": " character"
+            }
+          ]
+        },
+        "other": {
+          "value": [
+            {
+              "type": 7
+            },
+            {
+              "type": 0,
+              "value": " characters"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": 0,
+      "value": " remaining."
+    }
+  ],
+  "feedback.BaseUserFeedbackForm.fields.message.validation.tooLong": [
+    {
+      "type": 0,
+      "value": "Your message is too long to submit."
+    }
+  ],
+  "feedback.BaseUserFeedbackForm.fields.message.validation.tooShort": [
+    {
+      "type": 0,
+      "value": "Your message requires "
+    },
+    {
+      "type": 6,
+      "pluralType": "cardinal",
+      "value": "numMoreCharactersRequired",
+      "offset": 0,
+      "options": {
+        "one": {
+          "value": [
+            {
+              "type": 7
+            },
+            {
+              "type": 0,
+              "value": " more character"
+            }
+          ]
+        },
+        "other": {
+          "value": [
+            {
+              "type": 7
+            },
+            {
+              "type": 0,
+              "value": " more characters"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": 0,
+      "value": "."
+    }
+  ],
+  "feedback.bugReport.formExplanation": [
+    {
+      "type": 0,
+      "value": "Please describe the bug that you've encountered, including what you were doing when it happened. The more details you give, the more likely we'll be able to fix it."
+    }
+  ],
   "feedback.bugReport.modalHeader": [
     {
       "type": 0,
       "value": "Report a Bug"
     }
   ],
+  "feedback.bugReport.successToast": [
+    {
+      "type": 0,
+      "value": "Your bug report has been submitted."
+    }
+  ],
+  "feedback.submitFeedback.formExplanation": [
+    {
+      "type": 0,
+      "value": "What would you like to see come to this site?"
+    }
+  ],
   "feedback.submitFeedback.modalHeader": [
     {
       "type": 0,
       "value": "Submit Feedback"
+    }
+  ],
+  "feedback.submitFeedback.successToast": [
+    {
+      "type": 0,
+      "value": "Your suggestion has been submitted."
     }
   ],
   "FeedbackFooter.contents": [
@@ -185,6 +325,12 @@
       "value": " correct"
     }
   ],
+  "explorePage.allCounters.pageHeader": [
+    {
+      "type": 0,
+      "value": "Counters"
+    }
+  ],
   "explorePage.AllStudyPacks.studyPackSizeLabel": [
     {
       "type": 6,
@@ -215,6 +361,12 @@
           ]
         }
       }
+    }
+  ],
+  "explorePage.AllStudyPacks.pageHeader": [
+    {
+      "type": 0,
+      "value": "Study Packs"
     }
   ],
   "explorePage.BreadcrumbBar.counter.prefix": [
@@ -440,6 +592,52 @@
       "value": " of what this is used to count:"
     }
   ],
+  "explorePage.studyPackPage.contentsIntro": [
+    {
+      "type": 0,
+      "value": "This pack contains "
+    },
+    {
+      "type": 8,
+      "value": "bold",
+      "children": [
+        {
+          "type": 6,
+          "pluralType": "cardinal",
+          "value": "numCounters",
+          "offset": 0,
+          "options": {
+            "one": {
+              "value": [
+                {
+                  "type": 7
+                },
+                {
+                  "type": 0,
+                  "value": " counter"
+                }
+              ]
+            },
+            "other": {
+              "value": [
+                {
+                  "type": 7
+                },
+                {
+                  "type": 0,
+                  "value": " counters"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "value": ":"
+    }
+  ],
   "feedbackPage.links.contribute.description": [
     {
       "type": 0,
@@ -592,10 +790,60 @@
       }
     }
   ],
+  "preparePage.PackToggleButton.viewPackContentsLink": [
+    {
+      "type": 0,
+      "value": "View Details"
+    }
+  ],
   "preparePage.buttonStartQuiz": [
     {
       "type": 0,
       "value": "Start Quiz!"
+    }
+  ],
+  "preparePage.links.jyosuushiWikipediaPage": [
+    {
+      "type": 0,
+      "value": "Japanese counters"
+    }
+  ],
+  "preparePage.links.tutorial": [
+    {
+      "type": 0,
+      "value": "Click here to read the tutorial."
+    }
+  ],
+  "preparePage.welcomeMessage": [
+    {
+      "type": 0,
+      "value": "Welcome to "
+    },
+    {
+      "type": 8,
+      "value": "bold",
+      "children": [
+        {
+          "type": 0,
+          "value": "助数詞を練習"
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "value": "! This is a tool that's meant to help you study "
+    },
+    {
+      "type": 1,
+      "value": "jyosuushiWikipediaLink"
+    },
+    {
+      "type": 0,
+      "value": ". You'll be given a random item and a random number, and then you tell us how you'd count that in Japanese. "
+    },
+    {
+      "type": 1,
+      "value": "tutorialLink"
     }
   ],
   "mainScreen.tutorial.page1": [
@@ -638,6 +886,60 @@
     {
       "type": 0,
       "value": "Tutorial"
+    }
+  ],
+  "releaseNotes.browserNames.chrome": [
+    {
+      "type": 0,
+      "value": "Chrome"
+    }
+  ],
+  "releaseNotes.browserNames.edge": [
+    {
+      "type": 0,
+      "value": "Microsoft Edge"
+    }
+  ],
+  "releaseNotes.browserNames.firefox": [
+    {
+      "type": 0,
+      "value": "Firefox"
+    }
+  ],
+  "releaseNotes.browserNames.ie": [
+    {
+      "type": 0,
+      "value": "Internet Explorer"
+    }
+  ],
+  "releaseNotes.browserNames.safari": [
+    {
+      "type": 0,
+      "value": "Safari"
+    }
+  ],
+  "releaseNotes.sectionHeaders.bugFixes": [
+    {
+      "type": 0,
+      "value": "Bug Fixes"
+    }
+  ],
+  "releaseNotes.sectionHeaders.improvements": [
+    {
+      "type": 0,
+      "value": "Improvements"
+    }
+  ],
+  "releaseNotes.sectionHeaders.newFeatures": [
+    {
+      "type": 0,
+      "value": "New Features"
+    }
+  ],
+  "releaseNotes.specialVersionNotes.initialRelease": [
+    {
+      "type": 0,
+      "value": "Initial release."
     }
   ],
   "settings.quiz.amountRange.choiceRange": [
@@ -706,6 +1008,32 @@
     {
       "type": 0,
       "value": "While 〜つ and 〜個 are always valid counters, you can't use them here. You'll have to be more specific!"
+    }
+  ],
+  "quizPage.QuestionDisplay.text": [
+    {
+      "type": 1,
+      "value": "amount"
+    },
+    {
+      "type": 0,
+      "value": " "
+    },
+    {
+      "type": 1,
+      "value": "itemName"
+    }
+  ],
+  "quiz-page.QuizWrapup.quitQuiz": [
+    {
+      "type": 0,
+      "value": "Leave"
+    }
+  ],
+  "quiz-page.QuizWrapup.restartQuiz": [
+    {
+      "type": 0,
+      "value": "Restart"
     }
   ],
   "quiz-page.QuizWrapup.encouragement.highScore1": [
@@ -778,6 +1106,12 @@
     {
       "type": 0,
       "value": "Study Pack"
+    }
+  ],
+  "quiz-page.results.AnswersTable.kanji.noKanjiForCounter": [
+    {
+      "type": 0,
+      "value": "(none)"
     }
   ],
   "quiz-page.results.AnswersTable.readingsLabels.irregular": [

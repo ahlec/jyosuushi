@@ -1,5 +1,10 @@
 import { MutationHookOptions, MutationTuple } from "@apollo/client";
 import React, { useState } from "react";
+import {
+  defineMessages,
+  FormattedMessage,
+  MessageDescriptor,
+} from "react-intl";
 
 import {
   MAX_USER_FEEDBACK_MESSAGE_LENGTH,
@@ -27,7 +32,7 @@ interface ComponentProps {
    * Localized text to appear at the top of the form to
    * set the stage for what the user should do here.
    */
-  explanation: string;
+  explanation: MessageDescriptor;
 
   /**
    * The strongly-typed GraphQL Apollo mutation hook that should
@@ -50,27 +55,77 @@ interface ComponentProps {
    * Localized text to be opened as a toast in the application when
    * the user has successfully submitted their feedback.
    */
-  successToast: string;
+  successToast: MessageDescriptor;
 }
 
-function getMessageContextFooterText(sanitizedMessageLength: number): string {
+const INTL_MESSAGES = defineMessages({
+  buttonClearMessage: {
+    defaultMessage: "Clear",
+    id: "feedback.BaseUserFeedbackForm.buttons.clearMessage",
+  },
+  buttonSubmit: {
+    defaultMessage: "Submit",
+    id: "feedback.BaseUserFeedbackForm.buttons.submit",
+  },
+  errorServerCommunication: {
+    defaultMessage:
+      "There was an error with the server when trying to submit your feedback. Please try again later.",
+    id: "feedback.BaseUserFeedbackForm.errors.serverCommunicationFailed",
+  },
+  errorSubmissionFailed: {
+    defaultMessage: "Your feedback was unable to be saved. Please try again.",
+    description:
+      "Could communicate with the server, but the server rejected the submission because of validation reasons.",
+    id: "feedback.BaseUserFeedbackForm.errors.submissionFailed",
+  },
+  messageFieldLabel: {
+    defaultMessage: "Message",
+    id: "feedback.BaseUserFeedbackForm.fields.message.label",
+  },
+  messageFieldNumRemainingCharacters: {
+    defaultMessage:
+      "You have {numRemaining, plural, one {# character} other {# characters}} remaining.",
+    id: "feedback.BaseUserFeedbackForm.fields.message.numRemainingCharacters",
+  },
+  messageFieldValidationTooLong: {
+    defaultMessage: "Your message is too long to submit.",
+    id: "feedback.BaseUserFeedbackForm.fields.message.validation.tooLong",
+  },
+  messageFieldValidationTooShort: {
+    defaultMessage:
+      "Your message requires {numMoreCharactersRequired, plural, one {# more character} other {# more characters}}.",
+    id: "feedback.BaseUserFeedbackForm.fields.message.validation.tooShort",
+  },
+});
+
+function getMessageContextFooterText(
+  sanitizedMessageLength: number
+): React.ReactElement {
   if (sanitizedMessageLength < MIN_USER_FEEDBACK_MESSAGE_LENGTH) {
-    const numRequiredCharacters =
-      MIN_USER_FEEDBACK_MESSAGE_LENGTH - sanitizedMessageLength;
-    return `Your message requires ${numRequiredCharacters} more ${
-      numRequiredCharacters === 1 ? "character" : "characters"
-    }.`;
+    return (
+      <FormattedMessage
+        {...INTL_MESSAGES.messageFieldValidationTooShort}
+        values={{
+          numMoreCharactersRequired:
+            MIN_USER_FEEDBACK_MESSAGE_LENGTH - sanitizedMessageLength,
+        }}
+      />
+    );
   }
 
   if (sanitizedMessageLength < MAX_USER_FEEDBACK_MESSAGE_LENGTH) {
-    const numRemainingCharacters =
-      MAX_USER_FEEDBACK_MESSAGE_LENGTH - sanitizedMessageLength;
-    return `You have ${numRemainingCharacters} ${
-      numRemainingCharacters === 1 ? "character" : "characters"
-    } remaining.`;
+    return (
+      <FormattedMessage
+        {...INTL_MESSAGES.messageFieldNumRemainingCharacters}
+        values={{
+          numRemaining:
+            MAX_USER_FEEDBACK_MESSAGE_LENGTH - sanitizedMessageLength,
+        }}
+      />
+    );
   }
 
-  return "Your message is too long to submit.";
+  return <FormattedMessage {...INTL_MESSAGES.messageFieldValidationTooLong} />;
 }
 
 function BaseUserFeedbackForm({
@@ -147,9 +202,13 @@ function BaseUserFeedbackForm({
   // Render form
   return (
     <div className={styles.baseUserFeedbackForm}>
-      <p className={styles.explanation}>{explanation}</p>
+      <p className={styles.explanation}>
+        <FormattedMessage {...explanation} />
+      </p>
       <label className={styles.messageInput}>
-        <div className={styles.fieldLabel}>Message</div>
+        <FormattedMessage {...INTL_MESSAGES.messageFieldLabel}>
+          {(text) => <div className={styles.fieldLabel}>{text}</div>}
+        </FormattedMessage>
         <textarea
           className={styles.inputElement}
           disabled={isMutating}
@@ -163,24 +222,23 @@ function BaseUserFeedbackForm({
       <div className={styles.actionButtons}>
         {!!userInput && (
           <button disabled={isMutating} onClick={handleClearClick}>
-            Clear
+            <FormattedMessage {...INTL_MESSAGES.buttonClearMessage} />
           </button>
         )}
         <button
           disabled={isMutating || !canUserSubmit}
           onClick={handleSubmitClick}
         >
-          Submit
+          <FormattedMessage {...INTL_MESSAGES.buttonSubmit} />
         </button>
       </div>
       {mutationError ? (
         <div className={styles.errorContainer}>
-          There was an error with the server when trying to submit your
-          feedback. Please try again later.
+          <FormattedMessage {...INTL_MESSAGES.errorServerCommunication} />
         </div>
       ) : !!mutationResults && !mutationResults.result.success ? (
         <div className={styles.errorContainer}>
-          Your feedback was unable to be saved. Please try again.
+          <FormattedMessage {...INTL_MESSAGES.errorSubmissionFailed} />
         </div>
       ) : null}
     </div>

@@ -1,6 +1,7 @@
 import classnames from "classnames";
 import { clamp } from "lodash";
 import React, { useEffect } from "react";
+import { FormattedMessage, useIntl } from "react-intl";
 
 import IconClose from "@jyosuushi/icons/close.svg";
 
@@ -39,6 +40,7 @@ function ToastDisplay({
   toast,
 }: ComponentProps): React.ReactElement {
   // Connect to the rest of the app
+  const intl = useIntl();
   const { closeToast } = useToast();
 
   // Determine how long the toast should be displayed for, and then start
@@ -46,7 +48,7 @@ function ToastDisplay({
   useEffect(() => {
     const timeToRead =
       TIME_TO_READ_FLAT_OFFSET +
-      TIME_TO_READ_PER_CHARACTER * toast.message.length;
+      TIME_TO_READ_PER_CHARACTER * intl.formatMessage(toast.message).length;
     const displayTime = clamp(timeToRead, MIN_DISPLAY_TIME, MAX_DISPLAY_TIME);
 
     const timeoutId = window.setTimeout(
@@ -54,7 +56,7 @@ function ToastDisplay({
       displayTime
     );
     return (): void => window.clearTimeout(timeoutId);
-  }, [toast.id, toast.message, closeToast]);
+  }, [intl, toast.id, toast.message, closeToast]);
 
   // Handle the user dismissing this toast
   const handleDismissClick = (): void => closeToast(toast.id);
@@ -68,7 +70,9 @@ function ToastDisplay({
         className
       )}
     >
-      <div className={styles.message}>{toast.message}</div>
+      <FormattedMessage {...toast.message}>
+        {(text) => <div className={styles.message}>{text}</div>}
+      </FormattedMessage>
       <div className={styles.dismissContainer}>
         <IconClose className={styles.icon} onClick={handleDismissClick} />
       </div>
