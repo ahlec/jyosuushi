@@ -1,0 +1,296 @@
+{
+  "constants.quizAmountRanges.nameGiant": {
+    "defaultMessage": "Gigantic"
+  },
+  "constants.quizAmountRanges.nameLarge": {
+    "defaultMessage": "Massive"
+  },
+  "constants.quizAmountRanges.nameMedium": {
+    "defaultMessage": "Average"
+  },
+  "constants.quizAmountRanges.nameSmall": {
+    "defaultMessage": "Tiny"
+  },
+  "CreditsFooter.credits": {
+    "defaultMessage": "Application designed and coded by {alec}. Vector icons were taken from the {vectorIcons} collection. Sakura icon was made by {sakura}. Small icons are part of the {silk} collection."
+  },
+  "CreditsFooter.alec": {
+    "defaultMessage": "Alec Deitloff"
+  },
+  "feedback.bugReport.modalHeader": {
+    "defaultMessage": "Report a Bug"
+  },
+  "feedback.submitFeedback.modalHeader": {
+    "defaultMessage": "Submit Feedback"
+  },
+  "FeedbackFooter.contents": {
+    "defaultMessage": "Your thoughts are super appreciated! {reportBug} or {submitFeedback}."
+  },
+  "FeedbackFooter.reportBugLink": {
+    "defaultMessage": "Report a Bug"
+  },
+  "FeedbackFooter.submitFeedbackLink": {
+    "defaultMessage": "Submit Feedback"
+  },
+  "header.AbortConfirmationModal.buttonNo": {
+    "defaultMessage": "No",
+    "description": "Clicking this buttons indicates the user wants to stay in the quiz."
+  },
+  "header.AbortConfirmationModal.buttonYes": {
+    "defaultMessage": "Yes",
+    "description": "Clicking this button confirms the user's intent to leave the quiz."
+  },
+  "header.AbortConfirmationModal.header": {
+    "defaultMessage": "End Quiz Early?"
+  },
+  "header.AbortConfirmationModal.question": {
+    "defaultMessage": "Are you sure you want to end the current quiz early?"
+  },
+  "header.betaBanner.contents": {
+    "defaultMessage": "Beta"
+  },
+  "header.historyModalHeader": {
+    "defaultMessage": "History"
+  },
+  "header.siteTagLine": {
+    "defaultMessage": "Let's review Japanese counters!"
+  },
+  "header.quiz-buttons.historyButtonTooltip": {
+    "defaultMessage": "History"
+  },
+  "header.quiz-buttons.homeButtonTooltip": {
+    "defaultMessage": "Home"
+  },
+  "header.score.xOfYCorrect": {
+    "defaultMessage": "{x} / {y} correct"
+  },
+  "explorePage.AllStudyPacks.studyPackSizeLabel": {
+    "defaultMessage": "{size, plural, one {# counter} other {# counters}}"
+  },
+  "explorePage.BreadcrumbBar.counter.prefix": {
+    "defaultMessage": "Counter:"
+  },
+  "explorePage.BreadcrumbBar.studyPack.prefix": {
+    "defaultMessage": "Study Pack:"
+  },
+  "explorePage.BreadcrumbBar.explorePageName": {
+    "defaultMessage": "Explore"
+  },
+  "explorePage.counter.conjugationSection.andSoForth": {
+    "defaultMessage": "... and so forth"
+  },
+  "explorePage.counter.conjugationSection.customCounterAmountInputPrefix": {
+    "defaultMessage": "Or you can try out any number you'd like to here:"
+  },
+  "explorePage.counter.conjugationSection.furtherIrregulars": {
+    "defaultMessage": "There are some more irregulars later on as well though:"
+  },
+  "explorePage.counter.conjugationSection.hereAreTheFirstXNumbers": {
+    "defaultMessage": "Here {amount, plural, one {is} other {are}} the first {amount, plural, one {# number} other {# numbers}}."
+  },
+  "explorePage.counter.conjugationSection.introNoIrregulars": {
+    "defaultMessage": "Luckily, there are no irregular conjugations with this counter!"
+  },
+  "explorePage.counter.conjugationSection.introWithIrregulars": {
+    "defaultMessage": "Make note of the {highlightedElement}."
+  },
+  "explorePage.counter.conjugationSection.numIrregulars": {
+    "defaultMessage": "{numIrregulars, plural, one {1 irregular conjugation} other {# irregular conjugations}}"
+  },
+  "explorePage.counter.conjugations.header": {
+    "defaultMessage": "Conjugations"
+  },
+  "explorePage.counter.disambiguation.header": {
+    "defaultMessage": "Similar Counters"
+  },
+  "explorePage.counter.footnotes.header": {
+    "defaultMessage": "References"
+  },
+  "explorePage.counter.info.header": {
+    "defaultMessage": "Details"
+  },
+  "explorePage.counter.items.header": {
+    "defaultMessage": "Items"
+  },
+  "explorePage.counter.info.externalLinksHeader": {
+    "defaultMessage": "Further Reading"
+  },
+  "explorePage.counter.itemsSection.introText": {
+    "defaultMessage": "The following {numItems, plural, one {is an example} other {are examples}} of what this is used to count:"
+  },
+  "feedbackPage.links.contribute.description": {
+    "defaultMessage": "The project is open source, and if you'd like to join in on working on the project, check out my GitHub!"
+  },
+  "feedbackPage.links.contribute.link": {
+    "defaultMessage": "Help contribute"
+  },
+  "feedbackPage.intro": {
+    "defaultMessage": "We're in open beta right now and I hope you enjoy the application! Expect updates frequently!"
+  },
+  "feedbackPage.links.reportBug.description": {
+    "defaultMessage": "Please help me make a more perfect service! A brief description of the problem (or a mistake with Japanese!) will help me track it down and fix it right away!"
+  },
+  "feedbackPage.links.reportBug.link": {
+    "defaultMessage": "Report a bug"
+  },
+  "feedbackPage.links.submitFeedback.description": {
+    "defaultMessage": "Share with me anything that you'd like to see happen, or any ideas on how I can improve this service!"
+  },
+  "feedbackPage.links.submitFeedback.linkText": {
+    "defaultMessage": "Submit feedback and ideas"
+  },
+  "main-screen.pages.explore.name": {
+    "defaultMessage": "Explore"
+  },
+  "main-screen.pages.feedback.name": {
+    "defaultMessage": "Feedback"
+  },
+  "main-screen.pages.prepare.name": {
+    "defaultMessage": "Prepare"
+  },
+  "main-screen.pages.releaseNotes.name": {
+    "defaultMessage": "Release Notes"
+  },
+  "main-screen.pages.settings.name": {
+    "defaultMessage": "Settings"
+  },
+  "preparePage.CounterPreview.header": {
+    "defaultMessage": "{count, plural, one {# Counter} other {# Counters}} included"
+  },
+  "preparePage.PackSelection.header": {
+    "defaultMessage": "Study Packs"
+  },
+  "preparePage.PackSelection.subheader": {
+    "defaultMessage": "(select 1 or more)"
+  },
+  "preparePage.PackToggleButton.studyPackSizeLabel": {
+    "defaultMessage": "{size, plural, one {# counter} other {# counters}}"
+  },
+  "preparePage.buttonStartQuiz": {
+    "defaultMessage": "Start Quiz!"
+  },
+  "mainScreen.tutorial.page1": {
+    "defaultMessage": "On the main screen, find conveniently made packs of counters. Explore each of their details, and then choose the ones that contain the counters you want to study."
+  },
+  "mainScreen.tutorial.page2": {
+    "defaultMessage": "When you hit 'Start Quiz', you'll be prompted with random nouns of random amounts. Determine the appropriate counter for the noun, and then put in your answer.\n\nEven though they're valid, 〜つ and 〜個 aren't accepted answers!"
+  },
+  "mainScreen.tutorial.page3": {
+    "defaultMessage": "If you don't want to answer, hit 'Skip this question'. It won't penalize you and will remove the question from the quiz."
+  },
+  "mainScreen.tutorial.page4": {
+    "defaultMessage": "Once you submit your answer, check your accuracy! It will show you all of the correct answers at this stage, so you can take note if you made a mistake."
+  },
+  "mainScreen.tutorial.page5": {
+    "defaultMessage": "If you made a typo or a genuine mistake, hit 'Ignore Answer'. It won't penalize you, and it will shuffle that question in for later to try again. It's up to you to stay honest!"
+  },
+  "mainScreen.tutorial.page6": {
+    "defaultMessage": "When you've gone through all of your questions, you'll have a chance to see your overall results. From there, you can choose to change your study packs, or try this quiz again with new numbers and items."
+  },
+  "mainScreen.tutorial.modalHeader": {
+    "defaultMessage": "Tutorial"
+  },
+  "settings.quiz.amountRange.choiceRange": {
+    "defaultMessage": "{min}-{max}"
+  },
+  "settings.quiz.amountRange.description": {
+    "defaultMessage": "Adjust the range of numbers generated."
+  },
+  "settings.quiz.amountRange.header": {
+    "defaultMessage": "Amounts Range"
+  },
+  "settings.quiz.infiniteMode.checkboxLabel": {
+    "defaultMessage": "Infinite Mode"
+  },
+  "settings.quiz.infiniteMode.description": {
+    "defaultMessage": "Choose whether the quiz has a finite number of questions, or if it goes on forever."
+  },
+  "settings.quiz.infiniteMode.header": {
+    "defaultMessage": "Infinite Mode"
+  },
+  "settings.pageHeader": {
+    "defaultMessage": "Settings"
+  },
+  "quiz-page.AnswerInput.buttonSkipQuestion": {
+    "defaultMessage": "Skip this question"
+  },
+  "quiz-page.AnswerInput.howToSubmit": {
+    "defaultMessage": "Press the [enter] key when you're finished, or click the arrow button to submit."
+  },
+  "quiz-page.AnswerInput.TsuNotice.text": {
+    "defaultMessage": "While 〜つ and 〜個 are always valid counters, you can't use them here. You'll have to be more specific!"
+  },
+  "quiz-page.QuizWrapup.encouragement.highScore1": {
+    "defaultMessage": "That was astounding, really.",
+    "description": "(A random message displayed if the user got a high score; does not need to be a literal translation)"
+  },
+  "quiz-page.QuizWrapup.encouragement.highScore2": {
+    "defaultMessage": "Look at how far you've come on your journey!",
+    "description": "(A random message displayed if the user got a high score; does not need to be a literal translation)"
+  },
+  "quiz-page.QuizWrapup.encouragement.highScore3": {
+    "defaultMessage": "This stuff isn't easy, and you're aceing it!",
+    "description": "(A random message displayed if the user got a high score; does not need to be a literal translation)"
+  },
+  "quiz-page.QuizWrapup.encouragement.highScore4": {
+    "defaultMessage": "It's taken a lot of work to get here; pat yourself on the back.",
+    "description": "(A random message displayed if the user got a high score; does not need to be a literal translation)"
+  },
+  "quiz-page.QuizWrapup.encouragement.lowScore1": {
+    "defaultMessage": "You're trying your best, and that's the key to success!",
+    "description": "(A random message displayed if the user got a low score; does not need to be a literal translation)"
+  },
+  "quiz-page.QuizWrapup.encouragement.lowScore2": {
+    "defaultMessage": "You've learned so much to get here, I know you'll get to where you want to go!",
+    "description": "(A random message displayed if the user got a low score; does not need to be a literal translation)"
+  },
+  "quiz-page.QuizWrapup.encouragement.lowScore3": {
+    "defaultMessage": "This stuff isn't easy; practice WILL make perfect.",
+    "description": "(A random message displayed if the user got a low score; does not need to be a literal translation)"
+  },
+  "quiz-page.results.AnswersTable.columnHeaders.counter": {
+    "defaultMessage": "Counter"
+  },
+  "quiz-page.results.AnswersTable.columnHeaders.hiragana": {
+    "defaultMessage": "Hiragana"
+  },
+  "quiz-page.results.AnswersTable.columnHeaders.kanji": {
+    "defaultMessage": "Kanji"
+  },
+  "quiz-page.results.AnswersTable.columnHeaders.rule": {
+    "defaultMessage": "Rule"
+  },
+  "quiz-page.results.AnswersTable.columnHeaders.studyPack": {
+    "defaultMessage": "Study Pack"
+  },
+  "quiz-page.results.AnswersTable.readingsLabels.irregular": {
+    "defaultMessage": "(irregular)"
+  },
+  "quiz-page.results.AnswersTable.readingsLabel.nonKango": {
+    "defaultMessage": "(not 漢語)"
+  },
+  "quiz-page.results.buttonIgnoreAnswer": {
+    "defaultMessage": "Ignore Answer"
+  },
+  "quiz-page.results.buttonNextQuestion": {
+    "defaultMessage": "Next Question"
+  },
+  "quiz-page.results.header.correct": {
+    "defaultMessage": "Correct!"
+  },
+  "quiz-page.results.header.incorrect": {
+    "defaultMessage": "Not quite right..."
+  },
+  "quiz-page.results.header.skipped": {
+    "defaultMessage": "Skipped"
+  },
+  "quiz-page.results.table.intro": {
+    "defaultMessage": "Here are all of the possible answers based on the sets you have enabled:"
+  },
+  "quiz-page.results.skippedQuestion": {
+    "defaultMessage": "Alright! You don't need to worry about this question!"
+  },
+  "QuizHistory.historyRow.submittedLabel": {
+    "defaultMessage": "Submitted:"
+  }
+}

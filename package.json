@@ -22,9 +22,15 @@
     "check-project-boundaries": "gf",
     "favicon": "rimraf ./favicons && real-favicon generate faviconDescription.json faviconData.json favicons",
     "codegen:gql": "graphql-codegen",
-    "codegen:scss": "tsm src/client"
+    "codegen:scss": "tsm src/client",
+    "i18n:extract": "formatjs extract \"src/client/**/*.ts*\" --out-file ./i18n/en.json",
+    "i18n:compile": "formatjs compile '../../../../i18n/en.json' --ast --out-file src/client/i18n/translations/en.json"
+  },
+  "comments": {
+    "i18n:compile": "Relative path is because current version of @formatjs/cli uses regular JS `require`, and since it's installed locally it's based out of node_modules, so we need to exit from there. This can/will likely break on upgrades so be cautious (but there's nothing we can do ATM)."
   },
   "devDependencies": {
+    "@formatjs/cli": "^2.0.0",
     "@graphql-codegen/typescript-operations": "^1.17.0",
     "@graphql-codegen/typescript-react-apollo": "^1.17.0",
     "@prisma/cli": "2.2.2",

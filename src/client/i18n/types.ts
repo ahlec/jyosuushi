@@ -1,6 +1,6 @@
 import { Counter, StudyPack, Item } from "@jyosuushi/interfaces";
 
-export type Language = "english";
+export type TranslationsFile = "en.json";
 
 export interface Locale {
   dataLocalizers: {
@@ -14,4 +14,10 @@ export interface Locale {
    * This is used to interact with `react-intl`.
    */
   isoCode: string;
+
+  /**
+   * Which translation file should be loaded and used for this
+   * locale within `react-intl`.
+   */
+  translationsFile: TranslationsFile;
 }

@@ -8,6 +8,7 @@ const DEFAULT_LOCALE: Locale = {
     getStudyPackName: (studyPack): string => studyPack.englishName,
   },
   isoCode: "en-US",
+  translationsFile: "en.json",
 };
 
 function useLocale(): Locale {
