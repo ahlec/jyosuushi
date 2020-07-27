@@ -23,3 +23,4 @@ config.json
 *.generated.ts
 *.generated.tsx
 *.scss.d.ts
+src/client/i18n/translations/*.json

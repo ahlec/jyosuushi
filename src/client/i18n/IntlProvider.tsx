@@ -4,6 +4,9 @@ import { IntlProvider as ReactIntlProvider } from "react-intl";
 import useLocale from "./useLocale";
 import { Locale } from "./types";
 
+/**
+ * If this file is missing, you likely need to run `yarn codegen` to build it.
+ */
 import translationsEn from "./translations/en.json";
 
 interface ComponentProps {

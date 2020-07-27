@@ -21,10 +21,11 @@
     "lint:css": "stylelint \"**/*.{css,scss}\"",
     "check-project-boundaries": "gf",
     "favicon": "rimraf ./favicons && real-favicon generate faviconDescription.json faviconData.json favicons",
+    "codegen": "concurrently -n GraphQL,SCSS,Locales \"yarn codegen:gql\" \"yarn codegen:scss\" \"yarn codegen:i18n\"",
     "codegen:gql": "graphql-codegen",
     "codegen:scss": "tsm src/client",
-    "i18n:extract": "yarn ts-node ./scripts/i18n/extract.ts",
-    "i18n:compile": "yarn ts-node ./scripts/i18n/compile.ts"
+    "codegen:i18n": "yarn ts-node ./scripts/i18n/compile.ts",
+    "i18n:extract": "yarn ts-node ./scripts/i18n/extract.ts"
   },
   "devDependencies": {
     "@calm/eslint-plugin-react-intl": "^1.4.1",
