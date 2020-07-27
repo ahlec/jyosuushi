@@ -67,7 +67,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "memoize-one": "^5.1.1",
     "meyer-reset-scss": "^2.0.4",
     "react": "^16.11.0",
