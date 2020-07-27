@@ -32,6 +32,7 @@
   "devDependencies": {
     "@calm/eslint-plugin-react-intl": "^1.4.1",
     "@formatjs/cli": "^2.0.0",
+    "@formatjs/ts-transformer": "^2.5.0",
     "@graphql-codegen/typescript-operations": "^1.17.0",
     "@graphql-codegen/typescript-react-apollo": "^1.17.0",
     "@prisma/cli": "2.2.2",
