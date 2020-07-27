@@ -32,6 +32,12 @@ jobs:
           name: Ensure repository data files are up to date
           command: git diff --exit-code data/*
       - run:
+          name: Extract react-intl message definitions
+          command: yarn i18n:extract
+      - run:
+          name: Ensure repository i18n files are up to date
+          command: git diff --exit-code i18n/*
+      - run:
           name: Codegen
           command: yarn codegen
       - run:
