@@ -1,0 +1,1195 @@
+{
+  "constants.quizAmountRanges.nameGiant": [
+    {
+      "type": 0,
+      "value": "Gigantic"
+    }
+  ],
+  "constants.quizAmountRanges.nameLarge": [
+    {
+      "type": 0,
+      "value": "Massive"
+    }
+  ],
+  "constants.quizAmountRanges.nameMedium": [
+    {
+      "type": 0,
+      "value": "Average"
+    }
+  ],
+  "constants.quizAmountRanges.nameSmall": [
+    {
+      "type": 0,
+      "value": "Tiny"
+    }
+  ],
+  "CreditsFooter.credits": [
+    {
+      "type": 0,
+      "value": "Application designed and coded by "
+    },
+    {
+      "type": 8,
+      "value": "alec",
+      "children": [
+        {
+          "type": 0,
+          "value": "Alec Deitloff"
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "value": ". Vector icons were taken from the "
+    },
+    {
+      "type": 8,
+      "value": "vectorIcons",
+      "children": [
+        {
+          "type": 0,
+          "value": "Core - UI - Outlined"
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "value": " collection. Sakura icon was made by "
+    },
+    {
+      "type": 8,
+      "value": "sakura",
+      "children": [
+        {
+          "type": 0,
+          "value": "Freepik"
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "value": ". Small icons are part of the "
+    },
+    {
+      "type": 8,
+      "value": "silk",
+      "children": [
+        {
+          "type": 0,
+          "value": "Silk"
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "value": " collection."
+    }
+  ],
+  "feedback.BaseUserFeedbackForm.buttons.clearMessage": [
+    {
+      "type": 0,
+      "value": "Clear"
+    }
+  ],
+  "feedback.BaseUserFeedbackForm.buttons.submit": [
+    {
+      "type": 0,
+      "value": "Submit"
+    }
+  ],
+  "feedback.BaseUserFeedbackForm.errors.serverCommunicationFailed": [
+    {
+      "type": 0,
+      "value": "There was an error with the server when trying to submit your feedback. Please try again later."
+    }
+  ],
+  "feedback.BaseUserFeedbackForm.errors.submissionFailed": [
+    {
+      "type": 0,
+      "value": "Your feedback was unable to be saved. Please try again."
+    }
+  ],
+  "feedback.BaseUserFeedbackForm.fields.message.label": [
+    {
+      "type": 0,
+      "value": "Message"
+    }
+  ],
+  "feedback.BaseUserFeedbackForm.fields.message.numRemainingCharacters": [
+    {
+      "type": 0,
+      "value": "You have "
+    },
+    {
+      "type": 6,
+      "pluralType": "cardinal",
+      "value": "numRemaining",
+      "offset": 0,
+      "options": {
+        "one": {
+          "value": [
+            {
+              "type": 7
+            },
+            {
+              "type": 0,
+              "value": " character"
+            }
+          ]
+        },
+        "other": {
+          "value": [
+            {
+              "type": 7
+            },
+            {
+              "type": 0,
+              "value": " characters"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": 0,
+      "value": " remaining."
+    }
+  ],
+  "feedback.BaseUserFeedbackForm.fields.message.validation.tooLong": [
+    {
+      "type": 0,
+      "value": "Your message is too long to submit."
+    }
+  ],
+  "feedback.BaseUserFeedbackForm.fields.message.validation.tooShort": [
+    {
+      "type": 0,
+      "value": "Your message requires "
+    },
+    {
+      "type": 6,
+      "pluralType": "cardinal",
+      "value": "numMoreCharactersRequired",
+      "offset": 0,
+      "options": {
+        "one": {
+          "value": [
+            {
+              "type": 7
+            },
+            {
+              "type": 0,
+              "value": " more character"
+            }
+          ]
+        },
+        "other": {
+          "value": [
+            {
+              "type": 7
+            },
+            {
+              "type": 0,
+              "value": " more characters"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": 0,
+      "value": "."
+    }
+  ],
+  "feedback.bugReport.formExplanation": [
+    {
+      "type": 0,
+      "value": "Please describe the bug that you've encountered, including what you were doing when it happened. The more details you give, the more likely we'll be able to fix it."
+    }
+  ],
+  "feedback.bugReport.modalHeader": [
+    {
+      "type": 0,
+      "value": "Report a Bug"
+    }
+  ],
+  "feedback.bugReport.successToast": [
+    {
+      "type": 0,
+      "value": "Your bug report has been submitted."
+    }
+  ],
+  "feedback.submitFeedback.formExplanation": [
+    {
+      "type": 0,
+      "value": "What would you like to see come to this site?"
+    }
+  ],
+  "feedback.submitFeedback.modalHeader": [
+    {
+      "type": 0,
+      "value": "Submit Feedback"
+    }
+  ],
+  "feedback.submitFeedback.successToast": [
+    {
+      "type": 0,
+      "value": "Your suggestion has been submitted."
+    }
+  ],
+  "FeedbackFooter.contents": [
+    {
+      "type": 0,
+      "value": "Your thoughts are super appreciated! "
+    },
+    {
+      "type": 1,
+      "value": "reportBug"
+    },
+    {
+      "type": 0,
+      "value": " or "
+    },
+    {
+      "type": 1,
+      "value": "submitFeedback"
+    },
+    {
+      "type": 0,
+      "value": "."
+    }
+  ],
+  "FeedbackFooter.reportBugLink": [
+    {
+      "type": 0,
+      "value": "Report a Bug"
+    }
+  ],
+  "FeedbackFooter.submitFeedbackLink": [
+    {
+      "type": 0,
+      "value": "Submit Feedback"
+    }
+  ],
+  "header.AbortConfirmationModal.buttonNo": [
+    {
+      "type": 0,
+      "value": "No"
+    }
+  ],
+  "header.AbortConfirmationModal.buttonYes": [
+    {
+      "type": 0,
+      "value": "Yes"
+    }
+  ],
+  "header.AbortConfirmationModal.header": [
+    {
+      "type": 0,
+      "value": "End Quiz Early?"
+    }
+  ],
+  "header.AbortConfirmationModal.question": [
+    {
+      "type": 0,
+      "value": "Are you sure you want to end the current quiz early?"
+    }
+  ],
+  "header.betaBanner.contents": [
+    {
+      "type": 0,
+      "value": "Beta"
+    }
+  ],
+  "header.historyModalHeader": [
+    {
+      "type": 0,
+      "value": "History"
+    }
+  ],
+  "header.siteTagLine": [
+    {
+      "type": 0,
+      "value": "Let's review Japanese counters!"
+    }
+  ],
+  "header.quiz-buttons.historyButtonTooltip": [
+    {
+      "type": 0,
+      "value": "History"
+    }
+  ],
+  "header.quiz-buttons.homeButtonTooltip": [
+    {
+      "type": 0,
+      "value": "Home"
+    }
+  ],
+  "header.score.xOfYCorrect": [
+    {
+      "type": 1,
+      "value": "x"
+    },
+    {
+      "type": 0,
+      "value": " / "
+    },
+    {
+      "type": 1,
+      "value": "y"
+    },
+    {
+      "type": 0,
+      "value": " correct"
+    }
+  ],
+  "explorePage.allCounters.pageHeader": [
+    {
+      "type": 0,
+      "value": "Counters"
+    }
+  ],
+  "explorePage.AllStudyPacks.studyPackSizeLabel": [
+    {
+      "type": 6,
+      "pluralType": "cardinal",
+      "value": "size",
+      "offset": 0,
+      "options": {
+        "one": {
+          "value": [
+            {
+              "type": 7
+            },
+            {
+              "type": 0,
+              "value": " counter"
+            }
+          ]
+        },
+        "other": {
+          "value": [
+            {
+              "type": 7
+            },
+            {
+              "type": 0,
+              "value": " counters"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "explorePage.AllStudyPacks.pageHeader": [
+    {
+      "type": 0,
+      "value": "Study Packs"
+    }
+  ],
+  "explorePage.BreadcrumbBar.counter.prefix": [
+    {
+      "type": 0,
+      "value": "Counter:"
+    }
+  ],
+  "explorePage.BreadcrumbBar.studyPack.prefix": [
+    {
+      "type": 0,
+      "value": "Study Pack:"
+    }
+  ],
+  "explorePage.BreadcrumbBar.explorePageName": [
+    {
+      "type": 0,
+      "value": "Explore"
+    }
+  ],
+  "explorePage.counter.conjugationSection.andSoForth": [
+    {
+      "type": 0,
+      "value": "... and so forth"
+    }
+  ],
+  "explorePage.counter.conjugationSection.customCounterAmountInputPrefix": [
+    {
+      "type": 0,
+      "value": "Or you can try out any number you'd like to here:"
+    }
+  ],
+  "explorePage.counter.conjugationSection.furtherIrregulars": [
+    {
+      "type": 0,
+      "value": "There are some more irregulars later on as well though:"
+    }
+  ],
+  "explorePage.counter.conjugationSection.hereAreTheFirstXNumbers": [
+    {
+      "type": 0,
+      "value": "Here "
+    },
+    {
+      "type": 6,
+      "pluralType": "cardinal",
+      "value": "amount",
+      "offset": 0,
+      "options": {
+        "one": {
+          "value": [
+            {
+              "type": 0,
+              "value": "is"
+            }
+          ]
+        },
+        "other": {
+          "value": [
+            {
+              "type": 0,
+              "value": "are"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": 0,
+      "value": " the first "
+    },
+    {
+      "type": 6,
+      "pluralType": "cardinal",
+      "value": "amount",
+      "offset": 0,
+      "options": {
+        "one": {
+          "value": [
+            {
+              "type": 7
+            },
+            {
+              "type": 0,
+              "value": " number"
+            }
+          ]
+        },
+        "other": {
+          "value": [
+            {
+              "type": 7
+            },
+            {
+              "type": 0,
+              "value": " numbers"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": 0,
+      "value": "."
+    }
+  ],
+  "explorePage.counter.conjugationSection.introNoIrregulars": [
+    {
+      "type": 0,
+      "value": "Luckily, there are no irregular conjugations with this counter!"
+    }
+  ],
+  "explorePage.counter.conjugationSection.introWithIrregulars": [
+    {
+      "type": 0,
+      "value": "Make note of the "
+    },
+    {
+      "type": 1,
+      "value": "highlightedElement"
+    },
+    {
+      "type": 0,
+      "value": "."
+    }
+  ],
+  "explorePage.counter.conjugationSection.numIrregulars": [
+    {
+      "type": 6,
+      "pluralType": "cardinal",
+      "value": "numIrregulars",
+      "offset": 0,
+      "options": {
+        "one": {
+          "value": [
+            {
+              "type": 0,
+              "value": "1 irregular conjugation"
+            }
+          ]
+        },
+        "other": {
+          "value": [
+            {
+              "type": 7
+            },
+            {
+              "type": 0,
+              "value": " irregular conjugations"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "explorePage.counter.conjugations.header": [
+    {
+      "type": 0,
+      "value": "Conjugations"
+    }
+  ],
+  "explorePage.counter.disambiguation.header": [
+    {
+      "type": 0,
+      "value": "Similar Counters"
+    }
+  ],
+  "explorePage.counter.footnotes.header": [
+    {
+      "type": 0,
+      "value": "References"
+    }
+  ],
+  "explorePage.counter.info.header": [
+    {
+      "type": 0,
+      "value": "Details"
+    }
+  ],
+  "explorePage.counter.items.header": [
+    {
+      "type": 0,
+      "value": "Items"
+    }
+  ],
+  "explorePage.counter.info.externalLinksHeader": [
+    {
+      "type": 0,
+      "value": "Further Reading"
+    }
+  ],
+  "explorePage.counter.itemsSection.introText": [
+    {
+      "type": 0,
+      "value": "The following "
+    },
+    {
+      "type": 6,
+      "pluralType": "cardinal",
+      "value": "numItems",
+      "offset": 0,
+      "options": {
+        "one": {
+          "value": [
+            {
+              "type": 0,
+              "value": "is an example"
+            }
+          ]
+        },
+        "other": {
+          "value": [
+            {
+              "type": 0,
+              "value": "are examples"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": 0,
+      "value": " of what this is used to count:"
+    }
+  ],
+  "explorePage.studyPackPage.contentsIntro": [
+    {
+      "type": 0,
+      "value": "This pack contains "
+    },
+    {
+      "type": 8,
+      "value": "bold",
+      "children": [
+        {
+          "type": 6,
+          "pluralType": "cardinal",
+          "value": "numCounters",
+          "offset": 0,
+          "options": {
+            "one": {
+              "value": [
+                {
+                  "type": 7
+                },
+                {
+                  "type": 0,
+                  "value": " counter"
+                }
+              ]
+            },
+            "other": {
+              "value": [
+                {
+                  "type": 7
+                },
+                {
+                  "type": 0,
+                  "value": " counters"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "value": ":"
+    }
+  ],
+  "feedbackPage.links.contribute.description": [
+    {
+      "type": 0,
+      "value": "The project is open source, and if you'd like to join in on working on the project, check out my GitHub!"
+    }
+  ],
+  "feedbackPage.links.contribute.link": [
+    {
+      "type": 0,
+      "value": "Help contribute"
+    }
+  ],
+  "feedbackPage.intro": [
+    {
+      "type": 0,
+      "value": "We're in open beta right now and I hope you enjoy the application! Expect updates frequently!"
+    }
+  ],
+  "feedbackPage.links.reportBug.description": [
+    {
+      "type": 0,
+      "value": "Please help me make a more perfect service! A brief description of the problem (or a mistake with Japanese!) will help me track it down and fix it right away!"
+    }
+  ],
+  "feedbackPage.links.reportBug.link": [
+    {
+      "type": 0,
+      "value": "Report a bug"
+    }
+  ],
+  "feedbackPage.links.submitFeedback.description": [
+    {
+      "type": 0,
+      "value": "Share with me anything that you'd like to see happen, or any ideas on how I can improve this service!"
+    }
+  ],
+  "feedbackPage.links.submitFeedback.linkText": [
+    {
+      "type": 0,
+      "value": "Submit feedback and ideas"
+    }
+  ],
+  "main-screen.pages.explore.name": [
+    {
+      "type": 0,
+      "value": "Explore"
+    }
+  ],
+  "main-screen.pages.feedback.name": [
+    {
+      "type": 0,
+      "value": "Feedback"
+    }
+  ],
+  "main-screen.pages.prepare.name": [
+    {
+      "type": 0,
+      "value": "Prepare"
+    }
+  ],
+  "main-screen.pages.releaseNotes.name": [
+    {
+      "type": 0,
+      "value": "Release Notes"
+    }
+  ],
+  "main-screen.pages.settings.name": [
+    {
+      "type": 0,
+      "value": "Settings"
+    }
+  ],
+  "preparePage.CounterPreview.header": [
+    {
+      "type": 6,
+      "pluralType": "cardinal",
+      "value": "count",
+      "offset": 0,
+      "options": {
+        "one": {
+          "value": [
+            {
+              "type": 7
+            },
+            {
+              "type": 0,
+              "value": " Counter"
+            }
+          ]
+        },
+        "other": {
+          "value": [
+            {
+              "type": 7
+            },
+            {
+              "type": 0,
+              "value": " Counters"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": 0,
+      "value": " included"
+    }
+  ],
+  "preparePage.PackSelection.header": [
+    {
+      "type": 0,
+      "value": "Study Packs"
+    }
+  ],
+  "preparePage.PackSelection.subheader": [
+    {
+      "type": 0,
+      "value": "(select 1 or more)"
+    }
+  ],
+  "preparePage.PackToggleButton.studyPackSizeLabel": [
+    {
+      "type": 6,
+      "pluralType": "cardinal",
+      "value": "size",
+      "offset": 0,
+      "options": {
+        "one": {
+          "value": [
+            {
+              "type": 7
+            },
+            {
+              "type": 0,
+              "value": " counter"
+            }
+          ]
+        },
+        "other": {
+          "value": [
+            {
+              "type": 7
+            },
+            {
+              "type": 0,
+              "value": " counters"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "preparePage.PackToggleButton.viewPackContentsLink": [
+    {
+      "type": 0,
+      "value": "View Details"
+    }
+  ],
+  "preparePage.buttonStartQuiz": [
+    {
+      "type": 0,
+      "value": "Start Quiz!"
+    }
+  ],
+  "preparePage.links.jyosuushiWikipediaPage": [
+    {
+      "type": 0,
+      "value": "Japanese counters"
+    }
+  ],
+  "preparePage.links.tutorial": [
+    {
+      "type": 0,
+      "value": "Click here to read the tutorial."
+    }
+  ],
+  "preparePage.welcomeMessage": [
+    {
+      "type": 0,
+      "value": "Welcome to "
+    },
+    {
+      "type": 8,
+      "value": "bold",
+      "children": [
+        {
+          "type": 0,
+          "value": "助数詞を練習"
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "value": "! This is a tool that's meant to help you study "
+    },
+    {
+      "type": 1,
+      "value": "jyosuushiWikipediaLink"
+    },
+    {
+      "type": 0,
+      "value": ". You'll be given a random item and a random number, and then you tell us how you'd count that in Japanese. "
+    },
+    {
+      "type": 1,
+      "value": "tutorialLink"
+    }
+  ],
+  "mainScreen.tutorial.page1": [
+    {
+      "type": 0,
+      "value": "On the main screen, find conveniently made packs of counters. Explore each of their details, and then choose the ones that contain the counters you want to study."
+    }
+  ],
+  "mainScreen.tutorial.page2": [
+    {
+      "type": 0,
+      "value": "When you hit 'Start Quiz', you'll be prompted with random nouns of random amounts. Determine the appropriate counter for the noun, and then put in your answer.\n\nEven though they're valid, 〜つ and 〜個 aren't accepted answers!"
+    }
+  ],
+  "mainScreen.tutorial.page3": [
+    {
+      "type": 0,
+      "value": "If you don't want to answer, hit 'Skip this question'. It won't penalize you and will remove the question from the quiz."
+    }
+  ],
+  "mainScreen.tutorial.page4": [
+    {
+      "type": 0,
+      "value": "Once you submit your answer, check your accuracy! It will show you all of the correct answers at this stage, so you can take note if you made a mistake."
+    }
+  ],
+  "mainScreen.tutorial.page5": [
+    {
+      "type": 0,
+      "value": "If you made a typo or a genuine mistake, hit 'Ignore Answer'. It won't penalize you, and it will shuffle that question in for later to try again. It's up to you to stay honest!"
+    }
+  ],
+  "mainScreen.tutorial.page6": [
+    {
+      "type": 0,
+      "value": "When you've gone through all of your questions, you'll have a chance to see your overall results. From there, you can choose to change your study packs, or try this quiz again with new numbers and items."
+    }
+  ],
+  "mainScreen.tutorial.modalHeader": [
+    {
+      "type": 0,
+      "value": "Tutorial"
+    }
+  ],
+  "releaseNotes.browserNames.chrome": [
+    {
+      "type": 0,
+      "value": "Chrome"
+    }
+  ],
+  "releaseNotes.browserNames.edge": [
+    {
+      "type": 0,
+      "value": "Microsoft Edge"
+    }
+  ],
+  "releaseNotes.browserNames.firefox": [
+    {
+      "type": 0,
+      "value": "Firefox"
+    }
+  ],
+  "releaseNotes.browserNames.ie": [
+    {
+      "type": 0,
+      "value": "Internet Explorer"
+    }
+  ],
+  "releaseNotes.browserNames.safari": [
+    {
+      "type": 0,
+      "value": "Safari"
+    }
+  ],
+  "releaseNotes.sectionHeaders.bugFixes": [
+    {
+      "type": 0,
+      "value": "Bug Fixes"
+    }
+  ],
+  "releaseNotes.sectionHeaders.improvements": [
+    {
+      "type": 0,
+      "value": "Improvements"
+    }
+  ],
+  "releaseNotes.sectionHeaders.newFeatures": [
+    {
+      "type": 0,
+      "value": "New Features"
+    }
+  ],
+  "releaseNotes.specialVersionNotes.initialRelease": [
+    {
+      "type": 0,
+      "value": "Initial release."
+    }
+  ],
+  "settings.quiz.amountRange.choiceRange": [
+    {
+      "type": 1,
+      "value": "min"
+    },
+    {
+      "type": 0,
+      "value": "-"
+    },
+    {
+      "type": 1,
+      "value": "max"
+    }
+  ],
+  "settings.quiz.amountRange.description": [
+    {
+      "type": 0,
+      "value": "Adjust the range of numbers generated."
+    }
+  ],
+  "settings.quiz.amountRange.header": [
+    {
+      "type": 0,
+      "value": "Amounts Range"
+    }
+  ],
+  "settings.quiz.infiniteMode.checkboxLabel": [
+    {
+      "type": 0,
+      "value": "Infinite Mode"
+    }
+  ],
+  "settings.quiz.infiniteMode.description": [
+    {
+      "type": 0,
+      "value": "Choose whether the quiz has a finite number of questions, or if it goes on forever."
+    }
+  ],
+  "settings.quiz.infiniteMode.header": [
+    {
+      "type": 0,
+      "value": "Infinite Mode"
+    }
+  ],
+  "settings.pageHeader": [
+    {
+      "type": 0,
+      "value": "Settings"
+    }
+  ],
+  "quiz-page.AnswerInput.buttonSkipQuestion": [
+    {
+      "type": 0,
+      "value": "Skip this question"
+    }
+  ],
+  "quiz-page.AnswerInput.howToSubmit": [
+    {
+      "type": 0,
+      "value": "Press the [enter] key when you're finished, or click the arrow button to submit."
+    }
+  ],
+  "quiz-page.AnswerInput.TsuNotice.text": [
+    {
+      "type": 0,
+      "value": "While 〜つ and 〜個 are always valid counters, you can't use them here. You'll have to be more specific!"
+    }
+  ],
+  "quizPage.QuestionDisplay.text": [
+    {
+      "type": 1,
+      "value": "amount"
+    },
+    {
+      "type": 0,
+      "value": " "
+    },
+    {
+      "type": 1,
+      "value": "itemName"
+    }
+  ],
+  "quiz-page.QuizWrapup.quitQuiz": [
+    {
+      "type": 0,
+      "value": "Leave"
+    }
+  ],
+  "quiz-page.QuizWrapup.restartQuiz": [
+    {
+      "type": 0,
+      "value": "Restart"
+    }
+  ],
+  "quiz-page.QuizWrapup.encouragement.highScore1": [
+    {
+      "type": 0,
+      "value": "That was astounding, really."
+    }
+  ],
+  "quiz-page.QuizWrapup.encouragement.highScore2": [
+    {
+      "type": 0,
+      "value": "Look at how far you've come on your journey!"
+    }
+  ],
+  "quiz-page.QuizWrapup.encouragement.highScore3": [
+    {
+      "type": 0,
+      "value": "This stuff isn't easy, and you're aceing it!"
+    }
+  ],
+  "quiz-page.QuizWrapup.encouragement.highScore4": [
+    {
+      "type": 0,
+      "value": "It's taken a lot of work to get here; pat yourself on the back."
+    }
+  ],
+  "quiz-page.QuizWrapup.encouragement.lowScore1": [
+    {
+      "type": 0,
+      "value": "You're trying your best, and that's the key to success!"
+    }
+  ],
+  "quiz-page.QuizWrapup.encouragement.lowScore2": [
+    {
+      "type": 0,
+      "value": "You've learned so much to get here, I know you'll get to where you want to go!"
+    }
+  ],
+  "quiz-page.QuizWrapup.encouragement.lowScore3": [
+    {
+      "type": 0,
+      "value": "This stuff isn't easy; practice WILL make perfect."
+    }
+  ],
+  "quiz-page.results.AnswersTable.columnHeaders.counter": [
+    {
+      "type": 0,
+      "value": "Counter"
+    }
+  ],
+  "quiz-page.results.AnswersTable.columnHeaders.hiragana": [
+    {
+      "type": 0,
+      "value": "Hiragana"
+    }
+  ],
+  "quiz-page.results.AnswersTable.columnHeaders.kanji": [
+    {
+      "type": 0,
+      "value": "Kanji"
+    }
+  ],
+  "quiz-page.results.AnswersTable.columnHeaders.rule": [
+    {
+      "type": 0,
+      "value": "Rule"
+    }
+  ],
+  "quiz-page.results.AnswersTable.columnHeaders.studyPack": [
+    {
+      "type": 0,
+      "value": "Study Pack"
+    }
+  ],
+  "quiz-page.results.AnswersTable.kanji.noKanjiForCounter": [
+    {
+      "type": 0,
+      "value": "(none)"
+    }
+  ],
+  "quiz-page.results.AnswersTable.readingsLabels.irregular": [
+    {
+      "type": 0,
+      "value": "(irregular)"
+    }
+  ],
+  "quiz-page.results.AnswersTable.readingsLabel.nonKango": [
+    {
+      "type": 0,
+      "value": "(not 漢語)"
+    }
+  ],
+  "quiz-page.results.buttonIgnoreAnswer": [
+    {
+      "type": 0,
+      "value": "Ignore Answer"
+    }
+  ],
+  "quiz-page.results.buttonNextQuestion": [
+    {
+      "type": 0,
+      "value": "Next Question"
+    }
+  ],
+  "quiz-page.results.header.correct": [
+    {
+      "type": 0,
+      "value": "Correct!"
+    }
+  ],
+  "quiz-page.results.header.incorrect": [
+    {
+      "type": 0,
+      "value": "Not quite right..."
+    }
+  ],
+  "quiz-page.results.header.skipped": [
+    {
+      "type": 0,
+      "value": "Skipped"
+    }
+  ],
+  "quiz-page.results.table.intro": [
+    {
+      "type": 0,
+      "value": "Here are all of the possible answers based on the sets you have enabled:"
+    }
+  ],
+  "quiz-page.results.skippedQuestion": [
+    {
+      "type": 0,
+      "value": "Alright! You don't need to worry about this question!"
+    }
+  ],
+  "QuizHistory.historyRow.submittedLabel": [
+    {
+      "type": 0,
+      "value": "Submitted:"
+    }
+  ]
+}
