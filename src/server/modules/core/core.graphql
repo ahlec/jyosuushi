@@ -1,3 +1,5 @@
+scalar Date
+
 # This is where we define the BASE `Query` type.
 # All other modules EXTEND from this
 type Query {

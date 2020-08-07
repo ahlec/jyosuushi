@@ -4,12 +4,16 @@ generates:
   src/server/graphql.generated.ts:
     config:
       contextType: "@server/context#ServerContext"
+      scalars:
+        Date: Date
     plugins:
       - "typescript"
       - "typescript-resolvers"
   src/client/graphql/types.generated.tsx:
     config:
       reactApolloVersion: 3
+      scalars:
+        Date: Date
       withComponent: false
       withHOC: false
       withHooks: true
