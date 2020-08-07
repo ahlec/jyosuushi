@@ -47,6 +47,7 @@
     "@types/react-router": "^5.1.8",
     "@types/react-router-dom": "^5.1.5",
     "@types/shallow-equals": "^1.0.0",
+    "@types/uuid": "^8.0.1",
     "@typescript-eslint/eslint-plugin": "^3.6.1",
     "@typescript-eslint/parser": "^3.6.1",
     "autoprefixer": "^9.8.5",
@@ -107,6 +108,7 @@
     "apollo-server": "^2.16.0",
     "bowser": "^2.10.0",
     "classnames": "^2.2.6",
+    "date-fns": "^2.15.0",
     "graphql": "^15.3.0",
     "lodash": "^4.17.19",
     "memoize-one": "^5.1.1",
@@ -126,7 +128,8 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-persist": "^6.0.0",
     "shallow-equals": "^1.0.0",
-    "tsconfig-paths": "^3.9.0"
+    "tsconfig-paths": "^3.9.0",
+    "uuid": "^8.3.0"
   },
   "browserslist": [
     "last 4 versions",

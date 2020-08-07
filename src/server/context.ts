@@ -1,3 +1,4 @@
+import { UserToken } from "./authorization/types";
 import { PrismaDataSource } from "./datasources/PrismaDataSource";
 
 export interface ServerContextDataSources {
@@ -6,4 +7,5 @@ export interface ServerContextDataSources {
 
 export interface ServerContext {
   dataSources: ServerContextDataSources;
+  userToken: UserToken | null;
 }

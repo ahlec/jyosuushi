@@ -7,8 +7,10 @@
     "apollo-datasource",
     "apollo-server",
     "bowser",
+    "date-fns",
     "graphql",
     "graphql/language",
-    "path"
+    "path",
+    "uuid"
   ]
 }
