@@ -3,6 +3,7 @@ import {
   BugReportCreateInput,
   PrismaClient,
   SuggestionCreateInput,
+  User,
 } from "@prisma/client";
 
 export class PrismaDataSource extends DataSource {
@@ -16,5 +17,13 @@ export class PrismaDataSource extends DataSource {
 
   public async addSuggestion(suggestion: SuggestionCreateInput): Promise<void> {
     await this.client.suggestion.create({ data: suggestion });
+  }
+
+  public async getUserById(userId: string): Promise<User | null> {
+    return this.client.user.findOne({
+      where: {
+        id: userId,
+      },
+    });
   }
 }

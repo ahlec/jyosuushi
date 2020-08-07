@@ -1,0 +1,8 @@
+type UserAccount {
+  dateRegistered: Date!
+  username: String!
+}
+
+extend type Query {
+  activeUser: UserAccount
+}

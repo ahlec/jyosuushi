@@ -3,6 +3,7 @@ import { ServerModule } from "./ServerModule";
 import { BUG_REPORT_RESOLVERS } from "./bug-report/resolvers";
 import { CORE_RESOLVERS } from "./core/resolvers";
 import { SUGGESTIONS_BOX_RESOLVERS } from "./suggestions-box/resolvers";
+import { USER_ACCOUNTS_RESOLVERS } from "./user-accounts/resolvers";
 
 export const SERVER_MODULES: readonly ServerModule[] = [
   /**
@@ -20,5 +21,9 @@ export const SERVER_MODULES: readonly ServerModule[] = [
   new ServerModule(
     "./suggestions-box/suggestions-box.graphql",
     SUGGESTIONS_BOX_RESOLVERS
+  ),
+  new ServerModule(
+    "./user-accounts/user-accounts.graphql",
+    USER_ACCOUNTS_RESOLVERS
   ),
 ];
