@@ -6,3 +6,26 @@ type UserAccount {
 extend type Query {
   activeUser: UserAccount
 }
+
+extend type Mutation {
+  registerAccount(email: String!, password: String!): RegisterAccountPayload!
+}
+
+enum RegisterAccountError {
+  # Email-related validation errors
+  EMAIL_EMPTY
+  EMAIL_INVALID_FORMAT
+
+  # Password-related validation errors
+  PASSWORD_TOO_SHORT
+  PASSWORD_MISSING_NUMERAL
+
+  # Registration errors
+  ACCOUNT_ALREADY_EXISTS
+  ALREADY_AUTHENTICATED
+}
+
+type RegisterAccountPayload {
+  error: RegisterAccountError
+  user: UserAccount
+}
