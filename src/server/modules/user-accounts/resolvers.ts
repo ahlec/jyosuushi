@@ -1,3 +1,4 @@
+import { addDays } from "date-fns";
 import { validate as validateEmail } from "email-validator";
 
 import { MIN_PASSWORD_LENGTH } from "@shared/constants";
@@ -20,16 +21,20 @@ import { ServerContext } from "@server/context";
 
 const DIGIT_REGEX = /[0-9]/;
 
+function getUserSessionExpiration(): Date {
+  return addDays(Date.now(), 7);
+}
+
 export const USER_ACCOUNTS_RESOLVERS: Resolvers = {
   Mutation: {
     registerAccount: async (
       _parent: unknown,
       { email, password }: MutationRegisterAccountArgs,
-      { dataSources: { database }, userToken }: ServerContext
+      { authCookie, dataSources: { database } }: ServerContext
     ): Promise<RegisterAccountPayload> => {
       // Check to see if we're already authenticated
-      if (userToken) {
-        const validate = await userToken.validate();
+      if (authCookie.current) {
+        const validate = await authCookie.current.validate();
         if (validate.valid) {
           return {
             error: RegisterAccountError.AlreadyAuthenticated,
@@ -76,6 +81,14 @@ export const USER_ACCOUNTS_RESOLVERS: Resolvers = {
       // Register the account
       const encryptedPassword = await encryptPassword(password);
       const newUser = await database.createUser(email, encryptedPassword);
+      const session = await database.startUserSession(
+        newUser.id,
+        getUserSessionExpiration()
+      );
+      authCookie.set({
+        sessionId: session.id,
+        userId: session.userId,
+      });
       return {
         user: {
           dateRegistered: newUser.dateRegistered,
@@ -88,7 +101,10 @@ export const USER_ACCOUNTS_RESOLVERS: Resolvers = {
     activeUser: async (
       _parent: unknown,
       _args: unknown,
-      { dataSources: { database }, userToken }: ServerContext
+      {
+        authCookie: { current: userToken },
+        dataSources: { database },
+      }: ServerContext
     ): Promise<UserAccount | null> => {
       if (!userToken) {
         console.log("nope");

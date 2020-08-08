@@ -51,5 +51,21 @@ export class PrismaDataSource extends DataSource {
         id: uuidv4(),
       },
     });
+
+  public async startUserSession(
+    userId: string,
+    expiration: Date
+  ): Promise<ActiveUserSession> {
+    return this.client.activeUserSession.create({
+      data: {
+        User: {
+          connect: {
+            id: userId,
+          },
+        },
+        expiration,
+        id: uuidv4(),
+      },
+    });
   }
 }

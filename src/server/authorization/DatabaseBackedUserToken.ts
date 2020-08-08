@@ -84,6 +84,7 @@ class DatabaseBackedUserToken implements UserToken {
      */
     return {
       userSession: {
+        sessionId: activeSession.id,
         userId: activeSession.userId,
       },
       valid: true,

@@ -1,4 +1,4 @@
-import { UserToken } from "./authorization/types";
+import { AuthorizationCookie } from "./authorization/types";
 import { PrismaDataSource } from "./datasources/PrismaDataSource";
 
 export interface ServerContextDataSources {
@@ -6,6 +6,6 @@ export interface ServerContextDataSources {
 }
 
 export interface ServerContext {
+  authCookie: AuthorizationCookie;
   dataSources: ServerContextDataSources;
-  userToken: UserToken | null;
 }

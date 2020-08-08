@@ -1,4 +1,5 @@
 export interface UserSession {
+  sessionId: string;
   userId: string;
 }
 
@@ -24,4 +25,28 @@ export interface UserToken {
    * provided.
    */
   validate: () => Promise<UserTokenValidationResult>;
+}
+
+export interface AuthorizationCookie {
+  /**
+   * The current authorization token stored in the cookie, if
+   * one was provided.
+   *
+   * NOTE: Just because there is a value here doesn't mean that
+   * it's been authenticated or that it's valid. In order to
+   * determine that the user is actually authenticated, you'll
+   * need to {@link UserToken.validate} the token.
+   */
+  current: UserToken | null;
+
+  /**
+   * Sets the cookie to the specified user session.
+   */
+  set: (session: UserSession) => void;
+
+  /**
+   * Clears the current cookie of any user session, valid or
+   * invalid.
+   */
+  delete: () => void;
 }
