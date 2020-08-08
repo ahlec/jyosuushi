@@ -14,3 +14,10 @@ export async function encryptPassword(
   const encrypted = await bcrypt.hash(password, SALT_ROUNDS);
   return (encrypted as unknown) as EncryptedPassword;
 }
+
+export async function arePasswordsEqual(
+  encryptedPassword: EncryptedPassword,
+  rawPassword: string
+): Promise<boolean> {
+  return bcrypt.compare(rawPassword, encryptedPassword);
+}

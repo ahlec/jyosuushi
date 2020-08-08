@@ -4,10 +4,22 @@ import {
   PrismaClient,
   SuggestionCreateInput,
   User,
+  ActiveUserSession,
 } from "@prisma/client";
 import { v4 as uuidv4 } from "uuid";
 
 import { EncryptedPassword } from "@server/authorization/password-encryption";
+
+export type DatabaseUser = Omit<User, "encryptedPassword"> & {
+  encryptedPassword: EncryptedPassword;
+};
+
+function castUserToDatabaseUser(user: User): DatabaseUser {
+  // Use this function safely and conservatively, and never leave this file!!
+  // But afaik there's no way right now to have Prisma use our opaque password
+  // type.
+  return (user as unknown) as DatabaseUser;
+}
 
 export class PrismaDataSource extends DataSource {
   public constructor(private readonly client: PrismaClient) {
@@ -31,19 +43,37 @@ export class PrismaDataSource extends DataSource {
     return numUsers > 0;
   }
 
-  public async getUserById(userId: string): Promise<User | null> {
-    return this.client.user.findOne({
+  public async getUserById(userId: string): Promise<DatabaseUser | null> {
+    const raw = await this.client.user.findOne({
       where: {
         id: userId,
       },
     });
+    if (!raw) {
+      return null;
+    }
+
+    return castUserToDatabaseUser(raw);
+  }
+
+  public async getUserByEmail(email: string): Promise<DatabaseUser | null> {
+    const raw = await this.client.user.findOne({
+      where: {
+        email,
+      },
+    });
+    if (!raw) {
+      return null;
+    }
+
+    return castUserToDatabaseUser(raw);
   }
 
   public async createUser(
     email: string,
     password: EncryptedPassword
-  ): Promise<User> {
-    return this.client.user.create({
+  ): Promise<DatabaseUser> {
+    const user = await this.client.user.create({
       data: {
         dateRegistered: new Date(),
         email,
@@ -51,6 +81,8 @@ export class PrismaDataSource extends DataSource {
         id: uuidv4(),
       },
     });
+    return castUserToDatabaseUser(user);
+  }
 
   public async startUserSession(
     userId: string,

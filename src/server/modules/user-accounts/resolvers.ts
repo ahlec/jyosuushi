@@ -9,14 +9,20 @@ import { MIN_PASSWORD_LENGTH } from "@shared/constants";
  * Generate this file automatically using `yarn gql:codegen`.
  */
 import {
+  LoginError,
+  LoginPayload,
   Resolvers,
   UserAccount,
+  MutationLoginArgs,
   MutationRegisterAccountArgs,
   RegisterAccountPayload,
   RegisterAccountError,
 } from "@server/graphql.generated";
 
-import { encryptPassword } from "@server/authorization/password-encryption";
+import {
+  arePasswordsEqual,
+  encryptPassword,
+} from "@server/authorization/password-encryption";
 import { ServerContext } from "@server/context";
 
 const DIGIT_REGEX = /[0-9]/;
@@ -27,6 +33,68 @@ function getUserSessionExpiration(): Date {
 
 export const USER_ACCOUNTS_RESOLVERS: Resolvers = {
   Mutation: {
+    login: async (
+      _parent: unknown,
+      { email, password }: MutationLoginArgs,
+      { authCookie, dataSources: { database } }: ServerContext
+    ): Promise<LoginPayload> => {
+      // Check to see if we're already authenticated
+      if (authCookie.current) {
+        const validate = await authCookie.current.validate();
+        if (validate.valid) {
+          return {
+            error: LoginError.AlreadyAuthenticated,
+          };
+        }
+      }
+
+      // Validate input parameters
+      if (!email) {
+        return {
+          error: LoginError.EmailEmpty,
+        };
+      }
+
+      if (!password) {
+        return {
+          error: LoginError.PasswordEmpty,
+        };
+      }
+
+      // Fetch the account for the specified email
+      const user = await database.getUserByEmail(email);
+      if (!user) {
+        return {
+          error: LoginError.EmailPasswordCombinationIncorrect,
+        };
+      }
+
+      const isMatchForPasswords = await arePasswordsEqual(
+        user.encryptedPassword,
+        password
+      );
+      if (!isMatchForPasswords) {
+        return {
+          error: LoginError.EmailPasswordCombinationIncorrect,
+        };
+      }
+
+      // We've authenticated, so let's set up a new session
+      const session = await database.startUserSession(
+        user.id,
+        getUserSessionExpiration()
+      );
+      authCookie.set({
+        sessionId: session.id,
+        userId: session.userId,
+      });
+      return {
+        user: {
+          dateRegistered: user.dateRegistered,
+          username: user.email,
+        },
+      };
+    },
     registerAccount: async (
       _parent: unknown,
       { email, password }: MutationRegisterAccountArgs,

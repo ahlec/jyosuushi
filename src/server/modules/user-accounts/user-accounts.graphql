@@ -8,6 +8,7 @@ extend type Query {
 }
 
 extend type Mutation {
+  login(email: String!, password: String!): LoginPayload!
   registerAccount(email: String!, password: String!): RegisterAccountPayload!
 }
 
@@ -27,5 +28,21 @@ enum RegisterAccountError {
 
 type RegisterAccountPayload {
   error: RegisterAccountError
+  user: UserAccount
+}
+
+enum LoginError {
+  # Validation errors
+  EMAIL_EMPTY
+  PASSWORD_EMPTY
+
+  # Login errors
+  EMAIL_PASSWORD_COMBINATION_INCORRECT
+  ALREADY_AUTHENTICATED
+  TOO_MANY_INCORRECT_ATTEMPTS_SLOW_DOWN
+}
+
+type LoginPayload {
+  error: LoginError
   user: UserAccount
 }
