@@ -1,4 +1,3 @@
-import { validate as validateEmail } from "email-validator";
 import { GraphQLResolveInfo } from "graphql";
 
 import { MIN_PASSWORD_LENGTH } from "@shared/constants";
@@ -27,7 +26,8 @@ import {
 } from "@server/authorization/password-encryption";
 import { ServerContext } from "@server/context";
 
-import { logInUser } from "./utils";
+import { convertDatabaseUserToGraphQLUserAccount, logInUser } from "./utils";
+import { validateEmail } from "./validation";
 
 const DIGIT_REGEX = /[0-9]/;
 
@@ -113,10 +113,7 @@ export const USER_ACCOUNTS_RESOLVERS: Resolvers = {
       // We've authenticated, so let's set up a new session
       await logInUser(user.id, authCookie, database);
       return {
-        user: {
-          dateRegistered: user.dateRegistered,
-          username: user.email,
-        },
+        user: convertDatabaseUserToGraphQLUserAccount(user),
       };
     },
     logout: async (
@@ -219,15 +216,13 @@ export const USER_ACCOUNTS_RESOLVERS: Resolvers = {
       }
 
       // Validate email
-      if (!email) {
+      const emailValidationError = validateEmail(email, {
+        empty: RegisterAccountError.EmailEmpty,
+        invalidFormat: RegisterAccountError.EmailInvalidFormat,
+      });
+      if (emailValidationError) {
         return {
-          error: RegisterAccountError.EmailEmpty,
-        };
-      }
-
-      if (!validateEmail(email)) {
-        return {
-          error: RegisterAccountError.EmailInvalidFormat,
+          error: emailValidationError,
         };
       }
 
@@ -259,10 +254,7 @@ export const USER_ACCOUNTS_RESOLVERS: Resolvers = {
       const newUser = await database.createUser(email, encryptedPassword);
       await logInUser(newUser.id, authCookie, database);
       return {
-        user: {
-          dateRegistered: newUser.dateRegistered,
-          username: newUser.email,
-        },
+        user: convertDatabaseUserToGraphQLUserAccount(newUser),
       };
     },
   },
@@ -291,10 +283,7 @@ export const USER_ACCOUNTS_RESOLVERS: Resolvers = {
         return null;
       }
 
-      return {
-        dateRegistered: user.dateRegistered,
-        username: user.email,
-      };
+      return convertDatabaseUserToGraphQLUserAccount(user);
     },
   },
 };
