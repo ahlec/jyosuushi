@@ -100,4 +100,12 @@ export class PrismaDataSource extends DataSource {
       },
     });
   }
+
+  public async endUserSession(sessionId: string): Promise<void> {
+    await this.client.activeUserSession.delete({
+      where: {
+        id: sessionId,
+      },
+    });
+  }
 }

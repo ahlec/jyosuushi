@@ -9,6 +9,7 @@ extend type Query {
 
 extend type Mutation {
   login(email: String!, password: String!): LoginPayload!
+  logout: LogoutPayload!
   registerAccount(email: String!, password: String!): RegisterAccountPayload!
 }
 
@@ -46,4 +47,13 @@ enum LoginError {
 type LoginPayload {
   error: LoginError
   user: UserAccount
+}
+
+enum LogoutError {
+  RATE_LIMITED
+  WASNT_AUTHENTICATED
+}
+
+type LogoutPayload {
+  error: LogoutError
 }

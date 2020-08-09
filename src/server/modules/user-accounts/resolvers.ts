@@ -11,6 +11,8 @@ import { MIN_PASSWORD_LENGTH } from "@shared/constants";
 import {
   LoginError,
   LoginPayload,
+  LogoutError,
+  LogoutPayload,
   Resolvers,
   UserAccount,
   MutationLoginArgs,
@@ -126,6 +128,59 @@ export const USER_ACCOUNTS_RESOLVERS: Resolvers = {
           username: user.email,
         },
       };
+    },
+    logout: async (
+      parent: unknown,
+      args: Record<string, unknown>,
+      context: ServerContext,
+      info: GraphQLResolveInfo
+    ): Promise<LogoutPayload> => {
+      const {
+        authCookie,
+        dataSources: { database },
+        rateLimit,
+      } = context;
+      // Perform rate limiting
+      const rateLimitError = await rateLimit(
+        {
+          args,
+          context,
+          info,
+          parent,
+        },
+        {
+          identityArgs: [],
+          regularWindow: {
+            max: 5,
+            window: "1m",
+          },
+          suspiciousRequestWindow: {
+            max: 2,
+            window: "1m",
+          },
+        }
+      );
+      if (rateLimitError) {
+        return {
+          error: LogoutError.RateLimited,
+        };
+      }
+
+      // Check to make sure we were even authenticated to begin with
+      if (!authCookie.current) {
+        return {
+          error: LogoutError.WasntAuthenticated,
+        };
+      }
+
+      // Clean up our session if we previously had a valid session
+      if (authCookie.current.valid) {
+        await database.endUserSession(authCookie.current.sessionId);
+      }
+
+      // Wipe our token and wrap up
+      authCookie.delete();
+      return {};
     },
     registerAccount: async (
       parent: unknown,
