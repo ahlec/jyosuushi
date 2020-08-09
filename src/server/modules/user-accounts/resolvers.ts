@@ -24,6 +24,7 @@ import {
   encryptPassword,
 } from "@server/authorization/password-encryption";
 import { ServerContext } from "@server/context";
+import { GraphQLResolveInfo } from "graphql";
 
 const DIGIT_REGEX = /[0-9]/;
 
@@ -34,17 +35,49 @@ function getUserSessionExpiration(): Date {
 export const USER_ACCOUNTS_RESOLVERS: Resolvers = {
   Mutation: {
     login: async (
-      _parent: unknown,
-      { email, password }: MutationLoginArgs,
-      { authCookie, dataSources: { database } }: ServerContext
+      parent: unknown,
+      args: MutationLoginArgs,
+      context: ServerContext,
+      info: GraphQLResolveInfo
     ): Promise<LoginPayload> => {
-      // Check to see if we're already authenticated
-      if (authCookie.current) {
-        if (authCookie.current.valid) {
-          return {
-            error: LoginError.AlreadyAuthenticated,
-          };
+      const { email, password } = args;
+      const {
+        authCookie,
+        dataSources: { database },
+        rateLimit,
+      } = context;
+
+      // Perform rate limiting
+      const rateLimitError = await rateLimit(
+        {
+          args,
+          context,
+          info,
+          parent,
+        },
+        {
+          identityArgs: ["email"],
+          regularWindow: {
+            max: 5,
+            window: "1m",
+          },
+          suspiciousRequestWindow: {
+            max: 2,
+            window: "1m",
+          },
         }
+      );
+      if (rateLimitError) {
+        return {
+          error: LoginError.RateLimited,
+        };
+      }
+
+      // Check to see if we're already authenticated
+      if (authCookie.current && authCookie.current.valid) {
+        return {
+          error: LoginError.AlreadyAuthenticated,
+        };
       }
 
       // Validate input parameters
@@ -95,17 +128,49 @@ export const USER_ACCOUNTS_RESOLVERS: Resolvers = {
       };
     },
     registerAccount: async (
-      _parent: unknown,
-      { email, password }: MutationRegisterAccountArgs,
-      { authCookie, dataSources: { database } }: ServerContext
+      parent: unknown,
+      args: MutationRegisterAccountArgs,
+      context: ServerContext,
+      info: GraphQLResolveInfo
     ): Promise<RegisterAccountPayload> => {
-      // Check to see if we're already authenticated
-      if (authCookie.current) {
-        if (authCookie.current.valid) {
-          return {
-            error: RegisterAccountError.AlreadyAuthenticated,
-          };
+      const { email, password } = args;
+      const {
+        authCookie,
+        dataSources: { database },
+        rateLimit,
+      } = context;
+
+      // Perform rate limiting
+      const rateLimitError = await rateLimit(
+        {
+          args,
+          context,
+          info,
+          parent,
+        },
+        {
+          identityArgs: ["email"],
+          regularWindow: {
+            max: 5,
+            window: "1m",
+          },
+          suspiciousRequestWindow: {
+            max: 2,
+            window: "1m",
+          },
         }
+      );
+      if (rateLimitError) {
+        return {
+          error: RegisterAccountError.RateLimited,
+        };
+      }
+
+      // Check to see if we're already authenticated
+      if (authCookie.current && authCookie.current.valid) {
+        return {
+          error: RegisterAccountError.AlreadyAuthenticated,
+        };
       }
 
       // Validate email

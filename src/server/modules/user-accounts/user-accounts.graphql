@@ -24,6 +24,7 @@ enum RegisterAccountError {
   # Registration errors
   ACCOUNT_ALREADY_EXISTS
   ALREADY_AUTHENTICATED
+  RATE_LIMITED
 }
 
 type RegisterAccountPayload {
@@ -39,7 +40,7 @@ enum LoginError {
   # Login errors
   EMAIL_PASSWORD_COMBINATION_INCORRECT
   ALREADY_AUTHENTICATED
-  TOO_MANY_INCORRECT_ATTEMPTS_SLOW_DOWN
+  RATE_LIMITED
 }
 
 type LoginPayload {

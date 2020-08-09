@@ -14,6 +14,8 @@
     "express",
     "graphql",
     "graphql/language",
+    "graphql-depth-limit",
+    "graphql-rate-limit",
     "path",
     "uuid"
   ]
