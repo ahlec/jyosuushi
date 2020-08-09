@@ -16,8 +16,11 @@ import {
   UserAccount,
   MutationLoginArgs,
   MutationRegisterAccountArgs,
+  MutationVerifyEmailArgs,
   RegisterAccountPayload,
   RegisterAccountError,
+  VerifyEmailError,
+  VerifyEmailPayload,
 } from "@server/graphql.generated";
 
 import {
@@ -27,7 +30,7 @@ import {
 import { ServerContext } from "@server/context";
 
 import { convertDatabaseUserToGraphQLUserAccount, logInUser } from "./utils";
-import { validateEmail } from "./validation";
+import { validateEmail, validateEmailVerificationCode } from "./validation";
 
 const DIGIT_REGEX = /[0-9]/;
 
@@ -107,6 +110,13 @@ export const USER_ACCOUNTS_RESOLVERS: Resolvers = {
       if (!isMatchForPasswords) {
         return {
           error: LoginError.EmailPasswordCombinationIncorrect,
+        };
+      }
+
+      // Only allow users who have verified their emails to log in
+      if (!user.hasVerifiedEmail) {
+        return {
+          error: LoginError.EmailNotVerified,
         };
       }
 
@@ -252,9 +262,101 @@ export const USER_ACCOUNTS_RESOLVERS: Resolvers = {
       // Register the account
       const encryptedPassword = await encryptPassword(password);
       const newUser = await database.createUser(email, encryptedPassword);
-      await logInUser(newUser.id, authCookie, database);
+      const verificationCode = await database.createEmailVerificationCode(
+        newUser.id
+      );
+      console.log("verification code:", verificationCode);
       return {
         user: convertDatabaseUserToGraphQLUserAccount(newUser),
+      };
+    },
+    verifyEmail: async (
+      parent: unknown,
+      args: MutationVerifyEmailArgs,
+      context: ServerContext,
+      info: GraphQLResolveInfo
+    ): Promise<VerifyEmailPayload> => {
+      const { code, email } = args;
+      const {
+        authCookie,
+        dataSources: { database },
+        rateLimit,
+      } = context;
+
+      // Perform rate limiting
+      const rateLimitError = await rateLimit(
+        {
+          args,
+          context,
+          info,
+          parent,
+        },
+        {
+          identityArgs: ["email"],
+          regularWindow: {
+            max: 2,
+            window: "1m",
+          },
+          suspiciousRequestWindow: {
+            max: 2,
+            window: "5m",
+          },
+        }
+      );
+      if (rateLimitError) {
+        return {
+          error: VerifyEmailError.RateLimited,
+        };
+      }
+
+      // Validate email (solely whether it's proper format, don't
+      // check yet to see if email is in database and thereby allow for
+      // probing to see if an email is registered)
+      const emailValidationError = validateEmail(email, {
+        empty: VerifyEmailError.EmailEmpty,
+        invalidFormat: VerifyEmailError.EmailInvalidFormat,
+      });
+      if (emailValidationError) {
+        return {
+          error: emailValidationError,
+        };
+      }
+
+      // Validate code
+      const codeValidationError = validateEmailVerificationCode(code, {
+        empty: VerifyEmailError.CodeEmpty,
+        invalidFormat: VerifyEmailError.CodeInvalidFormat,
+      });
+      if (codeValidationError) {
+        return {
+          error: codeValidationError,
+        };
+      }
+
+      // Attempt to redeem code
+      const redemptionResult = await database.redeemEmailVerificationCode(
+        email,
+        code
+      );
+      if (!redemptionResult.success) {
+        switch (redemptionResult.error) {
+          case "email-code-pair-not-found": {
+            return {
+              error: VerifyEmailError.CodeNotFound,
+            };
+          }
+          case "email-already-verified": {
+            return {
+              error: VerifyEmailError.AlreadyVerifiedEmail,
+            };
+          }
+        }
+      }
+
+      // We've verified so log the user in.
+      await logInUser(redemptionResult.user.id, authCookie, database);
+      return {
+        user: convertDatabaseUserToGraphQLUserAccount(redemptionResult.user),
       };
     },
   },

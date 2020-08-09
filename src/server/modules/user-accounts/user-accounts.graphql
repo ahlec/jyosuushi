@@ -11,6 +11,7 @@ extend type Mutation {
   login(email: String!, password: String!): LoginPayload!
   logout: LogoutPayload!
   registerAccount(email: String!, password: String!): RegisterAccountPayload!
+  verifyEmail(email: String!, code: String!): VerifyEmailPayload!
 }
 
 enum RegisterAccountError {
@@ -40,6 +41,7 @@ enum LoginError {
 
   # Login errors
   EMAIL_PASSWORD_COMBINATION_INCORRECT
+  EMAIL_NOT_VERIFIED
   ALREADY_AUTHENTICATED
   RATE_LIMITED
 }
@@ -56,4 +58,22 @@ enum LogoutError {
 
 type LogoutPayload {
   error: LogoutError
+}
+
+enum VerifyEmailError {
+  # Validation errors
+  EMAIL_EMPTY
+  EMAIL_INVALID_FORMAT
+  CODE_EMPTY
+  CODE_INVALID_FORMAT
+
+  # Verification errors
+  CODE_NOT_FOUND
+  ALREADY_VERIFIED_EMAIL
+  RATE_LIMITED
+}
+
+type VerifyEmailPayload {
+  error: VerifyEmailError
+  user: UserAccount
 }

@@ -21,6 +21,16 @@ function castUserToDatabaseUser(user: User): DatabaseUser {
   return (user as unknown) as DatabaseUser;
 }
 
+export type EmailVerificationRedemptionResult =
+  | {
+      success: true;
+      user: DatabaseUser;
+    }
+  | {
+      success: false;
+      error: "email-already-verified" | "email-code-pair-not-found";
+    };
+
 export class PrismaDataSource extends DataSource {
   public constructor(private readonly client: PrismaClient) {
     super();
@@ -116,5 +126,76 @@ export class PrismaDataSource extends DataSource {
         id: sessionId,
       },
     });
+  }
+
+  public async createEmailVerificationCode(userId: string): Promise<string> {
+    const { code } = await this.client.emailVerificationCode.create({
+      data: {
+        User: {
+          connect: {
+            id: userId,
+          },
+        },
+        code: uuidv4(),
+        dateSent: new Date(),
+      },
+    });
+    return code;
+  }
+
+  public async redeemEmailVerificationCode(
+    email: string,
+    code: string
+  ): Promise<EmailVerificationRedemptionResult> {
+    const codeDatabaseEntry = await this.client.emailVerificationCode.findOne({
+      where: {
+        code,
+      },
+    });
+    if (!codeDatabaseEntry) {
+      return {
+        error: "email-code-pair-not-found",
+        success: false,
+      };
+    }
+
+    const user = await this.client.user.findOne({
+      where: {
+        id: codeDatabaseEntry.userId,
+      },
+    });
+    if (!user || user.email !== email) {
+      return {
+        error: "email-code-pair-not-found",
+        success: false,
+      };
+    }
+
+    if (user.hasVerifiedEmail) {
+      return {
+        error: "email-already-verified",
+        success: false,
+      };
+    }
+
+    await this.client.user.update({
+      data: {
+        hasVerifiedEmail: true,
+      },
+      where: {
+        id: user.id,
+      },
+    });
+
+    await this.client.emailVerificationCode.delete({
+      where: {
+        code,
+      },
+    });
+
+    return {
+      success: true,
+      user: castUserToDatabaseUser(user),
+    };
   }
 }

@@ -32,10 +32,19 @@ model ActiveUserSession {
 }
 
 model User {
-  dateLastLogin     DateTime?
-  dateRegistered    DateTime
-  email             String              @unique
-  encryptedPassword String
-  id                String              @id
-  ActiveUserSession ActiveUserSession[]
+  dateLastLogin         DateTime?
+  dateRegistered        DateTime
+  email                 String                  @unique
+  encryptedPassword     String
+  hasVerifiedEmail      Boolean                 @default(false)
+  id                    String                  @id
+  ActiveUserSession     ActiveUserSession[]
+  EmailVerificationCode EmailVerificationCode[]
+}
+
+model EmailVerificationCode {
+  code     String   @id
+  dateSent DateTime
+  userId   String
+  User     User     @relation(fields: [userId], references: [id])
 }
