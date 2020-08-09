@@ -6,38 +6,24 @@ export interface UserSession {
 export enum UserTokenValidationError {
   BadTokenFormat = "bad-token-format",
   Expired = "expired",
-  NoSession = "no-session",
+  NoSessionExists = "no-session-exists",
 }
 
-export type UserTokenValidationResult =
-  | {
+export type UserTokenValidation =
+  | ({
       valid: true;
-      userSession: UserSession;
-    }
+    } & UserSession)
   | {
       valid: false;
       error: UserTokenValidationError;
     };
 
-export interface UserToken {
-  /**
-   * A function which will validate the token that was
-   * provided.
-   */
-  validate: () => Promise<UserTokenValidationResult>;
-}
-
 export interface AuthorizationCookie {
   /**
    * The current authorization token stored in the cookie, if
    * one was provided.
-   *
-   * NOTE: Just because there is a value here doesn't mean that
-   * it's been authenticated or that it's valid. In order to
-   * determine that the user is actually authenticated, you'll
-   * need to {@link UserToken.validate} the token.
    */
-  current: UserToken | null;
+  current: UserTokenValidation | null;
 
   /**
    * Sets the cookie to the specified user session.

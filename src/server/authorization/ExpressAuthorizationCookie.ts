@@ -1,26 +1,32 @@
 import { PrismaClient } from "@prisma/client";
 import { Request, Response } from "express";
 
-import DatabaseBackedUserToken from "./DatabaseBackedUserToken";
-import { AuthorizationCookie, UserToken, UserSession } from "./types";
+import { validateSessionById } from "./session-validation";
+import { AuthorizationCookie, UserTokenValidation, UserSession } from "./types";
 
 const COOKIE_NAME = "auth";
 
 class ExpressAuthorizationCookie implements AuthorizationCookie {
-  public readonly current: UserToken | null;
-
-  public constructor(
+  public static async load(
     request: Request,
-    private response: Response,
+    response: Response,
     prisma: PrismaClient
-  ) {
+  ): Promise<ExpressAuthorizationCookie> {
     const authCookieValue = request.cookies[COOKIE_NAME];
+    let current: UserTokenValidation | null;
     if (authCookieValue) {
-      this.current = new DatabaseBackedUserToken(authCookieValue, prisma);
+      current = await validateSessionById(authCookieValue, prisma);
     } else {
-      this.current = null;
+      current = null;
     }
+
+    return new ExpressAuthorizationCookie(current, response);
   }
+
+  private constructor(
+    public readonly current: UserTokenValidation | null,
+    private response: Response
+  ) {}
 
   public set(session: UserSession): void {
     this.response.cookie(COOKIE_NAME, session.sessionId, {

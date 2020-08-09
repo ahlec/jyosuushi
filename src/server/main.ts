@@ -13,10 +13,17 @@ async function main(): Promise<void> {
   const prisma = new PrismaClient();
 
   const server = new ApolloServer({
-    context: ({ req, res }): ServerContext => ({
-      authCookie: new ExpressAuthorizationCookie(req, res, prisma),
-      dataSources: createDataSources(prisma),
-    }),
+    context: async ({ req, res }): Promise<ServerContext> => {
+      const authCookie = await ExpressAuthorizationCookie.load(
+        req,
+        res,
+        prisma
+      );
+      return {
+        authCookie,
+        dataSources: createDataSources(prisma),
+      };
+    },
     resolvers: RESOLVERS,
     typeDefs: SERVER_MODULES.map((module) => module.typeDefs),
   });

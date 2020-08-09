@@ -40,8 +40,7 @@ export const USER_ACCOUNTS_RESOLVERS: Resolvers = {
     ): Promise<LoginPayload> => {
       // Check to see if we're already authenticated
       if (authCookie.current) {
-        const validate = await authCookie.current.validate();
-        if (validate.valid) {
+        if (authCookie.current.valid) {
           return {
             error: LoginError.AlreadyAuthenticated,
           };
@@ -102,8 +101,7 @@ export const USER_ACCOUNTS_RESOLVERS: Resolvers = {
     ): Promise<RegisterAccountPayload> => {
       // Check to see if we're already authenticated
       if (authCookie.current) {
-        const validate = await authCookie.current.validate();
-        if (validate.valid) {
+        if (authCookie.current.valid) {
           return {
             error: RegisterAccountError.AlreadyAuthenticated,
           };
@@ -175,17 +173,15 @@ export const USER_ACCOUNTS_RESOLVERS: Resolvers = {
       }: ServerContext
     ): Promise<UserAccount | null> => {
       if (!userToken) {
-        console.log("nope");
         return null;
       }
 
-      const validation = await userToken.validate();
-      if (!validation.valid) {
-        console.log("validation error:", validation.error);
+      if (!userToken.valid) {
+        console.log("validation error:", userToken.error);
         return null;
       }
 
-      const user = await database.getUserById(validation.userSession.userId);
+      const user = await database.getUserById(userToken.userId);
       if (!user) {
         // This shouldn't be possible because of foreign key constraints in the
         // database, but let's quietly handle this as well.
