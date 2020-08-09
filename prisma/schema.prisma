@@ -32,6 +32,7 @@ model ActiveUserSession {
 }
 
 model User {
+  dateLastLogin     DateTime?
   dateRegistered    DateTime
   email             String              @unique
   encryptedPassword String

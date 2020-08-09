@@ -88,6 +88,15 @@ export class PrismaDataSource extends DataSource {
     userId: string,
     expiration: Date
   ): Promise<ActiveUserSession> {
+    await this.client.user.update({
+      data: {
+        dateLastLogin: new Date(),
+      },
+      where: {
+        id: userId,
+      },
+    });
+
     return this.client.activeUserSession.create({
       data: {
         User: {

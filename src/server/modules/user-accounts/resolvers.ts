@@ -1,5 +1,5 @@
-import { addDays } from "date-fns";
 import { validate as validateEmail } from "email-validator";
+import { GraphQLResolveInfo } from "graphql";
 
 import { MIN_PASSWORD_LENGTH } from "@shared/constants";
 
@@ -26,13 +26,10 @@ import {
   encryptPassword,
 } from "@server/authorization/password-encryption";
 import { ServerContext } from "@server/context";
-import { GraphQLResolveInfo } from "graphql";
+
+import { logInUser } from "./utils";
 
 const DIGIT_REGEX = /[0-9]/;
-
-function getUserSessionExpiration(): Date {
-  return addDays(Date.now(), 7);
-}
 
 export const USER_ACCOUNTS_RESOLVERS: Resolvers = {
   Mutation: {
@@ -114,14 +111,7 @@ export const USER_ACCOUNTS_RESOLVERS: Resolvers = {
       }
 
       // We've authenticated, so let's set up a new session
-      const session = await database.startUserSession(
-        user.id,
-        getUserSessionExpiration()
-      );
-      authCookie.set({
-        sessionId: session.id,
-        userId: session.userId,
-      });
+      await logInUser(user.id, authCookie, database);
       return {
         user: {
           dateRegistered: user.dateRegistered,
@@ -267,14 +257,7 @@ export const USER_ACCOUNTS_RESOLVERS: Resolvers = {
       // Register the account
       const encryptedPassword = await encryptPassword(password);
       const newUser = await database.createUser(email, encryptedPassword);
-      const session = await database.startUserSession(
-        newUser.id,
-        getUserSessionExpiration()
-      );
-      authCookie.set({
-        sessionId: session.id,
-        userId: session.userId,
-      });
+      await logInUser(newUser.id, authCookie, database);
       return {
         user: {
           dateRegistered: newUser.dateRegistered,
