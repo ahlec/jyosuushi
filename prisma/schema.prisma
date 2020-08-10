@@ -8,43 +8,43 @@ datasource db {
 }
 
 model BugReport {
-  browser       String
-  clientVersion String
-  dateReported  DateTime @default(now())
   id            Int      @default(autoincrement()) @id
   message       String
+  browser       String
   os            String
   userAgent     String
+  clientVersion String
+  dateReported  DateTime @default(now())
 }
 
 model Suggestion {
-  clientVersion String
   id            Int    @default(autoincrement()) @id
   message       String
+  clientVersion String
   userAgent     String
 }
 
 model ActiveUserSession {
-  expiration DateTime
   id         String   @id
   userId     String
+  expiration DateTime
   User       User     @relation(fields: [userId], references: [id])
 }
 
 model User {
-  dateLastLogin         DateTime?
-  dateRegistered        DateTime
+  id                    String                  @id
   email                 String                  @unique
   encryptedPassword     String
+  dateRegistered        DateTime
+  dateLastLogin         DateTime?
   hasVerifiedEmail      Boolean                 @default(false)
-  id                    String                  @id
   ActiveUserSession     ActiveUserSession[]
   EmailVerificationCode EmailVerificationCode[]
 }
 
 model EmailVerificationCode {
   code     String   @id
-  dateSent DateTime
   userId   String
+  dateSent DateTime
   User     User     @relation(fields: [userId], references: [id])
 }
