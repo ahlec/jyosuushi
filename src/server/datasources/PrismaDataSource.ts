@@ -5,6 +5,8 @@ import {
   SuggestionCreateInput,
   User,
   ActiveUserSession,
+  UserPasswordResetCode,
+  PrismaClientKnownRequestError,
 } from "@prisma/client";
 import { v4 as uuidv4 } from "uuid";
 
@@ -30,6 +32,11 @@ export type EmailVerificationRedemptionResult =
       success: false;
       error: "email-already-verified" | "email-code-pair-not-found";
     };
+
+export interface CreatePasswordResetResults {
+  firstCode: string;
+  secondCode: string;
+}
 
 export class PrismaDataSource extends DataSource {
   public constructor(private readonly client: PrismaClient) {
@@ -211,5 +218,65 @@ export class PrismaDataSource extends DataSource {
         id: userId,
       },
     });
+  }
+
+  public async createPasswordResetCode(
+    email: string
+  ): Promise<CreatePasswordResetResults | null> {
+    try {
+      const entry = await this.client.userPasswordResetCode.create({
+        data: {
+          User: {
+            connect: {
+              email,
+            },
+          },
+          dateRequested: new Date(),
+          firstCode: uuidv4(),
+          secondCode: uuidv4(),
+        },
+      });
+      return {
+        firstCode: entry.firstCode,
+        secondCode: entry.secondCode,
+      };
+    } catch {
+      return null;
+    }
+  }
+
+  public async redeemPasswordReset(
+    firstCode: string,
+    secondCode: string,
+    password: EncryptedPassword
+  ): Promise<DatabaseUser | null> {
+    let resetCode: UserPasswordResetCode;
+    try {
+      resetCode = await this.client.userPasswordResetCode.delete({
+        where: {
+          firstCode_secondCode: {
+            firstCode,
+            secondCode,
+          },
+        },
+      });
+    } catch (e) {
+      if (e instanceof PrismaClientKnownRequestError && e.code === "P2016") {
+        // "Record to delete does not exist."
+        return null;
+      }
+
+      throw e;
+    }
+
+    const user = await this.client.user.update({
+      data: {
+        encryptedPassword: password,
+      },
+      where: {
+        id: resetCode.userId,
+      },
+    });
+    return castUserToDatabaseUser(user);
   }
 }

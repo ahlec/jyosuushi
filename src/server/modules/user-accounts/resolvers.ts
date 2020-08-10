@@ -16,10 +16,16 @@ import {
   UserAccount,
   MutationChangePasswordArgs,
   MutationLoginArgs,
+  MutationRedeemPasswordResetArgs,
   MutationRegisterAccountArgs,
+  MutationRequestPasswordResetArgs,
   MutationVerifyEmailArgs,
+  RedeemPasswordResetError,
+  RedeemPasswordResetPayload,
   RegisterAccountPayload,
   RegisterAccountError,
+  RequestPasswordResetError,
+  RequestPasswordResetPayload,
   VerifyEmailError,
   VerifyEmailPayload,
 } from "@server/graphql.generated";
@@ -31,11 +37,16 @@ import {
 import { UserTokenValidationError } from "@server/authentication/types";
 import { ServerContext } from "@server/context";
 
-import { convertDatabaseUserToGraphQLUserAccount, logInUser } from "./utils";
+import {
+  convertDatabaseUserToGraphQLUserAccount,
+  fakeWaitEmailSending,
+  logInUser,
+} from "./utils";
 import {
   validateEmail,
   validateEmailVerificationCode,
   validatePassword,
+  validatePasswordResetCode,
 } from "./validation";
 
 export const USER_ACCOUNTS_RESOLVERS: Resolvers = {
@@ -285,6 +296,103 @@ export const USER_ACCOUNTS_RESOLVERS: Resolvers = {
       authCookie.delete();
       return {};
     },
+    redeemPasswordReset: async (
+      parent: unknown,
+      args: MutationRedeemPasswordResetArgs,
+      context: ServerContext,
+      info: GraphQLResolveInfo
+    ): Promise<RedeemPasswordResetPayload> => {
+      const { firstCode, password, secondCode } = args;
+      const {
+        authCookie,
+        dataSources: { database },
+        rateLimit,
+      } = context;
+
+      // Perform rate limiting
+      const rateLimitError = await rateLimit(
+        {
+          args,
+          context,
+          info,
+          parent,
+        },
+        {
+          identityArgs: [],
+          regularWindow: {
+            max: 5,
+            window: "1m",
+          },
+          suspiciousRequestWindow: {
+            max: 2,
+            window: "1m",
+          },
+        }
+      );
+      if (rateLimitError) {
+        return {
+          error: RedeemPasswordResetError.RateLimited,
+        };
+      }
+
+      // If we're already authenticated, reject this attempt
+      if (authCookie.current && authCookie.current.valid) {
+        return {
+          error: RedeemPasswordResetError.AlreadyAuthenticated,
+        };
+      }
+
+      // Validate the codes
+      const firstCodeValidationError = validatePasswordResetCode(firstCode, {
+        empty: RedeemPasswordResetError.FirstCodeInvalid,
+        invalidFormat: RedeemPasswordResetError.FirstCodeInvalid,
+      });
+      if (firstCodeValidationError) {
+        return {
+          error: firstCodeValidationError,
+        };
+      }
+
+      const secondCodeValidationError = validatePasswordResetCode(secondCode, {
+        empty: RedeemPasswordResetError.SecondCodeInvalid,
+        invalidFormat: RedeemPasswordResetError.SecondCodeInvalid,
+      });
+      if (secondCodeValidationError) {
+        return {
+          error: secondCodeValidationError,
+        };
+      }
+
+      // Validate the format of the password
+      const passwordValidationError = validatePassword(password, {
+        empty: RedeemPasswordResetError.PasswordTooShort,
+        missingNumeral: RedeemPasswordResetError.PasswordMissingNumeral,
+        tooShort: RedeemPasswordResetError.PasswordTooShort,
+      });
+      if (passwordValidationError) {
+        return {
+          error: passwordValidationError,
+        };
+      }
+
+      // Attempt to perform the change
+      const encryptedPassword = await encryptPassword(password);
+      const user = await database.redeemPasswordReset(
+        firstCode,
+        secondCode,
+        encryptedPassword
+      );
+      if (!user) {
+        return {
+          error: RedeemPasswordResetError.CodesInvalid,
+        };
+      }
+
+      await logInUser(user.id, authCookie, database);
+      return {
+        user: convertDatabaseUserToGraphQLUserAccount(user),
+      };
+    },
     registerAccount: async (
       parent: unknown,
       args: MutationRegisterAccountArgs,
@@ -373,6 +481,80 @@ export const USER_ACCOUNTS_RESOLVERS: Resolvers = {
       console.log("verification code:", verificationCode);
       return {
         user: convertDatabaseUserToGraphQLUserAccount(newUser),
+      };
+    },
+    requestPasswordReset: async (
+      parent: unknown,
+      args: MutationRequestPasswordResetArgs,
+      context: ServerContext,
+      info: GraphQLResolveInfo
+    ): Promise<RequestPasswordResetPayload> => {
+      const { email } = args;
+      const {
+        authCookie: { current: userToken },
+        dataSources: { database },
+        rateLimit,
+      } = context;
+
+      // Perform rate limiting
+      const rateLimitError = await rateLimit(
+        {
+          args,
+          context,
+          info,
+          parent,
+        },
+        {
+          identityArgs: ["email"],
+          regularWindow: {
+            max: 2,
+            window: "1m",
+          },
+          suspiciousRequestWindow: {
+            max: 2,
+            window: "5m",
+          },
+        }
+      );
+      if (rateLimitError) {
+        return {
+          error: RequestPasswordResetError.RateLimited,
+          possibleSuccess: false,
+        };
+      }
+
+      // Check if we're already authenticated
+      if (userToken && userToken.valid) {
+        return {
+          error: RequestPasswordResetError.AlreadyAuthenticated,
+          possibleSuccess: false,
+        };
+      }
+
+      // Validate email input form
+      const emailValidationError = validateEmail(email, {
+        empty: RequestPasswordResetError.EmailEmpty,
+        invalidFormat: RequestPasswordResetError.EmailInvalidFormat,
+      });
+      if (emailValidationError) {
+        return {
+          error: emailValidationError,
+          possibleSuccess: false,
+        };
+      }
+
+      // Create the codes and send the email
+      const resetCodes = await database.createPasswordResetCode(email);
+      if (!resetCodes) {
+        await fakeWaitEmailSending();
+        return {
+          possibleSuccess: true,
+        };
+      }
+
+      console.log(resetCodes.firstCode, resetCodes.secondCode);
+      return {
+        possibleSuccess: true,
       };
     },
     verifyEmail: async (

@@ -23,7 +23,7 @@ export function validateEmail<TEmpty, TInvalidFormat>(
   return null;
 }
 
-export function validateEmailVerificationCode<TEmpty, TInvalidFormat>(
+function validateUuidCode<TEmpty, TInvalidFormat>(
   str: string,
   errorValues: {
     empty: TEmpty;
@@ -40,6 +40,9 @@ export function validateEmailVerificationCode<TEmpty, TInvalidFormat>(
 
   return null;
 }
+
+export const validateEmailVerificationCode = validateUuidCode;
+export const validatePasswordResetCode = validateUuidCode;
 
 export function validatePassword<TEmpty, TTooShort, TMissingNumeral>(
   str: string,

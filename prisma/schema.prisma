@@ -40,6 +40,7 @@ model User {
   hasVerifiedEmail      Boolean                 @default(false)
   ActiveUserSession     ActiveUserSession[]
   EmailVerificationCode EmailVerificationCode[]
+  UserPasswordResetCode UserPasswordResetCode[]
 }
 
 model EmailVerificationCode {
@@ -47,4 +48,14 @@ model EmailVerificationCode {
   userId   String
   dateSent DateTime
   User     User     @relation(fields: [userId], references: [id])
+}
+
+model UserPasswordResetCode {
+  firstCode     String
+  secondCode    String
+  userId        String
+  dateRequested DateTime
+  User          User     @relation(fields: [userId], references: [id])
+
+  @@id([firstCode, secondCode])
 }

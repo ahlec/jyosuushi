@@ -20,6 +20,12 @@ extend type Mutation {
   login(email: String!, password: String!): LoginPayload!
   logout: LogoutPayload!
   registerAccount(email: String!, password: String!): RegisterAccountPayload!
+  redeemPasswordReset(
+    firstCode: String!
+    secondCode: String!
+    password: String!
+  ): RedeemPasswordResetPayload!
+  requestPasswordReset(email: String!): RequestPasswordResetPayload!
   verifyEmail(email: String!, code: String!): VerifyEmailPayload!
 }
 
@@ -102,4 +108,42 @@ enum ChangePasswordError {
 type ChangePasswordPayload {
   error: ChangePasswordError
   success: Boolean!
+}
+
+enum RequestPasswordResetError {
+  # Validation errors
+  EMAIL_EMPTY
+  EMAIL_INVALID_FORMAT
+
+  # Operation errors
+  ALREADY_AUTHENTICATED
+  RATE_LIMITED
+}
+
+type RequestPasswordResetPayload {
+  error: RequestPasswordResetError
+
+  # This endpoint won't return back whether the email actually was found
+  # in the database or not, only whether we could have sent an email. Wording
+  # for interpretting this field should be "If the provided email was registered
+  # here, check your email inbox shortly to find the reset link." or something.
+  possibleSuccess: Boolean!
+}
+
+enum RedeemPasswordResetError {
+  # Validation errors
+  FIRST_CODE_INVALID
+  SECOND_CODE_INVALID
+  PASSWORD_TOO_SHORT
+  PASSWORD_MISSING_NUMERAL
+
+  # Operation errors
+  CODES_INVALID
+  ALREADY_AUTHENTICATED
+  RATE_LIMITED
+}
+
+type RedeemPasswordResetPayload {
+  error: RedeemPasswordResetError
+  user: UserAccount
 }

@@ -35,3 +35,18 @@ export function convertDatabaseUserToGraphQLUserAccount(
     username: user.email,
   };
 }
+
+/**
+ * A function that should take some period of time that it would
+ * normally take to dispatch an email. This can be used then to
+ * counter timing attacks that could try to learn something about
+ * users registered in the database by whether or not an email was
+ * sent.
+ */
+export function fakeWaitEmailSending(): Promise<void> {
+  const MIN_TIME_MS = 300;
+  const MAX_TIME_MS = 600;
+  const timeRange =
+    MIN_TIME_MS + Math.round(Math.random() * (MAX_TIME_MS - MIN_TIME_MS));
+  return new Promise((resolve) => setTimeout(resolve, timeRange));
+}
