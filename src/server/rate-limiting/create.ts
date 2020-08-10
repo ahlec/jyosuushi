@@ -3,7 +3,7 @@ import { getGraphQLRateLimiter } from "graphql-rate-limit";
 import { ServerContext } from "@server/context";
 
 import { RateLimitFn, RateLimitWindowConfiguration } from "./types";
-import { isValidationErrorSuspicious } from "@server/authorization/utils";
+import { isValidationErrorSuspicious } from "@server/authentication/utils";
 
 function identifyRateLimitContext({
   authCookie: { current: userSession },

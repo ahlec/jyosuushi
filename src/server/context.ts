@@ -1,4 +1,4 @@
-import { AuthorizationCookie } from "./authorization/types";
+import { AuthenticationCookie } from "./authentication/types";
 import { PrismaDataSource } from "./datasources/PrismaDataSource";
 import { RateLimitFn } from "./rate-limiting/types";
 
@@ -7,7 +7,7 @@ export interface ServerContextDataSources {
 }
 
 export interface ServerContext {
-  authCookie: AuthorizationCookie;
+  authCookie: AuthenticationCookie;
   dataSources: ServerContextDataSources;
   rateLimit: RateLimitFn;
   requestRemoteAddress: string;

@@ -4,7 +4,7 @@ import CookieParser from "cookie-parser";
 import express from "express";
 import graphqlDepthLimit from "graphql-depth-limit";
 
-import ExpressAuthorizationCookie from "./authorization/ExpressAuthorizationCookie";
+import ExpressAuthenticationCookie from "./authentication/ExpressAuthenticationCookie";
 import { createDataSources } from "./datasources";
 import { Environment } from "./environment";
 import { SERVER_MODULES } from "./modules";
@@ -28,7 +28,7 @@ async function main(): Promise<void> {
   const rateLimit = createRateLimiter();
   const server = new ApolloServer({
     context: async ({ req, res }): Promise<ServerContext> => {
-      const authCookie = await ExpressAuthorizationCookie.load(
+      const authCookie = await ExpressAuthenticationCookie.load(
         environment,
         req,
         res,

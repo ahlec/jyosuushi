@@ -4,17 +4,21 @@ import { Request, Response } from "express";
 import { Environment } from "@server/environment";
 
 import { validateSessionById } from "./session-validation";
-import { AuthorizationCookie, UserTokenValidation, UserSession } from "./types";
+import {
+  AuthenticationCookie,
+  UserTokenValidation,
+  UserSession,
+} from "./types";
 
 const COOKIE_NAME = "auth";
 
-class ExpressAuthorizationCookie implements AuthorizationCookie {
+class ExpressAuthenticationCookie implements AuthenticationCookie {
   public static async load(
     environment: Environment,
     request: Request,
     response: Response,
     prisma: PrismaClient
-  ): Promise<ExpressAuthorizationCookie> {
+  ): Promise<ExpressAuthenticationCookie> {
     const authCookieValue = request.cookies[COOKIE_NAME];
     let current: UserTokenValidation | null;
     if (authCookieValue) {
@@ -23,7 +27,7 @@ class ExpressAuthorizationCookie implements AuthorizationCookie {
       current = null;
     }
 
-    return new ExpressAuthorizationCookie(current, response, environment);
+    return new ExpressAuthenticationCookie(current, response, environment);
   }
 
   private constructor(
@@ -45,4 +49,4 @@ class ExpressAuthorizationCookie implements AuthorizationCookie {
   }
 }
 
-export default ExpressAuthorizationCookie;
+export default ExpressAuthenticationCookie;

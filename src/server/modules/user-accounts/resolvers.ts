@@ -27,8 +27,8 @@ import {
 import {
   arePasswordsEqual,
   encryptPassword,
-} from "@server/authorization/password-encryption";
-import { UserTokenValidationError } from "@server/authorization/types";
+} from "@server/authentication/password-encryption";
+import { UserTokenValidationError } from "@server/authentication/types";
 import { ServerContext } from "@server/context";
 
 import { convertDatabaseUserToGraphQLUserAccount, logInUser } from "./utils";

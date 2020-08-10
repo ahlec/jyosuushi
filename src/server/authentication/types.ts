@@ -18,9 +18,9 @@ export type UserTokenValidation =
       error: UserTokenValidationError;
     };
 
-export interface AuthorizationCookie {
+export interface AuthenticationCookie {
   /**
-   * The current authorization token stored in the cookie, if
+   * The current authentication token stored in the cookie, if
    * one was provided.
    */
   current: UserTokenValidation | null;

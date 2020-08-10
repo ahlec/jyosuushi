@@ -1,6 +1,6 @@
 import { addDays } from "date-fns";
 
-import { AuthorizationCookie } from "@server/authorization/types";
+import { AuthenticationCookie } from "@server/authentication/types";
 import {
   PrismaDataSource,
   DatabaseUser,
@@ -14,7 +14,7 @@ function getUserSessionExpiration(): Date {
 
 export async function logInUser(
   userId: string,
-  authCookie: AuthorizationCookie,
+  authCookie: AuthenticationCookie,
   database: PrismaDataSource
 ): Promise<void> {
   const session = await database.startUserSession(

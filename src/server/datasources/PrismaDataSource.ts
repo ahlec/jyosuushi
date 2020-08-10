@@ -8,7 +8,7 @@ import {
 } from "@prisma/client";
 import { v4 as uuidv4 } from "uuid";
 
-import { EncryptedPassword } from "@server/authorization/password-encryption";
+import { EncryptedPassword } from "@server/authentication/password-encryption";
 
 export type DatabaseUser = Omit<User, "encryptedPassword"> & {
   encryptedPassword: EncryptedPassword;
