@@ -198,4 +198,18 @@ export class PrismaDataSource extends DataSource {
       user: castUserToDatabaseUser(user),
     };
   }
+
+  public async changeUserPassword(
+    userId: string,
+    password: EncryptedPassword
+  ): Promise<void> {
+    await this.client.user.update({
+      data: {
+        encryptedPassword: password.toString(),
+      },
+      where: {
+        id: userId,
+      },
+    });
+  }
 }

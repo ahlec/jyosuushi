@@ -13,6 +13,10 @@ extend type Query {
 }
 
 extend type Mutation {
+  changePassword(
+    oldPassword: String!
+    newPassword: String!
+  ): ChangePasswordPayload!
   login(email: String!, password: String!): LoginPayload!
   logout: LogoutPayload!
   registerAccount(email: String!, password: String!): RegisterAccountPayload!
@@ -81,4 +85,21 @@ enum VerifyEmailError {
 type VerifyEmailPayload {
   error: VerifyEmailError
   user: UserAccount
+}
+
+enum ChangePasswordError {
+  # Validation errors
+  OLD_PASSWORD_EMPTY
+  NEW_PASSWORD_TOO_SHORT
+  NEW_PASSWORD_MISSING_NUMERAL
+
+  # Operation errors
+  OLD_PASSWORD_NOT_CORRECT
+  NOT_AUTHENTICATED
+  RATE_LIMITED
+}
+
+type ChangePasswordPayload {
+  error: ChangePasswordError
+  success: Boolean!
 }
