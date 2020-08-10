@@ -6,18 +6,30 @@ import graphqlDepthLimit from "graphql-depth-limit";
 
 import ExpressAuthorizationCookie from "./authorization/ExpressAuthorizationCookie";
 import { createDataSources } from "./datasources";
+import { Environment } from "./environment";
 import { SERVER_MODULES } from "./modules";
 import { createRateLimiter } from "./rate-limiting/create";
 import { RESOLVERS } from "./resolvers";
 import { ServerContext } from "./context";
 
+function getRuntimeEnvironment(): Environment {
+  const { LOCAL_DEVELOPMENT = "" } = process.env;
+  return {
+    canUseSecureCookies: LOCAL_DEVELOPMENT !== "true",
+  };
+}
+
 async function main(): Promise<void> {
+  const environment = getRuntimeEnvironment();
+  console.log("⚙️ Environment:", environment);
+
   const prisma = new PrismaClient();
 
   const rateLimit = createRateLimiter();
   const server = new ApolloServer({
     context: async ({ req, res }): Promise<ServerContext> => {
       const authCookie = await ExpressAuthorizationCookie.load(
+        environment,
         req,
         res,
         prisma

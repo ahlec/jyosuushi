@@ -1,6 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 import { Request, Response } from "express";
 
+import { Environment } from "@server/environment";
+
 import { validateSessionById } from "./session-validation";
 import { AuthorizationCookie, UserTokenValidation, UserSession } from "./types";
 
@@ -8,6 +10,7 @@ const COOKIE_NAME = "auth";
 
 class ExpressAuthorizationCookie implements AuthorizationCookie {
   public static async load(
+    environment: Environment,
     request: Request,
     response: Response,
     prisma: PrismaClient
@@ -20,19 +23,20 @@ class ExpressAuthorizationCookie implements AuthorizationCookie {
       current = null;
     }
 
-    return new ExpressAuthorizationCookie(current, response);
+    return new ExpressAuthorizationCookie(current, response, environment);
   }
 
   private constructor(
     public readonly current: UserTokenValidation | null,
-    private response: Response
+    private readonly response: Response,
+    private readonly environment: Environment
   ) {}
 
   public set(session: UserSession): void {
     this.response.cookie(COOKIE_NAME, session.sessionId, {
       httpOnly: true,
       sameSite: "strict",
-      secure: true,
+      secure: this.environment.canUseSecureCookies,
     });
   }
 
