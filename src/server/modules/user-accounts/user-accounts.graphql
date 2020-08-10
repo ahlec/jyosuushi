@@ -5,6 +5,11 @@ type UserAccount {
 
 extend type Query {
   activeUser: UserAccount
+
+  # True iff the auth session that was previously in the auth cookie has
+  # expired. If there is no auth cookie, the auth cookie is invalid in any
+  # other way, or if the user is correctly logged in, this will be false.
+  hasSessionExpired: Boolean!
 }
 
 extend type Mutation {

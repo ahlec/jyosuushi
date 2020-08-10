@@ -27,6 +27,7 @@ import {
   arePasswordsEqual,
   encryptPassword,
 } from "@server/authorization/password-encryption";
+import { UserTokenValidationError } from "@server/authorization/types";
 import { ServerContext } from "@server/context";
 
 import { convertDatabaseUserToGraphQLUserAccount, logInUser } from "./utils";
@@ -386,6 +387,17 @@ export const USER_ACCOUNTS_RESOLVERS: Resolvers = {
       }
 
       return convertDatabaseUserToGraphQLUserAccount(user);
+    },
+    hasSessionExpired: (
+      parent: unknown,
+      args: unknown,
+      { authCookie: { current: userToken } }: ServerContext
+    ): boolean => {
+      return (
+        !!userToken &&
+        !userToken.valid &&
+        userToken.error === UserTokenValidationError.Expired
+      );
     },
   },
 };
