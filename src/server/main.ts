@@ -7,6 +7,8 @@ import graphqlDepthLimit from "graphql-depth-limit";
 import ExpressAuthenticationCookie from "./authentication/ExpressAuthenticationCookie";
 import { createDataSources } from "./datasources";
 import { Environment } from "./environment";
+import ConsoleLogEmailApi from "./email/ConsoleLogEmailApi";
+import { EmailApi } from "./email/types";
 import { SERVER_MODULES } from "./modules";
 import { createRateLimiter } from "./rate-limiting/create";
 import { RESOLVERS } from "./resolvers";
@@ -19,9 +21,15 @@ function getRuntimeEnvironment(): Environment {
   };
 }
 
+function instantiateEmailApi(): EmailApi {
+  return new ConsoleLogEmailApi();
+}
+
 async function main(): Promise<void> {
   const environment = getRuntimeEnvironment();
   console.log("⚙️ Environment:", environment);
+
+  const emailApi = instantiateEmailApi();
 
   const prisma = new PrismaClient();
 
@@ -37,6 +45,7 @@ async function main(): Promise<void> {
       return {
         authCookie,
         dataSources: createDataSources(prisma),
+        emailApi,
         rateLimit,
         requestRemoteAddress: req.ip,
       };

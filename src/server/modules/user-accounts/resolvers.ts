@@ -403,6 +403,7 @@ export const USER_ACCOUNTS_RESOLVERS: Resolvers = {
       const {
         authCookie,
         dataSources: { database },
+        emailApi,
         rateLimit,
       } = context;
 
@@ -478,7 +479,12 @@ export const USER_ACCOUNTS_RESOLVERS: Resolvers = {
       const verificationCode = await database.createEmailVerificationCode(
         newUser.id
       );
-      console.log("verification code:", verificationCode);
+
+      // Send welcome email
+      await emailApi.sendAccountCreatedEmail(email, {
+        verifyEmailCode: verificationCode,
+      });
+
       return {
         user: convertDatabaseUserToGraphQLUserAccount(newUser),
       };
@@ -493,6 +499,7 @@ export const USER_ACCOUNTS_RESOLVERS: Resolvers = {
       const {
         authCookie: { current: userToken },
         dataSources: { database },
+        emailApi,
         rateLimit,
       } = context;
 
@@ -552,7 +559,11 @@ export const USER_ACCOUNTS_RESOLVERS: Resolvers = {
         };
       }
 
-      console.log(resetCodes.firstCode, resetCodes.secondCode);
+      await emailApi.sendResetPasswordEmail(email, {
+        firstCode: resetCodes.firstCode,
+        secondCode: resetCodes.secondCode,
+      });
+
       return {
         possibleSuccess: true,
       };
