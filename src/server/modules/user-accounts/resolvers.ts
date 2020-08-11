@@ -18,12 +18,15 @@ import {
   MutationLoginArgs,
   MutationRedeemPasswordResetArgs,
   MutationRegisterAccountArgs,
+  MutationRequestEmailVerificationArgs,
   MutationRequestPasswordResetArgs,
   MutationVerifyEmailArgs,
   RedeemPasswordResetError,
   RedeemPasswordResetPayload,
   RegisterAccountPayload,
   RegisterAccountError,
+  RequestEmailVerificationError,
+  RequestEmailVerificationPayload,
   RequestPasswordResetError,
   RequestPasswordResetPayload,
   VerifyEmailError,
@@ -37,8 +40,10 @@ import {
 import { UserTokenValidationError } from "@server/authentication/types";
 import { ServerContext } from "@server/context";
 
+import { handleUsernamePasswordAuthentication } from "./shared";
 import {
   convertDatabaseUserToGraphQLUserAccount,
+  canSendEmailVerification,
   fakeWaitEmailSending,
   logInUser,
 } from "./utils";
@@ -159,76 +164,30 @@ export const USER_ACCOUNTS_RESOLVERS: Resolvers = {
       context: ServerContext,
       info: GraphQLResolveInfo
     ): Promise<LoginPayload> => {
-      const { email, password } = args;
+      const inputProcessingResults = await handleUsernamePasswordAuthentication(
+        parent,
+        args,
+        context,
+        info,
+        {
+          alreadyAuthenticated: LoginError.AlreadyAuthenticated,
+          emailEmpty: LoginError.EmailEmpty,
+          emailPasswordIncorrect: LoginError.EmailPasswordCombinationIncorrect,
+          passwordEmpty: LoginError.PasswordEmpty,
+          rateLimited: LoginError.RateLimited,
+        }
+      );
+      if (!inputProcessingResults.success) {
+        return {
+          error: inputProcessingResults.error,
+        };
+      }
+
+      const { user } = inputProcessingResults;
       const {
         authCookie,
         dataSources: { database },
-        rateLimit,
       } = context;
-
-      // Perform rate limiting
-      const rateLimitError = await rateLimit(
-        {
-          args,
-          context,
-          info,
-          parent,
-        },
-        {
-          identityArgs: ["email"],
-          regularWindow: {
-            max: 5,
-            window: "1m",
-          },
-          suspiciousRequestWindow: {
-            max: 2,
-            window: "1m",
-          },
-        }
-      );
-      if (rateLimitError) {
-        return {
-          error: LoginError.RateLimited,
-        };
-      }
-
-      // Check to see if we're already authenticated
-      if (authCookie.current && authCookie.current.valid) {
-        return {
-          error: LoginError.AlreadyAuthenticated,
-        };
-      }
-
-      // Validate input parameters
-      if (!email) {
-        return {
-          error: LoginError.EmailEmpty,
-        };
-      }
-
-      if (!password) {
-        return {
-          error: LoginError.PasswordEmpty,
-        };
-      }
-
-      // Fetch the account for the specified email
-      const user = await database.getUserByEmail(email);
-      if (!user) {
-        return {
-          error: LoginError.EmailPasswordCombinationIncorrect,
-        };
-      }
-
-      const isMatchForPasswords = await arePasswordsEqual(
-        user.encryptedPassword,
-        password
-      );
-      if (!isMatchForPasswords) {
-        return {
-          error: LoginError.EmailPasswordCombinationIncorrect,
-        };
-      }
 
       // Only allow users who have verified their emails to log in
       if (!user.hasVerifiedEmail) {
@@ -487,6 +446,73 @@ export const USER_ACCOUNTS_RESOLVERS: Resolvers = {
 
       return {
         user: convertDatabaseUserToGraphQLUserAccount(newUser),
+      };
+    },
+    requestEmailVerification: async (
+      parent: unknown,
+      args: MutationRequestEmailVerificationArgs,
+      context: ServerContext,
+      info: GraphQLResolveInfo
+    ): Promise<RequestEmailVerificationPayload> => {
+      const inputProcessingResults = await handleUsernamePasswordAuthentication(
+        parent,
+        args,
+        context,
+        info,
+        {
+          alreadyAuthenticated:
+            RequestEmailVerificationError.AlreadyAuthenticated,
+          emailEmpty: RequestEmailVerificationError.EmailEmpty,
+          emailPasswordIncorrect:
+            RequestEmailVerificationError.EmailPasswordCombinationIncorrect,
+          passwordEmpty: RequestEmailVerificationError.PasswordEmpty,
+          rateLimited: RequestEmailVerificationError.RateLimited,
+        }
+      );
+      if (!inputProcessingResults.success) {
+        return {
+          error: inputProcessingResults.error,
+          success: false,
+        };
+      }
+
+      const { email } = args;
+      const { user } = inputProcessingResults;
+      const {
+        dataSources: { database },
+        emailApi,
+      } = context;
+
+      // If the user has already verified their email, then this does nothing.
+      if (user.hasVerifiedEmail) {
+        return {
+          error: RequestEmailVerificationError.EmailAlreadyVerified,
+          success: false,
+        };
+      }
+
+      // Check to see if we're allowed to generate a new email verification
+      const lastEmailSent = await database.getMostRecentEmailVerificationCodeTimestamp(
+        user.id
+      );
+      if (!canSendEmailVerification(lastEmailSent)) {
+        return {
+          error: RequestEmailVerificationError.VerificationEmailSentTooRecently,
+          success: false,
+        };
+      }
+
+      // Create the code and send the email
+      const verificationCode = await database.createEmailVerificationCode(
+        user.id
+      );
+
+      await emailApi.sendVerifyEmail(email, {
+        code: verificationCode,
+      });
+
+      return {
+        success: true,
       };
     },
     requestPasswordReset: async (

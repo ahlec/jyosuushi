@@ -1,4 +1,6 @@
-import { addDays } from "date-fns";
+import { addDays, differenceInMilliseconds } from "date-fns";
+
+import { ONE_MINUTE } from "@shared/constants";
 
 import { AuthenticationCookie } from "@server/authentication/types";
 import {
@@ -49,4 +51,20 @@ export function fakeWaitEmailSending(): Promise<void> {
   const timeRange =
     MIN_TIME_MS + Math.round(Math.random() * (MAX_TIME_MS - MIN_TIME_MS));
   return new Promise((resolve) => setTimeout(resolve, timeRange));
+}
+
+const MIN_MILLISECONDS_BETWEEN_VERIFICATION_EMAILS = ONE_MINUTE;
+
+export function canSendEmailVerification(
+  lastEmailSentTimestamp: Date | null
+): boolean {
+  if (lastEmailSentTimestamp === null) {
+    return true;
+  }
+
+  const elapsedTime = differenceInMilliseconds(
+    Date.now(),
+    lastEmailSentTimestamp
+  );
+  return elapsedTime >= MIN_MILLISECONDS_BETWEEN_VERIFICATION_EMAILS;
 }

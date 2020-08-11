@@ -135,6 +135,25 @@ export class PrismaDataSource extends DataSource {
     });
   }
 
+  public async getMostRecentEmailVerificationCodeTimestamp(
+    userId: string
+  ): Promise<Date | null> {
+    const [mostRecentCode] = await this.client.emailVerificationCode.findMany({
+      orderBy: {
+        dateSent: "desc",
+      },
+      take: 1,
+      where: {
+        userId,
+      },
+    });
+    if (!mostRecentCode) {
+      return null;
+    }
+
+    return mostRecentCode.dateSent;
+  }
+
   public async createEmailVerificationCode(userId: string): Promise<string> {
     const { code } = await this.client.emailVerificationCode.create({
       data: {

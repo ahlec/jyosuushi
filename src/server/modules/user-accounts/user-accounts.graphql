@@ -25,6 +25,10 @@ extend type Mutation {
     secondCode: String!
     password: String!
   ): RedeemPasswordResetPayload!
+  requestEmailVerification(
+    email: String!
+    password: String!
+  ): RequestEmailVerificationPayload!
   requestPasswordReset(email: String!): RequestPasswordResetPayload!
   verifyEmail(email: String!, code: String!): VerifyEmailPayload!
 }
@@ -146,4 +150,24 @@ enum RedeemPasswordResetError {
 type RedeemPasswordResetPayload {
   error: RedeemPasswordResetError
   user: UserAccount
+}
+
+enum RequestEmailVerificationError {
+  # Validation errors
+  EMAIL_EMPTY
+  PASSWORD_EMPTY
+
+  # Authentication-based errors
+  EMAIL_PASSWORD_COMBINATION_INCORRECT
+  ALREADY_AUTHENTICATED
+  RATE_LIMITED
+
+  # Operation errors
+  EMAIL_ALREADY_VERIFIED
+  VERIFICATION_EMAIL_SENT_TOO_RECENTLY
+}
+
+type RequestEmailVerificationPayload {
+  error: RequestEmailVerificationError
+  success: Boolean!
 }
