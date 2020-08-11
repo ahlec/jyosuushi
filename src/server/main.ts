@@ -18,8 +18,10 @@ import { ServerContext } from "./context";
 function getRuntimeEnvironment(): Environment {
   const {
     AWS_REGION = "us-east-1",
+    EMAIL_ADDRESS = "donotreply@jyosuushi.com",
     LOCAL_DEVELOPMENT = "",
     USE_AWS = "",
+    WEB_CLIENT_URL,
   } = process.env;
 
   const isLocalDevelopment = LOCAL_DEVELOPMENT === "true";
@@ -29,12 +31,21 @@ function getRuntimeEnvironment(): Environment {
     throw new Error("Cannot be in a production environment with AWS disabled.");
   }
 
+  let webClientBaseUrl = WEB_CLIENT_URL;
+  if (!webClientBaseUrl) {
+    webClientBaseUrl = isLocalDevelopment
+      ? "http://localhost:8080"
+      : "https://www.jyosuushi.com";
+  }
+
   const useAws = !isLocalDevelopment || hasAwsUseFlag;
   return {
     awsRegion: AWS_REGION,
     canUseSecureCookies: !isLocalDevelopment,
+    fromEmailAddress: EMAIL_ADDRESS,
     useAws,
     useAwsSimpleEmailService: useAws,
+    webClientBaseUrl,
   };
 }
 
@@ -85,7 +96,8 @@ function instantiateEmailApi(environment: Environment): EmailApi {
         }
       : {
           mode: "local-filesystem",
-        }
+        },
+    environment.webClientBaseUrl
   );
 }
 

@@ -44,6 +44,7 @@
     "@types/lodash": "^4.14.157",
     "@types/mime": "^2.0.2",
     "@types/prettier": "^2.0.2",
+    "@types/pug": "^2.0.4",
     "@types/react": "^16.9.43",
     "@types/react-dom": "^16.9.8",
     "@types/react-ga": "^2.3.0",

@@ -22,6 +22,7 @@
     "is-wsl",
     "nodemailer",
     "path",
+    "pug",
     "uuid"
   ]
 }

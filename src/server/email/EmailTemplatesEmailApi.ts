@@ -14,6 +14,8 @@ import {
   VerifyEmailArguments,
 } from "./types";
 
+type PugCompileFileOptions = import("pug").Options;
+
 export type EmailServiceConfiguration =
   | {
       /**
@@ -53,16 +55,16 @@ function previewEmailUrlTransform(rawFilePath: string): string {
   return `file://${filename}`;
 }
 
-interface OmniPresentLocals {
-  clientUrlBase: string;
-}
+const PUG_COMPILE_OPTIONS: PugCompileFileOptions = {};
 
 interface EmailTemplatesAndTheirArguments {
   "account-created": {
     email: string;
-    verifyEmailCode: string;
+    verifyEmailLink: string;
   };
 }
+
+const TEMPLATE_DIRECTORY = pathResolve(__dirname, "email-templates");
 
 /**
  * A stub email client that prints everything to the console. This is designed
@@ -70,9 +72,11 @@ interface EmailTemplatesAndTheirArguments {
  */
 class EmailTemplatesEmailApi implements EmailApi {
   private readonly emailTemplate: EmailTemplate;
-  private readonly omniPresentLocals: OmniPresentLocals;
 
-  public constructor(config: EmailServiceConfiguration) {
+  public constructor(
+    config: EmailServiceConfiguration,
+    private readonly webClientBaseUrl: string
+  ) {
     let preview:
       | (EmailTemplate.PreviewEmailOpts & {
           urlTransform: (path: string) => string;
@@ -103,6 +107,13 @@ class EmailTemplatesEmailApi implements EmailApi {
     }
 
     this.emailTemplate = new EmailTemplate({
+      juice: true,
+      juiceResources: {
+        webResources: {
+          images: true,
+          relativeTo: TEMPLATE_DIRECTORY,
+        },
+      },
       message: {
         from: "donotreply@jyosuushi.com",
       },
@@ -110,23 +121,23 @@ class EmailTemplatesEmailApi implements EmailApi {
       send,
       transport: transport || undefined,
       views: {
-        root: pathResolve(__dirname, "email-templates"),
+        root: TEMPLATE_DIRECTORY,
       },
     });
-    this.omniPresentLocals = {
-      clientUrlBase: "https://jyosuushi.com",
-    };
   }
 
   public sendAccountCreatedEmail(
     emailAddress: string,
-    args: AccountCreatedEmailArguments
+    { verifyEmailCode }: AccountCreatedEmailArguments
   ): Promise<SendEmailResult> {
     return this.send({
       locals: {
-        ...this.omniPresentLocals,
         email: emailAddress,
-        verifyEmailCode: args.verifyEmailCode,
+        verifyEmailLink: `${
+          this.webClientBaseUrl
+        }/verify?code=${encodeURIComponent(
+          verifyEmailCode
+        )}&email=${encodeURIComponent(emailAddress)}`,
       },
       message: {
         to: emailAddress,
@@ -171,10 +182,13 @@ class EmailTemplatesEmailApi implements EmailApi {
     message: {
       to: string;
     };
-    locals: EmailTemplatesAndTheirArguments[TTemplate] & OmniPresentLocals;
+    locals: EmailTemplatesAndTheirArguments[TTemplate];
   }): Promise<SendEmailResult> {
     try {
-      await this.emailTemplate.send(options);
+      await this.emailTemplate.send({
+        ...PUG_COMPILE_OPTIONS,
+        ...options,
+      });
       return {
         success: true,
       };

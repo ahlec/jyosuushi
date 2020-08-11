@@ -18,6 +18,11 @@ export interface Environment {
   canUseSecureCookies: boolean;
 
   /**
+   * The email address that the server will use to send emails.
+   */
+  fromEmailAddress: string;
+
+  /**
    * If true, AWS will be loaded and configured and various pieces that make
    * use of AWS services can be enabled (by other environment flags).
    *
@@ -38,4 +43,14 @@ export interface Environment {
    * error for this to true with the other property being false.
    */
   useAwsSimpleEmailService: boolean;
+
+  /**
+   * The base URL that the web client is being hosted from. This can be used to
+   * provide links to the web client (such as in emails sent by the server that
+   * link back to the web client).
+   *
+   * NOTE: This should not end in a `/` (it should end with the TLD and nothing
+   * following). It should, however, include the protocol and any subdomain.
+   */
+  webClientBaseUrl: string;
 }
