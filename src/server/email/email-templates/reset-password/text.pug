@@ -1,0 +1,10 @@
+extends ../text-layout.pug
+
+block content
+  | Someone (hopefully you) requested a password reset for #{email}.
+  |
+  | If you didn't request this, you can safely disregard this email; your password will not be changed without your confirmation.
+  |
+  | If this WAS you, then use the following link to change the password on your account.
+  |
+  | #{resetLink}

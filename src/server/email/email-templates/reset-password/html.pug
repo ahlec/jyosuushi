@@ -1,0 +1,18 @@
+extends ../layout.pug
+
+block content
+  p.
+    Someone (hopefully you) requested a password reset for <strong>#{email}</strong>.
+
+  p.
+    If you didn't request this, you can safely disregard this email; your password will not
+    be changed without your confirmation.
+
+  p.
+    If this <emphasis>was</emphasis> you, then use the following link to change the password on your account.
+
+  a.call-to-action(href=resetLink)
+    | Reset Password
+
+  p.link-fallback
+    | If the link above doesn't work, navigate in your browser to #{resetLink}.

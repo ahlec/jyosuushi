@@ -1,5 +1,4 @@
 import aws from "aws-sdk";
-import chalk from "chalk";
 import { execFileSync } from "child_process";
 import EmailTemplate from "email-templates";
 import isWsl from "is-wsl";
@@ -59,6 +58,14 @@ const PUG_COMPILE_OPTIONS: PugCompileFileOptions = {};
 
 interface EmailTemplatesAndTheirArguments {
   "account-created": {
+    email: string;
+    verifyEmailLink: string;
+  };
+  "reset-password": {
+    email: string;
+    resetLink: string;
+  };
+  "verify-email": {
     email: string;
     verifyEmailLink: string;
   };
@@ -148,31 +155,44 @@ class EmailTemplatesEmailApi implements EmailApi {
 
   public async sendResetPasswordEmail(
     emailAddress: string,
-    args: ResetPasswordEmailArguments
+    { firstCode, secondCode }: ResetPasswordEmailArguments
   ): Promise<SendEmailResult> {
-    console.group(`📧 ${chalk.cyanBright("reset password")}`);
-    console.log(chalk.bold("email:"), emailAddress);
-    console.log(chalk.bold("first code:", args.firstCode));
-    console.log(chalk.bold("second code:", args.secondCode));
-    console.groupEnd();
-
-    return {
-      success: true,
-    };
+    return this.send({
+      locals: {
+        email: emailAddress,
+        resetLink: `${
+          this.webClientBaseUrl
+        }/resetPassword?first=${encodeURIComponent(
+          firstCode
+        )}&second=${encodeURIComponent(secondCode)}&email=${encodeURIComponent(
+          emailAddress
+        )}`,
+      },
+      message: {
+        to: emailAddress,
+      },
+      template: "reset-password",
+    });
   }
 
   public async sendVerifyEmail(
     emailAddress: string,
-    args: VerifyEmailArguments
+    { code }: VerifyEmailArguments
   ): Promise<SendEmailResult> {
-    console.group(`📧 ${chalk.cyanBright("verify email")}`);
-    console.log(chalk.bold("email:"), emailAddress);
-    console.log(chalk.bold("verification code:", args.code));
-    console.groupEnd();
-
-    return {
-      success: true,
-    };
+    return this.send({
+      locals: {
+        email: emailAddress,
+        verifyEmailLink: `${
+          this.webClientBaseUrl
+        }/verify?code=${encodeURIComponent(code)}&email=${encodeURIComponent(
+          emailAddress
+        )}`,
+      },
+      message: {
+        to: emailAddress,
+      },
+      template: "verify-email",
+    });
   }
 
   private async send<
