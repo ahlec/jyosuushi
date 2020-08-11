@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { ApolloServer } from "apollo-server-express";
+import aws from "aws-sdk";
 import CookieParser from "cookie-parser";
 import express from "express";
 import graphqlDepthLimit from "graphql-depth-limit";
@@ -7,7 +8,7 @@ import graphqlDepthLimit from "graphql-depth-limit";
 import ExpressAuthenticationCookie from "./authentication/ExpressAuthenticationCookie";
 import { createDataSources } from "./datasources";
 import { Environment } from "./environment";
-import ConsoleLogEmailApi from "./email/ConsoleLogEmailApi";
+import EmailTemplatesEmailApi from "./email/EmailTemplatesEmailApi";
 import { EmailApi } from "./email/types";
 import { SERVER_MODULES } from "./modules";
 import { createRateLimiter } from "./rate-limiting/create";
@@ -15,21 +16,97 @@ import { RESOLVERS } from "./resolvers";
 import { ServerContext } from "./context";
 
 function getRuntimeEnvironment(): Environment {
-  const { LOCAL_DEVELOPMENT = "" } = process.env;
+  const {
+    AWS_REGION = "us-east-1",
+    LOCAL_DEVELOPMENT = "",
+    USE_AWS = "",
+  } = process.env;
+
+  const isLocalDevelopment = LOCAL_DEVELOPMENT === "true";
+  const hasAwsUseFlag = USE_AWS === "true";
+
+  if (!isLocalDevelopment && !hasAwsUseFlag) {
+    throw new Error("Cannot be in a production environment with AWS disabled.");
+  }
+
+  const useAws = !isLocalDevelopment || hasAwsUseFlag;
   return {
-    canUseSecureCookies: LOCAL_DEVELOPMENT !== "true",
+    awsRegion: AWS_REGION,
+    canUseSecureCookies: !isLocalDevelopment,
+    useAws,
+    useAwsSimpleEmailService: useAws,
   };
 }
 
-function instantiateEmailApi(): EmailApi {
-  return new ConsoleLogEmailApi();
+function loadAndVerifyAwsConfiguration({
+  awsRegion,
+}: Environment): Promise<void> {
+  return new Promise<void>((resolve, reject) =>
+    aws.config.getCredentials((err): void => {
+      if (err) {
+        reject(new Error("Loading the credentials produced an error."));
+        return;
+      }
+
+      const { credentials } = aws.config;
+      if (
+        !credentials ||
+        !credentials.accessKeyId ||
+        !credentials.secretAccessKey
+      ) {
+        reject(
+          new Error(
+            "AWS credentials did not fail to load, but were not present."
+          )
+        );
+        return;
+      }
+
+      if (!awsRegion) {
+        reject(new Error("The environment's `awsRegion` was empty."));
+        return;
+      }
+
+      aws.config.update({
+        region: awsRegion,
+      });
+
+      resolve();
+    })
+  );
+}
+
+function instantiateEmailApi(environment: Environment): EmailApi {
+  return new EmailTemplatesEmailApi(
+    environment.useAwsSimpleEmailService
+      ? {
+          fromEmail: "donotreply@jyosuushi.com",
+          mode: "aws-ses",
+        }
+      : {
+          mode: "local-filesystem",
+        }
+  );
 }
 
 async function main(): Promise<void> {
   const environment = getRuntimeEnvironment();
   console.log("⚙️ Environment:", environment);
 
-  const emailApi = instantiateEmailApi();
+  if (environment.useAws) {
+    console.group("🖇️ AWS: Loading configuration and connecting.");
+    try {
+      await loadAndVerifyAwsConfiguration(environment);
+    } catch (e) {
+      console.error(e);
+      process.exit(1);
+    }
+
+    console.log("Connected.");
+    console.groupEnd();
+  }
+
+  const emailApi = instantiateEmailApi(environment);
 
   const prisma = new PrismaClient();
 
