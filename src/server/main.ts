@@ -155,7 +155,14 @@ async function main(): Promise<void> {
   const app = express();
   app.use(CookieParser());
 
-  server.applyMiddleware({ app, path: "/" });
+  server.applyMiddleware({
+    app,
+    cors: {
+      credentials: true,
+      origin: ["http://localhost:8080"],
+    },
+    path: "/",
+  });
 
   app.listen({ port: 4000 }, () => {
     console.log(

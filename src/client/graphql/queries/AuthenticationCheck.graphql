@@ -1,0 +1,6 @@
+query AuthenticationCheck {
+  activeUser {
+    username
+  }
+  hasSessionExpired
+}

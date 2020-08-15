@@ -26,7 +26,14 @@ const redux = createRedux();
 const quizManager = new QuizManager(redux.store);
 
 const apollo = new ApolloClient({
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({
+    typePolicies: {
+      UserAccount: {
+        keyFields: ["username"],
+      },
+    },
+  }),
+  credentials: "include",
   uri: API_SERVER_URL,
 });
 

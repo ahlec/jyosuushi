@@ -19,6 +19,7 @@ generates:
       withHooks: true
     documents:
       - src/client/graphql/mutations/*.graphql
+      - src/client/graphql/queries/*.graphql
     plugins:
       - "typescript"
       - "typescript-operations"
