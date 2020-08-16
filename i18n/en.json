@@ -542,6 +542,96 @@
     },
     "translation": ""
   },
+  "login-page.login-form.buttons.login": {
+    "original": {
+      "defaultMessage": "Login",
+      "filenames": [
+        "src/client/ui/main-screen/login/LoginForm.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "login-page.login-form.email.label": {
+    "original": {
+      "defaultMessage": "Email",
+      "filenames": [
+        "src/client/ui/main-screen/login/LoginForm.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "login-page.login-form.password.label": {
+    "original": {
+      "defaultMessage": "Password",
+      "filenames": [
+        "src/client/ui/main-screen/login/LoginForm.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "login-page.login-for.forgot-password": {
+    "original": {
+      "defaultMessage": "Forgot password?",
+      "filenames": [
+        "src/client/ui/main-screen/login/LoginForm.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "login-page.errors.credentialsInvalid": {
+    "original": {
+      "defaultMessage": "The email/password combination provided was incorrect.",
+      "filenames": [
+        "src/client/ui/main-screen/login/LoginPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "login-page.errors.fieldEmpty": {
+    "original": {
+      "defaultMessage": "This field must be specified.",
+      "filenames": [
+        "src/client/ui/main-screen/login/LoginPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "login-page.errors.rateLimited": {
+    "original": {
+      "defaultMessage": "You have attempted to log in too many times. Please try again after a minute.",
+      "filenames": [
+        "src/client/ui/main-screen/login/LoginPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "login-page.errors.unknown": {
+    "original": {
+      "defaultMessage": "An error occurred while trying to log in. Please try again in a moment.",
+      "filenames": [
+        "src/client/ui/main-screen/login/LoginPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "login-page.login.header": {
+    "original": {
+      "defaultMessage": "Sign in",
+      "filenames": [
+        "src/client/ui/main-screen/login/LoginPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "login-page.login.description": {
+    "original": {
+      "defaultMessage": "Log in to your account to create custom quizzes and track your results.",
+      "filenames": [
+        "src/client/ui/main-screen/login/LoginPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
   "preparePage.CounterPreview.header": {
     "original": {
       "defaultMessage": "{count, plural, one {# Counter} other {# Counters}} included",

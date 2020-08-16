@@ -1,0 +1,22 @@
+@import "../../../palette";
+
+.FormButton {
+  border-radius: 6px;
+}
+
+.variant-primary {
+  background-color: $blue-darkest;
+  border: 1px solid $blue-darkest;
+  font-weight: bold;
+
+  &:disabled {
+    background-color: $blue-light;
+    border-color: $blue-light;
+    color: $blue-dark;
+    opacity: 0.6;
+  }
+
+  &:not(:disabled):hover {
+    background-color: $blue-dark;
+  }
+}

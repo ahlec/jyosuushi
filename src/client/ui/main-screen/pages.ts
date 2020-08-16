@@ -4,6 +4,7 @@ import { ConnectedComponent } from "react-redux";
 import ExplorePage from "./explore/ExplorePage";
 import { EXPLORE_PAGE_PATH } from "./explore/pathing";
 import FeedbackPage from "./feedback/FeedbackPage";
+import LoginPage from "./login/LoginPage";
 import PreparePage from "./prepare/PreparePage";
 import ReleaseNotesPage from "./release-notes/ReleaseNotesPage";
 import SettingsPage from "./settings/SettingsPage";
@@ -54,7 +55,7 @@ export const PROFILE_PAGE: PageDefinition = {
 
 export const LOGIN_PAGE: PageDefinition = {
   aliasPaths: [],
-  component: ReleaseNotesPage,
+  component: LoginPage,
   primaryPath: "/login",
 };
 

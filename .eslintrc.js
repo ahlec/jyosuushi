@@ -41,6 +41,12 @@ module.exports = {
         natural: true,
       },
     ],
+    "jsx-a11y/aria-role": [
+      "error",
+      {
+        ignoreNonDOM: true,
+      },
+    ],
     "@calm/react-intl/missing-formatted-message": [
       "error",
       {

@@ -1,0 +1,16 @@
+@import "../../../palette";
+
+.ErrorDisplay {
+  color: $error-text;
+  display: block;
+}
+
+.variant-form {
+  text-align: center;
+}
+
+.variant-field {
+  font-size: 13px;
+  margin-top: 4px; // purpose: adds space between it and input control directly above
+  text-align: left;
+}
