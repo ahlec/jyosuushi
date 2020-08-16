@@ -560,6 +560,78 @@
     },
     "translation": ""
   },
+  "forgot-password.form.button.resetPassword": {
+    "original": {
+      "defaultMessage": "Reset Password",
+      "filenames": [
+        "src/client/ui/main-screen/forgot-password/ForgotPasswordForm.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "forgot-password.errors.emailBadFormat": {
+    "original": {
+      "defaultMessage": "This should be an email.",
+      "filenames": [
+        "src/client/ui/main-screen/forgot-password/ForgotPasswordPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "forgot-password.errors.fieldEmpty": {
+    "original": {
+      "defaultMessage": "This field must be specified.",
+      "filenames": [
+        "src/client/ui/main-screen/forgot-password/ForgotPasswordPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "forgot-password.errors.rateLimited": {
+    "original": {
+      "defaultMessage": "You have attempted to reset your password too many times too quickly. Please try again after a minute.",
+      "filenames": [
+        "src/client/ui/main-screen/forgot-password/ForgotPasswordPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "forgot-password.errors.unknown": {
+    "original": {
+      "defaultMessage": "An error occurred while trying to process your request. Please try again in a moment.",
+      "filenames": [
+        "src/client/ui/main-screen/forgot-password/ForgotPasswordPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "forgot-password.description": {
+    "original": {
+      "defaultMessage": "Use this form to send an email that will guide you through resetting your password.",
+      "filenames": [
+        "src/client/ui/main-screen/forgot-password/ForgotPasswordPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "forgot-password.header": {
+    "original": {
+      "defaultMessage": "Reset Password",
+      "filenames": [
+        "src/client/ui/main-screen/forgot-password/ForgotPasswordPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "forgot-password.possibleSuccess": {
+    "original": {
+      "defaultMessage": "<bold>Please check your email inbox.</bold> If the email specified is registered with us, you will receive a link to reset your password shortly.",
+      "filenames": [
+        "src/client/ui/main-screen/forgot-password/ForgotPasswordPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
   "login-page.login-form.buttons.login": {
     "original": {
       "defaultMessage": "Login",

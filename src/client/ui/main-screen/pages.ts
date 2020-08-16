@@ -4,6 +4,7 @@ import { ConnectedComponent } from "react-redux";
 import ExplorePage from "./explore/ExplorePage";
 import { EXPLORE_PAGE_PATH } from "./explore/pathing";
 import FeedbackPage from "./feedback/FeedbackPage";
+import ForgotPasswordPage from "./forgot-password/ForgotPasswordPage";
 import LoginPage from "./login/LoginPage";
 import PreparePage from "./prepare/PreparePage";
 import ReleaseNotesPage from "./release-notes/ReleaseNotesPage";
@@ -59,6 +60,12 @@ export const LOGIN_PAGE: PageDefinition = {
   primaryPath: "/login",
 };
 
+export const FORGOT_PASSWORD_PAGE: PageDefinition = {
+  aliasPaths: [],
+  component: ForgotPasswordPage,
+  primaryPath: "/forgot-password",
+};
+
 export const UNORDERED_NESTED_PAGES: ReadonlyArray<PageDefinition> = [
   EXPLORE_PAGE,
   SETTINGS_PAGE,
@@ -66,4 +73,5 @@ export const UNORDERED_NESTED_PAGES: ReadonlyArray<PageDefinition> = [
   FEEDBACK_PAGE,
   PROFILE_PAGE,
   LOGIN_PAGE,
+  FORGOT_PASSWORD_PAGE,
 ];
