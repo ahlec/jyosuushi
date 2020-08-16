@@ -542,51 +542,6 @@
     },
     "translation": ""
   },
-  "main-screen.pages.explore.name": {
-    "original": {
-      "defaultMessage": "Explore",
-      "filenames": [
-        "src/client/ui/main-screen/pages.ts"
-      ]
-    },
-    "translation": ""
-  },
-  "main-screen.pages.feedback.name": {
-    "original": {
-      "defaultMessage": "Feedback",
-      "filenames": [
-        "src/client/ui/main-screen/pages.ts"
-      ]
-    },
-    "translation": ""
-  },
-  "main-screen.pages.prepare.name": {
-    "original": {
-      "defaultMessage": "Prepare",
-      "filenames": [
-        "src/client/ui/main-screen/pages.ts"
-      ]
-    },
-    "translation": ""
-  },
-  "main-screen.pages.releaseNotes.name": {
-    "original": {
-      "defaultMessage": "Release Notes",
-      "filenames": [
-        "src/client/ui/main-screen/pages.ts"
-      ]
-    },
-    "translation": ""
-  },
-  "main-screen.pages.settings.name": {
-    "original": {
-      "defaultMessage": "Settings",
-      "filenames": [
-        "src/client/ui/main-screen/pages.ts"
-      ]
-    },
-    "translation": ""
-  },
   "preparePage.CounterPreview.header": {
     "original": {
       "defaultMessage": "{count, plural, one {# Counter} other {# Counters}} included",
@@ -872,6 +827,69 @@
       "defaultMessage": "Settings",
       "filenames": [
         "src/client/ui/main-screen/settings/SettingsPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "Sidebar.pages.explore": {
+    "original": {
+      "defaultMessage": "Explore",
+      "filenames": [
+        "src/client/ui/main-screen/sidebar/Sidebar.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "Sidebar.pages.feedback": {
+    "original": {
+      "defaultMessage": "Feedback",
+      "filenames": [
+        "src/client/ui/main-screen/sidebar/Sidebar.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "Sidebar.pages.login": {
+    "original": {
+      "defaultMessage": "Login",
+      "filenames": [
+        "src/client/ui/main-screen/sidebar/Sidebar.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "Sidebar.pages.prepare": {
+    "original": {
+      "defaultMessage": "Prepare",
+      "filenames": [
+        "src/client/ui/main-screen/sidebar/Sidebar.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "Sidebar.pages.profile": {
+    "original": {
+      "defaultMessage": "Your Profile",
+      "filenames": [
+        "src/client/ui/main-screen/sidebar/Sidebar.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "Sidebar.pages.releaseNotes": {
+    "original": {
+      "defaultMessage": "Release Notes",
+      "filenames": [
+        "src/client/ui/main-screen/sidebar/Sidebar.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "Sidebar.pages.settings": {
+    "original": {
+      "defaultMessage": "Settings",
+      "filenames": [
+        "src/client/ui/main-screen/sidebar/Sidebar.tsx"
       ]
     },
     "translation": ""

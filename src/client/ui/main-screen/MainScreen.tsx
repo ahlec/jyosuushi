@@ -4,12 +4,12 @@ import { Redirect, Route, Switch } from "react-router-dom";
 
 import { State } from "@jyosuushi/redux";
 
-import Sidebar from "./Sidebar";
+import Sidebar from "./sidebar/Sidebar";
 
 import {
-  LANDING_PAGE,
+  PREPARE_PAGE,
   PageDefinition,
-  RELEASE_NOTES_PATH,
+  RELEASE_NOTES_PAGE,
   UNORDERED_NESTED_PAGES,
 } from "./pages";
 
@@ -36,19 +36,27 @@ class MainScreen extends React.PureComponent<ReduxProps> {
         <div className={styles.content}>
           <Switch>
             {UNORDERED_NESTED_PAGES.map(this.renderRoute)}
-            {this.renderRoute(LANDING_PAGE)}
+            {this.renderRoute(PREPARE_PAGE)}
           </Switch>
         </div>
-        {shouldRedirectToReleaseNotes && <Redirect to={RELEASE_NOTES_PATH} />}
+        {shouldRedirectToReleaseNotes && (
+          <Redirect to={RELEASE_NOTES_PAGE.primaryPath} />
+        )}
       </div>
     );
   }
 
   private renderRoute = ({
     component,
-    path,
+    primaryPath,
   }: PageDefinition): React.ReactNode => {
-    return <Route key={path} path={path || "/"} component={component} />;
+    return (
+      <Route
+        key={primaryPath}
+        path={primaryPath || "/"}
+        component={component}
+      />
+    );
   };
 }
 
