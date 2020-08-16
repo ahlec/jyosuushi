@@ -4,13 +4,17 @@ import { Redirect } from "react-router-dom";
 
 import { ONE_SECOND, ONE_MINUTE } from "@shared/constants";
 
+import useAuthenticationStatus, {
+  AuthenticationStatus,
+} from "@jyosuushi/hooks/useAuthenticationStatus";
+
 import { AUTH_MUTATION_REFETCH_QUERIES } from "@jyosuushi/graphql/authentication";
 import {
   useLoginMutation,
   LoginError,
 } from "@jyosuushi/graphql/types.generated";
 
-import LoginForm, { LoginFormError } from "./LoginForm";
+import LoginForm, { AuthFormError } from "./LoginForm";
 import ResendVerificationEmailForm from "./ResendVerificationEmailForm";
 
 import styles from "./LoginPage.scss";
@@ -56,6 +60,8 @@ type LoginPageForm =
     };
 
 function LoginPage(): React.ReactElement {
+  const authStatus = useAuthenticationStatus();
+
   // Define component state
   const [form, setForm] = useState<LoginPageForm>({
     type: "login",
@@ -69,7 +75,13 @@ function LoginPage(): React.ReactElement {
     refetchQueries: AUTH_MUTATION_REFETCH_QUERIES,
   });
   const handleSubmit = useCallback(
-    async (email: string, password: string): Promise<LoginFormError | null> => {
+    async ({
+      email,
+      password,
+    }: {
+      email: string;
+      password: string;
+    }): Promise<AuthFormError | null> => {
       const result = await login({
         variables: {
           email,
@@ -164,7 +176,10 @@ function LoginPage(): React.ReactElement {
   );
 
   // Redirect to the profile page if we're supposed to
-  if (shouldRedirectToProfile) {
+  if (
+    shouldRedirectToProfile ||
+    authStatus === AuthenticationStatus.Authenticated
+  ) {
     return <Redirect to="/profile" />;
   }
 

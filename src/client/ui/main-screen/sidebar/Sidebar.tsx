@@ -1,7 +1,9 @@
 import React from "react";
 import { defineMessages } from "react-intl";
 
-import { useSidebarCurrentUserQuery } from "@jyosuushi/graphql/types.generated";
+import useAuthenticationStatus, {
+  AuthenticationStatus,
+} from "@jyosuushi/hooks/useAuthenticationStatus";
 
 import {
   EXPLORE_PAGE,
@@ -58,16 +60,23 @@ const INTL_MESSAGES = defineMessages({
 
 function Sidebar(): React.ReactElement {
   // Connect to GraphQL to determine whether we're logged in, and who we are if we are
-  const { data, loading } = useSidebarCurrentUserQuery();
+  const authStatus = useAuthenticationStatus();
 
   // Determine the user-related sidebar link
   let userLinkPage: PageDefinition | null;
-  if (loading || !data) {
-    userLinkPage = null;
-  } else if (data.activeUser) {
-    userLinkPage = PROFILE_PAGE;
-  } else {
-    userLinkPage = LOGIN_PAGE;
+  switch (authStatus) {
+    case AuthenticationStatus.Loading: {
+      userLinkPage = null;
+      break;
+    }
+    case AuthenticationStatus.NotAuthenticated: {
+      userLinkPage = LOGIN_PAGE;
+      break;
+    }
+    case AuthenticationStatus.Authenticated: {
+      userLinkPage = PROFILE_PAGE;
+      break;
+    }
   }
 
   // Render the component
@@ -100,11 +109,13 @@ function Sidebar(): React.ReactElement {
       />
       <SidebarEntry
         icon={
-          !loading && data && data.activeUser ? ProfilePageIcon : LoginPageIcon
+          authStatus === AuthenticationStatus.Authenticated
+            ? ProfilePageIcon
+            : LoginPageIcon
         }
         page={userLinkPage}
         text={
-          !loading && data && data.activeUser
+          authStatus === AuthenticationStatus.Authenticated
             ? INTL_MESSAGES.profilePage
             : INTL_MESSAGES.loginPage
         }

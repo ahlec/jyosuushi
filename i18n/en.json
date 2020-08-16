@@ -35,6 +35,24 @@
     },
     "translation": ""
   },
+  "components.AuthForm.email.label": {
+    "original": {
+      "defaultMessage": "Email",
+      "filenames": [
+        "src/client/ui/components/AuthForm.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "components.AuthForm.password.label": {
+    "original": {
+      "defaultMessage": "Password",
+      "filenames": [
+        "src/client/ui/components/AuthForm.tsx"
+      ]
+    },
+    "translation": ""
+  },
   "CreditsFooter.credits": {
     "original": {
       "defaultMessage": "Application designed and coded by <alec>Alec Deitloff</alec>. Vector icons were taken from the <vectorIcons>Core - UI - Outlined</vectorIcons> collection. Sakura icon was made by <sakura>Freepik</sakura>. Small icons are part of the <silk>Silk</silk> collection.",
@@ -545,24 +563,6 @@
   "login-page.login-form.buttons.login": {
     "original": {
       "defaultMessage": "Login",
-      "filenames": [
-        "src/client/ui/main-screen/login/LoginForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "login-page.login-form.email.label": {
-    "original": {
-      "defaultMessage": "Email",
-      "filenames": [
-        "src/client/ui/main-screen/login/LoginForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "login-page.login-form.password.label": {
-    "original": {
-      "defaultMessage": "Password",
       "filenames": [
         "src/client/ui/main-screen/login/LoginForm.tsx"
       ]

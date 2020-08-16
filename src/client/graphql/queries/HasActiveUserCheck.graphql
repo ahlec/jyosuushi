@@ -1,4 +1,4 @@
-query SidebarCurrentUser {
+query HasActiveUserCheck {
   activeUser {
     username
   }
