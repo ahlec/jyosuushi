@@ -3,12 +3,12 @@ import { defineMessages, MessageDescriptor } from "react-intl";
 
 import useIsMounted from "@jyosuushi/hooks/useIsMounted";
 
-import ActionBar from "./forms/ActionBar";
-import ErrorDisplay from "./forms/ErrorDisplay";
-import Form from "./forms/Form";
-import FormButton from "./forms/FormButton";
-import LabeledContainer from "./forms/LabeledContainer";
-import StringInput from "./forms/StringInput";
+import ActionBar from "@jyosuushi/ui/components/forms/ActionBar";
+import ErrorDisplay from "@jyosuushi/ui/components/forms/ErrorDisplay";
+import Form from "@jyosuushi/ui/components/forms/Form";
+import FormButton from "@jyosuushi/ui/components/forms/FormButton";
+import LabeledContainer from "@jyosuushi/ui/components/forms/LabeledContainer";
+import StringInput from "@jyosuushi/ui/components/forms/StringInput";
 
 const INTL_MESSAGES = defineMessages({
   labelEmail: {

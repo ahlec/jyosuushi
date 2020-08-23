@@ -5,15 +5,15 @@ import useAuthenticationStatus, {
   AuthenticationStatus,
 } from "@jyosuushi/hooks/useAuthenticationStatus";
 
+import { PageDefinition } from "@jyosuushi/ui/types";
+import { LOGIN_PAGE } from "@jyosuushi/ui/modules/authentication/pages";
 import {
   EXPLORE_PAGE,
   FEEDBACK_PAGE,
-  LOGIN_PAGE,
   PREPARE_PAGE,
   PROFILE_PAGE,
   RELEASE_NOTES_PAGE,
   SETTINGS_PAGE,
-  PageDefinition,
 } from "@jyosuushi/ui/main-screen/pages";
 
 import ExplorePageIcon from "./explore-icon.svg";

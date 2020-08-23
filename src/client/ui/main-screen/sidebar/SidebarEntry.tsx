@@ -4,7 +4,7 @@ import React, { useCallback } from "react";
 import { FormattedMessage, MessageDescriptor } from "react-intl";
 import { match as Match, NavLink } from "react-router-dom";
 
-import { PageDefinition } from "@jyosuushi/ui/main-screen/pages";
+import { PageDefinition } from "@jyosuushi/ui/types";
 
 import styles from "./SidebarEntry.scss";
 

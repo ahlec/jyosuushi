@@ -35,24 +35,6 @@
     },
     "translation": ""
   },
-  "components.AuthForm.email.label": {
-    "original": {
-      "defaultMessage": "Email",
-      "filenames": [
-        "src/client/ui/components/AuthForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "components.AuthForm.password.label": {
-    "original": {
-      "defaultMessage": "Password",
-      "filenames": [
-        "src/client/ui/components/AuthForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
   "CreditsFooter.credits": {
     "original": {
       "defaultMessage": "Application designed and coded by <alec>Alec Deitloff</alec>. Vector icons were taken from the <vectorIcons>Core - UI - Outlined</vectorIcons> collection. Sakura icon was made by <sakura>Freepik</sakura>. Small icons are part of the <silk>Silk</silk> collection.",
@@ -560,150 +542,6 @@
     },
     "translation": ""
   },
-  "forgot-password.form.button.resetPassword": {
-    "original": {
-      "defaultMessage": "Reset Password",
-      "filenames": [
-        "src/client/ui/main-screen/forgot-password/ForgotPasswordForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "forgot-password.errors.emailBadFormat": {
-    "original": {
-      "defaultMessage": "This should be an email.",
-      "filenames": [
-        "src/client/ui/main-screen/forgot-password/ForgotPasswordPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "forgot-password.errors.fieldEmpty": {
-    "original": {
-      "defaultMessage": "This field must be specified.",
-      "filenames": [
-        "src/client/ui/main-screen/forgot-password/ForgotPasswordPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "forgot-password.errors.rateLimited": {
-    "original": {
-      "defaultMessage": "You have attempted to reset your password too many times too quickly. Please try again after a minute.",
-      "filenames": [
-        "src/client/ui/main-screen/forgot-password/ForgotPasswordPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "forgot-password.errors.unknown": {
-    "original": {
-      "defaultMessage": "An error occurred while trying to process your request. Please try again in a moment.",
-      "filenames": [
-        "src/client/ui/main-screen/forgot-password/ForgotPasswordPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "forgot-password.description": {
-    "original": {
-      "defaultMessage": "Use this form to send an email that will guide you through resetting your password.",
-      "filenames": [
-        "src/client/ui/main-screen/forgot-password/ForgotPasswordPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "forgot-password.header": {
-    "original": {
-      "defaultMessage": "Reset Password",
-      "filenames": [
-        "src/client/ui/main-screen/forgot-password/ForgotPasswordPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "forgot-password.possibleSuccess": {
-    "original": {
-      "defaultMessage": "<bold>Please check your email inbox.</bold> If the email specified is registered with us, you will receive a link to reset your password shortly.",
-      "filenames": [
-        "src/client/ui/main-screen/forgot-password/ForgotPasswordPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "login-page.login-form.buttons.login": {
-    "original": {
-      "defaultMessage": "Login",
-      "filenames": [
-        "src/client/ui/main-screen/login/LoginForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "login-page.login-for.forgot-password": {
-    "original": {
-      "defaultMessage": "Forgot password?",
-      "filenames": [
-        "src/client/ui/main-screen/login/LoginForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "login-page.errors.credentialsInvalid": {
-    "original": {
-      "defaultMessage": "The email/password combination provided was incorrect.",
-      "filenames": [
-        "src/client/ui/main-screen/login/LoginPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "login-page.errors.fieldEmpty": {
-    "original": {
-      "defaultMessage": "This field must be specified.",
-      "filenames": [
-        "src/client/ui/main-screen/login/LoginPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "login-page.errors.rateLimited": {
-    "original": {
-      "defaultMessage": "You have attempted to log in too many times. Please try again after a minute.",
-      "filenames": [
-        "src/client/ui/main-screen/login/LoginPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "login-page.errors.unknown": {
-    "original": {
-      "defaultMessage": "An error occurred while trying to log in. Please try again in a moment.",
-      "filenames": [
-        "src/client/ui/main-screen/login/LoginPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "login-page.login.header": {
-    "original": {
-      "defaultMessage": "Sign in",
-      "filenames": [
-        "src/client/ui/main-screen/login/LoginPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "login-page.login.description": {
-    "original": {
-      "defaultMessage": "Log in to your account to create custom quizzes and track your results.",
-      "filenames": [
-        "src/client/ui/main-screen/login/LoginPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
   "preparePage.CounterPreview.header": {
     "original": {
       "defaultMessage": "{count, plural, one {# Counter} other {# Counters}} included",
@@ -1052,6 +890,276 @@
       "defaultMessage": "Settings",
       "filenames": [
         "src/client/ui/main-screen/sidebar/Sidebar.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "components.AuthForm.email.label": {
+    "original": {
+      "defaultMessage": "Email",
+      "filenames": [
+        "src/client/ui/modules/authentication/components/AuthForm.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "components.AuthForm.password.label": {
+    "original": {
+      "defaultMessage": "Password",
+      "filenames": [
+        "src/client/ui/modules/authentication/components/AuthForm.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "forgot-password.form.button.resetPassword": {
+    "original": {
+      "defaultMessage": "Reset Password",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/forgot-password/ForgotPasswordForm.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "forgot-password.errors.emailBadFormat": {
+    "original": {
+      "defaultMessage": "This should be an email.",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/forgot-password/ForgotPasswordPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "forgot-password.errors.fieldEmpty": {
+    "original": {
+      "defaultMessage": "This field must be specified.",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/forgot-password/ForgotPasswordPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "forgot-password.errors.rateLimited": {
+    "original": {
+      "defaultMessage": "You have attempted to reset your password too many times too quickly. Please try again after a minute.",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/forgot-password/ForgotPasswordPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "forgot-password.errors.unknown": {
+    "original": {
+      "defaultMessage": "An error occurred while trying to process your request. Please try again in a moment.",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/forgot-password/ForgotPasswordPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "forgot-password.description": {
+    "original": {
+      "defaultMessage": "Use this form to send an email that will guide you through resetting your password.",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/forgot-password/ForgotPasswordPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "forgot-password.header": {
+    "original": {
+      "defaultMessage": "Reset Password",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/forgot-password/ForgotPasswordPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "forgot-password.possibleSuccess": {
+    "original": {
+      "defaultMessage": "<bold>Please check your email inbox.</bold> If the email specified is registered with us, you will receive a link to reset your password shortly.",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/forgot-password/ForgotPasswordPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "login-page.login-form.buttons.login": {
+    "original": {
+      "defaultMessage": "Login",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/login/LoginForm.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "login-page.login-for.forgot-password": {
+    "original": {
+      "defaultMessage": "Forgot password?",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/login/LoginForm.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "login-page.errors.credentialsInvalid": {
+    "original": {
+      "defaultMessage": "The email/password combination provided was incorrect.",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/login/LoginPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "login-page.errors.fieldEmpty": {
+    "original": {
+      "defaultMessage": "This field must be specified.",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/login/LoginPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "login-page.errors.rateLimited": {
+    "original": {
+      "defaultMessage": "You have attempted to log in too many times. Please try again after a minute.",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/login/LoginPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "login-page.errors.unknown": {
+    "original": {
+      "defaultMessage": "An error occurred while trying to log in. Please try again in a moment.",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/login/LoginPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "login-page.login.header": {
+    "original": {
+      "defaultMessage": "Sign in",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/login/LoginPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "login-page.login.description": {
+    "original": {
+      "defaultMessage": "Log in to your account to create custom quizzes and track your results.",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/login/LoginPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "login-page.login.registerAccountParagraph": {
+    "original": {
+      "defaultMessage": "Or, click <link>here</link> to register an account with us for free.",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/login/LoginPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "register-account.RegisterAccountForm.buttons.register": {
+    "original": {
+      "defaultMessage": "Register",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/register-account/RegisterAccountForm.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "register-account.RegisterAccountPage.errors.accountAlreadyExists": {
+    "original": {
+      "defaultMessage": "An account with this email already exists.",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/register-account/RegisterAccountPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "register-account.RegisterAccountPage.errors.emailEmpty": {
+    "original": {
+      "defaultMessage": "The email for your account must be provided.",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/register-account/RegisterAccountPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "register-account.RegisterAccountPage.errors.emailInvalidFormat": {
+    "original": {
+      "defaultMessage": "The provided value does not appear to be a valid email.",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/register-account/RegisterAccountPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "register-account.RegisterAccountPage.errors.passwordMissingNumeral": {
+    "original": {
+      "defaultMessage": "Your password must have at least one numerical character (0-9).",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/register-account/RegisterAccountPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "register-account.RegisterAccountPage.errors.passwordTooShort": {
+    "original": {
+      "defaultMessage": "Your password must be at least {minLength, plural, one {1 character} other {# characters}} long.",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/register-account/RegisterAccountPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "register-account.RegisterAccountPage.errors.rateLimited": {
+    "original": {
+      "defaultMessage": "You have attempted to register an account too many times. Please try again after a minute.",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/register-account/RegisterAccountPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "register-account.RegisterAccountPage.errors.unknown": {
+    "original": {
+      "defaultMessage": "An error occurred while trying to register an account. Please try again in a moment.",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/register-account/RegisterAccountPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "register-account.RegisterAccountPage.header": {
+    "original": {
+      "defaultMessage": "Register Account",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/register-account/RegisterAccountPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "register-account.RegisterAccountPage.description": {
+    "original": {
+      "defaultMessage": "Register an account for free to create custom quizzes and track your results.",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/register-account/RegisterAccountPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "register-account.RegisterAccountPage.success": {
+    "original": {
+      "defaultMessage": "Your account has been registered! Please <bold>check your email</bold> to verify your account and log in.",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/register-account/RegisterAccountPage.tsx"
       ]
     },
     "translation": ""

@@ -1,7 +1,9 @@
 import React from "react";
 import { defineMessages } from "react-intl";
 
-import AuthForm, { AuthFormError } from "@jyosuushi/ui/components/AuthForm";
+import AuthForm, {
+  AuthFormError,
+} from "@jyosuushi/ui/modules/authentication/components/AuthForm";
 
 export { AuthFormError };
 

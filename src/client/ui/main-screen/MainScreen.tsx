@@ -3,12 +3,12 @@ import { connect } from "react-redux";
 import { Redirect, Route, Switch } from "react-router-dom";
 
 import { State } from "@jyosuushi/redux";
+import { PageDefinition } from "@jyosuushi/ui/types";
 
 import Sidebar from "./sidebar/Sidebar";
 
 import {
   PREPARE_PAGE,
-  PageDefinition,
   RELEASE_NOTES_PAGE,
   UNORDERED_NESTED_PAGES,
 } from "./pages";
