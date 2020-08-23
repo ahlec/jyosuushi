@@ -20,6 +20,7 @@ import * as 巻Components from "@data/counter-components/巻";
 import * as 年Components from "@data/counter-components/年";
 import * as 戦Components from "@data/counter-components/戦";
 import * as 本Components from "@data/counter-components/本";
+import * as 校Components from "@data/counter-components/校";
 import * as 歳Components from "@data/counter-components/歳";
 import * as 缶Components from "@data/counter-components/缶";
 
@@ -1272,15 +1273,38 @@ export const COUNTER_校: Counter = {
   counterId: "校",
   disambiguations: [],
   englishName: "schools",
-  externalLinks: [],
-  footnotes: [],
+  externalLinks: [
+    {
+      description:
+        "Japanese dictionary entries, compiled from multiple sources.",
+      displayText: "校（読み：コウ）",
+      language: ExternalLinkLanguage.Japanese,
+      siteName: "コトバンク",
+      url: "https://kotobank.jp/word/%E6%A0%A1-493763",
+    },
+    {
+      description:
+        "Article giving an overview of the printing and proofing process in design and publishing.",
+      displayText:
+        "初校？初稿？デザイナーなら知っておきたい基本的なデザイン業界専門用語",
+      language: ExternalLinkLanguage.Japanese,
+      siteName: "MTFC",
+      url: "https://mt-fc.net/design-term",
+    },
+  ],
+  footnotes: [
+    校Components.Footnote1,
+    校Components.Footnote2,
+    校Components.Footnote3,
+    校Components.Footnote4,
+  ],
   irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "校",
   },
-  leadIn: null,
-  notes: null,
+  leadIn: "A counter used for counting schools and printer's proofs.",
+  notes: 校Components.CounterNotes,
   readings: [
     {
       counterId: "校",

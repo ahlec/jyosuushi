@@ -416,4 +416,38 @@ VALUES(
     'Japanese dictionary entries, compiled from multiple sources.',
     'japanese'
   );
+INSERT INTO
+  "counter_external_links" (
+    counter_id,
+    url,
+    site_name,
+    link_text,
+    description,
+    language
+  )
+VALUES(
+    '校',
+    'https://kotobank.jp/word/%E6%A0%A1-493763',
+    'コトバンク',
+    '校（読み：コウ）',
+    'Japanese dictionary entries, compiled from multiple sources.',
+    'japanese'
+  );
+INSERT INTO
+  "counter_external_links" (
+    counter_id,
+    url,
+    site_name,
+    link_text,
+    description,
+    language
+  )
+VALUES(
+    '校',
+    'https://mt-fc.net/design-term',
+    'MTFC',
+    '初校？初稿？デザイナーなら知っておきたい基本的なデザイン業界専門用語',
+    'Article giving an overview of the printing and proofing process in design and publishing.',
+    'japanese'
+  );
 COMMIT;

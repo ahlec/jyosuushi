@@ -430,7 +430,24 @@ INSERT INTO
     notes,
     primary_kanji
   )
-VALUES('校', 'schools', NULL, NULL, '校');
+VALUES(
+    '校',
+    'schools',
+    'A counter used for counting schools and printer''s proofs.',
+    '{校}^(こう) as a kanji has two usages. The first is to mean "school," as seen in {学校}^(がっこう) (school) or {校舎}^(こうしゃ) (school building, schoolhouse). More specifically, however, it''s defined as a place where you can acquire knowledge and be taught things. The second usage of {校}^(こう) is "proof," as in {校正}^(こうせい) ("proofreading"). In this sense, it''s about looking through early versions of something for the purpose of finding mistakes and correcting them.
+
+As expected, school buildings are counted with {一校}^(いっこう). All levels of school -- primary, middle, junior and senior high -- up through university are capable of being counted with this counter, and this is the preferred counter for these (all things equal). For nursery school ({保育園}^(ほいくえん)) and kindergarten ({幼稚園}^(ようちえん)), the _preferred_ counter is <counter:園>, but {一校}^(いっこう) can still be used.[^youchien] Because {校}^(こう) means more broadly "a place to acquire knowledge and be taught things" however, {一校}^(いっこう) as a counter extends beyond traditional schools to also be used to count things like {塾}^(じゅく) (cram school) and {予備校}^(よびこう) (prep school).[^jyuku]
+
+The other usage of {一校}^(いっこう) is to count proofs in the publishing sense. In order to go from initial manuscript or prototype design to the final product, there are a series of intermediary printouts and "printers proofs" whose purpose is to look for misspelled or omitted words, layout problems, and so on.[^printers-proofs] In this case, multiple iterations of the final product are one-at-a-time sent to the printer (or "printed" digitally), and once the first version has been looked over and corrected, a second proof would be made, followed by a third and so on. Each one of these proofs is counted with {校}^(こう) ordinally, which is to say that the first proof in the process is {一校}^(いっこう), the second {二校}^(にこう), and so on. *However*, the first proof is also (and more typically) referred to as {初校}^(しょこう) and the second {再校}^(さいこう).[^saikou] From the third proof ({三校}^(さんこう)) onward, there are no alternative versions for the counters.
+
+It is also important to note that {初校}^(しょこう) and {再校}^(さいこう) as alternate versions of {一校}^(いっこう) and {二校}^(にこう) respectively are exclusive to counting proofs and are **not** used when counting schools.
+
+[^youchien]: [ものの数え方](https://www.benricho.org/kazu/yo.html#yochien): 幼稚園：一園、一校
+[^jyuku]: [数え方単位辞典](https://www.sanabo.com/kazoekata/ct_ka/ka/gakkou/): 小学校・中学校・高校は「校」で、塾や予備校も「校」で数えます。
+[^printers-proofs]: [初校？初稿？デザイナーなら知っておきたい基本的なデザイン業界専門用語](https://mt-fc.net/design-term#i): クライアントからの原稿と制作したデザインを見比べて、**誤字や脱字などのミス、レイアウトの問題など確認・修正の指示を入れる作業**のことです。簡単に言うと**間違いがないかチェックすること**ですね。
+[^saikou]: [初校？初稿？デザイナーなら知っておきたい基本的なデザイン業界専門用語](https://mt-fc.net/design-term#i-5): 初校戻しに書かれた朱字を反映した二回目の校正刷りを**「再校」**といいます。二回目なので**「二校」**とも。',
+    '校'
+  );
 INSERT INTO
   "counters" (
     counter_id,
