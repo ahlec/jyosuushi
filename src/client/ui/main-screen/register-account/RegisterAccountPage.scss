@@ -1,6 +1,6 @@
 @import "../../../palette";
 
-.LoginPage {
+.RegisterAccountPage {
   margin: auto;
   width: 75%;
 }
@@ -21,13 +21,15 @@
   text-align: center;
 }
 
-.separator {
-  background-color: $black-lightest;
-  height: 1px;
-  margin: 30px auto;
-  width: 50%;
+.registerSuccess {
+  background-color: $blue-base;
+  border: 2px solid $blue-darkest;
+  border-radius: 4px;
+  padding: 20px 10px;
+  text-align: center;
 }
 
-.registerAccount {
-  text-align: center;
+.bold {
+  display: inline;
+  font-weight: bold;
 }

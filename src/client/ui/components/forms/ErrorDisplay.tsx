@@ -6,10 +6,15 @@ import styles from "./ErrorDisplay.scss";
 
 interface ComponentProps {
   text: MessageDescriptor;
+  values: Record<string, unknown> | undefined;
   variant: "form-error" | "field-error";
 }
 
-function ErrorDisplay({ text, variant }: ComponentProps): React.ReactElement {
+function ErrorDisplay({
+  text,
+  values,
+  variant,
+}: ComponentProps): React.ReactElement {
   return (
     <div
       className={classnames(
@@ -18,7 +23,7 @@ function ErrorDisplay({ text, variant }: ComponentProps): React.ReactElement {
         variant === "field-error" && styles.variantField
       )}
     >
-      <FormattedMessage {...text} />
+      <FormattedMessage {...text} values={values} />
     </div>
   );
 }

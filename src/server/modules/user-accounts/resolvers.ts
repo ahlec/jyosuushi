@@ -389,6 +389,7 @@ export const USER_ACCOUNTS_RESOLVERS: Resolvers = {
       if (rateLimitError) {
         return {
           error: RegisterAccountError.RateLimited,
+          success: false,
         };
       }
 
@@ -396,6 +397,7 @@ export const USER_ACCOUNTS_RESOLVERS: Resolvers = {
       if (authCookie.current && authCookie.current.valid) {
         return {
           error: RegisterAccountError.AlreadyAuthenticated,
+          success: false,
         };
       }
 
@@ -407,6 +409,7 @@ export const USER_ACCOUNTS_RESOLVERS: Resolvers = {
       if (emailValidationError) {
         return {
           error: emailValidationError,
+          success: false,
         };
       }
 
@@ -419,6 +422,7 @@ export const USER_ACCOUNTS_RESOLVERS: Resolvers = {
       if (passwordValidationError) {
         return {
           error: passwordValidationError,
+          success: false,
         };
       }
 
@@ -429,6 +433,7 @@ export const USER_ACCOUNTS_RESOLVERS: Resolvers = {
       if (doesAccountAlreadyExist) {
         return {
           error: RegisterAccountError.AccountAlreadyExists,
+          success: false,
         };
       }
 
@@ -445,7 +450,7 @@ export const USER_ACCOUNTS_RESOLVERS: Resolvers = {
       });
 
       return {
-        user: convertDatabaseUserToGraphQLUserAccount(newUser),
+        success: true,
       };
     },
     requestEmailVerification: async (

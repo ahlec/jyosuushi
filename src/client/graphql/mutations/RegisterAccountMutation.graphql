@@ -1,0 +1,6 @@
+mutation RegisterAccount($email: String!, $password: String!) {
+  registerAccount(email: $email, password: $password) {
+    error
+    success
+  }
+}

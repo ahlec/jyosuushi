@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 import { ONE_SECOND, ONE_MINUTE } from "@shared/constants";
 
@@ -47,6 +47,11 @@ const INTL_MESSAGES = defineMessages({
       "Log in to your account to create custom quizzes and track your results.",
     id: "login-page.login.description",
   },
+  registerAccountParagraph: {
+    defaultMessage:
+      "Or, click <link>here</link> to register an account with us for free.",
+    id: "login-page.login.registerAccountParagraph",
+  },
 });
 
 type LoginPageForm =
@@ -58,6 +63,12 @@ type LoginPageForm =
       email: string;
       password: string;
     };
+
+function renderRegisterLink(
+  ...contents: readonly string[]
+): React.ReactElement {
+  return <Link to="/register">{contents}</Link>;
+}
 
 function LoginPage(): React.ReactElement {
   const authStatus = useAuthenticationStatus();
@@ -195,6 +206,15 @@ function LoginPage(): React.ReactElement {
             <FormattedMessage {...INTL_MESSAGES.loginPurpose} />
           </p>
           <LoginForm onSubmit={handleSubmit} />
+          <div className={styles.separator} />
+          <p className={styles.registerAccount}>
+            <FormattedMessage
+              {...INTL_MESSAGES.registerAccountParagraph}
+              values={{
+                link: renderRegisterLink,
+              }}
+            />
+          </p>
         </div>
       );
     }

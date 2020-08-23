@@ -23,6 +23,7 @@ const INTL_MESSAGES = defineMessages({
 
 export interface AuthFormError {
   message: MessageDescriptor;
+  messageValues?: Record<string, unknown>;
   dismissal:
     | {
         method: "field-change";
@@ -142,7 +143,11 @@ function AuthForm({
           value={email}
         />
         {!!currentError && currentError.specificField === "email" && (
-          <ErrorDisplay text={currentError.message} variant="field-error" />
+          <ErrorDisplay
+            text={currentError.message}
+            values={currentError.messageValues}
+            variant="field-error"
+          />
         )}
       </LabeledContainer>
       {usesPassword ? (
@@ -154,12 +159,20 @@ function AuthForm({
             value={password}
           />
           {!!currentError && currentError.specificField === "password" && (
-            <ErrorDisplay text={currentError.message} variant="field-error" />
+            <ErrorDisplay
+              text={currentError.message}
+              values={currentError.messageValues}
+              variant="field-error"
+            />
           )}
         </LabeledContainer>
       ) : null}
       {!!currentError && currentError.specificField === null && (
-        <ErrorDisplay text={currentError.message} variant="form-error" />
+        <ErrorDisplay
+          text={currentError.message}
+          values={currentError.messageValues}
+          variant="form-error"
+        />
       )}
       <ActionBar>
         {children}

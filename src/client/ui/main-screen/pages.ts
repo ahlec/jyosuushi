@@ -7,6 +7,7 @@ import FeedbackPage from "./feedback/FeedbackPage";
 import ForgotPasswordPage from "./forgot-password/ForgotPasswordPage";
 import LoginPage from "./login/LoginPage";
 import PreparePage from "./prepare/PreparePage";
+import RegisterAccountPage from "./register-account/RegisterAccountPage";
 import ReleaseNotesPage from "./release-notes/ReleaseNotesPage";
 import SettingsPage from "./settings/SettingsPage";
 
@@ -66,6 +67,12 @@ export const FORGOT_PASSWORD_PAGE: PageDefinition = {
   primaryPath: "/forgot-password",
 };
 
+export const REGISTER_ACCOUNT_PAGE: PageDefinition = {
+  aliasPaths: [],
+  component: RegisterAccountPage,
+  primaryPath: "/register",
+};
+
 export const UNORDERED_NESTED_PAGES: ReadonlyArray<PageDefinition> = [
   EXPLORE_PAGE,
   SETTINGS_PAGE,
@@ -74,4 +81,5 @@ export const UNORDERED_NESTED_PAGES: ReadonlyArray<PageDefinition> = [
   PROFILE_PAGE,
   LOGIN_PAGE,
   FORGOT_PASSWORD_PAGE,
+  REGISTER_ACCOUNT_PAGE,
 ];

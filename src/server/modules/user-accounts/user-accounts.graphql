@@ -50,7 +50,7 @@ enum RegisterAccountError {
 
 type RegisterAccountPayload {
   error: RegisterAccountError
-  user: UserAccount
+  success: Boolean!
 }
 
 enum LoginError {
