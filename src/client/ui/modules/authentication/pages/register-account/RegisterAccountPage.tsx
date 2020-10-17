@@ -14,7 +14,10 @@ import {
   RegisterAccountError,
 } from "@jyosuushi/graphql/types.generated";
 
-import RegisterAccountForm, { AuthFormError } from "./RegisterAccountForm";
+import RegisterAccountForm, {
+  RegisterAccountFormError,
+  RegisterAccountFormValues,
+} from "./RegisterAccountForm";
 
 import styles from "./RegisterAccountPage.scss";
 
@@ -87,10 +90,7 @@ function RegisterAccountPage(): React.ReactElement {
     async ({
       email,
       password,
-    }: {
-      email: string;
-      password: string;
-    }): Promise<AuthFormError | null> => {
+    }: RegisterAccountFormValues): Promise<RegisterAccountFormError | null> => {
       const result = await registerAccount({
         variables: {
           email,

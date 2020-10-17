@@ -16,7 +16,7 @@ import {
 
 import AuthPageLayout from "@jyosuushi/ui/modules/authentication/components/AuthPageLayout";
 
-import LoginForm, { AuthFormError } from "./LoginForm";
+import LoginForm, { LoginFormError, LoginFormValues } from "./LoginForm";
 import ResendVerificationEmailForm from "./ResendVerificationEmailForm";
 
 import styles from "./LoginPage.scss";
@@ -95,10 +95,7 @@ function LoginPage(): React.ReactElement {
     async ({
       email,
       password,
-    }: {
-      email: string;
-      password: string;
-    }): Promise<AuthFormError | null> => {
+    }: LoginFormValues): Promise<LoginFormError | null> => {
       const result = await login({
         variables: {
           email,

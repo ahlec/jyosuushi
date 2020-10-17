@@ -1,43 +1,52 @@
-import React, { useCallback } from "react";
+import React from "react";
 import { defineMessages } from "react-intl";
 
-import AuthForm, {
+import AuthForm from "@jyosuushi/ui/modules/authentication/auth-form/AuthForm";
+import {
   AuthFormError,
-} from "@jyosuushi/ui/modules/authentication/components/AuthForm";
+  AuthFormFieldDefinition,
+  AuthFormValues,
+} from "@jyosuushi/ui/modules/authentication/auth-form/types";
 
-type ForgotPasswordFormError = Omit<AuthFormError, "specificField"> & {
-  specificField: Exclude<AuthFormError["specificField"], "password">;
-};
+type ForgotPasswordFormFields = "email";
 
-export { ForgotPasswordFormError };
+export type ForgotPasswordFormError = AuthFormError<ForgotPasswordFormFields>;
+export type ForgotPasswordFormValues = AuthFormValues<ForgotPasswordFormFields>;
 
 const INTL_MESSAGES = defineMessages({
   buttonResetPassword: {
     defaultMessage: "Reset Password",
     id: "forgot-password.form.button.resetPassword",
   },
+  labelEmail: {
+    defaultMessage: "Email",
+    id: "forgot-password.form.email.label",
+  },
 });
 
+const FORGOT_PASSWORD_FORM_FIELDS: readonly AuthFormFieldDefinition<
+  ForgotPasswordFormFields
+>[] = [
+  {
+    fieldName: "email",
+    inputType: "username",
+    label: INTL_MESSAGES.labelEmail,
+    validation: null,
+  },
+];
+
 interface ComponentProps {
-  onSubmit: (fields: {
-    email: string;
-  }) => Promise<ForgotPasswordFormError | null>;
+  onSubmit: (
+    fields: ForgotPasswordFormValues
+  ) => Promise<ForgotPasswordFormError | null>;
 }
 
 function ForgotPasswordForm({ onSubmit }: ComponentProps): React.ReactElement {
-  // Intercept the AuthForm `onSubmit` and the parent `onSubmit`
-  const handleSubmit = useCallback(
-    async ({ email }: { email: string }): Promise<AuthFormError | null> =>
-      onSubmit({ email }),
-    [onSubmit]
-  );
-
-  // Render the form
   return (
     <AuthForm
-      onSubmit={handleSubmit}
-      submitButton={INTL_MESSAGES.buttonResetPassword}
-      usesPassword={false}
+      fields={FORGOT_PASSWORD_FORM_FIELDS}
+      onSubmit={onSubmit}
+      submitButtonLabel={INTL_MESSAGES.buttonResetPassword}
     />
   );
 }

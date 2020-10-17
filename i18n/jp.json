@@ -894,27 +894,18 @@
     },
     "translation": ""
   },
-  "components.AuthForm.email.label": {
-    "original": {
-      "defaultMessage": "Email",
-      "filenames": [
-        "src/client/ui/modules/authentication/components/AuthForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "components.AuthForm.password.label": {
-    "original": {
-      "defaultMessage": "Password",
-      "filenames": [
-        "src/client/ui/modules/authentication/components/AuthForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
   "forgot-password.form.button.resetPassword": {
     "original": {
       "defaultMessage": "Reset Password",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/forgot-password/ForgotPasswordForm.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "forgot-password.form.email.label": {
+    "original": {
+      "defaultMessage": "Email",
       "filenames": [
         "src/client/ui/modules/authentication/pages/forgot-password/ForgotPasswordForm.tsx"
       ]
@@ -993,7 +984,25 @@
     },
     "translation": ""
   },
-  "login-page.login-for.forgot-password": {
+  "login-page.login-form.email.label": {
+    "original": {
+      "defaultMessage": "Email",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/login/LoginForm.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "login-page.login-form.password.label": {
+    "original": {
+      "defaultMessage": "Password",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/login/LoginForm.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "login-page.login-form.forgot-password": {
     "original": {
       "defaultMessage": "Forgot password?",
       "filenames": [
@@ -1047,6 +1056,15 @@
     },
     "translation": ""
   },
+  "login-page.resend-email-verification.header": {
+    "original": {
+      "defaultMessage": "Verification Required",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/login/LoginPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
   "login-page.login.description": {
     "original": {
       "defaultMessage": "Log in to your account to create custom quizzes and track your results.",
@@ -1068,6 +1086,24 @@
   "register-account.RegisterAccountForm.buttons.register": {
     "original": {
       "defaultMessage": "Register",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/register-account/RegisterAccountForm.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "register-account.RegisterAccountForm.email.label": {
+    "original": {
+      "defaultMessage": "Email",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/register-account/RegisterAccountForm.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "register-account.RegisterAccountForm.password.label": {
+    "original": {
+      "defaultMessage": "Password",
       "filenames": [
         "src/client/ui/modules/authentication/pages/register-account/RegisterAccountForm.tsx"
       ]

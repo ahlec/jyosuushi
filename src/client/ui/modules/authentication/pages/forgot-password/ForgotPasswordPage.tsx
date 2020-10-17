@@ -18,6 +18,7 @@ import AuthPageLayout from "@jyosuushi/ui/modules/authentication/components/Auth
 
 import ForgotPasswordForm, {
   ForgotPasswordFormError,
+  ForgotPasswordFormValues,
 } from "./ForgotPasswordForm";
 
 import styles from "./ForgotPasswordPage.scss";
@@ -77,9 +78,7 @@ function ForgotPasswordPage(): React.ReactElement {
   const handleSubmit = useCallback(
     async ({
       email,
-    }: {
-      email: string;
-    }): Promise<ForgotPasswordFormError | null> => {
+    }: ForgotPasswordFormValues): Promise<ForgotPasswordFormError | null> => {
       const result = await requestPasswordReset({
         variables: {
           email,
