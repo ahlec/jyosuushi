@@ -14,6 +14,8 @@ import {
   RequestPasswordResetError,
 } from "@jyosuushi/graphql/types.generated";
 
+import AuthPageLayout from "@jyosuushi/ui/modules/authentication/components/AuthPageLayout";
+
 import ForgotPasswordForm, {
   ForgotPasswordFormError,
 } from "./ForgotPasswordForm";
@@ -164,10 +166,7 @@ function ForgotPasswordPage(): React.ReactElement {
   // If we've seen a POSSIBLE success, render the post-form page
   if (possibleSuccess) {
     return (
-      <div className={styles.forgotPasswordPage}>
-        <h1 className={styles.pageHeader}>
-          <FormattedMessage {...INTL_MESSAGES.header} />
-        </h1>
+      <AuthPageLayout title={INTL_MESSAGES.header} purpose={null}>
         <div className={styles.emailSent}>
           <FormattedMessage
             {...INTL_MESSAGES.possibleSuccess}
@@ -176,21 +175,18 @@ function ForgotPasswordPage(): React.ReactElement {
             }}
           />
         </div>
-      </div>
+      </AuthPageLayout>
     );
   }
 
   // Render the appropriate form on the page
   return (
-    <div className={styles.forgotPasswordPage}>
-      <h1 className={styles.pageHeader}>
-        <FormattedMessage {...INTL_MESSAGES.header} />
-      </h1>
-      <p className={styles.formPurpose}>
-        <FormattedMessage {...INTL_MESSAGES.formPurpose} />
-      </p>
+    <AuthPageLayout
+      title={INTL_MESSAGES.header}
+      purpose={INTL_MESSAGES.formPurpose}
+    >
       <ForgotPasswordForm onSubmit={handleSubmit} />
-    </div>
+    </AuthPageLayout>
   );
 }
 

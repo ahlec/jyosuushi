@@ -14,6 +14,8 @@ import {
   LoginError,
 } from "@jyosuushi/graphql/types.generated";
 
+import AuthPageLayout from "@jyosuushi/ui/modules/authentication/components/AuthPageLayout";
+
 import LoginForm, { AuthFormError } from "./LoginForm";
 import ResendVerificationEmailForm from "./ResendVerificationEmailForm";
 
@@ -41,6 +43,10 @@ const INTL_MESSAGES = defineMessages({
   headerLogin: {
     defaultMessage: "Sign in",
     id: "login-page.login.header",
+  },
+  headerResendVerification: {
+    defaultMessage: "Verification Required",
+    id: "login-page.resend-email-verification.header",
   },
   loginPurpose: {
     defaultMessage:
@@ -198,13 +204,10 @@ function LoginPage(): React.ReactElement {
   switch (form.type) {
     case "login": {
       return (
-        <div className={styles.loginPage}>
-          <h1 className={styles.pageHeader}>
-            <FormattedMessage {...INTL_MESSAGES.headerLogin} />
-          </h1>
-          <p className={styles.formPurpose}>
-            <FormattedMessage {...INTL_MESSAGES.loginPurpose} />
-          </p>
+        <AuthPageLayout
+          title={INTL_MESSAGES.headerLogin}
+          purpose={INTL_MESSAGES.loginPurpose}
+        >
           <LoginForm onSubmit={handleSubmit} />
           <div className={styles.separator} />
           <p className={styles.registerAccount}>
@@ -215,17 +218,20 @@ function LoginPage(): React.ReactElement {
               }}
             />
           </p>
-        </div>
+        </AuthPageLayout>
       );
     }
     case "resend-email-verification": {
       return (
-        <div className={styles.loginPage}>
+        <AuthPageLayout
+          title={INTL_MESSAGES.headerResendVerification}
+          purpose={null}
+        >
           <ResendVerificationEmailForm
             email={form.email}
             password={form.password}
           />
-        </div>
+        </AuthPageLayout>
       );
     }
   }

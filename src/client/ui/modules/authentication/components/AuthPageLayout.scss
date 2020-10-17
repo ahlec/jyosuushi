@@ -1,0 +1,22 @@
+@import "../../../../palette";
+
+.AuthPageLayout {
+  margin: auto;
+  width: 75%;
+}
+
+.pageHeader {
+  border-bottom: 1px solid $app-outline;
+  font-size: 28px;
+  font-weight: bold;
+  margin: 0 auto 15px;
+  padding-bottom: 5px;
+  text-align: center;
+  width: 50%;
+}
+
+.purpose {
+  font-size: 14px;
+  margin-bottom: 20px;
+  text-align: center;
+}
