@@ -2,7 +2,7 @@ import React, { useCallback, useState } from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
 import { Redirect } from "react-router-dom";
 
-import { MIN_PASSWORD_LENGTH, ONE_SECOND, ONE_MINUTE } from "@shared/constants";
+import { ONE_SECOND, ONE_MINUTE } from "@shared/constants";
 
 import useAuthenticationStatus, {
   AuthenticationStatus,
@@ -13,6 +13,14 @@ import {
   useRegisterAccountMutation,
   RegisterAccountError,
 } from "@jyosuushi/graphql/types.generated";
+
+import {
+  ERROR_MESSAGE_EMAIL_DOESNT_LOOK_LIKE_EMAIL,
+  ERROR_MESSAGE_FIELD_EMPTY,
+  ERROR_MESSAGE_PASSWORD_MISSING_NUMERAL,
+  ERROR_MESSAGE_PASSWORD_TOO_SHORT,
+  ERROR_MESSAGE_UNKNOWN_ERROR,
+} from "@jyosuushi/ui/modules/authentication/error-messages";
 
 import RegisterAccountForm, {
   RegisterAccountFormError,
@@ -26,33 +34,10 @@ const INTL_MESSAGES = defineMessages({
     defaultMessage: "An account with this email already exists.",
     id: "register-account.RegisterAccountPage.errors.accountAlreadyExists",
   },
-  errorEmailEmpty: {
-    defaultMessage: "The email for your account must be provided.",
-    id: "register-account.RegisterAccountPage.errors.emailEmpty",
-  },
-  errorEmailInvalidFormat: {
-    defaultMessage: "The provided value does not appear to be a valid email.",
-    id: "register-account.RegisterAccountPage.errors.emailInvalidFormat",
-  },
-  errorPasswordMissingNumeral: {
-    defaultMessage:
-      "Your password must have at least one numerical character (0-9).",
-    id: "register-account.RegisterAccountPage.errors.passwordMissingNumeral",
-  },
-  errorPasswordTooShort: {
-    defaultMessage:
-      "Your password must be at least {minLength, plural, one {1 character} other {# characters}} long.",
-    id: "register-account.RegisterAccountPage.errors.passwordTooShort",
-  },
   errorRateLimited: {
     defaultMessage:
       "You have attempted to register an account too many times. Please try again after a minute.",
     id: "register-account.RegisterAccountPage.errors.rateLimited",
-  },
-  errorUnknownError: {
-    defaultMessage:
-      "An error occurred while trying to register an account. Please try again in a moment.",
-    id: "register-account.RegisterAccountPage.errors.unknown",
   },
   headerRegister: {
     defaultMessage: "Register Account",
@@ -104,7 +89,7 @@ function RegisterAccountPage(): React.ReactElement {
             method: "time-elapsed",
             milliseconds: ONE_SECOND * 20,
           },
-          message: INTL_MESSAGES.errorUnknownError,
+          message: ERROR_MESSAGE_UNKNOWN_ERROR,
           specificField: null,
         };
       }
@@ -117,7 +102,7 @@ function RegisterAccountPage(): React.ReactElement {
               dismissal: {
                 method: "field-change",
               },
-              message: INTL_MESSAGES.errorEmailEmpty,
+              message: ERROR_MESSAGE_FIELD_EMPTY,
               specificField: "email",
             };
           }
@@ -126,7 +111,7 @@ function RegisterAccountPage(): React.ReactElement {
               dismissal: {
                 method: "field-change",
               },
-              message: INTL_MESSAGES.errorEmailInvalidFormat,
+              message: ERROR_MESSAGE_EMAIL_DOESNT_LOOK_LIKE_EMAIL,
               specificField: "email",
             };
           }
@@ -135,10 +120,7 @@ function RegisterAccountPage(): React.ReactElement {
               dismissal: {
                 method: "field-change",
               },
-              message: INTL_MESSAGES.errorPasswordTooShort,
-              messageValues: {
-                minLength: MIN_PASSWORD_LENGTH,
-              },
+              message: ERROR_MESSAGE_PASSWORD_TOO_SHORT,
               specificField: "password",
             };
           }
@@ -147,7 +129,7 @@ function RegisterAccountPage(): React.ReactElement {
               dismissal: {
                 method: "field-change",
               },
-              message: INTL_MESSAGES.errorPasswordMissingNumeral,
+              message: ERROR_MESSAGE_PASSWORD_MISSING_NUMERAL,
               specificField: null,
             };
           }
@@ -157,7 +139,7 @@ function RegisterAccountPage(): React.ReactElement {
                 method: "time-elapsed",
                 milliseconds: ONE_MINUTE,
               },
-              message: INTL_MESSAGES.errorRateLimited,
+              message: { message: INTL_MESSAGES.errorRateLimited },
               specificField: null,
             };
           }
@@ -170,7 +152,7 @@ function RegisterAccountPage(): React.ReactElement {
               dismissal: {
                 method: "field-change",
               },
-              message: INTL_MESSAGES.errorAccountAlreadyExists,
+              message: { message: INTL_MESSAGES.errorAccountAlreadyExists },
               specificField: "email",
             };
           }
@@ -186,7 +168,7 @@ function RegisterAccountPage(): React.ReactElement {
             method: "time-elapsed",
             milliseconds: ONE_SECOND * 20,
           },
-          message: INTL_MESSAGES.errorUnknownError,
+          message: ERROR_MESSAGE_UNKNOWN_ERROR,
           specificField: null,
         };
       }

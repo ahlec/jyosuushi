@@ -117,8 +117,8 @@ function AuthForm<TFieldNames extends string>({
       )}
       {!!currentError && currentError.specificField === null && (
         <ErrorDisplay
-          text={currentError.message}
-          values={currentError.messageValues}
+          text={currentError.message.message}
+          values={currentError.message.messageValues}
           variant="form-error"
         />
       )}

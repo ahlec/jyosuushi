@@ -15,6 +15,11 @@ import {
 } from "@jyosuushi/graphql/types.generated";
 
 import AuthPageLayout from "@jyosuushi/ui/modules/authentication/components/AuthPageLayout";
+import {
+  ERROR_MESSAGE_EMAIL_DOESNT_LOOK_LIKE_EMAIL,
+  ERROR_MESSAGE_FIELD_EMPTY,
+  ERROR_MESSAGE_UNKNOWN_ERROR,
+} from "@jyosuushi/ui/modules/authentication/error-messages";
 
 import ForgotPasswordForm, {
   ForgotPasswordFormError,
@@ -24,23 +29,10 @@ import ForgotPasswordForm, {
 import styles from "./ForgotPasswordPage.scss";
 
 const INTL_MESSAGES = defineMessages({
-  errorEmailBadFormat: {
-    defaultMessage: "This should be an email.",
-    id: "forgot-password.errors.emailBadFormat",
-  },
-  errorFieldEmpty: {
-    defaultMessage: "This field must be specified.",
-    id: "forgot-password.errors.fieldEmpty",
-  },
   errorRateLimited: {
     defaultMessage:
       "You have attempted to reset your password too many times too quickly. Please try again after a minute.",
     id: "forgot-password.errors.rateLimited",
-  },
-  errorUnknownError: {
-    defaultMessage:
-      "An error occurred while trying to process your request. Please try again in a moment.",
-    id: "forgot-password.errors.unknown",
   },
   formPurpose: {
     defaultMessage:
@@ -91,7 +83,7 @@ function ForgotPasswordPage(): React.ReactElement {
             method: "time-elapsed",
             milliseconds: ONE_SECOND * 20,
           },
-          message: INTL_MESSAGES.errorUnknownError,
+          message: ERROR_MESSAGE_UNKNOWN_ERROR,
           specificField: null,
         };
       }
@@ -104,7 +96,7 @@ function ForgotPasswordPage(): React.ReactElement {
               dismissal: {
                 method: "field-change",
               },
-              message: INTL_MESSAGES.errorFieldEmpty,
+              message: ERROR_MESSAGE_FIELD_EMPTY,
               specificField: "email",
             };
           }
@@ -113,7 +105,7 @@ function ForgotPasswordPage(): React.ReactElement {
               dismissal: {
                 method: "field-change",
               },
-              message: INTL_MESSAGES.errorEmailBadFormat,
+              message: ERROR_MESSAGE_EMAIL_DOESNT_LOOK_LIKE_EMAIL,
               specificField: "email",
             };
           }
@@ -123,7 +115,7 @@ function ForgotPasswordPage(): React.ReactElement {
                 method: "time-elapsed",
                 milliseconds: ONE_MINUTE,
               },
-              message: INTL_MESSAGES.errorRateLimited,
+              message: { message: INTL_MESSAGES.errorRateLimited },
               specificField: null,
             };
           }
@@ -147,7 +139,7 @@ function ForgotPasswordPage(): React.ReactElement {
           method: "time-elapsed",
           milliseconds: ONE_SECOND * 20,
         },
-        message: INTL_MESSAGES.errorUnknownError,
+        message: ERROR_MESSAGE_UNKNOWN_ERROR,
         specificField: null,
       };
     },

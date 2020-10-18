@@ -1,5 +1,7 @@
 import { MessageDescriptor } from "react-intl";
 
+import { ErrorMessageDefinition } from "@jyosuushi/ui/modules/authentication/error-messages";
+
 export type AuthFormValues<TFieldNames extends string> = {
   [field in TFieldNames]: string;
 };
@@ -10,7 +12,7 @@ export type AuthFormFieldValidation =
     }
   | {
       valid: false;
-      reason: MessageDescriptor;
+      reason: ErrorMessageDefinition;
     };
 
 export interface AuthFormFieldDefinition<TFieldNames extends string> {
@@ -23,8 +25,7 @@ export interface AuthFormFieldDefinition<TFieldNames extends string> {
 }
 
 export interface AuthFormError<TFieldNames> {
-  message: MessageDescriptor;
-  messageValues?: Record<string, unknown>;
+  message: ErrorMessageDefinition;
   dismissal:
     | {
         method: "field-change";

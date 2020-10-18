@@ -68,8 +68,8 @@ function AuthFormFieldDisplay<TFieldNames extends string>({
       {!!currentError &&
         currentError.specificField === definition.fieldName && (
           <ErrorDisplay
-            text={currentError.message}
-            values={currentError.messageValues}
+            text={currentError.message.message}
+            values={currentError.message.messageValues}
             variant="field-error"
           />
         )}

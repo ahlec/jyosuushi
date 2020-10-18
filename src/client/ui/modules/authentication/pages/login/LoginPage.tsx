@@ -15,6 +15,10 @@ import {
 } from "@jyosuushi/graphql/types.generated";
 
 import AuthPageLayout from "@jyosuushi/ui/modules/authentication/components/AuthPageLayout";
+import {
+  ERROR_MESSAGE_FIELD_EMPTY,
+  ERROR_MESSAGE_UNKNOWN_ERROR,
+} from "@jyosuushi/ui/modules/authentication/error-messages";
 
 import LoginForm, { LoginFormError, LoginFormValues } from "./LoginForm";
 import ResendVerificationEmailForm from "./ResendVerificationEmailForm";
@@ -26,19 +30,10 @@ const INTL_MESSAGES = defineMessages({
     defaultMessage: "The email/password combination provided was incorrect.",
     id: "login-page.errors.credentialsInvalid",
   },
-  errorFieldEmpty: {
-    defaultMessage: "This field must be specified.",
-    id: "login-page.errors.fieldEmpty",
-  },
   errorRateLimited: {
     defaultMessage:
       "You have attempted to log in too many times. Please try again after a minute.",
     id: "login-page.errors.rateLimited",
-  },
-  errorUnknownError: {
-    defaultMessage:
-      "An error occurred while trying to log in. Please try again in a moment.",
-    id: "login-page.errors.unknown",
   },
   headerLogin: {
     defaultMessage: "Sign in",
@@ -109,7 +104,7 @@ function LoginPage(): React.ReactElement {
             method: "time-elapsed",
             milliseconds: ONE_SECOND * 20,
           },
-          message: INTL_MESSAGES.errorUnknownError,
+          message: ERROR_MESSAGE_UNKNOWN_ERROR,
           specificField: null,
         };
       }
@@ -122,7 +117,7 @@ function LoginPage(): React.ReactElement {
               dismissal: {
                 method: "field-change",
               },
-              message: INTL_MESSAGES.errorFieldEmpty,
+              message: ERROR_MESSAGE_FIELD_EMPTY,
               specificField: "email",
             };
           }
@@ -131,7 +126,7 @@ function LoginPage(): React.ReactElement {
               dismissal: {
                 method: "field-change",
               },
-              message: INTL_MESSAGES.errorFieldEmpty,
+              message: ERROR_MESSAGE_FIELD_EMPTY,
               specificField: "password",
             };
           }
@@ -140,7 +135,7 @@ function LoginPage(): React.ReactElement {
               dismissal: {
                 method: "field-change",
               },
-              message: INTL_MESSAGES.errorCredentialsInvalid,
+              message: { message: INTL_MESSAGES.errorCredentialsInvalid },
               specificField: null,
             };
           }
@@ -150,7 +145,7 @@ function LoginPage(): React.ReactElement {
                 method: "time-elapsed",
                 milliseconds: ONE_MINUTE,
               },
-              message: INTL_MESSAGES.errorRateLimited,
+              message: { message: INTL_MESSAGES.errorRateLimited },
               specificField: null,
             };
           }
@@ -178,7 +173,7 @@ function LoginPage(): React.ReactElement {
             method: "time-elapsed",
             milliseconds: ONE_SECOND * 20,
           },
-          message: INTL_MESSAGES.errorUnknownError,
+          message: ERROR_MESSAGE_UNKNOWN_ERROR,
           specificField: null,
         };
       }

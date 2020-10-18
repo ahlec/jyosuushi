@@ -894,6 +894,51 @@
     },
     "translation": ""
   },
+  "authentication.errors.emailBadFormat": {
+    "original": {
+      "defaultMessage": "This should be an email.",
+      "filenames": [
+        "src/client/ui/modules/authentication/error-messages.ts"
+      ]
+    },
+    "translation": ""
+  },
+  "authentication.errors.fieldEmpty": {
+    "original": {
+      "defaultMessage": "This field must be specified.",
+      "filenames": [
+        "src/client/ui/modules/authentication/error-messages.ts"
+      ]
+    },
+    "translation": ""
+  },
+  "authentication.errors.passwordMissingNumeral": {
+    "original": {
+      "defaultMessage": "Your password must have at least one numerical character (0-9).",
+      "filenames": [
+        "src/client/ui/modules/authentication/error-messages.ts"
+      ]
+    },
+    "translation": ""
+  },
+  "authentication.errors.passwordTooShort": {
+    "original": {
+      "defaultMessage": "Your password must be at least {minLength, plural, one {1 character} other {# characters}} long.",
+      "filenames": [
+        "src/client/ui/modules/authentication/error-messages.ts"
+      ]
+    },
+    "translation": ""
+  },
+  "authentication.errors.unknown": {
+    "original": {
+      "defaultMessage": "An error occurred while trying to process your request. Please try again in a moment.",
+      "filenames": [
+        "src/client/ui/modules/authentication/error-messages.ts"
+      ]
+    },
+    "translation": ""
+  },
   "forgot-password.form.button.resetPassword": {
     "original": {
       "defaultMessage": "Reset Password",
@@ -912,36 +957,9 @@
     },
     "translation": ""
   },
-  "forgot-password.errors.emailBadFormat": {
-    "original": {
-      "defaultMessage": "This should be an email.",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/forgot-password/ForgotPasswordPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "forgot-password.errors.fieldEmpty": {
-    "original": {
-      "defaultMessage": "This field must be specified.",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/forgot-password/ForgotPasswordPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
   "forgot-password.errors.rateLimited": {
     "original": {
       "defaultMessage": "You have attempted to reset your password too many times too quickly. Please try again after a minute.",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/forgot-password/ForgotPasswordPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "forgot-password.errors.unknown": {
-    "original": {
-      "defaultMessage": "An error occurred while trying to process your request. Please try again in a moment.",
       "filenames": [
         "src/client/ui/modules/authentication/pages/forgot-password/ForgotPasswordPage.tsx"
       ]
@@ -1020,27 +1038,9 @@
     },
     "translation": ""
   },
-  "login-page.errors.fieldEmpty": {
-    "original": {
-      "defaultMessage": "This field must be specified.",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/login/LoginPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
   "login-page.errors.rateLimited": {
     "original": {
       "defaultMessage": "You have attempted to log in too many times. Please try again after a minute.",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/login/LoginPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "login-page.errors.unknown": {
-    "original": {
-      "defaultMessage": "An error occurred while trying to log in. Please try again in a moment.",
       "filenames": [
         "src/client/ui/modules/authentication/pages/login/LoginPage.tsx"
       ]
@@ -1119,54 +1119,9 @@
     },
     "translation": ""
   },
-  "register-account.RegisterAccountPage.errors.emailEmpty": {
-    "original": {
-      "defaultMessage": "The email for your account must be provided.",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/register-account/RegisterAccountPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "register-account.RegisterAccountPage.errors.emailInvalidFormat": {
-    "original": {
-      "defaultMessage": "The provided value does not appear to be a valid email.",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/register-account/RegisterAccountPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "register-account.RegisterAccountPage.errors.passwordMissingNumeral": {
-    "original": {
-      "defaultMessage": "Your password must have at least one numerical character (0-9).",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/register-account/RegisterAccountPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "register-account.RegisterAccountPage.errors.passwordTooShort": {
-    "original": {
-      "defaultMessage": "Your password must be at least {minLength, plural, one {1 character} other {# characters}} long.",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/register-account/RegisterAccountPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
   "register-account.RegisterAccountPage.errors.rateLimited": {
     "original": {
       "defaultMessage": "You have attempted to register an account too many times. Please try again after a minute.",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/register-account/RegisterAccountPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "register-account.RegisterAccountPage.errors.unknown": {
-    "original": {
-      "defaultMessage": "An error occurred while trying to register an account. Please try again in a moment.",
       "filenames": [
         "src/client/ui/modules/authentication/pages/register-account/RegisterAccountPage.tsx"
       ]
