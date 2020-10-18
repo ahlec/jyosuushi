@@ -162,11 +162,9 @@ class EmailTemplatesEmailApi implements EmailApi {
         email: emailAddress,
         resetLink: `${
           this.webClientBaseUrl
-        }/resetPassword?first=${encodeURIComponent(
-          firstCode
-        )}&second=${encodeURIComponent(secondCode)}&email=${encodeURIComponent(
-          emailAddress
-        )}`,
+        }/reset-password/${encodeURIComponent(firstCode)}/${encodeURIComponent(
+          secondCode
+        )}/`,
       },
       message: {
         to: emailAddress,

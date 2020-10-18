@@ -11,6 +11,7 @@ import {
   FORGOT_PASSWORD_PAGE,
   LOGIN_PAGE,
   REGISTER_ACCOUNT_PAGE,
+  RESET_PASSWORD_PAGE,
 } from "@jyosuushi/ui/modules/authentication/pages";
 
 export const PREPARE_PAGE: PageDefinition = {
@@ -58,4 +59,5 @@ export const UNORDERED_NESTED_PAGES: ReadonlyArray<PageDefinition> = [
   LOGIN_PAGE,
   FORGOT_PASSWORD_PAGE,
   REGISTER_ACCOUNT_PAGE,
+  RESET_PASSWORD_PAGE,
 ];

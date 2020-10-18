@@ -6,12 +6,14 @@ import styles from "./AuthPageLayout.scss";
 interface ComponentProps {
   children: React.ReactNode;
   purpose: MessageDescriptor | null;
+  purposeValues?: Record<string, unknown>;
   title: MessageDescriptor;
 }
 
 function AuthPageLayout({
   children,
   purpose,
+  purposeValues,
   title,
 }: ComponentProps): React.ReactElement {
   return (
@@ -21,7 +23,7 @@ function AuthPageLayout({
       </h1>
       {purpose && (
         <p className={styles.purpose}>
-          <FormattedMessage {...purpose} />
+          <FormattedMessage {...purpose} values={purposeValues} />
         </p>
       )}
       {children}

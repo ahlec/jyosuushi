@@ -302,8 +302,8 @@ export const USER_ACCOUNTS_RESOLVERS: Resolvers = {
 
       // Validate the codes
       const firstCodeValidationError = validatePasswordResetCode(firstCode, {
-        empty: RedeemPasswordResetError.FirstCodeInvalid,
-        invalidFormat: RedeemPasswordResetError.FirstCodeInvalid,
+        empty: RedeemPasswordResetError.FirstCodeBadFormat,
+        invalidFormat: RedeemPasswordResetError.FirstCodeBadFormat,
       });
       if (firstCodeValidationError) {
         return {
@@ -312,8 +312,8 @@ export const USER_ACCOUNTS_RESOLVERS: Resolvers = {
       }
 
       const secondCodeValidationError = validatePasswordResetCode(secondCode, {
-        empty: RedeemPasswordResetError.SecondCodeInvalid,
-        invalidFormat: RedeemPasswordResetError.SecondCodeInvalid,
+        empty: RedeemPasswordResetError.SecondCodeBadFormat,
+        invalidFormat: RedeemPasswordResetError.SecondCodeBadFormat,
       });
       if (secondCodeValidationError) {
         return {

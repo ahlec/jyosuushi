@@ -1155,6 +1155,69 @@
     },
     "translation": ""
   },
+  "reset-password.reset-password-form.buttons.changePassword": {
+    "original": {
+      "defaultMessage": "Change Password",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/reset-password/ResetPasswordForm.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "reset-password.reset-password-form.confirmPassword.label": {
+    "original": {
+      "defaultMessage": "Confirm password",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/reset-password/ResetPasswordForm.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "reset-password.reset-password-form.password.label": {
+    "original": {
+      "defaultMessage": "Password",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/reset-password/ResetPasswordForm.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "reset-password.reset-password-form.validation.passwordsDontMatch": {
+    "original": {
+      "defaultMessage": "Passwords do not match.",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/reset-password/ResetPasswordForm.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "reset-password.errors.rateLimited": {
+    "original": {
+      "defaultMessage": "You have attempted to reset your password too many times too quickly. Please try again after a minute.",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/reset-password/ResetPasswordPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "reset-password.description": {
+    "original": {
+      "defaultMessage": "Choose a new password for your account. It should be at least {minLength, plural, one {# character} other {# characters}} long and include at least one numeral.",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/reset-password/ResetPasswordPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "reset-password.header": {
+    "original": {
+      "defaultMessage": "Reset Password",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/reset-password/ResetPasswordPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
   "quiz-page.AnswerInput.buttonSkipQuestion": {
     "original": {
       "defaultMessage": "Skip this question",

@@ -136,8 +136,8 @@ type RequestPasswordResetPayload {
 
 enum RedeemPasswordResetError {
   # Validation errors
-  FIRST_CODE_INVALID
-  SECOND_CODE_INVALID
+  FIRST_CODE_BAD_FORMAT
+  SECOND_CODE_BAD_FORMAT
   PASSWORD_TOO_SHORT
   PASSWORD_MISSING_NUMERAL
 
