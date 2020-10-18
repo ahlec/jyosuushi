@@ -14,6 +14,7 @@ import {
   AuthFormFieldDefinition,
   AuthFormValues,
 } from "./types";
+import useTouched from "./useTouched";
 
 interface ComponentProps<TFieldNames extends string> {
   children?: React.ReactElement;
@@ -48,6 +49,10 @@ function AuthForm<TFieldNames extends string>({
     TFieldNames
   > | null>(null);
 
+  // Integrate hooks
+  const [fieldsTouched, touchSpecificField, touchAllFields] = useTouched(
+    fields
+  );
   // Dismiss errors that are time based
   useEffect(() => {
     if (!currentError || currentError.dismissal.method !== "time-elapsed") {
@@ -79,6 +84,13 @@ function AuthForm<TFieldNames extends string>({
     []
   );
 
+  const handleFieldBlured = useCallback(
+    (field: TFieldNames): void => {
+      touchSpecificField(field);
+    },
+    [touchSpecificField]
+  );
+
   const handleClearError = useCallback((): void => setCurrentError(null), []);
 
   // Handle submission
@@ -89,6 +101,10 @@ function AuthForm<TFieldNames extends string>({
 
     setIsSubmitting(true);
     try {
+      // Touch all fields once we've submitted
+      touchAllFields();
+
+      // Run the submit function and process the results.
       const submitError = await onSubmit(values);
       if (isMounted.current) {
         setCurrentError(submitError);
@@ -109,6 +125,7 @@ function AuthForm<TFieldNames extends string>({
             key={definition.fieldName}
             currentError={currentError}
             definition={definition}
+            onBlur={handleFieldBlured}
             onClearError={handleClearError}
             onChange={handleFieldChange}
             value={values[definition.fieldName]}

@@ -4,6 +4,12 @@ import styles from "./StringInput.scss";
 
 interface ComponentProps {
   /**
+   * A callback function that will be invoked when the user has focused
+   * on this component and then removed focus from this component.
+   */
+  onBlur?: () => void;
+
+  /**
    * A callback function that will be invoked when the user has
    * changed the value currently in this component.
    */
@@ -30,6 +36,7 @@ interface ComponentProps {
 }
 
 function StringInput({
+  onBlur,
   onChange,
   role,
   type,
@@ -42,6 +49,14 @@ function StringInput({
     }
 
     onChange(e.target.value);
+  };
+
+  const handleBlur = (): void => {
+    if (!onBlur) {
+      return;
+    }
+
+    onBlur();
   };
 
   // Interpret the `role` attribute
@@ -70,6 +85,7 @@ function StringInput({
       data-lpignore={dataLplIgnore}
       autoComplete={autoComplete}
       type={type}
+      onBlur={handleBlur}
       onChange={handleChange}
       value={value}
     />

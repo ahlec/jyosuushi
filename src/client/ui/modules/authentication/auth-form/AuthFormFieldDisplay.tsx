@@ -9,6 +9,7 @@ import { AuthFormError, AuthFormFieldDefinition } from "./types";
 interface ComponentProps<TFieldNames extends string> {
   currentError: AuthFormError<TFieldNames> | null;
   definition: AuthFormFieldDefinition<TFieldNames>;
+  onBlur: (field: TFieldNames) => void;
   onClearError: () => void;
   onChange: (field: TFieldNames, next: string) => void;
   value: string;
@@ -17,6 +18,7 @@ interface ComponentProps<TFieldNames extends string> {
 function AuthFormFieldDisplay<TFieldNames extends string>({
   currentError,
   definition,
+  onBlur,
   onClearError,
   onChange,
   value,
@@ -40,6 +42,12 @@ function AuthFormFieldDisplay<TFieldNames extends string>({
     [currentError, definition.fieldName, onChange, onClearError]
   );
 
+  // Handle field events
+  const handleBlur = useCallback((): void => onBlur(definition.fieldName), [
+    onBlur,
+    definition.fieldName,
+  ]);
+
   // Coerce field definition into component properties
   let role: "username" | "password";
   let type: "text" | "password" | "email";
@@ -60,6 +68,7 @@ function AuthFormFieldDisplay<TFieldNames extends string>({
   return (
     <LabeledContainer label={definition.label}>
       <StringInput
+        onBlur={handleBlur}
         onChange={handleChange}
         role={role}
         type={type}
