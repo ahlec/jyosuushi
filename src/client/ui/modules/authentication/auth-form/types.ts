@@ -36,3 +36,7 @@ export interface AuthFormError<TFieldNames> {
       };
   specificField: TFieldNames | null;
 }
+
+export interface AuthFormValidationFailure {
+  message: ErrorMessageDefinition;
+}

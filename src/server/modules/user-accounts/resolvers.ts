@@ -108,7 +108,6 @@ export const USER_ACCOUNTS_RESOLVERS: Resolvers = {
       // Validate the new password to ensure it follows the
       // rules
       const newPasswordValidationError = validatePassword(newPassword, {
-        empty: ChangePasswordError.NewPasswordTooShort,
         missingNumeral: ChangePasswordError.NewPasswordMissingNumeral,
         tooShort: ChangePasswordError.NewPasswordTooShort,
       });
@@ -324,7 +323,6 @@ export const USER_ACCOUNTS_RESOLVERS: Resolvers = {
 
       // Validate the format of the password
       const passwordValidationError = validatePassword(password, {
-        empty: RedeemPasswordResetError.PasswordTooShort,
         missingNumeral: RedeemPasswordResetError.PasswordMissingNumeral,
         tooShort: RedeemPasswordResetError.PasswordTooShort,
       });
@@ -415,7 +413,6 @@ export const USER_ACCOUNTS_RESOLVERS: Resolvers = {
 
       // Validate password
       const passwordValidationError = validatePassword(password, {
-        empty: RegisterAccountError.PasswordTooShort,
         missingNumeral: RegisterAccountError.PasswordMissingNumeral,
         tooShort: RegisterAccountError.PasswordTooShort,
       });

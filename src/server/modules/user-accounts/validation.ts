@@ -1,9 +1,10 @@
 import { validate as validateEmailFormat } from "email-validator";
 import { validate as uuidValidate } from "uuid";
 
-import { MIN_PASSWORD_LENGTH } from "@shared/constants";
-
-const DIGIT_REGEX = /[0-9]/;
+import {
+  PasswordValidationError,
+  validatePassword as validatePasswordInternal,
+} from "@shared/authentication";
 
 export function validateEmail<TEmpty, TInvalidFormat>(
   str: string,
@@ -44,25 +45,24 @@ function validateUuidCode<TEmpty, TInvalidFormat>(
 export const validateEmailVerificationCode = validateUuidCode;
 export const validatePasswordResetCode = validateUuidCode;
 
-export function validatePassword<TEmpty, TTooShort, TMissingNumeral>(
+export function validatePassword<TTooShort, TMissingNumeral>(
   str: string,
   errorValues: {
-    empty: TEmpty;
     tooShort: TTooShort;
     missingNumeral: TMissingNumeral;
   }
-): TEmpty | TTooShort | TMissingNumeral | null {
-  if (!str) {
-    return errorValues.empty;
+): TTooShort | TMissingNumeral | null {
+  const error = validatePasswordInternal(str);
+  if (!error) {
+    return null;
   }
 
-  if (str.length < MIN_PASSWORD_LENGTH) {
-    return errorValues.tooShort;
+  switch (error) {
+    case PasswordValidationError.TooShort: {
+      return errorValues.tooShort;
+    }
+    case PasswordValidationError.MissingNumeral: {
+      return errorValues.missingNumeral;
+    }
   }
-
-  if (!DIGIT_REGEX.test(str)) {
-    return errorValues.missingNumeral;
-  }
-
-  return null;
 }

@@ -7,6 +7,7 @@ import {
   AuthFormFieldDefinition,
   AuthFormValues,
 } from "@jyosuushi/ui/modules/authentication/auth-form/types";
+import { validatePasswordCreationField } from "@jyosuushi/ui/modules/authentication/form-validation";
 
 type RegisterAccountFormFields = "email" | "password";
 
@@ -43,7 +44,7 @@ const REGISTER_ACCOUNT_FORM_FIELDS: readonly AuthFormFieldDefinition<
     fieldName: "password",
     inputType: "password",
     label: INTL_MESSAGES.labelPassword,
-    validation: null,
+    validation: validatePasswordCreationField,
   },
 ];
 

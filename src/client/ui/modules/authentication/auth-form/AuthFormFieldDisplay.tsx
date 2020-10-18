@@ -1,10 +1,15 @@
 import React, { useCallback } from "react";
+import { MessageDescriptor } from "react-intl";
 
 import ErrorDisplay from "@jyosuushi/ui/components/forms/ErrorDisplay";
 import LabeledContainer from "@jyosuushi/ui/components/forms/LabeledContainer";
 import StringInput from "@jyosuushi/ui/components/forms/StringInput";
 
-import { AuthFormError, AuthFormFieldDefinition } from "./types";
+import {
+  AuthFormError,
+  AuthFormFieldDefinition,
+  AuthFormValidationFailure,
+} from "./types";
 
 interface ComponentProps<TFieldNames extends string> {
   currentError: AuthFormError<TFieldNames> | null;
@@ -12,6 +17,7 @@ interface ComponentProps<TFieldNames extends string> {
   onBlur: (field: TFieldNames) => void;
   onClearError: () => void;
   onChange: (field: TFieldNames, next: string) => void;
+  validationError: AuthFormValidationFailure | null;
   value: string;
 }
 
@@ -21,6 +27,7 @@ function AuthFormFieldDisplay<TFieldNames extends string>({
   onBlur,
   onClearError,
   onChange,
+  validationError,
   value,
 }: ComponentProps<TFieldNames>): React.ReactElement {
   // Handle field being changed
@@ -64,6 +71,19 @@ function AuthFormFieldDisplay<TFieldNames extends string>({
     }
   }
 
+  // Determine the error to display, if there is any
+  let displayedError: {
+    message: MessageDescriptor;
+    messageValues?: Record<string, unknown>;
+  } | null;
+  if (currentError && currentError.specificField === definition.fieldName) {
+    displayedError = currentError.message;
+  } else if (validationError) {
+    displayedError = validationError.message;
+  } else {
+    displayedError = null;
+  }
+
   // Render the page
   return (
     <LabeledContainer label={definition.label}>
@@ -74,14 +94,13 @@ function AuthFormFieldDisplay<TFieldNames extends string>({
         type={type}
         value={value}
       />
-      {!!currentError &&
-        currentError.specificField === definition.fieldName && (
-          <ErrorDisplay
-            text={currentError.message.message}
-            values={currentError.message.messageValues}
-            variant="field-error"
-          />
-        )}
+      {displayedError && (
+        <ErrorDisplay
+          text={displayedError.message}
+          values={displayedError.messageValues}
+          variant="field-error"
+        />
+      )}
     </LabeledContainer>
   );
 }

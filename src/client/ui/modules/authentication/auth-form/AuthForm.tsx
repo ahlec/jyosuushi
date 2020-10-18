@@ -15,6 +15,7 @@ import {
   AuthFormValues,
 } from "./types";
 import useTouched from "./useTouched";
+import useValidation from "./useValidation";
 
 interface ComponentProps<TFieldNames extends string> {
   children?: React.ReactElement;
@@ -53,6 +54,12 @@ function AuthForm<TFieldNames extends string>({
   const [fieldsTouched, touchSpecificField, touchAllFields] = useTouched(
     fields
   );
+  const [validationFailures, areAllFieldsValid] = useValidation(
+    fields,
+    values,
+    fieldsTouched
+  );
+
   // Dismiss errors that are time based
   useEffect(() => {
     if (!currentError || currentError.dismissal.method !== "time-elapsed") {
@@ -104,6 +111,12 @@ function AuthForm<TFieldNames extends string>({
       // Touch all fields once we've submitted
       touchAllFields();
 
+      // Validate and make sure that all of the fields are in a good spot to
+      // submit.
+      if (!areAllFieldsValid()) {
+        return;
+      }
+
       // Run the submit function and process the results.
       const submitError = await onSubmit(values);
       if (isMounted.current) {
@@ -128,6 +141,9 @@ function AuthForm<TFieldNames extends string>({
             onBlur={handleFieldBlured}
             onClearError={handleClearError}
             onChange={handleFieldChange}
+            validationError={
+              validationFailures.get(definition.fieldName) || null
+            }
             value={values[definition.fieldName]}
           />
         )
@@ -143,7 +159,7 @@ function AuthForm<TFieldNames extends string>({
         {children}
         <FormButton
           action="submit"
-          disabled={!!currentError}
+          disabled={!!currentError || validationFailures.size > 0}
           text={submitButtonLabel}
           variant="primary"
         />
