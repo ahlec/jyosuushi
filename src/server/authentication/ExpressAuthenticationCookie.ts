@@ -10,7 +10,7 @@ import {
   UserSession,
 } from "./types";
 
-const COOKIE_NAME = "auth";
+const COOKIE_NAME = "jyosuushi_auth";
 
 class ExpressAuthenticationCookie implements AuthenticationCookie {
   public static async load(
