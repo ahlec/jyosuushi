@@ -291,6 +291,14 @@ export class PrismaDataSource extends DataSource {
     const user = await this.client.user.update({
       data: {
         encryptedPassword: password,
+        // Since password resets require you to use your email to continue the
+        // process, if a user is able to redeem their password reset codes, we
+        // can assume their email is verified as well.
+        // PURPOSE: Mostly, it's convenience so that if a user creates an
+        // account, forgot their password and resets it, they won't be blocked
+        // from logging in after resetting because they didn't explicitly
+        // verify their account.
+        hasVerifiedEmail: true,
       },
       where: {
         id: resetCode.userId,
