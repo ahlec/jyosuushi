@@ -184,6 +184,16 @@ function LoginPage(): React.ReactElement {
     [login]
   );
 
+  // Handle events coming from the <ResendVerificationEmailForm />
+  const handleReturnToLoginForm = useCallback(
+    (): void => setForm({ type: "login" }),
+    []
+  );
+  const handleRedirectToProfile = useCallback(
+    (): void => setShouldRedirectToProfile(true),
+    []
+  );
+
   // Redirect to the profile page if we're supposed to
   if (
     shouldRedirectToProfile ||
@@ -221,6 +231,8 @@ function LoginPage(): React.ReactElement {
         >
           <ResendVerificationEmailForm
             email={form.email}
+            onRedirectToProfile={handleRedirectToProfile}
+            onReturnToLoginForm={handleReturnToLoginForm}
             password={form.password}
           />
         </AuthPageLayout>

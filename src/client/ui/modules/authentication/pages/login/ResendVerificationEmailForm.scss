@@ -1,0 +1,37 @@
+@import "../../../../../palette";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.explanationBrief {
+  background-color: $green-base;
+  border: 2px solid $green-darkest;
+  font-weight: bold;
+  padding: 20px 10px;
+  text-align: center;
+}
+
+.explanationNormal {
+  text-align: center;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.resendButton {
+  font-size: 16px;
+  text-align: center;
+}
+
+.resendResult {
+  text-align: center;
+
+  &.error {
+    color: $error-text;
+  }
+}

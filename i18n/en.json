@@ -1083,6 +1083,78 @@
     },
     "translation": ""
   },
+  "login-page.verification-required.errorEmailSentTooRecently": {
+    "original": {
+      "defaultMessage": "A verification link was recently sent to your inbox. Please wait a few minutes before requesting a new link.",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/login/ResendVerificationEmailForm.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "login-page.verification-required.errorRateLimited": {
+    "original": {
+      "defaultMessage": "You've requested too many verification emails recently. Please wait a few minutes and try again.",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/login/ResendVerificationEmailForm.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "login-page.verification-required.errorUnknownError": {
+    "original": {
+      "defaultMessage": "An error occurred while trying to request your new verification email. Please try again in a few seconds or reach out to the developers.",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/login/ResendVerificationEmailForm.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "login-page.verification-required.explanationBrief": {
+    "original": {
+      "defaultMessage": "You must verify your email before you can log in.",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/login/ResendVerificationEmailForm.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "login-page.verification-required.explanationDetailed": {
+    "original": {
+      "defaultMessage": "A link was sent to your email when you registered; following that link will verify your account and allow you to log in.",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/login/ResendVerificationEmailForm.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "login-page.verification-required.explanationResend": {
+    "original": {
+      "defaultMessage": "If you haven't received the email or no longer have it, you can click the button below to send a new link to the same address.",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/login/ResendVerificationEmailForm.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "login-page.verification-required.requestSuccessMessage": {
+    "original": {
+      "defaultMessage": "A verification link was just sent to your email address. Give it a few seconds to arrive, and check your spam folder to make sure it wasn't caught there.",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/login/ResendVerificationEmailForm.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "login-page.verification-required.resendButtonLabel": {
+    "original": {
+      "defaultMessage": "Resend Verification Email",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/login/ResendVerificationEmailForm.tsx"
+      ]
+    },
+    "translation": ""
+  },
   "register-account.RegisterAccountForm.buttons.register": {
     "original": {
       "defaultMessage": "Register",
