@@ -4,6 +4,7 @@ import ForgotPasswordPage from "./pages/forgot-password/ForgotPasswordPage";
 import LoginPage from "./pages/login/LoginPage";
 import RegisterAccountPage from "./pages/register-account/RegisterAccountPage";
 import ResetPasswordPage from "./pages/reset-password/ResetPasswordPage";
+import VerifyPage from "./pages/verify/VerifyPage";
 
 export const LOGIN_PAGE: PageDefinition = {
   aliasPaths: [],
@@ -30,4 +31,10 @@ export const RESET_PASSWORD_PAGE: PageDefinition = {
   aliasPaths: [],
   component: ResetPasswordPage,
   primaryPath: `/reset-password/:firstCode(${UUID_V4_REGEX})/:secondCode(${UUID_V4_REGEX})`,
+};
+
+export const VERIFY_PAGE: PageDefinition = {
+  aliasPaths: [],
+  component: VerifyPage,
+  primaryPath: `/verify`,
 };
