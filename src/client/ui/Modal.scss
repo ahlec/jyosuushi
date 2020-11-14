@@ -33,10 +33,15 @@
       top: 0;
       width: 40px;
 
-      &:hover {
+      &:hover:not(.disabled) {
         path {
           fill: $modal-button-hover;
         }
+      }
+
+      &.disabled {
+        cursor: default;
+        opacity: 0.4;
       }
 
       svg {

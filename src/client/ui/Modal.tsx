@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import * as React from "react";
+import React, { useCallback } from "react";
 import { FormattedMessage, MessageDescriptor } from "react-intl";
 import ReactModal from "react-modal";
 
@@ -10,65 +10,98 @@ import CloseIcon from "@jyosuushi/icons/close.svg";
 import styles from "./Modal.scss";
 
 interface ComponentProps {
+  /**
+   * An optional boolean which, if false, means that the ability for the user
+   * to close this modal is removed. That is,
+   * {@link ComponentProps.onRequestClose} will not be invoked while this prop
+   * is false.
+   *
+   * Defaults to true if not provided.
+   */
+  canClose?: boolean;
+
+  /**
+   * An optional CSS class name that is provided on the root element of the modal
+   * that is rendered on the DOM.
+   */
   className?: string;
+
+  children: React.ReactNode;
   contentClassName?: string;
+
+  /**
+   * A localized text descriptor that appears as the header of this modal.
+   */
   header: MessageDescriptor;
+
   isOpen: boolean;
+
+  /**
+   * A callback that is invoked any time that a user has indicated they wish to
+   * close this modal. This will not be invoked when
+   * {@link ComponentProps.canClose} is explicitly set to false.
+   */
   onRequestClose: () => void;
 }
 
-export default class Modal extends React.Component<ComponentProps> {
-  public render(): React.ReactNode {
-    const {
-      children,
-      className,
-      contentClassName,
-      header,
-      isOpen,
-    } = this.props;
-    return (
-      <ReactModal
-        className={classnames(styles.modal, className)}
-        isOpen={isOpen}
-        onRequestClose={this.onRequestClose}
-      >
-        <header className={styles.header}>
-          <div
-            className={styles.closeButton}
-            onClick={this.onRequestClose}
-            onKeyPress={this.handleCloseButtonKeyPress}
-            role="button"
-            tabIndex={0}
-          >
-            <CloseIcon />
-          </div>
-          <FormattedMessage {...header} />
-        </header>
-        <div className={classnames(styles.content, contentClassName)}>
-          {children}
-        </div>
-      </ReactModal>
-    );
-  }
-
-  private handleCloseButtonKeyPress = (
-    e: React.KeyboardEvent<HTMLDivElement>
-  ): void => {
-    switch (e.which) {
-      case KeyCode.Space:
-      case KeyCode.Enter: {
-        this.onRequestClose();
-        break;
-      }
-    }
-  };
-
-  private onRequestClose = (): void => {
-    const { isOpen, onRequestClose } = this.props;
-    if (!isOpen) {
+function Modal({
+  canClose = true,
+  children,
+  className,
+  contentClassName,
+  header,
+  isOpen,
+  onRequestClose,
+}: ComponentProps): React.ReactElement {
+  // Handle events
+  const handleRequestClose = useCallback((): void => {
+    if (!isOpen || !canClose) {
       return;
     }
 
     onRequestClose();
-  };
+  }, [canClose, isOpen, onRequestClose]);
+
+  const handleCloseButtonKeyPress = useCallback(
+    (e: React.KeyboardEvent<HTMLDivElement>): void => {
+      switch (e.keyCode) {
+        case KeyCode.Space:
+        case KeyCode.Enter: {
+          handleRequestClose();
+          break;
+        }
+      }
+    },
+    [handleRequestClose]
+  );
+
+  // Render the component
+  return (
+    <ReactModal
+      className={classnames(styles.modal, className)}
+      isOpen={isOpen}
+      onRequestClose={handleRequestClose}
+    >
+      <header className={styles.header}>
+        <div
+          className={classnames(
+            styles.closeButton,
+            !canClose && styles.disabled
+          )}
+          onClick={handleRequestClose}
+          onKeyPress={handleCloseButtonKeyPress}
+          role={canClose ? "button" : "text"}
+          tabIndex={canClose ? 0 : undefined}
+        >
+          <CloseIcon />
+        </div>
+        <FormattedMessage {...header} />
+      </header>
+      <div className={classnames(styles.content, contentClassName)}>
+        {children}
+      </div>
+    </ReactModal>
+  );
 }
+
+export default Modal;
