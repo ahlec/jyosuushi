@@ -11,10 +11,10 @@ import {
   EXPLORE_PAGE,
   FEEDBACK_PAGE,
   PREPARE_PAGE,
-  PROFILE_PAGE,
   RELEASE_NOTES_PAGE,
   SETTINGS_PAGE,
 } from "@jyosuushi/ui/main-screen/pages";
+import { PROFILE_PAGE } from "@jyosuushi/ui/modules/authentication/pages";
 
 import ExplorePageIcon from "./explore-icon.svg";
 import FeedbackPageIcon from "./feedback-icon.svg";

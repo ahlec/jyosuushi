@@ -34,6 +34,7 @@ export function convertDatabaseUserToGraphQLUserAccount(
 ): UserAccount {
   return {
     dateRegistered: user.dateRegistered,
+    passwordLastChanged: user.datePasswordLastChanged,
     username: user.email,
   };
 }

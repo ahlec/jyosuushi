@@ -2,6 +2,7 @@ import { PageDefinition } from "@jyosuushi/ui/types";
 
 import ForgotPasswordPage from "./pages/forgot-password/ForgotPasswordPage";
 import LoginPage from "./pages/login/LoginPage";
+import ProfilePageWrapper from "./pages/profile/ProfilePageWrapper";
 import RegisterAccountPage from "./pages/register-account/RegisterAccountPage";
 import ResetPasswordPage from "./pages/reset-password/ResetPasswordPage";
 import VerifyPage from "./pages/verify/VerifyPage";
@@ -16,6 +17,12 @@ export const FORGOT_PASSWORD_PAGE: PageDefinition = {
   aliasPaths: [],
   component: ForgotPasswordPage,
   primaryPath: "/forgot-password",
+};
+
+export const PROFILE_PAGE: PageDefinition = {
+  aliasPaths: [],
+  component: ProfilePageWrapper,
+  primaryPath: "/profile",
 };
 
 export const REGISTER_ACCOUNT_PAGE: PageDefinition = {

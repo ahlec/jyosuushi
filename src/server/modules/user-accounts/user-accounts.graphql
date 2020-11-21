@@ -1,5 +1,6 @@
 type UserAccount {
   dateRegistered: Date!
+  passwordLastChanged: Date!
   username: String!
 }
 

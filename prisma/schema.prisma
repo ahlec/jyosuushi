@@ -31,18 +31,6 @@ model ActiveUserSession {
   User       User     @relation(fields: [userId], references: [id])
 }
 
-model User {
-  id                    String                  @id
-  email                 String                  @unique
-  encryptedPassword     String
-  dateRegistered        DateTime
-  dateLastLogin         DateTime?
-  hasVerifiedEmail      Boolean                 @default(false)
-  ActiveUserSession     ActiveUserSession[]
-  EmailVerificationCode EmailVerificationCode[]
-  UserPasswordResetCode UserPasswordResetCode[]
-}
-
 model EmailVerificationCode {
   code     String   @id
   userId   String
@@ -58,4 +46,17 @@ model UserPasswordResetCode {
   User          User     @relation(fields: [userId], references: [id])
 
   @@id([firstCode, secondCode])
+}
+
+model User {
+  id                      String                  @id
+  email                   String                  @unique
+  encryptedPassword       String
+  dateRegistered          DateTime
+  dateLastLogin           DateTime?
+  hasVerifiedEmail        Boolean                 @default(false)
+  datePasswordLastChanged DateTime
+  ActiveUserSession       ActiveUserSession[]
+  EmailVerificationCode   EmailVerificationCode[]
+  UserPasswordResetCode   UserPasswordResetCode[]
 }

@@ -10,6 +10,7 @@ import SettingsPage from "./settings/SettingsPage";
 import {
   FORGOT_PASSWORD_PAGE,
   LOGIN_PAGE,
+  PROFILE_PAGE,
   REGISTER_ACCOUNT_PAGE,
   RESET_PASSWORD_PAGE,
   VERIFY_PAGE,
@@ -45,12 +46,6 @@ export const FEEDBACK_PAGE: PageDefinition = {
   primaryPath: "/feedback",
 };
 
-export const PROFILE_PAGE: PageDefinition = {
-  aliasPaths: [],
-  component: FeedbackPage,
-  primaryPath: "/profile",
-};
-
 export const UNORDERED_NESTED_PAGES: ReadonlyArray<PageDefinition> = [
   EXPLORE_PAGE,
   SETTINGS_PAGE,
@@ -62,4 +57,5 @@ export const UNORDERED_NESTED_PAGES: ReadonlyArray<PageDefinition> = [
   REGISTER_ACCOUNT_PAGE,
   RESET_PASSWORD_PAGE,
   VERIFY_PAGE,
+  PROFILE_PAGE,
 ];

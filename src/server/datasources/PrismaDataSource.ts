@@ -90,9 +90,11 @@ export class PrismaDataSource extends DataSource {
     email: string,
     password: EncryptedPassword
   ): Promise<DatabaseUser> {
+    const now = new Date();
     const user = await this.client.user.create({
       data: {
-        dateRegistered: new Date(),
+        datePasswordLastChanged: now,
+        dateRegistered: now,
         email,
         encryptedPassword: password,
         id: uuidv4(),
@@ -231,6 +233,7 @@ export class PrismaDataSource extends DataSource {
   ): Promise<void> {
     await this.client.user.update({
       data: {
+        datePasswordLastChanged: new Date(),
         encryptedPassword: password.toString(),
       },
       where: {

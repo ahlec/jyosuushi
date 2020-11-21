@@ -1,0 +1,18 @@
+@import "../../../../../palette";
+
+.ProfilePageField {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.header {
+  border-bottom: 1px solid $black-lightest;
+  font-size: 13px;
+  font-weight: bold;
+  padding-bottom: 1px;
+}
+
+.content {
+  padding: 0 5px;
+}

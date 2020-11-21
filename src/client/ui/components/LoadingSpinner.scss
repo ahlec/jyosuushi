@@ -1,0 +1,61 @@
+// Taken and modified from https://loading.io/css/
+
+@import "../../palette";
+
+@mixin color-ring($color) {
+  border-color: $color transparent transparent transparent;
+}
+
+.LoadingSpinner {
+  display: inline-block;
+  height: 80px;
+  position: relative;
+  width: 80px;
+}
+
+.blue .ring {
+  @include color-ring($blue-darkest);
+}
+
+.green .ring {
+  @include color-ring($green-darkest);
+}
+
+.pink .ring {
+  @include color-ring($pink-darkest);
+}
+
+.ring {
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border: 8px solid #fcf;
+  border-color: #fcf transparent transparent;
+  border-radius: 50%;
+  box-sizing: border-box;
+  display: block;
+  height: 64px;
+  margin: 8px;
+  position: absolute;
+  width: 64px;
+}
+
+.first {
+  animation-delay: -0.45s;
+}
+
+.second {
+  animation-delay: -0.3s;
+}
+
+.third {
+  animation-delay: -0.15s;
+}
+
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,7 @@
+query AuthenticatedProfileQuery {
+  activeUser {
+    dateRegistered
+    passwordLastChanged
+    username
+  }
+}

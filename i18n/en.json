@@ -1155,6 +1155,78 @@
     },
     "translation": ""
   },
+  "profile-page.fields.password.open-modal-button-label": {
+    "original": {
+      "defaultMessage": "Change Password",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/profile/ProfilePage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "profile-page.fields.date-registered.header": {
+    "original": {
+      "defaultMessage": "Date Registered",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/profile/ProfilePage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "profile-page.fields.email.header": {
+    "original": {
+      "defaultMessage": "Email",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/profile/ProfilePage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "profile-page.fields.password.header": {
+    "original": {
+      "defaultMessage": "Password",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/profile/ProfilePage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "profile-page.logout.button-label": {
+    "original": {
+      "defaultMessage": "Logout",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/profile/ProfilePage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "profile-page.page-purpose": {
+    "original": {
+      "defaultMessage": "Manage your account details and track your progress.",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/profile/ProfilePage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "profile-page.page-title": {
+    "original": {
+      "defaultMessage": "Your Profile",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/profile/ProfilePage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "profile-page.fields.password.last-changed-label": {
+    "original": {
+      "defaultMessage": "Date last changed: {date}",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/profile/ProfilePage.tsx"
+      ]
+    },
+    "translation": ""
+  },
   "register-account.RegisterAccountForm.buttons.register": {
     "original": {
       "defaultMessage": "Register",
