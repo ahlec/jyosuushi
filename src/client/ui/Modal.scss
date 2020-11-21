@@ -56,10 +56,13 @@
   }
 
   .content {
-    height: 500px;
     max-height: 500px;
     overflow-x: hidden;
     overflow-y: auto;
     position: relative;
+
+    &.hasStandardHeight {
+      height: 500px;
+    }
   }
 }

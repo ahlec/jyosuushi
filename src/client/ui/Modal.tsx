@@ -34,6 +34,17 @@ interface ComponentProps {
    */
   header: MessageDescriptor;
 
+  /**
+   * An optional property that configures whether this modal has a standard
+   * height or not. If true, this means that the modal will appear at the typical/
+   * max height, even if there isn't enough content to fill it. If false, this
+   * means that the modal will be the height of the content until it hits the
+   * max height, after which it will scroll.
+   *
+   * If omitted, defaults to true.
+   */
+  hasStandardHeight?: boolean;
+
   isOpen: boolean;
 
   /**
@@ -49,6 +60,7 @@ function Modal({
   children,
   className,
   contentClassName,
+  hasStandardHeight = true,
   header,
   isOpen,
   onRequestClose,
@@ -97,7 +109,13 @@ function Modal({
         </div>
         <FormattedMessage {...header} />
       </header>
-      <div className={classnames(styles.content, contentClassName)}>
+      <div
+        className={classnames(
+          styles.content,
+          contentClassName,
+          hasStandardHeight && styles.hasStandardHeight
+        )}
+      >
         {children}
       </div>
     </ReactModal>

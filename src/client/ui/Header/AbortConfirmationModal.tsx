@@ -43,6 +43,7 @@ export default class AbortConfirmationModal extends React.PureComponent<
       <Modal
         className={styles.abortConfirmationModal}
         contentClassName={styles.content}
+        hasStandardHeight={false}
         header={INTL_MESSAGES.modalHeader}
         isOpen={isOpen}
         onRequestClose={onRequestClose}
