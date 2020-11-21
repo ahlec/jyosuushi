@@ -60,6 +60,8 @@ function AnswersTable({
           counter,
           kanaAnswers: answers,
           studyPacks: studyPacks.map((packId) => STUDY_PACK_LOOKUP[packId]),
+          usersCorrectKana:
+            usersAnswer.judgment === "correct" ? usersAnswer.input : null,
           validKanji: uniq(
             flatten(
               answers.map(

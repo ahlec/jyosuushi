@@ -27,6 +27,15 @@ export interface AnswersTableRowData {
   validKanji: ReadonlyArray<string>;
 
   /**
+   * A string which, if provided, was the user's correct input and the
+   * hiragana/katakana answer that got them the question.
+   *
+   * If the user did not get this question correct, then this should be
+   * null.
+   */
+  usersCorrectKana: string | null;
+
+  /**
    * A boolean that is true iff the user's answer was correct
    * AND this row includes the answer that the user typed in.
    */
@@ -100,15 +109,12 @@ function AnswersTableRow({ data }: ComponentProps): React.ReactElement {
             irregularType,
             kana,
           }: Answer): React.ReactNode => {
-            const { usersAnswer } = this.props;
             return (
               <div
                 key={kana}
                 className={classnames(
                   styles.kana,
-                  usersAnswer.judgment === "correct" &&
-                    usersAnswer.input === kana &&
-                    styles.correct
+                  data.usersCorrectKana === kana && styles.correct
                 )}
               >
                 {kana}
