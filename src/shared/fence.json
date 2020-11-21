@@ -1,6 +1,6 @@
 {
   "tags": ["shared"],
-  "exports": ["constants"],
+  "exports": ["authentication", "constants"],
   "imports": [],
   "dependencies": []
 }

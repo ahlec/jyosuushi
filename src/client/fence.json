@@ -21,12 +21,14 @@
     "react-intl",
     "react-markdown",
     "react-modal",
+    "react-router",
     "react-router-dom",
     "react-redux",
     "react-tooltip",
     "redux",
     "redux-devtools-extension/logOnlyInProduction",
     "redux-persist",
-    "redux-persist/**/*"
+    "redux-persist/**/*",
+    "uuid"
   ]
 }
