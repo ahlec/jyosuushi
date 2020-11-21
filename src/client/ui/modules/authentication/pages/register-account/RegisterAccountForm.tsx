@@ -7,7 +7,7 @@ import {
   AuthFormFieldDefinition,
   AuthFormValues,
 } from "@jyosuushi/ui/modules/authentication/auth-form/types";
-import { validatePasswordCreationField } from "@jyosuushi/ui/modules/authentication/form-validation";
+import { makePasswordCreationFieldValidation } from "@jyosuushi/ui/modules/authentication/form-validation";
 
 type RegisterAccountFormFields = "email" | "password";
 
@@ -44,7 +44,7 @@ const REGISTER_ACCOUNT_FORM_FIELDS: readonly AuthFormFieldDefinition<
     fieldName: "password",
     inputType: "password",
     label: INTL_MESSAGES.labelPassword,
-    validation: validatePasswordCreationField,
+    validation: makePasswordCreationFieldValidation("password"),
   },
 ];
 
@@ -57,6 +57,7 @@ interface ComponentProps {
 function RegisterAccountForm({ onSubmit }: ComponentProps): React.ReactElement {
   return (
     <AuthForm
+      context={null}
       fields={REGISTER_ACCOUNT_FORM_FIELDS}
       onSubmit={onSubmit}
       submitButtonLabel={INTL_MESSAGES.buttonRegister}

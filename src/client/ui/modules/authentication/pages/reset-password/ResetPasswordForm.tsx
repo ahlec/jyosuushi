@@ -7,7 +7,10 @@ import {
   AuthFormFieldDefinition,
   AuthFormValues,
 } from "@jyosuushi/ui/modules/authentication/auth-form/types";
-import { validatePasswordCreationField } from "@jyosuushi/ui/modules/authentication/form-validation";
+import {
+  makePasswordCreationFieldValidation,
+  makePasswordConfirmationFieldValidation,
+} from "@jyosuushi/ui/modules/authentication/form-validation";
 
 type ResetPasswordFormFields = "password" | "confirmPassword";
 
@@ -40,19 +43,16 @@ const RESET_PASSWORD_FORM_FIELDS: readonly AuthFormFieldDefinition<
     fieldName: "password",
     inputType: "password",
     label: INTL_MESSAGES.labelPassword,
-    validation: validatePasswordCreationField,
+    validation: makePasswordCreationFieldValidation("password"),
   },
   {
     fieldName: "confirmPassword",
     inputType: "password",
     label: INTL_MESSAGES.labelConfirmPassword,
-    validation: ({ confirmPassword, password }) =>
-      password === confirmPassword
-        ? { valid: true }
-        : {
-            reason: { message: INTL_MESSAGES.validationPasswordsDontMatch },
-            valid: false,
-          },
+    validation: makePasswordConfirmationFieldValidation(
+      "password",
+      "confirmPassword"
+    ),
   },
 ];
 
@@ -65,6 +65,7 @@ interface ComponentProps {
 function ResetPasswordForm({ onSubmit }: ComponentProps): React.ReactElement {
   return (
     <AuthForm
+      context={/* TODO */ null}
       fields={RESET_PASSWORD_FORM_FIELDS}
       onSubmit={onSubmit}
       submitButtonLabel={INTL_MESSAGES.buttonReset}

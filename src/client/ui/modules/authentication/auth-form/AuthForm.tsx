@@ -10,6 +10,7 @@ import FormButton from "@jyosuushi/ui/components/forms/FormButton";
 
 import AuthFormFieldDisplay from "./AuthFormFieldDisplay";
 import {
+  AuthFormContext,
   AuthFormError,
   AuthFormFieldDefinition,
   AuthFormValues,
@@ -19,6 +20,7 @@ import useValidation from "./useValidation";
 
 interface ComponentProps<TFieldNames extends string> {
   children?: React.ReactElement;
+  context: AuthFormContext | null;
   fields: readonly AuthFormFieldDefinition<TFieldNames>[];
   onSubmit: (
     values: AuthFormValues<TFieldNames>
@@ -28,6 +30,7 @@ interface ComponentProps<TFieldNames extends string> {
 
 function AuthForm<TFieldNames extends string>({
   children,
+  context,
   fields,
   onSubmit,
   submitButtonLabel,
@@ -132,6 +135,13 @@ function AuthForm<TFieldNames extends string>({
   // Render the page
   return (
     <Form onSubmit={handleSubmit}>
+      {context && context.username && (
+        <input
+          type="text"
+          value={context.username}
+          style={{ display: "none" }}
+        />
+      )}
       {fields.map(
         (definition): React.ReactElement => (
           <AuthFormFieldDisplay

@@ -2,6 +2,15 @@ import { MessageDescriptor } from "react-intl";
 
 import { ErrorMessageDefinition } from "@jyosuushi/ui/modules/authentication/error-messages";
 
+export interface AuthFormContext {
+  /**
+   * The username of the user who is currently logged in. This can be used to
+   * configure proper support and integration with password managers for forms
+   * that don't have a username field.
+   */
+  username?: string;
+}
+
 export type AuthFormValues<TFieldNames extends string> = {
   [field in TFieldNames]: string;
 };

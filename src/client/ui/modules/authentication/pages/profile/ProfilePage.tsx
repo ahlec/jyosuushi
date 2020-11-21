@@ -6,7 +6,7 @@ import { useLogoutMutation } from "@jyosuushi/graphql/types.generated";
 
 import AuthPageLayout from "@jyosuushi/ui/modules/authentication/components/AuthPageLayout";
 
-import ChangePasswordModal from "./ChangePasswordModal";
+import ChangePasswordModal from "./change-password/ChangePasswordModal";
 import ProfilePageField from "./ProfilePageField";
 import { ProfileData } from "./types";
 
@@ -110,6 +110,7 @@ function ProfilePage({ data }: ComponentProps): React.ReactElement {
           {changePasswordModal === "open" && (
             <ChangePasswordModal
               onRequestClose={handleRequestCloseChangePassword}
+              username={data.email}
             />
           )}
         </ProfilePageField>

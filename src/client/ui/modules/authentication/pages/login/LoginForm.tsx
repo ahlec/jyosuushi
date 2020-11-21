@@ -57,6 +57,7 @@ interface ComponentProps {
 function LoginForm({ onSubmit }: ComponentProps): React.ReactElement {
   return (
     <AuthForm
+      context={null}
       fields={LOGIN_FORM_FIELDS}
       onSubmit={onSubmit}
       submitButtonLabel={INTL_MESSAGES.buttonLogin}

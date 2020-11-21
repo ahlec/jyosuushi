@@ -930,6 +930,15 @@
     },
     "translation": ""
   },
+  "authentication.errors.passwordsDontMatch": {
+    "original": {
+      "defaultMessage": "Passwords do not match.",
+      "filenames": [
+        "src/client/ui/modules/authentication/error-messages.ts"
+      ]
+    },
+    "translation": ""
+  },
   "authentication.errors.unknown": {
     "original": {
       "defaultMessage": "An error occurred while trying to process your request. Please try again in a moment.",
@@ -1151,6 +1160,78 @@
       "defaultMessage": "Resend Verification Email",
       "filenames": [
         "src/client/ui/modules/authentication/pages/login/ResendVerificationEmailForm.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "profile.change-password.form.buttons.confirm": {
+    "original": {
+      "defaultMessage": "Change Password",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/profile/change-password/ChangePasswordForm.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "profile.change-password.form.confirm-password.label": {
+    "original": {
+      "defaultMessage": "Confirm New Password",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/profile/change-password/ChangePasswordForm.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "profile.change-password.form.new-password.label": {
+    "original": {
+      "defaultMessage": "New Password",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/profile/change-password/ChangePasswordForm.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "profile.change-password.form.old-password.label": {
+    "original": {
+      "defaultMessage": "Current Password",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/profile/change-password/ChangePasswordForm.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "profile-page.change-password-modal.errors.noLongerAuthenticated": {
+    "original": {
+      "defaultMessage": "An error has occurred. Please try refreshing the page.",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/profile/change-password/ChangePasswordModal.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "profile-page.change-password-modal.errors.oldPasswordIncorrect": {
+    "original": {
+      "defaultMessage": "Password does not match your current password.",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/profile/change-password/ChangePasswordModal.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "profile-page.change-password-modal.errors.rateLimited": {
+    "original": {
+      "defaultMessage": "You have attempted to change your password too many times too quickly. Please try again after a minute.",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/profile/change-password/ChangePasswordModal.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "profile-page.change-password-modal.header": {
+    "original": {
+      "defaultMessage": "Change Password",
+      "filenames": [
+        "src/client/ui/modules/authentication/pages/profile/change-password/ChangePasswordModal.tsx"
       ]
     },
     "translation": ""

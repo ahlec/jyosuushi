@@ -44,6 +44,7 @@ interface ComponentProps {
 function ForgotPasswordForm({ onSubmit }: ComponentProps): React.ReactElement {
   return (
     <AuthForm
+      context={null}
       fields={FORGOT_PASSWORD_FORM_FIELDS}
       onSubmit={onSubmit}
       submitButtonLabel={INTL_MESSAGES.buttonResetPassword}

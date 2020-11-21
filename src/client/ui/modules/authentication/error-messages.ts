@@ -21,6 +21,10 @@ const INTL_MESSAGES = defineMessages({
       "Your password must be at least {minLength, plural, one {1 character} other {# characters}} long.",
     id: "authentication.errors.passwordTooShort",
   },
+  errorPasswordsDontMatch: {
+    defaultMessage: "Passwords do not match.",
+    id: "authentication.errors.passwordsDontMatch",
+  },
   errorUnknownError: {
     defaultMessage:
       "An error occurred while trying to process your request. Please try again in a moment.",
@@ -54,4 +58,8 @@ export const ERROR_MESSAGE_EMAIL_DOESNT_LOOK_LIKE_EMAIL: ErrorMessageDefinition 
 
 export const ERROR_MESSAGE_FIELD_EMPTY: ErrorMessageDefinition = {
   message: INTL_MESSAGES.errorFieldEmpty,
+};
+
+export const ERROR_MESSAGE_PASSWORDS_DONT_MATCH: ErrorMessageDefinition = {
+  message: INTL_MESSAGES.errorPasswordsDontMatch,
 };
