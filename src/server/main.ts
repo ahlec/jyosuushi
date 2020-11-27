@@ -42,7 +42,10 @@ function getRuntimeEnvironment(): Environment {
   return {
     awsRegion: AWS_REGION,
     canUseSecureCookies: !isLocalDevelopment,
+    corsOrigins: ["http://localhost:8080"],
     fromEmailAddress: EMAIL_ADDRESS,
+    serverPort: 4000,
+    shouldProvidePlayground: isLocalDevelopment,
     useAws,
     useAwsSimpleEmailService: useAws,
     webClientBaseUrl,
@@ -91,7 +94,7 @@ function instantiateEmailApi(environment: Environment): EmailApi {
   return new EmailTemplatesEmailApi(
     environment.useAwsSimpleEmailService
       ? {
-          fromEmail: "donotreply@jyosuushi.com",
+          fromEmail: environment.fromEmailAddress,
           mode: "aws-ses",
         }
       : {
@@ -139,6 +142,8 @@ async function main(): Promise<void> {
         requestRemoteAddress: req.ip,
       };
     },
+    introspection: environment.shouldProvidePlayground, // needed for playground?
+    playground: environment.shouldProvidePlayground,
     resolvers: RESOLVERS,
     typeDefs: SERVER_MODULES.map((module) => module.typeDefs),
     validationRules: [
@@ -159,14 +164,14 @@ async function main(): Promise<void> {
     app,
     cors: {
       credentials: true,
-      origin: ["http://localhost:8080"],
+      origin: [...environment.corsOrigins], // Cannot pass in readonly array
     },
     path: "/",
   });
 
-  app.listen({ port: 4000 }, () => {
+  app.listen({ port: environment.serverPort }, () => {
     console.log(
-      `🚀 Server ready at http://localhost:4000${server.graphqlPath}`
+      `🚀 Server ready at http://localhost:${environment.serverPort}${server.graphqlPath}`
     );
   });
 }

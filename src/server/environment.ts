@@ -18,9 +18,33 @@ export interface Environment {
   canUseSecureCookies: boolean;
 
   /**
+   * An array of valid origins that should be used to configure CORS for the
+   * server.
+   *
+   * This should be an array of values that are able to work with the `cors`
+   * NPM package: {@url https://expressjs.com/en/resources/middleware/cors.html}
+   */
+  corsOrigins: readonly string[];
+
+  /**
    * The email address that the server will use to send emails.
    */
   fromEmailAddress: string;
+
+  /**
+   * The port number that this server should be set up on.
+   */
+  serverPort: number;
+
+  /**
+   * If true, navigating to the server URL will display the Apollo Playground
+   * sandbox environment that allows for viewing documentation and executing
+   * arbitrary queries and mutations against the server.
+   *
+   * It's STRONGLY recommended to make sure that this is turned off for
+   * production builds.
+   */
+  shouldProvidePlayground: boolean;
 
   /**
    * If true, AWS will be loaded and configured and various pieces that make
