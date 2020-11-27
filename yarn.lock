@@ -2208,6 +2208,20 @@
   resolved "https://registry.yarnpkg.com/@types/content-disposition/-/content-disposition-0.5.3.tgz#0aa116701955c2faa0717fc69cd1596095e49d96"
   integrity sha512-P1bffQfhD3O4LW0ioENXUhZ9OIa0Zn+P7M+pWgkCKaT53wVLSq0mrKksCID/FGHpFhRSxRGhgrQmfhRuzwtKdg==
 
+"@types/convict-format-with-validator@^6.0.1":
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/@types/convict-format-with-validator/-/convict-format-with-validator-6.0.1.tgz#c2254bbcf1ebf0cc09533e4f5c4344f6f077f67d"
+  integrity sha512-Z4AVD2albucxXZatYRQDfXY4quh8cWF65TAsEcg6U1Y3Ch0nTcFJ3COOYJxYwIKCDmB4tQqB55Yc5TggxvY3fA==
+  dependencies:
+    "@types/convict" "*"
+
+"@types/convict@*", "@types/convict@^5.2.1":
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/@types/convict/-/convict-5.2.1.tgz#35d997d1532e469f02f5da21a5910205ca96bc3f"
+  integrity sha512-SbtKO7CzkSaBZ/yMo9+qDPG2q59BN2ONry2Qra+boPXoXfjW4gVX/ohcmRsKpZZGGNszkLCl2Wi8coIDp/qPQg==
+  dependencies:
+    "@types/node" "*"
+
 "@types/cookie-parser@^1.4.2":
   version "1.4.2"
   resolved "https://registry.yarnpkg.com/@types/cookie-parser/-/cookie-parser-1.4.2.tgz#e4d5c5ffda82b80672a88a4281aaceefb1bd9df5"
@@ -4675,6 +4689,21 @@ convert-source-map@^1.7.0:
   dependencies:
     safe-buffer "~5.1.1"
 
+convict-format-with-validator@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/convict-format-with-validator/-/convict-format-with-validator-6.0.0.tgz#94734abd7ac077adca9769c1dbed3e838e972f66"
+  integrity sha512-3E8cLYkHKQDTCF4MYOzReVeHrObfulUR5hw/Ur/hE/CPwXRcJHZO7Jt0JyE86IpvAZsgrOjMpVy93USjrubVqg==
+  dependencies:
+    validator "^11.1.0"
+
+convict@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/convict/-/convict-6.0.0.tgz#4be829f001a778d337d32ec79e9ae7f2e39df1a6"
+  integrity sha512-osfPkv5yjVoZqrTWBXuh/ABGpFoaJplbt0WXr0CodR4CSWt8UnzY4PSUyRz/+5BX5YUtWcToG29Kr0B6xhdIMg==
+  dependencies:
+    lodash.clonedeep "^4.5.0"
+    yargs-parser "^18.1.3"
+
 cookie-parser@^1.4.5:
   version "1.4.5"
   resolved "https://registry.yarnpkg.com/cookie-parser/-/cookie-parser-1.4.5.tgz#3e572d4b7c0c80f9c61daf604e4336831b5d1d49"
@@ -4783,6 +4812,17 @@ cosmiconfig@^5.0.0:
     is-directory "^0.3.1"
     js-yaml "^3.13.1"
     parse-json "^4.0.0"
+
+cosmiconfig@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/cosmiconfig/-/cosmiconfig-7.0.0.tgz#ef9b44d773959cae63ddecd122de23853b60f8d3"
+  integrity sha512-pondGvTuVYDk++upghXJabWzL6Kxu6f26ljFw64Swq9v6sQPUL3EUlVDV56diOjpCayKihL6hVe8exIACU4XcA==
+  dependencies:
+    "@types/parse-json" "^4.0.0"
+    import-fresh "^3.2.1"
+    parse-json "^5.0.0"
+    path-type "^4.0.0"
+    yaml "^1.10.0"
 
 country-language@^0.1.7:
   version "0.1.7"
@@ -7367,6 +7407,14 @@ import-fresh@^3.0.0, import-fresh@^3.1.0:
     parent-module "^1.0.0"
     resolve-from "^4.0.0"
 
+import-fresh@^3.2.1:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/import-fresh/-/import-fresh-3.2.2.tgz#fc129c160c5d68235507f4331a6baad186bdbc3e"
+  integrity sha512-cTPNrlvJT6twpYy+YmKUKrTSjWFs3bjYjAhCwm+z4EOCubZxAuO+hHpRN64TqjEaYSHs7tJAE0w1CKMGmsG/lw==
+  dependencies:
+    parent-module "^1.0.0"
+    resolve-from "^4.0.0"
+
 import-from@3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/import-from/-/import-from-3.0.0.tgz#055cfec38cd5a27d8057ca51376d7d3bf0891966"
@@ -8471,6 +8519,11 @@ lodash.camelcase@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/lodash.camelcase/-/lodash.camelcase-4.3.0.tgz#b28aa6288a2b9fc651035c7711f65ab6190331a6"
   integrity sha1-soqmKIorn8ZRA1x3EfZathkDMaY=
+
+lodash.clonedeep@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.clonedeep/-/lodash.clonedeep-4.5.0.tgz#e23f3f9c4f8fbdde872529c1071857a086e5ccef"
+  integrity sha1-4j8/nE+Pvd6HJSnBBxhXoIblzO8=
 
 lodash.defaults@^4.0.1:
   version "4.2.0"
@@ -13574,6 +13627,11 @@ validate-npm-package-license@^3.0.1:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
 
+validator@^11.1.0:
+  version "11.1.0"
+  resolved "https://registry.yarnpkg.com/validator/-/validator-11.1.0.tgz#ac18cac42e0aa5902b603d7a5d9b7827e2346ac4"
+  integrity sha512-qiQ5ktdO7CD6C/5/mYV4jku/7qnqzjrxb3C/Q5wR3vGGinHTgJZN/TdFT3ZX4vXhX2R1PXx42fB1cn5W+uJ4lg==
+
 value-equal@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/value-equal/-/value-equal-1.0.1.tgz#1e0b794c734c5c0cade179c437d356d931a34d6c"
@@ -14081,7 +14139,7 @@ yaml-ast-parser@^0.0.40:
   resolved "https://registry.yarnpkg.com/yaml-ast-parser/-/yaml-ast-parser-0.0.40.tgz#08536d4e73d322b1c9ce207ab8dd70e04d20ae6e"
   integrity sha1-CFNtTnPTIrHJziB6uN1w4E0grm4=
 
-yaml@^1.7.2:
+yaml@^1.10.0, yaml@^1.7.2:
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/yaml/-/yaml-1.10.0.tgz#3b593add944876077d4d683fee01081bd9fff31e"
   integrity sha512-yr2icI4glYaNG+KWONODapy2/jDdMSDnrONSjblABjD9B4Z5LgiircSt8m8sRZFNi08kG9Sm0uSHtEmP3zaEGg==

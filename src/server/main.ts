@@ -7,50 +7,13 @@ import graphqlDepthLimit from "graphql-depth-limit";
 
 import ExpressAuthenticationCookie from "./authentication/ExpressAuthenticationCookie";
 import { createDataSources } from "./datasources";
-import { Environment } from "./environment";
+import { loadEnvironment, Environment } from "./environment";
 import EmailTemplatesEmailApi from "./email/EmailTemplatesEmailApi";
 import { EmailApi } from "./email/types";
 import { SERVER_MODULES } from "./modules";
 import { createRateLimiter } from "./rate-limiting/create";
 import { RESOLVERS } from "./resolvers";
 import { ServerContext } from "./context";
-
-function getRuntimeEnvironment(): Environment {
-  const {
-    AWS_REGION = "us-east-1",
-    EMAIL_ADDRESS = "donotreply@jyosuushi.com",
-    LOCAL_DEVELOPMENT = "",
-    USE_AWS = "",
-    WEB_CLIENT_URL,
-  } = process.env;
-
-  const isLocalDevelopment = LOCAL_DEVELOPMENT === "true";
-  const hasAwsUseFlag = USE_AWS === "true";
-
-  if (!isLocalDevelopment && !hasAwsUseFlag) {
-    throw new Error("Cannot be in a production environment with AWS disabled.");
-  }
-
-  let webClientBaseUrl = WEB_CLIENT_URL;
-  if (!webClientBaseUrl) {
-    webClientBaseUrl = isLocalDevelopment
-      ? "http://localhost:8080"
-      : "https://www.jyosuushi.com";
-  }
-
-  const useAws = !isLocalDevelopment || hasAwsUseFlag;
-  return {
-    awsRegion: AWS_REGION,
-    canUseSecureCookies: !isLocalDevelopment,
-    corsOrigins: ["http://localhost:8080"],
-    fromEmailAddress: EMAIL_ADDRESS,
-    serverPort: 4000,
-    shouldProvidePlayground: isLocalDevelopment,
-    useAws,
-    useAwsSimpleEmailService: useAws,
-    webClientBaseUrl,
-  };
-}
 
 function loadAndVerifyAwsConfiguration({
   awsRegion,
@@ -105,10 +68,10 @@ function instantiateEmailApi(environment: Environment): EmailApi {
 }
 
 async function main(): Promise<void> {
-  const environment = getRuntimeEnvironment();
+  const environment = loadEnvironment();
   console.log("⚙️ Environment:", environment);
 
-  if (environment.useAws) {
+  if (environment.useAwsSimpleEmailService) {
     console.group("🖇️ AWS: Loading configuration and connecting.");
     try {
       await loadAndVerifyAwsConfiguration(environment);

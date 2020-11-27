@@ -1,3 +1,7 @@
+import convict from "convict";
+import convictFormatWithValidator from "convict-format-with-validator";
+import { cosmiconfigSync } from "cosmiconfig";
+
 export interface Environment {
   /**
    * The AWS region that should be used when interacting with AWS services.
@@ -47,24 +51,11 @@ export interface Environment {
   shouldProvidePlayground: boolean;
 
   /**
-   * If true, AWS will be loaded and configured and various pieces that make
-   * use of AWS services can be enabled (by other environment flags).
+   * If true, emails will be sent via AWS Simple Email Service (SES). Otherwise,
+   * emails will not be sent but will be logged in a local directory as files and
+   * opened.
    *
-   * Simply having this set to true will not enable usage of any other service
-   * (eg SES). However, this must be true in order for those other fields to be
-   * true.
-   *
-   * If this is false, aws-sdk will not be loaded and configured. If this is true,
-   * it will be loaded and configured, and will produce a fatal error if the
-   * configuration failed.
-   */
-  useAws: boolean;
-
-  /**
-   * If true, emails will be sent via AWS Simple Email Service (SES).
-   *
-   * This property requires {@link Environment.useAws} to be true; it is a fatal
-   * error for this to true with the other property being false.
+   * For production, this should be expected to be true.
    */
   useAwsSimpleEmailService: boolean;
 
@@ -77,4 +68,87 @@ export interface Environment {
    * following). It should, however, include the protocol and any subdomain.
    */
   webClientBaseUrl: string;
+}
+
+convict.addFormats(convictFormatWithValidator);
+
+const VALIDATOR = convict<Environment>({
+  awsRegion: {
+    default: "us-east-1",
+    doc:
+      "The AWS region that the services (such as EC2 instance or SES account) are located in.",
+    format: String,
+  },
+  canUseSecureCookies: {
+    default: true,
+    doc:
+      "Whether cookies set by this server can be configured with `Secure` or not (localhost cookies cannot be).",
+    format: Boolean,
+  },
+  corsOrigins: {
+    default: ["https://jyosuushi.com", "https://www.jyosuushi.com"],
+    doc:
+      "An array of `cors` module origins that should be considered for CORS configuration.",
+    format: (value): void => {
+      if (!Array.isArray(value)) {
+        throw new Error("Value is expected to be an array of strings.");
+      }
+
+      if (!value.length) {
+        // Empty arrays are always valid
+        return;
+      }
+
+      if (value.some((el): boolean => typeof el !== "string")) {
+        throw new Error("Value must be an array that only contains strings.");
+      }
+    },
+  },
+  fromEmailAddress: {
+    default: "donotreply@jyosuushi.com",
+    doc: "The email address that emails should be sent from.",
+    format: "email",
+  },
+  serverPort: {
+    default: 80,
+    doc:
+      "The port number that the server should be accessible from/should listen on.",
+    format: "port",
+  },
+  shouldProvidePlayground: {
+    default: false,
+    doc:
+      "Whether navigating to the server URL should provide access to the Apollo Playground or not.",
+    format: Boolean,
+  },
+  useAwsSimpleEmailService: {
+    default: true,
+    doc:
+      "Whether the AWS Simple Email Service (SES) should be used to send emails or not. If false, no email will be sent.",
+    format: Boolean,
+  },
+  webClientBaseUrl: {
+    default: "https://www.jyosuushi.com",
+    doc:
+      "The full URL that the client corresponding to this server is accessible at. This should NOT end with a trailing slash.",
+    format: "url",
+  },
+});
+
+// Getting the types to line up between `cosmiconfig` and `convict` is really
+// messy, so the easiest way is to (INTERNALLY ONLY) use `any`.
+/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+function getRawConfig(): any {
+  const loader = cosmiconfigSync("jyosuushi");
+  const configFile = loader.search();
+  if (!configFile || !configFile.config) {
+    return {};
+  }
+
+  return configFile.config;
+}
+
+export function loadEnvironment(): Environment {
+  const validated = VALIDATOR.load(getRawConfig()).validate();
+  return validated.getProperties();
 }
