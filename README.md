@@ -43,6 +43,18 @@ yarn start
 
 At this point, you can navigate to `http://localhost:8080/`. As of right now, there is no persistence of data on a server or backend, so no setup of this kind is necessary for running or deployment.
 
+## Configuration
+
+Out of the box, the repository is configured to run locally in a development environment, in order to facilitate easily onboarding into the project.
+
+Understandably, the default configuration values are not suitable for production environments. A valid set of default production values is maintained in **/prod.jyosuushirc**. When working on a production environment, remove the prefix to this filename:
+
+```bash
+mv prod.jyosuushirc .jyosuushirc
+```
+
+When running the server in production mode (`NODE_ENV=production`), the server will throw an error if an explicit [cosmiconfig](https://github.com/davidtheclark/cosmiconfig) config for **jyosuushi** can not be found, as a safety measure.
+
 ## Deploying
 
 When you're ready to publish the webapp, all you need to do is build the application.

@@ -80,13 +80,13 @@ const VALIDATOR = convict<Environment>({
     format: String,
   },
   canUseSecureCookies: {
-    default: true,
+    default: false,
     doc:
       "Whether cookies set by this server can be configured with `Secure` or not (localhost cookies cannot be).",
     format: Boolean,
   },
   corsOrigins: {
-    default: ["https://jyosuushi.com", "https://www.jyosuushi.com"],
+    default: ["http://localhost:8080"],
     doc:
       "An array of `cors` module origins that should be considered for CORS configuration.",
     format: (value): void => {
@@ -110,25 +110,25 @@ const VALIDATOR = convict<Environment>({
     format: "email",
   },
   serverPort: {
-    default: 80,
+    default: 4000,
     doc:
       "The port number that the server should be accessible from/should listen on.",
     format: "port",
   },
   shouldProvidePlayground: {
-    default: false,
+    default: true,
     doc:
       "Whether navigating to the server URL should provide access to the Apollo Playground or not.",
     format: Boolean,
   },
   useAwsSimpleEmailService: {
-    default: true,
+    default: false,
     doc:
       "Whether the AWS Simple Email Service (SES) should be used to send emails or not. If false, no email will be sent.",
     format: Boolean,
   },
   webClientBaseUrl: {
-    default: "https://www.jyosuushi.com",
+    default: "http://localhost:8080",
     doc:
       "The full URL that the client corresponding to this server is accessible at. This should NOT end with a trailing slash.",
     format: "url",
@@ -142,6 +142,12 @@ function getRawConfig(): any {
   const loader = cosmiconfigSync("jyosuushi");
   const configFile = loader.search();
   if (!configFile || !configFile.config) {
+    if (process.env.NODE_ENV === "production") {
+      throw new Error(
+        "Cannot run the server in production mode without an explicit cosmisconfig specification."
+      );
+    }
+
     return {};
   }
 

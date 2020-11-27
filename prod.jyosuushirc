@@ -1,0 +1,10 @@
+{
+    "awsRegion": "us-east-1",
+    "canUseSecureCookies": true,
+    "corsOrigins": ["https://jyosuushi.com", "https://www.jyosuushi.com"],
+    "fromEmailAddress": "donotreply@jyosuushi.com",
+    "serverPort": 80,
+    "shouldProvidePlayground": false,
+    "useAwsSimpleEmailService": true,
+    "webClientBaseUrl": "https://www.jyosuushi.com"
+}
