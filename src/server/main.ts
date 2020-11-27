@@ -14,6 +14,7 @@ import { SERVER_MODULES } from "./modules";
 import { createRateLimiter } from "./rate-limiting/create";
 import { RESOLVERS } from "./resolvers";
 import { ServerContext } from "./context";
+import { startHttpServer } from "./http-server";
 
 function loadAndVerifyAwsConfiguration({
   awsRegion,
@@ -132,10 +133,8 @@ async function main(): Promise<void> {
     path: "/",
   });
 
-  app.listen({ port: environment.serverPort }, () => {
-    console.log(
-      `🚀 Server ready at http://localhost:${environment.serverPort}${server.graphqlPath}`
-    );
+  startHttpServer(environment.serverConfig, app, (url): void => {
+    console.log(`🚀 Server ready at ${url}${server.graphqlPath}`);
   });
 }
 

@@ -53,6 +53,8 @@ Understandably, the default configuration values are not suitable for production
 mv prod.jyosuushirc .jyosuushirc
 ```
 
+Note that there are some fields in this file which are required to fill out and that the file isn't guaranteed or expected to work without some modification.
+
 When running the server in production mode (`NODE_ENV=production`), the server will throw an error if an explicit [cosmiconfig](https://github.com/davidtheclark/cosmiconfig) config for **jyosuushi** can not be found, as a safety measure.
 
 ## Deploying

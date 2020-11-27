@@ -1,6 +1,55 @@
 import convict from "convict";
 import convictFormatWithValidator from "convict-format-with-validator";
 import { cosmiconfigSync } from "cosmiconfig";
+import { existsSync } from "fs";
+
+interface HttpServerConfiguration {
+  protocol: "http";
+
+  /**
+   * The port number that the server should listen on.
+   */
+  portNumber: number;
+}
+
+interface HttpsServerConfiguration {
+  protocol: "https";
+
+  /**
+   * The port number that the server should listen on.
+   */
+  portNumber: number;
+
+  /**
+   * The file on the local filesystem that holds the contents of the
+   * private key. This should be readable by this process, so that the
+   * private key can be read in and used for signing the server responses.
+   *
+   * This file should be in PEM format.
+   */
+  privateKeyFile: string;
+
+  /**
+   * The file on the local filesystem that holds the contents of the
+   * certificate. This should be readable by this process, so that the
+   * certificate can be read in and used for signing the server responses.
+   *
+   * This file should be in PEM format.
+   */
+  certificateFile: string;
+
+  /**
+   * The file on the local filesystem that holds the CA certificate for the
+   * authority certifying the certificate. This should be readable by this
+   * process, so that the CA can be read in and used for signing the server
+   * responses.
+   *
+   * This file should be in PEM format.
+   */
+  caFile: string;
+}
+
+export type ServerConfig = HttpServerConfiguration | HttpsServerConfiguration;
 
 export interface Environment {
   /**
@@ -36,9 +85,10 @@ export interface Environment {
   fromEmailAddress: string;
 
   /**
-   * The port number that this server should be set up on.
+   * The config object for the kind of server that should be used to back HTTP
+   * requests.
    */
-  serverPort: number;
+  serverConfig: ServerConfig;
 
   /**
    * If true, navigating to the server URL will display the Apollo Playground
@@ -71,6 +121,80 @@ export interface Environment {
 }
 
 convict.addFormats(convictFormatWithValidator);
+
+convict.addFormat({
+  name: "filepath",
+  validate: (value): void => {
+    if (typeof value !== "string") {
+      throw new Error("Value must be a string.");
+    }
+
+    if (!value) {
+      throw new Error("Value cannot be empty.");
+    }
+
+    if (!existsSync(value)) {
+      throw new Error("Value is not a path to an existing file.");
+    }
+  },
+});
+
+const HTTP_SERVER_CONFIG_VALIDATOR = convict<HttpServerConfiguration>({
+  portNumber: {
+    default: 4000,
+    doc: "The port number that this HTTP server should listen on.",
+    format: "port",
+  },
+  protocol: {
+    default: "http",
+    doc: "<Discriminated union field>",
+    format: (value): void => {
+      if (value !== "http") {
+        throw new Error(
+          `Hardcoded discriminated union field not met with value '${value}'`
+        );
+      }
+    },
+  },
+});
+
+const HTTPS_SERVER_CONFIG_VALIDATOR = convict<HttpsServerConfiguration>({
+  caFile: {
+    default: null,
+    doc: "The filename for the PEM-format CA file for the SSL certificate.",
+    format: "filepath",
+    sensitive: true,
+  },
+  certificateFile: {
+    default: null,
+    doc:
+      "The filename for th PEM-format certificate file for the SSL certificate.",
+    format: "filepath",
+    sensitive: true,
+  },
+  portNumber: {
+    default: 4000,
+    doc: "The port number that this HTTPS server should listen on.",
+    format: "port",
+  },
+  privateKeyFile: {
+    default: null,
+    doc: "The filename for the PEM private key file for the SSL certificate.",
+    format: "filepath",
+    sensitive: true,
+  },
+  protocol: {
+    default: "https",
+    doc: "<Discriminated union field>",
+    format: (value): void => {
+      if (value !== "https") {
+        throw new Error(
+          `Hardcoded discriminated union field not met with value '${value}'`
+        );
+      }
+    },
+  },
+});
 
 const VALIDATOR = convict<Environment>({
   awsRegion: {
@@ -109,11 +233,36 @@ const VALIDATOR = convict<Environment>({
     doc: "The email address that emails should be sent from.",
     format: "email",
   },
-  serverPort: {
-    default: 4000,
+  serverConfig: {
+    default: {
+      portNumber: 4000,
+      protocol: "http",
+    },
     doc:
-      "The port number that the server should be accessible from/should listen on.",
-    format: "port",
+      "The config object for the HTTP or HTTPS server created to listen and respond to requests.",
+    format: (value): void => {
+      if (typeof value !== "object" || !value) {
+        throw new Error("Value must be an object.");
+      }
+
+      switch (value["protocol"]) {
+        case "http": {
+          HTTP_SERVER_CONFIG_VALIDATOR.load(value).validate();
+          break;
+        }
+        case "https": {
+          HTTPS_SERVER_CONFIG_VALIDATOR.load(value).validate();
+          break;
+        }
+        default: {
+          throw new Error(
+            `Unrecognized protocol value '${
+              value["protocol"]
+            } (typeof ${typeof value["protocol"]})`
+          );
+        }
+      }
+    },
   },
   shouldProvidePlayground: {
     default: true,
