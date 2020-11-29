@@ -96,7 +96,9 @@ export interface Environment {
    * arbitrary queries and mutations against the server.
    *
    * It's STRONGLY recommended to make sure that this is turned off for
-   * production builds.
+   * production environments. Leaving this accessible is a security
+   * vulnerability in itself, and might also required other security-oriented
+   * compromises to support.
    */
   shouldProvidePlayground: boolean;
 

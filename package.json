@@ -140,6 +140,7 @@
     "graphql": "^15.3.0",
     "graphql-depth-limit": "^1.1.0",
     "graphql-rate-limit": "^2.0.1",
+    "helmet": "^4.2.0",
     "is-wsl": "^2.2.0",
     "lodash": "^4.17.19",
     "memoize-one": "^5.1.1",

@@ -4,6 +4,7 @@ import aws from "aws-sdk";
 import CookieParser from "cookie-parser";
 import express from "express";
 import graphqlDepthLimit from "graphql-depth-limit";
+import helmet from "helmet";
 
 import ExpressAuthenticationCookie from "./authentication/ExpressAuthenticationCookie";
 import { createDataSources } from "./datasources";
@@ -123,6 +124,13 @@ async function main(): Promise<void> {
 
   const app = express();
   app.use(CookieParser());
+  app.use(
+    helmet({
+      contentSecurityPolicy: environment.shouldProvidePlayground
+        ? false
+        : undefined,
+    })
+  );
 
   server.applyMiddleware({
     app,
