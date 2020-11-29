@@ -36,6 +36,12 @@ function copyPrismaFiles() {
   return src(["prisma/**"]).pipe(dest("dist-server/prisma"));
 }
 
+function copyPm2Files() {
+  return src(["prod-pm2-ecosystem.config.js"])
+    .pipe(rename("ecosystem.config.js"))
+    .pipe(dest("dist-server"));
+}
+
 function generateDistServerPackage() {
   // Collect all of the NPM dependencies from the `good-fences` files
   const dependencies = new Set([
@@ -82,8 +88,8 @@ function generateDistServerPackage() {
           // Replace scripts with server-specific, distributed techniques
           package.scripts = {
             postinstall: "prisma generate",
-            start: "pm2 start ./server/main.js --name jyosuushi-server",
-            stop: "pm2 stop jyosuushi-server",
+            start: "pm2 start ecosystem.config.js",
+            stop: "pm2 stop ecosystem.config.js",
           };
 
           // Return the transformed JSON
@@ -116,6 +122,8 @@ exports["build-server"] = series(
     copyProdConfigFileTemplate,
     // Copy the necessary Prisma files to output directory
     copyPrismaFiles,
+    // Copy the PM2 configuration files necessary to run the server
+    copyPm2Files,
     // Pare down package.json to produce a server-only distribution package
     generateDistServerPackage,
     // Copy over the whole yarn.lock file to preserve exact versions
