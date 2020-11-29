@@ -82,7 +82,8 @@ function generateDistServerPackage() {
           // Replace scripts with server-specific, distributed techniques
           package.scripts = {
             postinstall: "prisma generate",
-            start: "node ./server/main.js",
+            start: "pm2 start ./server/main.js --name jyosuushi-server",
+            stop: "pm2 stop jyosuushi-server",
           };
 
           // Return the transformed JSON
