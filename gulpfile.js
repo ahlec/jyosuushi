@@ -3,6 +3,7 @@ const { readFileSync } = require("fs");
 const { dest, parallel, series, src } = require("gulp");
 const rename = require("gulp-rename");
 const gulpTypescript = require("gulp-typescript");
+const zip = require("gulp-zip");
 const { Transform } = require("readable-stream");
 
 const tsProject = gulpTypescript.createProject("tsconfig.server.json", {
@@ -94,6 +95,10 @@ function copyYarnLock() {
   return src("yarn.lock").pipe(dest("dist-server"));
 }
 
+function zipBuiltServer() {
+  return src("dist-server/**").pipe(zip("dist.zip")).pipe(dest("dist-server"));
+}
+
 exports["build-server"] = series(
   // Clean output directory
   cleanServer,
@@ -110,5 +115,7 @@ exports["build-server"] = series(
     generateDistServerPackage,
     // Copy over the whole yarn.lock file to preserve exact versions
     copyYarnLock
-  )
+  ),
+  // Package all of the built files into an easy ZIP file
+  zipBuiltServer
 );
