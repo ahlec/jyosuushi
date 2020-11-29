@@ -38,7 +38,10 @@ function copyPrismaFiles() {
 
 function generateDistServerPackage() {
   // Collect all of the NPM dependencies from the `good-fences` files
-  const dependencies = new Set();
+  const dependencies = new Set([
+    // Need @prisma/cli in order to do the environment setup for Prisma
+    "@prisma/cli",
+  ]);
   const fenceFiles = ["./src/server/fence.json", "./src/shared/fence.json"];
   fenceFiles.forEach((filename) => {
     // Read in the file as JSON
@@ -78,6 +81,7 @@ function generateDistServerPackage() {
 
           // Replace scripts with server-specific, distributed techniques
           package.scripts = {
+            postinstall: "prisma generate",
             start: "node ./server/main.js",
           };
 
