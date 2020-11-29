@@ -13,8 +13,9 @@ jyosuushi.sqlite
 # Docker
 Dockerfile
 
-# TypeScript
+# Builds/distribution builds
 build/
+dist-server/
 
 # Configuration files
 config.json
