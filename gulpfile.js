@@ -1,10 +1,19 @@
 const del = require("del");
 const { readFileSync } = require("fs");
 const { dest, parallel, series, src } = require("gulp");
+const awsPublish = require("gulp-awspublish");
+const cloudfront = require("gulp-cloudfront-invalidate-aws-publish");
 const rename = require("gulp-rename");
 const gulpTypescript = require("gulp-typescript");
 const zip = require("gulp-zip");
 const { Transform } = require("readable-stream");
+
+const S3_BUCKET_NAME = ""; // TODO
+const CLOUDFRONT_DISTRIBUTION_ID = ""; // TODO
+
+/******************************/
+/*         build-server       */
+/******************************/
 
 const tsProject = gulpTypescript.createProject("tsconfig.server.json", {
   typescript: require("ttypescript"),
@@ -132,3 +141,34 @@ exports["build-server"] = series(
   // Package all of the built files into an easy ZIP file
   zipBuiltServer
 );
+
+/******************************/
+/*        upload-client       */
+/******************************/
+
+exports["upload-client"] = () => {
+  const publisher = awsPublish.create(
+    {
+      params: {
+        Bucket: S3_BUCKET_NAME,
+      },
+    },
+    {
+      cacheFileName: ".s3-upload-cache",
+    }
+  );
+
+  return src("./dist-client/**/*")
+    .pipe(
+      publisher.publish({
+        "Cache-Control": "max-age=315360000, no-transform, public",
+      })
+    )
+    .pipe(
+      cloudfront({
+        distribution: CLOUDFRONT_DISTRIBUTION_ID,
+      })
+    )
+    .pipe(publisher.cache())
+    .pipe(awsPublish.reporter());
+};
