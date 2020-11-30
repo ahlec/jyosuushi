@@ -18,8 +18,9 @@ build/
 dist-client/
 dist-server/
 
-# Deploying cache
+# Deploying
 .s3-upload-cache
+deploy.config.json
 
 # Configuration files
 config.json

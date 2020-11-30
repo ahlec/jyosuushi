@@ -1,5 +1,6 @@
+const convict = require("convict");
 const del = require("del");
-const { readFileSync } = require("fs");
+const { existsSync, readFileSync } = require("fs");
 const { dest, parallel, series, src } = require("gulp");
 const awsPublish = require("gulp-awspublish");
 const cloudfront = require("gulp-cloudfront-invalidate-aws-publish");
@@ -8,8 +9,51 @@ const gulpTypescript = require("gulp-typescript");
 const zip = require("gulp-zip");
 const { Transform } = require("readable-stream");
 
-const S3_BUCKET_NAME = ""; // TODO
-const CLOUDFRONT_DISTRIBUTION_ID = ""; // TODO
+/******************************/
+/*         <  CONFIG  >       */
+/******************************/
+
+convict.addFormat({
+  name: "nonempty-string",
+  validate: (value) => {
+    if (!value) {
+      throw new Error("Value may not be empty.");
+    }
+  },
+});
+
+const DEPLOY_CONFIG_FILENAME = "./deploy.config.json";
+let deployConfig = null;
+function getDeployConfig() {
+  if (deployConfig) {
+    return deployConfig;
+  }
+
+  if (!existsSync(DEPLOY_CONFIG_FILENAME)) {
+    throw new Error(
+      `Deploying requires defining the config file '${DEPLOY_CONFIG_FILENAME}'`
+    );
+  }
+
+  deployConfig = convict({
+    clientCloudfrontDistId: {
+      default: null,
+      doc:
+        "The ID of the Cloudfront distribution handling the S3 bucket that the client files go into.",
+      format: "nonempty-string",
+    },
+    clientS3Bucket: {
+      default: null,
+      doc:
+        "The name of the S3 bucket that client files should be deployed into.",
+      format: "nonempty-string",
+    },
+  })
+    .loadFile(DEPLOY_CONFIG_FILENAME)
+    .validate()
+    .getProperties();
+  return deployConfig;
+}
 
 /******************************/
 /*         build-server       */
@@ -147,10 +191,12 @@ exports["build-server"] = series(
 /******************************/
 
 exports["upload-client"] = () => {
+  const config = getDeployConfig();
+
   const publisher = awsPublish.create(
     {
       params: {
-        Bucket: S3_BUCKET_NAME,
+        Bucket: config.clientS3Bucket,
       },
     },
     {
@@ -168,7 +214,7 @@ exports["upload-client"] = () => {
     .pipe(publisher.sync())
     .pipe(
       cloudfront({
-        distribution: CLOUDFRONT_DISTRIBUTION_ID,
+        distribution: config.clientCloudfrontDistId,
       })
     )
     .pipe(publisher.cache())
