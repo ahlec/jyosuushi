@@ -165,6 +165,7 @@ exports["upload-client"] = () => {
         "x-amz-acl": "public-read",
       })
     )
+    .pipe(publisher.sync())
     .pipe(
       cloudfront({
         distribution: CLOUDFRONT_DISTRIBUTION_ID,

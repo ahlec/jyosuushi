@@ -79,7 +79,7 @@
     "gulp": "^4.0.2",
     "gulp-awspublish": "^4.1.2",
     "gulp-cli": "^2.3.0",
-    "gulp-cloudfront-invalidate-aws-publish": "^1.0.0",
+    "gulp-cloudfront-invalidate-aws-publish": "ahlec/gulp-cloudfront-invalidate-aws-publish",
     "gulp-rename": "^2.0.0",
     "gulp-typescript": "^6.0.0-alpha.1",
     "gulp-zip": "^5.0.2",
