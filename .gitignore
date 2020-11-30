@@ -15,6 +15,7 @@ Dockerfile
 
 # Builds/distribution builds
 build/
+dist-client/
 dist-server/
 
 # Configuration files

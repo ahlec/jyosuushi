@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const ROOT_DIRECTORY = __dirname;
-const BUILD_DIRECTORY = path.resolve(ROOT_DIRECTORY, "build");
+const BUILD_DIRECTORY = path.resolve(ROOT_DIRECTORY, "dist-client");
 const FAVICON_DIRECTORY = path.resolve(ROOT_DIRECTORY, "favicons");
 const SOURCE_CLIENT_DIRECTORY = path.resolve(ROOT_DIRECTORY, "src/client");
 const SOURCE_SHARED_DIRECTORY = path.resolve(ROOT_DIRECTORY, "src/shared");
