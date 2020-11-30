@@ -162,6 +162,7 @@ exports["upload-client"] = () => {
     .pipe(
       publisher.publish({
         "Cache-Control": "max-age=315360000, no-transform, public",
+        "x-amz-acl": "public-read",
       })
     )
     .pipe(
