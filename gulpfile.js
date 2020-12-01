@@ -83,12 +83,14 @@ function transpileBundleClient() {
   ).pipe(dest("./dist-client"));
 }
 
-exports["build-client"] = series(
+const buildClient = series(
   // Clean output directory
   cleanClient,
   // Use Webpack to prepare the production client
   transpileBundleClient
 );
+
+exports["build-client"] = buildClient;
 
 /******************************/
 /*         build-server       */
@@ -198,7 +200,7 @@ function zipBuiltServer() {
   return src("dist-server/**").pipe(zip("dist.zip")).pipe(dest("dist-server"));
 }
 
-exports["build-server"] = series(
+const buildServer = series(
   // Clean output directory
   cleanServer,
   // Transpile TypeScript
@@ -220,6 +222,14 @@ exports["build-server"] = series(
   // Package all of the built files into an easy ZIP file
   zipBuiltServer
 );
+
+exports["build-server"] = buildServer;
+
+/******************************/
+/*            build           */
+/******************************/
+
+exports["build"] = parallel(buildClient, buildServer);
 
 /******************************/
 /*        upload-client       */
