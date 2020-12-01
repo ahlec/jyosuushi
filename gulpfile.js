@@ -8,6 +8,10 @@ const rename = require("gulp-rename");
 const gulpTypescript = require("gulp-typescript");
 const zip = require("gulp-zip");
 const { Transform } = require("readable-stream");
+const { merge: webpackMerge } = require("webpack-merge");
+const webpackStream = require("webpack-stream");
+
+const makeCommonWebpackConfig = require("./webpack.common.js");
 
 /******************************/
 /*         <  CONFIG  >       */
@@ -48,12 +52,43 @@ function getDeployConfig() {
         "The name of the S3 bucket that client files should be deployed into.",
       format: "nonempty-string",
     },
+    serverPublicAddress: {
+      default: null,
+      doc:
+        "The public address (public URL or public IP address) of the EC2 instance hosting the server.",
+      format: "nonempty-string",
+    },
   })
     .loadFile(DEPLOY_CONFIG_FILENAME)
     .validate()
     .getProperties();
   return deployConfig;
 }
+
+/******************************/
+/*         build-client       */
+/******************************/
+
+function cleanClient() {
+  return del("dist-client");
+}
+
+function transpileBundleClient() {
+  const config = getDeployConfig();
+
+  return webpackStream(
+    webpackMerge(makeCommonWebpackConfig(config.serverPublicAddress), {
+      mode: "production",
+    })
+  ).pipe(dest("./dist-client"));
+}
+
+exports["build-client"] = series(
+  // Clean output directory
+  cleanClient,
+  // Use Webpack to prepare the production client
+  transpileBundleClient
+);
 
 /******************************/
 /*         build-server       */

@@ -1,6 +1,13 @@
 const { merge } = require("webpack-merge");
 const webpack = require("webpack");
-const common = require("./webpack.common.js");
+const makeCommonWebpackConfig = require("./webpack.common.js");
+
+if (
+  typeof process.env.API_SERVER_URL !== "string" ||
+  !process.env.API_SERVER_URL
+) {
+  throw new Error("API_SERVER_URL environment variable must be set.");
+}
 
 module.exports = merge(
   {
@@ -12,5 +19,5 @@ module.exports = merge(
     mode: "development",
     plugins: [new webpack.HotModuleReplacementPlugin()],
   },
-  common
+  makeCommonWebpackConfig(process.env.API_SERVER_URL)
 );

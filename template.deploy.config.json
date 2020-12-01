@@ -1,4 +1,5 @@
 {
   "clientCloudfrontDistId": "",
-  "clientS3Bucket": ""
+  "clientS3Bucket": "",
+  "serverPublicAddress": ""
 }

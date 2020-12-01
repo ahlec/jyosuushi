@@ -26,120 +26,119 @@ if (!process.env.CI) {
   );
 }
 
-if (
-  typeof process.env.API_SERVER_URL !== "string" ||
-  !process.env.API_SERVER_URL
-) {
-  throw new Error("API_SERVER_URL environment variable must be set.");
-}
-
-module.exports = {
-  entry: {
-    app: SOURCE_CLIENT_DIRECTORY,
-    data: [
-      path.resolve(DATA_DIRECTORY, "counters.ts"),
-      path.resolve(DATA_DIRECTORY, "items.ts"),
-      path.resolve(DATA_DIRECTORY, "studyPacks.ts"),
-    ],
-  },
-  output: {
-    path: BUILD_DIRECTORY,
-    filename: "[name].[hash].js",
-    publicPath: "/",
-  },
-  resolve: {
-    alias: {
-      "@changelog": CHANGELOG_FILE,
-      "@data": DATA_DIRECTORY,
-      "@jyosuushi": SOURCE_CLIENT_DIRECTORY,
-      "@shared": SOURCE_SHARED_DIRECTORY,
+function makeCommonWebpackConfig(apiServerUrl) {
+  return {
+    entry: {
+      app: SOURCE_CLIENT_DIRECTORY,
+      data: [
+        path.resolve(DATA_DIRECTORY, "counters.ts"),
+        path.resolve(DATA_DIRECTORY, "items.ts"),
+        path.resolve(DATA_DIRECTORY, "studyPacks.ts"),
+      ],
     },
-    extensions: [".js", ".jsx", ".json", ".ts", ".tsx", ".scss"],
-  },
-  module: {
-    rules: [
-      {
-        test: /\.(ts|tsx)$/,
-        loader: "ts-loader",
-      },
-      {
-        test: /\.scss$/,
-        use: [
-          "style-loader",
-          {
-            loader: "css-loader",
-            options: {
-              localsConvention: "camelCase",
-              modules: true,
-            },
-          },
-          "postcss-loader",
-          {
-            loader: "sass-loader",
-            options: {
-              implementation: require("sass"),
-            },
-          },
-        ],
-      },
-      {
-        test: /\.(png|jpg)$/,
-        options: {
-          esModule: false,
-        },
-        loader: "url-loader",
-      },
-      {
-        test: /\.svg$/,
-        options: {
-          esModule: false,
-        },
-        loader: "@svgr/webpack",
-      },
-    ],
-  },
-  optimization: {
-    runtimeChunk: "single",
-    splitChunks: {
-      chunks: "all",
-      maxInitialRequests: Infinity,
-      minSize: 0,
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\]/,
-          name: function (module) {
-            const packageName = module.context.match(
-              /[\\/]node_modules[\\/](.*?)([\\/]|$)/
-            )[1];
-            return packageName;
-          },
-        },
-      },
+    output: {
+      path: BUILD_DIRECTORY,
+      filename: "[name].[hash].js",
+      publicPath: "/",
     },
-  },
-  plugins: [
-    new webpack.HashedModuleIdsPlugin(),
-    new webpack.DefinePlugin({
-      API_SERVER_URL: JSON.stringify(process.env.API_SERVER_URL),
-      CONFIG_GOOGLE_ANALYTICS_TRACKING_ID: JSON.stringify(
-        configJson.GOOGLE_ANALYTICS_TRACKING_ID
-      ),
-      JYOSUUSHI_CURRENT_SEMVER: JSON.stringify(process.env.npm_package_version),
-    }),
-    new CopyWebpackPlugin({
-      patterns: [
+    resolve: {
+      alias: {
+        "@changelog": CHANGELOG_FILE,
+        "@data": DATA_DIRECTORY,
+        "@jyosuushi": SOURCE_CLIENT_DIRECTORY,
+        "@shared": SOURCE_SHARED_DIRECTORY,
+      },
+      extensions: [".js", ".jsx", ".json", ".ts", ".tsx", ".scss"],
+    },
+    module: {
+      rules: [
         {
-          from: FAVICON_DIRECTORY,
-          to: BUILD_DIRECTORY,
+          test: /\.(ts|tsx)$/,
+          loader: "ts-loader",
         },
         {
-          from: path.resolve(ROOT_DIRECTORY, "./.htaccess"),
-          to: path.resolve(BUILD_DIRECTORY),
+          test: /\.scss$/,
+          use: [
+            "style-loader",
+            {
+              loader: "css-loader",
+              options: {
+                localsConvention: "camelCase",
+                modules: true,
+              },
+            },
+            "postcss-loader",
+            {
+              loader: "sass-loader",
+              options: {
+                implementation: require("sass"),
+              },
+            },
+          ],
+        },
+        {
+          test: /\.(png|jpg)$/,
+          options: {
+            esModule: false,
+          },
+          loader: "url-loader",
+        },
+        {
+          test: /\.svg$/,
+          options: {
+            esModule: false,
+          },
+          loader: "@svgr/webpack",
         },
       ],
-    }),
-    new HtmlWebpackPlugin({
-      template: path.resolve(SOURCE_CLIENT_DIRECTORY, "index.html"),
-    }),
-  ],
-};
+    },
+    optimization: {
+      runtimeChunk: "single",
+      splitChunks: {
+        chunks: "all",
+        maxInitialRequests: Infinity,
+        minSize: 0,
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\]/,
+            name: function (module) {
+              const packageName = module.context.match(
+                /[\\/]node_modules[\\/](.*?)([\\/]|$)/
+              )[1];
+              return packageName;
+            },
+          },
+        },
+      },
+    },
+    plugins: [
+      new webpack.HashedModuleIdsPlugin(),
+      new webpack.DefinePlugin({
+        API_SERVER_URL: JSON.stringify(apiServerUrl),
+        CONFIG_GOOGLE_ANALYTICS_TRACKING_ID: JSON.stringify(
+          configJson.GOOGLE_ANALYTICS_TRACKING_ID
+        ),
+        JYOSUUSHI_CURRENT_SEMVER: JSON.stringify(
+          process.env.npm_package_version
+        ),
+      }),
+      new CopyWebpackPlugin({
+        patterns: [
+          {
+            from: FAVICON_DIRECTORY,
+            to: BUILD_DIRECTORY,
+          },
+          {
+            from: path.resolve(ROOT_DIRECTORY, "./.htaccess"),
+            to: path.resolve(BUILD_DIRECTORY),
+          },
+        ],
+      }),
+      new HtmlWebpackPlugin({
+        template: path.resolve(SOURCE_CLIENT_DIRECTORY, "index.html"),
+      }),
+    ],
+  };
+}
+
+module.exports = makeCommonWebpackConfig;
