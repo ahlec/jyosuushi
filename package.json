@@ -80,7 +80,6 @@
     "gulp-cloudfront-invalidate-aws-publish": "ahlec/gulp-cloudfront-invalidate-aws-publish",
     "gulp-rename": "^2.0.0",
     "gulp-typescript": "^6.0.0-alpha.1",
-    "gulp-zip": "^5.0.2",
     "hast-to-hyperscript": "^9.0.0",
     "html-webpack-plugin": "^4.3.0",
     "mdast-util-to-hast": "^9.1.0",

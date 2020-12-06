@@ -9,7 +9,6 @@ const awsPublish = require("gulp-awspublish");
 const cloudfront = require("gulp-cloudfront-invalidate-aws-publish");
 const rename = require("gulp-rename");
 const gulpTypescript = require("gulp-typescript");
-const zip = require("gulp-zip");
 const { Transform } = require("readable-stream");
 const { merge: webpackMerge } = require("webpack-merge");
 const webpackStream = require("webpack-stream");
@@ -199,10 +198,6 @@ function copyYarnLock() {
   return src("yarn.lock").pipe(dest("dist-server"));
 }
 
-function zipBuiltServer() {
-  return src("dist-server/**").pipe(zip("dist.zip")).pipe(dest("dist-server"));
-}
-
 const buildServer = series(
   // Clean output directory
   cleanServer,
@@ -221,9 +216,7 @@ const buildServer = series(
     generateDistServerPackage,
     // Copy over the whole yarn.lock file to preserve exact versions
     copyYarnLock
-  ),
-  // Package all of the built files into an easy ZIP file
-  zipBuiltServer
+  )
 );
 
 exports["build-server"] = buildServer;
