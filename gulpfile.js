@@ -1,3 +1,6 @@
+/* eslint-env node,es6 */
+/* eslint-disable @typescript-eslint/no-var-requires */
+
 const convict = require("convict");
 const del = require("del");
 const { existsSync, readFileSync } = require("fs");
