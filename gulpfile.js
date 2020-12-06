@@ -8,8 +8,10 @@ const { dest, parallel, series, src } = require("gulp");
 const awsPublish = require("gulp-awspublish");
 const cloudfront = require("gulp-cloudfront-invalidate-aws-publish");
 const rename = require("gulp-rename");
+const GulpSsh = require("gulp-ssh");
 const gulpTypescript = require("gulp-typescript");
 const { Transform } = require("readable-stream");
+const untildify = require("untildify");
 const { merge: webpackMerge } = require("webpack-merge");
 const webpackStream = require("webpack-stream");
 
@@ -54,10 +56,34 @@ function getDeployConfig() {
         "The name of the S3 bucket that client files should be deployed into.",
       format: "nonempty-string",
     },
+    serverDestination: {
+      default: null,
+      doc:
+        "The location on the EC2 instance that the server should be uploaded to.",
+      format: "nonempty-string",
+    },
     serverPublicAddress: {
       default: null,
       doc:
-        "The public address (public URL or public IP address) of the EC2 instance hosting the server.",
+        "The public address (public URL or public IP address) of the EC2 instance hosting the server. This should be the URL that the client should make API calls to.",
+      format: "nonempty-string",
+    },
+    serverPublicKeyFilename: {
+      default: null,
+      doc:
+        "The filename to the file on the local filesystem housing the public key that should be used for deploying server files to EC2.",
+      format: "nonempty-string",
+    },
+    serverUploadAddress: {
+      default: null,
+      doc:
+        "The public address to the EC2 instance where files can be uploaded to. This should be the IP address or AWS-provided EC2 URL.",
+      format: "nonempty-string",
+    },
+    serverUploadUsername: {
+      default: null,
+      doc:
+        "The username to use during the EC2 server upload process. This should correspond with the credentials of the provided public key.",
       format: "nonempty-string",
     },
   })
@@ -65,6 +91,24 @@ function getDeployConfig() {
     .validate()
     .getProperties();
   return deployConfig;
+}
+
+let gulpSsh = null;
+function getSsh() {
+  if (gulpSsh) {
+    return gulpSsh;
+  }
+
+  const config = getDeployConfig();
+  gulpSsh = new GulpSsh({
+    ignoreErrors: false,
+    sshConfig: {
+      host: config.serverUploadAddress,
+      privateKey: readFileSync(untildify(config.serverPublicKeyFilename)),
+      username: config.serverUploadUsername,
+    },
+  });
+  return gulpSsh;
 }
 
 /******************************/
@@ -261,3 +305,45 @@ exports["upload-client"] = () => {
     .pipe(publisher.cache())
     .pipe(awsPublish.reporter());
 };
+
+/******************************/
+/*        upload-server       */
+/******************************/
+
+function shutDownServer() {
+  const config = getDeployConfig();
+  return getSsh()
+    .shell([`cd ${config.serverDestination} && sudo yarn stop`], {
+      filePath: "server-shutdown.log",
+    })
+    .pipe(dest("logs"));
+}
+
+function uploadServerFiles() {
+  const config = getDeployConfig();
+
+  // POSSIBLE TODO?
+  // This doesn't delete files from server. Wipe before? But DON'T wipe config files?
+  return src("./dist-server/**").pipe(getSsh().dest(config.serverDestination));
+}
+
+function startServer() {
+  const config = getDeployConfig();
+  return getSsh()
+    .shell(
+      [
+        `cd ${config.serverDestination} && yarn install`,
+        `cd ${config.serverDestination} && sudo yarn start`,
+      ],
+      {
+        filePath: "server-startup.log",
+      }
+    )
+    .pipe(dest("logs"));
+}
+
+exports["upload-server"] = series(
+  shutDownServer,
+  uploadServerFiles,
+  startServer
+);

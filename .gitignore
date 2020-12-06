@@ -21,6 +21,7 @@ dist-server/
 # Deploying
 .s3-upload-cache
 deploy.config.json
+logs/
 
 # Configuration files
 config.json
