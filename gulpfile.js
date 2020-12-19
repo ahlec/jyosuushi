@@ -180,6 +180,12 @@ function copyPrismaFiles() {
   return src(["prisma/**"]).pipe(dest("dist-server/prisma"));
 }
 
+function copyEmailTemplateFiles() {
+  return src(["src/server/email/email-templates/**/*"]).pipe(
+    dest("dist-server/server/email/email-templates")
+  );
+}
+
 function copyPm2Files() {
   return src(["prod-pm2-ecosystem.config.js"])
     .pipe(rename("ecosystem.config.js"))
@@ -262,6 +268,8 @@ const buildServer = series(
     copyProdConfigFileTemplate,
     // Copy the necessary Prisma files to output directory
     copyPrismaFiles,
+    // Copy all of the template files for emails
+    copyEmailTemplateFiles,
     // Copy the PM2 configuration files necessary to run the server
     copyPm2Files,
     // Pare down package.json to produce a server-only distribution package
