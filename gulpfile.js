@@ -8,8 +8,9 @@ const { dest, parallel, series, src } = require("gulp");
 const awsPublish = require("gulp-awspublish");
 const cloudfront = require("gulp-cloudfront-invalidate-aws-publish");
 const rename = require("gulp-rename");
-const GulpSsh = require("gulp-ssh");
+const rsync = require("gulp-rsync");
 const gulpTypescript = require("gulp-typescript");
+const { NodeSSH } = require("node-ssh");
 const { Transform } = require("readable-stream");
 const untildify = require("untildify");
 const { merge: webpackMerge } = require("webpack-merge");
@@ -93,22 +94,29 @@ function getDeployConfig() {
   return deployConfig;
 }
 
-let gulpSsh = null;
-function getSsh() {
-  if (gulpSsh) {
-    return gulpSsh;
+async function execServerCommands(commands) {
+  const config = getDeployConfig();
+
+  const ssh = new NodeSSH();
+  await ssh.connect({
+    host: config.serverUploadAddress,
+    privateKey: untildify(config.serverPublicKeyFilename),
+    username: config.serverUploadUsername,
+  });
+
+  // Need to be sequential! We DON'T want these to be parallel, that's not
+  // how shells work!
+  for (const command of commands) {
+    const result = await ssh.execCommand(command, {
+      cwd: config.serverDestination,
+      execOptions: {
+        pty: true,
+      },
+      stream: "stdout",
+    });
   }
 
-  const config = getDeployConfig();
-  gulpSsh = new GulpSsh({
-    ignoreErrors: false,
-    sshConfig: {
-      host: config.serverUploadAddress,
-      privateKey: readFileSync(untildify(config.serverPublicKeyFilename)),
-      username: config.serverUploadUsername,
-    },
-  });
-  return gulpSsh;
+  ssh.dispose();
 }
 
 /******************************/
@@ -311,12 +319,7 @@ exports["upload-client"] = () => {
 /******************************/
 
 function shutDownServer() {
-  const config = getDeployConfig();
-  return getSsh()
-    .shell([`cd ${config.serverDestination} && sudo yarn stop`], {
-      filePath: "server-shutdown.log",
-    })
-    .pipe(dest("logs"));
+  return execServerCommands(["sudo yarn stop"]);
 }
 
 function uploadServerFiles() {
@@ -324,22 +327,22 @@ function uploadServerFiles() {
 
   // POSSIBLE TODO?
   // This doesn't delete files from server. Wipe before? But DON'T wipe config files?
-  return src("./dist-server/**").pipe(getSsh().dest(config.serverDestination));
+  return src("./dist-server").pipe(
+    rsync({
+      compress: true,
+      destination: config.serverDestination,
+      hostname: config.serverUploadAddress,
+      progress: true,
+      recursive: true,
+      root: "dist-server/",
+      shell: `ssh -i "${config.serverPublicKeyFilename}"`,
+      username: config.serverUploadUsername,
+    })
+  );
 }
 
 function startServer() {
-  const config = getDeployConfig();
-  return getSsh()
-    .shell(
-      [
-        `cd ${config.serverDestination} && yarn install`,
-        `cd ${config.serverDestination} && sudo yarn start`,
-      ],
-      {
-        filePath: "server-startup.log",
-      }
-    )
-    .pipe(dest("logs"));
+  return execServerCommands(["yarn install", "sudo yarn start"]);
 }
 
 exports["upload-server"] = series(
