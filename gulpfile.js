@@ -291,7 +291,7 @@ exports["build"] = parallel(buildClient, buildServer);
 /*        upload-client       */
 /******************************/
 
-exports["upload-client"] = () => {
+const uploadClient = () => {
   const config = getDeployConfig();
 
   const publisher = awsPublish.create(
@@ -321,6 +321,8 @@ exports["upload-client"] = () => {
     .pipe(publisher.cache())
     .pipe(awsPublish.reporter());
 };
+
+exports["upload-client"] = uploadClient;
 
 /******************************/
 /*        upload-server       */
@@ -353,8 +355,15 @@ function startServer() {
   return execServerCommands(["yarn install", "sudo yarn start"]);
 }
 
-exports["upload-server"] = series(
-  shutDownServer,
-  uploadServerFiles,
-  startServer
+const uploadServer = series(shutDownServer, uploadServerFiles, startServer);
+
+exports["upload-server"] = uploadServer;
+
+/******************************/
+/*           deploy           */
+/******************************/
+
+exports["deploy"] = parallel(
+  series(buildClient, uploadClient),
+  series(buildServer, uploadServer)
 );
