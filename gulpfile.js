@@ -63,16 +63,16 @@ function getDeployConfig() {
         "The location on the EC2 instance that the server should be uploaded to.",
       format: "nonempty-string",
     },
+    serverPrivateKeyFilename: {
+      default: null,
+      doc:
+        "The filename to the file on the local filesystem housing the private key that should be used for deploying server files to EC2.",
+      format: "nonempty-string",
+    },
     serverPublicAddress: {
       default: null,
       doc:
         "The public address (public URL or public IP address) of the EC2 instance hosting the server. This should be the URL that the client should make API calls to.",
-      format: "nonempty-string",
-    },
-    serverPublicKeyFilename: {
-      default: null,
-      doc:
-        "The filename to the file on the local filesystem housing the public key that should be used for deploying server files to EC2.",
       format: "nonempty-string",
     },
     serverUploadAddress: {
@@ -100,7 +100,7 @@ async function execServerCommands(commands) {
   const ssh = new NodeSSH();
   await ssh.connect({
     host: config.serverUploadAddress,
-    privateKey: untildify(config.serverPublicKeyFilename),
+    privateKey: untildify(config.serverPrivateKeyFilename),
     username: config.serverUploadUsername,
   });
 
@@ -343,7 +343,7 @@ function uploadServerFiles() {
       progress: true,
       recursive: true,
       root: "dist-server/",
-      shell: `ssh -i "${config.serverPublicKeyFilename}"`,
+      shell: `ssh -i "${config.serverPrivateKeyFilename}"`,
       username: config.serverUploadUsername,
     })
   );
