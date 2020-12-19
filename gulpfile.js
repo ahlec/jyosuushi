@@ -104,19 +104,19 @@ async function execServerCommands(commands) {
     username: config.serverUploadUsername,
   });
 
-  // Need to be sequential! We DON'T want these to be parallel, that's not
-  // how shells work!
-  for (const command of commands) {
-    const result = await ssh.execCommand(command, {
-      cwd: config.serverDestination,
-      execOptions: {
-        pty: true,
-      },
-      stream: "stdout",
-    });
+  try {
+    // Need to be sequential! We DON'T want these to be parallel, that's not
+    // how shells work!
+    for (const command of commands) {
+      const { stdout } = await ssh.execCommand(command, {
+        cwd: config.serverDestination,
+        stream: "stdout",
+      });
+      console.log(stdout);
+    }
+  } finally {
+    ssh.dispose();
   }
-
-  ssh.dispose();
 }
 
 /******************************/
