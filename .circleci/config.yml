@@ -49,3 +49,5 @@ jobs:
       - run:
           name: Build code
           command: yarn build
+          environment:
+            SERVER_PUBLIC_ADDRESS: http://localhost:0000

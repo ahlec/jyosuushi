@@ -40,7 +40,7 @@ function getDeployConfig() {
 
   if (!existsSync(DEPLOY_CONFIG_FILENAME)) {
     throw new Error(
-      `Deploying requires defining the config file '${DEPLOY_CONFIG_FILENAME}'`
+      `Building/deploying requires defining the config file '${DEPLOY_CONFIG_FILENAME}'`
     );
   }
 
@@ -128,10 +128,18 @@ function cleanClient() {
 }
 
 function transpileBundleClient() {
-  const config = getDeployConfig();
+  let serverPublicAddress;
+  if (typeof process.env.SERVER_PUBLIC_ADDRESS === "string") {
+    // In addition to general utility, this is used by the CircleCI build
+    // validation step, since the CI doesn't have a deploy config file.
+    serverPublicAddress = process.env.SERVER_PUBLIC_ADDRESS;
+  } else {
+    const config = getDeployConfig();
+    serverPublicAddress = config.serverPublicAddress;
+  }
 
   return webpackStream(
-    webpackMerge(makeCommonWebpackConfig(config.serverPublicAddress), {
+    webpackMerge(makeCommonWebpackConfig(serverPublicAddress), {
       mode: "production",
     })
   ).pipe(dest("./dist-client"));
