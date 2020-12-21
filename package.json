@@ -124,8 +124,8 @@
   },
   "dependencies": {
     "@apollo/client": "^3.0.2",
-    "@prisma/cli": "2.4.1",
-    "@prisma/client": "2.4.1",
+    "@prisma/cli": "2.13.1",
+    "@prisma/client": "2.13.1",
     "apollo-server-express": "^2.16.1",
     "aws-sdk": "^2.730.0",
     "bcrypt": "^5.0.0",
