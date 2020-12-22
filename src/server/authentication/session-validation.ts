@@ -22,7 +22,7 @@ export async function validateSessionById(
   /**
    * Find the session with this ID in the database.
    */
-  const activeSession = await prismaClient.activeUserSession.findOne({
+  const activeSession = await prismaClient.activeUserSession.findUnique({
     where: {
       id: rawTokenValue,
     },

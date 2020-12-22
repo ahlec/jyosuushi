@@ -1,12 +1,11 @@
 import { DataSource } from "apollo-datasource";
 import {
-  BugReportCreateInput,
   PrismaClient,
-  SuggestionCreateInput,
   User,
   ActiveUserSession,
   UserPasswordResetCode,
   PrismaClientKnownRequestError,
+  Prisma,
 } from "@prisma/client";
 import { v4 as uuidv4 } from "uuid";
 
@@ -43,11 +42,15 @@ export class PrismaDataSource extends DataSource {
     super();
   }
 
-  public async addBugReport(bugReport: BugReportCreateInput): Promise<void> {
+  public async addBugReport(
+    bugReport: Prisma.BugReportCreateInput
+  ): Promise<void> {
     await this.client.bugReport.create({ data: bugReport });
   }
 
-  public async addSuggestion(suggestion: SuggestionCreateInput): Promise<void> {
+  public async addSuggestion(
+    suggestion: Prisma.SuggestionCreateInput
+  ): Promise<void> {
     await this.client.suggestion.create({ data: suggestion });
   }
 
@@ -61,7 +64,7 @@ export class PrismaDataSource extends DataSource {
   }
 
   public async getUserById(userId: string): Promise<DatabaseUser | null> {
-    const raw = await this.client.user.findOne({
+    const raw = await this.client.user.findUnique({
       where: {
         id: userId,
       },
@@ -74,7 +77,7 @@ export class PrismaDataSource extends DataSource {
   }
 
   public async getUserByEmail(email: string): Promise<DatabaseUser | null> {
-    const raw = await this.client.user.findOne({
+    const raw = await this.client.user.findUnique({
       where: {
         email,
       },
@@ -175,11 +178,13 @@ export class PrismaDataSource extends DataSource {
     email: string,
     code: string
   ): Promise<EmailVerificationRedemptionResult> {
-    const codeDatabaseEntry = await this.client.emailVerificationCode.findOne({
-      where: {
-        code,
-      },
-    });
+    const codeDatabaseEntry = await this.client.emailVerificationCode.findUnique(
+      {
+        where: {
+          code,
+        },
+      }
+    );
     if (!codeDatabaseEntry) {
       return {
         error: "email-code-pair-not-found",
@@ -187,7 +192,7 @@ export class PrismaDataSource extends DataSource {
       };
     }
 
-    const user = await this.client.user.findOne({
+    const user = await this.client.user.findUnique({
       where: {
         id: codeDatabaseEntry.userId,
       },

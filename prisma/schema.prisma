@@ -29,6 +29,8 @@ model ActiveUserSession {
   userId     String
   expiration DateTime
   User       User     @relation(fields: [userId], references: [id])
+
+  @@index([userId], name: "userId")
 }
 
 model EmailVerificationCode {
@@ -36,6 +38,8 @@ model EmailVerificationCode {
   userId   String
   dateSent DateTime
   User     User     @relation(fields: [userId], references: [id])
+
+  @@index([userId], name: "userId")
 }
 
 model UserPasswordResetCode {
@@ -46,6 +50,7 @@ model UserPasswordResetCode {
   User          User     @relation(fields: [userId], references: [id])
 
   @@id([firstCode, secondCode])
+  @@index([userId], name: "userId")
 }
 
 model User {
