@@ -72,6 +72,7 @@ function instantiateEmailApi(environment: Environment): EmailApi {
 async function main(): Promise<void> {
   const environment = loadEnvironment();
   console.log("⚙️ Environment:", environment);
+  console.log();
 
   if (environment.useAwsSimpleEmailService) {
     console.group("🖇️ AWS: Loading configuration and connecting.");
@@ -88,7 +89,20 @@ async function main(): Promise<void> {
 
   const emailApi = instantiateEmailApi(environment);
 
-  const prisma = new PrismaClient();
+  // Open the database and attempt to use it immediately, so that we know at
+  // startup if there is a database connection issue.
+  let prisma: PrismaClient;
+  try {
+    prisma = new PrismaClient();
+    await prisma.user.count();
+    console.log("🗄️ Database: connected.");
+  } catch (e) {
+    console.error(
+      "🗄️ Database: Encountered error on startup database connection + check."
+    );
+    console.error(e instanceof Error ? e.message : String(e));
+    process.exit(1003);
+  }
 
   const rateLimit = createRateLimiter();
   const server = new ApolloServer({
