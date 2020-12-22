@@ -10,6 +10,7 @@ const cloudfront = require("gulp-cloudfront-invalidate-aws-publish");
 const rename = require("gulp-rename");
 const rsync = require("gulp-rsync");
 const gulpTypescript = require("gulp-typescript");
+const mergeStream = require("merge-stream");
 const { NodeSSH } = require("node-ssh");
 const { Transform } = require("readable-stream");
 const untildify = require("untildify");
@@ -187,7 +188,10 @@ function copyProdConfigFileTemplate() {
 }
 
 function copyPrismaFiles() {
-  return src(["prisma/**"]).pipe(dest("dist-server/prisma"));
+  return mergeStream(
+    src(["prisma/migrations/**"]).pipe(dest("dist-server/prisma/migrations")),
+    src(["prisma/schema.prisma"]).pipe(dest("dist-server/prisma"))
+  );
 }
 
 function copyEmailTemplateFiles() {
