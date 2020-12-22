@@ -108,10 +108,12 @@ async function execServerCommands(commands) {
     // Need to be sequential! We DON'T want these to be parallel, that's not
     // how shells work!
     for (const command of commands) {
-      const { stdout } = await ssh.execCommand(command, {
-        cwd: config.serverDestination,
-        stream: "stdout",
-      });
+      const { stdout } = await ssh.execCommand(
+        `cd ${config.serverDestination} ; ${command}`,
+        {
+          stream: "stdout",
+        }
+      );
       console.log(stdout);
     }
   } finally {
