@@ -109,6 +109,7 @@ async function execServerCommands(commands) {
     // Need to be sequential! We DON'T want these to be parallel, that's not
     // how shells work!
     for (const command of commands) {
+      console.log("$", command);
       const { stdout } = await ssh.execCommand(
         `cd ${config.serverDestination} ; ${command}`,
         {
@@ -366,15 +367,20 @@ function uploadServerFiles() {
   );
 }
 
-function startServer() {
-  return execServerCommands([
-    "yarn install",
-    "yarn migrate-db",
-    "sudo yarn start",
-  ]);
+function prepServerInstallation() {
+  return execServerCommands(["yarn install", "yarn run migrate-db"]);
 }
 
-const uploadServer = series(shutDownServer, uploadServerFiles, startServer);
+function startServer() {
+  return execServerCommands(["sudo yarn start"]);
+}
+
+const uploadServer = series(
+  shutDownServer,
+  uploadServerFiles,
+  prepServerInstallation,
+  startServer
+);
 
 exports["upload-server"] = uploadServer;
 
