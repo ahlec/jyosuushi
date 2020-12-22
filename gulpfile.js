@@ -245,6 +245,7 @@ function generateDistServerPackage() {
 
           // Replace scripts with server-specific, distributed techniques
           package.scripts = {
+            "migrate-db": "prisma migrate deploy --preview-feature",
             postinstall: "prisma generate",
             start: "pm2 start ecosystem.config.js",
             stop: "pm2 stop ecosystem.config.js",
@@ -360,7 +361,11 @@ function uploadServerFiles() {
 }
 
 function startServer() {
-  return execServerCommands(["yarn install", "sudo yarn start"]);
+  return execServerCommands([
+    "yarn install",
+    "yarn migrate-db",
+    "sudo yarn start",
+  ]);
 }
 
 const uploadServer = series(shutDownServer, uploadServerFiles, startServer);
