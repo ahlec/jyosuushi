@@ -3,12 +3,12 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
 model BugReport {
-  id            Int      @default(autoincrement()) @id
+  id            Int      @id @default(autoincrement())
   message       String
   browser       String
   os            String
@@ -18,7 +18,7 @@ model BugReport {
 }
 
 model Suggestion {
-  id            Int    @default(autoincrement()) @id
+  id            Int    @id @default(autoincrement())
   message       String
   clientVersion String
   userAgent     String

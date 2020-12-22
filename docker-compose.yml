@@ -1,10 +1,10 @@
 version: "3"
 services:
   database:
-    image: postgres:latest
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
     ports:
-      - 5432:5432
+      - 1720:3306
     environment:
-      POSTGRES_DB: jyosuushi
-      POSTGRES_PASSWORD: example
-      POSTGRES_PORT: 5432
+      MYSQL_DATABASE: jyosuushi
+      MYSQL_ROOT_PASSWORD: example
