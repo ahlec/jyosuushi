@@ -19,3 +19,7 @@ type UserCounterCollection implements CounterCollection {
   dateLastUpdated: Date!
   dateCreated: Date!
 }
+
+extend type Query {
+  counterCollections: [CounterCollection!]!
+}
