@@ -1,0 +1,21 @@
+interface CounterCollection {
+  id: String!
+  name: String!
+  counterIds: [String!]!
+  dateLastUpdated: Date!
+}
+
+type StandardCounterCollection implements CounterCollection {
+  id: String!
+  name: String!
+  counterIds: [String!]!
+  dateLastUpdated: Date!
+}
+
+type UserCounterCollection implements CounterCollection {
+  id: String!
+  name: String!
+  counterIds: [String!]!
+  dateLastUpdated: Date!
+  dateCreated: Date!
+}
