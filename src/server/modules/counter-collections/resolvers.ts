@@ -24,6 +24,7 @@ export const COUNTER_COLLECTIONS_RESOLVERS: Resolvers = {
     },
   },
   Query: {
-    counterCollections: async (): Promise<SomeCounterCollection[]> => [],
+    standardCounterCollections: (): StandardCounterCollection[] => [],
+    userCounterCollections: (): UserCounterCollection[] => [],
   },
 };

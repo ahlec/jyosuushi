@@ -21,5 +21,6 @@ type UserCounterCollection implements CounterCollection {
 }
 
 extend type Query {
-  counterCollections: [CounterCollection!]!
+  standardCounterCollections: [StandardCounterCollection!]!
+  userCounterCollections: [UserCounterCollection!]!
 }
