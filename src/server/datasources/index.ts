@@ -8,5 +8,6 @@ export function createDataSources(
 ): ServerContextDataSources {
   return {
     database: new PrismaDataSource(prisma),
+    prisma,
   };
 }

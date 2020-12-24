@@ -9,6 +9,8 @@ import {
   UserCounterCollection,
 } from "@server/graphql.generated";
 
+import { ServerContext } from "@server/context";
+
 type SomeCounterCollection = StandardCounterCollection | UserCounterCollection;
 
 export const COUNTER_COLLECTIONS_RESOLVERS: Resolvers = {
@@ -25,6 +27,43 @@ export const COUNTER_COLLECTIONS_RESOLVERS: Resolvers = {
   },
   Query: {
     standardCounterCollections: (): StandardCounterCollection[] => [],
-    userCounterCollections: (): UserCounterCollection[] => [],
+    userCounterCollections: async (
+      _: unknown,
+      _args: unknown,
+      {
+        authCookie: { current: userToken },
+        dataSources: { prisma },
+      }: ServerContext
+    ): Promise<UserCounterCollection[]> => {
+      if (!userToken || !userToken.valid) {
+        return [];
+      }
+
+      try {
+        const collections = await prisma.userCounterCollection.findMany({
+          include: {
+            entries: true,
+          },
+          where: {
+            userId: userToken.userId,
+          },
+        });
+
+        return collections.map(
+          (collection): UserCounterCollection => ({
+            counterIds: collection.entries.map(
+              (entry): string => entry.counterId
+            ),
+            dateCreated: collection.dateCreated,
+            dateLastUpdated:
+              collection.dateLastUpdated || collection.dateCreated,
+            id: collection.id,
+            name: collection.name,
+          })
+        );
+      } catch (e) {
+        return [];
+      }
+    },
   },
 };
