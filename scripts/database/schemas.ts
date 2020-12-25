@@ -105,11 +105,13 @@ export interface DbItem {
 export interface DbStudyPackContent {
   pack_id: string;
   counter_id: string;
+  date_added: string;
 }
 
 export interface DbStudyPack {
   pack_id: string;
   english_name: string;
+  date_counter_last_removed: string | null;
 }
 
 export interface DbWagoStyle {

@@ -3,159 +3,160 @@ BEGIN TRANSACTION;
 CREATE TABLE study_pack_contents (
   pack_id STRING REFERENCES study_packs (pack_id) NOT NULL,
   counter_id STRING REFERENCES counters (counter_id) NOT NULL,
-  PRIMARY KEY(pack_id, counter_id)
+  date_added DATETIME DEFAULT (CURRENT_TIMESTAMP) NOT NULL,
+  PRIMARY KEY (pack_id, counter_id)
 );
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('n4', '頭');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('n4', '頭', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('n4', '羽');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('n4', '羽', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('n4', '冊');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('n4', '冊', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('n5', '台');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('n5', '台', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('n5', '匹');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('n5', '匹', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('n5', '枚');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('n5', '枚', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('n5', '年');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('n5', '年', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('essential', '年');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('essential', '年', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('essential', '台');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('essential', '台', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('essential', '冊');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('essential', '冊', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('essential', '羽');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('essential', '羽', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('essential', '頭');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('essential', '頭', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('essential', '匹');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('essential', '匹', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('essential', '枚');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('essential', '枚', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('essential', 'ヶ月');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('essential', 'ヶ月', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('essential', '階');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('essential', '階', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('essential', '歳');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('essential', '歳', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('essential', '回');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('essential', '回', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('common', 'ヶ所');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('common', 'ヶ所', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('common', '曲');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('common', '曲', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('common', '缶');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('common', '缶', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('common', '巻');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('common', '巻', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('common', '円');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('common', '円', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('common', 'ヶ国');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('common', 'ヶ国', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('common', '組');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('common', '組', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('common', '口');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('common', '口', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('common', '切れ');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('common', '切れ', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('essential', '人');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('essential', '人', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('n5', '人');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('n5', '人', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('essential', '分');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('essential', '分', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('n5', '分');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('n5', '分', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('essential', '本');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('essential', '本', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('n5', '本');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('n5', '本', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('essential', '時');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('essential', '時', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('n5', '時');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('n5', '時', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('essential', '日');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('essential', '日', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('n5', '日');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('n5', '日', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('common', '皿');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('common', '皿', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('common', '語');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('common', '語', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('common', '校');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('common', '校', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('common', '件');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('common', '件', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('common', '軒');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('common', '軒', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('common', '席');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('common', '席', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('common', '色');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('common', '色', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('common', '周');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('common', '周', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('common', '週');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('common', '週', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('common', '社');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('common', '社', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('common', '足');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('common', '足', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('common', '束');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('common', '束', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('common', '戦');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('common', '戦', '2020-12-25 17:55:39');
 INSERT INTO
-  "study_pack_contents" (pack_id, counter_id)
-VALUES('common', '名');
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('common', '名', '2020-12-25 17:55:39');
 COMMIT;

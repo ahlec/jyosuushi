@@ -35,7 +35,7 @@ const STUDY_PACK_COMMON: StandardCounterCollection = {
     "軒",
     "週",
   ],
-  dateLastUpdated: 1608918087743,
+  dateLastUpdated: 1608918939000,
   id: "common",
   name: "Common",
 };
@@ -59,21 +59,21 @@ const STUDY_PACK_ESSENTIAL: StandardCounterCollection = {
     "階",
     "頭",
   ],
-  dateLastUpdated: 1608918087743,
+  dateLastUpdated: 1608918939000,
   id: "essential",
   name: "Essential",
 };
 
 const STUDY_PACK_N4: StandardCounterCollection = {
   counterIds: ["冊", "羽", "頭"],
-  dateLastUpdated: 1608918087743,
+  dateLastUpdated: 1608918939000,
   id: "n4",
   name: "JLPT N4",
 };
 
 const STUDY_PACK_N5: StandardCounterCollection = {
   counterIds: ["人", "分", "匹", "台", "年", "日", "時", "本", "枚"],
-  dateLastUpdated: 1608918087743,
+  dateLastUpdated: 1608918939000,
   id: "n5",
   name: "JLPT N5",
 };

@@ -1,4 +1,4 @@
-import { sortBy } from "lodash";
+import { max, sortBy } from "lodash";
 import { Writable } from "stream";
 
 import { DbStudyPackContent } from "../database/schemas";
@@ -18,6 +18,10 @@ interface StandardCounterCollection {
   dateLastUpdated: number;
 }
 
+function parseDbTimestamp(dateTime: string): number {
+  return Date.parse(`${dateTime} UTC`);
+}
+
 function writeStandardCollectionsFile(
   stream: Writable,
   dataSource: ValidatedDataSource
@@ -29,24 +33,35 @@ function writeStandardCollectionsFile(
   stream.write("  dateLastUpdated: number;\n");
   stream.write("}\n\n");
 
+  const countersLookup: { [packId: string]: DbStudyPackContent[] } = {};
+  dataSource.study_pack_contents.valid.forEach((content): void => {
+    if (!countersLookup[content.pack_id]) {
+      countersLookup[content.pack_id] = [];
+    }
+
+    countersLookup[content.pack_id].push(content);
+  });
+
   const sortedCollections = sortBy(dataSource.study_packs.valid, ["pack_id"]);
   sortedCollections.forEach((studyPack): void => {
     const variableName = getStudyPackId(studyPack.pack_id);
 
-    const countersLookup: { [packId: string]: DbStudyPackContent[] } = {};
-    dataSource.study_pack_contents.valid.forEach((content): void => {
-      if (!countersLookup[content.pack_id]) {
-        countersLookup[content.pack_id] = [];
-      }
+    const counters = sortBy(countersLookup[studyPack.pack_id] || [], [
+      "counter_id",
+    ]);
 
-      countersLookup[content.pack_id].push(content);
-    });
+    const individualModificationDates = counters.map(({ date_added }): number =>
+      parseDbTimestamp(date_added)
+    );
+    if (studyPack.date_counter_last_removed) {
+      individualModificationDates.push(
+        parseDbTimestamp(studyPack.date_counter_last_removed)
+      );
+    }
 
     const collection: StandardCounterCollection = {
-      counterIds: sortBy(countersLookup[studyPack.pack_id] || [], [
-        "counter_id",
-      ]).map(({ counter_id }): string => counter_id),
-      dateLastUpdated: Date.now(), // TODO
+      counterIds: counters.map(({ counter_id }): string => counter_id),
+      dateLastUpdated: max(individualModificationDates) || Date.now(),
       id: studyPack.pack_id,
       name: studyPack.english_name,
     };
