@@ -9,9 +9,9 @@ import {
   UserCounterCollection,
 } from "@server/graphql.generated";
 
-import { STANDARD_COLLECTIONS } from "@data/standard-collections";
-
 import { ServerContext } from "@server/context";
+
+import { STANDARD_COLLECTIONS } from "./standard-collections.data";
 
 type SomeCounterCollection = StandardCounterCollection | UserCounterCollection;
 

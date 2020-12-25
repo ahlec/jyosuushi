@@ -23,6 +23,7 @@ export type WriteFunction = (
 ) => WriteFileResults;
 
 export interface FileExportRequest {
-  relativeFilepath: string;
+  directory: "client-data" | "server-src";
+  relativeFilename: string;
   writeFunction: WriteFunction;
 }

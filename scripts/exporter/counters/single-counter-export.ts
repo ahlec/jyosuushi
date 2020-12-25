@@ -78,7 +78,8 @@ function exportSingleCounter(
     const baseRelativeFilepath = `counter-components/${counter.counter_id}`;
     fileExportRequests = [
       {
-        relativeFilepath: `./${baseRelativeFilepath}.tsx`,
+        directory: "client-data",
+        relativeFilename: `${baseRelativeFilepath}.tsx`,
         writeFunction: (stream): WriteFileResults =>
           writeCounterComponentsFile(
             markdownConsolidator.markdownComponents,

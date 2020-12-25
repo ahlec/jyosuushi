@@ -16,10 +16,10 @@ import {
   FileExportRequest,
   WriteFileResults,
 } from "./types";
-import { DATA_DIRECTORY } from "./utils";
+import { DATA_DIRECTORY, SERVER_SRC_DIRECTORY } from "./utils";
 
 const FILE_HEADER_COMMENT = `// DO NOT HAND-MODIFY THIS FILE!!
-// This file was built using \`yarn build-data\` from the SQLite database.
+// This file was built using \`yarn db:export\` from the SQLite database.
 // Modifications will be lost if they are made manually and not through the database.\n\n`;
 
 function exportFile(
@@ -32,7 +32,18 @@ function exportFile(
   const rawJavaScript = `${FILE_HEADER_COMMENT}${stream.toString()}`;
   const javaScript = prettier.format(rawJavaScript, { parser: "typescript" });
 
-  const filename = path.resolve(DATA_DIRECTORY, file.relativeFilepath);
+  let filename: string;
+  switch (file.directory) {
+    case "client-data": {
+      filename = path.resolve(DATA_DIRECTORY, file.relativeFilename);
+      break;
+    }
+    case "server-src": {
+      filename = path.resolve(SERVER_SRC_DIRECTORY, file.relativeFilename);
+      break;
+    }
+  }
+
   const directory = path.dirname(filename);
   if (!fs.existsSync(directory)) {
     fs.mkdirSync(directory, { recursive: true });
@@ -43,7 +54,7 @@ function exportFile(
 }
 
 interface ExportFileOutput {
-  relativeFilepath: string;
+  filename: string;
   outputEntries: ReadonlyArray<ExportOutputEntry>;
 }
 
@@ -79,7 +90,7 @@ function printExportOutputEntry(
 }
 
 function printFileOutput(output: ExportFileOutput): void {
-  console.log(`[${chalk.greenBright(output.relativeFilepath)}]`);
+  console.log(`[${chalk.greenBright(output.filename)}]`);
   for (const entry of output.outputEntries) {
     printExportOutputEntry(entry, 1, "");
   }
@@ -106,19 +117,24 @@ async function main(): Promise<void> {
 
   const queue: FileExportRequest[] = [
     {
-      relativeFilepath: "counters.ts",
+      directory: "client-data",
+      relativeFilename: "counters.ts",
       writeFunction: writeCountersFile,
     },
     {
-      relativeFilepath: "items.ts",
+      directory: "client-data",
+      relativeFilename: "items.ts",
       writeFunction: writeItemsFile,
     },
     {
-      relativeFilepath: "studyPacks.ts",
+      directory: "client-data",
+      relativeFilename: "studyPacks.ts",
       writeFunction: writeStudyPacksFile,
     },
     {
-      relativeFilepath: "standard-collections.ts",
+      directory: "server-src",
+      relativeFilename:
+        "modules/counter-collections/standard-collections.data.ts",
       writeFunction: writeStandardCollectionsFile,
     },
   ];
@@ -134,8 +150,8 @@ async function main(): Promise<void> {
       const result = exportFile(file, dataSource);
       if (result.output.length) {
         output.push({
+          filename: file.relativeFilename,
           outputEntries: result.output,
-          relativeFilepath: file.relativeFilepath,
         });
       }
 

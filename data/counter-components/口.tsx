@@ -1,5 +1,5 @@
 // DO NOT HAND-MODIFY THIS FILE!!
-// This file was built using `yarn build-data` from the SQLite database.
+// This file was built using `yarn db:export` from the SQLite database.
 // Modifications will be lost if they are made manually and not through the database.
 
 import * as React from "react";
