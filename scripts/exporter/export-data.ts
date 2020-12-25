@@ -9,6 +9,7 @@ import ValidatedDataSource from "../database/ValidatedDataSource";
 
 import writeCountersFile from "./counters/write-file";
 import writeItemsFile from "./items-file";
+import writeStandardCollectionsFile from "./standard-collections-file";
 import writeStudyPacksFile from "./study-packs-file";
 import {
   ExportOutputEntry,
@@ -115,6 +116,10 @@ async function main(): Promise<void> {
     {
       relativeFilepath: "studyPacks.ts",
       writeFunction: writeStudyPacksFile,
+    },
+    {
+      relativeFilepath: "standard-collections.ts",
+      writeFunction: writeStandardCollectionsFile,
     },
   ];
 
