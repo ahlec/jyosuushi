@@ -9,6 +9,8 @@ import {
   UserCounterCollection,
 } from "@server/graphql.generated";
 
+import { STANDARD_COLLECTIONS } from "@data/standard-collections";
+
 import { ServerContext } from "@server/context";
 
 type SomeCounterCollection = StandardCounterCollection | UserCounterCollection;
@@ -26,7 +28,15 @@ export const COUNTER_COLLECTIONS_RESOLVERS: Resolvers = {
     },
   },
   Query: {
-    standardCounterCollections: (): StandardCounterCollection[] => [],
+    standardCounterCollections: (): StandardCounterCollection[] =>
+      STANDARD_COLLECTIONS.map(
+        (collection): StandardCounterCollection => ({
+          counterIds: [...collection.counterIds],
+          dateLastUpdated: new Date(collection.dateLastUpdated),
+          id: collection.id,
+          name: collection.name,
+        })
+      ),
     userCounterCollections: async (
       _: unknown,
       _args: unknown,
