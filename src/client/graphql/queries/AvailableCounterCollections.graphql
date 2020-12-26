@@ -1,0 +1,15 @@
+query AvailableCounterCollections {
+  standardCounterCollections {
+    id
+    name
+    counterIds
+    dateLastUpdated
+  }
+  userCounterCollections {
+    id
+    name
+    counterIds
+    dateCreated
+    dateLastUpdated
+  }
+}

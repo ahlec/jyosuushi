@@ -12,6 +12,10 @@ export function getStudyPackLink(studyPack: StudyPack): string {
   return `${EXPLORE_STUDY_PACK_PATH_ROOT}/${studyPack.packId}`;
 }
 
+export function getCounterCollectionPath(id: string): string {
+  return `${EXPLORE_STUDY_PACK_PATH_ROOT}/${id}`;
+}
+
 export function getCounterLink(counter: Counter): string {
   return `${EXPLORE_COUNTER_PATH_ROOT}/${counter.counterId}`;
 }
