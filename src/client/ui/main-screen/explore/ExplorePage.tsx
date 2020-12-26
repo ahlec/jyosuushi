@@ -13,10 +13,8 @@ import LoadingSpinner from "@jyosuushi/ui/components/LoadingSpinner";
 import useExploreRoutes from "./hooks/useExploreRoutes";
 import { EXPLORE_COUNTER_PATH } from "./pathing";
 
-import AllCounters from "./AllCounters";
-import AllStudyPacks from "./AllStudyPacks";
-import BreadcrumbBar from "./BreadcrumbBar";
 import ExploreCounterPage from "./counter/ExploreCounterPage";
+import LandingView from "./landing/LandingView";
 
 import styles from "./ExplorePage.scss";
 
@@ -34,26 +32,26 @@ const EMPTY_USER_COLLECITONS: readonly UserCounterCollection[] = [];
 function ExplorePage(): React.ReactElement {
   // Retrieve the necessary data from the server
   const { data, error, loading } = useAvailableCounterCollectionsQuery();
+  const standardCollections =
+    data?.standardCounterCollections || EMPTY_STANDARD_COLLECTIONS;
+  const userCollections =
+    data?.userCounterCollections || EMPTY_USER_COLLECITONS;
 
   // Create a memoized function to render the fallback, main page
   const renderLandingPage = useCallback(
     (): React.ReactElement => (
-      <div className={styles.explorePageLanding}>
-        <BreadcrumbBar />
-        <div className={styles.contents}>
-          <AllStudyPacks />
-          <AllCounters />
-        </div>
-      </div>
+      <LandingView
+        standardCollections={standardCollections}
+        userCollections={userCollections}
+      />
     ),
-    []
+    [standardCollections, userCollections]
   );
 
   // Process the current data we have into routes
   const routes = useExploreRoutes({
-    standardCollections:
-      data?.standardCounterCollections || EMPTY_STANDARD_COLLECTIONS,
-    userCollections: data?.userCounterCollections || EMPTY_USER_COLLECITONS,
+    standardCollections,
+    userCollections,
   });
 
   // Render the component

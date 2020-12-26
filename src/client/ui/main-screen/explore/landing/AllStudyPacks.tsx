@@ -7,7 +7,7 @@ import { StudyPack } from "@jyosuushi/interfaces";
 
 import { STUDY_PACKS } from "@data/studyPacks";
 
-import { getStudyPackLink } from "./pathing";
+import { getStudyPackLink } from "@jyosuushi/ui/main-screen/explore/pathing";
 
 import styles from "./AllStudyPacks.scss";
 
@@ -22,14 +22,22 @@ const INTL_MESSAGES = defineMessages({
   },
 });
 
-function AllStudyPacks(): React.ReactElement {
+interface ComponentProps {
+  headerClassName: string;
+}
+
+function AllStudyPacks({
+  headerClassName,
+}: ComponentProps): React.ReactElement {
   // Connect to the rest of the app
   const locale = useLocale();
 
   // Render the component
   return (
     <div className={styles.allStudyPacks}>
-      <FormattedMessage {...INTL_MESSAGES.pageHeader} tagName="h3" />
+      <h3 className={headerClassName}>
+        <FormattedMessage {...INTL_MESSAGES.pageHeader} />
+      </h3>
       <div className={styles.list}>
         {STUDY_PACKS.map(
           (studyPack: StudyPack): React.ReactNode => {

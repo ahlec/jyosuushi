@@ -18,7 +18,11 @@ const INTL_MESSAGES = defineMessages({
   },
 });
 
-function AllCounters(): React.ReactElement {
+interface ComponentProps {
+  headerClassName: string;
+}
+
+function AllCounters({ headerClassName }: ComponentProps): React.ReactElement {
   // Connect to the rest of the app
   const locale = useLocale();
 
@@ -34,7 +38,9 @@ function AllCounters(): React.ReactElement {
   // Render component
   return (
     <div className={styles.allCounters}>
-      <FormattedMessage {...INTL_MESSAGES.pageHeader} tagName="h3" />
+      <h3 className={headerClassName}>
+        <FormattedMessage {...INTL_MESSAGES.pageHeader} />
+      </h3>
       <div className={styles.list}>
         {allSortedCounters.map(
           (counter): React.ReactElement => (

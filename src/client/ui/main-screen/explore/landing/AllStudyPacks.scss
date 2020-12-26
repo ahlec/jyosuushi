@@ -1,4 +1,4 @@
-@import "../../../palette";
+@import "../../../../palette";
 
 $num-links-per-row: 4;
 
@@ -19,7 +19,9 @@ $num-links-per-row: 4;
       display: inline-flex;
       flex-direction: column;
       justify-content: center;
-      max-width: calc((100% - #{$reserved-space-per-row}) / #{$num-links-per-row});
+      max-width: calc(
+        (100% - #{$reserved-space-per-row}) / #{$num-links-per-row}
+      );
       padding: $padding;
       text-decoration: none;
       width: calc((100% - #{$reserved-space-per-row}) / #{$num-links-per-row});
