@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useMemo } from "react";
 import { defineMessages } from "react-intl";
 import { Redirect, RouteComponentProps } from "react-router-dom";
 
@@ -7,7 +7,14 @@ import useLocale from "@jyosuushi/i18n/useLocale";
 
 import { getPrimaryJapaneseRepresentation } from "@jyosuushi/utils";
 
-import BreadcrumbBar from "@jyosuushi/ui/main-screen/explore/BreadcrumbBar";
+import BreadcrumbBar, {
+  BreadcrumbBarLinkDefinition,
+} from "@jyosuushi/ui/main-screen/explore/BreadcrumbBar";
+import {
+  getCounterLink,
+  getCounterCollectionPath,
+} from "@jyosuushi/ui/main-screen/explore/pathing";
+import { isExploreLocationState } from "@jyosuushi/ui/main-screen/explore/types";
 
 import ConjugationsSection from "./ConjugationsSection";
 import DisambiguationSection, {
@@ -49,12 +56,41 @@ function ExploreCounterPage({
   match: {
     params: { counterId },
   },
+  location,
 }: ComponentProps): React.ReactElement {
   // Find the counter based on the URL
   const counter = COUNTERS_LOOKUP[counterId] || null;
 
   // Connect to the rest of the app
   const locale = useLocale();
+
+  // Determine the links that should apear in the breadcrumb bar
+  const breadcrumbLinks = useMemo((): readonly BreadcrumbBarLinkDefinition[] => {
+    if (!counter) {
+      return [];
+    }
+
+    const links: BreadcrumbBarLinkDefinition[] = [
+      {
+        entityName: locale.dataLocalizers.getCounterName(counter),
+        entityType: "counter",
+        link: getCounterLink(counterId),
+      },
+    ];
+
+    if (
+      isExploreLocationState(location.state) &&
+      location.state.fromCollection
+    ) {
+      links.unshift({
+        entityName: location.state.fromCollection.name,
+        entityType: "collection",
+        link: getCounterCollectionPath(location.state.fromCollection.id),
+      });
+    }
+
+    return links;
+  }, [counterId, counter, locale, location.state]);
 
   // Redirect if the counter doesn't exist.
   if (!counter) {
@@ -64,7 +100,7 @@ function ExploreCounterPage({
   // Render the component
   return (
     <div className={styles.exploreCounterPage}>
-      <BreadcrumbBar />
+      <BreadcrumbBar links={breadcrumbLinks} />
       <div className={styles.contents}>
         <h3>{locale.dataLocalizers.getCounterName(counter)}</h3>
         <div className={styles.kanji}>

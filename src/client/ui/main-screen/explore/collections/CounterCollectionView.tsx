@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
 
-import BreadcrumbBar from "@jyosuushi/ui/main-screen/explore/BreadcrumbBar";
+import BreadcrumbBar, {
+  BreadcrumbBarLinkDefinition,
+} from "@jyosuushi/ui/main-screen/explore/BreadcrumbBar";
+import { getCounterCollectionPath } from "@jyosuushi/ui/main-screen/explore/pathing";
 
 import CounterRow from "./CounterRow";
 
@@ -30,9 +33,22 @@ interface ComponentProps {
 function CounterCollectionView({
   collection,
 }: ComponentProps): React.ReactElement {
+  // Prepare the links to appear in the breadcrumb bar
+  const breadcrumbLinks = useMemo(
+    (): readonly BreadcrumbBarLinkDefinition[] => [
+      {
+        entityName: collection.name,
+        entityType: "collection",
+        link: getCounterCollectionPath(collection.id),
+      },
+    ],
+    [collection.id, collection.name]
+  );
+
+  // Render the component
   return (
     <div className={styles.counterCollectionView}>
-      <BreadcrumbBar />
+      <BreadcrumbBar links={breadcrumbLinks} />
       <h3 className={styles.collectionName}>{collection.name}</h3>
       <p className={styles.contentsIntro}>
         <FormattedMessage
@@ -50,6 +66,7 @@ function CounterCollectionView({
               <CounterRow
                 key={counterId}
                 collectionId={collection.id}
+                collectionName={collection.name}
                 counterId={counterId}
               />
             )

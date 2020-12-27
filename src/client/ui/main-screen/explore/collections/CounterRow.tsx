@@ -9,16 +9,19 @@ import CounterDisplay from "@jyosuushi/ui/components/CounterDisplay";
 import RightIcon from "@jyosuushi/ui/right.svg";
 
 import { getCounterLink } from "@jyosuushi/ui/main-screen/explore/pathing";
+import { ExploreLocationState } from "@jyosuushi/ui/main-screen/explore/types";
 
 import styles from "./CounterRow.scss";
 
 interface ComponentProps {
   collectionId: string;
+  collectionName: string;
   counterId: string;
 }
 
 function CounterRow({
   collectionId,
+  collectionName,
   counterId,
 }: ComponentProps): React.ReactElement {
   // Fetch the correct counter
@@ -30,13 +33,20 @@ function CounterRow({
 
   // Handle events
   const handleClick = useCallback((): void => {
+    const locationState: ExploreLocationState = {
+      fromCollection: {
+        id: collectionId,
+        name: collectionName,
+      },
+      schema: "v2",
+      type: "explore-location-state",
+    };
+
     history.push({
       pathname: getCounterLink(counterId),
-      state: {
-        fromStudyPack: collectionId,
-      },
+      state: locationState,
     });
-  }, [collectionId, counterId, history]);
+  }, [collectionId, collectionName, counterId, history]);
 
   // Render the component
   return (

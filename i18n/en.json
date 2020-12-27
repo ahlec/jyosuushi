@@ -290,18 +290,18 @@
     },
     "translation": ""
   },
-  "explorePage.BreadcrumbBar.counter.prefix": {
+  "explorePage.BreadcrumbBar.collection.prefix": {
     "original": {
-      "defaultMessage": "Counter:",
+      "defaultMessage": "Collection:",
       "filenames": [
         "src/client/ui/main-screen/explore/BreadcrumbBar.tsx"
       ]
     },
     "translation": ""
   },
-  "explorePage.BreadcrumbBar.studyPack.prefix": {
+  "explorePage.BreadcrumbBar.counter.prefix": {
     "original": {
-      "defaultMessage": "Study Pack:",
+      "defaultMessage": "Counter:",
       "filenames": [
         "src/client/ui/main-screen/explore/BreadcrumbBar.tsx"
       ]
