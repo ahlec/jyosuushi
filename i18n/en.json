@@ -317,6 +317,15 @@
     },
     "translation": ""
   },
+  "explorePage.collections.CounterCollectionView.contentsIntro": {
+    "original": {
+      "defaultMessage": "This collection contains <bold>{numCounters, plural, one {# counter} other {# counters}}</bold>:",
+      "filenames": [
+        "src/client/ui/main-screen/explore/collections/CounterCollectionView.tsx"
+      ]
+    },
+    "translation": ""
+  },
   "explorePage.counter.conjugationSection.andSoForth": {
     "original": {
       "defaultMessage": "... and so forth",
@@ -475,15 +484,6 @@
       "defaultMessage": "{size, plural, one {# counter} other {# counters}}",
       "filenames": [
         "src/client/ui/main-screen/explore/landing/CollectionLink.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.studyPackPage.contentsIntro": {
-    "original": {
-      "defaultMessage": "This pack contains <bold>{numCounters, plural, one {# counter} other {# counters}}</bold>:",
-      "filenames": [
-        "src/client/ui/main-screen/explore/study-pack/ExploreStudyPackPage.tsx"
       ]
     },
     "translation": ""

@@ -45,7 +45,10 @@ export default class DisambiguationSection extends React.PureComponent<
     return (
       <div key={otherCounter.counterId} className={styles.disambiguation}>
         <div className={styles.counterContainer}>
-          <Link className={styles.counter} to={getCounterLink(otherCounter)}>
+          <Link
+            className={styles.counter}
+            to={getCounterLink(otherCounter.counterId)}
+          >
             {getPrimaryJapaneseRepresentation(otherCounter)}
           </Link>
         </div>

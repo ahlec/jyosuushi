@@ -1,0 +1,27 @@
+@import "../../../../palette";
+
+.counterCollectionView {
+  overflow-y: auto;
+}
+
+.collectionName {
+  border-bottom: 1px solid $app-outline;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0 auto 20px;
+  text-align: center;
+  width: 50%;
+}
+
+.contentsIntro {
+  margin: 8px 0;
+  text-align: center;
+
+  .bold {
+    font-weight: 600;
+  }
+}
+
+.countersTable {
+  width: 100%;
+}

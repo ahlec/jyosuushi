@@ -32,7 +32,7 @@ class CounterLink extends React.PureComponent<ComponentProps> {
     }
 
     return (
-      <Link to={getCounterLink(counter)}>
+      <Link to={getCounterLink(counter.counterId)}>
         <Furigana text={text} furigana={furigana} />
       </Link>
     );

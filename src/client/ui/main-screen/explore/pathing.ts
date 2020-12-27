@@ -1,4 +1,4 @@
-import { Counter, StudyPack } from "@jyosuushi/interfaces";
+import { StudyPack } from "@jyosuushi/interfaces";
 
 export const EXPLORE_PAGE_PATH = "/explore";
 
@@ -16,6 +16,6 @@ export function getCounterCollectionPath(id: string): string {
   return `${EXPLORE_STUDY_PACK_PATH_ROOT}/${id}`;
 }
 
-export function getCounterLink(counter: Counter): string {
-  return `${EXPLORE_COUNTER_PATH_ROOT}/${counter.counterId}`;
+export function getCounterLink(id: string): string {
+  return `${EXPLORE_COUNTER_PATH_ROOT}/${id}`;
 }

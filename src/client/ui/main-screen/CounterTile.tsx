@@ -19,7 +19,7 @@ function CounterTile({ counter }: ComponentProps): React.ReactElement {
 
   // Render the component
   return (
-    <Link className={styles.counterTile} to={getCounterLink(counter)}>
+    <Link className={styles.counterTile} to={getCounterLink(counter.counterId)}>
       <div className={styles.kanji}>
         {getPrimaryJapaneseRepresentation(counter)}
       </div>
