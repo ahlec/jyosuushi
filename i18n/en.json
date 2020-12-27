@@ -290,33 +290,6 @@
     },
     "translation": ""
   },
-  "explorePage.allCounters.pageHeader": {
-    "original": {
-      "defaultMessage": "Counters",
-      "filenames": [
-        "src/client/ui/main-screen/explore/AllCounters.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.AllStudyPacks.studyPackSizeLabel": {
-    "original": {
-      "defaultMessage": "{size, plural, one {# counter} other {# counters}}",
-      "filenames": [
-        "src/client/ui/main-screen/explore/AllStudyPacks.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.AllStudyPacks.pageHeader": {
-    "original": {
-      "defaultMessage": "Study Packs",
-      "filenames": [
-        "src/client/ui/main-screen/explore/AllStudyPacks.tsx"
-      ]
-    },
-    "translation": ""
-  },
   "explorePage.BreadcrumbBar.counter.prefix": {
     "original": {
       "defaultMessage": "Counter:",
@@ -466,6 +439,42 @@
       "defaultMessage": "The following {numItems, plural, one {is an example} other {are examples}} of what this is used to count:",
       "filenames": [
         "src/client/ui/main-screen/explore/counter/ItemsSection.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "main.explore.ExplorePage.serverErrorMessage": {
+    "original": {
+      "defaultMessage": "An error has occurred. Please try back later, we're working hard to fix it!",
+      "filenames": [
+        "src/client/ui/main-screen/explore/ExplorePage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.landing.AllCollections.pageHeader": {
+    "original": {
+      "defaultMessage": "Collections",
+      "filenames": [
+        "src/client/ui/main-screen/explore/landing/AllCollections.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.allCounters.pageHeader": {
+    "original": {
+      "defaultMessage": "Counters",
+      "filenames": [
+        "src/client/ui/main-screen/explore/landing/AllCounters.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.landing.CollectionLink.collectionSize": {
+    "original": {
+      "defaultMessage": "{size, plural, one {# counter} other {# counters}}",
+      "filenames": [
+        "src/client/ui/main-screen/explore/landing/CollectionLink.tsx"
       ]
     },
     "translation": ""
