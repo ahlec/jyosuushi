@@ -1,14 +1,17 @@
+import { noop } from "lodash";
 import React, { useCallback, useState } from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
+
+import { CounterCollection } from "@jyosuushi/graphql/types.generated";
 
 import useQuizManager from "@jyosuushi/quiz/useQuizManager";
 
 import InlineTrigger from "@jyosuushi/ui/components/InlineTrigger";
 
+import CollectionSelection from "./CollectionSelection";
 import CounterPreview from "./CounterPreview";
-import PackSelection from "./PackSelection";
 import TutorialModal from "./TutorialModal";
-import useEnabledPacks from "./useEnabledPacks";
+import useDistinctCounters from "./useDistinctCounters";
 
 import styles from "./PreparePage.scss";
 
@@ -38,13 +41,15 @@ function FormattedMessageBold(
   return <strong>{chunks}</strong>;
 }
 
+const MOCK_COLLECTIONS_ARRAY: readonly CounterCollection[] = [];
+const MOCK_SELECTED_COLLECTION_IDS: ReadonlySet<string> = new Set();
+
 function PreparePage(): React.ReactElement {
   // Define component state
   const [isShowingTutorial, setIsShowingTutorial] = useState<boolean>(false);
 
   // Connect with the rest of the app
   const quizManager = useQuizManager();
-  const [enabledPacks, setEnabledPacks] = useEnabledPacks();
 
   // Handle events
   const handleOpenTutorialModalClick = useCallback(
@@ -60,6 +65,9 @@ function PreparePage(): React.ReactElement {
   const handleStartQuiz = useCallback((): void => {
     quizManager.startNewQuiz();
   }, [quizManager]);
+
+  // Collate the counters that will be quizzed on, based on selected collections
+  const selectedCounters = useDistinctCounters(MOCK_COLLECTIONS_ARRAY);
 
   // Render the component
   return (
@@ -85,20 +93,27 @@ function PreparePage(): React.ReactElement {
         }}
         tagName="p"
       />
-      <PackSelection
-        onSelectionChanged={setEnabledPacks}
-        selection={enabledPacks}
+      <CollectionSelection
+        collections={MOCK_COLLECTIONS_ARRAY}
+        currentlySelectedCollectionIds={MOCK_SELECTED_COLLECTION_IDS}
+        onSelectionChange={noop}
       />
       <div className={styles.start}>
         <FormattedMessage {...INTL_MESSAGES.buttonStartQuiz}>
           {(text) => (
-            <button disabled={!enabledPacks.length} onClick={handleStartQuiz}>
+            <button
+              disabled={MOCK_SELECTED_COLLECTION_IDS.size > 0}
+              onClick={handleStartQuiz}
+            >
               {text}
             </button>
           )}
         </FormattedMessage>
       </div>
-      <CounterPreview className={styles.counterPreview} packs={enabledPacks} />
+      <CounterPreview
+        className={styles.counterPreview}
+        counters={selectedCounters}
+      />
       <div className={styles.flex} />
       <TutorialModal
         isOpen={isShowingTutorial}

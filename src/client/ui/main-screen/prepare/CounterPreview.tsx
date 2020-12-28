@@ -1,20 +1,12 @@
 import classnames from "classnames";
-import { memoize } from "lodash";
 import * as React from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
 
-import { Counter, StudyPack } from "@jyosuushi/interfaces";
-import { getDistinctCounters } from "@jyosuushi/utils";
+import { Counter } from "@jyosuushi/interfaces";
 
 import CounterTile from "@jyosuushi/ui/main-screen/CounterTile";
 
 import styles from "./CounterPreview.scss";
-
-const getCountersForPacks = memoize(
-  (packs: ReadonlyArray<StudyPack>) => getDistinctCounters(packs),
-  (packs: ReadonlyArray<StudyPack>) =>
-    JSON.stringify(packs.map(({ packId }) => packId))
-);
 
 const INTL_MESSAGES = defineMessages({
   header: {
@@ -25,16 +17,15 @@ const INTL_MESSAGES = defineMessages({
 });
 
 interface ComponentProps {
-  className?: string;
-  packs: ReadonlyArray<StudyPack>;
+  className: string;
+  counters: readonly Counter[];
 }
 
 export default class CounterPreview extends React.PureComponent<
   ComponentProps
 > {
   public render(): React.ReactNode {
-    const { className, packs } = this.props;
-    const counters = getCountersForPacks(packs);
+    const { className, counters } = this.props;
 
     if (!counters.length) {
       return null;

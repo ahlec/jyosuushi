@@ -551,47 +551,47 @@
     },
     "translation": ""
   },
+  "preparePage.CollectionSelection.header": {
+    "original": {
+      "defaultMessage": "Collections",
+      "filenames": [
+        "src/client/ui/main-screen/prepare/CollectionSelection.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "preparePage.CollectionSelection.subheader": {
+    "original": {
+      "defaultMessage": "(select 1 or more)",
+      "filenames": [
+        "src/client/ui/main-screen/prepare/CollectionSelection.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "preparePage.CollectionToggleButton.collectionSizeLabel": {
+    "original": {
+      "defaultMessage": "{size, plural, one {# counter} other {# counters}}",
+      "filenames": [
+        "src/client/ui/main-screen/prepare/CollectionToggleButton.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "preparePage.CollectionToggleButton.viewContentsLink": {
+    "original": {
+      "defaultMessage": "View Details",
+      "filenames": [
+        "src/client/ui/main-screen/prepare/CollectionToggleButton.tsx"
+      ]
+    },
+    "translation": ""
+  },
   "preparePage.CounterPreview.header": {
     "original": {
       "defaultMessage": "{count, plural, one {# Counter} other {# Counters}} included",
       "filenames": [
         "src/client/ui/main-screen/prepare/CounterPreview.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "preparePage.PackSelection.header": {
-    "original": {
-      "defaultMessage": "Study Packs",
-      "filenames": [
-        "src/client/ui/main-screen/prepare/PackSelection.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "preparePage.PackSelection.subheader": {
-    "original": {
-      "defaultMessage": "(select 1 or more)",
-      "filenames": [
-        "src/client/ui/main-screen/prepare/PackSelection.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "preparePage.PackToggleButton.studyPackSizeLabel": {
-    "original": {
-      "defaultMessage": "{size, plural, one {# counter} other {# counters}}",
-      "filenames": [
-        "src/client/ui/main-screen/prepare/PackToggleButton.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "preparePage.PackToggleButton.viewPackContentsLink": {
-    "original": {
-      "defaultMessage": "View Details",
-      "filenames": [
-        "src/client/ui/main-screen/prepare/PackToggleButton.tsx"
       ]
     },
     "translation": ""
