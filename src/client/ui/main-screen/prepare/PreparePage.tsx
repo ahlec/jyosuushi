@@ -1,51 +1,16 @@
-import { memoize } from "lodash";
-import * as React from "react";
+import React, { useCallback, useState } from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
-import { connect } from "react-redux";
 
-import { STUDY_PACK_LOOKUP } from "@data/studyPacks";
-import { StudyPack } from "@jyosuushi/interfaces";
-import withQuizManager, {
-  InjectedProps,
-} from "@jyosuushi/quiz/withQuizManager";
-import { State } from "@jyosuushi/redux";
-import { setEnabledPacks } from "@jyosuushi/redux/actions";
-import { Dispatch } from "@jyosuushi/redux/store";
+import useQuizManager from "@jyosuushi/quiz/useQuizManager";
 
 import InlineTrigger from "@jyosuushi/ui/components/InlineTrigger";
 
 import CounterPreview from "./CounterPreview";
 import PackSelection from "./PackSelection";
 import TutorialModal from "./TutorialModal";
+import useEnabledPacks from "./useEnabledPacks";
 
 import styles from "./PreparePage.scss";
-
-function getPacksFromArray(
-  packs: ReadonlyArray<string>
-): ReadonlyArray<StudyPack> {
-  return packs.map((packId) => STUDY_PACK_LOOKUP[packId]);
-}
-
-const getPacksFromSet = memoize(
-  (packs: ReadonlyArray<string>) => getPacksFromArray(Array.from(packs)),
-  (packs: ReadonlyArray<string>) => JSON.stringify(packs)
-);
-
-interface ReduxProps {
-  enabledPacks: ReadonlyArray<StudyPack>;
-}
-
-function mapStateToProps(state: State): ReduxProps {
-  return {
-    enabledPacks: getPacksFromSet(state.enabledPacks),
-  };
-}
-
-type ComponentProps = ReduxProps & InjectedProps & { dispatch: Dispatch };
-
-interface ComponentState {
-  showingTutorial: boolean;
-}
 
 const INTL_MESSAGES = defineMessages({
   buttonStartQuiz: {
@@ -73,84 +38,74 @@ function FormattedMessageBold(
   return <strong>{chunks}</strong>;
 }
 
-class PreparePage extends React.PureComponent<ComponentProps, ComponentState> {
-  public constructor(props: ComponentProps) {
-    super(props);
+function PreparePage(): React.ReactElement {
+  // Define component state
+  const [isShowingTutorial, setIsShowingTutorial] = useState<boolean>(false);
 
-    this.state = {
-      showingTutorial: false,
-    };
-  }
+  // Connect with the rest of the app
+  const quizManager = useQuizManager();
+  const [enabledPacks, setEnabledPacks] = useEnabledPacks();
 
-  public render(): React.ReactNode {
-    const { enabledPacks } = this.props;
-    const { showingTutorial } = this.state;
-    return (
-      <div className={styles.preparePage}>
-        <FormattedMessage
-          {...INTL_MESSAGES.welcomeMessage}
-          values={{
-            bold: FormattedMessageBold,
-            jyosuushiWikipediaLink: (
-              <a
-                href="https://en.wikipedia.org/wiki/Japanese_counter_word"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FormattedMessage {...INTL_MESSAGES.linksJyosuushiWikipedia} />
-              </a>
-            ),
-            tutorialLink: (
-              <InlineTrigger onTrigger={this.showTutorialModal}>
-                <FormattedMessage {...INTL_MESSAGES.linksTutorial} />
-              </InlineTrigger>
-            ),
-          }}
-          tagName="p"
-        />
-        <PackSelection
-          onSelectionChanged={this.onSelectionChanged}
-          selection={enabledPacks}
-        />
-        <div className={styles.start}>
-          <FormattedMessage {...INTL_MESSAGES.buttonStartQuiz}>
-            {(text) => (
-              <button
-                disabled={!enabledPacks.length}
-                onClick={this.onStartQuiz}
-              >
-                {text}
-              </button>
-            )}
-          </FormattedMessage>
-        </div>
-        <CounterPreview
-          className={styles.counterPreview}
-          packs={enabledPacks}
-        />
-        <div className={styles.flex} />
-        <TutorialModal
-          isOpen={showingTutorial}
-          onRequestClose={this.hideTutorialModal}
-        />
-      </div>
-    );
-  }
+  // Handle events
+  const handleOpenTutorialModalClick = useCallback(
+    (): void => setIsShowingTutorial(true),
+    []
+  );
 
-  private showTutorialModal = (): void =>
-    this.setState({ showingTutorial: true });
-  private hideTutorialModal = (): void =>
-    this.setState({ showingTutorial: false });
+  const handleRequestTutorialModalClose = useCallback(
+    (): void => setIsShowingTutorial(false),
+    []
+  );
 
-  private onSelectionChanged = (selection: ReadonlyArray<StudyPack>): void => {
-    const { dispatch } = this.props;
-    dispatch(setEnabledPacks(selection));
-  };
-
-  private onStartQuiz = (): void => {
-    const { quizManager } = this.props;
+  const handleStartQuiz = useCallback((): void => {
     quizManager.startNewQuiz();
-  };
+  }, [quizManager]);
+
+  // Render the component
+  return (
+    <div className={styles.preparePage}>
+      <FormattedMessage
+        {...INTL_MESSAGES.welcomeMessage}
+        values={{
+          bold: FormattedMessageBold,
+          jyosuushiWikipediaLink: (
+            <a
+              href="https://en.wikipedia.org/wiki/Japanese_counter_word"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FormattedMessage {...INTL_MESSAGES.linksJyosuushiWikipedia} />
+            </a>
+          ),
+          tutorialLink: (
+            <InlineTrigger onTrigger={handleOpenTutorialModalClick}>
+              <FormattedMessage {...INTL_MESSAGES.linksTutorial} />
+            </InlineTrigger>
+          ),
+        }}
+        tagName="p"
+      />
+      <PackSelection
+        onSelectionChanged={setEnabledPacks}
+        selection={enabledPacks}
+      />
+      <div className={styles.start}>
+        <FormattedMessage {...INTL_MESSAGES.buttonStartQuiz}>
+          {(text) => (
+            <button disabled={!enabledPacks.length} onClick={handleStartQuiz}>
+              {text}
+            </button>
+          )}
+        </FormattedMessage>
+      </div>
+      <CounterPreview className={styles.counterPreview} packs={enabledPacks} />
+      <div className={styles.flex} />
+      <TutorialModal
+        isOpen={isShowingTutorial}
+        onRequestClose={handleRequestTutorialModalClose}
+      />
+    </div>
+  );
 }
 
-export default connect(mapStateToProps)(withQuizManager(PreparePage));
+export default PreparePage;
