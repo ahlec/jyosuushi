@@ -16,7 +16,7 @@ import styles from "./PackToggleButton.scss";
 
 interface ComponentProps {
   isEnabled: boolean;
-  onToggle: () => void;
+  onToggle: (pack: StudyPack) => void;
   pack: StudyPack;
 }
 
@@ -44,18 +44,20 @@ function PackToggleButton({
     switch (e.which) {
       case KeyCode.Enter:
       case KeyCode.Space: {
-        onToggle();
+        onToggle(pack);
         break;
       }
     }
   };
+
+  const handleClick = () => onToggle(pack);
 
   // Render the component
   return (
     <div className={styles.packToggleButton}>
       <div
         className={classnames(styles.front, isEnabled && styles.checked)}
-        onClick={onToggle}
+        onClick={handleClick}
         onKeyPress={handleKeyPress}
         role="button"
         tabIndex={0}

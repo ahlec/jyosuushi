@@ -1,5 +1,4 @@
-import { memoize } from "lodash";
-import * as React from "react";
+import React, { useCallback } from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
 
 import { STUDY_PACKS } from "@data/studyPacks";
@@ -10,8 +9,8 @@ import PackToggleButton from "./PackToggleButton";
 import styles from "./PackSelection.scss";
 
 interface ComponentProps {
-  onSelectionChanged: (selection: ReadonlyArray<StudyPack>) => void;
-  selection: ReadonlyArray<StudyPack>;
+  onSelectionChanged: (selection: readonly StudyPack[]) => void;
+  selection: readonly StudyPack[];
 }
 
 function comparePacks(a: StudyPack, b: StudyPack): number {
@@ -29,48 +28,51 @@ const INTL_MESSAGES = defineMessages({
   },
 });
 
-export default class PackSelection extends React.PureComponent<ComponentProps> {
-  private onTogglePack = memoize((pack: StudyPack) => (): void => {
-    const { onSelectionChanged, selection } = this.props;
-    const next = [...selection];
+function PackSelection({
+  onSelectionChanged,
+  selection,
+}: ComponentProps): React.ReactElement {
+  // Handle events
+  const handlePackToggled = useCallback(
+    (pack: StudyPack): void => {
+      const next = [...selection];
 
-    const index = next.indexOf(pack);
-    if (index >= 0) {
-      next.splice(index, 1);
-    } else {
-      next.push(pack);
-    }
+      const index = next.indexOf(pack);
+      if (index >= 0) {
+        next.splice(index, 1);
+      } else {
+        next.push(pack);
+      }
 
-    next.sort(comparePacks);
-    onSelectionChanged(next);
-  });
+      next.sort(comparePacks);
+      onSelectionChanged(next);
+    },
+    [onSelectionChanged, selection]
+  );
 
-  public render(): React.ReactNode {
-    return (
-      <div className={styles.packSelection}>
-        <div className={styles.fieldset}>
-          <div className={styles.header}>
-            <FormattedMessage {...INTL_MESSAGES.header} tagName="strong" />{" "}
-            <span className={styles.subheader}>
-              <FormattedMessage {...INTL_MESSAGES.subheader} />
-            </span>
-          </div>
-          {STUDY_PACKS.map(this.renderPack)}
+  // Render the component
+  return (
+    <div className={styles.packSelection}>
+      <div className={styles.fieldset}>
+        <div className={styles.header}>
+          <FormattedMessage {...INTL_MESSAGES.header} tagName="strong" />{" "}
+          <span className={styles.subheader}>
+            <FormattedMessage {...INTL_MESSAGES.subheader} />
+          </span>
         </div>
+        {STUDY_PACKS.map(
+          (pack): React.ReactElement => (
+            <PackToggleButton
+              key={pack.packId}
+              isEnabled={selection.indexOf(pack) >= 0}
+              onToggle={handlePackToggled}
+              pack={pack}
+            />
+          )
+        )}
       </div>
-    );
-  }
-
-  private renderPack = (pack: StudyPack): React.ReactNode => {
-    const { selection } = this.props;
-    const enabled = selection.indexOf(pack) >= 0;
-    return (
-      <PackToggleButton
-        key={pack.packId}
-        isEnabled={enabled}
-        onToggle={this.onTogglePack(pack)}
-        pack={pack}
-      />
-    );
-  };
+    </div>
+  );
 }
+
+export default PackSelection;
