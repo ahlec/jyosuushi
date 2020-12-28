@@ -1,10 +1,10 @@
 import React, { useCallback } from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
 
-import { STUDY_PACKS } from "@data/studyPacks";
+import { STUDY_PACKS, STUDY_PACK_LOOKUP } from "@data/studyPacks";
 import { StudyPack } from "@jyosuushi/interfaces";
 
-import PackToggleButton from "./PackToggleButton";
+import CollectionToggleButton from "./CollectionToggleButton";
 
 import styles from "./PackSelection.scss";
 
@@ -34,14 +34,16 @@ function PackSelection({
 }: ComponentProps): React.ReactElement {
   // Handle events
   const handlePackToggled = useCallback(
-    (pack: StudyPack): void => {
+    (collectionId: string): void => {
       const next = [...selection];
 
-      const index = next.indexOf(pack);
+      const index = next.findIndex(
+        (pack): boolean => pack.packId === collectionId
+      );
       if (index >= 0) {
         next.splice(index, 1);
       } else {
-        next.push(pack);
+        next.push(STUDY_PACK_LOOKUP[collectionId]);
       }
 
       next.sort(comparePacks);
@@ -62,11 +64,13 @@ function PackSelection({
         </div>
         {STUDY_PACKS.map(
           (pack): React.ReactElement => (
-            <PackToggleButton
+            <CollectionToggleButton
               key={pack.packId}
-              isEnabled={selection.indexOf(pack) >= 0}
+              collectionId={pack.packId}
+              isSelected={selection.indexOf(pack) >= 0}
+              name={pack.englishName}
+              numCounters={pack.counters.length}
               onToggle={handlePackToggled}
-              pack={pack}
             />
           )
         )}
