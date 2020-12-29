@@ -1,4 +1,9 @@
-import { Counter, PendingQuestion, Question } from "@jyosuushi/interfaces";
+import {
+  Counter,
+  CounterCollectionDescriptor,
+  PendingQuestion,
+  Question,
+} from "@jyosuushi/interfaces";
 
 export enum AmountRange {
   Small = "small",
@@ -21,20 +26,32 @@ export interface Scorecard {
   numIgnoredAnswers: number;
 }
 
+export interface QuizCounterDefinition {
+  counterId: string;
+  collections: readonly CounterCollectionDescriptor[];
+}
+
+export type DefinedQuizCounters = {
+  [counterId: string]: QuizCounterDefinition;
+};
+
 export interface QuestionsState {
   currentQuestion: Question | null;
   queue: ReadonlyArray<PendingQuestion>;
   asked: ReadonlyArray<Question>;
-  enabledCounters: ReadonlyArray<string>;
+
+  // All of the internal data necessary in order to restart/repopulate/begin
+  // this quiz
+  seed: {
+    amountRange: AmountRange;
+    enabledCounters: DefinedQuizCounters;
+    shouldReplenishOnExhaustion: boolean;
+  };
 }
 
 export interface CountersStateItem {
   studyPacks: ReadonlyArray<string>;
   counter: Counter;
-}
-
-export interface CountersState {
-  [counterId: string]: CountersStateItem;
 }
 
 export type UserAnswerJudgment =
@@ -48,8 +65,10 @@ export interface UserAnswer {
   judgment: UserAnswerJudgment;
 }
 
+export type QuizMode = "regular" | "infinite";
+
 export interface QuizState {
-  isInfinite: boolean;
+  mode: QuizMode;
   state:
     | "not-in-quiz"
     | "waiting-for-answer"
@@ -63,8 +82,6 @@ export interface User {
 }
 
 export interface State {
-  counters: CountersState;
-  enabledPacks: ReadonlyArray<string>;
   questions: QuestionsState;
   quizState: QuizState;
   scorecard: Scorecard;

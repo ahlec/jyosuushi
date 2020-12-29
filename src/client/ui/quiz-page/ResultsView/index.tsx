@@ -10,12 +10,7 @@ import * as ReactGA from "react-ga";
 import { connect } from "react-redux";
 
 import { Answer, Question } from "@jyosuushi/interfaces";
-import {
-  CountersState,
-  State,
-  UserAnswer,
-  UserAnswerJudgment,
-} from "@jyosuushi/redux";
+import { State, UserAnswer, UserAnswerJudgment } from "@jyosuushi/redux";
 import { ignoreLastAnswer } from "@jyosuushi/redux/actions";
 import { Dispatch } from "@jyosuushi/redux/store";
 
@@ -32,13 +27,11 @@ interface ProvidedProps {
 }
 
 interface ReduxProps {
-  counters: CountersState;
   usersAnswer: UserAnswer;
 }
 
 function mapStateToProps(state: State): ReduxProps {
   return {
-    counters: state.counters,
     usersAnswer: state.userAnswers[state.userAnswers.length - 1],
   };
 }

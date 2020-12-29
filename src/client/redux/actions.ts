@@ -1,6 +1,6 @@
-import { PendingQuestion, StudyPack } from "@jyosuushi/interfaces";
+import { CounterCollection } from "@jyosuushi/graphql/types.generated";
 
-import { AmountRange } from "./index";
+import { AmountRange, QuizMode } from "./index";
 
 export interface ActionSetAmountRange {
   type: "set-amount-range";
@@ -26,62 +26,33 @@ export function setInfiniteMode(infiniteMode: boolean): ActionSetInfiniteMode {
   };
 }
 
-export interface ActionSetEnabledPacks {
-  type: "set-enabled-packs";
-  enabledPacks: ReadonlyArray<StudyPack>;
-}
-
-export function setEnabledPacks(
-  enabledPacks: ReadonlyArray<StudyPack>
-): ActionSetEnabledPacks {
-  return {
-    enabledPacks,
-    type: "set-enabled-packs",
-  };
-}
-
 export interface ActionStartQuiz {
   type: "start-quiz";
-  isInfinite: boolean;
-  questions: ReadonlyArray<PendingQuestion>;
+  amountRange: AmountRange;
+  collections: readonly CounterCollection[];
+  mode: QuizMode;
 }
 
 export function startQuiz(
-  questions: ReadonlyArray<PendingQuestion>,
-  isInfinite: boolean
+  collections: readonly CounterCollection[],
+  mode: QuizMode,
+  amountRange: AmountRange
 ): ActionStartQuiz {
   return {
-    isInfinite,
-    questions,
+    amountRange,
+    collections,
+    mode,
     type: "start-quiz",
   };
 }
 
 export interface ActionRestartQuiz {
   type: "restart-quiz";
-  questions: ReadonlyArray<PendingQuestion>;
 }
 
-export function restartQuiz(
-  questions: ReadonlyArray<PendingQuestion>
-): ActionRestartQuiz {
+export function restartQuiz(): ActionRestartQuiz {
   return {
-    questions,
     type: "restart-quiz",
-  };
-}
-
-export interface ActionReplenishInfiniteQuiz {
-  type: "replenish-infinite-quiz";
-  questions: ReadonlyArray<PendingQuestion>;
-}
-
-export function replenishInfiniteQuiz(
-  questions: ReadonlyArray<PendingQuestion>
-): ActionReplenishInfiniteQuiz {
-  return {
-    questions,
-    type: "replenish-infinite-quiz",
   };
 }
 

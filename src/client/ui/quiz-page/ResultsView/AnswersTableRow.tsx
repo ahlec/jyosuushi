@@ -7,7 +7,7 @@ import {
   Answer,
   Counter,
   CountingSystem,
-  StudyPack,
+  CounterCollectionDescriptor,
 } from "@jyosuushi/interfaces";
 
 import CounterDisplay from "@jyosuushi/ui/components/CounterDisplay";
@@ -16,7 +16,7 @@ import styles from "./AnswersTableRow.scss";
 
 export interface AnswersTableRowData {
   counter: Counter;
-  studyPacks: ReadonlyArray<StudyPack>;
+  collections: readonly CounterCollectionDescriptor[];
 
   kanaAnswers: ReadonlyArray<Answer>;
 
@@ -81,10 +81,10 @@ function AnswersTableRow({ data }: ComponentProps): React.ReactElement {
         {locale.dataLocalizers.getCounterName(data.counter)}
       </td>
       <td className={styles.cellStudyPack}>
-        {data.studyPacks.map(
-          (pack: StudyPack): React.ReactNode => (
-            <div key={pack.packId} className="study-pack">
-              {locale.dataLocalizers.getStudyPackName(pack)}
+        {data.collections.map(
+          (collection): React.ReactElement => (
+            <div key={collection.id} className="study-pack">
+              {collection.name}
             </div>
           )
         )}

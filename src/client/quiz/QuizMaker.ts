@@ -8,10 +8,9 @@ import {
   Counter,
   Item,
   PendingQuestion,
-  StudyPack,
 } from "@jyosuushi/interfaces";
 import { AmountRange } from "@jyosuushi/redux";
-import { getDistinctCounters, randomFromArray } from "@jyosuushi/utils";
+import { randomFromArray } from "@jyosuushi/utils";
 import { conjugateCounter } from "@jyosuushi/japanese/counters";
 
 const MAX_NUMBER_QUESTIONS_PER_ITEM = 3;
@@ -197,10 +196,9 @@ function makeQuestionsForCounter(
 }
 
 export default function makeQuiz(
-  studyPacks: ReadonlyArray<StudyPack>,
+  counters: readonly Counter[],
   amountRange: AmountRange
 ): ReadonlyArray<PendingQuestion> {
-  const counters = getDistinctCounters(studyPacks);
   const items = getDistinctItems(counters);
   const quizItems = planOutItems(items);
 

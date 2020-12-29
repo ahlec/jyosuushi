@@ -4,7 +4,6 @@ import {
   ActionLeaveQuiz,
   ActionNextQuestion,
   ActionRestartQuiz,
-  ActionSetEnabledPacks,
   ActionSkipQuestion,
   ActionStartQuiz,
   ActionSubmitCorrectAnswer,
@@ -16,14 +15,13 @@ type ReducerAction =
   | ActionSubmitCorrectAnswer
   | ActionSubmitIncorrectAnswer
   | ActionNextQuestion
-  | ActionSetEnabledPacks
   | ActionSkipQuestion
   | ActionStartQuiz
   | ActionRestartQuiz
   | ActionLeaveQuiz;
 
 const DEFAULT_STATE: QuizState = {
-  isInfinite: false,
+  mode: "regular",
   state: "not-in-quiz",
 };
 
@@ -34,7 +32,7 @@ export default function quizStateReducer(
   switch (action.type) {
     case "start-quiz":
       return {
-        isInfinite: action.isInfinite,
+        mode: action.mode,
         state: "waiting-for-answer",
       };
     case "restart-quiz":
@@ -55,7 +53,6 @@ export default function quizStateReducer(
         ...state,
         state: "quiz-wrapup",
       };
-    case "set-enabled-packs":
     case "leave-quiz":
       return {
         ...state,

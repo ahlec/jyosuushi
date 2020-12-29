@@ -1,11 +1,10 @@
 import { flatten, groupBy, uniq } from "lodash";
 import React, { useMemo } from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
-import { useSelector } from "react-redux";
 
-import { STUDY_PACK_LOOKUP } from "@data/studyPacks";
+import { COUNTERS_LOOKUP } from "@data/counters";
 import { Question } from "@jyosuushi/interfaces";
-import { State, UserAnswer } from "@jyosuushi/redux";
+import { UserAnswer } from "@jyosuushi/redux";
 
 import AnswersTableRow, { AnswersTableRowData } from "./AnswersTableRow";
 import styles from "./AnswersTable.scss";
@@ -42,9 +41,6 @@ function AnswersTable({
   currentQuestion,
   usersAnswer,
 }: ComponentProps): React.ReactElement {
-  // Connect to the rest of the app
-  const counters = useSelector((state: State) => state.counters);
-
   // Determine the rows that should appear in the table
   const rows = useMemo((): readonly AnswersTableRowData[] => {
     const answersByCounterId = groupBy(
@@ -54,12 +50,11 @@ function AnswersTable({
 
     return Object.keys(answersByCounterId).map(
       (counterId): AnswersTableRowData => {
-        const { counter, studyPacks } = counters[counterId];
         const answers = answersByCounterId[counterId];
         return {
-          counter,
+          collections: answers[0].collections, // TODO
+          counter: COUNTERS_LOOKUP[counterId],
           kanaAnswers: answers,
-          studyPacks: studyPacks.map((packId) => STUDY_PACK_LOOKUP[packId]),
           usersCorrectKana:
             usersAnswer.judgment === "correct" ? usersAnswer.input : null,
           validKanji: uniq(
@@ -76,7 +71,7 @@ function AnswersTable({
         };
       }
     );
-  }, [counters, currentQuestion, usersAnswer.input, usersAnswer.judgment]);
+  }, [currentQuestion, usersAnswer.input, usersAnswer.judgment]);
 
   // Render the component
   return (

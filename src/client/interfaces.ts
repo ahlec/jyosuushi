@@ -176,8 +176,14 @@ export interface Conjugation {
   reading: string;
 }
 
+export interface CounterCollectionDescriptor {
+  id: string;
+  name: string;
+}
+
 export interface Answer {
   counterId: string;
+  collections: readonly CounterCollectionDescriptor[];
   countingSystem: CountingSystem | null;
   irregularType: CounterIrregularType | null;
   kana: string;

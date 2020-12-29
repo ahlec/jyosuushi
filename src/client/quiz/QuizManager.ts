@@ -1,21 +1,24 @@
 import * as ReactGA from "react-ga";
 
-import { STUDY_PACK_LOOKUP } from "@data/studyPacks";
+import {
+  StandardCounterCollection,
+  UserCounterCollection,
+} from "@jyosuushi/graphql/types.generated";
 
 import { AmountRange } from "@jyosuushi/redux";
 import {
   endQuiz,
   nextQuestion,
-  replenishInfiniteQuiz,
   restartQuiz,
   startQuiz,
 } from "@jyosuushi/redux/actions";
 import { Store } from "@jyosuushi/redux/store";
-import makeQuiz from "./QuizMaker";
 
-const GOOGLE_ANALYTICS_CATEGORY = "Quiz";
+export type QuizMode = "regular" | "infinite";
 
-export default class QuizManager {
+type SomeCounterCollection = StandardCounterCollection | UserCounterCollection;
+
+class QuizManager {
   public constructor(private readonly store: Store) {}
 
   public get hasNextQuestion(): boolean {
@@ -24,11 +27,14 @@ export default class QuizManager {
       return false;
     }
 
-    if (state.quizState.isInfinite) {
-      return true;
+    switch (state.quizState.mode) {
+      case "regular": {
+        return !!state.questions.queue.length;
+      }
+      case "infinite": {
+        return true;
+      }
     }
-
-    return !!state.questions.queue.length;
   }
 
   private get amountRange(): AmountRange {
@@ -36,59 +42,85 @@ export default class QuizManager {
     return state.settings.amountRange;
   }
 
-  public startNewQuiz(): void {
-    const state = this.store.getState();
-    const studyPacks = state.enabledPacks.map(
-      (packId) => STUDY_PACK_LOOKUP[packId]
-    );
-
-    if (!studyPacks.length) {
-      throw new Error("Must provide one or more study packs");
+  public startNewQuiz(
+    collections: readonly SomeCounterCollection[],
+    mode: QuizMode
+  ): void {
+    if (!collections.length) {
+      throw new Error("Must provide at least one collection to quiz over.");
     }
 
-    const questions = makeQuiz(studyPacks, this.amountRange);
-    const isInfinite = state.settings.infiniteMode;
-    this.store.dispatch(startQuiz(questions, isInfinite));
+    this.store.dispatch(startQuiz(collections, mode, this.amountRange));
+
+    const GOOGLE_ANALYTICS_CATEGORY = "Quiz Started";
 
     ReactGA.event({
-      action: "New Quiz Began",
+      action: "Quiz Started",
       category: GOOGLE_ANALYTICS_CATEGORY,
-      label: `[${studyPacks.map(({ packId }) => packId).join(", ")}] ${
-        isInfinite ? "infinite mode" : `Questions: ${questions.length}`
-      }`,
+      label: `Mode: ${mode}`,
     });
+
+    let numUserCollections = 0;
+    collections.forEach((collection): void => {
+      if ("dateCreated" in collection) {
+        ++numUserCollections;
+        return;
+      }
+
+      ReactGA.event({
+        action: "Standard collection selected",
+        category: GOOGLE_ANALYTICS_CATEGORY,
+        label: `${collection.name} (ID: ${collection.id})`,
+      });
+    });
+
+    if (numUserCollections) {
+      ReactGA.event({
+        action: "User collection(s) selected",
+        category: GOOGLE_ANALYTICS_CATEGORY,
+        value: numUserCollections,
+      });
+    }
   }
 
   public endQuiz(): void {
-    const { enabledPacks, scorecard } = this.store.getState();
+    const { scorecard } = this.store.getState();
     const numQuestionsAnswered =
       scorecard.numCorrectAnswers + scorecard.numIncorrectAnswers;
+
+    const GOOGLE_ANALYTICS_CATEGORY = "Quiz Finished";
+
     ReactGA.event({
-      action: "Quiz Finished",
+      action: "Questions answered",
       category: GOOGLE_ANALYTICS_CATEGORY,
-      label: `[${enabledPacks.join(
-        ", "
-      )}] Answered: ${numQuestionsAnswered}, Skipped: ${
-        scorecard.numSkippedQuestions
-      }, Ignored: ${scorecard.numIgnoredAnswers}`,
+      value: numQuestionsAnswered,
     });
+
+    if (scorecard.numSkippedQuestions) {
+      ReactGA.event({
+        action: "Finished with skipped questions",
+        category: GOOGLE_ANALYTICS_CATEGORY,
+        value: scorecard.numSkippedQuestions,
+      });
+    }
+
+    if (scorecard.numIgnoredAnswers) {
+      ReactGA.event({
+        action: "Finished with ignored answers",
+        category: GOOGLE_ANALYTICS_CATEGORY,
+        value: scorecard.numIgnoredAnswers,
+      });
+    }
 
     this.store.dispatch(endQuiz());
   }
 
   public restart(): void {
-    const state = this.store.getState();
-    const packs = state.enabledPacks.map((packId) => STUDY_PACK_LOOKUP[packId]);
-    const questions = makeQuiz(packs, this.amountRange);
-    const isInfinite = state.settings.infiniteMode;
-    this.store.dispatch(restartQuiz(questions));
+    this.store.dispatch(restartQuiz());
 
     ReactGA.event({
       action: "Quiz Restarted",
-      category: GOOGLE_ANALYTICS_CATEGORY,
-      label: `[${packs.map(({ packId }) => packId).join(", ")}] ${
-        isInfinite ? "infinite mode" : `Questions: ${questions.length}`
-      }`,
+      category: "Quiz Restarted",
     });
   }
 
@@ -97,15 +129,8 @@ export default class QuizManager {
       throw new Error("No more questions in this quiz");
     }
 
-    const state = this.store.getState();
-    if (state.quizState.isInfinite && !state.questions.queue.length) {
-      const packs = state.enabledPacks.map(
-        (packId) => STUDY_PACK_LOOKUP[packId]
-      );
-      const questions = makeQuiz(packs, this.amountRange);
-      this.store.dispatch(replenishInfiniteQuiz(questions));
-    }
-
     this.store.dispatch(nextQuestion());
   }
 }
+
+export default QuizManager;

@@ -1,4 +1,8 @@
-import { Counter, StudyPack } from "./interfaces";
+import { COUNTERS_LOOKUP } from "@data/counters";
+
+import { CounterCollection } from "@jyosuushi/graphql/types.generated";
+
+import { Counter } from "./interfaces";
 
 export function randomFromArray<T>(arr: ReadonlyArray<T>): T {
   return arr[Math.floor(Math.random() * arr.length)];
@@ -59,20 +63,21 @@ function compareCounters(a: Counter, b: Counter): number {
 }
 
 export function getDistinctCounters(
-  packs: Iterable<StudyPack>
-): ReadonlyArray<Counter> {
+  collections: readonly CounterCollection[]
+): readonly Counter[] {
   const counters: Counter[] = [];
   const encountered = new Set<string>();
-  for (const pack of packs) {
-    for (const counter of pack.counters) {
-      if (encountered.has(counter.counterId)) {
-        continue;
+
+  collections.forEach((collection): void => {
+    collection.counterIds.forEach((counterId): void => {
+      if (encountered.has(counterId)) {
+        return;
       }
 
-      encountered.add(counter.counterId);
-      counters.push(counter);
-    }
-  }
+      encountered.add(counterId);
+      counters.push(COUNTERS_LOOKUP[counterId]);
+    });
+  });
 
   counters.sort(compareCounters);
   return counters;
