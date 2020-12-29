@@ -13,6 +13,9 @@ import { ServerContext } from "@server/context";
 
 import { STANDARD_COLLECTIONS } from "./standard-collections.data";
 
+import { createCounterCollection } from "./mutations/createCounterCollection";
+import { convertPrismaUserCollectionToGql } from "./utils";
+
 type SomeCounterCollection = StandardCounterCollection | UserCounterCollection;
 
 export const COUNTER_COLLECTIONS_RESOLVERS: Resolvers = {
@@ -26,6 +29,9 @@ export const COUNTER_COLLECTIONS_RESOLVERS: Resolvers = {
 
       return "StandardCounterCollection";
     },
+  },
+  Mutation: {
+    createCounterCollection,
   },
   Query: {
     standardCounterCollections: (): StandardCounterCollection[] =>
@@ -59,18 +65,7 @@ export const COUNTER_COLLECTIONS_RESOLVERS: Resolvers = {
           },
         });
 
-        return collections.map(
-          (collection): UserCounterCollection => ({
-            counterIds: collection.entries.map(
-              (entry): string => entry.counterId
-            ),
-            dateCreated: collection.dateCreated,
-            dateLastUpdated:
-              collection.dateLastUpdated || collection.dateCreated,
-            id: collection.id,
-            name: collection.name,
-          })
-        );
+        return collections.map(convertPrismaUserCollectionToGql);
       } catch (e) {
         return [];
       }

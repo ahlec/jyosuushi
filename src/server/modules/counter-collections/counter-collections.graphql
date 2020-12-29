@@ -24,3 +24,24 @@ extend type Query {
   standardCounterCollections: [StandardCounterCollection!]!
   userCounterCollections: [UserCounterCollection!]!
 }
+
+extend type Mutation {
+  createCounterCollection(name: String!): CreateCounterCollectionResult!
+}
+
+enum CreateCounterCollectionError {
+  # Validation errors
+  NAME_MISSING_OR_EMPTY
+  NAME_TOO_SHORT
+  NAME_TOO_LONG
+
+  # Operation errors
+  NOT_AUTHENTICATED
+  COULD_NOT_CREATE
+  RATE_LIMITED
+}
+
+type CreateCounterCollectionResult {
+  error: CreateCounterCollectionError
+  collection: UserCounterCollection
+}
