@@ -488,6 +488,96 @@
     },
     "translation": ""
   },
+  "explore.landing.create-collection-modal.CreateCollectionForm.nameFieldLabel": {
+    "original": {
+      "defaultMessage": "Collection Name",
+      "filenames": [
+        "src/client/ui/main-screen/explore/landing/create-collection-modal/CreateCollectionForm.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explore.landing.create-collection-modal.CreateCollectionForm.submitButtonText": {
+    "original": {
+      "defaultMessage": "Create",
+      "filenames": [
+        "src/client/ui/main-screen/explore/landing/create-collection-modal/CreateCollectionForm.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explore.landing.CreateCollectionModal.modalHeader": {
+    "original": {
+      "defaultMessage": "Create Custom Collection",
+      "filenames": [
+        "src/client/ui/main-screen/explore/landing/create-collection-modal/CreateCollectionModal.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explore.landing.create-collection-modal.useCollectionNameValidation.errors.fieldRequred": {
+    "original": {
+      "defaultMessage": "The name of the new collection is required.",
+      "filenames": [
+        "src/client/ui/main-screen/explore/landing/create-collection-modal/useCollectionNameValidation.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explore.landing.create-collection-modal.useCollectionNameValidation.errors.invalidLength": {
+    "original": {
+      "defaultMessage": "Counter collection names must be between {minLength} and {maxLength} characters long.",
+      "filenames": [
+        "src/client/ui/main-screen/explore/landing/create-collection-modal/useCollectionNameValidation.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explore.landing.create-collection-modal.useCreateCollection.errors.nameIncorrectLength": {
+    "original": {
+      "defaultMessage": "The name of a collection must be between {minLength} and {maxLength} characters.",
+      "filenames": [
+        "src/client/ui/main-screen/explore/landing/create-collection-modal/useCreateCollection.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explore.landing.create-collection-modal.useCreateCollection.errors.notAuthenticated": {
+    "original": {
+      "defaultMessage": "Only authenticated users are able to create custom collections. Please log in or register and try again.",
+      "filenames": [
+        "src/client/ui/main-screen/explore/landing/create-collection-modal/useCreateCollection.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explore.landing.create-collection-modal.useCreateCollection.errors.rateLimited": {
+    "original": {
+      "defaultMessage": "You have attempted to create a collection too many times recently. Please wait a few minutes before trying again.",
+      "filenames": [
+        "src/client/ui/main-screen/explore/landing/create-collection-modal/useCreateCollection.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explore.landing.create-collection-modal.useCreateCollection.errors.unknown": {
+    "original": {
+      "defaultMessage": "An error has occurred and the collection couldn't be created. Please try again in a few minutes.",
+      "filenames": [
+        "src/client/ui/main-screen/explore/landing/create-collection-modal/useCreateCollection.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explore.landing.CreateCollectionTile.buttonText": {
+    "original": {
+      "defaultMessage": "New Custom Collection",
+      "filenames": [
+        "src/client/ui/main-screen/explore/landing/CreateCollectionTile.tsx"
+      ]
+    },
+    "translation": ""
+  },
   "feedbackPage.links.contribute.description": {
     "original": {
       "defaultMessage": "The project is open source, and if you'd like to join in on working on the project, check out my GitHub!",

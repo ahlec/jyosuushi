@@ -6,6 +6,10 @@ import {
   UserCounterCollection,
 } from "@jyosuushi/graphql/types.generated";
 
+import useAuthenticationStatus, {
+  AuthenticationStatus,
+} from "@jyosuushi/hooks/useAuthenticationStatus";
+
 import AllCollections from "./AllCollections";
 import AllCounters from "./AllCounters";
 import BreadcrumbBar, {
@@ -25,6 +29,9 @@ function LandingView({
   standardCollections,
   userCollections,
 }: ComponentProps): React.ReactElement {
+  // Connect with the rest of the app
+  const authStatus = useAuthenticationStatus();
+
   // Coerce the data as necessary
   const collections = useMemo(
     (): readonly CounterCollection[] => [
@@ -40,6 +47,9 @@ function LandingView({
       <BreadcrumbBar links={BREADCRUMB_BAR_LINKS} />
       <div>
         <AllCollections
+          canCreateCollections={
+            authStatus === AuthenticationStatus.Authenticated
+          }
           collections={collections}
           headerClassName={styles.header}
         />

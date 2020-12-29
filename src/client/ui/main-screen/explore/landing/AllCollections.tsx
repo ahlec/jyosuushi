@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
 
 import { CounterCollection } from "@jyosuushi/graphql/types.generated";
 
 import CollectionLink from "./CollectionLink";
+import CreateCollectionModal from "./create-collection-modal/CreateCollectionModal";
+import CreateCollectionTile from "./CreateCollectionTile";
 
 import styles from "./AllCollections.scss";
 
@@ -15,14 +17,29 @@ const INTL_MESSAGES = defineMessages({
 });
 
 interface ComponentProps {
+  canCreateCollections: boolean;
   collections: readonly CounterCollection[];
   headerClassName: string;
 }
 
 function AllCollections({
+  canCreateCollections,
   collections,
   headerClassName,
 }: ComponentProps): React.ReactElement {
+  // Define component state
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState<boolean>(false);
+
+  // Handle events
+  const handleCreateClick = useCallback((): void => {
+    setIsCreateModalOpen(true);
+  }, []);
+
+  const handleRequestModalClose = useCallback((): void => {
+    setIsCreateModalOpen(false);
+  }, []);
+
+  // Render the component
   return (
     <div>
       <h3 className={headerClassName}>
@@ -41,7 +58,13 @@ function AllCollections({
             );
           }
         )}
+        {canCreateCollections && (
+          <CreateCollectionTile onClick={handleCreateClick} />
+        )}
       </div>
+      {canCreateCollections && isCreateModalOpen && (
+        <CreateCollectionModal onRequestClose={handleRequestModalClose} />
+      )}
     </div>
   );
 }
