@@ -33,7 +33,6 @@ function makeCommonWebpackConfig(apiServerUrl) {
       data: [
         path.resolve(DATA_DIRECTORY, "counters.ts"),
         path.resolve(DATA_DIRECTORY, "items.ts"),
-        path.resolve(DATA_DIRECTORY, "studyPacks.ts"),
       ],
     },
     output: {

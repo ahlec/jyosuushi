@@ -10,7 +10,6 @@ import ValidatedDataSource from "../database/ValidatedDataSource";
 import writeCountersFile from "./counters/write-file";
 import writeItemsFile from "./items-file";
 import writeStandardCollectionsFile from "./standard-collections-file";
-import writeStudyPacksFile from "./study-packs-file";
 import {
   ExportOutputEntry,
   FileExportRequest,
@@ -125,11 +124,6 @@ async function main(): Promise<void> {
       directory: "client-data",
       relativeFilename: "items.ts",
       writeFunction: writeItemsFile,
-    },
-    {
-      directory: "client-data",
-      relativeFilename: "studyPacks.ts",
-      writeFunction: writeStudyPacksFile,
     },
     {
       directory: "server-src",

@@ -150,12 +150,6 @@ export interface Item {
   maxQuantity: number;
 }
 
-export interface StudyPack {
-  packId: string;
-  englishName: string;
-  counters: ReadonlyArray<Counter>;
-}
-
 export interface PendingQuestion {
   itemId: string;
   possibleAmounts: ReadonlyArray<number>;

@@ -1,6 +1,6 @@
 {
   "tags": ["data"],
-  "exports": ["counters", "items", "studyPacks"],
+  "exports": ["counters", "items"],
   "imports": ["client"],
   "dependencies": ["react"]
 }

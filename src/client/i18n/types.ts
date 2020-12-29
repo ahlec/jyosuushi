@@ -1,4 +1,4 @@
-import { Counter, StudyPack, Item } from "@jyosuushi/interfaces";
+import { Counter, Item } from "@jyosuushi/interfaces";
 
 export type TranslationsFile = "en.json";
 
@@ -6,7 +6,6 @@ export interface Locale {
   dataLocalizers: {
     getCounterName: (counter: Counter) => string;
     getItemName: (item: Item, amount: number) => string;
-    getStudyPackName: (studyPack: StudyPack) => string;
   };
 
   /**
