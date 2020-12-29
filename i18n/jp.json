@@ -596,15 +596,6 @@
     },
     "translation": ""
   },
-  "preparePage.buttonStartQuiz": {
-    "original": {
-      "defaultMessage": "Start Quiz!",
-      "filenames": [
-        "src/client/ui/main-screen/prepare/PreparePage.tsx"
-      ]
-    },
-    "translation": ""
-  },
   "preparePage.links.jyosuushiWikipediaPage": {
     "original": {
       "defaultMessage": "Japanese counters",
@@ -628,6 +619,15 @@
       "defaultMessage": "Welcome to <bold>助数詞を練習</bold>! This is a tool that's meant to help you study {jyosuushiWikipediaLink}. You'll be given a random item and a random number, and then you tell us how you'd count that in Japanese. {tutorialLink}",
       "filenames": [
         "src/client/ui/main-screen/prepare/PreparePage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "preparePage.QuizPreparationView.buttonStartQuiz": {
+    "original": {
+      "defaultMessage": "Start Quiz!",
+      "filenames": [
+        "src/client/ui/main-screen/prepare/QuizPreparationView.tsx"
       ]
     },
     "translation": ""

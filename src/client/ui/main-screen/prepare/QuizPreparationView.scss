@@ -1,0 +1,18 @@
+.quizPreparationView {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.startButtonContainer {
+  margin: 5px 0;
+  text-align: center;
+}
+
+.startButton {
+  font-size: 22px;
+}
+
+.counterPreview {
+  margin-top: 30px;
+}

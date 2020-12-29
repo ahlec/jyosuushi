@@ -1,27 +1,16 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
-import { useSelector } from "react-redux";
 
 import { CounterCollection } from "@jyosuushi/graphql/types.generated";
-import { getCurrentQuizMode } from "@jyosuushi/redux/selectors";
-
-import useQuizManager from "@jyosuushi/quiz/useQuizManager";
-import { getDistinctCounters } from "@jyosuushi/utils";
 
 import InlineTrigger from "@jyosuushi/ui/components/InlineTrigger";
 
-import CollectionSelection from "./CollectionSelection";
-import CounterPreview from "./CounterPreview";
+import QuizPreparationView from "./QuizPreparationView";
 import TutorialModal from "./TutorialModal";
-import useSelectedCollections from "./useSelectedCollections";
 
 import styles from "./PreparePage.scss";
 
 const INTL_MESSAGES = defineMessages({
-  buttonStartQuiz: {
-    defaultMessage: "Start Quiz!",
-    id: "preparePage.buttonStartQuiz",
-  },
   linksJyosuushiWikipedia: {
     defaultMessage: "Japanese counters",
     id: "preparePage.links.jyosuushiWikipediaPage",
@@ -49,15 +38,6 @@ function PreparePage(): React.ReactElement {
   // Define component state
   const [isShowingTutorial, setIsShowingTutorial] = useState<boolean>(false);
 
-  // Connect with the rest of the app
-  const quizManager = useQuizManager();
-  const {
-    selectedCollectionIds,
-    selectedCollections,
-    setSelectedCollectionIds,
-  } = useSelectedCollections(MOCK_ALL_COLLECTIONS_ARRAY);
-  const quizMode = useSelector(getCurrentQuizMode);
-
   // Handle events
   const handleOpenTutorialModalClick = useCallback(
     (): void => setIsShowingTutorial(true),
@@ -67,16 +47,6 @@ function PreparePage(): React.ReactElement {
   const handleRequestTutorialModalClose = useCallback(
     (): void => setIsShowingTutorial(false),
     []
-  );
-
-  const handleStartQuiz = useCallback((): void => {
-    quizManager.startNewQuiz(selectedCollections, quizMode);
-  }, [quizManager, selectedCollections, quizMode]);
-
-  // Collate the counters that will be quizzed on, based on selected collections
-  const selectedCounters = useMemo(
-    () => getDistinctCounters(selectedCollections),
-    [selectedCollections]
   );
 
   // Render the component
@@ -103,27 +73,7 @@ function PreparePage(): React.ReactElement {
         }}
         tagName="p"
       />
-      <CollectionSelection
-        collections={MOCK_ALL_COLLECTIONS_ARRAY}
-        currentlySelectedCollectionIds={selectedCollectionIds}
-        onSelectionChange={setSelectedCollectionIds}
-      />
-      <div className={styles.start}>
-        <FormattedMessage {...INTL_MESSAGES.buttonStartQuiz}>
-          {(text) => (
-            <button
-              disabled={!selectedCollections.length}
-              onClick={handleStartQuiz}
-            >
-              {text}
-            </button>
-          )}
-        </FormattedMessage>
-      </div>
-      <CounterPreview
-        className={styles.counterPreview}
-        counters={selectedCounters}
-      />
+      <QuizPreparationView collections={MOCK_ALL_COLLECTIONS_ARRAY} />
       <div className={styles.flex} />
       <TutorialModal
         isOpen={isShowingTutorial}
