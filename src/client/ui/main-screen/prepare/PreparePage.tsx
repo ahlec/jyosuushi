@@ -1,7 +1,10 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
 
-import { CounterCollection } from "@jyosuushi/graphql/types.generated";
+import {
+  CounterCollection,
+  useAvailableCounterCollectionsQuery,
+} from "@jyosuushi/graphql/types.generated";
 
 import InlineTrigger from "@jyosuushi/ui/components/InlineTrigger";
 
@@ -32,11 +35,19 @@ function FormattedMessageBold(
   return <strong>{chunks}</strong>;
 }
 
-const MOCK_ALL_COLLECTIONS_ARRAY: readonly CounterCollection[] = [];
-
 function PreparePage(): React.ReactElement {
   // Define component state
   const [isShowingTutorial, setIsShowingTutorial] = useState<boolean>(false);
+
+  // Retrieve the necessary data from the server
+  const { data, error, loading } = useAvailableCounterCollectionsQuery();
+  const collections = useMemo((): readonly CounterCollection[] => {
+    if (!data) {
+      return [];
+    }
+
+    return [...data.standardCounterCollections, ...data.userCounterCollections];
+  }, [data]);
 
   // Handle events
   const handleOpenTutorialModalClick = useCallback(
@@ -73,7 +84,7 @@ function PreparePage(): React.ReactElement {
         }}
         tagName="p"
       />
-      <QuizPreparationView collections={MOCK_ALL_COLLECTIONS_ARRAY} />
+      {!loading && !error && <QuizPreparationView collections={collections} />}
       <div className={styles.flex} />
       <TutorialModal
         isOpen={isShowingTutorial}
