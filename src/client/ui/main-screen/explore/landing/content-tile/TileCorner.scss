@@ -1,0 +1,35 @@
+@use "sass:math";
+@import "../../../../../palette";
+@import "./constants";
+
+$dimension: 15px;
+$line-dimension: math.ceil(math.hypot($dimension, $dimension));
+
+.container {
+  height: $dimension;
+  overflow: hidden;
+  width: $dimension;
+}
+
+.line {
+  $offset-amount: $dimension / 2;
+
+  background-color: $white;
+  height: $line-dimension;
+  pointer-events: none;
+  transform: rotateZ(45deg)
+    translate(#{ceil(-$dimension / 2) + 1}, -$line-dimension / 2);
+  width: $line-dimension;
+}
+
+.pinkLine {
+  border-bottom: $tile-border-thickness solid $pink-tile-border-color;
+}
+
+.greenLine {
+  border-bottom: $tile-border-thickness solid $green-tile-border-color;
+}
+
+.blueLine {
+  border-bottom: $tile-border-thickness solid $blue-tile-border-color;
+}

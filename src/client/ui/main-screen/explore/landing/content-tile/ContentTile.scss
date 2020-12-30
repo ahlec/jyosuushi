@@ -1,0 +1,138 @@
+@import "../../../../../palette";
+@import "./constants";
+
+$tile-width: 120px;
+$tile-min-height: $tile-width;
+
+$horizontal-adornment-height: 4px;
+$horizontal-adornment-bg-opacity: 0.75;
+
+.tile {
+  border: $tile-border-thickness solid $white;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  min-height: $tile-min-height;
+  position: relative;
+  width: $tile-width;
+}
+
+.colorPink {
+  background-color: $pink-lightest;
+  border-color: $pink-tile-border-color;
+
+  &:hover {
+    background-color: $pink-light;
+
+    .horizontalAdornment {
+      background-color: rgba($pink-base, $horizontal-adornment-bg-opacity);
+    }
+  }
+
+  .horizontalAdornment {
+    background-color: rgba($pink-light, $horizontal-adornment-bg-opacity);
+
+    &.topAdornment,
+    &.bottomAdornment {
+      border-color: $pink-tile-border-color;
+    }
+  }
+}
+
+.colorBlue {
+  background-color: $blue-lightest;
+  border-color: $blue-tile-border-color;
+
+  &:hover {
+    background-color: $blue-light;
+
+    .horizontalAdornment {
+      background-color: rgba($blue-base, $horizontal-adornment-bg-opacity);
+    }
+  }
+
+  .horizontalAdornment {
+    background-color: rgba($blue-light, $horizontal-adornment-bg-opacity);
+
+    &.topAdornment,
+    &.bottomAdornment {
+      border-color: $blue-tile-border-color;
+    }
+  }
+}
+
+.colorGreen {
+  background-color: $green-lightest;
+  border-color: $green-tile-border-color;
+
+  &:hover {
+    background-color: $green-light;
+
+    .horizontalAdornment {
+      background-color: rgba($green-base, $horizontal-adornment-bg-opacity);
+    }
+  }
+
+  .horizontalAdornment {
+    background-color: rgba($green-light, $horizontal-adornment-bg-opacity);
+
+    &.topAdornment,
+    &.bottomAdornment {
+      border-color: $green-tile-border-color;
+    }
+  }
+}
+
+.content {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 6px;
+  justify-content: center;
+  overflow: hidden;
+  padding: 10px;
+}
+
+.primary {
+  color: $black-base;
+  font-weight: bold;
+  text-align: center;
+}
+
+.separator {
+  background-color: $black-dark;
+  height: 1px;
+  width: 80%;
+}
+
+.secondary {
+  color: $black-light;
+  font-size: 0.75em;
+  text-align: center;
+}
+
+.horizontalAdornment {
+  height: $horizontal-adornment-height;
+
+  &.topAdornment {
+    border-bottom: 1px solid $white;
+  }
+
+  &.bottomAdornment {
+    border-top: 1px solid $white;
+  }
+}
+
+.bottomLeftCorner {
+  bottom: 0 - $tile-border-thickness;
+  left: 0 - $tile-border-thickness;
+  position: absolute;
+  transform: rotateZ(180deg);
+}
+
+.topRightCorner {
+  position: absolute;
+  right: 0 - $tile-border-thickness;
+  top: 0 - $tile-border-thickness;
+}

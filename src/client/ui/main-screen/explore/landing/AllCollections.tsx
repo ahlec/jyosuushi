@@ -1,7 +1,10 @@
 import React, { useCallback, useState } from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
 
-import { CounterCollection } from "@jyosuushi/graphql/types.generated";
+import {
+  StandardCounterCollection,
+  UserCounterCollection,
+} from "@jyosuushi/graphql/types.generated";
 
 import CollectionLink from "./CollectionLink";
 import CreateCollectionModal from "./create-collection-modal/CreateCollectionModal";
@@ -16,9 +19,11 @@ const INTL_MESSAGES = defineMessages({
   },
 });
 
+type SomeCounterCollection = StandardCounterCollection | UserCounterCollection;
+
 interface ComponentProps {
   canCreateCollections: boolean;
-  collections: readonly CounterCollection[];
+  collections: readonly SomeCounterCollection[];
   headerClassName: string;
 }
 
@@ -47,16 +52,9 @@ function AllCollections({
       </h3>
       <div className={styles.list}>
         {collections.map(
-          (collection): React.ReactElement => {
-            return (
-              <CollectionLink
-                key={collection.id}
-                id={collection.id}
-                name={collection.name}
-                numCounters={collection.counterIds.length}
-              />
-            );
-          }
+          (collection): React.ReactElement => (
+            <CollectionLink key={collection.id} collection={collection} />
+          )
         )}
         {canCreateCollections && (
           <CreateCollectionTile onClick={handleCreateClick} />
