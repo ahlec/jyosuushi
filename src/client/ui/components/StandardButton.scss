@@ -1,0 +1,25 @@
+@import "../../constants";
+@import "../../palette";
+
+.standardButton {
+  background-color: $pink-light;
+  border: 1px solid $pink-base;
+  border-radius: 4px;
+  color: $black-lightest;
+  cursor: pointer;
+  font-family: $font-family;
+  padding: 6px;
+
+  &:hover:not(:disabled) {
+    border-width: 2px;
+    padding: 5px;
+  }
+
+  &:disabled {
+    background-color: $pink-lightest;
+    border-color: $pink-light;
+    color: $pink-dark;
+    cursor: default;
+    opacity: 0.5;
+  }
+}

@@ -5,6 +5,8 @@ import * as ReactGA from "react-ga";
 import { defineMessages, FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 
+import StandardButton from "@jyosuushi/ui/components/StandardButton";
+
 import { Answer, Question } from "@jyosuushi/interfaces";
 import { HIRAGANA } from "@jyosuushi/japanese/kana";
 import { State } from "@jyosuushi/redux";
@@ -120,7 +122,11 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
         <div className={buttonsClassName}>
           {enabled && (
             <FormattedMessage {...INTL_MESSAGES.buttonSkip}>
-              {(text) => <button onClick={this.onSkipClicked}>{text}</button>}
+              {(text) => (
+                <StandardButton onClick={this.onSkipClicked}>
+                  {text}
+                </StandardButton>
+              )}
             </FormattedMessage>
           )}
         </div>

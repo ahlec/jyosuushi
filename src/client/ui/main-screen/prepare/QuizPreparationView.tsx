@@ -5,6 +5,8 @@ import { useSelector } from "react-redux";
 import { CounterCollection } from "@jyosuushi/graphql/types.generated";
 import { getCurrentQuizMode } from "@jyosuushi/redux/selectors";
 
+import StandardButton from "@jyosuushi/ui/components/StandardButton";
+
 import useQuizManager from "@jyosuushi/quiz/useQuizManager";
 import { getDistinctCounters } from "@jyosuushi/utils";
 
@@ -59,13 +61,13 @@ function QuizPreparationView({
       <div className={styles.startButtonContainer}>
         <FormattedMessage {...INTL_MESSAGES.buttonStartQuiz}>
           {(text) => (
-            <button
+            <StandardButton
               className={styles.startButton}
               disabled={!selectedCollections.length}
               onClick={handleStartQuiz}
             >
               {text}
-            </button>
+            </StandardButton>
           )}
         </FormattedMessage>
       </div>

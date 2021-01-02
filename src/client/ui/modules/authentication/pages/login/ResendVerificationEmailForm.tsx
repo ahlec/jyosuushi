@@ -13,6 +13,8 @@ import {
   RequestEmailVerificationError,
 } from "@jyosuushi/graphql/types.generated";
 
+import StandardButton from "@jyosuushi/ui/components/StandardButton";
+
 import styles from "./ResendVerificationEmailForm.scss";
 
 const INTL_MESSAGES = defineMessages({
@@ -200,13 +202,13 @@ function ResendVerificationEmailForm({
         <FormattedMessage {...INTL_MESSAGES.explanationResend} />
       </div>
       <div className={styles.buttonContainer}>
-        <button
+        <StandardButton
           className={styles.resendButton}
           disabled={isRequesting || !!latestRequestResult}
           onClick={handleResendClick}
         >
           <FormattedMessage {...INTL_MESSAGES.resendButtonLabel} />
-        </button>
+        </StandardButton>
       </div>
       {latestRequestResult && (
         <div

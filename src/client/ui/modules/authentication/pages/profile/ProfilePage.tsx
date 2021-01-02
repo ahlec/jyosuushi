@@ -4,6 +4,8 @@ import { FormattedDate, FormattedMessage, defineMessages } from "react-intl";
 import { AUTH_MUTATION_REFETCH_QUERIES } from "@jyosuushi/graphql/authentication";
 import { useLogoutMutation } from "@jyosuushi/graphql/types.generated";
 
+import StandardButton from "@jyosuushi/ui/components/StandardButton";
+
 import AuthPageLayout from "@jyosuushi/ui/modules/authentication/components/AuthPageLayout";
 
 import ChangePasswordModal from "./change-password/ChangePasswordModal";
@@ -92,9 +94,9 @@ function ProfilePage({ data }: ComponentProps): React.ReactElement {
           className={styles.doubleColumnField}
           header={INTL_MESSAGES.headerPassword}
         >
-          <button onClick={handleChangePasswordClick}>
+          <StandardButton onClick={handleChangePasswordClick}>
             <FormattedMessage {...INTL_MESSAGES.changePasswordButtonLabel} />
-          </button>
+          </StandardButton>
           <span className={styles.passwordLastChangedLabel}>
             <FormattedMessage
               {...INTL_MESSAGES.passwordLastChangedLabel}
@@ -116,9 +118,12 @@ function ProfilePage({ data }: ComponentProps): React.ReactElement {
         </ProfilePageField>
       </div>
       <div className={styles.logoutButtonContainer}>
-        <button className={styles.logoutButton} onClick={handleLogoutClick}>
+        <StandardButton
+          className={styles.logoutButton}
+          onClick={handleLogoutClick}
+        >
           <FormattedMessage {...INTL_MESSAGES.logoutButtonLabel} />
-        </button>
+        </StandardButton>
       </div>
     </AuthPageLayout>
   );

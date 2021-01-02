@@ -34,10 +34,12 @@
 
       .submit-button {
         background-color: $blue-base;
-        border: 0;
+        border-radius: 4px;
+        cursor: pointer;
         height: 48px;
         opacity: 0;
         outline-color: $black-dark;
+        padding: 6px;
         pointer-events: none;
         right: 10px;
         transform: translateX(10px);
@@ -52,6 +54,7 @@
 
         &:hover {
           background-color: $blue-dark;
+          padding: 5px;
         }
       }
     }

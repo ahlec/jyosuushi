@@ -11,6 +11,8 @@ import {
   MIN_USER_FEEDBACK_MESSAGE_LENGTH,
 } from "@shared/constants";
 
+import StandardButton from "@jyosuushi/ui/components/StandardButton";
+
 import useToast from "@jyosuushi/ui/toasts/useToast";
 
 import styles from "./BaseUserFeedbackForm.scss";
@@ -221,16 +223,16 @@ function BaseUserFeedbackForm({
       </label>
       <div className={styles.actionButtons}>
         {!!userInput && (
-          <button disabled={isMutating} onClick={handleClearClick}>
+          <StandardButton disabled={isMutating} onClick={handleClearClick}>
             <FormattedMessage {...INTL_MESSAGES.buttonClearMessage} />
-          </button>
+          </StandardButton>
         )}
-        <button
+        <StandardButton
           disabled={isMutating || !canUserSubmit}
           onClick={handleSubmitClick}
         >
           <FormattedMessage {...INTL_MESSAGES.buttonSubmit} />
-        </button>
+        </StandardButton>
       </div>
       {mutationError ? (
         <div className={styles.errorContainer}>

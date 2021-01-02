@@ -7,6 +7,8 @@ import {
 } from "react-intl";
 import { connect } from "react-redux";
 
+import StandardButton from "@jyosuushi/ui/components/StandardButton";
+
 import QuizManager from "@jyosuushi/quiz/QuizManager";
 import { Scorecard, State } from "@jyosuushi/redux";
 import { leaveQuiz } from "@jyosuushi/redux/actions";
@@ -121,10 +123,18 @@ class QuizWrapup extends React.PureComponent<ComponentProps> {
         <FormattedMessage {...encouragementDescriptor} tagName="div" />
         <div className={styles.buttons}>
           <FormattedMessage {...INTL_MESSAGES.buttonRestart}>
-            {(text) => <button onClick={this.onClickRestart}>{text}</button>}
+            {(text) => (
+              <StandardButton onClick={this.onClickRestart}>
+                {text}
+              </StandardButton>
+            )}
           </FormattedMessage>
           <FormattedMessage {...INTL_MESSAGES.buttonQuit}>
-            {(text) => <button onClick={this.onClickLeave}>{text}</button>}
+            {(text) => (
+              <StandardButton onClick={this.onClickLeave}>
+                {text}
+              </StandardButton>
+            )}
           </FormattedMessage>
         </div>
         <QuizHistory rowClassName="" />

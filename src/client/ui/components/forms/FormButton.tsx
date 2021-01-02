@@ -2,6 +2,8 @@ import classnames from "classnames";
 import React from "react";
 import { FormattedMessage, MessageDescriptor } from "react-intl";
 
+import StandardButton from "@jyosuushi/ui/components/StandardButton";
+
 import styles from "./FormButton.scss";
 
 interface ComponentProps {
@@ -48,7 +50,7 @@ function FormButton({
 
   // Render the component
   return (
-    <button
+    <StandardButton
       className={classnames(
         styles.formButton,
         variant === "primary" && styles.variantPrimary
@@ -58,7 +60,7 @@ function FormButton({
       type={type}
     >
       <FormattedMessage {...text} />
-    </button>
+    </StandardButton>
   );
 }
 

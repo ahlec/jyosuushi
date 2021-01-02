@@ -15,6 +15,7 @@ import { ignoreLastAnswer } from "@jyosuushi/redux/actions";
 import { Dispatch } from "@jyosuushi/redux/store";
 
 import JudgmentBubble from "@jyosuushi/ui/JudgmentBubble";
+import StandardButton from "@jyosuushi/ui/components/StandardButton";
 
 import AnswersTable from "./AnswersTable";
 
@@ -114,18 +115,20 @@ class ResultsView extends React.PureComponent<ComponentProps> {
           {usersAnswer.judgment === "incorrect" && (
             <FormattedMessage {...INTL_MESSAGES.buttonIgnoreAnswer}>
               {(ignoreAnswer) => (
-                <button
+                <StandardButton
                   className={styles.ignoreAnswer}
                   onClick={this.onIgnoreClicked}
                 >
                   {ignoreAnswer}
-                </button>
+                </StandardButton>
               )}
             </FormattedMessage>
           )}
           <FormattedMessage {...INTL_MESSAGES.buttonNextQuestion}>
             {(nextQuestion) => (
-              <button onClick={this.onClickNextQuestion}>{nextQuestion}</button>
+              <StandardButton onClick={this.onClickNextQuestion}>
+                {nextQuestion}
+              </StandardButton>
             )}
           </FormattedMessage>
         </div>

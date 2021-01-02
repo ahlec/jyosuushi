@@ -1,6 +1,7 @@
 import React from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
 
+import StandardButton from "@jyosuushi/ui/components/StandardButton";
 import Modal from "@jyosuushi/ui/Modal";
 
 import styles from "./AbortConfirmationModal.scss";
@@ -50,12 +51,15 @@ export default class AbortConfirmationModal extends React.PureComponent<
       >
         <FormattedMessage {...INTL_MESSAGES.question} tagName="p" />
         <div className={styles.buttons}>
-          <button onClick={onRequestClose}>
+          <StandardButton onClick={onRequestClose}>
             <FormattedMessage {...INTL_MESSAGES.buttonNo} />
-          </button>
-          <button className={styles.confirm} onClick={this.onClickConfirm}>
+          </StandardButton>
+          <StandardButton
+            className={styles.confirm}
+            onClick={this.onClickConfirm}
+          >
             <FormattedMessage {...INTL_MESSAGES.buttonYes} />
-          </button>
+          </StandardButton>
         </div>
       </Modal>
     );
