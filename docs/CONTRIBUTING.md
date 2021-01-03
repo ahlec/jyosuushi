@@ -1,6 +1,6 @@
 # Contributing
 
-This document exists to introduce potential contributors to the configuration of the codebase, ease discovery of flows, and begin to explain some of the technologies in use. This guide won't be exhaustive, and deviating from it when developing locally is totally fine, but it's still recommended to read through so you can understand in advance. This assumes you have the repository already [set up the repository](GETTING SETUP.md).
+This document exists to introduce potential contributors to the configuration of the codebase, ease discovery of flows, and begin to explain some of the technologies in use. This guide won't be exhaustive, and deviating from it when developing locally is totally fine, but it's still recommended to read through so you can understand in advance. This assumes you have the repository already [set up the repository](GETTING%20SETUP.md).
 
 ## General
 
@@ -37,7 +37,7 @@ All of the CSS for the client is written using [Sass](https://sass-lang.com/), g
 
 More importantly, however, all Sass files are imported into the client using [CSS Modules](https://github.com/css-modules/css-modules). Simply put, you would write your CSS classes using their "regular" names (eg, `.submitButton`),  but when the client is built these names will be scrambled (eg, `._1ac3IAdV7KgbgsPA3sNBPH`). This solves problems commonly seen in large applications where there are name conflicts (two locations both created their own `.submitButton` styles). In order to bridge the gap between the names you write and the values at runtime, when you import the stylesheet in your React component, you import it into a variable, which has string variables for each development name, mapping to their runtime name. Using this looks something like so:
 
-```typescript+jsx
+```jsx
 import React from 'react';
 
 import styles from "./CounterDisplay.scss";
@@ -86,7 +86,7 @@ Localization is done using [`react-intl`](https://www.npmjs.com/package/react-in
 
 The standard flow is something as follows:
 
-```typescript+jsx
+```jsx
 import React from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
 
