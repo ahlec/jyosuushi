@@ -3,3 +3,9 @@
 .collectionLink {
   text-decoration: none;
 }
+
+.subcontent {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}

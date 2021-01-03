@@ -57,7 +57,10 @@ function AllCollections({
           )
         )}
         {canCreateCollections && (
-          <CreateCollectionTile onClick={handleCreateClick} />
+          <CreateCollectionTile
+            isModalOpen={isCreateModalOpen}
+            onClick={handleCreateClick}
+          />
         )}
       </div>
       {canCreateCollections && isCreateModalOpen && (

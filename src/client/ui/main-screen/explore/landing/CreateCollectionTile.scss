@@ -1,22 +1,44 @@
 @import "../../../../palette";
+@import "./content-tile/constants";
 
 .tile {
   align-items: center;
-  border: 1px solid transparent;
-  border-radius: 6px;
-
   color: $black-base;
+  cursor: pointer;
   display: inline-flex;
   flex-direction: column;
-  font-size: 18px;
   font-weight: bold;
+  height: $tile-min-height;
   justify-content: center;
   padding: 6px;
   text-align: center;
   text-decoration: none;
+  width: $tile-width;
+}
 
-  &:hover {
-    background-color: $blue-lightest;
-    border-color: $blue-base;
+.active {
+  .icon {
+    path {
+      fill: $blue-darkest;
+    }
   }
+
+  .text {
+    display: block;
+  }
+}
+
+.icon {
+  height: 80%;
+  width: 80%;
+
+  path {
+    fill: $blue-base;
+  }
+}
+
+.text {
+  color: $blue-darkest;
+  display: none;
+  font-size: 14px;
 }

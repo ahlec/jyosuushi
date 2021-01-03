@@ -488,6 +488,24 @@
     },
     "translation": ""
   },
+  "explorePage.landing.CollectionLink.typeStandard": {
+    "original": {
+      "defaultMessage": "Standard",
+      "filenames": [
+        "src/client/ui/main-screen/explore/landing/CollectionLink.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.landing.CollectionLink.typeUser": {
+    "original": {
+      "defaultMessage": "Custom",
+      "filenames": [
+        "src/client/ui/main-screen/explore/landing/CollectionLink.tsx"
+      ]
+    },
+    "translation": ""
+  },
   "explore.landing.create-collection-modal.CreateCollectionForm.nameFieldLabel": {
     "original": {
       "defaultMessage": "Collection Name",

@@ -1,5 +1,8 @@
-import React from "react";
+import classnames from "classnames";
+import React, { useCallback, useState } from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
+
+import IconNewCollection from "./icon-new-collection.svg";
 
 import styles from "./CreateCollectionTile.scss";
 
@@ -11,13 +14,38 @@ const INTL_MESSAGES = defineMessages({
 });
 
 interface ComponentProps {
+  isModalOpen: boolean;
   onClick: () => void;
 }
 
-function CreateCollectionTile({ onClick }: ComponentProps): React.ReactElement {
+function CreateCollectionTile({
+  isModalOpen,
+  onClick,
+}: ComponentProps): React.ReactElement {
+  // Define component state
+  const [isHovered, setIsHovered] = useState<boolean>(false);
+
+  // Handle events
+  const handleMouseOver = useCallback((): void => setIsHovered(true), []);
+  const handleMouseOut = useCallback((): void => setIsHovered(false), []);
+
+  // Render the component
   return (
-    <button className={styles.tile} onClick={onClick}>
-      <FormattedMessage {...INTL_MESSAGES.buttonText} />
+    <button
+      className={classnames(
+        styles.tile,
+        (isHovered || isModalOpen) && styles.active
+      )}
+      onClick={onClick}
+      onMouseOver={handleMouseOver}
+      onMouseOut={handleMouseOut}
+      onFocus={handleMouseOver}
+      onBlur={handleMouseOut}
+    >
+      <IconNewCollection className={styles.icon} />
+      <div className={styles.text}>
+        <FormattedMessage {...INTL_MESSAGES.buttonText} />
+      </div>
     </button>
   );
 }
