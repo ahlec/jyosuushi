@@ -1,6 +1,6 @@
 # Getting Setup
 
-This document is a guide that takes you from cloning the repo, to getting all pieces running on your local machine. This focuses on one-time initial setup; a separate guide will discuss contributing and routine actions.
+This document is a guide that takes you from cloning the repo, to getting all pieces running on your local machine. This focuses on one-time initial setup; a separate guide will discuss [contributing](CONTRIBUTING.md).
 
 ## 1. Install dependencies
 
