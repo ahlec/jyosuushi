@@ -1,3 +1,5 @@
+import { Reference } from "@apollo/client";
+import gql from "graphql-tag";
 import { useCallback } from "react";
 import { defineMessages } from "react-intl";
 
@@ -48,11 +50,53 @@ interface HookOptions {
 
 type HookResult = (name: string) => Promise<void>;
 
+const NEW_COLLECTION_FRAGMENT = gql`
+  fragment NewUserCounterCollection on UserCounterCollection {
+    id
+    name
+    counterIds
+    dateCreated
+    dateLastUpdated
+  }
+`;
+
 function useCreateCollection({ onError, onSuccess }: HookOptions): HookResult {
   // Connect with the backend
-  const [
-    createCounterCollectionMutation,
-  ] = useCreateCounterCollectionMutation();
+  const [createCounterCollectionMutation] = useCreateCounterCollectionMutation({
+    update: (cache, { data }): void => {
+      if (!data) {
+        return;
+      }
+
+      const { collection, error } = data.createCounterCollection;
+      if (error || !collection) {
+        return;
+      }
+
+      cache.modify({
+        fields: {
+          userCounterCollections: (
+            currentRefs: readonly Reference[] = [],
+            { readField }
+          ): readonly Reference[] => {
+            const newCollectionRef = cache.writeFragment({
+              data: collection,
+              fragment: NEW_COLLECTION_FRAGMENT,
+            });
+
+            if (
+              !newCollectionRef ||
+              currentRefs.some((ref) => readField("id", ref) === collection.id)
+            ) {
+              return currentRefs;
+            }
+
+            return [...currentRefs, newCollectionRef];
+          },
+        },
+      });
+    },
+  });
 
   // Create the public function that will invoke the backend and process the
   // results.
