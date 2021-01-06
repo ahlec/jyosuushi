@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { defineMessages } from "react-intl";
 
+import { UserCounterCollection } from "@jyosuushi/graphql/types.generated";
+
 import Modal from "@jyosuushi/ui/Modal";
 
 import CreateCollectionForm from "./CreateCollectionForm";
@@ -15,11 +17,13 @@ const INTL_MESSAGES = defineMessages({
 });
 
 interface ComponentProps {
-  onRequestClose: () => void;
+  onCancel: () => void;
+  onSuccess: (collection: UserCounterCollection) => void;
 }
 
 function CreateCollectionModal({
-  onRequestClose,
+  onCancel,
+  onSuccess,
 }: ComponentProps): React.ReactElement {
   // Define component state
   const [
@@ -30,7 +34,7 @@ function CreateCollectionModal({
   // Connect with the backend
   const createCollection = useCreateCollection({
     onError: setBackendError,
-    onSuccess: onRequestClose,
+    onSuccess,
   });
 
   // Render the component
@@ -40,7 +44,7 @@ function CreateCollectionModal({
       hasStandardHeight={false}
       header={INTL_MESSAGES.modalHeader}
       isOpen={true}
-      onRequestClose={onRequestClose}
+      onRequestClose={onCancel}
     >
       <CreateCollectionForm
         currentError={backendError}

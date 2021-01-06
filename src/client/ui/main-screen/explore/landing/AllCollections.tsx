@@ -1,12 +1,15 @@
 import { orderBy } from "lodash";
 import React, { useCallback, useMemo, useState } from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
+import { useHistory } from "react-router";
 
 import {
   CounterCollection,
   StandardCounterCollection,
   UserCounterCollection,
 } from "@jyosuushi/graphql/types.generated";
+
+import { getCounterCollectionPath } from "@jyosuushi/ui/main-screen/explore/pathing";
 
 import CollectionLink from "./CollectionLink";
 import CreateCollectionModal from "./create-collection-modal/CreateCollectionModal";
@@ -44,6 +47,9 @@ function AllCollections({
   standardCollections,
   userCollections,
 }: ComponentProps): React.ReactElement {
+  // Connect with the rest of the app
+  const history = useHistory();
+
   // Define component state
   const [isCreateModalOpen, setIsCreateModalOpen] = useState<boolean>(false);
 
@@ -52,9 +58,16 @@ function AllCollections({
     setIsCreateModalOpen(true);
   }, []);
 
-  const handleRequestModalClose = useCallback((): void => {
+  const handleCreateCollectionCancelled = useCallback((): void => {
     setIsCreateModalOpen(false);
   }, []);
+
+  const handleCollectionCreatedSuccessfully = useCallback(
+    (collection: UserCounterCollection): void => {
+      history.push(getCounterCollectionPath(collection.id));
+    },
+    [history]
+  );
 
   // Enforce a consistent ordering scheme
   const orderedStandardCollections = useOrderedCollection(standardCollections);
@@ -94,7 +107,10 @@ function AllCollections({
         )}
       </div>
       {canCreateCollections && isCreateModalOpen && (
-        <CreateCollectionModal onRequestClose={handleRequestModalClose} />
+        <CreateCollectionModal
+          onCancel={handleCreateCollectionCancelled}
+          onSuccess={handleCollectionCreatedSuccessfully}
+        />
       )}
     </div>
   );
