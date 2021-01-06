@@ -28,25 +28,29 @@ const INTL_MESSAGES = defineMessages({
   },
 });
 
-interface ComponentProps {
-  collection: StandardCounterCollection | UserCounterCollection;
-}
+type ComponentProps =
+  | {
+      collection: StandardCounterCollection;
+      variant: "standard";
+    }
+  | {
+      collection: UserCounterCollection;
+      variant: "user";
+    };
 
-function CollectionLink({ collection }: ComponentProps): React.ReactElement {
-  const isUserCollection = "dateCreated" in collection;
-
+function CollectionLink({
+  collection: { counterIds, id, name },
+  variant,
+}: ComponentProps): React.ReactElement {
   return (
-    <Link
-      className={styles.collectionLink}
-      to={getCounterCollectionPath(collection.id)}
-    >
+    <Link className={styles.collectionLink} to={getCounterCollectionPath(id)}>
       <ContentTile
-        color={isUserCollection ? "green" : "blue"}
-        primaryText={collection.name}
+        color={variant === "user" ? "green" : "blue"}
+        primaryText={name}
       >
         <div className={styles.subcontent}>
           <div>
-            {isUserCollection ? (
+            {variant === "user" ? (
               <FormattedMessage {...INTL_MESSAGES.typeUser} />
             ) : (
               <FormattedMessage {...INTL_MESSAGES.typeStandard} />
@@ -56,7 +60,7 @@ function CollectionLink({ collection }: ComponentProps): React.ReactElement {
             <FormattedMessage
               {...INTL_MESSAGES.collectionSize}
               values={{
-                size: collection.counterIds.length,
+                size: counterIds.length,
               }}
             />
           </div>

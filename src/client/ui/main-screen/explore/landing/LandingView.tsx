@@ -1,7 +1,6 @@
-import React, { useMemo } from "react";
+import React from "react";
 
 import {
-  CounterCollection,
   StandardCounterCollection,
   UserCounterCollection,
 } from "@jyosuushi/graphql/types.generated";
@@ -32,15 +31,6 @@ function LandingView({
   // Connect with the rest of the app
   const authStatus = useAuthenticationStatus();
 
-  // Coerce the data as necessary
-  const collections = useMemo(
-    (): readonly CounterCollection[] => [
-      ...standardCollections,
-      ...userCollections,
-    ],
-    [standardCollections, userCollections]
-  );
-
   // Render the component
   return (
     <div>
@@ -50,8 +40,9 @@ function LandingView({
           canCreateCollections={
             authStatus === AuthenticationStatus.Authenticated
           }
-          collections={collections}
           headerClassName={styles.header}
+          standardCollections={standardCollections}
+          userCollections={userCollections}
         />
         <AllCounters headerClassName={styles.header} />
       </div>

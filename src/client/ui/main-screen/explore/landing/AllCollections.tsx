@@ -1,7 +1,9 @@
-import React, { useCallback, useState } from "react";
+import { orderBy } from "lodash";
+import React, { useCallback, useMemo, useState } from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
 
 import {
+  CounterCollection,
   StandardCounterCollection,
   UserCounterCollection,
 } from "@jyosuushi/graphql/types.generated";
@@ -19,18 +21,28 @@ const INTL_MESSAGES = defineMessages({
   },
 });
 
-type SomeCounterCollection = StandardCounterCollection | UserCounterCollection;
-
 interface ComponentProps {
   canCreateCollections: boolean;
-  collections: readonly SomeCounterCollection[];
   headerClassName: string;
+  standardCollections: readonly StandardCounterCollection[];
+  userCollections: readonly UserCounterCollection[];
+}
+
+function useOrderedCollection<T extends CounterCollection>(
+  collections: readonly T[]
+): readonly T[] {
+  return useMemo(
+    (): readonly T[] =>
+      orderBy(collections, (collection): string => collection.name),
+    [collections]
+  );
 }
 
 function AllCollections({
   canCreateCollections,
-  collections,
   headerClassName,
+  standardCollections,
+  userCollections,
 }: ComponentProps): React.ReactElement {
   // Define component state
   const [isCreateModalOpen, setIsCreateModalOpen] = useState<boolean>(false);
@@ -44,6 +56,10 @@ function AllCollections({
     setIsCreateModalOpen(false);
   }, []);
 
+  // Enforce a consistent ordering scheme
+  const orderedStandardCollections = useOrderedCollection(standardCollections);
+  const orderedUserCollections = useOrderedCollection(userCollections);
+
   // Render the component
   return (
     <div>
@@ -51,11 +67,25 @@ function AllCollections({
         <FormattedMessage {...INTL_MESSAGES.pageHeader} />
       </h3>
       <div className={styles.list}>
-        {collections.map(
+        {orderedStandardCollections.map(
           (collection): React.ReactElement => (
-            <CollectionLink key={collection.id} collection={collection} />
+            <CollectionLink
+              key={collection.id}
+              collection={collection}
+              variant="standard"
+            />
           )
         )}
+        {orderedUserCollections.map(
+          (collection): React.ReactElement => (
+            <CollectionLink
+              key={collection.id}
+              collection={collection}
+              variant="user"
+            />
+          )
+        )}
+
         {canCreateCollections && (
           <CreateCollectionTile
             isModalOpen={isCreateModalOpen}
