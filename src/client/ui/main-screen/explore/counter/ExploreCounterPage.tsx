@@ -1,10 +1,10 @@
 import React, { useMemo } from "react";
 import { defineMessages } from "react-intl";
-import { Redirect, RouteComponentProps } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
-import { COUNTERS_LOOKUP } from "@data/counters";
 import useLocale from "@jyosuushi/i18n/useLocale";
 
+import { Counter } from "@jyosuushi/interfaces";
 import { getPrimaryJapaneseRepresentation } from "@jyosuushi/utils";
 
 import BreadcrumbBar, {
@@ -27,7 +27,9 @@ import SectionContainer from "./SectionContainer";
 
 import styles from "./ExploreCounterPage.scss";
 
-type ComponentProps = RouteComponentProps<{ counterId: string }>;
+interface ComponentProps {
+  counter: Counter;
+}
 
 const INTL_MESSAGES = defineMessages({
   headerConjugations: {
@@ -52,17 +54,10 @@ const INTL_MESSAGES = defineMessages({
   },
 });
 
-function ExploreCounterPage({
-  match: {
-    params: { counterId },
-  },
-  location,
-}: ComponentProps): React.ReactElement {
-  // Find the counter based on the URL
-  const counter = COUNTERS_LOOKUP[counterId] || null;
-
+function ExploreCounterPage({ counter }: ComponentProps): React.ReactElement {
   // Connect to the rest of the app
   const locale = useLocale();
+  const location = useLocation();
 
   // Determine the links that should apear in the breadcrumb bar
   const breadcrumbLinks = useMemo((): readonly BreadcrumbBarLinkDefinition[] => {
@@ -74,7 +69,7 @@ function ExploreCounterPage({
       {
         entityName: locale.dataLocalizers.getCounterName(counter),
         entityType: "counter",
-        link: getCounterLink(counterId),
+        link: getCounterLink(counter.counterId),
       },
     ];
 
@@ -90,12 +85,7 @@ function ExploreCounterPage({
     }
 
     return links;
-  }, [counterId, counter, locale, location.state]);
-
-  // Redirect if the counter doesn't exist.
-  if (!counter) {
-    return <Redirect to="/explore" />;
-  }
+  }, [counter, locale, location.state]);
 
   // Render the component
   return (

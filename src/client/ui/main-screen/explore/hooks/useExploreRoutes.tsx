@@ -1,11 +1,17 @@
 import React, { useMemo } from "react";
 
+import { COUNTERS_LOOKUP } from "@data/counters";
+
 import {
   StandardCounterCollection,
   UserCounterCollection,
 } from "@jyosuushi/graphql/types.generated";
 
-import { getCounterCollectionPath } from "@jyosuushi/ui/main-screen/explore/pathing";
+import {
+  getCounterCollectionPath,
+  getCounterLink,
+} from "@jyosuushi/ui/main-screen/explore/pathing";
+import ExploreCounterPage from "@jyosuushi/ui/main-screen/explore/counter/ExploreCounterPage";
 import CounterCollectionView from "@jyosuushi/ui/main-screen/explore/collections/CounterCollectionView";
 
 export interface RouteDeclaration {
@@ -43,6 +49,16 @@ function useExploreRoutes({
         },
         key: `user-collection-${collection.id}`,
         path: getCounterCollectionPath(collection.id),
+      });
+    });
+
+    Object.values(COUNTERS_LOOKUP).forEach((counter): void => {
+      result.push({
+        component: function RouteWrapper(): React.ReactElement {
+          return <ExploreCounterPage counter={counter} />;
+        },
+        key: `counter-${counter.counterId}`,
+        path: getCounterLink(counter.counterId),
       });
     });
 

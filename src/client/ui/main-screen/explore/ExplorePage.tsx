@@ -11,9 +11,6 @@ import {
 import LoadingSpinner from "@jyosuushi/ui/components/LoadingSpinner";
 
 import useExploreRoutes from "./hooks/useExploreRoutes";
-import { EXPLORE_COUNTER_PATH } from "./pathing";
-
-import ExploreCounterPage from "./counter/ExploreCounterPage";
 import LandingView from "./landing/LandingView";
 
 import styles from "./ExplorePage.scss";
@@ -82,7 +79,6 @@ function ExplorePage(): React.ReactElement {
           />
         )
       )}
-      <Route path={EXPLORE_COUNTER_PATH} component={ExploreCounterPage} />
       <Route render={renderLandingPage} />
     </Switch>
   );
