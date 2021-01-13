@@ -63,7 +63,7 @@ function QuizPreparationView({
           {(text) => (
             <StandardButton
               className={styles.startButton}
-              disabled={!selectedCollections.length}
+              disabled={!selectedCounters.length}
               onClick={handleStartQuiz}
             >
               {text}
