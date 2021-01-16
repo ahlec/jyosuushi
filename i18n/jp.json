@@ -326,6 +326,24 @@
     },
     "translation": ""
   },
+  "explorePage.counter.collection.introText": {
+    "original": {
+      "defaultMessage": "This counter is found in the following {count, plural, one {collection} other {collections}}:",
+      "filenames": [
+        "src/client/ui/main-screen/explore/counter/collection-membership/CollectionSection.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.counter.collection.notInAnyCollectionsText": {
+    "original": {
+      "defaultMessage": "This counter is not found in any collections.",
+      "filenames": [
+        "src/client/ui/main-screen/explore/counter/collection-membership/CollectionSection.tsx"
+      ]
+    },
+    "translation": ""
+  },
   "explorePage.counter.conjugationSection.andSoForth": {
     "original": {
       "defaultMessage": "... and so forth",
@@ -385,6 +403,15 @@
       "defaultMessage": "{numIrregulars, plural, one {1 irregular conjugation} other {# irregular conjugations}}",
       "filenames": [
         "src/client/ui/main-screen/explore/counter/ConjugationsSection.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.counter.collections.header": {
+    "original": {
+      "defaultMessage": "Collections",
+      "filenames": [
+        "src/client/ui/main-screen/explore/counter/ExploreCounterPage.tsx"
       ]
     },
     "translation": ""

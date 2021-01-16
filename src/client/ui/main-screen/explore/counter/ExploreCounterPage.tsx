@@ -2,6 +2,10 @@ import React, { useMemo } from "react";
 import { defineMessages } from "react-intl";
 import { useLocation } from "react-router-dom";
 
+import {
+  StandardCounterCollection,
+  UserCounterCollection,
+} from "@jyosuushi/graphql/types.generated";
 import useLocale from "@jyosuushi/i18n/useLocale";
 
 import { Counter } from "@jyosuushi/interfaces";
@@ -16,6 +20,8 @@ import {
 } from "@jyosuushi/ui/main-screen/explore/pathing";
 import { isExploreLocationState } from "@jyosuushi/ui/main-screen/explore/types";
 
+import CollectionSection from "./collection-membership/CollectionSection";
+
 import ConjugationsSection from "./ConjugationsSection";
 import DisambiguationSection, {
   hasDisambiguationSection,
@@ -29,9 +35,15 @@ import styles from "./ExploreCounterPage.scss";
 
 interface ComponentProps {
   counter: Counter;
+  standardCollections: readonly StandardCounterCollection[];
+  userCollections: readonly UserCounterCollection[];
 }
 
 const INTL_MESSAGES = defineMessages({
+  headerCollections: {
+    defaultMessage: "Collections",
+    id: "explorePage.counter.collections.header",
+  },
   headerConjugations: {
     defaultMessage: "Conjugations",
     id: "explorePage.counter.conjugations.header",
@@ -54,7 +66,11 @@ const INTL_MESSAGES = defineMessages({
   },
 });
 
-function ExploreCounterPage({ counter }: ComponentProps): React.ReactElement {
+function ExploreCounterPage({
+  counter,
+  standardCollections,
+  userCollections,
+}: ComponentProps): React.ReactElement {
   // Connect to the rest of the app
   const locale = useLocale();
   const location = useLocation();
@@ -117,6 +133,13 @@ function ExploreCounterPage({ counter }: ComponentProps): React.ReactElement {
             <DisambiguationSection counter={counter} />
           </SectionContainer>
         )}
+        <SectionContainer header={INTL_MESSAGES.headerCollections}>
+          <CollectionSection
+            counterId={counter.counterId}
+            standardCollections={standardCollections}
+            userCollections={userCollections}
+          />
+        </SectionContainer>
         {counter.footnotes.length > 0 && (
           <SectionContainer header={INTL_MESSAGES.headerFootnotes}>
             <FootnotesSection footnotes={counter.footnotes} />

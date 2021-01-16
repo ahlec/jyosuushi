@@ -15,3 +15,7 @@
     overflow: hidden;
   }
 }
+
+.SectionContainer + .SectionContainer {
+  margin-top: 25px;
+}

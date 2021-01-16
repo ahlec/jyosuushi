@@ -55,7 +55,13 @@ function useExploreRoutes({
     Object.values(COUNTERS_LOOKUP).forEach((counter): void => {
       result.push({
         component: function RouteWrapper(): React.ReactElement {
-          return <ExploreCounterPage counter={counter} />;
+          return (
+            <ExploreCounterPage
+              counter={counter}
+              standardCollections={standardCollections}
+              userCollections={userCollections}
+            />
+          );
         },
         key: `counter-${counter.counterId}`,
         path: getCounterLink(counter.counterId),
