@@ -1,12 +1,8 @@
 import classnames from "classnames";
-import React, { useCallback } from "react";
-import { FormattedMessage, MessageDescriptor } from "react-intl";
+import React from "react";
+import { MessageDescriptor } from "react-intl";
 
-import { KeyCode } from "@jyosuushi/constants";
-
-import CloseIcon from "@jyosuushi/icons/close.svg";
-
-import BasePopup from "./BasePopup";
+import BaseDialog from "./BaseDialog";
 
 import styles from "./Modal.scss";
 
@@ -66,60 +62,24 @@ function Modal({
   isOpen,
   onRequestClose,
 }: ComponentProps): React.ReactElement {
-  // Handle events
-  const handleRequestClose = useCallback((): void => {
-    if (!isOpen || !canClose) {
-      return;
-    }
-
-    onRequestClose();
-  }, [canClose, isOpen, onRequestClose]);
-
-  const handleCloseButtonKeyPress = useCallback(
-    (e: React.KeyboardEvent<HTMLDivElement>): void => {
-      switch (e.keyCode) {
-        case KeyCode.Space:
-        case KeyCode.Enter: {
-          handleRequestClose();
-          break;
-        }
-      }
-    },
-    [handleRequestClose]
-  );
-
   // Render the component
   return (
-    <BasePopup
+    <BaseDialog
+      canClose={canClose}
       className={classnames(styles.modal, className)}
+      closeButtonSize={32}
+      contentClassName={classnames(
+        styles.content,
+        contentClassName,
+        hasStandardHeight && styles.standardHeight
+      )}
+      header={header}
+      headerClassName={styles.header}
       isOpen={isOpen}
-      onRequestClose={handleRequestClose}
+      onRequestClose={onRequestClose}
     >
-      <header className={styles.header}>
-        <div
-          className={classnames(
-            styles.closeButton,
-            !canClose && styles.disabled
-          )}
-          onClick={handleRequestClose}
-          onKeyPress={handleCloseButtonKeyPress}
-          role={canClose ? "button" : "text"}
-          tabIndex={canClose ? 0 : undefined}
-        >
-          <CloseIcon />
-        </div>
-        <FormattedMessage {...header} />
-      </header>
-      <div
-        className={classnames(
-          styles.content,
-          contentClassName,
-          hasStandardHeight && styles.hasStandardHeight
-        )}
-      >
-        {children}
-      </div>
-    </BasePopup>
+      {children}
+    </BaseDialog>
   );
 }
 

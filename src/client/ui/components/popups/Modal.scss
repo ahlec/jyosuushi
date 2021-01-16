@@ -1,68 +1,18 @@
-@import "./ModalShared";
-
-.Modal {
-  background-color: $modal-background;
-  border: 1px solid $modal-border;
+.modal {
   border-radius: 0 0 6px 6px;
   flex: 0 0 600px;
   max-width: 600px;
-  outline: none;
+}
 
-  .header {
-    align-items: center;
-    background-color: $modal-header;
-    border-bottom: 1px solid $modal-border;
-    display: flex;
-    font-size: 28px;
-    font-weight: 600;
-    height: 40px;
-    justify-content: center;
-    overflow: hidden;
-    position: relative;
-    text-align: center;
-    user-select: none;
+.header {
+  font-size: 28px;
+  font-weight: 600;
+}
 
-    .close-button {
-      align-items: center;
-      cursor: pointer;
-      display: flex;
-      height: 100%;
-      justify-content: center;
-      position: absolute;
-      right: 0;
-      top: 0;
-      width: 40px;
+.content {
+  max-height: 500px;
+}
 
-      &:hover:not(.disabled) {
-        path {
-          fill: $modal-button-hover;
-        }
-      }
-
-      &.disabled {
-        cursor: default;
-        opacity: 0.4;
-      }
-
-      svg {
-        height: 32px;
-        width: 32px;
-
-        path {
-          fill: $modal-button;
-        }
-      }
-    }
-  }
-
-  .content {
-    max-height: 500px;
-    overflow-x: hidden;
-    overflow-y: auto;
-    position: relative;
-
-    &.hasStandardHeight {
-      height: 500px;
-    }
-  }
+.standardHeight {
+  height: 500px;
 }

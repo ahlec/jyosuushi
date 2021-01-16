@@ -1,0 +1,67 @@
+@use "../../../palette";
+
+$border-color: palette.$green-darkest;
+$body-background-color: palette.$green-lightest;
+$header-background-color: palette.$green-base;
+
+$button-color: palette.$black-darkest;
+$button-hover-color: palette.$green-darkest;
+$button-padding: 4px;
+
+:export {
+  SASS_BUTTON_PADDING: $button-padding / 1px;
+}
+
+.baseDialog {
+  background-color: $body-background-color;
+  border: 1px solid $border-color;
+}
+
+.header {
+  align-items: center;
+  background-color: $header-background-color;
+  border-bottom: 1px solid $border-color;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  text-overflow: ellipsis;
+  user-select: none;
+}
+
+.closeButton {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  right: $button-padding;
+  top: $button-padding;
+
+  &:hover:not(:disabled) {
+    path {
+      fill: $button-hover-color;
+    }
+  }
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.4;
+  }
+
+  svg {
+    height: 32px;
+    width: 32px;
+
+    path {
+      fill: $button-color;
+    }
+  }
+}
+
+.content {
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+}
