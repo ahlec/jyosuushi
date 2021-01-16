@@ -1,11 +1,12 @@
 import classnames from "classnames";
 import React, { useCallback } from "react";
 import { FormattedMessage, MessageDescriptor } from "react-intl";
-import ReactModal from "react-modal";
 
 import { KeyCode } from "@jyosuushi/constants";
 
 import CloseIcon from "@jyosuushi/icons/close.svg";
+
+import BasePopup from "./BasePopup";
 
 import styles from "./Modal.scss";
 
@@ -89,7 +90,7 @@ function Modal({
 
   // Render the component
   return (
-    <ReactModal
+    <BasePopup
       className={classnames(styles.modal, className)}
       isOpen={isOpen}
       onRequestClose={handleRequestClose}
@@ -118,7 +119,7 @@ function Modal({
       >
         {children}
       </div>
-    </ReactModal>
+    </BasePopup>
   );
 }
 
