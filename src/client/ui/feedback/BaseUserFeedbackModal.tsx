@@ -1,7 +1,7 @@
 import React from "react";
 import { MessageDescriptor } from "react-intl";
 
-import Modal from "@jyosuushi/ui/Modal";
+import Modal from "@jyosuushi/ui/components/popups/Modal";
 
 import styles from "./BaseUserFeedbackModal.scss";
 

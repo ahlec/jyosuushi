@@ -8,7 +8,7 @@ import {
   useChangePasswordMutation,
 } from "@jyosuushi/graphql/types.generated";
 
-import Modal from "@jyosuushi/ui/Modal";
+import Modal from "@jyosuushi/ui/components/popups/Modal";
 
 import {
   ERROR_MESSAGE_FIELD_EMPTY,

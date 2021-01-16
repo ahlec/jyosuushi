@@ -5,7 +5,7 @@ import { defineMessages, FormattedMessage } from "react-intl";
 
 import { KeyCode } from "@jyosuushi/constants";
 
-import Modal from "@jyosuushi/ui/Modal";
+import Modal from "@jyosuushi/ui/components/popups/Modal";
 
 import LeftIcon from "@jyosuushi/ui/left.svg";
 import RightIcon from "@jyosuushi/ui/right.svg";

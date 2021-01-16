@@ -1,4 +1,4 @@
-@import "../../ModalShared";
+@import "../../components/popups/ModalShared";
 
 @mixin animate-element($keyframe) {
   animation-duration: 0.2s;

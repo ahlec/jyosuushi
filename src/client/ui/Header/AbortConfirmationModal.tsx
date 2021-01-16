@@ -2,7 +2,7 @@ import React from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
 
 import StandardButton from "@jyosuushi/ui/components/StandardButton";
-import Modal from "@jyosuushi/ui/Modal";
+import Modal from "@jyosuushi/ui/components/popups/Modal";
 
 import styles from "./AbortConfirmationModal.scss";
 

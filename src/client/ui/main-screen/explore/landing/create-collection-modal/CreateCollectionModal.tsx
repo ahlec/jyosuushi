@@ -3,7 +3,7 @@ import { defineMessages } from "react-intl";
 
 import { UserCounterCollection } from "@jyosuushi/graphql/types.generated";
 
-import Modal from "@jyosuushi/ui/Modal";
+import Modal from "@jyosuushi/ui/components/popups/Modal";
 
 import CreateCollectionForm from "./CreateCollectionForm";
 import { CreateCollectionFormError } from "./types";
