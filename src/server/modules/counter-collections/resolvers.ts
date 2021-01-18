@@ -13,6 +13,7 @@ import { ServerContext } from "@server/context";
 
 import { STANDARD_COLLECTIONS } from "./standard-collections.data";
 
+import { addCounterToCollection } from "./mutations/addCounterToCollection";
 import { createCounterCollection } from "./mutations/createCounterCollection";
 import { convertPrismaUserCollectionToGql } from "./utils";
 
@@ -31,6 +32,7 @@ export const COUNTER_COLLECTIONS_RESOLVERS: Resolvers = {
     },
   },
   Mutation: {
+    addCounterToCollection,
     createCounterCollection,
   },
   Query: {

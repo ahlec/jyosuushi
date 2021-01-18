@@ -27,6 +27,10 @@ extend type Query {
 
 extend type Mutation {
   createCounterCollection(name: String!): CreateCounterCollectionResult!
+  addCounterToCollection(
+    collectionId: String!
+    counterId: String!
+  ): AddCounterToCollectionResult!
 }
 
 enum CreateCounterCollectionError {
@@ -44,4 +48,19 @@ enum CreateCounterCollectionError {
 type CreateCounterCollectionResult {
   error: CreateCounterCollectionError
   collection: UserCounterCollection
+}
+
+enum AddCounterToCollectionResult {
+  # Success
+  SUCCESS
+
+  # Validation errors
+  ERROR_COUNTER_DOES_NOT_EXIST
+  ERROR_COLLECTION_DOES_NOT_EXIST
+
+  # Operation errors
+  ERROR_RATE_LIMITED
+  ERROR_NOT_AUTHENTICATED
+  ERROR_ALREADY_IN_COLLECTION
+  ERROR_COULD_NOT_ADD
 }
