@@ -7,6 +7,7 @@ import prettier from "prettier";
 import Database from "../database/Database";
 import ValidatedDataSource from "../database/ValidatedDataSource";
 
+import writeCounterIdsFile from "./counter-ids-file";
 import writeCountersFile from "./counters/write-file";
 import writeItemsFile from "./items-file";
 import writeStandardCollectionsFile from "./standard-collections-file";
@@ -130,6 +131,11 @@ async function main(): Promise<void> {
       relativeFilename:
         "modules/counter-collections/standard-collections.data.ts",
       writeFunction: writeStandardCollectionsFile,
+    },
+    {
+      directory: "server-src",
+      relativeFilename: "modules/counter-collections/counter-ids.data.ts",
+      writeFunction: writeCounterIdsFile,
     },
   ];
 
