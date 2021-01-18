@@ -1,5 +1,8 @@
+@use "./constants" as dialog-constants;
+
 .collectionRow {
   display: grid;
+  gap: dialog-constants.$cell-separation;
   grid-template-columns: auto 1fr;
 }
 
