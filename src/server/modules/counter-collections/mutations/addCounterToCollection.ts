@@ -7,6 +7,7 @@ import { GraphQLResolveInfo } from "graphql";
 
 import {
   AddCounterToCollectionResult,
+  AddCounterToCollectionResponse,
   MutationAddCounterToCollectionArgs,
 } from "@server/graphql.generated";
 
@@ -52,7 +53,7 @@ export async function addCounterToCollection(
   args: MutationAddCounterToCollectionArgs,
   context: ServerContext,
   info: GraphQLResolveInfo
-): Promise<AddCounterToCollectionResult> {
+): Promise<AddCounterToCollectionResponse> {
   const {
     authCookie: { current: userToken },
     dataSources: { prisma },
@@ -80,23 +81,39 @@ export async function addCounterToCollection(
     }
   );
   if (rateLimitError) {
-    return AddCounterToCollectionResult.ErrorRateLimited;
+    return {
+      collectionId: args.collectionId,
+      counterId: args.counterId,
+      result: AddCounterToCollectionResult.ErrorRateLimited,
+    };
   }
 
   // Make sure that we're authenticated
   if (!userToken || !userToken.valid) {
-    return AddCounterToCollectionResult.ErrorNotAuthenticated;
+    return {
+      collectionId: args.collectionId,
+      counterId: args.counterId,
+      result: AddCounterToCollectionResult.ErrorNotAuthenticated,
+    };
   }
 
   // Retrieve the collection being referenced
   const collection = await getCollection(prisma, args.collectionId, userToken);
   if (!collection) {
-    return AddCounterToCollectionResult.ErrorCollectionDoesNotExist;
+    return {
+      collectionId: args.collectionId,
+      counterId: args.counterId,
+      result: AddCounterToCollectionResult.ErrorCollectionDoesNotExist,
+    };
   }
 
   // Validate that the counter being referenced is valid
   if (!COUNTER_IDS.has(args.counterId)) {
-    return AddCounterToCollectionResult.ErrorCounterDoesNotExist;
+    return {
+      collectionId: args.collectionId,
+      counterId: args.counterId,
+      result: AddCounterToCollectionResult.ErrorCounterDoesNotExist,
+    };
   }
 
   // Check to make sure that the counter is not already in the collection
@@ -104,7 +121,11 @@ export async function addCounterToCollection(
     (entry): boolean => entry.counterId === args.counterId
   );
   if (existingEntry) {
-    return AddCounterToCollectionResult.ErrorAlreadyInCollection;
+    return {
+      collectionId: args.collectionId,
+      counterId: args.counterId,
+      result: AddCounterToCollectionResult.ErrorAlreadyInCollection,
+    };
   }
 
   // Add the counter to the collection
@@ -119,8 +140,16 @@ export async function addCounterToCollection(
         counterId: args.counterId,
       },
     });
-    return AddCounterToCollectionResult.Success;
+    return {
+      collectionId: args.collectionId,
+      counterId: args.counterId,
+      result: AddCounterToCollectionResult.Success,
+    };
   } catch (e) {
-    return AddCounterToCollectionResult.ErrorCouldNotAdd;
+    return {
+      collectionId: args.collectionId,
+      counterId: args.counterId,
+      result: AddCounterToCollectionResult.ErrorCouldNotAdd,
+    };
   }
 }

@@ -48,7 +48,7 @@ function useAddToCollectionCallback(counterId: string): HookResults {
         return;
       }
 
-      switch (result.data.addCounterToCollection) {
+      switch (result.data.addCounterToCollection.result) {
         case AddCounterToCollectionResult.Success:
         case AddCounterToCollectionResult.ErrorCollectionDoesNotExist:
         case AddCounterToCollectionResult.ErrorRateLimited:

@@ -30,7 +30,7 @@ extend type Mutation {
   addCounterToCollection(
     collectionId: String!
     counterId: String!
-  ): AddCounterToCollectionResult!
+  ): AddCounterToCollectionResponse!
 }
 
 enum CreateCounterCollectionError {
@@ -63,4 +63,10 @@ enum AddCounterToCollectionResult {
   ERROR_NOT_AUTHENTICATED
   ERROR_ALREADY_IN_COLLECTION
   ERROR_COULD_NOT_ADD
+}
+
+type AddCounterToCollectionResponse {
+  collectionId: String!
+  counterId: String!
+  result: AddCounterToCollectionResult!
 }

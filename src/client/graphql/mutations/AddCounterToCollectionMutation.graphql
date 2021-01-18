@@ -1,3 +1,7 @@
 mutation AddCounterToCollection($counterId: String!, $collectionId: String!) {
-  addCounterToCollection(counterId: $counterId, collectionId: $collectionId)
+  addCounterToCollection(counterId: $counterId, collectionId: $collectionId) {
+    collectionId
+    counterId
+    result
+  }
 }
