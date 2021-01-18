@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { defineMessages } from "react-intl";
 import { useLocation } from "react-router-dom";
 
@@ -21,6 +21,7 @@ import {
 import { isExploreLocationState } from "@jyosuushi/ui/main-screen/explore/types";
 
 import CollectionSection from "./collection-membership/CollectionSection";
+import EditMembershipDialog from "./collection-membership/edit-membership-dialog/EditMembershipDialog";
 
 import ConjugationsSection from "./ConjugationsSection";
 import DisambiguationSection, {
@@ -30,6 +31,8 @@ import FootnotesSection from "./FootnotesSection";
 import InfoSection, { hasInfoSectionContents } from "./InfoSection";
 import ItemsSection, { hasItemsSectionContents } from "./ItemsSection";
 import SectionContainer, { SectionActionDefinition } from "./SectionContainer";
+
+import PencilIcon from "./pencil.svg";
 
 import styles from "./ExploreCounterPage.scss";
 
@@ -64,6 +67,10 @@ const INTL_MESSAGES = defineMessages({
     defaultMessage: "Items",
     id: "explorePage.counter.items.header",
   },
+  tooltipsEditMembershipAction: {
+    defaultMessage: "Add or remove this counter from a custom collection.",
+    id: "explorePage.counter.collections.actions.editMembershipTooltip",
+  },
 });
 
 const NO_SECTION_ACTIONS: readonly SectionActionDefinition[] = [];
@@ -76,6 +83,26 @@ function ExploreCounterPage({
   // Connect to the rest of the app
   const locale = useLocale();
   const location = useLocation();
+
+  // Handle editing collection membership
+  const [isEditMembershipDialogOpen, setIsEditMembershipDialogOpen] = useState<
+    boolean
+  >(false);
+  const membershipSectionActions = useMemo(
+    (): readonly SectionActionDefinition[] => [
+      {
+        icon: PencilIcon,
+        onClick: (): void => setIsEditMembershipDialogOpen(true),
+        tooltip: INTL_MESSAGES.tooltipsEditMembershipAction,
+        uniqueId: "edit",
+      },
+    ],
+    []
+  );
+  const handleRequestEditMembershipDialogClose = useCallback(
+    (): void => setIsEditMembershipDialogOpen(false),
+    []
+  );
 
   // Determine the links that should apear in the breadcrumb bar
   const breadcrumbLinks = useMemo((): readonly BreadcrumbBarLinkDefinition[] => {
@@ -148,12 +175,18 @@ function ExploreCounterPage({
           </SectionContainer>
         )}
         <SectionContainer
-          actions={NO_SECTION_ACTIONS}
+          actions={membershipSectionActions}
           header={INTL_MESSAGES.headerCollections}
         >
           <CollectionSection
             counterId={counter.counterId}
             standardCollections={standardCollections}
+            userCollections={userCollections}
+          />
+          <EditMembershipDialog
+            counterId={counter.counterId}
+            isOpen={isEditMembershipDialogOpen}
+            onRequestClose={handleRequestEditMembershipDialogClose}
             userCollections={userCollections}
           />
         </SectionContainer>

@@ -470,6 +470,15 @@
     },
     "translation": ""
   },
+  "explorePage.counter.collections.actions.editMembershipTooltip": {
+    "original": {
+      "defaultMessage": "Add or remove this counter from a custom collection.",
+      "filenames": [
+        "src/client/ui/main-screen/explore/counter/ExploreCounterPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
   "explorePage.counter.info.externalLinksHeader": {
     "original": {
       "defaultMessage": "Further Reading",
