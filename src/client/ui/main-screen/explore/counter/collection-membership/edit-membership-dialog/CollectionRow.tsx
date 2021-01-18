@@ -1,9 +1,8 @@
-import classnames from "classnames";
 import React, { useCallback } from "react";
 
 import { UserCounterCollection } from "@jyosuushi/graphql/types.generated";
 
-import IconCheck from "@jyosuushi/ui/main-screen/check.svg";
+import ToggleMembershipButton from "./ToggleMembershipButton";
 
 import styles from "./CollectionRow.scss";
 
@@ -26,7 +25,7 @@ interface ComponentProps {
    *
    * In general, this won't be called when
    */
-  onAddToCollection: (collectionId: string) => void;
+  onAddToCollection: (collectionId: string) => Promise<void>;
 
   /**
    * A callback which will be invoked if the user has indicated that they
@@ -35,7 +34,7 @@ interface ComponentProps {
    * In general, this won't be called when
    * {@link ComponentProps.isCounterInCollection} is false.
    */
-  onRemoveFromCollection: (collectionId: string) => void;
+  onRemoveFromCollection: (collectionId: string) => Promise<void>;
 }
 
 function CollectionRow({
@@ -45,29 +44,22 @@ function CollectionRow({
   onRemoveFromCollection,
 }: ComponentProps): React.ReactElement {
   // Handle events
-  const handleToggle = useCallback((): void => {
-    if (isCounterInCollection) {
-      onRemoveFromCollection(collection.id);
-      return;
-    }
+  const handleAdd = useCallback(
+    (): Promise<void> => onAddToCollection(collection.id),
+    [collection.id, onAddToCollection]
+  );
 
-    onAddToCollection(collection.id);
-  }, [
-    collection.id,
-    isCounterInCollection,
-    onAddToCollection,
-    onRemoveFromCollection,
-  ]);
+  const handleRemove = useCallback(
+    (): Promise<void> => onRemoveFromCollection(collection.id),
+    [collection.id, onRemoveFromCollection]
+  );
 
   // Render the component
   return (
     <div className={styles.collectionRow}>
-      <IconCheck
-        className={classnames(
-          styles.toggleIcon,
-          isCounterInCollection && styles.inCollection
-        )}
-        onClick={handleToggle}
+      <ToggleMembershipButton
+        isCounterInCollection={isCounterInCollection}
+        onToggle={isCounterInCollection ? handleRemove : handleAdd}
       />
       <div className={styles.name}>{collection.name}</div>
     </div>

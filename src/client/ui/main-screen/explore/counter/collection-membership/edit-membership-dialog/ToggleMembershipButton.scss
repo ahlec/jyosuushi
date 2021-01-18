@@ -1,0 +1,46 @@
+@use "../../../../../../palette";
+
+$dimensions: 20px;
+
+.button {
+  align-items: center;
+  display: flex;
+  height: $dimensions;
+  justify-content: center;
+  width: $dimensions;
+}
+
+.icon {
+  cursor: pointer;
+  height: $dimensions;
+  width: $dimensions;
+
+  circle {
+    fill: palette.$white;
+  }
+}
+
+.alreadyInCollection {
+  &:hover {
+    path {
+      opacity: 0.3;
+    }
+  }
+
+  path {
+    transition: opacity 100ms;
+  }
+}
+
+.notInCollection {
+  &:hover {
+    path {
+      opacity: 0.3;
+    }
+  }
+
+  path {
+    opacity: 0;
+    transition: opacity 100ms;
+  }
+}

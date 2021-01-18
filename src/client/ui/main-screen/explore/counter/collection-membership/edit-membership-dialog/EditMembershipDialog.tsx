@@ -1,4 +1,3 @@
-import { noop } from "lodash";
 import React from "react";
 import { defineMessages } from "react-intl";
 
@@ -41,6 +40,10 @@ interface ComponentProps {
   userCollections: readonly UserCounterCollection[];
 }
 
+function mockPromise(): Promise<void> {
+  return Promise.resolve();
+}
+
 function EditMembershipDialog({
   counterId,
   isOpen,
@@ -67,8 +70,8 @@ function EditMembershipDialog({
               isCounterInCollection={
                 collection.counterIds.indexOf(counterId) >= 0
               }
-              onAddToCollection={noop}
-              onRemoveFromCollection={noop}
+              onAddToCollection={mockPromise}
+              onRemoveFromCollection={mockPromise}
             />
           )
         )}
