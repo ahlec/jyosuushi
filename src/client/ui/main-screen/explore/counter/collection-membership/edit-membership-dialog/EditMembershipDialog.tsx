@@ -6,6 +6,7 @@ import { UserCounterCollection } from "@jyosuushi/graphql/types.generated";
 import BaseDialog from "@jyosuushi/ui/components/popups/BaseDialog";
 
 import CollectionRow from "./CollectionRow";
+import useAddToCollectionCallback from "./hooks/useAddToCollectionCallback";
 
 import styles from "./EditMembershipDialog.scss";
 
@@ -50,6 +51,11 @@ function EditMembershipDialog({
   onRequestClose,
   userCollections,
 }: ComponentProps): React.ReactElement {
+  // Connect with the server
+  const { callback: handleAddToCollection } = useAddToCollectionCallback(
+    counterId
+  );
+
   // Render the component
   return (
     <BaseDialog
@@ -70,7 +76,7 @@ function EditMembershipDialog({
               isCounterInCollection={
                 collection.counterIds.indexOf(counterId) >= 0
               }
-              onAddToCollection={mockPromise}
+              onAddToCollection={handleAddToCollection}
               onRemoveFromCollection={mockPromise}
             />
           )

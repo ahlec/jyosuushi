@@ -1,0 +1,3 @@
+mutation AddCounterToCollection($counterId: String!, $collectionId: String!) {
+  addCounterToCollection(counterId: $counterId, collectionId: $collectionId)
+}
