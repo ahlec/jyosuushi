@@ -344,6 +344,15 @@
     },
     "translation": ""
   },
+  "explorePage.counter.collections.edit-membership-dialog.dialogHeader": {
+    "original": {
+      "defaultMessage": "Add to Collections",
+      "filenames": [
+        "src/client/ui/main-screen/explore/counter/collection-membership/edit-membership-dialog/EditMembershipDialog.tsx"
+      ]
+    },
+    "translation": ""
+  },
   "explorePage.counter.conjugationSection.andSoForth": {
     "original": {
       "defaultMessage": "... and so forth",

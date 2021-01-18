@@ -1,0 +1,20 @@
+.collectionRow {
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
+.toggleIcon {
+  height: 20px;
+  width: 20px;
+
+  &:not(.inCollection) {
+    path {
+      display: none;
+    }
+  }
+}
+
+.name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
