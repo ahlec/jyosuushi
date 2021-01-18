@@ -17,7 +17,8 @@
   }
 
   svg {
-    opacity: 0.7;
+    opacity: 0.5;
+    transition: opacity 100ms;
 
     path {
       fill: palette.$black-darkest;

@@ -29,7 +29,7 @@ import DisambiguationSection, {
 import FootnotesSection from "./FootnotesSection";
 import InfoSection, { hasInfoSectionContents } from "./InfoSection";
 import ItemsSection, { hasItemsSectionContents } from "./ItemsSection";
-import SectionContainer from "./SectionContainer";
+import SectionContainer, { SectionActionDefinition } from "./SectionContainer";
 
 import styles from "./ExploreCounterPage.scss";
 
@@ -65,6 +65,8 @@ const INTL_MESSAGES = defineMessages({
     id: "explorePage.counter.items.header",
   },
 });
+
+const NO_SECTION_ACTIONS: readonly SectionActionDefinition[] = [];
 
 function ExploreCounterPage({
   counter,
@@ -116,24 +118,39 @@ function ExploreCounterPage({
           <div className={styles.leadIn}>{counter.leadIn}</div>
         )}
         {hasInfoSectionContents(counter) && (
-          <SectionContainer header={INTL_MESSAGES.headerInfo}>
+          <SectionContainer
+            actions={NO_SECTION_ACTIONS}
+            header={INTL_MESSAGES.headerInfo}
+          >
             <InfoSection counter={counter} />
           </SectionContainer>
         )}
-        <SectionContainer header={INTL_MESSAGES.headerConjugations}>
+        <SectionContainer
+          actions={NO_SECTION_ACTIONS}
+          header={INTL_MESSAGES.headerConjugations}
+        >
           <ConjugationsSection counter={counter} />
         </SectionContainer>
         {hasItemsSectionContents(counter) && (
-          <SectionContainer header={INTL_MESSAGES.headerItems}>
+          <SectionContainer
+            actions={NO_SECTION_ACTIONS}
+            header={INTL_MESSAGES.headerItems}
+          >
             <ItemsSection counter={counter} />
           </SectionContainer>
         )}
         {hasDisambiguationSection(counter) && (
-          <SectionContainer header={INTL_MESSAGES.headerDisambiguation}>
+          <SectionContainer
+            actions={NO_SECTION_ACTIONS}
+            header={INTL_MESSAGES.headerDisambiguation}
+          >
             <DisambiguationSection counter={counter} />
           </SectionContainer>
         )}
-        <SectionContainer header={INTL_MESSAGES.headerCollections}>
+        <SectionContainer
+          actions={NO_SECTION_ACTIONS}
+          header={INTL_MESSAGES.headerCollections}
+        >
           <CollectionSection
             counterId={counter.counterId}
             standardCollections={standardCollections}
@@ -141,7 +158,10 @@ function ExploreCounterPage({
           />
         </SectionContainer>
         {counter.footnotes.length > 0 && (
-          <SectionContainer header={INTL_MESSAGES.headerFootnotes}>
+          <SectionContainer
+            actions={NO_SECTION_ACTIONS}
+            header={INTL_MESSAGES.headerFootnotes}
+          >
             <FootnotesSection footnotes={counter.footnotes} />
           </SectionContainer>
         )}

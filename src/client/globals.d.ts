@@ -13,3 +13,5 @@ declare module "*.md" {
 declare const CONFIG_GOOGLE_ANALYTICS_TRACKING_ID: string;
 declare const API_SERVER_URL: string;
 declare const JYOSUUSHI_CURRENT_SEMVER: string;
+
+type SvgIcon = React.ComponentClass<React.SVGProps<SVGSVGElement>>;

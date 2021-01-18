@@ -1,15 +1,13 @@
-import { uniqueId } from "lodash";
+import { noop, uniqueId } from "lodash";
 import React, { useMemo } from "react";
 import { FormattedMessage, MessageDescriptor } from "react-intl";
 import ReactTooltip from "react-tooltip";
-
-import { KeyCode } from "@jyosuushi/constants";
 
 import styles from "./TooltipButton.scss";
 
 interface ComponentProps {
   enabled: boolean;
-  icon: React.ComponentClass<React.SVGProps<SVGSVGElement>>;
+  icon: SvgIcon;
   onClick: () => void;
   text: MessageDescriptor;
 }
@@ -24,37 +22,14 @@ function TooltipButton({
   // DOM `id` attribute which requires global uniqueness.
   const id = useMemo(() => uniqueId("tb-"), []);
 
-  // Handle events
-  const handleClick = (): void => onClick();
-
-  const handleKeyPress = (e: React.KeyboardEvent<HTMLDivElement>): void => {
-    if (!enabled) {
-      return;
-    }
-
-    switch (e.which) {
-      case KeyCode.Enter:
-      case KeyCode.Space: {
-        onClick();
-        break;
-      }
-    }
-  };
-
   // Render this component
   return (
-    <div
-      className={styles.tooltipButton}
-      onClick={handleClick}
-      onKeyPress={handleKeyPress}
-      role="button"
-      tabIndex={0}
-    >
+    <button className={styles.tooltipButton} onClick={enabled ? onClick : noop}>
       <Icon data-tip data-for={id} />
       <ReactTooltip id={id} place="bottom" type="dark" effect="solid">
         <FormattedMessage {...text} />
       </ReactTooltip>
-    </div>
+    </button>
   );
 }
 
