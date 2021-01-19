@@ -17,7 +17,7 @@ import CounterCollectionView from "@jyosuushi/ui/main-screen/explore/collections
 export interface RouteDeclaration {
   key: string;
   path: string;
-  component: React.ComponentType<Record<string, never>>;
+  component: () => React.ReactElement;
 }
 
 interface HookOptions {

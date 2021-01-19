@@ -72,11 +72,7 @@ function ExplorePage(): React.ReactElement {
     <Switch>
       {routes.map(
         (route): React.ReactElement => (
-          <Route
-            key={route.key}
-            path={route.path}
-            component={route.component}
-          />
+          <Route key={route.key} path={route.path} render={route.component} />
         )
       )}
       <Route render={renderLandingPage} />
