@@ -67,8 +67,6 @@ interface ComponentProps {
   onRequestClose: () => void;
 }
 
-console.log(BUTTON_PADDING);
-
 function BaseDialog({
   canClose,
   children,
