@@ -7,9 +7,9 @@ import {
   useAddCounterToCollectionMutation,
 } from "@jyosuushi/graphql/types.generated";
 
-type AddToCollectionFn = (collectionId: string) => Promise<void>;
+import { RedirectLocation } from "@jyosuushi/ui/main-screen/explore/counter/types";
 
-export type RedirectLocation = "profile" | "explore-landing-page";
+type AddToCollectionFn = (collectionId: string) => Promise<void>;
 
 interface HookResults {
   /**
