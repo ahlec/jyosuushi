@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useState } from "react";
 import { defineMessages } from "react-intl";
-import { useLocation } from "react-router-dom";
+import { Redirect, useLocation } from "react-router-dom";
 
 import {
   StandardCounterCollection,
@@ -31,6 +31,7 @@ import FootnotesSection from "./FootnotesSection";
 import InfoSection, { hasInfoSectionContents } from "./InfoSection";
 import ItemsSection, { hasItemsSectionContents } from "./ItemsSection";
 import SectionContainer, { SectionActionDefinition } from "./SectionContainer";
+import { RedirectLocation } from "./types";
 
 import PencilIcon from "./pencil.svg";
 
@@ -84,6 +85,12 @@ function ExploreCounterPage({
   const locale = useLocale();
   const location = useLocation();
 
+  // Define component state
+  const [
+    redirectRequest,
+    setRedirectRequest,
+  ] = useState<RedirectLocation | null>(null);
+
   // Handle editing collection membership
   const [isEditMembershipDialogOpen, setIsEditMembershipDialogOpen] = useState<
     boolean
@@ -99,8 +106,12 @@ function ExploreCounterPage({
     ],
     []
   );
+
   const handleRequestEditMembershipDialogClose = useCallback(
-    (): void => setIsEditMembershipDialogOpen(false),
+    (redirectTo: RedirectLocation | null): void => {
+      setIsEditMembershipDialogOpen(false);
+      setRedirectRequest(redirectTo);
+    },
     []
   );
 
@@ -131,6 +142,21 @@ function ExploreCounterPage({
 
     return links;
   }, [counter, locale, location.state]);
+
+  // If we should be redirecting to another location, do so here.
+  if (redirectRequest) {
+    switch (redirectRequest) {
+      case "explore-landing-page": {
+        return <Redirect to="/explore" />;
+      }
+      case "profile": {
+        return <Redirect to="/profile" />;
+      }
+      default: {
+        return redirectRequest;
+      }
+    }
+  }
 
   // Render the component
   return (
