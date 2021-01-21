@@ -31,6 +31,10 @@ extend type Mutation {
     collectionId: String!
     counterId: String!
   ): AddCounterToCollectionResponse!
+  removeCounterFromCollection(
+    collectionId: String!
+    counterId: String!
+  ): RemoveCounterFromCollectionResponse!
 }
 
 enum CreateCounterCollectionError {
@@ -69,4 +73,25 @@ type AddCounterToCollectionResponse {
   collectionId: String!
   counterId: String!
   result: AddCounterToCollectionResult!
+}
+
+enum RemoveCounterFromCollectionResult {
+  # Success
+  SUCCESS
+
+  # Validation errors
+  ERROR_COUNTER_DOES_NOT_EXIST
+  ERROR_COLLECTION_DOES_NOT_EXIST
+
+  # Operation errors
+  ERROR_RATE_LIMITED
+  ERROR_NOT_AUTHENTICATED
+  ERROR_NOT_IN_COLLECTION
+  ERROR_COULD_NOT_REMOVE
+}
+
+type RemoveCounterFromCollectionResponse {
+  collectionId: String!
+  counterId: String!
+  result: RemoveCounterFromCollectionResult!
 }
