@@ -1,8 +1,3 @@
-import {
-  PrismaClient,
-  UserCounterCollection,
-  UserCounterCollectionEntry,
-} from "@prisma/client";
 import { GraphQLResolveInfo } from "graphql";
 
 import {
@@ -11,42 +6,11 @@ import {
   MutationAddCounterToCollectionArgs,
 } from "@server/graphql.generated";
 
-import { UserSession } from "@server/authentication/types";
 import { ServerContext } from "@server/context";
 
 import { COUNTER_IDS } from "@server/modules/counter-collections/counter-ids.data";
 
-type DbUserCollection = UserCounterCollection & {
-  entries: readonly UserCounterCollectionEntry[];
-};
-
-async function getCollection(
-  prisma: PrismaClient,
-  collectionId: string,
-  user: UserSession
-): Promise<DbUserCollection | null> {
-  if (!collectionId) {
-    return null;
-  }
-
-  const collection = await prisma.userCounterCollection.findUnique({
-    include: {
-      entries: true,
-    },
-    where: {
-      id: collectionId,
-    },
-  });
-  if (!collection) {
-    return null;
-  }
-
-  if (collection.userId !== user.userId) {
-    return null;
-  }
-
-  return collection;
-}
+import { getCollection } from "./utils";
 
 export async function addCounterToCollection(
   parent: unknown,
