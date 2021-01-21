@@ -7,6 +7,7 @@ import BaseDialog from "@jyosuushi/ui/components/popups/BaseDialog";
 
 import CollectionRow from "./CollectionRow";
 import useAddToCollectionCallback from "./hooks/useAddToCollectionCallback";
+import useRemoveFromCollectionCallback from "./hooks/useRemoveFromCollectionCallback";
 
 import styles from "./EditMembershipDialog.scss";
 
@@ -41,10 +42,6 @@ interface ComponentProps {
   userCollections: readonly UserCounterCollection[];
 }
 
-function mockPromise(): Promise<void> {
-  return Promise.resolve();
-}
-
 function EditMembershipDialog({
   counterId,
   isOpen,
@@ -55,6 +52,9 @@ function EditMembershipDialog({
   const { callback: handleAddToCollection } = useAddToCollectionCallback(
     counterId
   );
+  const {
+    callback: handleRemoveFromCollection,
+  } = useRemoveFromCollectionCallback(counterId);
 
   // Render the component
   return (
@@ -77,7 +77,7 @@ function EditMembershipDialog({
                 collection.counterIds.indexOf(counterId) >= 0
               }
               onAddToCollection={handleAddToCollection}
-              onRemoveFromCollection={mockPromise}
+              onRemoveFromCollection={handleRemoveFromCollection}
             />
           )
         )}
