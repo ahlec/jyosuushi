@@ -8,6 +8,10 @@ import {
   useAvailableCounterCollectionsQuery,
 } from "@jyosuushi/graphql/types.generated";
 
+import useAuthenticationStatus, {
+  AuthenticationStatus,
+} from "@jyosuushi/hooks/useAuthenticationStatus";
+
 import LoadingSpinner from "@jyosuushi/ui/components/LoadingSpinner";
 
 import useExploreRoutes from "./hooks/useExploreRoutes";
@@ -27,6 +31,9 @@ const EMPTY_STANDARD_COLLECTIONS: readonly StandardCounterCollection[] = [];
 const EMPTY_USER_COLLECITONS: readonly UserCounterCollection[] = [];
 
 function ExplorePage(): React.ReactElement {
+  // Retrieve authentication status
+  const authStatus = useAuthenticationStatus();
+
   // Retrieve the necessary data from the server
   const { data, error, loading } = useAvailableCounterCollectionsQuery();
   const standardCollections =
@@ -47,6 +54,7 @@ function ExplorePage(): React.ReactElement {
 
   // Process the current data we have into routes
   const routes = useExploreRoutes({
+    isLoggedIn: authStatus === AuthenticationStatus.Authenticated,
     standardCollections,
     userCollections,
   });

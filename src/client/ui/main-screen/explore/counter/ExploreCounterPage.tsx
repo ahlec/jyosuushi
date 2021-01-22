@@ -39,6 +39,7 @@ import styles from "./ExploreCounterPage.scss";
 
 interface ComponentProps {
   counter: Counter;
+  isLoggedIn: boolean;
   standardCollections: readonly StandardCounterCollection[];
   userCollections: readonly UserCounterCollection[];
 }
@@ -78,6 +79,7 @@ const NO_SECTION_ACTIONS: readonly SectionActionDefinition[] = [];
 
 function ExploreCounterPage({
   counter,
+  isLoggedIn,
   standardCollections,
   userCollections,
 }: ComponentProps): React.ReactElement {
@@ -201,7 +203,7 @@ function ExploreCounterPage({
           </SectionContainer>
         )}
         <SectionContainer
-          actions={membershipSectionActions}
+          actions={isLoggedIn ? membershipSectionActions : NO_SECTION_ACTIONS}
           header={INTL_MESSAGES.headerCollections}
         >
           <CollectionSection
@@ -209,12 +211,14 @@ function ExploreCounterPage({
             standardCollections={standardCollections}
             userCollections={userCollections}
           />
-          <EditMembershipDialog
-            counterId={counter.counterId}
-            isOpen={isEditMembershipDialogOpen}
-            onRequestClose={handleRequestEditMembershipDialogClose}
-            userCollections={userCollections}
-          />
+          {isLoggedIn && (
+            <EditMembershipDialog
+              counterId={counter.counterId}
+              isOpen={isEditMembershipDialogOpen}
+              onRequestClose={handleRequestEditMembershipDialogClose}
+              userCollections={userCollections}
+            />
+          )}
         </SectionContainer>
         {counter.footnotes.length > 0 && (
           <SectionContainer

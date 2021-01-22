@@ -21,11 +21,13 @@ export interface RouteDeclaration {
 }
 
 interface HookOptions {
+  isLoggedIn: boolean;
   standardCollections: readonly StandardCounterCollection[];
   userCollections: readonly UserCounterCollection[];
 }
 
 function useExploreRoutes({
+  isLoggedIn,
   standardCollections,
   userCollections,
 }: HookOptions): readonly RouteDeclaration[] {
@@ -58,6 +60,7 @@ function useExploreRoutes({
           return (
             <ExploreCounterPage
               counter={counter}
+              isLoggedIn={isLoggedIn}
               standardCollections={standardCollections}
               userCollections={userCollections}
             />
@@ -69,7 +72,7 @@ function useExploreRoutes({
     });
 
     return result;
-  }, [standardCollections, userCollections]);
+  }, [isLoggedIn, standardCollections, userCollections]);
 }
 
 export default useExploreRoutes;

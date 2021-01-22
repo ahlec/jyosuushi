@@ -31,6 +31,8 @@ export interface SectionActionDefinition {
   uniqueId: string;
 }
 
+type ValidChild = React.ReactElement | false;
+
 interface ComponentProps {
   /**
    * An ordered array of actions that should be displayed in the header
@@ -38,7 +40,7 @@ interface ComponentProps {
    */
   actions: readonly SectionActionDefinition[];
 
-  children: React.ReactElement | readonly React.ReactElement[];
+  children: ValidChild | readonly ValidChild[];
 
   /**
    * A localized text descriptor to display as the header for this section.
