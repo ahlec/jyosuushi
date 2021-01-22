@@ -8,7 +8,10 @@ import useAuthenticationStatus, {
   AuthenticationStatus,
 } from "@jyosuushi/hooks/useAuthenticationStatus";
 
-import { AUTH_MUTATION_REFETCH_QUERIES } from "@jyosuushi/graphql/authentication";
+import {
+  AUTH_MUTATION_REFETCH_QUERIES,
+  AUTH_MUTATION_UPDATE_FUNCTION,
+} from "@jyosuushi/graphql/authentication";
 import {
   useRequestPasswordResetMutation,
   RequestPasswordResetError,
@@ -66,6 +69,7 @@ function ForgotPasswordPage(): React.ReactElement {
   // Handle the submission of the login form
   const [requestPasswordReset] = useRequestPasswordResetMutation({
     refetchQueries: AUTH_MUTATION_REFETCH_QUERIES,
+    update: AUTH_MUTATION_UPDATE_FUNCTION,
   });
   const handleSubmit = useCallback(
     async ({

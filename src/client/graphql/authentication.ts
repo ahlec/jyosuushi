@@ -1,4 +1,4 @@
-import { PureQueryOptions } from "@apollo/client";
+import { ApolloCache, PureQueryOptions } from "@apollo/client";
 
 import {
   AuthenticationCheckDocument,
@@ -13,3 +13,9 @@ export const AUTH_MUTATION_REFETCH_QUERIES: PureQueryOptions[] = [
     query: AuthenticatedProfileQueryDocument,
   },
 ];
+
+export function AUTH_MUTATION_UPDATE_FUNCTION(
+  cache: ApolloCache<unknown>
+): void {
+  cache.evict({ fieldName: "userCounterCollections", id: "ROOT_QUERY" });
+}

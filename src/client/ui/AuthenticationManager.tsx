@@ -6,7 +6,10 @@ import {
   useAuthenticationCheckQuery,
   useLogoutMutation,
 } from "@jyosuushi/graphql/types.generated";
-import { AUTH_MUTATION_REFETCH_QUERIES } from "@jyosuushi/graphql/authentication";
+import {
+  AUTH_MUTATION_REFETCH_QUERIES,
+  AUTH_MUTATION_UPDATE_FUNCTION,
+} from "@jyosuushi/graphql/authentication";
 
 const AUTH_POLL_INTERVAL_MILLISECONDS = ONE_SECOND * 15;
 
@@ -27,6 +30,7 @@ function AuthenticationManager(): null {
   const isDefinitelyUsingExpiredSession = !!data && data.hasSessionExpired;
   const [logout] = useLogoutMutation({
     refetchQueries: AUTH_MUTATION_REFETCH_QUERIES,
+    update: AUTH_MUTATION_UPDATE_FUNCTION,
   });
   useEffect(() => {
     if (!isDefinitelyUsingExpiredSession) {

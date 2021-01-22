@@ -1,6 +1,9 @@
 import { useCallback, useEffect } from "react";
 
-import { AUTH_MUTATION_REFETCH_QUERIES } from "@jyosuushi/graphql/authentication";
+import {
+  AUTH_MUTATION_REFETCH_QUERIES,
+  AUTH_MUTATION_UPDATE_FUNCTION,
+} from "@jyosuushi/graphql/authentication";
 import {
   useVerifyEmailMutationMutation,
   VerifyEmailError,
@@ -34,6 +37,7 @@ function VerificationPerformer({
   // Connect to the GraphQL
   const [verifyEmail] = useVerifyEmailMutationMutation({
     refetchQueries: AUTH_MUTATION_REFETCH_QUERIES,
+    update: AUTH_MUTATION_UPDATE_FUNCTION,
   });
 
   // Create a wrapper that invokes the mutation and then processes the

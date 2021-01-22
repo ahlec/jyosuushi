@@ -1,7 +1,10 @@
 import React, { useCallback, useState } from "react";
 import { FormattedDate, FormattedMessage, defineMessages } from "react-intl";
 
-import { AUTH_MUTATION_REFETCH_QUERIES } from "@jyosuushi/graphql/authentication";
+import {
+  AUTH_MUTATION_REFETCH_QUERIES,
+  AUTH_MUTATION_UPDATE_FUNCTION,
+} from "@jyosuushi/graphql/authentication";
 import { useLogoutMutation } from "@jyosuushi/graphql/types.generated";
 
 import StandardButton from "@jyosuushi/ui/components/StandardButton";
@@ -62,6 +65,7 @@ function ProfilePage({ data }: ComponentProps): React.ReactElement {
   // Connect with GraphQL
   const [logoutMutation] = useLogoutMutation({
     refetchQueries: AUTH_MUTATION_REFETCH_QUERIES,
+    update: AUTH_MUTATION_UPDATE_FUNCTION,
   });
 
   // Handle events
