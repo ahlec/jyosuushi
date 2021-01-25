@@ -6,7 +6,7 @@ import BreadcrumbBar, {
 } from "@jyosuushi/ui/main-screen/explore/BreadcrumbBar";
 import { getCounterCollectionPath } from "@jyosuushi/ui/main-screen/explore/pathing";
 
-import CounterRow from "./CounterRow";
+import EntriesSection from "./entries-section/EntriesSection";
 
 import styles from "./CounterCollectionView.scss";
 
@@ -59,20 +59,7 @@ function CounterCollectionView({
           }}
         />
       </p>
-      <table className={styles.countersTable}>
-        <tbody>
-          {collection.counterIds.map(
-            (counterId): React.ReactElement => (
-              <CounterRow
-                key={counterId}
-                collectionId={collection.id}
-                collectionName={collection.name}
-                counterId={counterId}
-              />
-            )
-          )}
-        </tbody>
-      </table>
+      <EntriesSection collection={collection} />
     </div>
   );
 }
