@@ -317,6 +317,24 @@
     },
     "translation": ""
   },
+  "explorePage.collections.CollectionHeader.subtitle.dateCreated": {
+    "original": {
+      "defaultMessage": "Created <bold>{value}</bold>",
+      "filenames": [
+        "src/client/ui/main-screen/explore/collections/CollectionHeader.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.collections.CollectionHeader.subtitle.dateLastUpdated": {
+    "original": {
+      "defaultMessage": "Last updated <bold>{value}</bold>",
+      "filenames": [
+        "src/client/ui/main-screen/explore/collections/CollectionHeader.tsx"
+      ]
+    },
+    "translation": ""
+  },
   "explorePage.collections.CounterCollectionView.contentsIntro": {
     "original": {
       "defaultMessage": "This collection contains <bold>{numCounters, plural, one {# counter} other {# counters}}</bold>:",

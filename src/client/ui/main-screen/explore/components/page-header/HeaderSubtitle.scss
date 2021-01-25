@@ -1,0 +1,21 @@
+@use "../../../../../palette";
+
+.container {
+  font-size: 14px;
+}
+
+.separator {
+  margin: 0 5px;
+}
+
+.separatorBlue {
+  color: palette.$blue-darkest;
+}
+
+.separatorGreen {
+  color: palette.$green-darkest;
+}
+
+.separatorPink {
+  color: palette.$pink-darkest;
+}

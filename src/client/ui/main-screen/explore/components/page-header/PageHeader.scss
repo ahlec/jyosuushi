@@ -1,0 +1,57 @@
+@use "../../../../../palette";
+
+$overlay-opacity: 0.65;
+
+.container {
+  background: url("./background.jpg");
+  border-bottom: 1px solid palette.$app-outline;
+  border-top: 1px solid palette.$app-outline;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  position: relative;
+}
+
+.overlay,
+.contents {
+  grid-column: 1/2;
+  grid-row: 1/2;
+}
+
+.overlayPink {
+  background-color: rgba(palette.$pink-base, $overlay-opacity);
+}
+
+.overlayBlue {
+  background-color: rgba(palette.$blue-base, $overlay-opacity);
+}
+
+.overlayGreen {
+  background-color: rgba(palette.$green-base, $overlay-opacity);
+}
+
+.contents {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+
+.header {
+  color: palette.$black-light;
+  font-size: 36px;
+  font-variant: small-caps;
+  font-weight: bold;
+  margin: 0;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.separator {
+  background-color: palette.$app-outline;
+  height: 1px;
+  margin: 2px 0 5px;
+  width: 60%;
+}

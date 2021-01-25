@@ -6,6 +6,7 @@ import BreadcrumbBar, {
 } from "@jyosuushi/ui/main-screen/explore/BreadcrumbBar";
 import { getCounterCollectionPath } from "@jyosuushi/ui/main-screen/explore/pathing";
 
+import CollectionHeader from "./CollectionHeader";
 import EntriesSection from "./entries-section/EntriesSection";
 
 import styles from "./CounterCollectionView.scss";
@@ -51,7 +52,7 @@ function CounterCollectionView({
       <div className={styles.breadcrumbContainer}>
         <BreadcrumbBar links={breadcrumbLinks} />
       </div>
-      <h3 className={styles.collectionName}>{collection.name}</h3>
+      <CollectionHeader collection={collection} />
       <div className={styles.pageArea}>
         <p className={styles.contentsIntro}>
           <FormattedMessage
