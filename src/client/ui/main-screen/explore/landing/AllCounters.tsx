@@ -1,4 +1,4 @@
-import { orderBy, values } from "lodash";
+import { values } from "lodash";
 import React, { useMemo } from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
 
@@ -8,6 +8,7 @@ import useLocale from "@jyosuushi/i18n/useLocale";
 import { Counter } from "@jyosuushi/interfaces";
 
 import CounterTile from "@jyosuushi/ui/main-screen/CounterTile";
+import { orderCounters } from "@jyosuushi/ui/main-screen/explore/utils";
 
 import styles from "./AllCounters.scss";
 
@@ -28,10 +29,7 @@ function AllCounters({ headerClassName }: ComponentProps): React.ReactElement {
 
   // Sort the counters alphabetically
   const allSortedCounters = useMemo(
-    (): readonly Counter[] =>
-      orderBy(values(COUNTERS_LOOKUP), (counter) =>
-        locale.dataLocalizers.getCounterName(counter)
-      ),
+    (): readonly Counter[] => orderCounters(values(COUNTERS_LOOKUP), locale),
     [locale]
   );
 
