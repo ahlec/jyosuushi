@@ -5,7 +5,8 @@ import { COUNTERS_LOOKUP } from "@data/counters";
 
 import useLocale from "@jyosuushi/i18n/useLocale";
 
-import CounterDisplay from "@jyosuushi/ui/components/CounterDisplay";
+import Furigana from "@jyosuushi/ui/Furigana";
+import useCounterDisplay from "@jyosuushi/hooks/useCounterDisplay";
 import RightIcon from "@jyosuushi/ui/right.svg";
 
 import { getCounterLink } from "@jyosuushi/ui/main-screen/explore/pathing";
@@ -48,11 +49,18 @@ function CounterRow({
     });
   }, [collectionId, collectionName, counterId, history]);
 
+  // Get the proper display for this counter
+  const counterDisplay = useCounterDisplay(counter);
+
   // Render the component
   return (
     <tr className={styles.counterRow} onClick={handleClick}>
       <td className={styles.jp}>
-        <CounterDisplay className={styles.counterDisplay} counter={counter} />
+        <Furigana
+          className={styles.counterDisplay}
+          furigana={counterDisplay.furigana}
+          text={counterDisplay.writing}
+        />
       </td>
       <td className={styles.name}>
         {locale.dataLocalizers.getCounterName(counter)}

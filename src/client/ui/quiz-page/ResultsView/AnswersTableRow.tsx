@@ -10,7 +10,8 @@ import {
   CounterCollectionDescriptor,
 } from "@jyosuushi/interfaces";
 
-import CounterDisplay from "@jyosuushi/ui/components/CounterDisplay";
+import useCounterDisplay from "@jyosuushi/hooks/useCounterDisplay";
+import Furigana from "@jyosuushi/ui/Furigana";
 
 import styles from "./AnswersTableRow.scss";
 
@@ -65,6 +66,9 @@ function AnswersTableRow({ data }: ComponentProps): React.ReactElement {
   // Connect to the rest of the app
   const locale = useLocale();
 
+  // Determine how this counter is displayed
+  const counterDisplay = useCounterDisplay(data.counter);
+
   // Render the component
   return (
     <tr
@@ -75,7 +79,10 @@ function AnswersTableRow({ data }: ComponentProps): React.ReactElement {
       )}
     >
       <td className={styles.cellCounter}>
-        <CounterDisplay counter={data.counter} />
+        <Furigana
+          furigana={counterDisplay.furigana}
+          text={counterDisplay.writing}
+        />
       </td>
       <td className={styles.cellRule}>
         {locale.dataLocalizers.getCounterName(data.counter)}
