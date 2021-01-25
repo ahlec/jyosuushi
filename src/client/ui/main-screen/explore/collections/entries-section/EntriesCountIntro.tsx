@@ -4,6 +4,11 @@ import { defineMessages, FormattedMessage } from "react-intl";
 import styles from "./EntriesCountIntro.scss";
 
 const INTL_MESSAGES = defineMessages({
+  emptyText: {
+    defaultMessage:
+      "This collection currently has <bold>no counters</bold> in it.",
+    id: "explorePage.collections.entries-section.EntriesCountIntro.emptyText",
+  },
   text: {
     defaultMessage:
       "This collection contains <bold>{numCounters, plural, one {# counter} other {# counters}}</bold>:",
@@ -18,18 +23,20 @@ function FormattedMessageBold(
 }
 
 interface ComponentProps {
-  numEntries: number;
+  numCounters: number;
 }
 
-function EntriesCountIntro({ numEntries }: ComponentProps): React.ReactElement {
-  // Render the component
+function EntriesCountIntro({
+  numCounters,
+}: ComponentProps): React.ReactElement {
+  const message = numCounters ? INTL_MESSAGES.text : INTL_MESSAGES.emptyText;
   return (
     <p className={styles.container}>
       <FormattedMessage
-        {...INTL_MESSAGES.text}
+        {...message}
         values={{
           bold: FormattedMessageBold,
-          numCounters: numEntries,
+          numCounters,
         }}
       />
     </p>

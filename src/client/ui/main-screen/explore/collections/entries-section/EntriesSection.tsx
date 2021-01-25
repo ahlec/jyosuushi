@@ -37,12 +37,14 @@ function EntriesSection({ collection }: ComponentProps): React.ReactElement {
   // Render the component
   return (
     <div className={styles.container}>
-      <EntriesCountIntro numEntries={counters.length} />
-      <CountersTable
-        collectionId={collection.id}
-        collectionName={collection.name}
-        counters={counters}
-      />
+      <EntriesCountIntro numCounters={counters.length} />
+      {counters.length > 0 && (
+        <CountersTable
+          collectionId={collection.id}
+          collectionName={collection.name}
+          counters={counters}
+        />
+      )}
     </div>
   );
 }
