@@ -163,7 +163,9 @@ function ExploreCounterPage({
   // Render the component
   return (
     <div className={styles.exploreCounterPage}>
-      <BreadcrumbBar links={breadcrumbLinks} />
+      <div className={styles.breadcrumbContainer}>
+        <BreadcrumbBar links={breadcrumbLinks} />
+      </div>
       <div className={styles.contents}>
         <h3>{locale.dataLocalizers.getCounterName(counter)}</h3>
         <div className={styles.kanji}>

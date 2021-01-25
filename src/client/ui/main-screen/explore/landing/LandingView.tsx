@@ -34,7 +34,9 @@ function LandingView({
   // Render the component
   return (
     <div className={styles.page}>
-      <BreadcrumbBar links={BREADCRUMB_BAR_LINKS} />
+      <div className={styles.breadcrumbContainer}>
+        <BreadcrumbBar links={BREADCRUMB_BAR_LINKS} />
+      </div>
       <div>
         <AllCollections
           canCreateCollections={

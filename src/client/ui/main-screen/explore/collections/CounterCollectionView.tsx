@@ -48,18 +48,22 @@ function CounterCollectionView({
   // Render the component
   return (
     <div className={styles.counterCollectionView}>
-      <BreadcrumbBar links={breadcrumbLinks} />
+      <div className={styles.breadcrumbContainer}>
+        <BreadcrumbBar links={breadcrumbLinks} />
+      </div>
       <h3 className={styles.collectionName}>{collection.name}</h3>
-      <p className={styles.contentsIntro}>
-        <FormattedMessage
-          {...INTL_MESSAGES.contentsIntro}
-          values={{
-            bold: FormattedMessageBold,
-            numCounters: collection.counterIds.length,
-          }}
-        />
-      </p>
-      <EntriesSection collection={collection} />
+      <div className={styles.pageArea}>
+        <p className={styles.contentsIntro}>
+          <FormattedMessage
+            {...INTL_MESSAGES.contentsIntro}
+            values={{
+              bold: FormattedMessageBold,
+              numCounters: collection.counterIds.length,
+            }}
+          />
+        </p>
+        <EntriesSection collection={collection} />
+      </div>
     </div>
   );
 }

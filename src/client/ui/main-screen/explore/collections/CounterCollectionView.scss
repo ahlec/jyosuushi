@@ -1,7 +1,17 @@
 @import "../../../../palette";
+@import "../../../constants";
 
 .counterCollectionView {
   overflow-y: auto;
+}
+
+.breadcrumbContainer {
+  padding: $page-margin;
+  padding-bottom: 5px;
+}
+
+.pageArea {
+  padding: $page-margin;
 }
 
 .collectionName {
