@@ -1,6 +1,9 @@
 @import "../../../../palette";
+@import "../../../constants";
 
 .ExploreCounterPage {
+  padding: $page-margin;
+
   .contents {
     padding: 20px;
     text-align: center;

@@ -1,6 +1,9 @@
 @import "../../../palette";
+@import "../../constants";
 
 .SettingsPage {
+  padding: $page-margin;
+
   h1 {
     border-bottom: 1px solid $app-outline;
     font-size: 24px;

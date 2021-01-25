@@ -33,7 +33,7 @@ function LandingView({
 
   // Render the component
   return (
-    <div>
+    <div className={styles.page}>
       <BreadcrumbBar links={BREADCRUMB_BAR_LINKS} />
       <div>
         <AllCollections

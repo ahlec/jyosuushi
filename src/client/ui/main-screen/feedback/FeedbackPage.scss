@@ -1,6 +1,9 @@
 @import "../../../palette";
+@import "../../constants";
 
 .FeedbackPage {
+  padding: $page-margin;
+
   p {
     margin: 10px;
 

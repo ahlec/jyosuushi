@@ -1,6 +1,9 @@
 @import "../../../palette";
+@import "../../constants";
 
 .ReleaseNotesPage {
+  padding: $page-margin;
+
   .version-container {
     .version-header {
       color: $pink-darkest;

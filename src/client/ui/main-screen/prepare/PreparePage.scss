@@ -1,8 +1,11 @@
+@import "../../constants";
+
 .PreparePage {
   display: flex;
   flex: 1;
   flex-direction: column;
   height: 100%;
+  padding: $page-margin;
 
   p {
     margin-bottom: 10px;

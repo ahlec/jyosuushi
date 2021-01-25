@@ -1,7 +1,9 @@
 @import "../../../../palette";
+@import "../../../constants";
 
 .AuthPageLayout {
   margin: auto;
+  padding: $page-margin;
   width: 75%;
 }
 

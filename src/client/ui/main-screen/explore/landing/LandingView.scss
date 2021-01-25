@@ -1,4 +1,9 @@
 @import "../../../../palette";
+@import "../../../constants";
+
+.page {
+  padding: $page-margin;
+}
 
 .header {
   border-bottom: 1px solid $app-outline;
