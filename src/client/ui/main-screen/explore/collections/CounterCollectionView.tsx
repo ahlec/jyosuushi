@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
-import { defineMessages, FormattedMessage } from "react-intl";
+
+import { CounterCollection } from "@jyosuushi/graphql/types.generated";
 
 import BreadcrumbBar, {
   BreadcrumbBarLinkDefinition,
@@ -10,22 +11,6 @@ import CollectionHeader from "./CollectionHeader";
 import EntriesSection from "./entries-section/EntriesSection";
 
 import styles from "./CounterCollectionView.scss";
-
-const INTL_MESSAGES = defineMessages({
-  contentsIntro: {
-    defaultMessage:
-      "This collection contains <bold>{numCounters, plural, one {# counter} other {# counters}}</bold>:",
-    id: "explorePage.collections.CounterCollectionView.contentsIntro",
-  },
-});
-
-function FormattedMessageBold(
-  chunks: readonly React.ReactNode[]
-): React.ReactElement {
-  return <strong className={styles.bold}>{chunks}</strong>;
-}
-
-import { CounterCollection } from "@jyosuushi/graphql/types.generated";
 
 interface ComponentProps {
   collection: CounterCollection;
@@ -54,15 +39,6 @@ function CounterCollectionView({
       </div>
       <CollectionHeader collection={collection} />
       <div className={styles.pageArea}>
-        <p className={styles.contentsIntro}>
-          <FormattedMessage
-            {...INTL_MESSAGES.contentsIntro}
-            values={{
-              bold: FormattedMessageBold,
-              numCounters: collection.counterIds.length,
-            }}
-          />
-        </p>
         <EntriesSection collection={collection} />
       </div>
     </div>

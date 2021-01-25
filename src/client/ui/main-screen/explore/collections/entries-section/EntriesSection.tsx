@@ -10,6 +10,9 @@ import useLocale from "@jyosuushi/i18n/useLocale";
 import { orderCounters } from "@jyosuushi/ui/main-screen/explore/utils";
 
 import CountersTable from "./counters-table/CountersTable";
+import EntriesCountIntro from "./EntriesCountIntro";
+
+import styles from "./EntriesSection.scss";
 
 interface ComponentProps {
   collection: CounterCollection;
@@ -33,11 +36,14 @@ function EntriesSection({ collection }: ComponentProps): React.ReactElement {
 
   // Render the component
   return (
-    <CountersTable
-      collectionId={collection.id}
-      collectionName={collection.name}
-      counters={counters}
-    />
+    <div className={styles.container}>
+      <EntriesCountIntro numEntries={counters.length} />
+      <CountersTable
+        collectionId={collection.id}
+        collectionName={collection.name}
+        counters={counters}
+      />
+    </div>
   );
 }
 
