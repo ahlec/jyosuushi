@@ -335,6 +335,24 @@
     },
     "translation": ""
   },
+  "explorePage.collections.CollectionHeader.subtitle.label.standardCollection": {
+    "original": {
+      "defaultMessage": "Standard Collection",
+      "filenames": [
+        "src/client/ui/main-screen/explore/collections/CollectionHeader.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.collections.CollectionHeader.subtitle.label.userCollection": {
+    "original": {
+      "defaultMessage": "Custom Collection",
+      "filenames": [
+        "src/client/ui/main-screen/explore/collections/CollectionHeader.tsx"
+      ]
+    },
+    "translation": ""
+  },
   "explorePage.collections.CounterCollectionView.contentsIntro": {
     "original": {
       "defaultMessage": "This collection contains <bold>{numCounters, plural, one {# counter} other {# counters}}</bold>:",

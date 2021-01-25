@@ -18,6 +18,16 @@ const INTL_MESSAGES = defineMessages({
     defaultMessage: "Last updated <bold>{value}</bold>",
     id: "explorePage.collections.CollectionHeader.subtitle.dateLastUpdated",
   },
+  standardCollectionLabel: {
+    defaultMessage: "Standard Collection",
+    id:
+      "explorePage.collections.CollectionHeader.subtitle.label.standardCollection",
+  },
+  userCollectionLabel: {
+    defaultMessage: "Custom Collection",
+    id:
+      "explorePage.collections.CollectionHeader.subtitle.label.userCollection",
+  },
 });
 
 interface ComponentProps {
@@ -33,7 +43,15 @@ function isUserCollection(
 function CollectionHeader({ collection }: ComponentProps): React.ReactElement {
   // Determine the subtitle entries
   const subtitleEntries = useMemo((): readonly HeaderSubtitleEntryDefinition[] => {
-    const entries: HeaderSubtitleEntryDefinition[] = [];
+    const entries: HeaderSubtitleEntryDefinition[] = [
+      {
+        text: isUserCollection(collection)
+          ? INTL_MESSAGES.userCollectionLabel
+          : INTL_MESSAGES.standardCollectionLabel,
+        uniqueId: "label",
+        value: "",
+      },
+    ];
 
     if (isUserCollection(collection)) {
       entries.push({
