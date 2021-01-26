@@ -371,6 +371,60 @@
     },
     "translation": ""
   },
+  "explore.collections.RenameCollectionModal.modalHeader": {
+    "original": {
+      "defaultMessage": "Rename Collection",
+      "filenames": [
+        "src/client/ui/main-screen/explore/collections/rename-collection-modal/RenameCollectionModal.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explore.collections.RenameCollectionModal.submitButtonLabel": {
+    "original": {
+      "defaultMessage": "Confirm",
+      "filenames": [
+        "src/client/ui/main-screen/explore/collections/rename-collection-modal/RenameCollectionModal.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explore.collections.useRenameCollection.errors.nameIncorrectLength": {
+    "original": {
+      "defaultMessage": "The name of a collection must be between {minLength} and {maxLength} characters.",
+      "filenames": [
+        "src/client/ui/main-screen/explore/collections/rename-collection-modal/useRenameCollection.ts"
+      ]
+    },
+    "translation": ""
+  },
+  "explore.collections.useRenameCollection.errors.notAuthenticated": {
+    "original": {
+      "defaultMessage": "Only authenticated users are able to use custom collections. Please log in or register and try again.",
+      "filenames": [
+        "src/client/ui/main-screen/explore/collections/rename-collection-modal/useRenameCollection.ts"
+      ]
+    },
+    "translation": ""
+  },
+  "explore.collections.useRenameCollection.errors.rateLimited": {
+    "original": {
+      "defaultMessage": "You have attempted to rename this collection too many times recently. Please wait a few minutes before trying again.",
+      "filenames": [
+        "src/client/ui/main-screen/explore/collections/rename-collection-modal/useRenameCollection.ts"
+      ]
+    },
+    "translation": ""
+  },
+  "explore.collections.useRenameCollection.errors.unknown": {
+    "original": {
+      "defaultMessage": "An error has occurred and the collection couldn't be rename. Please try again in a few minutes.",
+      "filenames": [
+        "src/client/ui/main-screen/explore/collections/rename-collection-modal/useRenameCollection.ts"
+      ]
+    },
+    "translation": ""
+  },
   "explore.landing.collection-name-form.CollectionNameForm.nameFieldLabel": {
     "original": {
       "defaultMessage": "Collection Name",

@@ -1,0 +1,7 @@
+mutation RenameCollection($collectionId: String!, $name: String!) {
+  renameCollection(collectionId: $collectionId, name: $name) {
+    collectionId
+    name
+    result
+  }
+}
