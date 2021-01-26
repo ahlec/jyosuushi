@@ -60,6 +60,7 @@ function CounterCollectionView({
       {isRenameModalOpen && (
         <RenameCollectionModal
           collectionId={collection.id}
+          currentName={collection.name}
           onRequestClose={handleRequestCloseRenameModal}
         />
       )}

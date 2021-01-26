@@ -54,6 +54,7 @@ function CreateCollectionModal({
     >
       <CollectionNameForm
         currentError={backendError}
+        initialName=""
         onSubmit={createCollection}
         submitTextButton={INTL_MESSAGES.submitButtonLabel}
       />

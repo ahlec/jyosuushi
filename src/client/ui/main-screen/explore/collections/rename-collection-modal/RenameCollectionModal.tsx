@@ -22,11 +22,13 @@ const INTL_MESSAGES = defineMessages({
 
 interface ComponentProps {
   collectionId: string;
+  currentName: string;
   onRequestClose: () => void;
 }
 
 function RenameCollectionModal({
   collectionId,
+  currentName,
   onRequestClose,
 }: ComponentProps): React.ReactElement {
   // Define component state
@@ -52,6 +54,7 @@ function RenameCollectionModal({
     >
       <CollectionNameForm
         currentError={backendError}
+        initialName={currentName}
         onSubmit={renameCollection}
         submitTextButton={INTL_MESSAGES.submitButtonLabel}
       />

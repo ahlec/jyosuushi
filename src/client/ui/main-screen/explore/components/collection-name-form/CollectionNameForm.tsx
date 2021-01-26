@@ -27,17 +27,19 @@ const INTL_MESSAGES = defineMessages({
 
 interface ComponentProps {
   currentError: CollectionNameFormError | null;
+  initialName: string;
   onSubmit: (name: string) => void;
   submitTextButton: MessageDescriptor;
 }
 
 function CollectionNameForm({
   currentError,
+  initialName,
   onSubmit,
   submitTextButton,
 }: ComponentProps): React.ReactElement {
   // Define component state
-  const [rawName, setRawName] = useState<string>("");
+  const [rawName, setRawName] = useState<string>(initialName);
   const [hasTouchedName, setHasTouchedName] = useState<boolean>(false);
 
   // Validate the current input
