@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { defineMessages } from "react-intl";
+import { defineMessages, MessageDescriptor } from "react-intl";
 
 import ActionBar from "@jyosuushi/ui/components/forms/ActionBar";
 import ErrorDisplay from "@jyosuushi/ui/components/forms/ErrorDisplay";
@@ -8,32 +8,33 @@ import FormButton from "@jyosuushi/ui/components/forms/FormButton";
 import LabeledContainer from "@jyosuushi/ui/components/forms/LabeledContainer";
 import StringInput from "@jyosuushi/ui/components/forms/StringInput";
 
-import { CreateCollectionFormError } from "./types";
 import useCollectionNameValidation from "./useCollectionNameValidation";
 
-import styles from "./CreateCollectionForm.scss";
+import styles from "./CollectionNameForm.scss";
+
+export interface CollectionNameFormError {
+  message: MessageDescriptor;
+  messageValues: Record<string, unknown>;
+}
 
 const INTL_MESSAGES = defineMessages({
   nameLabel: {
     defaultMessage: "Collection Name",
     id:
-      "explore.landing.create-collection-modal.CreateCollectionForm.nameFieldLabel",
-  },
-  submitButtonText: {
-    defaultMessage: "Create",
-    id:
-      "explore.landing.create-collection-modal.CreateCollectionForm.submitButtonText",
+      "explore.landing.collection-name-form.CollectionNameForm.nameFieldLabel",
   },
 });
 
 interface ComponentProps {
-  currentError: CreateCollectionFormError | null;
+  currentError: CollectionNameFormError | null;
   onSubmit: (name: string) => void;
+  submitTextButton: MessageDescriptor;
 }
 
-function CreateCollectionForm({
+function CollectionNameForm({
   currentError,
   onSubmit,
+  submitTextButton,
 }: ComponentProps): React.ReactElement {
   // Define component state
   const [rawName, setRawName] = useState<string>("");
@@ -87,7 +88,7 @@ function CreateCollectionForm({
         <FormButton
           action="submit"
           disabled={currentValidName === null || !!currentError}
-          text={INTL_MESSAGES.submitButtonText}
+          text={submitTextButton}
           variant="primary"
         />
       </ActionBar>
@@ -95,4 +96,4 @@ function CreateCollectionForm({
   );
 }
 
-export default CreateCollectionForm;
+export default CollectionNameForm;

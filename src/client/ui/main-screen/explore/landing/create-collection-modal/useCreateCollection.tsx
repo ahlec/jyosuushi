@@ -14,7 +14,7 @@ import {
   UserCounterCollection,
 } from "@jyosuushi/graphql/types.generated";
 
-import { CreateCollectionFormError } from "./types";
+import { CollectionNameFormError } from "@jyosuushi/ui/main-screen/explore/components/collection-name-form/CollectionNameForm";
 
 const INTL_MESSAGES = defineMessages({
   errorNameIncorrectLength: {
@@ -44,7 +44,7 @@ const INTL_MESSAGES = defineMessages({
 });
 
 interface HookOptions {
-  onError: (error: CreateCollectionFormError) => void;
+  onError: (error: CollectionNameFormError) => void;
   onSuccess: (collection: UserCounterCollection) => void;
 }
 

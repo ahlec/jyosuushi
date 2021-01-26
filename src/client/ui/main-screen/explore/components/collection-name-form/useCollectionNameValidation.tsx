@@ -10,13 +10,13 @@ const INTL_MESSAGES = defineMessages({
   errorFieldRequired: {
     defaultMessage: "The name of the new collection is required.",
     id:
-      "explore.landing.create-collection-modal.useCollectionNameValidation.errors.fieldRequred",
+      "explore.components.collection-name-form.useCollectionNameValidation.errors.fieldRequred",
   },
   errorInvalidLength: {
     defaultMessage:
       "Counter collection names must be between {minLength} and {maxLength} characters long.",
     id:
-      "explore.landing.create-collection-modal.useCollectionNameValidation.errors.invalidLength",
+      "explore.component.collection-name-form.useCollectionNameValidation.errors.invalidLength",
   },
 });
 

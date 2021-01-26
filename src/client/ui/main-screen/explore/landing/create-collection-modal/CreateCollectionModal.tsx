@@ -5,14 +5,20 @@ import { UserCounterCollection } from "@jyosuushi/graphql/types.generated";
 
 import Modal from "@jyosuushi/ui/components/popups/Modal";
 
-import CreateCollectionForm from "./CreateCollectionForm";
-import { CreateCollectionFormError } from "./types";
+import CollectionNameForm, {
+  CollectionNameFormError,
+} from "@jyosuushi/ui/main-screen/explore/components/collection-name-form/CollectionNameForm";
+
 import useCreateCollection from "./useCreateCollection";
 
 const INTL_MESSAGES = defineMessages({
   modalHeader: {
     defaultMessage: "Create Custom Collection",
     id: "explore.landing.CreateCollectionModal.modalHeader",
+  },
+  submitButtonLabel: {
+    defaultMessage: "Create",
+    id: "explore.landing.CreateCollectionModal.submitButtonLabel",
   },
 });
 
@@ -29,7 +35,7 @@ function CreateCollectionModal({
   const [
     backendError,
     setBackendError,
-  ] = useState<CreateCollectionFormError | null>(null);
+  ] = useState<CollectionNameFormError | null>(null);
 
   // Connect with the backend
   const createCollection = useCreateCollection({
@@ -46,9 +52,10 @@ function CreateCollectionModal({
       isOpen={true}
       onRequestClose={onCancel}
     >
-      <CreateCollectionForm
+      <CollectionNameForm
         currentError={backendError}
         onSubmit={createCollection}
+        submitTextButton={INTL_MESSAGES.submitButtonLabel}
       />
     </Modal>
   );

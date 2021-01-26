@@ -371,6 +371,33 @@
     },
     "translation": ""
   },
+  "explore.landing.collection-name-form.CollectionNameForm.nameFieldLabel": {
+    "original": {
+      "defaultMessage": "Collection Name",
+      "filenames": [
+        "src/client/ui/main-screen/explore/components/collection-name-form/CollectionNameForm.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explore.components.collection-name-form.useCollectionNameValidation.errors.fieldRequred": {
+    "original": {
+      "defaultMessage": "The name of the new collection is required.",
+      "filenames": [
+        "src/client/ui/main-screen/explore/components/collection-name-form/useCollectionNameValidation.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explore.component.collection-name-form.useCollectionNameValidation.errors.invalidLength": {
+    "original": {
+      "defaultMessage": "Counter collection names must be between {minLength} and {maxLength} characters long.",
+      "filenames": [
+        "src/client/ui/main-screen/explore/components/collection-name-form/useCollectionNameValidation.tsx"
+      ]
+    },
+    "translation": ""
+  },
   "explorePage.counter.collection.introText": {
     "original": {
       "defaultMessage": "This counter is found in the following {count, plural, one {collection} other {collections}}:",
@@ -596,24 +623,6 @@
     },
     "translation": ""
   },
-  "explore.landing.create-collection-modal.CreateCollectionForm.nameFieldLabel": {
-    "original": {
-      "defaultMessage": "Collection Name",
-      "filenames": [
-        "src/client/ui/main-screen/explore/landing/create-collection-modal/CreateCollectionForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explore.landing.create-collection-modal.CreateCollectionForm.submitButtonText": {
-    "original": {
-      "defaultMessage": "Create",
-      "filenames": [
-        "src/client/ui/main-screen/explore/landing/create-collection-modal/CreateCollectionForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
   "explore.landing.CreateCollectionModal.modalHeader": {
     "original": {
       "defaultMessage": "Create Custom Collection",
@@ -623,20 +632,11 @@
     },
     "translation": ""
   },
-  "explore.landing.create-collection-modal.useCollectionNameValidation.errors.fieldRequred": {
+  "explore.landing.CreateCollectionModal.submitButtonLabel": {
     "original": {
-      "defaultMessage": "The name of the new collection is required.",
+      "defaultMessage": "Create",
       "filenames": [
-        "src/client/ui/main-screen/explore/landing/create-collection-modal/useCollectionNameValidation.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explore.landing.create-collection-modal.useCollectionNameValidation.errors.invalidLength": {
-    "original": {
-      "defaultMessage": "Counter collection names must be between {minLength} and {maxLength} characters long.",
-      "filenames": [
-        "src/client/ui/main-screen/explore/landing/create-collection-modal/useCollectionNameValidation.tsx"
+        "src/client/ui/main-screen/explore/landing/create-collection-modal/CreateCollectionModal.tsx"
       ]
     },
     "translation": ""
