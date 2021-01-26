@@ -1,17 +1,30 @@
 import React, { useCallback, useMemo, useState } from "react";
+import { defineMessages } from "react-intl";
 
 import { CounterCollection } from "@jyosuushi/graphql/types.generated";
 
 import BreadcrumbBar, {
   BreadcrumbBarLinkDefinition,
 } from "@jyosuushi/ui/main-screen/explore/BreadcrumbBar";
+import ActionBar, {
+  ActionBarItemDefinition,
+} from "@jyosuushi/ui/main-screen/explore/components/action-bar/ActionBar";
 import { getCounterCollectionPath } from "@jyosuushi/ui/main-screen/explore/pathing";
+
+import PencilIcon from "@jyosuushi/ui/main-screen/explore/pencil.svg";
 
 import CollectionHeader from "./CollectionHeader";
 import EntriesSection from "./entries-section/EntriesSection";
 import RenameCollectionModal from "./rename-collection-modal/RenameCollectionModal";
 
 import styles from "./CounterCollectionView.scss";
+
+const INTL_MESSAGES = defineMessages({
+  renameActionButtonItem: {
+    defaultMessage: "Rename",
+    id: "explorePage.collections.CounterCollectionView.actionBar.rename",
+  },
+});
 
 interface ComponentProps {
   collection: CounterCollection;
@@ -20,6 +33,8 @@ interface ComponentProps {
 function CounterCollectionView({
   collection,
 }: ComponentProps): React.ReactElement {
+  const isUserCollection = "dateCreated" in collection;
+
   // Define component state
   const [isRenameModalOpen, setIsRenameModalOpen] = useState<boolean>(false);
 
@@ -36,8 +51,14 @@ function CounterCollectionView({
   );
 
   // Handle events
-  const handleOpenRenameModal = useCallback(
-    (): void => setIsRenameModalOpen(true),
+  const actionBarItems = useMemo(
+    (): readonly ActionBarItemDefinition[] => [
+      {
+        icon: PencilIcon,
+        onClick: (): void => setIsRenameModalOpen(true),
+        text: INTL_MESSAGES.renameActionButtonItem,
+      },
+    ],
     []
   );
 
@@ -53,11 +74,13 @@ function CounterCollectionView({
         <BreadcrumbBar links={breadcrumbLinks} />
       </div>
       <CollectionHeader collection={collection} />
-      <button onClick={handleOpenRenameModal}>Rename</button>
       <div className={styles.pageArea}>
+        {isUserCollection && (
+          <ActionBar className={styles.actionBar} items={actionBarItems} />
+        )}
         <EntriesSection collection={collection} />
       </div>
-      {isRenameModalOpen && (
+      {isUserCollection && isRenameModalOpen && (
         <RenameCollectionModal
           collectionId={collection.id}
           currentName={collection.name}

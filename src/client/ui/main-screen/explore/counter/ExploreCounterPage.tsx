@@ -33,7 +33,7 @@ import ItemsSection, { hasItemsSectionContents } from "./ItemsSection";
 import SectionContainer, { SectionActionDefinition } from "./SectionContainer";
 import { RedirectLocation } from "./types";
 
-import PencilIcon from "./pencil.svg";
+import PencilIcon from "@jyosuushi/ui/main-screen/explore/pencil.svg";
 
 import styles from "./ExploreCounterPage.scss";
 

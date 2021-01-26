@@ -353,6 +353,15 @@
     },
     "translation": ""
   },
+  "explorePage.collections.CounterCollectionView.actionBar.rename": {
+    "original": {
+      "defaultMessage": "Rename",
+      "filenames": [
+        "src/client/ui/main-screen/explore/collections/CounterCollectionView.tsx"
+      ]
+    },
+    "translation": ""
+  },
   "explorePage.collections.entries-section.EntriesCountIntro.emptyText": {
     "original": {
       "defaultMessage": "This collection currently has <bold>no counters</bold> in it.",

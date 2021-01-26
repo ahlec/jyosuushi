@@ -1,0 +1,12 @@
+@use "../../../../../palette";
+
+.container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.separator {
+  color: palette.$gray-base;
+  margin: 0 5px;
+}

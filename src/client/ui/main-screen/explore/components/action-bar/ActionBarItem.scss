@@ -1,0 +1,32 @@
+@use "../../../../../palette";
+
+$regular-color: palette.$green-dark;
+$hover-color: palette.$green-darkest;
+
+.container {
+  align-items: center;
+  color: $regular-color;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 14px;
+
+  &:hover {
+    color: $hover-color;
+
+    .icon {
+      path {
+        fill: $hover-color;
+      }
+    }
+  }
+}
+
+.icon {
+  height: 16px;
+  margin-right: 5px;
+  width: 16px;
+
+  path {
+    fill: $regular-color;
+  }
+}
