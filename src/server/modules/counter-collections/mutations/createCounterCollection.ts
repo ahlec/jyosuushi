@@ -15,13 +15,7 @@ import { ServerContext } from "@server/context";
 
 import { convertPrismaUserCollectionToGql } from "@server/modules/counter-collections/utils";
 
-function coerceName(rawName: string): string {
-  if (!rawName) {
-    return "";
-  }
-
-  return rawName.trim();
-}
+import { coerceCollectionName } from "./utils";
 
 export async function createCounterCollection(
   parent: unknown,
@@ -69,7 +63,7 @@ export async function createCounterCollection(
   }
 
   // Validate incoming parameters
-  const name = coerceName(args.name);
+  const name = coerceCollectionName(args.name);
   if (!name) {
     return {
       error: CreateCounterCollectionError.NameMissingOrEmpty,

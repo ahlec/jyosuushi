@@ -37,3 +37,11 @@ export async function getCollection(
 
   return collection;
 }
+
+export function coerceCollectionName(rawName: string): string {
+  if (!rawName) {
+    return "";
+  }
+
+  return rawName.trim();
+}

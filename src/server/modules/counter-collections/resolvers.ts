@@ -16,6 +16,7 @@ import { STANDARD_COLLECTIONS } from "./standard-collections.data";
 import { addCounterToCollection } from "./mutations/addCounterToCollection";
 import { createCounterCollection } from "./mutations/createCounterCollection";
 import { removeCounterFromCollection } from "./mutations/removeCounterFromCollection";
+import { renameCollection } from "./mutations/renameCollection";
 import { convertPrismaUserCollectionToGql } from "./utils";
 
 type SomeCounterCollection = StandardCounterCollection | UserCounterCollection;
@@ -36,6 +37,7 @@ export const COUNTER_COLLECTIONS_RESOLVERS: Resolvers = {
     addCounterToCollection,
     createCounterCollection,
     removeCounterFromCollection,
+    renameCollection,
   },
   Query: {
     standardCounterCollections: (): StandardCounterCollection[] =>
