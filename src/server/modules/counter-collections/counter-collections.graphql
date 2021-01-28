@@ -31,6 +31,7 @@ extend type Mutation {
     collectionId: String!
     counterId: String!
   ): AddCounterToCollectionResponse!
+  deleteCollection(collectionId: String!): DeleteCollectionResponse!
   renameCollection(
     collectionId: String!
     name: String!
@@ -120,4 +121,22 @@ type RenameCollectionResponse {
   collectionId: String!
   name: String!
   result: RenameCollectionResult!
+}
+
+enum DeleteCollectionResult {
+  # Success
+  SUCCESS
+
+  # Validation errors
+  ERROR_COLLECTION_DOES_NOT_EXIST
+
+  # Operation errors
+  ERROR_RATE_LIMITED
+  ERROR_NOT_AUTHENTICATED
+  ERROR_COULD_NOT_DELETE
+}
+
+type DeleteCollectionResponse {
+  collectionId: String!
+  result: DeleteCollectionResult!
 }
