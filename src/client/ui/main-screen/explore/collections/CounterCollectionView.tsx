@@ -16,10 +16,17 @@ import PencilIcon from "@jyosuushi/ui/main-screen/explore/pencil.svg";
 import CollectionHeader from "./CollectionHeader";
 import EntriesSection from "./entries-section/EntriesSection";
 import RenameCollectionModal from "./rename-collection-modal/RenameCollectionModal";
+import useDeleteCollection from "./useDeleteCollection";
+
+import TrashIcon from "./trash.svg";
 
 import styles from "./CounterCollectionView.scss";
 
 const INTL_MESSAGES = defineMessages({
+  deleteActionButtonItem: {
+    defaultMessage: "Delete",
+    id: "explorePage.collections.CounterCollectionView.actionBar.delete",
+  },
   renameActionButtonItem: {
     defaultMessage: "Rename",
     id: "explorePage.collections.CounterCollectionView.actionBar.rename",
@@ -50,7 +57,10 @@ function CounterCollectionView({
     [collection.id, collection.name]
   );
 
-  // Handle events
+  // Connect with the backend
+  const deleteCollection = useDeleteCollection(collection.id);
+
+  // Prepare the action bar
   const actionBarItems = useMemo(
     (): readonly ActionBarItemDefinition[] => [
       {
@@ -58,10 +68,16 @@ function CounterCollectionView({
         onClick: (): void => setIsRenameModalOpen(true),
         text: INTL_MESSAGES.renameActionButtonItem,
       },
+      {
+        icon: TrashIcon,
+        onClick: deleteCollection,
+        text: INTL_MESSAGES.deleteActionButtonItem,
+      },
     ],
-    []
+    [deleteCollection]
   );
 
+  // Handle events
   const handleRequestCloseRenameModal = useCallback(
     (): void => setIsRenameModalOpen(false),
     []

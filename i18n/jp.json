@@ -353,6 +353,15 @@
     },
     "translation": ""
   },
+  "explorePage.collections.CounterCollectionView.actionBar.delete": {
+    "original": {
+      "defaultMessage": "Delete",
+      "filenames": [
+        "src/client/ui/main-screen/explore/collections/CounterCollectionView.tsx"
+      ]
+    },
+    "translation": ""
+  },
   "explorePage.collections.CounterCollectionView.actionBar.rename": {
     "original": {
       "defaultMessage": "Rename",

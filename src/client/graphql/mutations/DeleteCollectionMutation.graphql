@@ -1,0 +1,6 @@
+mutation DeleteCollection($collectionId: String!) {
+  deleteCollection(collectionId: $collectionId) {
+    collectionId
+    result
+  }
+}
