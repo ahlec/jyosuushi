@@ -35,6 +35,26 @@
     },
     "translation": ""
   },
+  "components.popups.BaseConfirmationDialog.buttonNo": {
+    "original": {
+      "defaultMessage": "No",
+      "description": "Clicking this buttons cancels/declines the yes/no confirmation prompt given to the user.",
+      "filenames": [
+        "src/client/ui/components/popups/BaseConfirmationDialog.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "components.popups.BaseConfirmationDialog.buttonYes": {
+    "original": {
+      "defaultMessage": "Yes",
+      "description": "Clicking this button confirms the yes/no confirmation prompt given to the user.",
+      "filenames": [
+        "src/client/ui/components/popups/BaseConfirmationDialog.tsx"
+      ]
+    },
+    "translation": ""
+  },
   "CreditsFooter.credits": {
     "original": {
       "defaultMessage": "Application designed and coded by <alec>Alec Deitloff</alec>. Vector icons were taken from the <vectorIcons>Core - UI - Outlined</vectorIcons> collection. Sakura icon was made by <sakura>Freepik</sakura>. Small icons are part of the <silk>Silk</silk> collection.",
@@ -194,26 +214,6 @@
       "defaultMessage": "Submit Feedback",
       "filenames": [
         "src/client/ui/FeedbackFooter.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "header.AbortConfirmationModal.buttonNo": {
-    "original": {
-      "defaultMessage": "No",
-      "description": "Clicking this buttons indicates the user wants to stay in the quiz.",
-      "filenames": [
-        "src/client/ui/Header/AbortConfirmationModal.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "header.AbortConfirmationModal.buttonYes": {
-    "original": {
-      "defaultMessage": "Yes",
-      "description": "Clicking this button confirms the user's intent to leave the quiz.",
-      "filenames": [
-        "src/client/ui/Header/AbortConfirmationModal.tsx"
       ]
     },
     "translation": ""

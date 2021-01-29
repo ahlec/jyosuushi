@@ -1,0 +1,23 @@
+@import "../../../palette";
+
+.content {
+  padding: 15px;
+  text-align: center;
+}
+
+.buttonsContainer {
+  margin-top: 15px;
+}
+
+.cancelButton,
+.confirmButton {
+  background-color: $green-base;
+  border-color: $green-dark;
+  font-size: 18px;
+  width: 70px;
+}
+
+.confirmButton {
+  background-color: $green-dark;
+  margin-left: 8px;
+}

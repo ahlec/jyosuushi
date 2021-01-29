@@ -1,24 +1,9 @@
 import React from "react";
-import { defineMessages, FormattedMessage } from "react-intl";
+import { defineMessages } from "react-intl";
 
-import StandardButton from "@jyosuushi/ui/components/StandardButton";
-import Modal from "@jyosuushi/ui/components/popups/Modal";
-
-import styles from "./AbortConfirmationModal.scss";
+import BaseConfirmationDialog from "@jyosuushi/ui/components/popups/BaseConfirmationDialog";
 
 const INTL_MESSAGES = defineMessages({
-  buttonNo: {
-    defaultMessage: "No",
-    description:
-      "Clicking this buttons indicates the user wants to stay in the quiz.",
-    id: "header.AbortConfirmationModal.buttonNo",
-  },
-  buttonYes: {
-    defaultMessage: "Yes",
-    description:
-      "Clicking this button confirms the user's intent to leave the quiz.",
-    id: "header.AbortConfirmationModal.buttonYes",
-  },
   modalHeader: {
     defaultMessage: "End Quiz Early?",
     id: "header.AbortConfirmationModal.header",
@@ -35,39 +20,20 @@ interface ComponentProps {
   onRequestClose: () => void;
 }
 
-export default class AbortConfirmationModal extends React.PureComponent<
-  ComponentProps
-> {
-  public render(): React.ReactNode {
-    const { isOpen, onRequestClose } = this.props;
-    return (
-      <Modal
-        className={styles.abortConfirmationModal}
-        contentClassName={styles.content}
-        hasStandardHeight={false}
-        header={INTL_MESSAGES.modalHeader}
-        isOpen={isOpen}
-        onRequestClose={onRequestClose}
-      >
-        <FormattedMessage {...INTL_MESSAGES.question} tagName="p" />
-        <div className={styles.buttons}>
-          <StandardButton onClick={onRequestClose}>
-            <FormattedMessage {...INTL_MESSAGES.buttonNo} />
-          </StandardButton>
-          <StandardButton
-            className={styles.confirm}
-            onClick={this.onClickConfirm}
-          >
-            <FormattedMessage {...INTL_MESSAGES.buttonYes} />
-          </StandardButton>
-        </div>
-      </Modal>
-    );
-  }
-
-  private onClickConfirm = (): void => {
-    const { onConfirm, onRequestClose } = this.props;
-    onConfirm();
-    onRequestClose();
-  };
+function AbortConfirmationModal({
+  isOpen,
+  onConfirm,
+  onRequestClose,
+}: ComponentProps): React.ReactElement {
+  return (
+    <BaseConfirmationDialog
+      header={INTL_MESSAGES.modalHeader}
+      isOpen={isOpen}
+      onConfirm={onConfirm}
+      onRequestClose={onRequestClose}
+      prompt={INTL_MESSAGES.question}
+    />
+  );
 }
+
+export default AbortConfirmationModal;
