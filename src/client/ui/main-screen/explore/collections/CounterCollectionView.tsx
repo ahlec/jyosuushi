@@ -14,6 +14,7 @@ import { getCounterCollectionPath } from "@jyosuushi/ui/main-screen/explore/path
 import PencilIcon from "@jyosuushi/ui/main-screen/explore/pencil.svg";
 
 import CollectionHeader from "./CollectionHeader";
+import DeleteCollectionConfirmationModal from "./DeleteCollectionConfirmationModal";
 import EntriesSection from "./entries-section/EntriesSection";
 import RenameCollectionModal from "./rename-collection-modal/RenameCollectionModal";
 import useDeleteCollection from "./useDeleteCollection";
@@ -44,6 +45,7 @@ function CounterCollectionView({
 
   // Define component state
   const [isRenameModalOpen, setIsRenameModalOpen] = useState<boolean>(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
 
   // Prepare the links to appear in the breadcrumb bar
   const breadcrumbLinks = useMemo(
@@ -70,16 +72,21 @@ function CounterCollectionView({
       },
       {
         icon: TrashIcon,
-        onClick: deleteCollection,
+        onClick: (): void => setIsDeleteModalOpen(true),
         text: INTL_MESSAGES.deleteActionButtonItem,
       },
     ],
-    [deleteCollection]
+    []
   );
 
   // Handle events
   const handleRequestCloseRenameModal = useCallback(
     (): void => setIsRenameModalOpen(false),
+    []
+  );
+
+  const handleRequestCloseDeleteModal = useCallback(
+    (): void => setIsDeleteModalOpen(false),
     []
   );
 
@@ -101,6 +108,12 @@ function CounterCollectionView({
           collectionId={collection.id}
           currentName={collection.name}
           onRequestClose={handleRequestCloseRenameModal}
+        />
+      )}
+      {isUserCollection && isDeleteModalOpen && (
+        <DeleteCollectionConfirmationModal
+          onConfirm={deleteCollection}
+          onRequestClose={handleRequestCloseDeleteModal}
         />
       )}
     </div>

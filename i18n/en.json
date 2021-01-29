@@ -371,6 +371,24 @@
     },
     "translation": ""
   },
+  "explorePage.collections.DeleteCollectionConfirmationModal.header": {
+    "original": {
+      "defaultMessage": "Delete Collection",
+      "filenames": [
+        "src/client/ui/main-screen/explore/collections/DeleteCollectionConfirmationModal.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.collections.DeleteCollectionConfirmationModal.promptMessage": {
+    "original": {
+      "defaultMessage": "Are you sure you want to delete this collection? This cannot be undone.",
+      "filenames": [
+        "src/client/ui/main-screen/explore/collections/DeleteCollectionConfirmationModal.tsx"
+      ]
+    },
+    "translation": ""
+  },
   "explorePage.collections.entries-section.EntriesCountIntro.emptyText": {
     "original": {
       "defaultMessage": "This collection currently has <bold>no counters</bold> in it.",
