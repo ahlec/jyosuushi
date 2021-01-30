@@ -1,9 +1,21 @@
+@use "../../../../../../palette";
 @use "./constants" as dialog-constants;
 
 .collectionRow {
+  cursor: pointer;
   display: grid;
   gap: dialog-constants.$cell-separation;
   grid-template-columns: auto 1fr;
+  padding: 2px 5px;
+  width: 100%;
+
+  &:focus {
+    outline: 2px solid palette.$green-dark;
+  }
+
+  &:hover {
+    background-color: palette.$green-light;
+  }
 }
 
 .name {

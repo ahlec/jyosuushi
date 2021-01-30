@@ -1,8 +1,9 @@
-import React, { useCallback } from "react";
+import { noop } from "lodash";
+import React, { useCallback, useState } from "react";
 
 import { UserCounterCollection } from "@jyosuushi/graphql/types.generated";
 
-import ToggleMembershipButton from "./ToggleMembershipButton";
+import ToggleMembershipCheck, { CheckState } from "./ToggleMembershipCheck";
 
 import styles from "./CollectionRow.scss";
 
@@ -43,26 +44,59 @@ function CollectionRow({
   onAddToCollection,
   onRemoveFromCollection,
 }: ComponentProps): React.ReactElement {
-  // Handle events
-  const handleAdd = useCallback(
-    (): Promise<void> => onAddToCollection(collection.id),
-    [collection.id, onAddToCollection]
-  );
+  // Define component state
+  const [isPerforming, setIsPerforming] = useState<boolean>(false);
 
-  const handleRemove = useCallback(
-    (): Promise<void> => onRemoveFromCollection(collection.id),
-    [collection.id, onRemoveFromCollection]
-  );
+  // Handle events
+  const handleAdd = useCallback(async (): Promise<void> => {
+    try {
+      setIsPerforming(true);
+      await onAddToCollection(collection.id);
+    } finally {
+      setIsPerforming(false);
+    }
+  }, [collection.id, onAddToCollection]);
+
+  const handleRemove = useCallback(async (): Promise<void> => {
+    try {
+      setIsPerforming(true);
+      await onRemoveFromCollection(collection.id);
+    } finally {
+      setIsPerforming(false);
+    }
+  }, [collection.id, onRemoveFromCollection]);
+
+  // Determine the current state to display
+  let checkState: CheckState;
+  if (isPerforming) {
+    checkState = "toggling";
+  } else {
+    checkState = isCounterInCollection ? "in-collection" : "not-in-collection";
+  }
+
+  // Determine which callback should be used
+  let buttonCallback: () => void;
+  switch (checkState) {
+    case "toggling": {
+      buttonCallback = noop;
+      break;
+    }
+    case "not-in-collection": {
+      buttonCallback = handleAdd;
+      break;
+    }
+    case "in-collection": {
+      buttonCallback = handleRemove;
+      break;
+    }
+  }
 
   // Render the component
   return (
-    <div className={styles.collectionRow}>
-      <ToggleMembershipButton
-        isCounterInCollection={isCounterInCollection}
-        onToggle={isCounterInCollection ? handleRemove : handleAdd}
-      />
+    <button className={styles.collectionRow} onClick={buttonCallback}>
+      <ToggleMembershipCheck state={checkState} />
       <div className={styles.name}>{collection.name}</div>
-    </div>
+    </button>
   );
 }
 

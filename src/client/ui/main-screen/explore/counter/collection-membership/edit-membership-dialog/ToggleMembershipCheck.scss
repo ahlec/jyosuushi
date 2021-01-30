@@ -2,7 +2,7 @@
 
 $dimensions: 20px;
 
-.button {
+.container {
   align-items: center;
   display: flex;
   height: $dimensions;
@@ -20,25 +20,20 @@ $dimensions: 20px;
   }
 }
 
-.alreadyInCollection {
-  &:hover {
-    path {
-      opacity: 0.3;
-    }
+button:hover .alreadyInCollection,
+button:hover .notInCollection {
+  path {
+    opacity: 0.3;
   }
+}
 
+.alreadyInCollection {
   path {
     transition: opacity 100ms;
   }
 }
 
 .notInCollection {
-  &:hover {
-    path {
-      opacity: 0.3;
-    }
-  }
-
   path {
     opacity: 0;
     transition: opacity 100ms;

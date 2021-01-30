@@ -11,9 +11,5 @@
 }
 
 .collections {
-  display: grid; // use 'grid' here since better cross-browser support for 'gap' over flexbox
   flex: 1;
-  gap: dialog-constants.$cell-separation;
-  grid-template-columns: 1fr;
-  padding: dialog-constants.$cell-separation;
 }
