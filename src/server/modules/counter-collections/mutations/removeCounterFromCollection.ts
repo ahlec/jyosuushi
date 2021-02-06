@@ -102,6 +102,15 @@ export async function removeCounterFromCollection(
         },
       },
     });
+    await prisma.userCounterCollection.update({
+      data: {
+        dateLastUpdated: new Date(),
+      },
+      where: {
+        id: collection.id,
+      },
+    });
+
     return {
       collectionId: args.collectionId,
       counterId: args.counterId,
