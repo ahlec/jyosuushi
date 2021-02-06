@@ -1,52 +1,35 @@
-import React, { useCallback, useMemo, useState } from "react";
-import { defineMessages } from "react-intl";
+import React, { useMemo } from "react";
 
-import { CounterCollection } from "@jyosuushi/graphql/types.generated";
+import {
+  StandardCounterCollection,
+  UserCounterCollection,
+} from "@jyosuushi/graphql/types.generated";
 
 import BreadcrumbBar, {
   BreadcrumbBarLinkDefinition,
 } from "@jyosuushi/ui/main-screen/explore/BreadcrumbBar";
-import ActionBar, {
-  ActionBarItemDefinition,
-} from "@jyosuushi/ui/main-screen/explore/components/action-bar/ActionBar";
 import { getCounterCollectionPath } from "@jyosuushi/ui/main-screen/explore/pathing";
 
-import PencilIcon from "@jyosuushi/ui/main-screen/explore/pencil.svg";
-
 import CollectionHeader from "./CollectionHeader";
-import DeleteCollectionConfirmationModal from "./DeleteCollectionConfirmationModal";
 import EntriesSection from "./entries-section/EntriesSection";
-import RenameCollectionModal from "./rename-collection-modal/RenameCollectionModal";
-import useDeleteCollection from "./useDeleteCollection";
-
-import TrashIcon from "./trash.svg";
+import StandardCollectionContent from "./StandardCollectionContent";
+import UserCollectionContent from "./UserCollectionContent";
 
 import styles from "./CounterCollectionView.scss";
 
-const INTL_MESSAGES = defineMessages({
-  deleteActionButtonItem: {
-    defaultMessage: "Delete",
-    id: "explorePage.collections.CounterCollectionView.actionBar.delete",
-  },
-  renameActionButtonItem: {
-    defaultMessage: "Rename",
-    id: "explorePage.collections.CounterCollectionView.actionBar.rename",
-  },
-});
+function isUserCollection(
+  collection: StandardCounterCollection | UserCounterCollection
+): collection is UserCounterCollection {
+  return "dateCreated" in collection;
+}
 
 interface ComponentProps {
-  collection: CounterCollection;
+  collection: StandardCounterCollection | UserCounterCollection;
 }
 
 function CounterCollectionView({
   collection,
 }: ComponentProps): React.ReactElement {
-  const isUserCollection = "dateCreated" in collection;
-
-  // Define component state
-  const [isRenameModalOpen, setIsRenameModalOpen] = useState<boolean>(false);
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
-
   // Prepare the links to appear in the breadcrumb bar
   const breadcrumbLinks = useMemo(
     (): readonly BreadcrumbBarLinkDefinition[] => [
@@ -59,37 +42,6 @@ function CounterCollectionView({
     [collection.id, collection.name]
   );
 
-  // Connect with the backend
-  const deleteCollection = useDeleteCollection(collection.id);
-
-  // Prepare the action bar
-  const actionBarItems = useMemo(
-    (): readonly ActionBarItemDefinition[] => [
-      {
-        icon: PencilIcon,
-        onClick: (): void => setIsRenameModalOpen(true),
-        text: INTL_MESSAGES.renameActionButtonItem,
-      },
-      {
-        icon: TrashIcon,
-        onClick: (): void => setIsDeleteModalOpen(true),
-        text: INTL_MESSAGES.deleteActionButtonItem,
-      },
-    ],
-    []
-  );
-
-  // Handle events
-  const handleRequestCloseRenameModal = useCallback(
-    (): void => setIsRenameModalOpen(false),
-    []
-  );
-
-  const handleRequestCloseDeleteModal = useCallback(
-    (): void => setIsDeleteModalOpen(false),
-    []
-  );
-
   // Render the component
   return (
     <div className={styles.counterCollectionView}>
@@ -98,24 +50,19 @@ function CounterCollectionView({
       </div>
       <CollectionHeader collection={collection} />
       <div className={styles.pageArea}>
-        {isUserCollection && (
-          <ActionBar className={styles.actionBar} items={actionBarItems} />
+        {isUserCollection(collection) ? (
+          <UserCollectionContent
+            className={styles.collectionContent}
+            collection={collection}
+          />
+        ) : (
+          <StandardCollectionContent
+            className={styles.collectionContent}
+            collection={collection}
+          />
         )}
         <EntriesSection collection={collection} />
       </div>
-      {isUserCollection && isRenameModalOpen && (
-        <RenameCollectionModal
-          collectionId={collection.id}
-          currentName={collection.name}
-          onRequestClose={handleRequestCloseRenameModal}
-        />
-      )}
-      {isUserCollection && isDeleteModalOpen && (
-        <DeleteCollectionConfirmationModal
-          onConfirm={deleteCollection}
-          onRequestClose={handleRequestCloseDeleteModal}
-        />
-      )}
     </div>
   );
 }

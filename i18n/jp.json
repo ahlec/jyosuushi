@@ -353,24 +353,6 @@
     },
     "translation": ""
   },
-  "explorePage.collections.CounterCollectionView.actionBar.delete": {
-    "original": {
-      "defaultMessage": "Delete",
-      "filenames": [
-        "src/client/ui/main-screen/explore/collections/CounterCollectionView.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.collections.CounterCollectionView.actionBar.rename": {
-    "original": {
-      "defaultMessage": "Rename",
-      "filenames": [
-        "src/client/ui/main-screen/explore/collections/CounterCollectionView.tsx"
-      ]
-    },
-    "translation": ""
-  },
   "explorePage.collections.DeleteCollectionConfirmationModal.header": {
     "original": {
       "defaultMessage": "Delete Collection",
@@ -457,6 +439,24 @@
       "defaultMessage": "An error has occurred and the collection couldn't be rename. Please try again in a few minutes.",
       "filenames": [
         "src/client/ui/main-screen/explore/collections/rename-collection-modal/useRenameCollection.ts"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.collections.UserCollectionContent.actionBar.delete": {
+    "original": {
+      "defaultMessage": "Delete",
+      "filenames": [
+        "src/client/ui/main-screen/explore/collections/UserCollectionContent.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.collections.UserCollectionContent.actionBar.rename": {
+    "original": {
+      "defaultMessage": "Rename",
+      "filenames": [
+        "src/client/ui/main-screen/explore/collections/UserCollectionContent.tsx"
       ]
     },
     "translation": ""
