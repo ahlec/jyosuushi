@@ -1,6 +1,7 @@
 @use "../../../../../palette";
 
 $overlay-opacity: 0.65;
+$padding: 15px;
 
 .container {
   background: url("./background.jpg");
@@ -34,7 +35,9 @@ $overlay-opacity: 0.65;
   align-items: center;
   display: flex;
   flex-direction: column;
-  padding: 15px;
+  max-width: 100%;
+  overflow: hidden;
+  padding: $padding;
 }
 
 .header {
@@ -43,6 +46,7 @@ $overlay-opacity: 0.65;
   font-variant: small-caps;
   font-weight: bold;
   margin: 0;
+  max-width: calc(100% - #{$padding * 2});
   overflow: hidden;
   text-align: center;
   text-overflow: ellipsis;
