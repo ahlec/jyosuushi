@@ -15,16 +15,22 @@ import EntriesSection from "./entries-section/EntriesSection";
 import RenameCollectionModal from "./rename-collection-modal/RenameCollectionModal";
 import useDeleteCollection from "./useDeleteCollection";
 
+import AddIcon from "./add.svg";
 import TrashIcon from "./trash.svg";
 
 const INTL_MESSAGES = defineMessages({
+  addRemoveCountersActionButtonItem: {
+    defaultMessage: "Add/Remove Counters",
+    id:
+      "explorePage.collections.UserCollectionView.actionBar.addRemoveCounters",
+  },
   deleteActionButtonItem: {
     defaultMessage: "Delete",
-    id: "explorePage.collections.UserCollectionContent.actionBar.delete",
+    id: "explorePage.collections.UserCollectionView.actionBar.delete",
   },
   renameActionButtonItem: {
     defaultMessage: "Rename",
-    id: "explorePage.collections.UserCollectionContent.actionBar.rename",
+    id: "explorePage.collections.UserCollectionView.actionBar.rename",
   },
 });
 
@@ -36,6 +42,7 @@ function UserCollectionView({
   collection,
 }: ComponentProps): React.ReactElement {
   // Define component state
+  const [isEditingContents, setIsEditingContents] = useState<boolean>(false);
   const [isRenameModalOpen, setIsRenameModalOpen] = useState<boolean>(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
 
@@ -45,6 +52,11 @@ function UserCollectionView({
   // Prepare the action bar
   const actionBarItems = useMemo(
     (): readonly ActionBarItemDefinition[] => [
+      {
+        icon: AddIcon,
+        onClick: (): void => setIsEditingContents(!isEditingContents),
+        text: INTL_MESSAGES.addRemoveCountersActionButtonItem,
+      },
       {
         icon: PencilIcon,
         onClick: (): void => setIsRenameModalOpen(true),
@@ -56,7 +68,7 @@ function UserCollectionView({
         text: INTL_MESSAGES.deleteActionButtonItem,
       },
     ],
-    []
+    [isEditingContents]
   );
 
   // Handle events
@@ -74,7 +86,7 @@ function UserCollectionView({
   return (
     <BaseCounterCollectionView collection={collection}>
       <ActionBar items={actionBarItems} />
-      <EntriesSection collection={collection} />
+      {isEditingContents ? null : <EntriesSection collection={collection} />}
       {isRenameModalOpen && (
         <RenameCollectionModal
           collectionId={collection.id}

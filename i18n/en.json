@@ -443,20 +443,29 @@
     },
     "translation": ""
   },
-  "explorePage.collections.UserCollectionContent.actionBar.delete": {
+  "explorePage.collections.UserCollectionView.actionBar.addRemoveCounters": {
     "original": {
-      "defaultMessage": "Delete",
+      "defaultMessage": "Add/Remove Counters",
       "filenames": [
-        "src/client/ui/main-screen/explore/collections/UserCollectionContent.tsx"
+        "src/client/ui/main-screen/explore/collections/UserCollectionView.tsx"
       ]
     },
     "translation": ""
   },
-  "explorePage.collections.UserCollectionContent.actionBar.rename": {
+  "explorePage.collections.UserCollectionView.actionBar.delete": {
+    "original": {
+      "defaultMessage": "Delete",
+      "filenames": [
+        "src/client/ui/main-screen/explore/collections/UserCollectionView.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.collections.UserCollectionView.actionBar.rename": {
     "original": {
       "defaultMessage": "Rename",
       "filenames": [
-        "src/client/ui/main-screen/explore/collections/UserCollectionContent.tsx"
+        "src/client/ui/main-screen/explore/collections/UserCollectionView.tsx"
       ]
     },
     "translation": ""
