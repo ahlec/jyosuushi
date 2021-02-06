@@ -11,23 +11,15 @@ import BreadcrumbBar, {
 import { getCounterCollectionPath } from "@jyosuushi/ui/main-screen/explore/pathing";
 
 import CollectionHeader from "./CollectionHeader";
-import EntriesSection from "./entries-section/EntriesSection";
-import StandardCollectionContent from "./StandardCollectionContent";
-import UserCollectionContent from "./UserCollectionContent";
-
-import styles from "./CounterCollectionView.scss";
-
-function isUserCollection(
-  collection: StandardCounterCollection | UserCounterCollection
-): collection is UserCounterCollection {
-  return "dateCreated" in collection;
-}
+import styles from "./BaseCounterCollectionView.scss";
 
 interface ComponentProps {
+  children: React.ReactNode;
   collection: StandardCounterCollection | UserCounterCollection;
 }
 
-function CounterCollectionView({
+function BaseCounterCollectionView({
+  children,
   collection,
 }: ComponentProps): React.ReactElement {
   // Prepare the links to appear in the breadcrumb bar
@@ -49,22 +41,9 @@ function CounterCollectionView({
         <BreadcrumbBar links={breadcrumbLinks} />
       </div>
       <CollectionHeader collection={collection} />
-      <div className={styles.pageArea}>
-        {isUserCollection(collection) ? (
-          <UserCollectionContent
-            className={styles.collectionContent}
-            collection={collection}
-          />
-        ) : (
-          <StandardCollectionContent
-            className={styles.collectionContent}
-            collection={collection}
-          />
-        )}
-        <EntriesSection collection={collection} />
-      </div>
+      <div className={styles.pageArea}>{children}</div>
     </div>
   );
 }
 
-export default CounterCollectionView;
+export default BaseCounterCollectionView;

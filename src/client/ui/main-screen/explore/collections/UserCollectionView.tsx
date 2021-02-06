@@ -9,7 +9,9 @@ import ActionBar, {
 
 import PencilIcon from "@jyosuushi/ui/main-screen/explore/pencil.svg";
 
+import BaseCounterCollectionView from "./BaseCounterCollectionView";
 import DeleteCollectionConfirmationModal from "./DeleteCollectionConfirmationModal";
+import EntriesSection from "./entries-section/EntriesSection";
 import RenameCollectionModal from "./rename-collection-modal/RenameCollectionModal";
 import useDeleteCollection from "./useDeleteCollection";
 
@@ -27,12 +29,10 @@ const INTL_MESSAGES = defineMessages({
 });
 
 interface ComponentProps {
-  className: string;
   collection: UserCounterCollection;
 }
 
-function UserCollectionContent({
-  className,
+function UserCollectionView({
   collection,
 }: ComponentProps): React.ReactElement {
   // Define component state
@@ -72,8 +72,9 @@ function UserCollectionContent({
 
   // Render the component
   return (
-    <>
-      <ActionBar className={className} items={actionBarItems} />
+    <BaseCounterCollectionView collection={collection}>
+      <ActionBar items={actionBarItems} />
+      <EntriesSection collection={collection} />
       {isRenameModalOpen && (
         <RenameCollectionModal
           collectionId={collection.id}
@@ -87,8 +88,8 @@ function UserCollectionContent({
           onRequestClose={handleRequestCloseDeleteModal}
         />
       )}
-    </>
+    </BaseCounterCollectionView>
   );
 }
 
-export default UserCollectionContent;
+export default UserCollectionView;

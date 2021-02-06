@@ -12,7 +12,8 @@ import {
   getCounterLink,
 } from "@jyosuushi/ui/main-screen/explore/pathing";
 import ExploreCounterPage from "@jyosuushi/ui/main-screen/explore/counter/ExploreCounterPage";
-import CounterCollectionView from "@jyosuushi/ui/main-screen/explore/collections/CounterCollectionView";
+import StandardCollectionView from "@jyosuushi/ui/main-screen/explore/collections/StandardCollectionView";
+import UserCollectionView from "@jyosuushi/ui/main-screen/explore/collections/UserCollectionView";
 
 export interface RouteDeclaration {
   key: string;
@@ -37,7 +38,7 @@ function useExploreRoutes({
     standardCollections.forEach((collection): void => {
       result.push({
         component: function RouteWrapper(): React.ReactElement {
-          return <CounterCollectionView collection={collection} />;
+          return <StandardCollectionView collection={collection} />;
         },
         key: `standard-collection-${collection.id}`,
         path: getCounterCollectionPath(collection.id),
@@ -47,7 +48,7 @@ function useExploreRoutes({
     userCollections.forEach((collection): void => {
       result.push({
         component: function RouteWrapper(): React.ReactElement {
-          return <CounterCollectionView collection={collection} />;
+          return <UserCollectionView collection={collection} />;
         },
         key: `user-collection-${collection.id}`,
         path: getCounterCollectionPath(collection.id),

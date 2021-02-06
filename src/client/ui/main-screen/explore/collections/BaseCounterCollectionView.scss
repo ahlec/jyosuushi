@@ -11,9 +11,8 @@
 }
 
 .pageArea {
+  display: grid;
+  gap: $page-margin;
+  grid-template-columns: 1fr;
   padding: $page-margin;
-}
-
-.collectionContent {
-  margin-bottom: $page-margin;
 }
