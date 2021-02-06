@@ -10,6 +10,7 @@ type StandardCounterCollection implements CounterCollection {
   name: String!
   counterIds: [String!]!
   dateLastUpdated: Date!
+  description: String!
 }
 
 type UserCounterCollection implements CounterCollection {

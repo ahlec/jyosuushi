@@ -47,6 +47,7 @@ export const COUNTER_COLLECTIONS_RESOLVERS: Resolvers = {
         (collection): StandardCounterCollection => ({
           counterIds: [...collection.counterIds],
           dateLastUpdated: new Date(collection.dateLastUpdated),
+          description: collection.description,
           id: collection.id,
           name: collection.name,
         })

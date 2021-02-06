@@ -16,6 +16,7 @@ interface StandardCounterCollection {
   name: string;
   counterIds: readonly string[];
   dateLastUpdated: number;
+  description: string;
 }
 
 function parseDbTimestamp(dateTime: string): number {
@@ -31,6 +32,7 @@ function writeStandardCollectionsFile(
   stream.write("  name: string;\n");
   stream.write("  counterIds: readonly string[];\n");
   stream.write("  dateLastUpdated: number;\n");
+  stream.write("  description: string;\n");
   stream.write("}\n\n");
 
   const countersLookup: { [packId: string]: DbStudyPackContent[] } = {};
@@ -62,6 +64,7 @@ function writeStandardCollectionsFile(
     const collection: StandardCounterCollection = {
       counterIds: counters.map(({ counter_id }): string => counter_id),
       dateLastUpdated: max(individualModificationDates) || Date.now(),
+      description: studyPack.description,
       id: studyPack.pack_id,
       name: studyPack.english_name,
     };

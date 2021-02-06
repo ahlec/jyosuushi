@@ -112,6 +112,7 @@ export interface DbStudyPack {
   pack_id: string;
   english_name: string;
   date_counter_last_removed: string | null;
+  description: string;
 }
 
 export interface DbWagoStyle {
