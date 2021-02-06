@@ -1,9 +1,6 @@
 import * as ReactGA from "react-ga";
 
-import {
-  StandardCounterCollection,
-  UserCounterCollection,
-} from "@jyosuushi/graphql/types.generated";
+import { CounterCollection } from "@jyosuushi/graphql/types.generated";
 
 import { AmountRange } from "@jyosuushi/redux";
 import {
@@ -15,8 +12,6 @@ import {
 import { Store } from "@jyosuushi/redux/store";
 
 export type QuizMode = "regular" | "infinite";
-
-type SomeCounterCollection = StandardCounterCollection | UserCounterCollection;
 
 class QuizManager {
   public constructor(private readonly store: Store) {}
@@ -43,7 +38,7 @@ class QuizManager {
   }
 
   public startNewQuiz(
-    collections: readonly SomeCounterCollection[],
+    collections: readonly CounterCollection[],
     mode: QuizMode
   ): void {
     if (!collections.length) {

@@ -4,6 +4,7 @@ query AvailableCounterCollections {
     name
     counterIds
     dateLastUpdated
+    description
   }
   userCounterCollections {
     id
