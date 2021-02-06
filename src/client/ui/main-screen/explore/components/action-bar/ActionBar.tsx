@@ -7,6 +7,8 @@ import ActionBarItem from "./ActionBarItem";
 import styles from "./ActionBar.scss";
 
 export interface ActionBarItemDefinition {
+  isActive: boolean;
+  isDisabled: boolean;
   icon: SvgIcon;
   onClick: () => void;
   text: MessageDescriptor;
@@ -36,6 +38,8 @@ function ActionBar({
         <ActionBarItem
           key={index}
           icon={item.icon}
+          isActive={item.isActive}
+          isDisabled={item.isDisabled}
           onClick={item.onClick}
           text={item.text}
         />,

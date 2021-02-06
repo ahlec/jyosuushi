@@ -1,22 +1,50 @@
 @use "../../../../../palette";
 
+$active-color: palette.$black-dark;
+$disabled-color: palette.$gray-light;
 $regular-color: palette.$green-dark;
 $hover-color: palette.$green-darkest;
 
 .container {
   align-items: center;
+  border: 1px solid transparent;
+  border-radius: 3px;
   color: $regular-color;
   cursor: pointer;
   display: inline-flex;
   font-size: 14px;
+  padding: 3px;
 
-  &:hover {
+  &:disabled {
+    color: $disabled-color;
+    cursor: default;
+
+    .icon {
+      path {
+        fill: $disabled-color;
+      }
+    }
+  }
+
+  &:hover:not(:disabled) {
     color: $hover-color;
 
     .icon {
       path {
         fill: $hover-color;
       }
+    }
+  }
+}
+
+.active {
+  background-color: palette.$green-lightest;
+  border-color: palette.$green-base;
+  color: $active-color;
+
+  .icon {
+    path {
+      fill: $active-color;
     }
   }
 }

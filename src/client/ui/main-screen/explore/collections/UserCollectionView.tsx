@@ -54,16 +54,22 @@ function UserCollectionView({
     (): readonly ActionBarItemDefinition[] => [
       {
         icon: AddIcon,
+        isActive: isEditingContents,
+        isDisabled: false,
         onClick: (): void => setIsEditingContents(!isEditingContents),
         text: INTL_MESSAGES.addRemoveCountersActionButtonItem,
       },
       {
         icon: PencilIcon,
+        isActive: false,
+        isDisabled: isEditingContents,
         onClick: (): void => setIsRenameModalOpen(true),
         text: INTL_MESSAGES.renameActionButtonItem,
       },
       {
         icon: TrashIcon,
+        isActive: false,
+        isDisabled: isEditingContents,
         onClick: (): void => setIsDeleteModalOpen(true),
         text: INTL_MESSAGES.deleteActionButtonItem,
       },
