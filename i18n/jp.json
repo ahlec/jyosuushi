@@ -371,20 +371,20 @@
     },
     "translation": ""
   },
-  "explorePage.collections.entries-section.EntriesCountIntro.emptyText": {
+  "explorePage.collections.EntriesCountIntro.emptyText": {
     "original": {
       "defaultMessage": "This collection currently has <bold>no counters</bold> in it.",
       "filenames": [
-        "src/client/ui/main-screen/explore/collections/entries-section/EntriesCountIntro.tsx"
+        "src/client/ui/main-screen/explore/collections/EntriesCountIntro.tsx"
       ]
     },
     "translation": ""
   },
-  "explorePage.collections.entries-section.EntriesCountIntro.text": {
+  "explorePage.collections.EntriesCountIntro.text": {
     "original": {
       "defaultMessage": "This collection contains <bold>{numCounters, plural, one {# counter} other {# counters}}</bold>:",
       "filenames": [
-        "src/client/ui/main-screen/explore/collections/entries-section/EntriesCountIntro.tsx"
+        "src/client/ui/main-screen/explore/collections/EntriesCountIntro.tsx"
       ]
     },
     "translation": ""

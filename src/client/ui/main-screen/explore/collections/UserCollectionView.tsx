@@ -10,8 +10,9 @@ import ActionBar, {
 import PencilIcon from "@jyosuushi/ui/main-screen/explore/pencil.svg";
 
 import BaseCounterCollectionView from "./BaseCounterCollectionView";
+import CountersTable from "./counters-table/CountersTable";
 import DeleteCollectionConfirmationModal from "./DeleteCollectionConfirmationModal";
-import EntriesSection from "./entries-section/EntriesSection";
+import EntriesCountIntro from "./EntriesCountIntro";
 import RenameCollectionModal from "./rename-collection-modal/RenameCollectionModal";
 import useDeleteCollection from "./useDeleteCollection";
 
@@ -92,7 +93,8 @@ function UserCollectionView({
   return (
     <BaseCounterCollectionView collection={collection}>
       <ActionBar items={actionBarItems} />
-      {isEditingContents ? null : <EntriesSection collection={collection} />}
+      <EntriesCountIntro numCounters={collection.counterIds.length} />
+      {isEditingContents ? null : <CountersTable collection={collection} />}
       {isRenameModalOpen && (
         <RenameCollectionModal
           collectionId={collection.id}

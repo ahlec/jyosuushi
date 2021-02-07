@@ -7,12 +7,12 @@ const INTL_MESSAGES = defineMessages({
   emptyText: {
     defaultMessage:
       "This collection currently has <bold>no counters</bold> in it.",
-    id: "explorePage.collections.entries-section.EntriesCountIntro.emptyText",
+    id: "explorePage.collections.EntriesCountIntro.emptyText",
   },
   text: {
     defaultMessage:
       "This collection contains <bold>{numCounters, plural, one {# counter} other {# counters}}</bold>:",
-    id: "explorePage.collections.entries-section.EntriesCountIntro.text",
+    id: "explorePage.collections.EntriesCountIntro.text",
   },
 });
 

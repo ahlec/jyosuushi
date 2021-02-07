@@ -3,7 +3,8 @@ import React from "react";
 import { StandardCounterCollection } from "@jyosuushi/graphql/types.generated";
 
 import BaseCounterCollectionView from "./BaseCounterCollectionView";
-import EntriesSection from "./entries-section/EntriesSection";
+import CountersTable from "./counters-table/CountersTable";
+import EntriesCountIntro from "./EntriesCountIntro";
 
 import styles from "./StandardCollectionView.scss";
 
@@ -17,7 +18,8 @@ function StandardCollectionView({
   return (
     <BaseCounterCollectionView collection={collection}>
       <div className={styles.container}>{collection.description}</div>
-      <EntriesSection collection={collection} />
+      <EntriesCountIntro numCounters={collection.counterIds.length} />
+      <CountersTable collection={collection} />
     </BaseCounterCollectionView>
   );
 }

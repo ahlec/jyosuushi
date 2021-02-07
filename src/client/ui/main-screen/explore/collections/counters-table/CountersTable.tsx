@@ -2,23 +2,24 @@ import React, { useMemo } from "react";
 
 import { COUNTERS_LOOKUP } from "@data/counters";
 
-import { Counter } from "@jyosuushi/interfaces";
 import { CounterCollection } from "@jyosuushi/graphql/types.generated";
 
+import { Counter } from "@jyosuushi/interfaces";
 import useLocale from "@jyosuushi/i18n/useLocale";
 
 import { orderCounters } from "@jyosuushi/ui/main-screen/explore/utils";
 
-import CountersTable from "./counters-table/CountersTable";
-import EntriesCountIntro from "./EntriesCountIntro";
+import CounterLinkTile from "./CounterLinkTile";
 
-import styles from "./EntriesSection.scss";
+import styles from "./CountersTable.scss";
 
 interface ComponentProps {
   collection: CounterCollection;
 }
 
-function EntriesSection({ collection }: ComponentProps): React.ReactElement {
+function CountersTable({
+  collection,
+}: ComponentProps): React.ReactElement | null {
   // Connect with the rest of the app
   const locale = useLocale();
 
@@ -34,19 +35,26 @@ function EntriesSection({ collection }: ComponentProps): React.ReactElement {
     [collection.counterIds, locale]
   );
 
+  // If we don't have any counters, don't render anything
+  if (!counters.length) {
+    return null;
+  }
+
   // Render the component
   return (
-    <div className={styles.container}>
-      <EntriesCountIntro numCounters={counters.length} />
-      {counters.length > 0 && (
-        <CountersTable
-          collectionId={collection.id}
-          collectionName={collection.name}
-          counters={counters}
-        />
+    <div className={styles.table}>
+      {counters.map(
+        (counter): React.ReactElement => (
+          <CounterLinkTile
+            key={counter.counterId}
+            collectionId={collection.id}
+            collectionName={collection.name}
+            counter={counter}
+          />
+        )
       )}
     </div>
   );
 }
 
-export default EntriesSection;
+export default CountersTable;
