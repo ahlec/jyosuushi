@@ -1,22 +1,19 @@
-import { LocationDescriptorObject } from "history";
 import React, { useMemo } from "react";
-import { Link } from "react-router-dom";
 
 import { Counter } from "@jyosuushi/interfaces";
 
 import useLocale from "@jyosuushi/i18n/useLocale";
 
+import Action, { ActionDefinition } from "@jyosuushi/ui/components/Action";
 import Furigana, { FuriganaClassNames } from "@jyosuushi/ui/Furigana";
 import useCounterDisplay from "@jyosuushi/hooks/useCounterDisplay";
 
-import { getCounterLink } from "@jyosuushi/ui/main-screen/explore/pathing";
-import { ExploreLocationState } from "@jyosuushi/ui/main-screen/explore/types";
+import { TileActionCreatorFn } from "./types";
 
-import styles from "./CounterLinkTile.scss";
+import styles from "./CounterTableTile.scss";
 
 interface ComponentProps {
-  collectionId: string;
-  collectionName: string;
+  actionCreator: TileActionCreatorFn;
   counter: Counter;
 }
 
@@ -26,37 +23,26 @@ const FURIGANA_CLASS_NAMES: FuriganaClassNames = {
   text: styles.counterText,
 };
 
-function CounterLinkTile({
-  collectionId,
-  collectionName,
+function CounterTableTile({
+  actionCreator,
   counter,
 }: ComponentProps): React.ReactElement {
   // Connect with the rest of the app
   const locale = useLocale();
 
-  // Retrieve the destination, with state encoded, for where this tile should
-  // link to
-  const linkDest = useMemo(
-    (): LocationDescriptorObject<ExploreLocationState> => ({
-      pathname: getCounterLink(counter.counterId),
-      state: {
-        fromCollection: {
-          id: collectionId,
-          name: collectionName,
-        },
-        schema: "v2",
-        type: "explore-location-state",
-      },
-    }),
-    [counter.counterId, collectionId, collectionName]
-  );
-
   // Determine how to present the counter
   const counterDisplay = useCounterDisplay(counter);
 
+  // Use the provided function to determine what action this tile should
+  // perform.
+  const action = useMemo(
+    (): ActionDefinition => actionCreator(counter.counterId),
+    [actionCreator, counter.counterId]
+  );
+
   // Render the component
   return (
-    <Link className={styles.tile} to={linkDest}>
+    <Action className={styles.tile} definition={action}>
       <Furigana
         className={FURIGANA_CLASS_NAMES}
         furigana={counterDisplay.furigana}
@@ -65,8 +51,8 @@ function CounterLinkTile({
       <div className={styles.name}>
         {locale.dataLocalizers.getCounterName(counter)}
       </div>
-    </Link>
+    </Action>
   );
 }
 
-export default CounterLinkTile;
+export default CounterTableTile;

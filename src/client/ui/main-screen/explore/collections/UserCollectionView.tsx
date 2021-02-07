@@ -10,7 +10,7 @@ import ActionBar, {
 import PencilIcon from "@jyosuushi/ui/main-screen/explore/pencil.svg";
 
 import BaseCounterCollectionView from "./BaseCounterCollectionView";
-import CountersTable from "./counters-table/CountersTable";
+import LinkedCollectionContentsTable from "./counters-table/LinkedCollectionContentsTable";
 import DeleteCollectionConfirmationModal from "./DeleteCollectionConfirmationModal";
 import EntriesCountIntro from "./EntriesCountIntro";
 import ManageCountersTable from "./manage-counters-table/ManageCountersTable";
@@ -106,7 +106,7 @@ function UserCollectionView({
           onRemoveCounter={promiseNoop}
         />
       ) : (
-        <CountersTable collection={collection} />
+        <LinkedCollectionContentsTable collection={collection} />
       )}
       {isRenameModalOpen && (
         <RenameCollectionModal
