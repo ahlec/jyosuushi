@@ -13,6 +13,7 @@ import BaseCounterCollectionView from "./BaseCounterCollectionView";
 import CountersTable from "./counters-table/CountersTable";
 import DeleteCollectionConfirmationModal from "./DeleteCollectionConfirmationModal";
 import EntriesCountIntro from "./EntriesCountIntro";
+import ManageCountersTable from "./manage-counters-table/ManageCountersTable";
 import RenameCollectionModal from "./rename-collection-modal/RenameCollectionModal";
 import useDeleteCollection from "./useDeleteCollection";
 
@@ -37,6 +38,10 @@ const INTL_MESSAGES = defineMessages({
 
 interface ComponentProps {
   collection: UserCounterCollection;
+}
+
+function promiseNoop(): Promise<void> {
+  return Promise.resolve();
 }
 
 function UserCollectionView({
@@ -94,7 +99,15 @@ function UserCollectionView({
     <BaseCounterCollectionView collection={collection}>
       <ActionBar items={actionBarItems} />
       <EntriesCountIntro numCounters={collection.counterIds.length} />
-      {isEditingContents ? null : <CountersTable collection={collection} />}
+      {isEditingContents ? (
+        <ManageCountersTable
+          collectionCounters={collection.counterIds}
+          onAddCounter={promiseNoop}
+          onRemoveCounter={promiseNoop}
+        />
+      ) : (
+        <CountersTable collection={collection} />
+      )}
       {isRenameModalOpen && (
         <RenameCollectionModal
           collectionId={collection.id}
