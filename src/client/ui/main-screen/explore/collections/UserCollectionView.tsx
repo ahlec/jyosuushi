@@ -13,7 +13,7 @@ import BaseCounterCollectionView from "./BaseCounterCollectionView";
 import LinkedCollectionContentsTable from "./counters-table/LinkedCollectionContentsTable";
 import DeleteCollectionConfirmationModal from "./DeleteCollectionConfirmationModal";
 import EntriesCountIntro from "./EntriesCountIntro";
-import ManageCountersTable from "./manage-counters-table/ManageCountersTable";
+import ManageCountersTable from "./counters-table/ManageCountersTable";
 import RenameCollectionModal from "./rename-collection-modal/RenameCollectionModal";
 import useDeleteCollection from "./useDeleteCollection";
 

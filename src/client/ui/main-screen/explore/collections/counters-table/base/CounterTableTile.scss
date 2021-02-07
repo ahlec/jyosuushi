@@ -1,6 +1,7 @@
 @use "../../../../../../palette";
 
 .tile {
+  align-items: center;
   border: 1px solid palette.$gray-lightest;
   border-radius: 6px;
   display: flex;
