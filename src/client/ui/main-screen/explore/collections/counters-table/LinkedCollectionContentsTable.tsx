@@ -59,6 +59,8 @@ function LinkedCollectionContentsTable({
     <CountersTable
       isCounterVisible={isCounterVisible}
       tileActionCreator={tileActionCreator}
+      tileChildrenGenerator={null}
+      tileClassNameGenerator={null}
     />
   );
 }

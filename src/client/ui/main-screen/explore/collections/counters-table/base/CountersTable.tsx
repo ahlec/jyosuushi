@@ -15,11 +15,15 @@ import styles from "./CountersTable.scss";
 interface ComponentProps {
   isCounterVisible: (counterId: string) => boolean;
   tileActionCreator: TileActionCreatorFn;
+  tileChildrenGenerator: ((counterId: string) => React.ReactNode) | null;
+  tileClassNameGenerator: ((counterId: string) => string | null) | null;
 }
 
 function CountersTable({
   isCounterVisible,
   tileActionCreator,
+  tileChildrenGenerator,
+  tileClassNameGenerator,
 }: ComponentProps): React.ReactElement | null {
   // Connect with the rest of the app
   const locale = useLocale();
@@ -40,8 +44,15 @@ function CountersTable({
           <CounterTableTile
             key={counter.counterId}
             actionCreator={tileActionCreator}
+            className={
+              (tileClassNameGenerator &&
+                tileClassNameGenerator(counter.counterId)) ||
+              ""
+            }
             counter={counter}
-          />
+          >
+            {tileChildrenGenerator && tileChildrenGenerator(counter.counterId)}
+          </CounterTableTile>
         ) : null
       )}
     </div>

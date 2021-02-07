@@ -3,6 +3,9 @@ import React, { useCallback, useMemo } from "react";
 
 import CountersTable from "./base/CountersTable";
 import { TileActionCreatorFn } from "./base/types";
+import CounterInCollectionTick from "./CounterInCollectionTick";
+
+import styles from "./ManageCountersTable.scss";
 
 interface ComponentProps {
   /**
@@ -62,11 +65,34 @@ function ManageCountersTable({
     [counters, memoizedAddCounter, memoizedRemoveCounter]
   );
 
+  // Create a function that returns which custom CSS class should be applied
+  // to the whole tile.
+  const tileClassNameGenerator = useCallback(
+    (counterId: string): string =>
+      counters.has(counterId) ? styles.inCollection : styles.notInCollection,
+    [counters]
+  );
+
+  // Create a function that will render "already checked" iconography into the
+  // tiles of counters already in the collection, to let them stand out.
+  const tileChildrenGenerator = useCallback(
+    (counterId: string): React.ReactNode => {
+      if (!counters.has(counterId)) {
+        return null;
+      }
+
+      return <CounterInCollectionTick className={styles.tick} />;
+    },
+    [counters]
+  );
+
   // Render the component
   return (
     <CountersTable
       isCounterVisible={stubTrue}
       tileActionCreator={tileActionCreator}
+      tileChildrenGenerator={tileChildrenGenerator}
+      tileClassNameGenerator={tileClassNameGenerator}
     />
   );
 }

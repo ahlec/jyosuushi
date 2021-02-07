@@ -1,3 +1,4 @@
+import classnames from "classnames";
 import React, { useMemo } from "react";
 
 import { Counter } from "@jyosuushi/interfaces";
@@ -14,6 +15,8 @@ import styles from "./CounterTableTile.scss";
 
 interface ComponentProps {
   actionCreator: TileActionCreatorFn;
+  children: React.ReactNode;
+  className: string;
   counter: Counter;
 }
 
@@ -25,6 +28,8 @@ const FURIGANA_CLASS_NAMES: FuriganaClassNames = {
 
 function CounterTableTile({
   actionCreator,
+  children,
+  className,
   counter,
 }: ComponentProps): React.ReactElement {
   // Connect with the rest of the app
@@ -42,7 +47,7 @@ function CounterTableTile({
 
   // Render the component
   return (
-    <Action className={styles.tile} definition={action}>
+    <Action className={classnames(styles.tile, className)} definition={action}>
       <Furigana
         className={FURIGANA_CLASS_NAMES}
         furigana={counterDisplay.furigana}
@@ -51,6 +56,7 @@ function CounterTableTile({
       <div className={styles.name}>
         {locale.dataLocalizers.getCounterName(counter)}
       </div>
+      {children}
     </Action>
   );
 }

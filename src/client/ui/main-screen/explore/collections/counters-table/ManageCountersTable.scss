@@ -1,0 +1,14 @@
+.notInCollection:not(:hover) {
+  opacity: 0.5;
+}
+
+.inCollection {
+  overflow: hidden;
+  position: relative;
+
+  .tick {
+    left: -12px;
+    position: absolute;
+    top: -12px;
+  }
+}

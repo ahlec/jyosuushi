@@ -1,0 +1,15 @@
+@use "../../../../../palette";
+
+.icon {
+  height: 64px;
+  transform: rotateZ(-30deg);
+  width: 64px;
+
+  circle {
+    stroke: palette.$blue-dark;
+  }
+
+  path {
+    fill: palette.$blue-dark;
+  }
+}
