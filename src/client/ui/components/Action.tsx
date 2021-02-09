@@ -1,6 +1,8 @@
 import { LocationDescriptorObject } from "history";
-import React from "react";
+import React, { useCallback, useState } from "react";
 import { Link } from "react-router-dom";
+
+type ButtonClickFn = () => void | Promise<void>;
 
 export type ActionDefinition =
   | {
@@ -9,7 +11,7 @@ export type ActionDefinition =
     }
   | {
       variant: "button";
-      onClick: () => void | Promise<void>;
+      onClick: ButtonClickFn;
     };
 
 interface ComponentProps {
@@ -23,6 +25,36 @@ function Action({
   className,
   definition,
 }: ComponentProps): React.ReactElement {
+  // Define component state
+  const [isProcessingClick, setIsProcessingClick] = useState<boolean>(false);
+
+  // Handle events
+  let onClick: null | ButtonClickFn;
+  switch (definition.variant) {
+    case "link": {
+      onClick = null;
+      break;
+    }
+    case "button": {
+      onClick = definition.onClick;
+      break;
+    }
+  }
+
+  const handleClick = useCallback(async (): Promise<void> => {
+    if (!onClick) {
+      return;
+    }
+
+    setIsProcessingClick(true);
+    try {
+      await onClick();
+    } finally {
+      setIsProcessingClick(false);
+    }
+  }, [onClick]);
+
+  // Render the component
   switch (definition.variant) {
     case "link": {
       return (
@@ -33,7 +65,11 @@ function Action({
     }
     case "button": {
       return (
-        <button className={className} onClick={definition.onClick}>
+        <button
+          className={className}
+          disabled={isProcessingClick}
+          onClick={handleClick}
+        >
           {children}
         </button>
       );
