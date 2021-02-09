@@ -5,10 +5,10 @@ import { UserCounterCollection } from "@jyosuushi/graphql/types.generated";
 
 import BaseDialog from "@jyosuushi/ui/components/popups/BaseDialog";
 
+import useAddCounterToCollection from "@jyosuushi/ui/main-screen/explore/hooks/useAddCounterToCollection";
 import { RedirectLocation } from "@jyosuushi/ui/main-screen/explore/counter/types";
 
 import CollectionRow from "./CollectionRow";
-import useAddToCollectionCallback from "./hooks/useAddToCollectionCallback";
 import useRemoveFromCollectionCallback from "./hooks/useRemoveFromCollectionCallback";
 
 import styles from "./EditMembershipDialog.scss";
@@ -56,9 +56,9 @@ function EditMembershipDialog({
 }: ComponentProps): React.ReactElement {
   // Connect with the server
   const {
-    callback: handleAddToCollection,
+    callback: addCounterToCollection,
     redirectRequest: addRedirectRequest,
-  } = useAddToCollectionCallback(counterId);
+  } = useAddCounterToCollection();
   const {
     callback: handleRemoveFromCollection,
     redirectRequest: removeRedirectRequest,
@@ -78,6 +78,13 @@ function EditMembershipDialog({
 
     onRequestClose(redirectRequest);
   }, [onRequestClose, redirectRequest]);
+
+  // Handle events
+  const handleAddToCollection = useCallback(
+    (collectionId: string): Promise<void> =>
+      addCounterToCollection(counterId, collectionId),
+    [addCounterToCollection, counterId]
+  );
 
   // Render the component
   return (

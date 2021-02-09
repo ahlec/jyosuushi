@@ -8,6 +8,7 @@ import ActionBar, {
 } from "@jyosuushi/ui/main-screen/explore/components/action-bar/ActionBar";
 
 import PencilIcon from "@jyosuushi/ui/main-screen/explore/pencil.svg";
+import useAddCounterToCollection from "@jyosuushi/ui/main-screen/explore/hooks/useAddCounterToCollection";
 
 import BaseCounterCollectionView from "./BaseCounterCollectionView";
 import LinkedCollectionContentsTable from "./counters-table/LinkedCollectionContentsTable";
@@ -53,6 +54,7 @@ function UserCollectionView({
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
 
   // Connect with the backend
+  const { callback: addCounterToCollection } = useAddCounterToCollection();
   const deleteCollection = useDeleteCollection(collection.id);
 
   // Prepare the action bar
@@ -94,6 +96,11 @@ function UserCollectionView({
     []
   );
 
+  const handleAddCounter = useCallback(
+    (counterId: string) => addCounterToCollection(counterId, collection.id),
+    [addCounterToCollection, collection.id]
+  );
+
   // Render the component
   return (
     <BaseCounterCollectionView collection={collection}>
@@ -102,7 +109,7 @@ function UserCollectionView({
       {isEditingContents ? (
         <ManageCountersTable
           collectionCounters={collection.counterIds}
-          onAddCounter={promiseNoop}
+          onAddCounter={handleAddCounter}
           onRemoveCounter={promiseNoop}
         />
       ) : (

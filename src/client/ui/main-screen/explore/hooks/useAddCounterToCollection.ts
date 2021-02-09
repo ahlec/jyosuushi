@@ -9,7 +9,10 @@ import {
 
 import { RedirectLocation } from "@jyosuushi/ui/main-screen/explore/counter/types";
 
-type AddToCollectionFn = (collectionId: string) => Promise<void>;
+type AddToCollectionFn = (
+  counterId: string,
+  collectionId: string
+) => Promise<void>;
 
 interface HookResults {
   /**
@@ -38,7 +41,7 @@ interface CollectionCountersFragment {
   dateLastUpdated: Date;
 }
 
-function useAddToCollectionCallback(counterId: string): HookResults {
+function useCounterAddToCollection(): HookResults {
   // Define hook state
   const [
     redirectRequest,
@@ -95,7 +98,7 @@ function useAddToCollectionCallback(counterId: string): HookResults {
 
   // Create a wrapper function to act as the callback
   const callback = useCallback(
-    async (collectionId: string): Promise<void> => {
+    async (counterId: string, collectionId: string): Promise<void> => {
       const result = await addCounterToCollectionMutation({
         variables: {
           collectionId,
@@ -125,7 +128,7 @@ function useAddToCollectionCallback(counterId: string): HookResults {
         }
       }
     },
-    [addCounterToCollectionMutation, counterId]
+    [addCounterToCollectionMutation]
   );
 
   // Return the public API
@@ -135,4 +138,4 @@ function useAddToCollectionCallback(counterId: string): HookResults {
   };
 }
 
-export default useAddToCollectionCallback;
+export default useCounterAddToCollection;
