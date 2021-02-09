@@ -5,8 +5,12 @@ import { Counter } from "@jyosuushi/interfaces";
 
 import useLocale from "@jyosuushi/i18n/useLocale";
 
-import Action, { ActionDefinition } from "@jyosuushi/ui/components/Action";
+import Action, {
+  ActionClassNames,
+  ActionDefinition,
+} from "@jyosuushi/ui/components/Action";
 import Furigana, { FuriganaClassNames } from "@jyosuushi/ui/Furigana";
+import LoadingSpinner from "@jyosuushi/ui/components/LoadingSpinner";
 import useCounterDisplay from "@jyosuushi/hooks/useCounterDisplay";
 
 import { TileActionCreatorFn } from "./types";
@@ -22,7 +26,7 @@ interface ComponentProps {
 
 const FURIGANA_CLASS_NAMES: FuriganaClassNames = {
   furigana: styles.furigana,
-  root: styles.counter,
+  root: classnames(styles.counter, styles.primaryContent),
   text: styles.counterText,
 };
 
@@ -45,18 +49,32 @@ function CounterTableTile({
     [actionCreator, counter.counterId]
   );
 
+  // Create an object that will dictate the CSS classes to use on <Action />
+  const actionClasses = useMemo(
+    (): ActionClassNames => ({
+      always: classnames(styles.tile, className),
+      whileProcessing: styles.processing,
+    }),
+    [className]
+  );
+
   // Render the component
   return (
-    <Action className={classnames(styles.tile, className)} definition={action}>
+    <Action className={actionClasses} definition={action}>
       <Furigana
         className={FURIGANA_CLASS_NAMES}
         furigana={counterDisplay.furigana}
         text={counterDisplay.writing}
       />
-      <div className={styles.name}>
+      <div className={classnames(styles.name, styles.primaryContent)}>
         {locale.dataLocalizers.getCounterName(counter)}
       </div>
-      {children}
+      {children && <div className={styles.primaryContent}>{children}</div>}
+      <LoadingSpinner
+        className={styles.processingContent}
+        color="blue"
+        size={48}
+      />
     </Action>
   );
 }

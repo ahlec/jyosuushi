@@ -18,6 +18,15 @@
   }
 }
 
+.processing {
+  justify-content: center;
+}
+
+.tile:not(.processing) .processingContent,
+.tile.processing .primaryContent {
+  display: none;
+}
+
 .counter {
   flex: 1;
 }

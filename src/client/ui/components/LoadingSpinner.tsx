@@ -9,6 +9,12 @@ type SpinnerColor = "pink" | "green" | "blue";
 
 interface ComponentProps {
   /**
+   * An optional CSS class name that will be included on the root DOM element
+   * rendered by this component.
+   */
+  className?: string;
+
+  /**
    * The color that the spinner should render in.
    */
   color: SpinnerColor;
@@ -37,13 +43,18 @@ const COLOR_CLASS_NAMES: { [color in SpinnerColor]: string } = {
 };
 
 function LoadingSpinner({
+  className,
   color,
   size = 80,
   thickness = 8,
 }: ComponentProps): React.ReactElement {
   return (
     <div
-      className={classnames(styles.loadingSpinner, COLOR_CLASS_NAMES[color])}
+      className={classnames(
+        styles.loadingSpinner,
+        COLOR_CLASS_NAMES[color],
+        className
+      )}
       style={{
         height: size,
         width: size,

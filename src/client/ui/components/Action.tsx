@@ -1,3 +1,4 @@
+import classnames from "classnames";
 import { LocationDescriptorObject } from "history";
 import React, { useCallback, useState } from "react";
 import { Link } from "react-router-dom";
@@ -14,9 +15,24 @@ export type ActionDefinition =
       onClick: ButtonClickFn;
     };
 
+export interface ActionClassNames {
+  /**
+   * A CSS class name that will always be included on the root of the element
+   * rendered.
+   */
+  always?: string;
+
+  /**
+   * A CSS class name that will only be included on the root of the button
+   * variant while the `onClick` function is being invoked and until the
+   * promise (if it's asynchronous) resolves.
+   */
+  whileProcessing?: string;
+}
+
 interface ComponentProps {
   children: React.ReactNode;
-  className?: string;
+  className?: ActionClassNames | string;
   definition: ActionDefinition;
 }
 
@@ -54,11 +70,26 @@ function Action({
     }
   }, [onClick]);
 
+  // Determine the current CSS class names
+  let resolvedClassName: string | undefined;
+  if (className) {
+    if (typeof className === "string") {
+      resolvedClassName = className;
+    } else {
+      resolvedClassName = classnames(
+        className.always,
+        definition.variant === "button" &&
+          isProcessingClick &&
+          className.whileProcessing
+      );
+    }
+  }
+
   // Render the component
   switch (definition.variant) {
     case "link": {
       return (
-        <Link className={className} to={definition.to}>
+        <Link className={resolvedClassName} to={definition.to}>
           {children}
         </Link>
       );
@@ -66,7 +97,7 @@ function Action({
     case "button": {
       return (
         <button
-          className={className}
+          className={resolvedClassName}
           disabled={isProcessingClick}
           onClick={handleClick}
         >
