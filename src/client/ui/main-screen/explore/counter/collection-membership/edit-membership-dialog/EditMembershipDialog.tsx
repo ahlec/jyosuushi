@@ -6,10 +6,10 @@ import { UserCounterCollection } from "@jyosuushi/graphql/types.generated";
 import BaseDialog from "@jyosuushi/ui/components/popups/BaseDialog";
 
 import useAddCounterToCollection from "@jyosuushi/ui/main-screen/explore/hooks/useAddCounterToCollection";
+import useRemoveCounterFromCollection from "@jyosuushi/ui/main-screen/explore/hooks/useRemoveCounterFromCollection";
 import { RedirectLocation } from "@jyosuushi/ui/main-screen/explore/counter/types";
 
 import CollectionRow from "./CollectionRow";
-import useRemoveFromCollectionCallback from "./hooks/useRemoveFromCollectionCallback";
 
 import styles from "./EditMembershipDialog.scss";
 
@@ -60,9 +60,9 @@ function EditMembershipDialog({
     redirectRequest: addRedirectRequest,
   } = useAddCounterToCollection();
   const {
-    callback: handleRemoveFromCollection,
+    callback: removeCounterFromCollection,
     redirectRequest: removeRedirectRequest,
-  } = useRemoveFromCollectionCallback(counterId);
+  } = useRemoveCounterFromCollection();
 
   // Current the normal `onRequestClose` callback
   const handleRequestClose = useCallback((): void => onRequestClose(null), [
@@ -84,6 +84,12 @@ function EditMembershipDialog({
     (collectionId: string): Promise<void> =>
       addCounterToCollection(counterId, collectionId),
     [addCounterToCollection, counterId]
+  );
+
+  const handleRemoveFromCollection = useCallback(
+    (collectionId: string): Promise<void> =>
+      removeCounterFromCollection(counterId, collectionId),
+    [removeCounterFromCollection, counterId]
   );
 
   // Render the component

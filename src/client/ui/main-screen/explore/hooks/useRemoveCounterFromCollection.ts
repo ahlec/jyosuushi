@@ -9,7 +9,10 @@ import {
 
 import { RedirectLocation } from "@jyosuushi/ui/main-screen/explore/counter/types";
 
-type RemoveFromCollectionFn = (collectionId: string) => Promise<void>;
+type RemoveFromCollectionFn = (
+  counterId: string,
+  collectionId: string
+) => Promise<void>;
 
 interface HookResults {
   /**
@@ -38,7 +41,7 @@ interface CollectionCountersFragment {
   dateLastUpdated: Date;
 }
 
-function useRemoveFromCollectionCallback(counterId: string): HookResults {
+function useRemoveCounterFromCollection(): HookResults {
   // Define hook state
   const [
     redirectRequest,
@@ -98,7 +101,7 @@ function useRemoveFromCollectionCallback(counterId: string): HookResults {
 
   // Create a wrapper function to act as the callback
   const callback = useCallback(
-    async (collectionId: string): Promise<void> => {
+    async (counterId: string, collectionId: string): Promise<void> => {
       const result = await removeCounterFromCollectionMutation({
         variables: {
           collectionId,
@@ -128,7 +131,7 @@ function useRemoveFromCollectionCallback(counterId: string): HookResults {
         }
       }
     },
-    [removeCounterFromCollectionMutation, counterId]
+    [removeCounterFromCollectionMutation]
   );
 
   // Return the public API
@@ -138,4 +141,4 @@ function useRemoveFromCollectionCallback(counterId: string): HookResults {
   };
 }
 
-export default useRemoveFromCollectionCallback;
+export default useRemoveCounterFromCollection;

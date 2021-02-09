@@ -9,6 +9,7 @@ import ActionBar, {
 
 import PencilIcon from "@jyosuushi/ui/main-screen/explore/pencil.svg";
 import useAddCounterToCollection from "@jyosuushi/ui/main-screen/explore/hooks/useAddCounterToCollection";
+import useRemoveCounterFromCollection from "@jyosuushi/ui/main-screen/explore/hooks/useRemoveCounterFromCollection";
 
 import BaseCounterCollectionView from "./BaseCounterCollectionView";
 import LinkedCollectionContentsTable from "./counters-table/LinkedCollectionContentsTable";
@@ -41,10 +42,6 @@ interface ComponentProps {
   collection: UserCounterCollection;
 }
 
-function promiseNoop(): Promise<void> {
-  return Promise.resolve();
-}
-
 function UserCollectionView({
   collection,
 }: ComponentProps): React.ReactElement {
@@ -56,6 +53,9 @@ function UserCollectionView({
   // Connect with the backend
   const { callback: addCounterToCollection } = useAddCounterToCollection();
   const deleteCollection = useDeleteCollection(collection.id);
+  const {
+    callback: removeCounterFromCollection,
+  } = useRemoveCounterFromCollection();
 
   // Prepare the action bar
   const actionBarItems = useMemo(
@@ -101,6 +101,12 @@ function UserCollectionView({
     [addCounterToCollection, collection.id]
   );
 
+  const handleRemoveCounter = useCallback(
+    (counterId: string) =>
+      removeCounterFromCollection(counterId, collection.id),
+    [removeCounterFromCollection, collection.id]
+  );
+
   // Render the component
   return (
     <BaseCounterCollectionView collection={collection}>
@@ -110,7 +116,7 @@ function UserCollectionView({
         <ManageCountersTable
           collectionCounters={collection.counterIds}
           onAddCounter={handleAddCounter}
-          onRemoveCounter={promiseNoop}
+          onRemoveCounter={handleRemoveCounter}
         />
       ) : (
         <LinkedCollectionContentsTable collection={collection} />
