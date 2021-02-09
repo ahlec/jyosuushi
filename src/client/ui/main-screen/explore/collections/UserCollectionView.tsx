@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo, useState } from "react";
 import { defineMessages } from "react-intl";
+import { Redirect } from "react-router-dom";
 
 import { UserCounterCollection } from "@jyosuushi/graphql/types.generated";
 
@@ -51,10 +52,14 @@ function UserCollectionView({
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
 
   // Connect with the backend
-  const { callback: addCounterToCollection } = useAddCounterToCollection();
+  const {
+    callback: addCounterToCollection,
+    redirectRequest: addCounterRedirectRequest,
+  } = useAddCounterToCollection();
   const deleteCollection = useDeleteCollection(collection.id);
   const {
     callback: removeCounterFromCollection,
+    redirectRequest: removeCounterRedirectRequest,
   } = useRemoveCounterFromCollection();
 
   // Prepare the action bar
@@ -106,6 +111,26 @@ function UserCollectionView({
       removeCounterFromCollection(counterId, collection.id),
     [removeCounterFromCollection, collection.id]
   );
+
+  // Handle redirecting to a different location, if one of our API requests
+  // indicates we should redirect
+  const redirectRequest =
+    addCounterRedirectRequest || removeCounterRedirectRequest;
+  if (redirectRequest) {
+    let to: string;
+    switch (redirectRequest) {
+      case "explore-landing-page": {
+        to = "/explore";
+        break;
+      }
+      case "profile": {
+        to = "/profile";
+        break;
+      }
+    }
+
+    return <Redirect to={to} />;
+  }
 
   // Render the component
   return (
