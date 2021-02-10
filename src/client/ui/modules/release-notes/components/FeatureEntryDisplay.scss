@@ -1,3 +1,9 @@
+@use "../../../../palette";
+
 .label {
   font-weight: 600;
+}
+
+.details {
+  color: palette.$gray-base;
 }

@@ -14,7 +14,7 @@ function FeatureEntryDisplay({ entry }: ComponentProps): React.ReactElement {
   return (
     <>
       <span className={styles.label}>{entry.label}</span>{" "}
-      <Markdown source={entry.details} />
+      <Markdown className={styles.details} source={entry.details} />
     </>
   );
 }
