@@ -75,8 +75,9 @@ function CollectionHeader({ collection }: ComponentProps): React.ReactElement {
     <PageHeader
       colorTheme={isUserCollection(collection) ? "green" : "blue"}
       subtitleEntries={subtitleEntries}
-      title={collection.name}
-    />
+    >
+      {collection.name}
+    </PageHeader>
   );
 }
 

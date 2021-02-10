@@ -6,7 +6,7 @@ import { AcceptedValueType } from "./types";
 import styles from "./SubtitleEntry.scss";
 
 interface ComponentProps {
-  message: MessageDescriptor;
+  message: MessageDescriptor | string;
   value: AcceptedValueType;
 }
 
@@ -28,13 +28,17 @@ function SubtitleEntry({ message, value }: ComponentProps): React.ReactElement {
   // Render the component
   return (
     <span>
-      <FormattedMessage
-        {...message}
-        values={{
-          bold: FormattedMessageBold,
-          value: reactValue,
-        }}
-      />
+      {typeof message === "string" ? (
+        message
+      ) : (
+        <FormattedMessage
+          {...message}
+          values={{
+            bold: FormattedMessageBold,
+            value: reactValue,
+          }}
+        />
+      )}
     </span>
   );
 }

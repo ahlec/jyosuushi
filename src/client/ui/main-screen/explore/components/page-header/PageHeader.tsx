@@ -7,6 +7,11 @@ import styles from "./PageHeader.scss";
 
 interface ComponentProps {
   /**
+   * The primary text representation that should appear as the main title.
+   */
+  children: React.ReactElement | string;
+
+  /**
    * The color theme that should be used for the header.
    */
   colorTheme: HeaderColorTheme;
@@ -16,11 +21,6 @@ interface ComponentProps {
    * underneath the page title.
    */
   subtitleEntries: readonly HeaderSubtitleEntryDefinition[];
-
-  /**
-   * The title of this page.
-   */
-  title: string;
 }
 
 const BACKGROUND_OVERLAY_CSS_CLASS_NAMES: {
@@ -32,9 +32,9 @@ const BACKGROUND_OVERLAY_CSS_CLASS_NAMES: {
 };
 
 function PageHeader({
+  children,
   colorTheme,
   subtitleEntries,
-  title,
 }: ComponentProps): React.ReactElement {
   // Render the component
   return (
@@ -46,7 +46,7 @@ function PageHeader({
         )}
       />
       <div className={styles.contents}>
-        <h3 className={styles.header}>{title}</h3>
+        <h3 className={styles.header}>{children}</h3>
         <div className={styles.separator} />
         <HeaderSubtitle color={colorTheme} entries={subtitleEntries} />
       </div>

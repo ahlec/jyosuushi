@@ -2,33 +2,13 @@
 @import "../../../constants";
 
 .ExploreCounterPage {
-  padding: $page-margin;
-
   .contents {
     padding: 20px;
     text-align: center;
 
-    h3 {
-      border-bottom: 1px solid $app-outline;
-      font-size: 24px;
-      font-weight: bold;
-      margin: 0 auto 20px;
-      text-align: center;
-      width: 50%;
-    }
-
-    .kanji {
-      border: 8px solid $pink-light;
-      border-radius: 100%;
-      display: inline-block;
-      font-size: 72px;
-      font-weight: bold;
-      padding: 17px;
-    }
-
     .leadIn {
       font-size: 18px;
-      margin: 30px 0;
+      margin-bottom: 30px;
     }
 
     section + section {
@@ -40,5 +20,6 @@
 }
 
 .breadcrumbContainer {
-  margin-bottom: $page-margin;
+  margin: $page-margin;
+  margin-bottom: 5px;
 }

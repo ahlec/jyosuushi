@@ -9,7 +9,6 @@ import {
 import useLocale from "@jyosuushi/i18n/useLocale";
 
 import { Counter } from "@jyosuushi/interfaces";
-import { getPrimaryJapaneseRepresentation } from "@jyosuushi/utils";
 
 import BreadcrumbBar, {
   BreadcrumbBarLinkDefinition,
@@ -24,6 +23,7 @@ import CollectionSection from "./collection-membership/CollectionSection";
 import EditMembershipDialog from "./collection-membership/edit-membership-dialog/EditMembershipDialog";
 
 import ConjugationsSection from "./ConjugationsSection";
+import CounterHeader from "./CounterHeader";
 import DisambiguationSection, {
   hasDisambiguationSection,
 } from "./DisambiguationSection";
@@ -166,11 +166,8 @@ function ExploreCounterPage({
       <div className={styles.breadcrumbContainer}>
         <BreadcrumbBar links={breadcrumbLinks} />
       </div>
+      <CounterHeader counter={counter} />
       <div className={styles.contents}>
-        <h3>{locale.dataLocalizers.getCounterName(counter)}</h3>
-        <div className={styles.kanji}>
-          {getPrimaryJapaneseRepresentation(counter)}
-        </div>
         {counter.leadIn && (
           <div className={styles.leadIn}>{counter.leadIn}</div>
         )}

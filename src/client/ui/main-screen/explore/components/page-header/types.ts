@@ -16,7 +16,7 @@ export interface HeaderSubtitleEntryDefinition {
    * RICH TEXT ELEMENTS:
    * - `<bold>`: Will make whatever text it wraps bold.
    */
-  text: MessageDescriptor;
+  text: MessageDescriptor | string;
 
   /**
    * A unique ID that can be used for performance benefits and for uniquely
