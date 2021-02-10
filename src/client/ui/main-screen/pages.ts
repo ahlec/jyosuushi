@@ -4,7 +4,6 @@ import ExplorePage from "./explore/ExplorePage";
 import { EXPLORE_PAGE_PATH } from "./explore/pathing";
 import FeedbackPage from "./feedback/FeedbackPage";
 import PreparePage from "./prepare/PreparePage";
-import ReleaseNotesPage from "./release-notes/ReleaseNotesPage";
 import SettingsPage from "./settings/SettingsPage";
 
 import {
@@ -15,6 +14,7 @@ import {
   RESET_PASSWORD_PAGE,
   VERIFY_PAGE,
 } from "@jyosuushi/ui/modules/authentication/pages";
+import { RELEASE_NOTES_PAGE } from "@jyosuushi/ui/modules/release-notes/pages";
 
 export const PREPARE_PAGE: PageDefinition = {
   aliasPaths: ["/"],
@@ -32,12 +32,6 @@ export const SETTINGS_PAGE: PageDefinition = {
   aliasPaths: [],
   component: SettingsPage,
   primaryPath: "/settings",
-};
-
-export const RELEASE_NOTES_PAGE: PageDefinition = {
-  aliasPaths: [],
-  component: ReleaseNotesPage,
-  primaryPath: "/release-notes",
 };
 
 export const FEEDBACK_PAGE: PageDefinition = {
@@ -59,3 +53,5 @@ export const UNORDERED_NESTED_PAGES: ReadonlyArray<PageDefinition> = [
   VERIFY_PAGE,
   PROFILE_PAGE,
 ];
+
+export { RELEASE_NOTES_PAGE };
