@@ -18,6 +18,50 @@ import { ChangelogVersion } from "./types";
 
 export const CHANGELOG: readonly ChangelogVersion[] = [
   {
+    version: "v3.0.0",
+    date: "12 February 2021",
+    newFeatures: [
+      {
+        label: "User accounts.",
+        details:
+          "You're now able to register an account that allows you to personalize your experience here.",
+      },
+      {
+        label: "Custom collections.",
+        details:
+          'Study packs were reworked into "collections" to broaden their usability, and if you register an account you can create your own.',
+      },
+      {
+        label: "Research notes added.",
+        details:
+          "Some counters have received meticulously-researched notes concerning their nuance, readings, or anything else you need to know.",
+      },
+    ],
+    improvements: [
+      {
+        label: "Integrated feedback and bug reporting.",
+        details:
+          "No longer do you need to go to a Google Form - feedback and bug reporting are now a native part of the website.",
+      },
+      {
+        label: "Revamped release notes.",
+        details:
+          "It's now easier to see information you want, and dates for releases were added (to prove that I'm not totally dead).",
+      },
+    ],
+    bugFixes: [],
+    developerChanges: [
+      "Transitioned the repository into a server + client monorepo.",
+      "Built a GraphQL-powered backend server.",
+      "Rebuilt the Markdown processor engine to interpret Markdown at compile time and not at runtime.",
+      "Building the release is now done using gulp.",
+      "Added documentation to the repository to enable new contributors.",
+      "Enabled a ton of ESLint rules (such as a11y support and React hooks) and fixed violations throughout the codebase.",
+      "Migrated to CSS Modules.",
+      "Replaced home-grown localization files with react-intl utilizing in-house tooling.",
+    ],
+  },
+  {
     version: "v2.5.3",
     date: "15 July 2020",
     newFeatures: [],
