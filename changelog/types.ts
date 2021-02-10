@@ -14,6 +14,7 @@ export interface BugFixEntry {
 export interface IncrementalVersion {
   date: string;
   version: string;
+  comments?: string;
   bugFixes: readonly BugFixEntry[];
   newFeatures: readonly ConsumerFacingEntry[];
   improvements: readonly ConsumerFacingEntry[];

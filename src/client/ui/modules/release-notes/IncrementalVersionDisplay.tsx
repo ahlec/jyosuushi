@@ -9,6 +9,7 @@ import {
 
 import BugFixEntryDisplay from "./components/BugFixEntryDisplay";
 import FeatureEntryDisplay from "./components/FeatureEntryDisplay";
+import Markdown from "./components/Markdown";
 import ReleaseNotesSection from "./components/ReleaseNotesSection";
 
 import styles from "./IncrementalVersionDisplay.scss";
@@ -46,6 +47,13 @@ function IncrementalVersionDisplay({
   // Render the component
   return (
     <div className={styles.container}>
+      {version.comments && (
+        <Markdown
+          allowParagraphs={true}
+          className={styles.comments}
+          source={version.comments}
+        />
+      )}
       {version.newFeatures.length > 0 && (
         <ReleaseNotesSection
           entries={version.newFeatures}

@@ -20,6 +20,13 @@ export const CHANGELOG: readonly ChangelogVersion[] = [
   {
     version: "v3.0.0",
     date: "12 February 2021",
+    comments: `At long (long) last, I'm pleased to finally give you v3.0.0! This has been a tremendously long time in the making — almost a year's worth of development went in to this release. **助数詞を練習！！** reached a point where adding the features I wanted would require a ton of work. Additionally, balance that with a full-time job, full-time studies, a personal life, the apocalypse that was 2020... That's done though, and it's time to move forward.
+
+This release represents a pivot in the purpose of this tool. Earlier versions were exclusively geared around quizzing yourself to study. Beginning with v3.0.0, I'm looking to evolve **助数詞を練習！！** into not just a place to quiz yourself, but a reference tool and place to learn — both about the counters themselves, and about the language they exist within. This will be a long process and will involve a lot of coding and a LOT more research, but I'm hopeful that one day this can become a tool and body of work that undoes the dread that learning and using counters can cause.
+    
+I've learned a number of lessons through this release, and I'm looking to avoid bundling research and features into large releases after this. "You'll get it when it's ready," but no later than that.
+    
+Finally, you can follow us on Twitter at [@jyosuushi](https://www.twitter.com/jyosuushi) or me personally at [@AlecDeitloff](https://www.twitter.com/AlecDeitloff). Don't be a stranger — language learning is a communal adventure.`,
     newFeatures: [
       {
         label: "User accounts.",
