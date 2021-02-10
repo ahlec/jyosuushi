@@ -4,5 +4,6 @@ export {
   BugFixEntry,
   ChangelogVersion,
   ConsumerFacingEntry,
+  IncrementalVersion,
 } from "./types";
 export { isFirstVersion } from "./utils";

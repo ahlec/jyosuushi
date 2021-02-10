@@ -23,43 +23,6 @@
       border-left: 2px solid $pink-light;
       margin-left: 3px;
       padding-left: 15px;
-
-      .notes-container {
-        .notes-header {
-          border-bottom: 1px solid $black-lightest;
-          display: inline-block;
-          font-size: 15px;
-          font-weight: bold;
-          padding: 0 2px;
-        }
-
-        ol,
-        ul {
-          line-height: 1.5;
-          list-style: disc;
-          padding-left: 2em;
-        }
-
-        .entry {
-          font-size: 13px;
-
-          &.bugfix {
-            .browser {
-              color: $green-darkest;
-              display: inline-block;
-              padding: 0 3px;
-            }
-          }
-
-          .label {
-            font-weight: 600;
-          }
-        }
-      }
-
-      .notes-container + .notes-container {
-        margin-top: 10px;
-      }
     }
   }
 

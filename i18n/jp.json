@@ -992,88 +992,6 @@
     },
     "translation": ""
   },
-  "releaseNotes.browserNames.chrome": {
-    "original": {
-      "defaultMessage": "Chrome",
-      "filenames": [
-        "src/client/ui/main-screen/release-notes/ReleaseNotesPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "releaseNotes.browserNames.edge": {
-    "original": {
-      "defaultMessage": "Microsoft Edge",
-      "filenames": [
-        "src/client/ui/main-screen/release-notes/ReleaseNotesPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "releaseNotes.browserNames.firefox": {
-    "original": {
-      "defaultMessage": "Firefox",
-      "filenames": [
-        "src/client/ui/main-screen/release-notes/ReleaseNotesPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "releaseNotes.browserNames.ie": {
-    "original": {
-      "defaultMessage": "Internet Explorer",
-      "filenames": [
-        "src/client/ui/main-screen/release-notes/ReleaseNotesPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "releaseNotes.browserNames.safari": {
-    "original": {
-      "defaultMessage": "Safari",
-      "filenames": [
-        "src/client/ui/main-screen/release-notes/ReleaseNotesPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "releaseNotes.sectionHeaders.bugFixes": {
-    "original": {
-      "defaultMessage": "Bug Fixes",
-      "filenames": [
-        "src/client/ui/main-screen/release-notes/ReleaseNotesPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "releaseNotes.sectionHeaders.improvements": {
-    "original": {
-      "defaultMessage": "Improvements",
-      "filenames": [
-        "src/client/ui/main-screen/release-notes/ReleaseNotesPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "releaseNotes.sectionHeaders.newFeatures": {
-    "original": {
-      "defaultMessage": "New Features",
-      "filenames": [
-        "src/client/ui/main-screen/release-notes/ReleaseNotesPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "releaseNotes.specialVersionNotes.initialRelease": {
-    "original": {
-      "defaultMessage": "Initial release.",
-      "description": "Text to appear in place of release notes for the version that was the initial release.",
-      "filenames": [
-        "src/client/ui/main-screen/release-notes/ReleaseNotesPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
   "settings.quiz.amountRange.choiceRange": {
     "original": {
       "defaultMessage": "{min}-{max}",
@@ -1745,6 +1663,88 @@
       "defaultMessage": "Reset Password",
       "filenames": [
         "src/client/ui/modules/authentication/pages/reset-password/ResetPasswordPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "releaseNotes.browserNames.chrome": {
+    "original": {
+      "defaultMessage": "Chrome",
+      "filenames": [
+        "src/client/ui/modules/release-notes/components/BugFixEntryDisplay.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "releaseNotes.browserNames.edge": {
+    "original": {
+      "defaultMessage": "Microsoft Edge",
+      "filenames": [
+        "src/client/ui/modules/release-notes/components/BugFixEntryDisplay.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "releaseNotes.browserNames.firefox": {
+    "original": {
+      "defaultMessage": "Firefox",
+      "filenames": [
+        "src/client/ui/modules/release-notes/components/BugFixEntryDisplay.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "releaseNotes.browserNames.ie": {
+    "original": {
+      "defaultMessage": "Internet Explorer",
+      "filenames": [
+        "src/client/ui/modules/release-notes/components/BugFixEntryDisplay.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "releaseNotes.browserNames.safari": {
+    "original": {
+      "defaultMessage": "Safari",
+      "filenames": [
+        "src/client/ui/modules/release-notes/components/BugFixEntryDisplay.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "releaseNotes.sectionHeaders.bugFixes": {
+    "original": {
+      "defaultMessage": "Bug Fixes",
+      "filenames": [
+        "src/client/ui/modules/release-notes/IncrementalVersionDisplay.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "releaseNotes.sectionHeaders.improvements": {
+    "original": {
+      "defaultMessage": "Improvements",
+      "filenames": [
+        "src/client/ui/modules/release-notes/IncrementalVersionDisplay.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "releaseNotes.sectionHeaders.newFeatures": {
+    "original": {
+      "defaultMessage": "New Features",
+      "filenames": [
+        "src/client/ui/modules/release-notes/IncrementalVersionDisplay.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "releaseNotes.specialVersionNotes.initialRelease": {
+    "original": {
+      "defaultMessage": "Initial release.",
+      "description": "Text to appear in place of release notes for the version that was the initial release.",
+      "filenames": [
+        "src/client/ui/modules/release-notes/ReleaseNotesPage.tsx"
       ]
     },
     "translation": ""
