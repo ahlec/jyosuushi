@@ -12,7 +12,7 @@ interface HttpServerConfiguration {
   portNumber: number;
 }
 
-interface HttpsServerConfiguration {
+export interface HttpsServerConfiguration {
   protocol: "https";
 
   /**

@@ -1,4 +1,3 @@
-import { readFileSync } from "fs";
 import {
   createServer as createHttpServerInternal,
   IncomingMessage,
@@ -8,6 +7,8 @@ import {
 import { createServer as createHttpsServerInternal } from "https";
 
 import { ServerConfig } from "@server/environment";
+
+import HttpsCertificateManager from "./HttpsCertificateManager";
 
 type RequestHandlerFn = (
   request: IncomingMessage,
@@ -26,17 +27,8 @@ export function startHttpServer(
       break;
     }
     case "https": {
-      const privateKey = readFileSync(config.privateKeyFile, "utf-8");
-      const certificate = readFileSync(config.certificateFile, "utf-8");
-      const ca = readFileSync(config.caFile, "utf-8");
-      server = createHttpsServerInternal(
-        {
-          ca,
-          cert: certificate,
-          key: privateKey,
-        },
-        requestHandler
-      );
+      const certManager = new HttpsCertificateManager(config);
+      server = createHttpsServerInternal(certManager.current, requestHandler);
       break;
     }
   }
