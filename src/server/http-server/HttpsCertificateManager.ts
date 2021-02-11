@@ -1,5 +1,8 @@
-import { readFileSync } from "fs";
+import { readFileSync, watch } from "fs";
+import { debounce } from "lodash";
 import { SecureContextOptions } from "tls";
+
+import { ONE_SECOND } from "@shared/constants";
 
 import { HttpsServerConfiguration } from "@server/environment";
 
@@ -8,6 +11,16 @@ class HttpsCertificateManager {
 
   public constructor(private readonly config: HttpsServerConfiguration) {
     this.readFromDisk();
+
+    watch(
+      config.certificateFile,
+      "utf-8",
+      // Event is potentially spammy on some environments
+      // https://github.com/nodejs/node/issues/4464#issuecomment-357975317
+      // Chose a large number because we don't need instantaneous updating and
+      // this gives certbot time to change all of the files.
+      debounce(this.handleCertFileChanged, ONE_SECOND * 5)
+    );
   }
 
   public get current(): SecureContextOptions {
@@ -24,6 +37,13 @@ class HttpsCertificateManager {
       key: privateKey,
     };
   }
+
+  private handleCertFileChanged = (): void => {
+    console.log(
+      "Detected change in HTTPS certificate file. Reloading certificate."
+    );
+    this.readFromDisk();
+  };
 }
 
 export default HttpsCertificateManager;

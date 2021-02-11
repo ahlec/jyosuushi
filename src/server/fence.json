@@ -24,6 +24,7 @@
     "graphql-rate-limit",
     "helmet",
     "is-wsl",
+    "lodash",
     "nodemailer",
     "path",
     "pug",
