@@ -28,7 +28,16 @@ export function startHttpServer(
     }
     case "https": {
       const certManager = new HttpsCertificateManager(config);
-      server = createHttpsServerInternal(certManager.current, requestHandler);
+      const httpsServer = createHttpsServerInternal(
+        certManager.current,
+        requestHandler
+      );
+      certManager.listen((secureOptions): void => {
+        console.log("Updating HTTPS server with new certificate");
+        httpsServer.setSecureContext(secureOptions);
+      });
+
+      server = httpsServer;
       break;
     }
   }

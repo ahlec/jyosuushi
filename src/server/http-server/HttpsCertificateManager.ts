@@ -6,8 +6,13 @@ import { ONE_SECOND } from "@shared/constants";
 
 import { HttpsServerConfiguration } from "@server/environment";
 
+type CertificateChangeCallback = (next: SecureContextOptions) => void;
+
+type UnsubscribeFn = () => void;
+
 class HttpsCertificateManager {
   private loaded: SecureContextOptions;
+  private readonly onChangeCallbacks = new Set<CertificateChangeCallback>();
 
   public constructor(private readonly config: HttpsServerConfiguration) {
     this.readFromDisk();
@@ -27,6 +32,13 @@ class HttpsCertificateManager {
     return this.loaded;
   }
 
+  public listen(callback: CertificateChangeCallback): UnsubscribeFn {
+    this.onChangeCallbacks.add(callback);
+    return (): void => {
+      this.onChangeCallbacks.delete(callback);
+    };
+  }
+
   private readFromDisk(): void {
     const privateKey = readFileSync(this.config.privateKeyFile, "utf-8");
     const certificate = readFileSync(this.config.certificateFile, "utf-8");
@@ -43,6 +55,9 @@ class HttpsCertificateManager {
       "Detected change in HTTPS certificate file. Reloading certificate."
     );
     this.readFromDisk();
+
+    const { current } = this;
+    this.onChangeCallbacks.forEach((callback): void => callback(current));
   };
 }
 
