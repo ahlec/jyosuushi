@@ -7,7 +7,7 @@ import {
 } from "http";
 import { createServer as createHttpsServerInternal } from "https";
 
-import { ServerConfig } from "./environment";
+import { ServerConfig } from "@server/environment";
 
 type RequestHandlerFn = (
   request: IncomingMessage,

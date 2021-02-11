@@ -15,7 +15,7 @@ import { SERVER_MODULES } from "./modules";
 import { createRateLimiter } from "./rate-limiting/create";
 import { RESOLVERS } from "./resolvers";
 import { ServerContext } from "./context";
-import { startHttpServer } from "./http-server";
+import { startHttpServer } from "./http-server/initialize";
 
 function loadAndVerifyAwsConfiguration({
   awsRegion,
