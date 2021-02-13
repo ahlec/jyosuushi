@@ -15,7 +15,6 @@ import Modal from "@jyosuushi/ui/components/popups/Modal";
 import QuizHistory from "@jyosuushi/ui/QuizHistory";
 
 import AbortConfirmationModal from "./AbortConfirmationModal";
-import BetaBanner from "./BetaBanner";
 import Score from "./Score";
 
 import HistoryIcon from "./history.svg";
@@ -209,7 +208,6 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
         <div className={styles.subheader}>
           <FormattedMessage {...INTL_MESSAGES.tagline} />
         </div>
-        <BetaBanner className={styles.betaBanner} />
       </React.Fragment>
     );
   }

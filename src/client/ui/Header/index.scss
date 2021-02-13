@@ -126,10 +126,6 @@ $font-size-quiz: 20px;
       .sakura {
         opacity: 0.5;
       }
-
-      .betaBanner {
-        opacity: 1;
-      }
     }
 
     .main {
@@ -156,11 +152,6 @@ $font-size-quiz: 20px;
       top: -80px;
       transform: rotateZ(55deg);
       width: 250px;
-    }
-
-    .betaBanner {
-      opacity: 0;
-      transition: opacity 0.1s;
     }
   }
 

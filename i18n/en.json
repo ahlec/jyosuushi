@@ -236,15 +236,6 @@
     },
     "translation": ""
   },
-  "header.betaBanner.contents": {
-    "original": {
-      "defaultMessage": "Beta",
-      "filenames": [
-        "src/client/ui/Header/BetaBanner.tsx"
-      ]
-    },
-    "translation": ""
-  },
   "header.historyModalHeader": {
     "original": {
       "defaultMessage": "History",
