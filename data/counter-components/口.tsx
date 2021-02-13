@@ -259,7 +259,7 @@ export class CounterNotes extends React.PureComponent<MarkdownComponentProps> {
           reading{" "}
           <ruby>
             三口<rp>(</rp>
-            <rt>みつくち</rt>
+            <rt>さんくち</rt>
             <rp>)</rp>
           </ruby>{" "}
           instead. All numbers beyond three are read using{" "}
