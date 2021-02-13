@@ -29,6 +29,7 @@
 
 .counter {
   flex: 1;
+  font-size: 24px;
 }
 
 .furigana {
@@ -37,7 +38,6 @@
 
 .counterText {
   color: palette.$black-base;
-  font-size: 24px;
   font-weight: bold;
 }
 
