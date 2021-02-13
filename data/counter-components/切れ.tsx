@@ -52,8 +52,8 @@ export class CounterNotes extends React.PureComponent<MarkdownComponentProps> {
             <rp>)</rp>
           </ruby>{" "}
           is a unit of measurement for concrete or stone used for
-          building/crafting, equivalent to roughly 0.028m^3^/1ft^3^. Used as a
-          counter,{" "}
+          building/crafting, equivalent to roughly 0.028m<sup>3</sup>/1ft
+          <sup>3</sup>. Used as a counter,{" "}
           <ruby>
             切れ<rp>(</rp>
             <rt>きれ</rt>

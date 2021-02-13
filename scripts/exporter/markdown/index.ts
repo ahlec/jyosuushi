@@ -9,6 +9,7 @@ import embededImages from "./embeded-images";
 import footnotes from "./footnotes";
 import intrasiteLinkMarkdownPlugin from "./intrasite-link-plugin";
 import mdashPlugin from "./mdash-plugin";
+import superscriptPlugin from "./superscript-plugin";
 import jsxCompiler, {
   assertJsxCompilerVFileData,
 } from "./remark-compilers/jsx-compiler";
@@ -58,6 +59,7 @@ function processMarkdown<TCompilerOptions, TVFileData>(
       exportedCounterIds,
       warningsCollector: pluginWarningsCollector,
     })
+    .use(superscriptPlugin)
     .use(compiler)
     .processSync(markdown);
   dataAsserter(result.data);
