@@ -4,6 +4,7 @@ import { WritableStream } from "memory-streams";
 import path from "path";
 import prettier from "prettier";
 
+import { DATA_DIRECTORY, SERVER_SRC_DIRECTORY } from "../constants";
 import Database from "../database/Database";
 import ValidatedDataSource from "../database/ValidatedDataSource";
 
@@ -16,7 +17,6 @@ import {
   FileExportRequest,
   WriteFileResults,
 } from "./types";
-import { DATA_DIRECTORY, SERVER_SRC_DIRECTORY } from "./utils";
 
 const FILE_HEADER_COMMENT = `// DO NOT HAND-MODIFY THIS FILE!!
 // This file was built using \`yarn db:export\` from the SQLite database.

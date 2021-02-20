@@ -1,6 +1,7 @@
 import { isArray } from "lodash";
 import path from "path";
 import { DbWordOrigin } from "../database/schemas";
+import { DATA_DIRECTORY } from "../constants";
 
 function getVariableFromId(prefix: string, id: string): string {
   return prefix + id.toUpperCase().replace(/[-\s,&._()（）ー']+/g, "_");
@@ -17,13 +18,6 @@ export function getItemId(id: string): string {
 export function getStudyPackId(id: string): string {
   return getVariableFromId("STUDY_PACK_", id);
 }
-
-export const ROOT_DIRECTORY = path.resolve(__dirname, "./../../");
-export const DATA_DIRECTORY = path.resolve(ROOT_DIRECTORY, "./data");
-export const SERVER_SRC_DIRECTORY = path.resolve(
-  ROOT_DIRECTORY,
-  "./src/server"
-);
 
 const COUNTER_NOTES_COMPONENTS_DIRECTORY = path.resolve(
   DATA_DIRECTORY,

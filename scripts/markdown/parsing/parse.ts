@@ -5,7 +5,7 @@ import { Node } from "unist";
 import parse from "remark-parse";
 import ruby from "remark-ruby";
 
-import { ROOT_DIRECTORY } from "../../utils";
+import { ROOT_DIRECTORY } from "../../constants";
 
 import { HastNode, HastSyntaxTree } from "../types";
 import { isIndexableObject } from "../utils";
