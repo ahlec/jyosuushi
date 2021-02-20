@@ -5,6 +5,17 @@
 import * as React from "react";
 import { MarkdownComponentProps } from "@jyosuushi/interfaces";
 
+export class ExternalLink0 extends React.PureComponent<MarkdownComponentProps> {
+  public render(): React.ReactNode {
+    return (
+      <p>
+        Detailed and well-researched article from the kings of Japanese language
+        learning.
+      </p>
+    );
+  }
+}
+
 export class Disambiguation人 extends React.PureComponent<
   MarkdownComponentProps
 > {

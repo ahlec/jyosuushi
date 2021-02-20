@@ -17,6 +17,7 @@ import {
 import { CounterJoinData } from "./CounterDataLookup";
 import CounterMarkdownConsolidator from "./CounterMarkdownConsolidator";
 import { convertToProtoCounter } from "./ProtoCounter";
+import { PreparedCounterExternalLink } from "./types";
 import { getOtherCounterId } from "./utils";
 
 export interface Import {
@@ -52,6 +53,18 @@ function exportSingleCounter(
         MarkdownStyle.Block
       )
     : null;
+
+  const externalLinks = joinData.externalLinks.map(
+    (externalLink, index): PreparedCounterExternalLink => ({
+      ...externalLink,
+      description: markdownConsolidator.addMarkdown(
+        `ExternalLink${index}`,
+        externalLink.description,
+        MarkdownStyle.Inline
+      ),
+    })
+  );
+
   const disambiguationComponents: {
     [otherCounterId: string]: ProductionVariable;
   } = {};
@@ -75,6 +88,7 @@ function exportSingleCounter(
       disambiguationComponents,
       notesComponent,
     },
+    externalLinks,
     markdownConsolidator.footnoteComponentVariables
   );
 

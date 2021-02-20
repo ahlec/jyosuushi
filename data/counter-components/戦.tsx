@@ -149,6 +149,29 @@ export class CounterNotes extends React.PureComponent<MarkdownComponentProps> {
   }
 }
 
+export class ExternalLink0 extends React.PureComponent<MarkdownComponentProps> {
+  public render(): React.ReactNode {
+    return (
+      <p>
+        Masters thesis that focuses on the establishment of new counters, in
+        particular 店 and 試合. Has a lengthy comparison of{" "}
+        <ruby>
+          試合<rp>(</rp>
+          <rt>しあい</rt>
+          <rp>)</rp>
+        </ruby>{" "}
+        and{" "}
+        <ruby>
+          戦<rp>(</rp>
+          <rt>せん</rt>
+          <rp>)</rp>
+        </ruby>{" "}
+        as counters.
+      </p>
+    );
+  }
+}
+
 export class Footnote1 extends React.PureComponent<MarkdownComponentProps> {
   public render(): React.ReactNode {
     return (

@@ -10,19 +10,29 @@ import {
   WordOrigin,
 } from "@jyosuushi/interfaces";
 
+import * as ヶ月Components from "@data/counter-components/ヶ月";
 import * as 人Components from "@data/counter-components/人";
 import * as 冊Components from "@data/counter-components/冊";
+import * as 分Components from "@data/counter-components/分";
 import * as 切れComponents from "@data/counter-components/切れ";
 import * as 匹Components from "@data/counter-components/匹";
 import * as 口Components from "@data/counter-components/口";
+import * as 台Components from "@data/counter-components/台";
 import * as 名Components from "@data/counter-components/名";
+import * as 回Components from "@data/counter-components/回";
 import * as 巻Components from "@data/counter-components/巻";
 import * as 年Components from "@data/counter-components/年";
 import * as 戦Components from "@data/counter-components/戦";
+import * as 日Components from "@data/counter-components/日";
+import * as 時Components from "@data/counter-components/時";
 import * as 本Components from "@data/counter-components/本";
+import * as 枚Components from "@data/counter-components/枚";
 import * as 校Components from "@data/counter-components/校";
 import * as 歳Components from "@data/counter-components/歳";
 import * as 缶Components from "@data/counter-components/缶";
+import * as 羽Components from "@data/counter-components/羽";
+import * as 階Components from "@data/counter-components/階";
+import * as 頭Components from "@data/counter-components/頭";
 
 export const COUNTER_ヶ国: Counter = {
   counterId: "ヶ国",
@@ -96,8 +106,7 @@ export const COUNTER_ヶ月: Counter = {
   englishName: "months",
   externalLinks: [
     {
-      description:
-        "Detailed and well-researched article from the kings of Japanese language learning.",
+      description: ヶ月Components.ExternalLink0,
       displayText: "月: Counting Months",
       language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
@@ -148,16 +157,14 @@ export const COUNTER_人: Counter = {
   englishName: "people",
   externalLinks: [
     {
-      description:
-        "Detailed and well-researched article from the kings of Japanese language learning.",
+      description: 人Components.ExternalLink0,
       displayText: "人: Counting People and Smart Animals",
       language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
       url: "https://www.tofugu.com/japanese/japanese-counter-nin/",
     },
     {
-      description:
-        "Japanese dictionary entries, compiled from multiple sources.",
+      description: 人Components.ExternalLink1,
       displayText: "人（読み：ジン）",
       language: ExternalLinkLanguage.Japanese,
       siteName: "コトバンク",
@@ -281,16 +288,14 @@ export const COUNTER_冊: Counter = {
   englishName: "books",
   externalLinks: [
     {
-      description:
-        "Detailed and well-researched article from the kings of Japanese language learning.",
+      description: 冊Components.ExternalLink0,
       displayText: "冊: Counting Books",
       language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
       url: "https://www.tofugu.com/japanese/japanese-counter-satsu/",
     },
     {
-      description:
-        "Japanese dictionary entries, compiled from multiple sources.",
+      description: 冊Components.ExternalLink1,
       displayText: "冊（読み：サク）",
       language: ExternalLinkLanguage.Japanese,
       siteName: "コトバンク",
@@ -337,8 +342,7 @@ export const COUNTER_分: Counter = {
   englishName: "minutes",
   externalLinks: [
     {
-      description:
-        "Detailed and well-researched article from the kings of Japanese language learning.",
+      description: 分Components.ExternalLink0,
       displayText: "分: Counting Minutes and Edo Period Silver Currency",
       language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
@@ -384,8 +388,7 @@ export const COUNTER_切れ: Counter = {
   englishName: "slices",
   externalLinks: [
     {
-      description:
-        "Japanese dictionary entries, compiled from multiple sources.",
+      description: 切れComponents.ExternalLink0,
       displayText: "切れ（読み：きれ）",
       language: ExternalLinkLanguage.Japanese,
       siteName: "コトバンク",
@@ -443,8 +446,7 @@ export const COUNTER_匹: Counter = {
   englishName: "small animals",
   externalLinks: [
     {
-      description:
-        "Detailed and well-researched article from the kings of Japanese language learning.",
+      description: 匹Components.ExternalLink0,
       displayText: "匹: Counting Animals, Bugs, and Wild Children",
       language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
@@ -494,8 +496,7 @@ export const COUNTER_口: Counter = {
   englishName: "bites",
   externalLinks: [
     {
-      description:
-        "Japanese dictionary entries, compiled from multiple sources.",
+      description: 口Components.ExternalLink0,
       displayText: "口（読み：くち）",
       language: ExternalLinkLanguage.Japanese,
       siteName: "コトバンク",
@@ -556,8 +557,7 @@ export const COUNTER_台: Counter = {
   englishName: "machines and large objects",
   externalLinks: [
     {
-      description:
-        "Detailed and well-researched article from the kings of Japanese language learning.",
+      description: 台Components.ExternalLink0,
       displayText: "台: Counting Machines, Furniture, & Whole Cakes",
       language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
@@ -603,8 +603,7 @@ export const COUNTER_名: Counter = {
   englishName: "people",
   externalLinks: [
     {
-      description:
-        "Detailed and well-researched article from the kings of Japanese language learning.",
+      description: 名Components.ExternalLink0,
       displayText: "人: Counting People and Smart Animals",
       language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
@@ -678,8 +677,7 @@ export const COUNTER_回: Counter = {
   englishName: "times (occurrences)",
   externalLinks: [
     {
-      description:
-        "Detailed and well-researched article from the kings of Japanese language learning.",
+      description: 回Components.ExternalLink0,
       displayText: "回: Repetitive Actions, Regular Events",
       language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
@@ -802,8 +800,7 @@ export const COUNTER_年: Counter = {
   englishName: "years",
   externalLinks: [
     {
-      description:
-        "Detailed and well-researched article from the kings of Japanese language learning.",
+      description: 年Components.ExternalLink0,
       displayText: "年: Counting Years and Planetary Orbits",
       language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
@@ -844,8 +841,7 @@ export const COUNTER_戦: Counter = {
   englishName: "battles",
   externalLinks: [
     {
-      description:
-        "Masters thesis that focuses on the establishment of new counters, in particular <counter:店> and <counter:試合>. Has a lengthy comparison of {試合}^(しあい) and {戦}^(せん) as counters.",
+      description: 戦Components.ExternalLink0,
       displayText: "近現代日本語における新たな助数詞の成立と定着",
       language: ExternalLinkLanguage.Japanese,
       siteName: "筑波大学",
@@ -892,8 +888,7 @@ export const COUNTER_日: Counter = {
   englishName: "days of the month",
   externalLinks: [
     {
-      description:
-        "Detailed and well-researched article from the kings of Japanese language learning.",
+      description: 日Components.ExternalLink0,
       displayText: "日: Counting Days",
       language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
@@ -1052,8 +1047,7 @@ export const COUNTER_時: Counter = {
   englishName: "hours",
   externalLinks: [
     {
-      description:
-        "Detailed and well-researched article from the kings of Japanese language learning.",
+      description: 時Components.ExternalLink0,
       displayText: "時/時間: Counting Time and Hours",
       language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
@@ -1136,16 +1130,14 @@ export const COUNTER_本: Counter = {
   englishName: "long, thin objects",
   externalLinks: [
     {
-      description:
-        "Detailed and well-researched article from the kings of Japanese language learning.",
+      description: 本Components.ExternalLink0,
       displayText: "本: Counting Long, Skinny Things",
       language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
       url: "https://www.tofugu.com/japanese/japanese-counter-hon/",
     },
     {
-      description:
-        "Japanese dictionary entries, compiled from multiple sources.",
+      description: 本Components.ExternalLink1,
       displayText: "本（読み：ホン）",
       language: ExternalLinkLanguage.Japanese,
       siteName: "コトバンク",
@@ -1233,8 +1225,7 @@ export const COUNTER_枚: Counter = {
   englishName: "flat objects",
   externalLinks: [
     {
-      description:
-        "Detailed and well-researched article from the kings of Japanese language learning.",
+      description: 枚Components.ExternalLink0,
       displayText: "枚: Counting Everything Flat",
       language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
@@ -1275,16 +1266,14 @@ export const COUNTER_校: Counter = {
   englishName: "schools",
   externalLinks: [
     {
-      description:
-        "Japanese dictionary entries, compiled from multiple sources.",
+      description: 校Components.ExternalLink0,
       displayText: "校（読み：コウ）",
       language: ExternalLinkLanguage.Japanese,
       siteName: "コトバンク",
       url: "https://kotobank.jp/word/%E6%A0%A1-493763",
     },
     {
-      description:
-        "Article giving an overview of the printing and proofing process in design and publishing.",
+      description: 校Components.ExternalLink1,
       displayText:
         "初校？初稿？デザイナーなら知っておきたい基本的なデザイン業界専門用語",
       language: ExternalLinkLanguage.Japanese,
@@ -1336,8 +1325,7 @@ export const COUNTER_歳: Counter = {
   englishName: "age",
   externalLinks: [
     {
-      description:
-        "Japanese dictionary entries, compiled from multiple sources.",
+      description: 歳Components.ExternalLink0,
       displayText: "歳（読み：サイ）",
       language: ExternalLinkLanguage.Japanese,
       siteName: "コトバンク",
@@ -1547,8 +1535,7 @@ export const COUNTER_羽: Counter = {
   englishName: "birds and rabbits",
   externalLinks: [
     {
-      description:
-        "Detailed and well-researched article from the kings of Japanese language learning.",
+      description: 羽Components.ExternalLink0,
       displayText: "羽: Counting Birds, Bats, and Bun-Buns",
       language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
@@ -1754,8 +1741,7 @@ export const COUNTER_階: Counter = {
   englishName: "floors",
   externalLinks: [
     {
-      description:
-        "Detailed and well-researched article from the kings of Japanese language learning.",
+      description: 階Components.ExternalLink0,
       displayText: "階: Floors of a Building",
       language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
@@ -1796,8 +1782,7 @@ export const COUNTER_頭: Counter = {
   englishName: "large animals",
   externalLinks: [
     {
-      description:
-        "Detailed and well-researched article from the kings of Japanese language learning.",
+      description: 頭Components.ExternalLink0,
       displayText: "頭: Counting Those Big, Professional Animals",
       language: ExternalLinkLanguage.English,
       siteName: "Tofugu",

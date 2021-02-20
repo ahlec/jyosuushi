@@ -12,7 +12,6 @@ import {
 import {
   DbCounter,
   DbCounterAlternativeKanji,
-  DbCounterExternalLink,
   DbCounterIrregular,
   DbCounterReading,
   DbExternalLinkLanguage,
@@ -24,7 +23,7 @@ import {
 import { getWordOrigin, ProductionVariable } from "../utils";
 
 import { CounterJoinData } from "./CounterDataLookup";
-import { CounterComponentsLookup } from "./types";
+import { CounterComponentsLookup, PreparedCounterExternalLink } from "./types";
 import { getOtherCounterId } from "./utils";
 
 type ProtoCounterReading = Omit<CounterReading, "wordOrigin"> & {
@@ -39,7 +38,8 @@ type ProtoCounterIrregular = Omit<
   type: ProductionVariable;
 };
 
-type ProtoExternalLink = Omit<ExternalLink, "language"> & {
+type ProtoExternalLink = Omit<ExternalLink, "description" | "language"> & {
+  description: ProductionVariable;
   language: ProductionVariable;
 };
 
@@ -67,7 +67,7 @@ type ProtoCounter = Omit<
 };
 
 function convertToProductionExternalLink(
-  db: DbCounterExternalLink
+  db: PreparedCounterExternalLink
 ): ProtoExternalLink {
   let externalLinkLanguageEnumField: string;
   switch (db.language) {
@@ -222,6 +222,7 @@ export function convertToProtoCounter(
   counter: DbCounter,
   joinData: CounterJoinData,
   nestedComponents: CounterComponentsLookup,
+  externalLinks: readonly PreparedCounterExternalLink[],
   footnoteComponents: ReadonlyArray<ProductionVariable>
 ): ProtoCounter {
   return {
@@ -235,7 +236,7 @@ export function convertToProtoCounter(
         )
     ),
     englishName: counter.english_name,
-    externalLinks: joinData.externalLinks.map(convertToProductionExternalLink),
+    externalLinks: externalLinks.map(convertToProductionExternalLink),
     footnotes: footnoteComponents,
     irregulars: convertToProductionIrregularsMap(joinData.irregulars),
     kanji: counter.primary_kanji

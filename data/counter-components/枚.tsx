@@ -15,16 +15,3 @@ export class ExternalLink0 extends React.PureComponent<MarkdownComponentProps> {
     );
   }
 }
-
-export class Disambiguation人 extends React.PureComponent<
-  MarkdownComponentProps
-> {
-  public render(): React.ReactNode {
-    return (
-      <p>
-        人 is much more commonly used in daily conversation. 名 is more polite
-        than 人 and so is used in formal situations.
-      </p>
-    );
-  }
-}

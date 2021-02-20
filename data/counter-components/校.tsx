@@ -211,6 +211,23 @@ export class CounterNotes extends React.PureComponent<MarkdownComponentProps> {
   }
 }
 
+export class ExternalLink0 extends React.PureComponent<MarkdownComponentProps> {
+  public render(): React.ReactNode {
+    return <p>Japanese dictionary entries, compiled from multiple sources.</p>;
+  }
+}
+
+export class ExternalLink1 extends React.PureComponent<MarkdownComponentProps> {
+  public render(): React.ReactNode {
+    return (
+      <p>
+        Article giving an overview of the printing and proofing process in
+        design and publishing.
+      </p>
+    );
+  }
+}
+
 export class Footnote1 extends React.PureComponent<MarkdownComponentProps> {
   public render(): React.ReactNode {
     return (

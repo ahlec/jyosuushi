@@ -9,7 +9,7 @@ export enum ExternalLinkLanguage {
 export interface ExternalLink {
   url: string;
   displayText: string;
-  description: string;
+  description: MarkdownComponent;
   siteName: string;
   language: ExternalLinkLanguage;
 }

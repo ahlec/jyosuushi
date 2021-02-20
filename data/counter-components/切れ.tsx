@@ -270,6 +270,12 @@ export class CounterNotes extends React.PureComponent<MarkdownComponentProps> {
   }
 }
 
+export class ExternalLink0 extends React.PureComponent<MarkdownComponentProps> {
+  public render(): React.ReactNode {
+    return <p>Japanese dictionary entries, compiled from multiple sources.</p>;
+  }
+}
+
 export class Disambiguation口 extends React.PureComponent<
   MarkdownComponentProps
 > {

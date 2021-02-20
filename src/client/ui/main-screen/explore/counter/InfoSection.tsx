@@ -87,7 +87,10 @@ export default class InfoSection extends React.PureComponent<ComponentProps> {
           <strong className={styles.site}>[{link.siteName}]</strong>
           {link.displayText}
         </a>
-        <div className={styles.description}>{link.description}</div>
+        <MarkdownPresenter
+          className={styles.description}
+          component={link.description}
+        />
       </li>
     );
   };
