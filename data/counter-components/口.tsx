@@ -167,8 +167,11 @@ export function CounterNotes(): React.ReactElement {
           <rt>くち</rt>
           <rp>)</rp>
         </ruby>{" "}
-        in the same way that 株 is used for counting shares of publicly-traded
-        stock.
+        in the same way that{" "}
+        <IntrasiteLink id="株">
+          <CounterDisplay primaryText="株" reading="かぶ" />
+        </IntrasiteLink>{" "}
+        is used for counting shares of publicly-traded stock.
         <sup id="fnref-5">
           <a className="footnote-ref" href="#fn-5">
             5

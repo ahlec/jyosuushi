@@ -29,6 +29,7 @@ import * as 本Components from "@data/counter-components/本";
 import * as 杯Components from "@data/counter-components/杯";
 import * as 枚Components from "@data/counter-components/枚";
 import * as 校Components from "@data/counter-components/校";
+import * as 株Components from "@data/counter-components/株";
 import * as 歳Components from "@data/counter-components/歳";
 import * as 缶Components from "@data/counter-components/缶";
 import * as 羽Components from "@data/counter-components/羽";
@@ -1374,6 +1375,53 @@ export const COUNTER_校: Counter = {
   ],
 };
 
+export const COUNTER_株: Counter = {
+  counterId: "株",
+  disambiguations: [],
+  englishName: "rooted plants, company stock",
+  externalLinks: [
+    {
+      description: 株Components.ExternalLink0,
+      displayText: "かぶ【株】",
+      language: ExternalLinkLanguage.Japanese,
+      siteName: "数え方単位辞典",
+      url: "https://www.sanabo.com/kazoekata/ct_ka/ka/kabu/",
+    },
+  ],
+  footnotes: [],
+  irregulars: {},
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "株",
+  },
+  leadIn: null,
+  notes: null,
+  readings: [
+    {
+      counterId: "株",
+      kana: "かぶ",
+      kangoConjugationOptions: {
+        allowsKuFor9: false,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: false,
+        allowsYoFor4: false,
+        allowsYonFor4: true,
+      },
+      readingId: "かぶ",
+      wagoStyle: {
+        alsoUsesKangoIchi: false,
+        alsoUsesKangoNi: false,
+        alsoUsesKangoSan: false,
+        kana: "かぶ",
+        rangeEndInclusive: 2,
+      },
+      wordOrigin: WordOrigin.Japanese,
+    },
+  ],
+};
+
 export const COUNTER_歳: Counter = {
   counterId: "歳",
   disambiguations: [
@@ -1955,6 +2003,7 @@ export const COUNTERS_LOOKUP: { [counterId: string]: Counter } = {
   杯: COUNTER_杯,
   枚: COUNTER_枚,
   校: COUNTER_校,
+  株: COUNTER_株,
   歳: COUNTER_歳,
   皿: COUNTER_皿,
   社: COUNTER_社,

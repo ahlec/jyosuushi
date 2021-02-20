@@ -58,4 +58,17 @@ VALUES(
     NULL,
     'Building off of the Essential collection, these are counters that you’re likely to run into with a fair bit of frequency as you dive deeper into Japanese and handle more complex situations.'
   );
+INSERT INTO
+  "study_packs" (
+    pack_id,
+    english_name,
+    date_counter_last_removed,
+    description
+  )
+VALUES(
+    'office-life',
+    'Office Life',
+    NULL,
+    'Counters that would be useful in a corporate environment or in office jobs.'
+  );
 COMMIT;

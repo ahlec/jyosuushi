@@ -422,6 +422,20 @@ const ITEM_BUNDLE_OF_WOOD: Item = {
   minQuantity: 1,
 };
 
+const ITEM_BUSH: Item = {
+  counters: [
+    {
+      counterId: "株",
+      relevance: CounterItemRelevance.Unknown,
+    },
+  ],
+  englishPlural: "bushes",
+  englishSingular: "bush",
+  itemId: "bush",
+  maxQuantity: 100,
+  minQuantity: 1,
+};
+
 const ITEM_CAN_OF_BUG_SPRAY: Item = {
   counters: [
     {
@@ -540,6 +554,10 @@ const ITEM_CIRCUIT: Item = {
 
 const ITEM_CLOUD_EAR_MUSHROOM: Item = {
   counters: [
+    {
+      counterId: "株",
+      relevance: CounterItemRelevance.Unknown,
+    },
     {
       counterId: "枚",
       relevance: CounterItemRelevance.Unknown,
@@ -681,6 +699,10 @@ const ITEM_CREDIT_CARD: Item = {
 const ITEM_CUCUMBER: Item = {
   counters: [
     {
+      counterId: "株",
+      relevance: CounterItemRelevance.Unknown,
+    },
+    {
       counterId: "本",
       relevance: CounterItemRelevance.Unknown,
     },
@@ -744,6 +766,20 @@ const ITEM_DECK_OF_CARDS: Item = {
   englishPlural: "decks of cards",
   englishSingular: "deck of cards",
   itemId: "deck of cards",
+  maxQuantity: 100,
+  minQuantity: 1,
+};
+
+const ITEM_DECORATIVE_PLANT: Item = {
+  counters: [
+    {
+      counterId: "株",
+      relevance: CounterItemRelevance.Unknown,
+    },
+  ],
+  englishPlural: "decorative plants",
+  englishSingular: "decorative plant",
+  itemId: "decorative plant",
   maxQuantity: 100,
   minQuantity: 1,
 };
@@ -898,6 +934,20 @@ const ITEM_FLOOR_BUILDING_: Item = {
   englishPlural: "floors",
   englishSingular: "floor",
   itemId: "floor (building)",
+  maxQuantity: 100,
+  minQuantity: 1,
+};
+
+const ITEM_FLOWER: Item = {
+  counters: [
+    {
+      counterId: "株",
+      relevance: CounterItemRelevance.Unknown,
+    },
+  ],
+  englishPlural: "flowers",
+  englishSingular: "flower",
+  itemId: "flower",
   maxQuantity: 100,
   minQuantity: 1,
 };
@@ -1356,6 +1406,10 @@ const ITEM_MONTH: Item = {
 
 const ITEM_MUSHROOM: Item = {
   counters: [
+    {
+      counterId: "株",
+      relevance: CounterItemRelevance.Unknown,
+    },
     {
       counterId: "本",
       relevance: CounterItemRelevance.Unknown,
@@ -1880,6 +1934,20 @@ const ITEM_SERVING_OF_YAKISOBA: Item = {
   minQuantity: 1,
 };
 
+const ITEM_SHARE_OF_STOCK: Item = {
+  counters: [
+    {
+      counterId: "株",
+      relevance: CounterItemRelevance.Unknown,
+    },
+  ],
+  englishPlural: "shares of stock",
+  englishSingular: "share of stock",
+  itemId: "share of stock",
+  maxQuantity: 100,
+  minQuantity: 1,
+};
+
 const ITEM_SHEEP: Item = {
   counters: [
     {
@@ -1932,6 +2000,20 @@ const ITEM_SHOPPING_MALL: Item = {
   englishPlural: "shopping malls",
   englishSingular: "shopping mall",
   itemId: "shopping mall",
+  maxQuantity: 100,
+  minQuantity: 1,
+};
+
+const ITEM_SHRUB: Item = {
+  counters: [
+    {
+      counterId: "株",
+      relevance: CounterItemRelevance.Unknown,
+    },
+  ],
+  englishPlural: "shrubs",
+  englishSingular: "shrub",
+  itemId: "shrub",
   maxQuantity: 100,
   minQuantity: 1,
 };
@@ -2066,6 +2148,10 @@ const ITEM_STOCK_CERTIFICATE: Item = {
   counters: [
     {
       counterId: "枚",
+      relevance: CounterItemRelevance.Unknown,
+    },
+    {
+      counterId: "株",
       relevance: CounterItemRelevance.Unknown,
     },
   ],
@@ -2262,6 +2348,20 @@ const ITEM_TREE: Item = {
   minQuantity: 1,
 };
 
+const ITEM_TREE_STUMP: Item = {
+  counters: [
+    {
+      counterId: "株",
+      relevance: CounterItemRelevance.Unknown,
+    },
+  ],
+  englishPlural: "tree stumps",
+  englishSingular: "tree stump",
+  itemId: "tree stump",
+  maxQuantity: 100,
+  minQuantity: 1,
+};
+
 const ITEM_TUNE: Item = {
   counters: [
     {
@@ -2446,6 +2546,7 @@ export const ITEMS_LOOKUP: { [itemId: string]: Item } = {
   "bowl of soup": ITEM_BOWL_OF_SOUP,
   "bundle of green onions": ITEM_BUNDLE_OF_GREEN_ONIONS,
   "bundle of wood": ITEM_BUNDLE_OF_WOOD,
+  bush: ITEM_BUSH,
   "can of bug spray": ITEM_CAN_OF_BUG_SPRAY,
   "can of hair spray": ITEM_CAN_OF_HAIR_SPRAY,
   "can of soup": ITEM_CAN_OF_SOUP,
@@ -2469,6 +2570,7 @@ export const ITEMS_LOOKUP: { [itemId: string]: Item } = {
   "cut of meat": ITEM_CUT_OF_MEAT,
   "day of the month": ITEM_DAY_OF_THE_MONTH,
   "deck of cards": ITEM_DECK_OF_CARDS,
+  "decorative plant": ITEM_DECORATIVE_PLANT,
   deer: ITEM_DEER,
   dictionary: ITEM_DICTIONARY,
   dog: ITEM_DOG,
@@ -2480,6 +2582,7 @@ export const ITEMS_LOOKUP: { [itemId: string]: Item } = {
   filet: ITEM_FILET,
   "fire extinguisher": ITEM_FIRE_EXTINGUISHER,
   "floor (building)": ITEM_FLOOR_BUILDING_,
+  flower: ITEM_FLOWER,
   "fur pelt": ITEM_FUR_PELT,
   game: ITEM_GAME,
   "glass of milk": ITEM_GLASS_OF_MILK,
@@ -2549,10 +2652,12 @@ export const ITEMS_LOOKUP: { [itemId: string]: Item } = {
   saying: ITEM_SAYING,
   seat: ITEM_SEAT,
   "serving of yakisoba": ITEM_SERVING_OF_YAKISOBA,
+  "share of stock": ITEM_SHARE_OF_STOCK,
   sheep: ITEM_SHEEP,
   "shinto shrine": ITEM_SHINTO_SHRINE,
   shop: ITEM_SHOP,
   "shopping mall": ITEM_SHOPPING_MALL,
+  shrub: ITEM_SHRUB,
   "side dish": ITEM_SIDE_DISH,
   "sip of water": ITEM_SIP_OF_WATER,
   skirmish: ITEM_SKIRMISH,
@@ -2576,6 +2681,7 @@ export const ITEMS_LOOKUP: { [itemId: string]: Item } = {
   tint: ITEM_TINT,
   "train ticket": ITEM_TRAIN_TICKET,
   tree: ITEM_TREE,
+  "tree stump": ITEM_TREE_STUMP,
   tune: ITEM_TUNE,
   twig: ITEM_TWIG,
   university: ITEM_UNIVERSITY,
@@ -2698,6 +2804,18 @@ export const ITEMS_FROM_COUNTER: {
     ITEM_MIDDLE_SCHOOL,
     ITEM_UNIVERSITY,
     ITEM_CRAM_SCHOOL,
+  ],
+  株: [
+    ITEM_FLOWER,
+    ITEM_TREE_STUMP,
+    ITEM_SHRUB,
+    ITEM_BUSH,
+    ITEM_CLOUD_EAR_MUSHROOM,
+    ITEM_MUSHROOM,
+    ITEM_CUCUMBER,
+    ITEM_STOCK_CERTIFICATE,
+    ITEM_SHARE_OF_STOCK,
+    ITEM_DECORATIVE_PLANT,
   ],
   歳: [ITEM_YEARS_OLD],
   皿: [

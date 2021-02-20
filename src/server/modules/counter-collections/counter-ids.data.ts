@@ -30,6 +30,7 @@ export const COUNTER_IDS: ReadonlySet<string> = new Set([
   "杯",
   "枚",
   "校",
+  "株",
   "歳",
   "皿",
   "社",

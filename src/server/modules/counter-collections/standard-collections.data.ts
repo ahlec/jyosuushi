@@ -89,9 +89,19 @@ const STUDY_PACK_N5: StandardCounterCollection = {
   name: "JLPT N5",
 };
 
+const STUDY_PACK_OFFICE_LIFE: StandardCounterCollection = {
+  counterIds: ["円", "名", "席", "枚", "株", "社", "階"],
+  dateLastUpdated: 1613798128000,
+  description:
+    "Counters that would be useful in a corporate environment or in office jobs.",
+  id: "office-life",
+  name: "Office Life",
+};
+
 export const STANDARD_COLLECTIONS: readonly StandardCounterCollection[] = [
   STUDY_PACK_COMMON,
   STUDY_PACK_ESSENTIAL,
   STUDY_PACK_N4,
   STUDY_PACK_N5,
+  STUDY_PACK_OFFICE_LIFE,
 ];
