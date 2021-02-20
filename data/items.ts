@@ -1172,6 +1172,20 @@ const ITEM_LAW: Item = {
   minQuantity: 1,
 };
 
+const ITEM_LEAF: Item = {
+  counters: [
+    {
+      counterId: "枚",
+      relevance: CounterItemRelevance.Unknown,
+    },
+  ],
+  englishPlural: "leaves",
+  englishSingular: "leaf",
+  itemId: "leaf",
+  maxQuantity: 100,
+  minQuantity: 1,
+};
+
 const ITEM_LINE: Item = {
   counters: [
     {
@@ -2220,6 +2234,20 @@ const ITEM_TINT: Item = {
   minQuantity: 1,
 };
 
+const ITEM_TRAIN_TICKET: Item = {
+  counters: [
+    {
+      counterId: "枚",
+      relevance: CounterItemRelevance.Unknown,
+    },
+  ],
+  englishPlural: "train tickets",
+  englishSingular: "train ticket",
+  itemId: "train ticket",
+  maxQuantity: 100,
+  minQuantity: 1,
+};
+
 const ITEM_TREE: Item = {
   counters: [
     {
@@ -2244,6 +2272,20 @@ const ITEM_TUNE: Item = {
   englishPlural: "tunes",
   englishSingular: "tune",
   itemId: "tune",
+  maxQuantity: 100,
+  minQuantity: 1,
+};
+
+const ITEM_TWIG: Item = {
+  counters: [
+    {
+      counterId: "本",
+      relevance: CounterItemRelevance.Unknown,
+    },
+  ],
+  englishPlural: "twigs",
+  englishSingular: "twig",
+  itemId: "twig",
   maxQuantity: 100,
   minQuantity: 1,
 };
@@ -2457,6 +2499,7 @@ export const ITEMS_LOOKUP: { [itemId: string]: Item } = {
   keyword: ITEM_KEYWORD,
   lap: ITEM_LAP,
   law: ITEM_LAW,
+  leaf: ITEM_LEAF,
   line: ITEM_LINE,
   loan: ITEM_LOAN,
   location: ITEM_LOCATION,
@@ -2531,8 +2574,10 @@ export const ITEMS_LOOKUP: { [itemId: string]: Item } = {
   textbook: ITEM_TEXTBOOK,
   "time (occurrences)": ITEM_TIME_OCCURRENCES_,
   tint: ITEM_TINT,
+  "train ticket": ITEM_TRAIN_TICKET,
   tree: ITEM_TREE,
   tune: ITEM_TUNE,
+  twig: ITEM_TWIG,
   university: ITEM_UNIVERSITY,
   "washing machine": ITEM_WASHING_MACHINE,
   week: ITEM_WEEK,
@@ -2619,6 +2664,7 @@ export const ITEMS_FROM_COUNTER: {
     ITEM_FIRE_EXTINGUISHER,
     ITEM_SWORD,
     ITEM_KATANA,
+    ITEM_TWIG,
     ITEM_MUSHROOM,
     ITEM_CUCUMBER,
   ],
@@ -2641,6 +2687,8 @@ export const ITEMS_FROM_COUNTER: {
     ITEM_BAR_OF_CHOCOLATE,
     ITEM_FUR_PELT,
     ITEM_BLANKET,
+    ITEM_LEAF,
+    ITEM_TRAIN_TICKET,
     ITEM_CLOUD_EAR_MUSHROOM,
     ITEM_STOCK_CERTIFICATE,
   ],

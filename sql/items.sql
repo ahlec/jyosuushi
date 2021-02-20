@@ -2887,10 +2887,51 @@ INSERT INTO
     japanese_kana,
     japanese_kanji
   )
+VALUES('twig', 'twig', 'twigs', NULL, NULL, NULL, NULL);
+INSERT INTO
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES('leaf', 'leaf', 'leaves', NULL, NULL, NULL, NULL);
+INSERT INTO
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
 VALUES(
     'tree stump',
     'tree stump',
     'tree stumps',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
+INSERT INTO
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'train ticket',
+    'train ticket',
+    'train tickets',
     NULL,
     NULL,
     NULL,

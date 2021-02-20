@@ -540,6 +540,15 @@ INSERT INTO
 VALUES('flower', '株', NULL);
 INSERT INTO
   "item_counters" (item_id, counter_id, relevance)
+VALUES('leaf', '枚', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('twig', '本', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('train ticket', '枚', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
 VALUES('tree stump', '株', NULL);
 INSERT INTO
   "item_counters" (item_id, counter_id, relevance)
