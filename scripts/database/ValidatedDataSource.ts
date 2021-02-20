@@ -1,4 +1,6 @@
 import Database, { DatabaseSnapshot } from "../database/Database";
+import { validateInlineMarkdown } from "../markdown";
+
 import {
   DbCounter,
   DbCounterAdditionalReading,
@@ -587,6 +589,24 @@ function validateCounterExternalLinks(
       });
 
       continue;
+    }
+
+    const descriptionValiation = validateInlineMarkdown(
+      entry.description,
+      validCounterIds
+    );
+    if (!descriptionValiation.valid) {
+      error.push({
+        entry,
+        reasons: [
+          {
+            showsInAudit: true,
+            text: `Description does not conform to inline Markdown style (${descriptionValiation.reasons
+              .map((reason) => reason.message)
+              .join(", ")})`,
+          },
+        ],
+      });
     }
 
     valid.push(entry);
