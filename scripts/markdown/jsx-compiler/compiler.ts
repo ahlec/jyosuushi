@@ -68,9 +68,7 @@ export function compileToJsx(node: HastSyntaxTree): CompiledJsx {
       break;
     }
     default: {
-      jsx = `<React.Fragment>${blocks
-        .map((block): string => block.jsx)
-        .join("")}</React.Fragment>`;
+      jsx = `<>${blocks.map((block): string => block.jsx).join("")}</>`;
       break;
     }
   }

@@ -1,12 +1,12 @@
 import classnames from "classnames";
 import * as React from "react";
 
-import { MarkdownComponentProps } from "@jyosuushi/interfaces";
+import { MarkdownComponent } from "@jyosuushi/interfaces";
 
 import styles from "./MarkdownPresenter.scss";
 
 interface ComponentProps {
-  component: React.ComponentType<MarkdownComponentProps>;
+  component: MarkdownComponent;
   className: string;
 }
 

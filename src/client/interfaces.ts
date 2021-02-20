@@ -106,9 +106,7 @@ export interface CounterIrregular {
   reading: string;
 }
 
-export type MarkdownComponentProps = unknown;
-
-export type MarkdownComponent = ComponentType<MarkdownComponentProps>;
+export type MarkdownComponent = ComponentType<Record<string, never>>;
 
 export interface CounterDisambiguation {
   distinction: MarkdownComponent;

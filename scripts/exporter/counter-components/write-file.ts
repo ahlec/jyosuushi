@@ -13,10 +13,7 @@ function writeCounterComponentsFile(
   stream: Writable
 ): WriteFileResults {
   // Write out imports
-  stream.write('import * as React from "react";\n');
-  stream.write(
-    'import { MarkdownComponentProps } from "@jyosuushi/interfaces";\n'
-  );
+  stream.write('import React from "react";\n');
   if (components.some(requiresCounterLink)) {
     stream.write(
       'import CounterLink from "@jyosuushi/ui/components/CounterLink";\n'
@@ -26,12 +23,8 @@ function writeCounterComponentsFile(
   // Write out components
   for (const { componentName, jsx } of components) {
     stream.write("\n\n");
-    stream.write(
-      `export class ${componentName} extends React.PureComponent<MarkdownComponentProps> {\n`
-    );
-    stream.write("  public render(): React.ReactNode {\n");
-    stream.write(`    return (${jsx});`);
-    stream.write("  }\n");
+    stream.write(`export function ${componentName}(): React.ReactElement {\n`);
+    stream.write(`  return (${jsx});`);
     stream.write("}\n");
     stream.write("\n");
   }
