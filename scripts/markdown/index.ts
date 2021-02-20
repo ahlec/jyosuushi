@@ -1,6 +1,8 @@
 import { extractFootnotes } from "./extract-footnotes";
 import { compileToJsx } from "./jsx-compiler/compiler";
 import { parseMarkdown } from "./parsing/parse";
+import { ValidationResult } from "./types";
+import { validateInlineSyntaxTree } from "./validate-inline";
 
 export interface JsxComponent {
   jsx: string;
@@ -69,4 +71,15 @@ export function convertMarkdownToJSX(
     footnotes,
     warnings,
   };
+}
+
+export function validateInlineMarkdown(
+  markdown: string,
+  allExportedCounterIds: ReadonlySet<string>
+): ValidationResult {
+  // Parse the provided Markdown
+  const { hastSyntaxTree } = parseMarkdown(markdown, allExportedCounterIds, 0);
+
+  // Run the validation
+  return validateInlineSyntaxTree(hastSyntaxTree);
 }

@@ -20,3 +20,14 @@ export interface IntrasiteLinkProps {
   specificKanji: string | null;
   specificReading: string | null;
 }
+
+export interface ValidationViolation {
+  message: string;
+  node: HastNode | HastSyntaxTree;
+}
+
+export type ValidationResult =
+  | {
+      valid: true;
+    }
+  | { valid: false; reasons: readonly ValidationViolation[] };
