@@ -9,37 +9,50 @@ export interface CompiledJsx {
   requiresCounterLink: boolean;
 }
 
-function compileHastNodeToJsx(node: HastNode): JSXRepresentation | null {
+interface CompileContext {
+  isInsideReactNode: boolean;
+}
+
+function isIgnoredNode(node: HastNode): boolean {
   // Exclude footnotes section from the compilation. Footnotes have already
   // been extracted.
   if (isNodeFootnotesContainer(node)) {
-    return null;
+    return true;
   }
 
+  if (node.type === "text" && !node.value.trim()) {
+    // Empty whitespace node
+    return true;
+  }
+
+  return false;
+}
+
+function compileHastNodeToJsx(
+  node: HastNode,
+  { isInsideReactNode }: CompileContext
+): JSXRepresentation {
   // If we're a text element, we can convert to JSX here
   if (node.type === "text") {
-    if (!node.value.trim()) {
-      // Empty whitespace
-      return null;
-    }
-
     return {
-      childrenJsx: node.value,
       containsCounterLink: false,
-      jsx: node.value,
+      jsx: isInsideReactNode ? node.value : `<>${node.value}</>`,
       tag: "",
     };
   }
 
   // First, transform all of the children of this node
   const children: JSXRepresentation[] = [];
-  node.children.map((child): void => {
-    const childRepresentation = compileHastNodeToJsx(child);
-    if (!childRepresentation) {
+  node.children.forEach((child): void => {
+    if (isIgnoredNode(child)) {
       return;
     }
 
-    children.push(childRepresentation);
+    children.push(
+      compileHastNodeToJsx(child, {
+        isInsideReactNode: true,
+      })
+    );
   });
 
   // Transform the node into JSX
@@ -47,14 +60,18 @@ function compileHastNodeToJsx(node: HastNode): JSXRepresentation | null {
 }
 
 export function compileToJsx(node: HastSyntaxTree): CompiledJsx {
+  const exportedRootChildren = node.children.filter(
+    (child): boolean => !isIgnoredNode(child)
+  );
+  const isRootWrappedInFragment = exportedRootChildren.length !== 1;
+
   // Transform each block of the syntax tree
-  const blocks: JSXRepresentation[] = [];
-  node.children.forEach((child): void => {
-    const block = compileHastNodeToJsx(child);
-    if (block) {
-      blocks.push(block);
-    }
-  });
+  const blocks = exportedRootChildren.map(
+    (child): JSXRepresentation =>
+      compileHastNodeToJsx(child, {
+        isInsideReactNode: isRootWrappedInFragment,
+      })
+  );
 
   // Combine the blocks together into a single JSX element
   let jsx: string;

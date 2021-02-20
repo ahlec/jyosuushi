@@ -1,4 +1,5 @@
-import { convertMarkdownToJSX, MarkdownStyle } from "../../markdown";
+import { convertMarkdownToJSX } from "../../markdown";
+import { MarkdownStyle } from "../../markdown/types";
 
 import { ExportOutputEntry } from "../types";
 import { ProductionVariable } from "../utils";

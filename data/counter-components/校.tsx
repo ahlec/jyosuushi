@@ -207,15 +207,15 @@ export function CounterNotes(): React.ReactElement {
 }
 
 export function ExternalLink0(): React.ReactElement {
-  return <p>Japanese dictionary entries, compiled from multiple sources.</p>;
+  return <>Japanese dictionary entries, compiled from multiple sources.</>;
 }
 
 export function ExternalLink1(): React.ReactElement {
   return (
-    <p>
+    <>
       Article giving an overview of the printing and proofing process in design
       and publishing.
-    </p>
+    </>
   );
 }
 

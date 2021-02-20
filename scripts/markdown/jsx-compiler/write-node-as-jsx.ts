@@ -77,7 +77,6 @@ export function writeNodeAsJsx(
   const openingTag = openingTagPieces.join(" ");
   if (!jsxChildren) {
     return {
-      childrenJsx: "",
       containsCounterLink,
       jsx: `<${openingTag} />`,
       tag: jsxTag,
@@ -85,7 +84,6 @@ export function writeNodeAsJsx(
   }
 
   return {
-    childrenJsx: jsxChildren,
     containsCounterLink,
     jsx: `<${openingTag}>${jsxChildren}</${jsxTag}>`,
     tag: jsxTag,

@@ -1,7 +1,8 @@
 import { extractFootnotes } from "./extract-footnotes";
 import { compileToJsx } from "./jsx-compiler/compiler";
 import { parseMarkdown } from "./parsing/parse";
-import { ValidationResult } from "./types";
+import { transformToInlineSyntaxTree } from "./transform-to-inline-tree";
+import { HastSyntaxTree, MarkdownStyle, ValidationResult } from "./types";
 import { validateInlineSyntaxTree } from "./validate-inline";
 
 export interface JsxComponent {
@@ -11,23 +12,6 @@ export interface JsxComponent {
 
 export interface FootnoteJsxComponent extends JsxComponent {
   footnoteId: number;
-}
-
-export enum MarkdownStyle {
-  /**
-   * Markdown elements that should be allowed to span multiple paragraphs
-   * and include things such as lists would be "block" style. This provides
-   * the full array of Markdown features.
-   */
-  Block = "block",
-
-  /**
-   * Markdown that is meant to be displayed only as inline text
-   * would be "inline" style. This disallows access to certain elements like
-   * lists, and will cause an error if the Markdown spans more than a single
-   * paragraph.
-   */
-  Inline = "inline",
 }
 
 interface ConvertMarkdownToJsxOptions {
@@ -77,11 +61,21 @@ export function convertMarkdownToJSX(
     footnotesCountingStart
   );
 
-  // Validate the syntax tree, if applicable
-  if (style === MarkdownStyle.Inline) {
-    const validationResult = validateInlineSyntaxTree(hastSyntaxTree);
-    if (!validationResult.valid) {
-      throw new Error("Invalid inline syntax tree.");
+  // Validate and transform the tree, as applicable
+  let bodySyntaxTree: HastSyntaxTree;
+  switch (style) {
+    case MarkdownStyle.Block: {
+      bodySyntaxTree = hastSyntaxTree;
+      break;
+    }
+    case MarkdownStyle.Inline: {
+      const validationResult = validateInlineSyntaxTree(hastSyntaxTree);
+      if (!validationResult.valid) {
+        throw new Error("Invalid inline syntax tree.");
+      }
+
+      bodySyntaxTree = transformToInlineSyntaxTree(hastSyntaxTree);
+      break;
     }
   }
 
@@ -98,7 +92,7 @@ export function convertMarkdownToJSX(
   );
 
   // Compile the body of the markdown to JSX
-  const body = compileToJsx(hastSyntaxTree);
+  const body = compileToJsx(bodySyntaxTree);
 
   // Return the final results
   return {

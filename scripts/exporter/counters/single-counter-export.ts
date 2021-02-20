@@ -1,5 +1,5 @@
 import { DbCounter } from "../../database/schemas";
-import { MarkdownStyle } from "../../markdown";
+import { MarkdownStyle } from "../../markdown/types";
 
 import writeCounterComponentsFile from "../counter-components/write-file";
 

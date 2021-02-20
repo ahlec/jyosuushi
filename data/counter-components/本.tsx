@@ -245,15 +245,15 @@ export function CounterNotes(): React.ReactElement {
 
 export function ExternalLink0(): React.ReactElement {
   return (
-    <p>
+    <>
       Detailed and well-researched article from the kings of Japanese language
       learning.
-    </p>
+    </>
   );
 }
 
 export function ExternalLink1(): React.ReactElement {
-  return <p>Japanese dictionary entries, compiled from multiple sources.</p>;
+  return <>Japanese dictionary entries, compiled from multiple sources.</>;
 }
 
 export function Disambiguation缶(): React.ReactElement {

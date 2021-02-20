@@ -278,7 +278,7 @@ export function CounterNotes(): React.ReactElement {
 }
 
 export function ExternalLink0(): React.ReactElement {
-  return <p>Japanese dictionary entries, compiled from multiple sources.</p>;
+  return <>Japanese dictionary entries, compiled from multiple sources.</>;
 }
 
 export function Disambiguation本(): React.ReactElement {

@@ -6,10 +6,10 @@ import React from "react";
 
 export function ExternalLink0(): React.ReactElement {
   return (
-    <p>
+    <>
       Detailed and well-researched article from the kings of Japanese language
       learning.
-    </p>
+    </>
   );
 }
 

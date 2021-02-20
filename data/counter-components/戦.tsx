@@ -148,7 +148,7 @@ export function CounterNotes(): React.ReactElement {
 
 export function ExternalLink0(): React.ReactElement {
   return (
-    <p>
+    <>
       Masters thesis that focuses on the establishment of new counters, in
       particular 店 and 試合. Has a lengthy comparison of{" "}
       <ruby>
@@ -163,7 +163,7 @@ export function ExternalLink0(): React.ReactElement {
         <rp>)</rp>
       </ruby>{" "}
       as counters.
-    </p>
+    </>
   );
 }
 
