@@ -10,22 +10,20 @@ export class Disambiguation本 extends React.PureComponent<
 > {
   public render(): React.ReactNode {
     return (
-      <React.Fragment>
-        <p>
-          本, as a counter for long and thin cylindrical objects, can be used to
-          count canned goods. The counter 缶, literally meaning "tin can," can
-          also be used to count canned goods. The shape of the can itself would
-          need to be long and tall in order to use 本, but if that criteria is
-          met, it comes down to what is inside the can. Typically, cans
-          containing liquids or drinks (such as juice) would use 本 while cans
-          with solid contents (such as vegetables) would use 缶.
-          <sup id="fnref-1">
-            <a className="footnote-ref" href="#fn-1">
-              1
-            </a>
-          </sup>
-        </p>
-      </React.Fragment>
+      <p>
+        本, as a counter for long and thin cylindrical objects, can be used to
+        count canned goods. The counter 缶, literally meaning "tin can," can
+        also be used to count canned goods. The shape of the can itself would
+        need to be long and tall in order to use 本, but if that criteria is
+        met, it comes down to what is inside the can. Typically, cans containing
+        liquids or drinks (such as juice) would use 本 while cans with solid
+        contents (such as vegetables) would use 缶.
+        <sup id="fnref-1">
+          <a className="footnote-ref" href="#fn-1">
+            1
+          </a>
+        </sup>
+      </p>
     );
   }
 }

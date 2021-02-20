@@ -342,48 +342,46 @@ export class Disambiguation切れ extends React.PureComponent<
 > {
   public render(): React.ReactNode {
     return (
-      <React.Fragment>
-        <p>
-          Since we often cut things into smaller, bite-size pieces, the
-          distinction between{" "}
-          <ruby>
-            切れ<rp>(</rp>
-            <rt>きれ</rt>
-            <rp>)</rp>
-          </ruby>{" "}
-          and{" "}
-          <ruby>
-            口<rp>(</rp>
-            <rt>くち</rt>
-            <rp>)</rp>
-          </ruby>{" "}
-          can often feel blurry.{" "}
-          <ruby>
-            切れ<rp>(</rp>
-            <rt>きれ</rt>
-            <rp>)</rp>
-          </ruby>{" "}
-          is used to count slices of something, whereas{" "}
-          <ruby>
-            口<rp>(</rp>
-            <rt>くち</rt>
-            <rp>)</rp>
-          </ruby>{" "}
-          is used to count single bites of food. A good example is watermelon. A
-          single slice of watermelon is counted as{" "}
-          <ruby>
-            一切れ<rp>(</rp>
-            <rt>ひときれ</rt>
-            <rp>)</rp>
-          </ruby>
-          , though it will certainly be more than one bite to eat.
-          <sup id="fnref-12">
-            <a className="footnote-ref" href="#fn-12">
-              12
-            </a>
-          </sup>
-        </p>
-      </React.Fragment>
+      <p>
+        Since we often cut things into smaller, bite-size pieces, the
+        distinction between{" "}
+        <ruby>
+          切れ<rp>(</rp>
+          <rt>きれ</rt>
+          <rp>)</rp>
+        </ruby>{" "}
+        and{" "}
+        <ruby>
+          口<rp>(</rp>
+          <rt>くち</rt>
+          <rp>)</rp>
+        </ruby>{" "}
+        can often feel blurry.{" "}
+        <ruby>
+          切れ<rp>(</rp>
+          <rt>きれ</rt>
+          <rp>)</rp>
+        </ruby>{" "}
+        is used to count slices of something, whereas{" "}
+        <ruby>
+          口<rp>(</rp>
+          <rt>くち</rt>
+          <rp>)</rp>
+        </ruby>{" "}
+        is used to count single bites of food. A good example is watermelon. A
+        single slice of watermelon is counted as{" "}
+        <ruby>
+          一切れ<rp>(</rp>
+          <rt>ひときれ</rt>
+          <rp>)</rp>
+        </ruby>
+        , though it will certainly be more than one bite to eat.
+        <sup id="fnref-12">
+          <a className="footnote-ref" href="#fn-12">
+            12
+          </a>
+        </sup>
+      </p>
     );
   }
 }

@@ -4,7 +4,7 @@ import { Node } from "unist";
 import { Eat, RemarkParser } from "./interfaces";
 import PluginWarningsCollector from "./PluginWarningsCollector";
 
-import { IntrasiteLinkProps } from "./remark-compilers/types";
+import { IntrasiteLinkProps } from "../types";
 
 export const INTRASITE_LINK_HAST_NODE_NAME = "intrasiteLink";
 
