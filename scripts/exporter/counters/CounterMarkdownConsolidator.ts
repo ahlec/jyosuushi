@@ -1,4 +1,4 @@
-import { convertMarkdownToJSX } from "../../markdown";
+import { convertMarkdownToJSX, MarkdownStyle } from "../../markdown";
 
 import { ExportOutputEntry } from "../types";
 import { ProductionVariable } from "../utils";
@@ -40,12 +40,14 @@ class CounterMarkdownConsolidator {
 
   public addMarkdown(
     componentName: string,
-    markdown: string
+    markdown: string,
+    style: MarkdownStyle
   ): ProductionVariable {
     const { body, footnotes, warnings } = convertMarkdownToJSX(markdown, {
       allExportedCounterIds: this.allExportedCounterIds,
       // This should be consecutive and 1-based
       footnotesCountingStart: this.footnoteComponentVariables.length + 1,
+      style,
     });
 
     if (warnings.length) {

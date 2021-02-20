@@ -13,10 +13,21 @@ export interface FootnoteJsxComponent extends JsxComponent {
   footnoteId: number;
 }
 
-export interface MarkdownToJsxResults {
-  body: JsxComponent;
-  footnotes: ReadonlyArray<FootnoteJsxComponent>;
-  warnings: ReadonlyArray<string>;
+export enum MarkdownStyle {
+  /**
+   * Markdown elements that should be allowed to span multiple paragraphs
+   * and include things such as lists would be "block" style. This provides
+   * the full array of Markdown features.
+   */
+  Block = "block",
+
+  /**
+   * Markdown that is meant to be displayed only as inline text
+   * would be "inline" style. This disallows access to certain elements like
+   * lists, and will cause an error if the Markdown spans more than a single
+   * paragraph.
+   */
+  Inline = "inline",
 }
 
 interface ConvertMarkdownToJsxOptions {
@@ -31,6 +42,12 @@ interface ConvertMarkdownToJsxOptions {
   allExportedCounterIds: ReadonlySet<string>;
 
   /**
+   * A determination of what kind of Markdown is supported and how
+   * the component should be written when compiled.
+   */
+  style: MarkdownStyle;
+
+  /**
    * A number, inclusive, that the footnotes should pick up on.
    * The first footnote encountered will be listed with this
    * number, and the subsequent footnote encountered will be
@@ -39,16 +56,34 @@ interface ConvertMarkdownToJsxOptions {
   footnotesCountingStart: number;
 }
 
+interface MarkdownToJsxResults {
+  body: JsxComponent;
+  footnotes: ReadonlyArray<FootnoteJsxComponent>;
+  warnings: ReadonlyArray<string>;
+}
+
 export function convertMarkdownToJSX(
   markdown: string,
-  options: ConvertMarkdownToJsxOptions
+  {
+    allExportedCounterIds,
+    footnotesCountingStart,
+    style,
+  }: ConvertMarkdownToJsxOptions
 ): MarkdownToJsxResults {
   // Parse the provided Markdown
   const { hastSyntaxTree, warnings } = parseMarkdown(
     markdown,
-    options.allExportedCounterIds,
-    options.footnotesCountingStart
+    allExportedCounterIds,
+    footnotesCountingStart
   );
+
+  // Validate the syntax tree, if applicable
+  if (style === MarkdownStyle.Inline) {
+    const validationResult = validateInlineSyntaxTree(hastSyntaxTree);
+    if (!validationResult.valid) {
+      throw new Error("Invalid inline syntax tree.");
+    }
+  }
 
   // Extract the footnotes from the syntax tree to store them separately.
   const footnoteNodes = extractFootnotes(hastSyntaxTree);

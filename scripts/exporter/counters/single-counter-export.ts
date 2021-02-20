@@ -1,4 +1,5 @@
 import { DbCounter } from "../../database/schemas";
+import { MarkdownStyle } from "../../markdown";
 
 import writeCounterComponentsFile from "../counter-components/write-file";
 
@@ -45,7 +46,11 @@ function exportSingleCounter(
     allExportedCounterIds
   );
   const notesComponent = counter.notes
-    ? markdownConsolidator.addMarkdown("CounterNotes", counter.notes)
+    ? markdownConsolidator.addMarkdown(
+        "CounterNotes",
+        counter.notes,
+        MarkdownStyle.Block
+      )
     : null;
   const disambiguationComponents: {
     [otherCounterId: string]: ProductionVariable;
@@ -57,7 +62,8 @@ function exportSingleCounter(
     );
     disambiguationComponents[otherCounterId] = markdownConsolidator.addMarkdown(
       `Disambiguation${otherCounterId}`,
-      disambiguation.distinction
+      disambiguation.distinction,
+      MarkdownStyle.Block
     );
   }
 
