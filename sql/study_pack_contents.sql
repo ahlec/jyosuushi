@@ -159,4 +159,10 @@ VALUES('common', '戦', '2020-12-25 17:55:39');
 INSERT INTO
   "study_pack_contents" (pack_id, counter_id, date_added)
 VALUES('common', '名', '2020-12-25 17:55:39');
+INSERT INTO
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('n5', '杯', '2021-02-15 00:30:33');
+INSERT INTO
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('essential', '杯', '2021-02-15 00:30:33');
 COMMIT;

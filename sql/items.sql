@@ -2763,4 +2763,99 @@ VALUES(
     NULL,
     NULL
   );
+INSERT INTO
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'alcoholic cocktail',
+    'alcoholic cocktail',
+    'alcoholic cocktails',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
+INSERT INTO
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'glass of water',
+    'glass of water',
+    'glasses of water',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
+INSERT INTO
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'glass of milk',
+    'glass of milk',
+    'glasses of milk',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
+INSERT INTO
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'cup of coffee',
+    'cup of coffee',
+    'cups of coffee',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
+INSERT INTO
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'bowl of rice',
+    'bowl of rice',
+    'bowls of rice',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
 COMMIT;

@@ -26,6 +26,7 @@ import * as 戦Components from "@data/counter-components/戦";
 import * as 日Components from "@data/counter-components/日";
 import * as 時Components from "@data/counter-components/時";
 import * as 本Components from "@data/counter-components/本";
+import * as 杯Components from "@data/counter-components/杯";
 import * as 枚Components from "@data/counter-components/枚";
 import * as 校Components from "@data/counter-components/校";
 import * as 歳Components from "@data/counter-components/歳";
@@ -484,6 +485,10 @@ export const COUNTER_匹: Counter = {
 export const COUNTER_口: Counter = {
   counterId: "口",
   disambiguations: [
+    {
+      distinction: 口Components.Disambiguation杯,
+      otherCounterId: "杯",
+    },
     {
       distinction: 口Components.Disambiguation本,
       otherCounterId: "本",
@@ -1219,6 +1224,52 @@ export const COUNTER_束: Counter = {
   ],
 };
 
+export const COUNTER_杯: Counter = {
+  counterId: "杯",
+  disambiguations: [
+    {
+      distinction: 杯Components.Disambiguation口,
+      otherCounterId: "口",
+    },
+  ],
+  englishName: "cups",
+  externalLinks: [
+    {
+      description: 杯Components.ExternalLink0,
+      displayText: "杯・盃（読み：さかずき）",
+      language: ExternalLinkLanguage.Japanese,
+      siteName: "コトバンク",
+      url: "https://kotobank.jp/word/%E6%9D%AF%E3%83%BB%E7%9B%83-355653",
+    },
+  ],
+  footnotes: [],
+  irregulars: {},
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "杯",
+  },
+  leadIn: null,
+  notes: null,
+  readings: [
+    {
+      counterId: "杯",
+      kana: "はい",
+      kangoConjugationOptions: {
+        allowsKuFor9: false,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: false,
+        allowsYoFor4: false,
+        allowsYonFor4: true,
+      },
+      readingId: "はい",
+      wagoStyle: null,
+      wordOrigin: WordOrigin.Chinese,
+    },
+  ],
+};
+
 export const COUNTER_枚: Counter = {
   counterId: "枚",
   disambiguations: [],
@@ -1842,6 +1893,7 @@ export const COUNTERS_LOOKUP: { [counterId: string]: Counter } = {
   曲: COUNTER_曲,
   本: COUNTER_本,
   束: COUNTER_束,
+  杯: COUNTER_杯,
   枚: COUNTER_枚,
   校: COUNTER_校,
   歳: COUNTER_歳,

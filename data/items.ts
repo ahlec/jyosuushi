@@ -32,6 +32,20 @@ const ITEM_SHOGI_MATCH: Item = {
   minQuantity: 1,
 };
 
+const ITEM_ALCOHOLIC_COCKTAIL: Item = {
+  counters: [
+    {
+      counterId: "杯",
+      relevance: CounterItemRelevance.Unknown,
+    },
+  ],
+  englishPlural: "alcoholic cocktails",
+  englishSingular: "alcoholic cocktail",
+  itemId: "alcoholic cocktail",
+  maxQuantity: 100,
+  minQuantity: 1,
+};
+
 const ITEM_APARTMENT: Item = {
   counters: [
     {
@@ -332,6 +346,10 @@ const ITEM_BOWL_OF_FRIED_RICE: Item = {
       counterId: "皿",
       relevance: CounterItemRelevance.Unknown,
     },
+    {
+      counterId: "杯",
+      relevance: CounterItemRelevance.Unknown,
+    },
   ],
   englishPlural: "bowls of fried rice",
   englishSingular: "bowl of fried rice",
@@ -340,10 +358,28 @@ const ITEM_BOWL_OF_FRIED_RICE: Item = {
   minQuantity: 1,
 };
 
+const ITEM_BOWL_OF_RICE: Item = {
+  counters: [
+    {
+      counterId: "杯",
+      relevance: CounterItemRelevance.Unknown,
+    },
+  ],
+  englishPlural: "bowls of rice",
+  englishSingular: "bowl of rice",
+  itemId: "bowl of rice",
+  maxQuantity: 100,
+  minQuantity: 1,
+};
+
 const ITEM_BOWL_OF_SOUP: Item = {
   counters: [
     {
       counterId: "皿",
+      relevance: CounterItemRelevance.Unknown,
+    },
+    {
+      counterId: "杯",
       relevance: CounterItemRelevance.Unknown,
     },
   ],
@@ -624,6 +660,20 @@ const ITEM_CREDIT_CARD: Item = {
   minQuantity: 1,
 };
 
+const ITEM_CUP_OF_COFFEE: Item = {
+  counters: [
+    {
+      counterId: "杯",
+      relevance: CounterItemRelevance.Unknown,
+    },
+  ],
+  englishPlural: "cups of coffee",
+  englishSingular: "cup of coffee",
+  itemId: "cup of coffee",
+  maxQuantity: 100,
+  minQuantity: 1,
+};
+
 const ITEM_CUT_OF_MEAT: Item = {
   counters: [
     {
@@ -830,6 +880,34 @@ const ITEM_FUR_PELT: Item = {
   englishPlural: "fur pelts",
   englishSingular: "fur pelt",
   itemId: "fur pelt",
+  maxQuantity: 100,
+  minQuantity: 1,
+};
+
+const ITEM_GLASS_OF_MILK: Item = {
+  counters: [
+    {
+      counterId: "杯",
+      relevance: CounterItemRelevance.Unknown,
+    },
+  ],
+  englishPlural: "glasses of milk",
+  englishSingular: "glass of milk",
+  itemId: "glass of milk",
+  maxQuantity: 100,
+  minQuantity: 1,
+};
+
+const ITEM_GLASS_OF_WATER: Item = {
+  counters: [
+    {
+      counterId: "杯",
+      relevance: CounterItemRelevance.Unknown,
+    },
+  ],
+  englishPlural: "glasses of water",
+  englishSingular: "glass of water",
+  itemId: "glass of water",
   maxQuantity: 100,
   minQuantity: 1,
 };
@@ -2211,6 +2289,7 @@ const ITEM_YEN: Item = {
 export const ITEMS_LOOKUP: { [itemId: string]: Item } = {
   "Go game": ITEM_GO_GAME,
   "Shogi match": ITEM_SHOGI_MATCH,
+  "alcoholic cocktail": ITEM_ALCOHOLIC_COCKTAIL,
   apartment: ITEM_APARTMENT,
   appointment: ITEM_APPOINTMENT,
   arcade: ITEM_ARCADE,
@@ -2233,6 +2312,7 @@ export const ITEMS_LOOKUP: { [itemId: string]: Item } = {
   "boss fight": ITEM_BOSS_FIGHT,
   bottle: ITEM_BOTTLE,
   "bowl of fried rice": ITEM_BOWL_OF_FRIED_RICE,
+  "bowl of rice": ITEM_BOWL_OF_RICE,
   "bowl of soup": ITEM_BOWL_OF_SOUP,
   "bundle of green onions": ITEM_BUNDLE_OF_GREEN_ONIONS,
   "bundle of wood": ITEM_BUNDLE_OF_WOOD,
@@ -2253,6 +2333,7 @@ export const ITEMS_LOOKUP: { [itemId: string]: Item } = {
   coworker: ITEM_COWORKER,
   "cram school": ITEM_CRAM_SCHOOL,
   "credit card": ITEM_CREDIT_CARD,
+  "cup of coffee": ITEM_CUP_OF_COFFEE,
   "cut of meat": ITEM_CUT_OF_MEAT,
   "day of the month": ITEM_DAY_OF_THE_MONTH,
   "deck of cards": ITEM_DECK_OF_CARDS,
@@ -2268,6 +2349,8 @@ export const ITEMS_LOOKUP: { [itemId: string]: Item } = {
   "fire extinguisher": ITEM_FIRE_EXTINGUISHER,
   "floor (building)": ITEM_FLOOR_BUILDING_,
   "fur pelt": ITEM_FUR_PELT,
+  "glass of milk": ITEM_GLASS_OF_MILK,
+  "glass of water": ITEM_GLASS_OF_WATER,
   gorilla: ITEM_GORILLA,
   "group of friends": ITEM_GROUP_OF_FRIENDS,
   "high school": ITEM_HIGH_SCHOOL,
@@ -2444,6 +2527,15 @@ export const ITEMS_FROM_COUNTER: {
     ITEM_KATANA,
   ],
   束: [ITEM_BUNDLE_OF_WOOD, ITEM_BUNDLE_OF_GREEN_ONIONS],
+  杯: [
+    ITEM_CUP_OF_COFFEE,
+    ITEM_GLASS_OF_MILK,
+    ITEM_GLASS_OF_WATER,
+    ITEM_ALCOHOLIC_COCKTAIL,
+    ITEM_BOWL_OF_SOUP,
+    ITEM_BOWL_OF_FRIED_RICE,
+    ITEM_BOWL_OF_RICE,
+  ],
   枚: [
     ITEM_CREDIT_CARD,
     ITEM_PLAYING_CARD,

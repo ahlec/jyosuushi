@@ -514,4 +514,25 @@ VALUES('sword', '振り', NULL);
 INSERT INTO
   "item_counters" (item_id, counter_id, relevance)
 VALUES('katana', '振り', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('cup of coffee', '杯', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('glass of milk', '杯', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('glass of water', '杯', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('alcoholic cocktail', '杯', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('bowl of soup', '杯', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('bowl of fried rice', '杯', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('bowl of rice', '杯', NULL);
 COMMIT;

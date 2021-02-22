@@ -27,6 +27,7 @@ export const COUNTER_IDS: ReadonlySet<string> = new Set([
   "曲",
   "本",
   "束",
+  "杯",
   "枚",
   "校",
   "歳",

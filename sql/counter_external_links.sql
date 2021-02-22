@@ -450,4 +450,21 @@ VALUES(
     'Article giving an overview of the printing and proofing process in design and publishing.',
     'japanese'
   );
+INSERT INTO
+  "counter_external_links" (
+    counter_id,
+    url,
+    site_name,
+    link_text,
+    description,
+    language
+  )
+VALUES(
+    '杯',
+    'https://kotobank.jp/word/%E6%9D%AF%E3%83%BB%E7%9B%83-355653',
+    'コトバンク',
+    '杯・盃（読み：さかずき）',
+    'Japanese dictionary entries,  compiled from multiple sources.',
+    'japanese'
+  );
 COMMIT;

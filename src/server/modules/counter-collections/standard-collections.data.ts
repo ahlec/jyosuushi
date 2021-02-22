@@ -56,13 +56,14 @@ const STUDY_PACK_ESSENTIAL: StandardCounterCollection = {
     "日",
     "時",
     "本",
+    "杯",
     "枚",
     "歳",
     "羽",
     "階",
     "頭",
   ],
-  dateLastUpdated: 1608918939000,
+  dateLastUpdated: 1613349033000,
   description:
     "A collection of the most common counters needed to get through a basic conversation in Japanese. Knowing these, you might not be able to count everything, but you’ll be able to make do for most things on a daily basis.",
   id: "essential",
@@ -79,8 +80,8 @@ const STUDY_PACK_N4: StandardCounterCollection = {
 };
 
 const STUDY_PACK_N5: StandardCounterCollection = {
-  counterIds: ["人", "分", "匹", "台", "年", "日", "時", "本", "枚"],
-  dateLastUpdated: 1608918939000,
+  counterIds: ["人", "分", "匹", "台", "年", "日", "時", "本", "杯", "枚"],
+  dateLastUpdated: 1613349033000,
   description:
     "A collection of the counters that you’re likely to encounter when taking the Japanese Language Proficiency Test’s N5 level.",
   id: "n5",
