@@ -1,5 +1,6 @@
 import Database, { DatabaseSnapshot } from "../database/Database";
 import { validateInlineMarkdown } from "../markdown";
+import { CounterRegistry } from "../markdown/types";
 
 import {
   DbCounter,
@@ -553,6 +554,17 @@ function validateCounterExternalLinks(
 
   const urlsEncounteredPerCounter = new Map<string, Set<string>>();
 
+  const counterRegistry: CounterRegistry = {};
+  validCounterIds.forEach((counterId): void => {
+    // Define all of the counters, but don't worry as much about the contents
+    // because this is just for validation, not presentation
+    counterRegistry[counterId] = {
+      counterId,
+      primaryPresentation: counterId,
+      primaryReading: counterId,
+    };
+  });
+
   for (const entry of snapshot.counter_external_links) {
     let encounteredUrls = urlsEncounteredPerCounter.get(entry.counter_id);
     if (!encounteredUrls) {
@@ -593,7 +605,7 @@ function validateCounterExternalLinks(
 
     const descriptionValiation = validateInlineMarkdown(
       entry.description,
-      validCounterIds
+      counterRegistry
     );
     if (!descriptionValiation.valid) {
       error.push({

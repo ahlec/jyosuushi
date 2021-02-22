@@ -1,6 +1,8 @@
 import { Processor } from "unified";
 import { Node } from "unist";
 
+import { CounterRegistry } from "../types";
+
 import { Eat, RemarkParser } from "./interfaces";
 import PluginWarningsCollector from "./PluginWarningsCollector";
 
@@ -14,7 +16,7 @@ import {
 } from "./custom-nodes";
 
 interface IntrasiteLinkConfig {
-  exportedCounterIds: ReadonlySet<string>;
+  counterRegistry: CounterRegistry;
   warningsCollector: PluginWarningsCollector | null;
 }
 
@@ -117,29 +119,11 @@ function intrasiteLinkMarkdownPlugin(
         value.substring(1, endMarkerIndex)
       );
 
-      let isContentExported: boolean;
-      let intrasiteLinkProps: IntrasiteLinkProperties;
-      let childProps: CounterDisplayProperties;
-      switch (definition.type) {
-        case "counter": {
-          isContentExported = config.exportedCounterIds.has(definition.id);
-          intrasiteLinkProps = {
-            id: definition.id,
-            type: "counter",
-          };
-          childProps = {
-            primaryText: definition.specificKanji || "", // TODO
-            reading: definition.specificReading || "", // TODO
-          };
-          break;
-        }
-      }
-
       if (silent) {
         return true;
       }
 
-      if (!isContentExported) {
+      const handleNonExportedContent = (): Node => {
         if (config.warningsCollector) {
           config.warningsCollector.add(
             `Intrasite ${definition.type} link to '${definition.id}' would navigate to non-exported content. No link generated.`
@@ -150,6 +134,29 @@ function intrasiteLinkMarkdownPlugin(
           type: "text",
           value: definition.id,
         });
+      };
+
+      let intrasiteLinkProps: IntrasiteLinkProperties;
+      let childProps: CounterDisplayProperties;
+      switch (definition.type) {
+        case "counter": {
+          const counter = config.counterRegistry[definition.id];
+          if (!counter) {
+            return handleNonExportedContent();
+          }
+
+          childProps = {
+            primaryText:
+              definition.specificKanji || counter.primaryPresentation,
+            reading: definition.specificReading || counter.primaryReading,
+          };
+
+          intrasiteLinkProps = {
+            id: definition.id,
+            type: "counter",
+          };
+          break;
+        }
       }
 
       return eat(value.substring(0, endMarkerIndex + 1))({

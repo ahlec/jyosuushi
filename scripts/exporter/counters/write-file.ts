@@ -3,6 +3,7 @@ import { Writable } from "stream";
 
 import { DbCounter } from "../../database/schemas";
 import ValidatedDataSource from "../../database/ValidatedDataSource";
+import { CounterRegistry } from "../../markdown/types";
 
 import {
   ExportOutputEntry,
@@ -56,15 +57,24 @@ export default function writeCountersFile(
   dataSource: ValidatedDataSource
 ): WriteFileResults {
   const dataLookup = new CounterDataLookup(dataSource);
-  const allExportedCounterIds = new Set(
-    dataSource.counters.valid.map(selectCounterId)
-  );
+
+  const allExportedCounters: CounterRegistry = {};
+  dataSource.counters.valid.forEach((counter): void => {
+    const joinData = dataLookup.getJoinData(counter.counter_id);
+
+    allExportedCounters[counter.counter_id] = {
+      counterId: counter.counter_id,
+      primaryPresentation: counter.primary_kanji || joinData.readings[0].kana,
+      primaryReading: counter.primary_kanji ? joinData.readings[0].kana : "",
+    };
+  });
+
   const counters = sortBy(dataSource.counters.valid, selectCounterId).map(
     (counter): CounterExportResults =>
       exportSingleCounter(
         counter,
         dataLookup.getJoinData(counter.counter_id),
-        allExportedCounterIds
+        allExportedCounters
       )
   );
 

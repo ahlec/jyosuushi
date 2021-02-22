@@ -1,5 +1,9 @@
 import { convertMarkdownToJSX } from "../../markdown";
-import { JsxComponentUsage, MarkdownStyle } from "../../markdown/types";
+import {
+  CounterRegistry,
+  JsxComponentUsage,
+  MarkdownStyle,
+} from "../../markdown/types";
 
 import { ExportOutputEntry } from "../types";
 import { ProductionVariable } from "../utils";
@@ -26,7 +30,7 @@ class CounterMarkdownConsolidator {
 
   public constructor(
     public readonly importedNamespace: string,
-    public readonly allExportedCounterIds: ReadonlySet<string>
+    private readonly allExportedCounters: CounterRegistry
   ) {}
 
   public get markdownComponents(): ReadonlyArray<CounterMarkdownComponent> {
@@ -45,7 +49,7 @@ class CounterMarkdownConsolidator {
     style: MarkdownStyle
   ): ProductionVariable {
     const { body, footnotes, warnings } = convertMarkdownToJSX(markdown, {
-      allExportedCounterIds: this.allExportedCounterIds,
+      allExportedCounters: this.allExportedCounters,
       // This should be consecutive and 1-based
       footnotesCountingStart: this.footnoteComponentVariables.length + 1,
       style,

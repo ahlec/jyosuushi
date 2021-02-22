@@ -52,3 +52,11 @@ export interface JsxRepresentation {
   componentUsage: JsxComponentUsage;
   jsx: string;
 }
+
+export interface CounterDefinition {
+  counterId: string;
+  primaryPresentation: string;
+  primaryReading: string;
+}
+
+export type CounterRegistry = Record<string, CounterDefinition | undefined>;

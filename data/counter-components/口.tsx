@@ -109,7 +109,7 @@ export function CounterNotes(): React.ReactElement {
         or 振り, counting swords with the kanji 口 is typically a writing-only
         style; when speaking, it's better to use{" "}
         <IntrasiteLink id="本">
-          <CounterDisplay primaryText="" reading="" />
+          <CounterDisplay primaryText="本" reading="ほん" />
         </IntrasiteLink>{" "}
         or 振り.
         <sup id="fnref-3">

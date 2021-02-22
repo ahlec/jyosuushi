@@ -125,7 +125,7 @@ export function CounterNotes(): React.ReactElement {
         The only thing that this counter counts is age in years; to measure age
         in months, you would use{" "}
         <IntrasiteLink id="ヶ月">
-          <CounterDisplay primaryText="" reading="" />
+          <CounterDisplay primaryText="ヶ月" reading="かげつ" />
         </IntrasiteLink>
         . One minor point worth mentioning is that newborn children enter life
         at ０歳. Additionally, this counter can be used for both humans and

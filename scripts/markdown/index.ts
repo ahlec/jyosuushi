@@ -3,6 +3,7 @@ import { compileToJsx } from "./jsx-compiler/compiler";
 import { parseMarkdown } from "./parsing/parse";
 import { transformToInlineSyntaxTree } from "./transform-to-inline-tree";
 import {
+  CounterRegistry,
   HastSyntaxTree,
   JsxRepresentation,
   MarkdownStyle,
@@ -16,14 +17,11 @@ export interface FootnoteJsxRepresentation extends JsxRepresentation {
 
 interface ConvertMarkdownToJsxOptions {
   /**
-   * A set with all of the counter IDs for all counters that
-   * are currently exported from the database. These are used
-   * to determine which counters are currently defined and
-   * should be rendered as links when encountering
-   * <counter:XXX>, and which counters are currently not exported
-   * and shouldn't be exported.
+   * A lookup object going from Counter ID -> a definition object about that
+   * counter. This is used to parse certain Markdown nodes, like the intrasite
+   * links.
    */
-  allExportedCounterIds: ReadonlySet<string>;
+  allExportedCounters: CounterRegistry;
 
   /**
    * A determination of what kind of Markdown is supported and how
@@ -49,7 +47,7 @@ interface MarkdownToJsxResults {
 export function convertMarkdownToJSX(
   markdown: string,
   {
-    allExportedCounterIds,
+    allExportedCounters,
     footnotesCountingStart,
     style,
   }: ConvertMarkdownToJsxOptions
@@ -57,7 +55,7 @@ export function convertMarkdownToJSX(
   // Parse the provided Markdown
   const { hastSyntaxTree, warnings } = parseMarkdown(
     markdown,
-    allExportedCounterIds,
+    allExportedCounters,
     footnotesCountingStart
   );
 
@@ -104,10 +102,10 @@ export function convertMarkdownToJSX(
 
 export function validateInlineMarkdown(
   markdown: string,
-  allExportedCounterIds: ReadonlySet<string>
+  allExportedCounters: CounterRegistry
 ): ValidationResult {
   // Parse the provided Markdown
-  const { hastSyntaxTree } = parseMarkdown(markdown, allExportedCounterIds, 0);
+  const { hastSyntaxTree } = parseMarkdown(markdown, allExportedCounters, 0);
 
   // Run the validation
   return validateInlineSyntaxTree(hastSyntaxTree);

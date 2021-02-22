@@ -31,7 +31,7 @@ export function CounterNotes(): React.ReactElement {
         </ruby>
         ) not counted with{" "}
         <IntrasiteLink id="本">
-          <CounterDisplay primaryText="" reading="" />
+          <CounterDisplay primaryText="本" reading="ほん" />
         </IntrasiteLink>
         ? Prior to the invention of paper, there was not a large corpus of
         writing in the Japanese language.

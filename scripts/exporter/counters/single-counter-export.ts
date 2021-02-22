@@ -1,5 +1,5 @@
 import { DbCounter } from "../../database/schemas";
-import { MarkdownStyle } from "../../markdown/types";
+import { CounterRegistry, MarkdownStyle } from "../../markdown/types";
 
 import writeCounterComponentsFile from "../counter-components/write-file";
 
@@ -37,14 +37,14 @@ export interface CounterExportResults {
 function exportSingleCounter(
   counter: DbCounter,
   joinData: CounterJoinData,
-  allExportedCounterIds: ReadonlySet<string>
+  allExportedCounters: CounterRegistry
 ): CounterExportResults {
   // ORDER MATTERS HERE!
   // Add things to the consolidator in the order they'll appear in
   // the DOM so as to ensure correct numbering of footnotes.
   const markdownConsolidator = new CounterMarkdownConsolidator(
     `${counter.counter_id}Components`,
-    allExportedCounterIds
+    allExportedCounters
   );
   const notesComponent = counter.notes
     ? markdownConsolidator.addMarkdown(

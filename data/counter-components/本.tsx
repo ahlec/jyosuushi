@@ -138,7 +138,7 @@ export function CounterNotes(): React.ReactElement {
       <p>
         So, why are books counted with{" "}
         <IntrasiteLink id="冊">
-          <CounterDisplay primaryText="" reading="" />
+          <CounterDisplay primaryText="冊" reading="さつ" />
         </IntrasiteLink>{" "}
         instead of{" "}
         <ruby>
@@ -163,7 +163,7 @@ export function CounterNotes(): React.ReactElement {
         ; the legacy of this is seen today by the continued counting of all
         books (regardless of style) using{" "}
         <IntrasiteLink id="冊">
-          <CounterDisplay primaryText="" reading="" />
+          <CounterDisplay primaryText="冊" reading="さつ" />
         </IntrasiteLink>
         . The meaning of "book" was a much later association with{" "}
         <ruby>
@@ -226,7 +226,7 @@ export function CounterNotes(): React.ReactElement {
         specific image to listeners when it is used. For example, buildings can
         be counted with a number of other counters, such as{" "}
         <IntrasiteLink id="軒">
-          <CounterDisplay primaryText="" reading="" />
+          <CounterDisplay primaryText="軒" reading="けん" />
         </IntrasiteLink>
         ; by choosing to refer to buildings with{" "}
         <ruby>
