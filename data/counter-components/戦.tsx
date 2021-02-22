@@ -3,6 +3,8 @@
 // Modifications will be lost if they are made manually and not through the database.
 
 import React from "react";
+import CounterDisplay from "@jyosuushi/ui/data-components/CounterDisplay";
+import IntrasiteLink from "@jyosuushi/ui/data-components/IntrasiteLink";
 
 export function CounterNotes(): React.ReactElement {
   return (
@@ -41,8 +43,11 @@ export function CounterNotes(): React.ReactElement {
         is used beyond counting battles, however. This counter is also
         (frequently) used to count games and matches in sports, or competitions.
         In this usage, it is very similar{" "}
-        <em>(though not entirely interchangeable)</em>, with the counter 試合.
-        Overall,{" "}
+        <em>(though not entirely interchangeable)</em>, with the counter{" "}
+        <IntrasiteLink id="試合">
+          <CounterDisplay primaryText="試合" reading="しあい" />
+        </IntrasiteLink>
+        . Overall,{" "}
         <ruby>
           戦<rp>(</rp>
           <rt>せん</rt>
@@ -150,7 +155,11 @@ export function ExternalLink0(): React.ReactElement {
   return (
     <>
       Masters thesis that focuses on the establishment of new counters, in
-      particular 店 and 試合. Has a lengthy comparison of{" "}
+      particular 店 and{" "}
+      <IntrasiteLink id="試合">
+        <CounterDisplay primaryText="試合" reading="しあい" />
+      </IntrasiteLink>
+      . Has a lengthy comparison of{" "}
       <ruby>
         試合<rp>(</rp>
         <rt>しあい</rt>
@@ -163,6 +172,96 @@ export function ExternalLink0(): React.ReactElement {
         <rp>)</rp>
       </ruby>{" "}
       as counters.
+    </>
+  );
+}
+
+export function Disambiguation試合(): React.ReactElement {
+  return (
+    <>
+      <p>
+        Both{" "}
+        <ruby>
+          試合<rp>(</rp>
+          <rt>しあい</rt>
+          <rp>)</rp>
+        </ruby>
+        　and{" "}
+        <ruby>
+          戦<rp>(</rp>
+          <rt>せん</rt>
+          <rp>)</rp>
+        </ruby>{" "}
+        can be used to count sports matches/sports games. For the prototypical
+        sports, such as baseball or basketball, these can be used
+        interchangeably. However, some sport matches cannot be counted with{" "}
+        <ruby>
+          試合<rp>(</rp>
+          <rt>しあい</rt>
+          <rp>)</rp>
+        </ruby>
+        , most noteably racing competitions, board game matches (such as Go or
+        Shogi), and sports where individual compete without direct opponents
+        (such as figure skating).
+        <sup id="fnref-5">
+          <a className="footnote-ref" href="#fn-5">
+            5
+          </a>
+        </sup>{" "}
+        On the other hand,{" "}
+        <ruby>
+          戦<rp>(</rp>
+          <rt>せん</rt>
+          <rp>)</rp>
+        </ruby>{" "}
+        is able to be used for most games and matches, but not all; games that
+        are performed without the purpose of declaring a winner/loser (such as
+        exhibition matches or practice games) would use{" "}
+        <ruby>
+          試合<rp>(</rp>
+          <rt>しあい</rt>
+          <rp>)</rp>
+        </ruby>{" "}
+        instead.
+        <sup id="fnref-6">
+          <a className="footnote-ref" href="#fn-6">
+            6
+          </a>
+        </sup>
+      </p>
+      <p>
+        Additionally, though it does not reflect a difference in meaning between
+        the two counters,{" "}
+        <ruby>
+          戦<rp>(</rp>
+          <rt>せん</rt>
+          <rp>)</rp>
+        </ruby>{" "}
+        is used ordinally (
+        <ruby>
+          第１戦<rp>(</rp>
+          <rt>だいいっせん</rt>
+          <rp>)</rp>
+        </ruby>
+        ,{" "}
+        <ruby>
+          ３戦目<rp>(</rp>
+          <rt>さんせんめ</rt>
+          <rp>)</rp>
+        </ruby>
+        ) significantly more than{" "}
+        <ruby>
+          試合<rp>(</rp>
+          <rt>しあい</rt>
+          <rp>)</rp>
+        </ruby>
+        .
+        <sup id="fnref-7">
+          <a className="footnote-ref" href="#fn-7">
+            7
+          </a>
+        </sup>
+      </p>
     </>
   );
 }
@@ -243,6 +342,68 @@ export function Footnote4(): React.ReactElement {
       戦する」という勝敗を問題にしないという文脈によって許容度が落ちているこ
       とが(5.29b)との対比からわかる。(p. 100)
       <a className="footnote-backref" href="#fnref-4">
+        ↩
+      </a>
+    </li>
+  );
+}
+
+export function Footnote5(): React.ReactElement {
+  return (
+    <li id="fn-5">
+      <a
+        href="http://hdl.handle.net/2241/00128666"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        近現代日本語における新たな助数詞の成立と定着
+      </a>
+      :
+      「-試合」は〚囲碁・将棋〛（「対局」）や〚相撲〛（「取組」）、〚競馬〛〚F1〛（「レース」）など、その勝負を「試合」以外の名詞で指示する競技には用いることができない。また、「互いに相手に対して何かをする」という意味と馴染まない〚フィギュアスケート〛のような競技には用いにくい。(p.
+      105)
+      <a className="footnote-backref" href="#fnref-5">
+        ↩
+      </a>
+    </li>
+  );
+}
+
+export function Footnote6(): React.ReactElement {
+  return (
+    <li id="fn-6">
+      <a
+        href="http://hdl.handle.net/2241/00128666"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        近現代日本語における新たな助数詞の成立と定着
+      </a>
+      :
+      「-戦」は、文脈上、勝敗を決することを目的としないことが含意されると用いにくくなる。(p.
+      105)
+      <a className="footnote-backref" href="#fnref-6">
+        ↩
+      </a>
+    </li>
+  );
+}
+
+export function Footnote7(): React.ReactElement {
+  return (
+    <li id="fn-7">
+      <a
+        href="http://hdl.handle.net/2241/00128666"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        近現代日本語における新たな助数詞の成立と定着
+      </a>
+      : 〔表
+      5-1〕から「-試合」は数量を表す際に、「-戦」は順序を表す際によく用いられていることがわかる。しかし、このような差異は
+      2
+      つの助数詞の使用傾向の一端を表すものではあるが、意味的な違いを表すものではないと考えられる。
+      (p. 91-92)
+      <a className="footnote-backref" href="#fnref-7">
         ↩
       </a>
     </li>

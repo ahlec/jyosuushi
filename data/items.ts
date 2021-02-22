@@ -161,6 +161,10 @@ const ITEM_BARN: Item = {
 const ITEM_BASEBALL_GAME: Item = {
   counters: [
     {
+      counterId: "試合",
+      relevance: CounterItemRelevance.Unknown,
+    },
+    {
       counterId: "戦",
       relevance: CounterItemRelevance.Unknown,
     },
@@ -884,6 +888,20 @@ const ITEM_FUR_PELT: Item = {
   minQuantity: 1,
 };
 
+const ITEM_GAME: Item = {
+  counters: [
+    {
+      counterId: "試合",
+      relevance: CounterItemRelevance.Unknown,
+    },
+  ],
+  englishPlural: "games",
+  englishSingular: "game",
+  itemId: "game",
+  maxQuantity: 100,
+  minQuantity: 1,
+};
+
 const ITEM_GLASS_OF_MILK: Item = {
   counters: [
     {
@@ -1192,6 +1210,20 @@ const ITEM_MAN: Item = {
   englishPlural: "men",
   englishSingular: "man",
   itemId: "man",
+  maxQuantity: 100,
+  minQuantity: 1,
+};
+
+const ITEM_MATCH_SPORTS_: Item = {
+  counters: [
+    {
+      counterId: "試合",
+      relevance: CounterItemRelevance.Unknown,
+    },
+  ],
+  englishPlural: "matches",
+  englishSingular: "match",
+  itemId: "match (sports)",
   maxQuantity: 100,
   minQuantity: 1,
 };
@@ -2349,6 +2381,7 @@ export const ITEMS_LOOKUP: { [itemId: string]: Item } = {
   "fire extinguisher": ITEM_FIRE_EXTINGUISHER,
   "floor (building)": ITEM_FLOOR_BUILDING_,
   "fur pelt": ITEM_FUR_PELT,
+  game: ITEM_GAME,
   "glass of milk": ITEM_GLASS_OF_MILK,
   "glass of water": ITEM_GLASS_OF_WATER,
   gorilla: ITEM_GORILLA,
@@ -2371,6 +2404,7 @@ export const ITEMS_LOOKUP: { [itemId: string]: Item } = {
   location: ITEM_LOCATION,
   magazine: ITEM_MAGAZINE,
   man: ITEM_MAN,
+  "match (sports)": ITEM_MATCH_SPORTS_,
   meeting: ITEM_MEETING,
   melody: ITEM_MELODY,
   microwave: ITEM_MICROWAVE,
@@ -2581,6 +2615,7 @@ export const ITEMS_FROM_COUNTER: {
   ],
   羽: [ITEM_CHICKEN, ITEM_PENGUIN, ITEM_RABBIT, ITEM_ORIGAMI_CRANE, ITEM_BAT],
   色: [ITEM_TINT, ITEM_HUE, ITEM_COLOUR],
+  試合: [ITEM_BASEBALL_GAME, ITEM_GAME, ITEM_MATCH_SPORTS_],
   語: [ITEM_WORD, ITEM_PROVERB, ITEM_SAYING, ITEM_KEYWORD, ITEM_IDIOM],
   足: [ITEM_PAIR_OF_SHOES, ITEM_PAIR_OF_SANDALS, ITEM_PAIR_OF_SOCKS],
   軒: [

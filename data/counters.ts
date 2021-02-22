@@ -32,6 +32,7 @@ import * as 校Components from "@data/counter-components/校";
 import * as 歳Components from "@data/counter-components/歳";
 import * as 缶Components from "@data/counter-components/缶";
 import * as 羽Components from "@data/counter-components/羽";
+import * as 試合Components from "@data/counter-components/試合";
 import * as 階Components from "@data/counter-components/階";
 import * as 頭Components from "@data/counter-components/頭";
 
@@ -842,7 +843,12 @@ export const COUNTER_年: Counter = {
 
 export const COUNTER_戦: Counter = {
   counterId: "戦",
-  disambiguations: [],
+  disambiguations: [
+    {
+      distinction: 戦Components.Disambiguation試合,
+      otherCounterId: "試合",
+    },
+  ],
   englishName: "battles",
   externalLinks: [
     {
@@ -858,6 +864,9 @@ export const COUNTER_戦: Counter = {
     戦Components.Footnote2,
     戦Components.Footnote3,
     戦Components.Footnote4,
+    戦Components.Footnote5,
+    戦Components.Footnote6,
+    戦Components.Footnote7,
   ],
   irregulars: {},
   kanji: {
@@ -1654,6 +1663,56 @@ export const COUNTER_色: Counter = {
   ],
 };
 
+export const COUNTER_試合: Counter = {
+  counterId: "試合",
+  disambiguations: [
+    {
+      distinction: 試合Components.Disambiguation戦,
+      otherCounterId: "戦",
+    },
+  ],
+  englishName: "games",
+  externalLinks: [
+    {
+      description: 試合Components.ExternalLink0,
+      displayText: "近現代日本語における新たな助数詞の成立と定着",
+      language: ExternalLinkLanguage.Japanese,
+      siteName: "筑波大学",
+      url: "http://hdl.handle.net/2241/00128666",
+    },
+  ],
+  footnotes: [
+    試合Components.Footnote1,
+    試合Components.Footnote2,
+    試合Components.Footnote3,
+  ],
+  irregulars: {},
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "試合",
+  },
+  leadIn: null,
+  notes: null,
+  readings: [
+    {
+      counterId: "試合",
+      kana: "しあい",
+      kangoConjugationOptions: {
+        allowsKuFor9: false,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: false,
+        allowsYoFor4: false,
+        allowsYonFor4: true,
+      },
+      readingId: "しあい",
+      wagoStyle: null,
+      wordOrigin: WordOrigin.Chinese,
+    },
+  ],
+};
+
 export const COUNTER_語: Counter = {
   counterId: "語",
   disambiguations: [],
@@ -1903,6 +1962,7 @@ export const COUNTERS_LOOKUP: { [counterId: string]: Counter } = {
   缶: COUNTER_缶,
   羽: COUNTER_羽,
   色: COUNTER_色,
+  試合: COUNTER_試合,
   語: COUNTER_語,
   足: COUNTER_足,
   軒: COUNTER_軒,
