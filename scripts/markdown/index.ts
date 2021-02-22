@@ -5,6 +5,7 @@ import { transformToInlineSyntaxTree } from "./transform-to-inline-tree";
 import {
   CounterRegistry,
   HastSyntaxTree,
+  IntrasiteLinkLocation,
   JsxRepresentation,
   MarkdownStyle,
   ValidationResult,
@@ -22,6 +23,15 @@ interface ConvertMarkdownToJsxOptions {
    * links.
    */
   allExportedCounters: CounterRegistry;
+
+  /**
+   * The current location for the page in the application that this markdown
+   * will be displayed on, if applicable.
+   *
+   * This is used when handling inter-site links (like `<counter:店>`) to NOT
+   * render a link, since it would be a link to the current page.
+   */
+  currentLocation: IntrasiteLinkLocation | null;
 
   /**
    * A determination of what kind of Markdown is supported and how
@@ -48,6 +58,7 @@ export function convertMarkdownToJSX(
   markdown: string,
   {
     allExportedCounters,
+    currentLocation,
     footnotesCountingStart,
     style,
   }: ConvertMarkdownToJsxOptions
@@ -55,6 +66,7 @@ export function convertMarkdownToJSX(
   // Parse the provided Markdown
   const { hastSyntaxTree, warnings } = parseMarkdown(
     markdown,
+    currentLocation,
     allExportedCounters,
     footnotesCountingStart
   );
@@ -105,7 +117,12 @@ export function validateInlineMarkdown(
   allExportedCounters: CounterRegistry
 ): ValidationResult {
   // Parse the provided Markdown
-  const { hastSyntaxTree } = parseMarkdown(markdown, allExportedCounters, 0);
+  const { hastSyntaxTree } = parseMarkdown(
+    markdown,
+    null,
+    allExportedCounters,
+    0
+  );
 
   // Run the validation
   return validateInlineSyntaxTree(hastSyntaxTree);

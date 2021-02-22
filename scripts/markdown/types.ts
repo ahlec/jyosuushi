@@ -60,3 +60,8 @@ export interface CounterDefinition {
 }
 
 export type CounterRegistry = Record<string, CounterDefinition | undefined>;
+
+export interface IntrasiteLinkLocation {
+  id: string;
+  type: "counter";
+}

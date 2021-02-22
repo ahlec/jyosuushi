@@ -1,7 +1,7 @@
 import { Processor } from "unified";
 import { Node } from "unist";
 
-import { CounterRegistry } from "../types";
+import { CounterRegistry, IntrasiteLinkLocation } from "../types";
 
 import { Eat, RemarkParser } from "./interfaces";
 import PluginWarningsCollector from "./PluginWarningsCollector";
@@ -17,6 +17,7 @@ import {
 
 interface IntrasiteLinkConfig {
   counterRegistry: CounterRegistry;
+  currentLocation: IntrasiteLinkLocation | null;
   warningsCollector: PluginWarningsCollector | null;
 }
 
@@ -84,6 +85,13 @@ function parseIntrasiteLinkContents(contents: string): IntrasiteLinkDefinition {
       );
     }
   }
+}
+
+function isIntrasiteLinkToLocation(
+  definition: IntrasiteLinkDefinition,
+  location: IntrasiteLinkLocation
+): boolean {
+  return definition.id === location.id;
 }
 
 function intrasiteLinkMarkdownPlugin(
@@ -172,13 +180,19 @@ function intrasiteLinkMarkdownPlugin(
             type: "element",
           },
         ],
-        data: {
-          hName: INTRASITE_LINK_HAST_NODE_NAME,
-          hProperties: {
-            [INTRASITE_LINK_PROPS_KEY]: intrasiteLinkProps,
-          },
-        },
-        type: "intrasite-link",
+        data:
+          config.currentLocation &&
+          isIntrasiteLinkToLocation(definition, config.currentLocation)
+            ? {
+                hName: "strong",
+              }
+            : {
+                hName: INTRASITE_LINK_HAST_NODE_NAME,
+                hProperties: {
+                  [INTRASITE_LINK_PROPS_KEY]: intrasiteLinkProps,
+                },
+              },
+        type: "element",
       });
     }
   }

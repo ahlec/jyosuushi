@@ -7,7 +7,12 @@ import ruby from "remark-ruby";
 
 import { ROOT_DIRECTORY } from "../../constants";
 
-import { CounterRegistry, HastNode, HastSyntaxTree } from "../types";
+import {
+  CounterRegistry,
+  HastNode,
+  HastSyntaxTree,
+  IntrasiteLinkLocation,
+} from "../types";
 import { isIndexableObject } from "../utils";
 
 import embededImages from "./embeded-images";
@@ -100,6 +105,7 @@ function assertIsHastSyntaxTree(
 
 export function parseMarkdown(
   markdown: string,
+  currentLocation: IntrasiteLinkLocation | null,
   counterRegistry: CounterRegistry,
   footnotesCountingStart: number
 ): ParseResult {
@@ -119,6 +125,7 @@ export function parseMarkdown(
     .use(ruby)
     .use(intrasiteLinkMarkdownPlugin, {
       counterRegistry,
+      currentLocation,
       warningsCollector: pluginWarningsCollector,
     })
     .use(superscriptPlugin);

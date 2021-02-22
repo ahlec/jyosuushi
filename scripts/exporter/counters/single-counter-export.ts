@@ -43,6 +43,7 @@ function exportSingleCounter(
   // Add things to the consolidator in the order they'll appear in
   // the DOM so as to ensure correct numbering of footnotes.
   const markdownConsolidator = new CounterMarkdownConsolidator(
+    counter.counter_id,
     `${counter.counter_id}Components`,
     allExportedCounters
   );
