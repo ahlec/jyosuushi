@@ -579,7 +579,13 @@ INSERT INTO
     notes,
     primary_kanji
   )
-VALUES('株', 'stocks', NULL, NULL, '株');
+VALUES(
+    '株',
+    'rooted plants, company stock',
+    NULL,
+    NULL,
+    '株'
+  );
 INSERT INTO
   "counters" (
     counter_id,

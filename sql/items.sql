@@ -2858,4 +2858,186 @@ VALUES(
     NULL,
     NULL
   );
+INSERT INTO
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'flower',
+    'flower',
+    'flowers',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
+INSERT INTO
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'tree stump',
+    'tree stump',
+    'tree stumps',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
+INSERT INTO
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'shrub',
+    'shrub',
+    'shrubs',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
+INSERT INTO
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES('bush', 'bush', 'bushes', NULL, NULL, NULL, NULL);
+INSERT INTO
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'cloud ear mushroom',
+    'cloud ear mushroom',
+    'cloud ear mushrooms',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
+INSERT INTO
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'mushroom',
+    'mushroom',
+    'mushrooms',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
+INSERT INTO
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'cucumber',
+    'cucumber',
+    'cucumbers',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
+INSERT INTO
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'share of stock',
+    'share of stock',
+    'shares of stock',
+    NULL,
+    NULL,
+    'かぶしき',
+    '株式'
+  );
+INSERT INTO
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'stock certificate',
+    'stock certificate',
+    'stock certificates',
+    NULL,
+    NULL,
+    'かぶけん',
+    '株券'
+  );
+INSERT INTO
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'decorative plant',
+    'decorative plant',
+    'decorative plants',
+    NULL,
+    NULL,
+    'かんようしょくぶつ',
+    '観葉植物'
+  );
 COMMIT;

@@ -467,4 +467,21 @@ VALUES(
     'Japanese dictionary entries,  compiled from multiple sources.',
     'japanese'
   );
+INSERT INTO
+  "counter_external_links" (
+    counter_id,
+    url,
+    site_name,
+    link_text,
+    description,
+    language
+  )
+VALUES(
+    '株',
+    'https://www.sanabo.com/kazoekata/ct_ka/ka/kabu/',
+    '数え方単位辞典',
+    'かぶ【株】',
+    'Explanation for how to count the noun 株 (tree stump, stock/shares), which covers both usages of the counter 株.',
+    'japanese'
+  );
 COMMIT;

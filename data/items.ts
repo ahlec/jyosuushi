@@ -538,6 +538,20 @@ const ITEM_CIRCUIT: Item = {
   minQuantity: 1,
 };
 
+const ITEM_CLOUD_EAR_MUSHROOM: Item = {
+  counters: [
+    {
+      counterId: "枚",
+      relevance: CounterItemRelevance.Unknown,
+    },
+  ],
+  englishPlural: "cloud ear mushrooms",
+  englishSingular: "cloud ear mushroom",
+  itemId: "cloud ear mushroom",
+  maxQuantity: 100,
+  minQuantity: 1,
+};
+
 const ITEM_COLOUR: Item = {
   counters: [
     {
@@ -660,6 +674,20 @@ const ITEM_CREDIT_CARD: Item = {
   englishPlural: "credit cards",
   englishSingular: "credit card",
   itemId: "credit card",
+  maxQuantity: 100,
+  minQuantity: 1,
+};
+
+const ITEM_CUCUMBER: Item = {
+  counters: [
+    {
+      counterId: "本",
+      relevance: CounterItemRelevance.Unknown,
+    },
+  ],
+  englishPlural: "cucumbers",
+  englishSingular: "cucumber",
+  itemId: "cucumber",
   maxQuantity: 100,
   minQuantity: 1,
 };
@@ -1308,6 +1336,20 @@ const ITEM_MONTH: Item = {
   englishPlural: "months",
   englishSingular: "month",
   itemId: "month",
+  maxQuantity: 100,
+  minQuantity: 1,
+};
+
+const ITEM_MUSHROOM: Item = {
+  counters: [
+    {
+      counterId: "本",
+      relevance: CounterItemRelevance.Unknown,
+    },
+  ],
+  englishPlural: "mushrooms",
+  englishSingular: "mushroom",
+  itemId: "mushroom",
   maxQuantity: 100,
   minQuantity: 1,
 };
@@ -2006,6 +2048,20 @@ const ITEM_SPRAY_PAINT: Item = {
   minQuantity: 1,
 };
 
+const ITEM_STOCK_CERTIFICATE: Item = {
+  counters: [
+    {
+      counterId: "枚",
+      relevance: CounterItemRelevance.Unknown,
+    },
+  ],
+  englishPlural: "stock certificates",
+  englishSingular: "stock certificate",
+  itemId: "stock certificate",
+  maxQuantity: 100,
+  minQuantity: 1,
+};
+
 const ITEM_STORE: Item = {
   counters: [
     {
@@ -2356,6 +2412,7 @@ export const ITEMS_LOOKUP: { [itemId: string]: Item } = {
   chicken: ITEM_CHICKEN,
   cinema: ITEM_CINEMA,
   circuit: ITEM_CIRCUIT,
+  "cloud ear mushroom": ITEM_CLOUD_EAR_MUSHROOM,
   colour: ITEM_COLOUR,
   company: ITEM_COMPANY,
   conflict: ITEM_CONFLICT,
@@ -2365,6 +2422,7 @@ export const ITEMS_LOOKUP: { [itemId: string]: Item } = {
   coworker: ITEM_COWORKER,
   "cram school": ITEM_CRAM_SCHOOL,
   "credit card": ITEM_CREDIT_CARD,
+  cucumber: ITEM_CUCUMBER,
   "cup of coffee": ITEM_CUP_OF_COFFEE,
   "cut of meat": ITEM_CUT_OF_MEAT,
   "day of the month": ITEM_DAY_OF_THE_MONTH,
@@ -2411,6 +2469,7 @@ export const ITEMS_LOOKUP: { [itemId: string]: Item } = {
   "middle school": ITEM_MIDDLE_SCHOOL,
   minute: ITEM_MINUTE,
   month: ITEM_MONTH,
+  mushroom: ITEM_MUSHROOM,
   nation: ITEM_NATION,
   nightclub: ITEM_NIGHTCLUB,
   notebook: ITEM_NOTEBOOK,
@@ -2460,6 +2519,7 @@ export const ITEMS_LOOKUP: { [itemId: string]: Item } = {
   "soda can": ITEM_SODA_CAN,
   song: ITEM_SONG,
   "spray paint": ITEM_SPRAY_PAINT,
+  "stock certificate": ITEM_STOCK_CERTIFICATE,
   store: ITEM_STORE,
   storey: ITEM_STOREY,
   straw: ITEM_STRAW,
@@ -2559,6 +2619,8 @@ export const ITEMS_FROM_COUNTER: {
     ITEM_FIRE_EXTINGUISHER,
     ITEM_SWORD,
     ITEM_KATANA,
+    ITEM_MUSHROOM,
+    ITEM_CUCUMBER,
   ],
   束: [ITEM_BUNDLE_OF_WOOD, ITEM_BUNDLE_OF_GREEN_ONIONS],
   杯: [
@@ -2579,6 +2641,8 @@ export const ITEMS_FROM_COUNTER: {
     ITEM_BAR_OF_CHOCOLATE,
     ITEM_FUR_PELT,
     ITEM_BLANKET,
+    ITEM_CLOUD_EAR_MUSHROOM,
+    ITEM_STOCK_CERTIFICATE,
   ],
   校: [
     ITEM_HIGH_SCHOOL,

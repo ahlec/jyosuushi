@@ -535,4 +535,46 @@ VALUES('bowl of fried rice', '杯', NULL);
 INSERT INTO
   "item_counters" (item_id, counter_id, relevance)
 VALUES('bowl of rice', '杯', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('flower', '株', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('tree stump', '株', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('shrub', '株', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('bush', '株', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('cloud ear mushroom', '株', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('cloud ear mushroom', '枚', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('mushroom', '株', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('mushroom', '本', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('cucumber', '株', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('cucumber', '本', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('stock certificate', '枚', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('stock certificate', '株', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('share of stock', '株', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('decorative plant', '株', NULL);
 COMMIT;
