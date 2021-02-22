@@ -3,7 +3,8 @@
 // Modifications will be lost if they are made manually and not through the database.
 
 import React from "react";
-import CounterLink from "@jyosuushi/ui/components/CounterLink";
+import CounterDisplay from "@jyosuushi/ui/data-components/CounterDisplay";
+import IntrasiteLink from "@jyosuushi/ui/data-components/IntrasiteLink";
 
 export function CounterNotes(): React.ReactElement {
   return (
@@ -135,7 +136,11 @@ export function CounterNotes(): React.ReactElement {
         </sup>
       </p>
       <p>
-        So, why are books counted with <CounterLink counterId="冊" /> instead of{" "}
+        So, why are books counted with{" "}
+        <IntrasiteLink id="冊">
+          <CounterDisplay primaryText="" reading="" />
+        </IntrasiteLink>{" "}
+        instead of{" "}
         <ruby>
           本<rp>(</rp>
           <rt>ほん</rt>
@@ -156,8 +161,11 @@ export function CounterNotes(): React.ReactElement {
           <rp>)</rp>
         </ruby>
         ; the legacy of this is seen today by the continued counting of all
-        books (regardless of style) using <CounterLink counterId="冊" />. The
-        meaning of "book" was a much later association with{" "}
+        books (regardless of style) using{" "}
+        <IntrasiteLink id="冊">
+          <CounterDisplay primaryText="" reading="" />
+        </IntrasiteLink>
+        . The meaning of "book" was a much later association with{" "}
         <ruby>
           本<rp>(</rp>
           <rt>ほん</rt>
@@ -217,7 +225,10 @@ export function CounterNotes(): React.ReactElement {
         as a counter is the image of something long and skinny. This provides a
         specific image to listeners when it is used. For example, buildings can
         be counted with a number of other counters, such as{" "}
-        <CounterLink counterId="軒" />; by choosing to refer to buildings with{" "}
+        <IntrasiteLink id="軒">
+          <CounterDisplay primaryText="" reading="" />
+        </IntrasiteLink>
+        ; by choosing to refer to buildings with{" "}
         <ruby>
           本<rp>(</rp>
           <rt>ほん</rt>

@@ -3,7 +3,8 @@
 // Modifications will be lost if they are made manually and not through the database.
 
 import React from "react";
-import CounterLink from "@jyosuushi/ui/components/CounterLink";
+import CounterDisplay from "@jyosuushi/ui/data-components/CounterDisplay";
+import IntrasiteLink from "@jyosuushi/ui/data-components/IntrasiteLink";
 
 export function CounterNotes(): React.ReactElement {
   return (
@@ -106,7 +107,10 @@ export function CounterNotes(): React.ReactElement {
           <rp>)</rp>
         </ruby>{" "}
         or 振り, counting swords with the kanji 口 is typically a writing-only
-        style; when speaking, it's better to use <CounterLink counterId="本" />{" "}
+        style; when speaking, it's better to use{" "}
+        <IntrasiteLink id="本">
+          <CounterDisplay primaryText="" reading="" />
+        </IntrasiteLink>{" "}
         or 振り.
         <sup id="fnref-3">
           <a className="footnote-ref" href="#fn-3">

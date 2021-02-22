@@ -3,7 +3,8 @@
 // Modifications will be lost if they are made manually and not through the database.
 
 import React from "react";
-import CounterLink from "@jyosuushi/ui/components/CounterLink";
+import CounterDisplay from "@jyosuushi/ui/data-components/CounterDisplay";
+import IntrasiteLink from "@jyosuushi/ui/data-components/IntrasiteLink";
 
 export function CounterNotes(): React.ReactElement {
   return (
@@ -28,9 +29,12 @@ export function CounterNotes(): React.ReactElement {
           <rt>ほん</rt>
           <rp>)</rp>
         </ruby>
-        ) not counted with <CounterLink counterId="本" />? Prior to the
-        invention of paper, there was not a large corpus of writing in the
-        Japanese language.
+        ) not counted with{" "}
+        <IntrasiteLink id="本">
+          <CounterDisplay primaryText="" reading="" />
+        </IntrasiteLink>
+        ? Prior to the invention of paper, there was not a large corpus of
+        writing in the Japanese language.
         <sup id="fnref-1">
           <a className="footnote-ref" href="#fn-1">
             1

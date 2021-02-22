@@ -31,7 +31,8 @@ function compileHastNodeToJsx(
   if (node.type === "text") {
     return {
       componentUsage: {
-        counterLink: false,
+        counterDisplay: false,
+        intrasiteLink: false,
       },
       jsx: isInsideReactNode ? node.value : `<>${node.value}</>`,
     };

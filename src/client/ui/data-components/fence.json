@@ -1,0 +1,9 @@
+{
+  "tags": ["client-data-components"],
+  "exports": [
+    {
+      "modules": "**/*",
+      "accessibleTo": ["data"]
+    }
+  ]
+}

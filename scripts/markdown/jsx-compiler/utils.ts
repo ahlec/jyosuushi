@@ -1,7 +1,8 @@
 import { JsxComponentUsage } from "../types";
 
 const BASE_COMPONENT_USAGE: JsxComponentUsage = {
-  counterLink: false,
+  counterDisplay: false,
+  intrasiteLink: false,
 };
 
 export function mergeComponentUsages(

@@ -3,7 +3,8 @@
 // Modifications will be lost if they are made manually and not through the database.
 
 import React from "react";
-import CounterLink from "@jyosuushi/ui/components/CounterLink";
+import CounterDisplay from "@jyosuushi/ui/data-components/CounterDisplay";
+import IntrasiteLink from "@jyosuushi/ui/data-components/IntrasiteLink";
 
 export function CounterNotes(): React.ReactElement {
   return (
@@ -122,12 +123,15 @@ export function CounterNotes(): React.ReactElement {
       </p>
       <p>
         The only thing that this counter counts is age in years; to measure age
-        in months, you would use <CounterLink counterId="ヶ月" />. One minor
-        point worth mentioning is that newborn children enter life at ０歳.
-        Additionally, this counter can be used for both humans and animals:
-        animals will have their ages counted with 歳 as well, and there do not
-        appear to be any nuances around which kanji is used for non-humans.
-        However,{" "}
+        in months, you would use{" "}
+        <IntrasiteLink id="ヶ月">
+          <CounterDisplay primaryText="" reading="" />
+        </IntrasiteLink>
+        . One minor point worth mentioning is that newborn children enter life
+        at ０歳. Additionally, this counter can be used for both humans and
+        animals: animals will have their ages counted with 歳 as well, and there
+        do not appear to be any nuances around which kanji is used for
+        non-humans. However,{" "}
         <ruby>
           歳<rp>(</rp>
           <rt>さい</rt>

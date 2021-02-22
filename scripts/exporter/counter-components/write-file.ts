@@ -16,9 +16,16 @@ function writeCounterComponentsFile(
 
   // Write out imports
   stream.write('import React from "react";\n');
-  if (componentUsage.counterLink) {
+
+  if (componentUsage.counterDisplay) {
     stream.write(
-      'import CounterLink from "@jyosuushi/ui/components/CounterLink";\n'
+      'import CounterDisplay from "@jyosuushi/ui/data-components/CounterDisplay";\n'
+    );
+  }
+
+  if (componentUsage.intrasiteLink) {
+    stream.write(
+      'import IntrasiteLink from "@jyosuushi/ui/data-components/IntrasiteLink";\n'
     );
   }
 

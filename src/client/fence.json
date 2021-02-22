@@ -3,7 +3,7 @@
   "exports": [
     "interfaces",
     {
-      "modules": "ui/components/CounterLink",
+      "modules": "ui/data-components/**/*",
       "accessibleTo": ["data"]
     }
   ],

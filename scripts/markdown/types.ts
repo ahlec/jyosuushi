@@ -44,7 +44,8 @@ export enum MarkdownStyle {
 }
 
 export interface JsxComponentUsage {
-  counterLink: boolean;
+  counterDisplay: boolean;
+  intrasiteLink: boolean;
 }
 
 export interface JsxRepresentation {

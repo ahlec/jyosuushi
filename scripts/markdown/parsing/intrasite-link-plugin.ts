@@ -5,7 +5,11 @@ import { Eat, RemarkParser } from "./interfaces";
 import PluginWarningsCollector from "./PluginWarningsCollector";
 
 import {
+  COUNTER_DISPLAY_HAST_NODE_NAME,
+  COUNTER_DISPLAY_PROPS_KEY,
+  CounterDisplayProperties,
   INTRASITE_LINK_HAST_NODE_NAME,
+  INTRASITE_LINK_PROPS_KEY,
   IntrasiteLinkProperties,
 } from "./custom-nodes";
 
@@ -115,13 +119,17 @@ function intrasiteLinkMarkdownPlugin(
 
       let isContentExported: boolean;
       let intrasiteLinkProps: IntrasiteLinkProperties;
+      let childProps: CounterDisplayProperties;
       switch (definition.type) {
         case "counter": {
           isContentExported = config.exportedCounterIds.has(definition.id);
           intrasiteLinkProps = {
-            counterId: definition.id,
-            specificKanji: definition.specificKanji,
-            specificReading: definition.specificReading,
+            id: definition.id,
+            type: "counter",
+          };
+          childProps = {
+            primaryText: definition.specificKanji || "", // TODO
+            reading: definition.specificReading || "", // TODO
           };
           break;
         }
@@ -145,11 +153,22 @@ function intrasiteLinkMarkdownPlugin(
       }
 
       return eat(value.substring(0, endMarkerIndex + 1))({
-        children: [],
+        children: [
+          {
+            children: [],
+            data: {
+              hName: COUNTER_DISPLAY_HAST_NODE_NAME,
+              hProperties: {
+                [COUNTER_DISPLAY_PROPS_KEY]: childProps,
+              },
+            },
+            type: "element",
+          },
+        ],
         data: {
           hName: INTRASITE_LINK_HAST_NODE_NAME,
           hProperties: {
-            intrasiteLink: intrasiteLinkProps,
+            [INTRASITE_LINK_PROPS_KEY]: intrasiteLinkProps,
           },
         },
         type: "intrasite-link",

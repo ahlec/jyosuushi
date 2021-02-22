@@ -1,8 +1,12 @@
 import {
+  COUNTER_DISPLAY_HAST_NODE_NAME,
+  COUNTER_DISPLAY_PROPS_KEY,
+  isCounterDisplayProperties,
   INTRASITE_LINK_HAST_NODE_NAME,
+  INTRASITE_LINK_PROPS_KEY,
   isIntrasiteLinkProperties,
 } from "../parsing/custom-nodes";
-import { JsxRepresentation } from "../types";
+import { JsxComponentUsage, JsxRepresentation } from "../types";
 
 import { mergeComponentUsages } from "./utils";
 
@@ -13,16 +17,30 @@ export function writeNodeAsJsx(
 ): JsxRepresentation {
   // Interpret the JSX tag
   let jsxTag: string;
-  let isCounterLink: boolean;
+  let ownComponentUsage: JsxComponentUsage;
   switch (tagName) {
+    case COUNTER_DISPLAY_HAST_NODE_NAME: {
+      jsxTag = "CounterDisplay";
+      ownComponentUsage = {
+        counterDisplay: true,
+        intrasiteLink: false,
+      };
+      break;
+    }
     case INTRASITE_LINK_HAST_NODE_NAME: {
-      jsxTag = "CounterLink";
-      isCounterLink = true;
+      jsxTag = "IntrasiteLink";
+      ownComponentUsage = {
+        counterDisplay: false,
+        intrasiteLink: true,
+      };
       break;
     }
     default: {
       jsxTag = tagName;
-      isCounterLink = false;
+      ownComponentUsage = {
+        counterDisplay: false,
+        intrasiteLink: false,
+      };
       break;
     }
   }
@@ -55,27 +73,20 @@ export function writeNodeAsJsx(
     openingTagPieces.push(`alt="${properties.alt}"`);
   }
 
-  if (isIntrasiteLinkProperties(properties.intrasiteLink)) {
-    openingTagPieces.push(`counterId="${properties.intrasiteLink.counterId}"`);
+  const intrasiteLinkProps = properties[INTRASITE_LINK_PROPS_KEY];
+  if (isIntrasiteLinkProperties(intrasiteLinkProps)) {
+    openingTagPieces.push(`id="${intrasiteLinkProps.id}"`);
+  }
 
-    if (properties.intrasiteLink.specificKanji) {
-      openingTagPieces.push(
-        `specificKanji="${properties.intrasiteLink.specificKanji}"`
-      );
-    }
-
-    if (properties.intrasiteLink.specificReading) {
-      openingTagPieces.push(
-        `specificReading="${properties.intrasiteLink.specificReading}"`
-      );
-    }
+  const counterDisplayProps = properties[COUNTER_DISPLAY_PROPS_KEY];
+  if (isCounterDisplayProperties(counterDisplayProps)) {
+    openingTagPieces.push(`primaryText="${counterDisplayProps.primaryText}"`);
+    openingTagPieces.push(`reading="${counterDisplayProps.reading}"`);
   }
 
   // Determine the component usage for this tree
   const allComponentUsages = children.map((child) => child.componentUsage);
-  allComponentUsages.push({
-    counterLink: isCounterLink,
-  });
+  allComponentUsages.push(ownComponentUsage);
   const combinedComponentUsage = mergeComponentUsages(allComponentUsages);
 
   // Handle children
