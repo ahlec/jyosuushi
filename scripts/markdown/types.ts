@@ -42,3 +42,12 @@ export enum MarkdownStyle {
    */
   Inline = "inline",
 }
+
+export interface JsxComponentUsage {
+  counterLink: boolean;
+}
+
+export interface JsxRepresentation {
+  componentUsage: JsxComponentUsage;
+  jsx: string;
+}

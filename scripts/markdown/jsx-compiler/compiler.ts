@@ -1,13 +1,8 @@
-import { HastNode, HastSyntaxTree } from "../types";
+import { HastNode, HastSyntaxTree, JsxRepresentation } from "../types";
 import { isNodeFootnotesContainer } from "../utils";
 
-import { JSXRepresentation } from "./types";
+import { mergeComponentUsages } from "./utils";
 import { writeNodeAsJsx } from "./write-node-as-jsx";
-
-export interface CompiledJsx {
-  jsx: string;
-  requiresCounterLink: boolean;
-}
 
 interface CompileContext {
   isInsideReactNode: boolean;
@@ -31,18 +26,19 @@ function isIgnoredNode(node: HastNode): boolean {
 function compileHastNodeToJsx(
   node: HastNode,
   { isInsideReactNode }: CompileContext
-): JSXRepresentation {
+): JsxRepresentation {
   // If we're a text element, we can convert to JSX here
   if (node.type === "text") {
     return {
-      containsCounterLink: false,
+      componentUsage: {
+        counterLink: false,
+      },
       jsx: isInsideReactNode ? node.value : `<>${node.value}</>`,
-      tag: "",
     };
   }
 
   // First, transform all of the children of this node
-  const children: JSXRepresentation[] = [];
+  const children: JsxRepresentation[] = [];
   node.children.forEach((child): void => {
     if (isIgnoredNode(child)) {
       return;
@@ -59,7 +55,7 @@ function compileHastNodeToJsx(
   return writeNodeAsJsx(node.tagName, node.properties || {}, children);
 }
 
-export function compileToJsx(node: HastSyntaxTree): CompiledJsx {
+export function compileToJsx(node: HastSyntaxTree): JsxRepresentation {
   const exportedRootChildren = node.children.filter(
     (child): boolean => !isIgnoredNode(child)
   );
@@ -67,7 +63,7 @@ export function compileToJsx(node: HastSyntaxTree): CompiledJsx {
 
   // Transform each block of the syntax tree
   const blocks = exportedRootChildren.map(
-    (child): JSXRepresentation =>
+    (child): JsxRepresentation =>
       compileHastNodeToJsx(child, {
         isInsideReactNode: isRootWrappedInFragment,
       })
@@ -92,9 +88,9 @@ export function compileToJsx(node: HastSyntaxTree): CompiledJsx {
 
   // Return the compiled results
   return {
-    jsx,
-    requiresCounterLink: blocks.some(
-      (block): boolean => block.containsCounterLink
+    componentUsage: mergeComponentUsages(
+      blocks.map((block) => block.componentUsage)
     ),
+    jsx,
   };
 }

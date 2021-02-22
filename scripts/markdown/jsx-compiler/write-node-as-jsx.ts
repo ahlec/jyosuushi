@@ -2,14 +2,15 @@ import {
   INTRASITE_LINK_HAST_NODE_NAME,
   isIntrasiteLinkProperties,
 } from "../parsing/custom-nodes";
+import { JsxRepresentation } from "../types";
 
-import { JSXRepresentation } from "./types";
+import { mergeComponentUsages } from "./utils";
 
 export function writeNodeAsJsx(
   tagName: string,
   properties: Record<string, unknown>,
-  children: readonly JSXRepresentation[]
-): JSXRepresentation {
+  children: readonly JsxRepresentation[]
+): JsxRepresentation {
   // Interpret the JSX tag
   let jsxTag: string;
   let isCounterLink: boolean;
@@ -70,24 +71,26 @@ export function writeNodeAsJsx(
     }
   }
 
+  // Determine the component usage for this tree
+  const allComponentUsages = children.map((child) => child.componentUsage);
+  allComponentUsages.push({
+    counterLink: isCounterLink,
+  });
+  const combinedComponentUsage = mergeComponentUsages(allComponentUsages);
+
   // Handle children
   const jsxChildren = children.map((child): string => child.jsx).join("");
-  const containsCounterLink =
-    isCounterLink ||
-    children.some((child): boolean => child.containsCounterLink);
 
   const openingTag = openingTagPieces.join(" ");
   if (!jsxChildren) {
     return {
-      containsCounterLink,
+      componentUsage: combinedComponentUsage,
       jsx: `<${openingTag} />`,
-      tag: jsxTag,
     };
   }
 
   return {
-    containsCounterLink,
+    componentUsage: combinedComponentUsage,
     jsx: `<${openingTag}>${jsxChildren}</${jsxTag}>`,
-    tag: jsxTag,
   };
 }

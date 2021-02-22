@@ -2,15 +2,15 @@ import { extractFootnotes } from "./extract-footnotes";
 import { compileToJsx } from "./jsx-compiler/compiler";
 import { parseMarkdown } from "./parsing/parse";
 import { transformToInlineSyntaxTree } from "./transform-to-inline-tree";
-import { HastSyntaxTree, MarkdownStyle, ValidationResult } from "./types";
+import {
+  HastSyntaxTree,
+  JsxRepresentation,
+  MarkdownStyle,
+  ValidationResult,
+} from "./types";
 import { validateInlineSyntaxTree } from "./validate-inline";
 
-export interface JsxComponent {
-  jsx: string;
-  requiresCounterLink: boolean;
-}
-
-export interface FootnoteJsxComponent extends JsxComponent {
+export interface FootnoteJsxRepresentation extends JsxRepresentation {
   footnoteId: number;
 }
 
@@ -41,9 +41,9 @@ interface ConvertMarkdownToJsxOptions {
 }
 
 interface MarkdownToJsxResults {
-  body: JsxComponent;
-  footnotes: ReadonlyArray<FootnoteJsxComponent>;
-  warnings: ReadonlyArray<string>;
+  body: JsxRepresentation;
+  footnotes: readonly FootnoteJsxRepresentation[];
+  warnings: readonly string[];
 }
 
 export function convertMarkdownToJSX(
@@ -82,7 +82,7 @@ export function convertMarkdownToJSX(
   // Extract the footnotes from the syntax tree to store them separately.
   const footnoteNodes = extractFootnotes(hastSyntaxTree);
   const footnotes = footnoteNodes.map(
-    (node): FootnoteJsxComponent => ({
+    (node): FootnoteJsxRepresentation => ({
       footnoteId: node.refId,
       ...compileToJsx({
         children: [node.syntaxTree],

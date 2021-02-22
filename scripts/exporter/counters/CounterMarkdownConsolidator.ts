@@ -1,13 +1,13 @@
 import { convertMarkdownToJSX } from "../../markdown";
-import { MarkdownStyle } from "../../markdown/types";
+import { JsxComponentUsage, MarkdownStyle } from "../../markdown/types";
 
 import { ExportOutputEntry } from "../types";
 import { ProductionVariable } from "../utils";
 
 export interface CounterMarkdownComponent {
-  componentName: string;
+  name: string;
+  componentUsage: JsxComponentUsage;
   jsx: string;
-  requiresCounterLink: boolean;
 }
 
 function convertToWarningOutput(warning: string): ExportOutputEntry {
@@ -62,9 +62,9 @@ class CounterMarkdownConsolidator {
     for (const footnote of footnotes) {
       const footnoteComponentName = `Footnote${footnote.footnoteId}`;
       this.footnoteComponents.push({
-        componentName: footnoteComponentName,
+        componentUsage: footnote.componentUsage,
         jsx: footnote.jsx,
-        requiresCounterLink: footnote.requiresCounterLink,
+        name: footnoteComponentName,
       });
       this.footnoteComponentVariables.push(
         new ProductionVariable(
@@ -74,9 +74,9 @@ class CounterMarkdownConsolidator {
     }
 
     this.primaryComponents.push({
-      componentName,
+      componentUsage: body.componentUsage,
       jsx: body.jsx,
-      requiresCounterLink: body.requiresCounterLink,
+      name: componentName,
     });
     return new ProductionVariable(`${this.importedNamespace}.${componentName}`);
   }
