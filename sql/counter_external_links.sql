@@ -484,4 +484,21 @@ VALUES(
     'Explanation for how to count the noun 株 (tree stump, stock/shares), which covers both usages of the counter 株.',
     'japanese'
   );
+INSERT INTO
+  "counter_external_links" (
+    counter_id,
+    url,
+    site_name,
+    link_text,
+    description,
+    language
+  )
+VALUES(
+    '店',
+    'http://hdl.handle.net/2241/00128666',
+    '筑波大学',
+    '近現代日本語における新たな助数詞の成立と定着',
+    'Masters thesis that focuses on the establishment of new counters, in particular <counter:店> and <counter:試合>.',
+    'japanese'
+  );
 COMMIT;

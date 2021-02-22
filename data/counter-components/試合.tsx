@@ -4,12 +4,17 @@
 
 import React from "react";
 import CounterDisplay from "@jyosuushi/ui/data-components/CounterDisplay";
+import IntrasiteLink from "@jyosuushi/ui/data-components/IntrasiteLink";
 
 export function ExternalLink0(): React.ReactElement {
   return (
     <>
       Masters thesis that focuses on the establishment of new counters, in
-      particular 店 and{" "}
+      particular{" "}
+      <IntrasiteLink id="店">
+        <CounterDisplay primaryText="店" reading="てん" />
+      </IntrasiteLink>{" "}
+      and{" "}
       <strong>
         <CounterDisplay primaryText="試合" reading="しあい" />
       </strong>

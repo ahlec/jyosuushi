@@ -90,8 +90,8 @@ const STUDY_PACK_N5: StandardCounterCollection = {
 };
 
 const STUDY_PACK_OFFICE_LIFE: StandardCounterCollection = {
-  counterIds: ["円", "名", "席", "枚", "株", "社", "部", "階"],
-  dateLastUpdated: 1613960888000,
+  counterIds: ["円", "名", "席", "店", "枚", "株", "社", "部", "階"],
+  dateLastUpdated: 1613964288000,
   description:
     "Counters that would be useful in a corporate environment or in office jobs.",
   id: "office-life",

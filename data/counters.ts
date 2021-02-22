@@ -22,6 +22,7 @@ import * as 名Components from "@data/counter-components/名";
 import * as 回Components from "@data/counter-components/回";
 import * as 巻Components from "@data/counter-components/巻";
 import * as 年Components from "@data/counter-components/年";
+import * as 店Components from "@data/counter-components/店";
 import * as 戦Components from "@data/counter-components/戦";
 import * as 日Components from "@data/counter-components/日";
 import * as 時Components from "@data/counter-components/時";
@@ -844,6 +845,47 @@ export const COUNTER_年: Counter = {
         allowsYonFor4: false,
       },
       readingId: "ねん",
+      wagoStyle: null,
+      wordOrigin: WordOrigin.Chinese,
+    },
+  ],
+};
+
+export const COUNTER_店: Counter = {
+  counterId: "店",
+  disambiguations: [],
+  englishName: "stores",
+  externalLinks: [
+    {
+      description: 店Components.ExternalLink0,
+      displayText: "近現代日本語における新たな助数詞の成立と定着",
+      language: ExternalLinkLanguage.Japanese,
+      siteName: "筑波大学",
+      url: "http://hdl.handle.net/2241/00128666",
+    },
+  ],
+  footnotes: [],
+  irregulars: {},
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "店",
+  },
+  leadIn: null,
+  notes: null,
+  readings: [
+    {
+      counterId: "店",
+      kana: "てん",
+      kangoConjugationOptions: {
+        allowsKuFor9: false,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: false,
+        allowsYoFor4: false,
+        allowsYonFor4: true,
+      },
+      readingId: "てん",
       wagoStyle: null,
       wordOrigin: WordOrigin.Chinese,
     },
@@ -2044,6 +2086,7 @@ export const COUNTERS_LOOKUP: { [counterId: string]: Counter } = {
   巻: COUNTER_巻,
   席: COUNTER_席,
   年: COUNTER_年,
+  店: COUNTER_店,
   戦: COUNTER_戦,
   日: COUNTER_日,
   時: COUNTER_時,

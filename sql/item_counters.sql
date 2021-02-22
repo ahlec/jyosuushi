@@ -604,4 +604,22 @@ VALUES('copy', '枚', NULL);
 INSERT INTO
   "item_counters" (item_id, counter_id, relevance)
 VALUES('flyer', '部', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('shop', '店', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('store', '店', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('bookstore', '店', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('bar (alcohol)', '店', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('tea house', '店', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('izakaya', '店', NULL);
 COMMIT;

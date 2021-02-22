@@ -604,4 +604,13 @@ INSERT INTO
     primary_kanji
   )
 VALUES('部', 'parts, copies', NULL, NULL, '部');
+INSERT INTO
+  "counters" (
+    counter_id,
+    english_name,
+    lead_in,
+    notes,
+    primary_kanji
+  )
+VALUES('店', 'stores', NULL, NULL, '店');
 COMMIT;

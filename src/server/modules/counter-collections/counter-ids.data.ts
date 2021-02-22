@@ -21,6 +21,7 @@ export const COUNTER_IDS: ReadonlySet<string> = new Set([
   "巻",
   "席",
   "年",
+  "店",
   "戦",
   "日",
   "時",

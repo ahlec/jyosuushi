@@ -3130,4 +3130,23 @@ INSERT INTO
     japanese_kanji
   )
 VALUES('copy', 'copy', 'copies', NULL, NULL, NULL, NULL);
+INSERT INTO
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'bar (alcohol)',
+    'bar (pub)',
+    'bars (pubs)',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
 COMMIT;

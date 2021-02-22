@@ -130,6 +130,20 @@ const ITEM_BANQUET: Item = {
   minQuantity: 1,
 };
 
+const ITEM_BAR_ALCOHOL_: Item = {
+  counters: [
+    {
+      counterId: "店",
+      relevance: CounterItemRelevance.Unknown,
+    },
+  ],
+  englishPlural: "bars (pubs)",
+  englishSingular: "bar (pub)",
+  itemId: "bar (alcohol)",
+  maxQuantity: 100,
+  minQuantity: 1,
+};
+
 const ITEM_BAR_OF_CHOCOLATE: Item = {
   counters: [
     {
@@ -310,6 +324,10 @@ const ITEM_BOOKSTORE: Item = {
   counters: [
     {
       counterId: "軒",
+      relevance: CounterItemRelevance.Unknown,
+    },
+    {
+      counterId: "店",
       relevance: CounterItemRelevance.Unknown,
     },
   ],
@@ -1176,6 +1194,10 @@ const ITEM_IZAKAYA: Item = {
       counterId: "軒",
       relevance: CounterItemRelevance.Unknown,
     },
+    {
+      counterId: "店",
+      relevance: CounterItemRelevance.Unknown,
+    },
   ],
   englishPlural: "izakaya",
   englishSingular: "izakaya",
@@ -2036,6 +2058,10 @@ const ITEM_SHOP: Item = {
       counterId: "軒",
       relevance: CounterItemRelevance.Unknown,
     },
+    {
+      counterId: "店",
+      relevance: CounterItemRelevance.Unknown,
+    },
   ],
   englishPlural: "shops",
   englishSingular: "shop",
@@ -2222,6 +2248,10 @@ const ITEM_STORE: Item = {
       counterId: "軒",
       relevance: CounterItemRelevance.Unknown,
     },
+    {
+      counterId: "店",
+      relevance: CounterItemRelevance.Unknown,
+    },
   ],
   englishPlural: "stores",
   englishSingular: "store",
@@ -2322,6 +2352,10 @@ const ITEM_TEA_HOUSE: Item = {
   counters: [
     {
       counterId: "軒",
+      relevance: CounterItemRelevance.Unknown,
+    },
+    {
+      counterId: "店",
       relevance: CounterItemRelevance.Unknown,
     },
   ],
@@ -2580,6 +2614,7 @@ export const ITEMS_LOOKUP: { [itemId: string]: Item } = {
   assembly: ITEM_ASSEMBLY,
   bank: ITEM_BANK,
   banquet: ITEM_BANQUET,
+  "bar (alcohol)": ITEM_BAR_ALCOHOL_,
   "bar of chocolate": ITEM_BAR_OF_CHOCOLATE,
   barn: ITEM_BARN,
   "baseball game": ITEM_BASEBALL_GAME,
@@ -2800,6 +2835,14 @@ export const ITEMS_FROM_COUNTER: {
   巻: [ITEM_SUTRA],
   席: [ITEM_SEAT, ITEM_MEETING, ITEM_ASSEMBLY, ITEM_BANQUET],
   年: [ITEM_YEAR],
+  店: [
+    ITEM_SHOP,
+    ITEM_STORE,
+    ITEM_BOOKSTORE,
+    ITEM_BAR_ALCOHOL_,
+    ITEM_TEA_HOUSE,
+    ITEM_IZAKAYA,
+  ],
   戦: [
     ITEM_BATTLE,
     ITEM_SKIRMISH,
