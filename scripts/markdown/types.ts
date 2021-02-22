@@ -15,12 +15,6 @@ export interface HastSyntaxTree {
   children: readonly HastNode[];
 }
 
-export interface IntrasiteLinkProps {
-  counterId: string;
-  specificKanji: string | null;
-  specificReading: string | null;
-}
-
 export interface ValidationViolation {
   message: string;
   node: HastNode | HastSyntaxTree;

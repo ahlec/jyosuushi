@@ -1,5 +1,7 @@
-import { INTRASITE_LINK_HAST_NODE_NAME } from "../parsing/intrasite-link-plugin";
-import { isIntrasiteLinkProps } from "../utils";
+import {
+  INTRASITE_LINK_HAST_NODE_NAME,
+  isIntrasiteLinkProperties,
+} from "../parsing/custom-nodes";
 
 import { JSXRepresentation } from "./types";
 
@@ -52,7 +54,7 @@ export function writeNodeAsJsx(
     openingTagPieces.push(`alt="${properties.alt}"`);
   }
 
-  if (isIntrasiteLinkProps(properties.intrasiteLink)) {
+  if (isIntrasiteLinkProperties(properties.intrasiteLink)) {
     openingTagPieces.push(`counterId="${properties.intrasiteLink.counterId}"`);
 
     if (properties.intrasiteLink.specificKanji) {

@@ -4,9 +4,10 @@ import { Node } from "unist";
 import { Eat, RemarkParser } from "./interfaces";
 import PluginWarningsCollector from "./PluginWarningsCollector";
 
-import { IntrasiteLinkProps } from "../types";
-
-export const INTRASITE_LINK_HAST_NODE_NAME = "intrasiteLink";
+import {
+  INTRASITE_LINK_HAST_NODE_NAME,
+  IntrasiteLinkProperties,
+} from "./custom-nodes";
 
 interface IntrasiteLinkConfig {
   exportedCounterIds: ReadonlySet<string>;
@@ -113,7 +114,7 @@ function intrasiteLinkMarkdownPlugin(
       );
 
       let isContentExported: boolean;
-      let intrasiteLinkProps: IntrasiteLinkProps;
+      let intrasiteLinkProps: IntrasiteLinkProperties;
       switch (definition.type) {
         case "counter": {
           isContentExported = config.exportedCounterIds.has(definition.id);
