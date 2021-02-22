@@ -294,6 +294,10 @@ const ITEM_BOOK: Item = {
       counterId: "冊",
       relevance: CounterItemRelevance.Unknown,
     },
+    {
+      counterId: "部",
+      relevance: CounterItemRelevance.Unknown,
+    },
   ],
   englishPlural: "books",
   englishSingular: "book",
@@ -608,6 +612,24 @@ const ITEM_CONFLICT: Item = {
   englishPlural: "conflicts",
   englishSingular: "conflict",
   itemId: "conflict",
+  maxQuantity: 100,
+  minQuantity: 1,
+};
+
+const ITEM_COPY: Item = {
+  counters: [
+    {
+      counterId: "部",
+      relevance: CounterItemRelevance.Unknown,
+    },
+    {
+      counterId: "枚",
+      relevance: CounterItemRelevance.Unknown,
+    },
+  ],
+  englishPlural: "copies",
+  englishSingular: "copy",
+  itemId: "copy",
   maxQuantity: 100,
   minQuantity: 1,
 };
@@ -952,6 +974,20 @@ const ITEM_FLOWER: Item = {
   minQuantity: 1,
 };
 
+const ITEM_FLYER: Item = {
+  counters: [
+    {
+      counterId: "部",
+      relevance: CounterItemRelevance.Unknown,
+    },
+  ],
+  englishPlural: "flyers",
+  englishSingular: "flyer",
+  itemId: "flyer",
+  maxQuantity: 100,
+  minQuantity: 1,
+};
+
 const ITEM_FUR_PELT: Item = {
   counters: [
     {
@@ -1284,6 +1320,10 @@ const ITEM_MAGAZINE: Item = {
       counterId: "冊",
       relevance: CounterItemRelevance.Unknown,
     },
+    {
+      counterId: "部",
+      relevance: CounterItemRelevance.Unknown,
+    },
   ],
   englishPlural: "magazines",
   englishSingular: "magazine",
@@ -1432,6 +1472,20 @@ const ITEM_NATION: Item = {
   englishPlural: "nations",
   englishSingular: "nation",
   itemId: "nation",
+  maxQuantity: 100,
+  minQuantity: 1,
+};
+
+const ITEM_NEWSPAPER: Item = {
+  counters: [
+    {
+      counterId: "部",
+      relevance: CounterItemRelevance.Unknown,
+    },
+  ],
+  englishPlural: "newspapers",
+  englishSingular: "newspaper",
+  itemId: "newspaper",
   maxQuantity: 100,
   minQuantity: 1,
 };
@@ -2559,6 +2613,7 @@ export const ITEMS_LOOKUP: { [itemId: string]: Item } = {
   colour: ITEM_COLOUR,
   company: ITEM_COMPANY,
   conflict: ITEM_CONFLICT,
+  copy: ITEM_COPY,
   country: ITEM_COUNTRY,
   "couple (people)": ITEM_COUPLE_PEOPLE_,
   cow: ITEM_COW,
@@ -2583,6 +2638,7 @@ export const ITEMS_LOOKUP: { [itemId: string]: Item } = {
   "fire extinguisher": ITEM_FIRE_EXTINGUISHER,
   "floor (building)": ITEM_FLOOR_BUILDING_,
   flower: ITEM_FLOWER,
+  flyer: ITEM_FLYER,
   "fur pelt": ITEM_FUR_PELT,
   game: ITEM_GAME,
   "glass of milk": ITEM_GLASS_OF_MILK,
@@ -2617,6 +2673,7 @@ export const ITEMS_LOOKUP: { [itemId: string]: Item } = {
   month: ITEM_MONTH,
   mushroom: ITEM_MUSHROOM,
   nation: ITEM_NATION,
+  newspaper: ITEM_NEWSPAPER,
   nightclub: ITEM_NIGHTCLUB,
   notebook: ITEM_NOTEBOOK,
   "o'clock": ITEM_O_CLOCK,
@@ -2797,6 +2854,7 @@ export const ITEMS_FROM_COUNTER: {
     ITEM_TRAIN_TICKET,
     ITEM_CLOUD_EAR_MUSHROOM,
     ITEM_STOCK_CERTIFICATE,
+    ITEM_COPY,
   ],
   校: [
     ITEM_HIGH_SCHOOL,
@@ -2863,6 +2921,7 @@ export const ITEMS_FROM_COUNTER: {
     ITEM_NIGHTCLUB,
   ],
   週: [ITEM_WEEK],
+  部: [ITEM_BOOK, ITEM_NEWSPAPER, ITEM_MAGAZINE, ITEM_COPY, ITEM_FLYER],
   階: [ITEM_FLOOR_BUILDING_, ITEM_STOREY],
   頭: [ITEM_COW, ITEM_HORSE, ITEM_GORILLA, ITEM_WHALE, ITEM_ELEPHANT],
 };

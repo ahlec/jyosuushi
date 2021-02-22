@@ -3081,4 +3081,53 @@ VALUES(
     'かんようしょくぶつ',
     '観葉植物'
   );
+INSERT INTO
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'newspaper',
+    'newspaper',
+    'newspapers',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
+INSERT INTO
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES(
+    'flyer',
+    'flyer',
+    'flyers',
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  );
+INSERT INTO
+  "items" (
+    item_id,
+    english_singular,
+    english_plural,
+    custom_min_amount,
+    custom_max_amount,
+    japanese_kana,
+    japanese_kanji
+  )
+VALUES('copy', 'copy', 'copies', NULL, NULL, NULL, NULL);
 COMMIT;

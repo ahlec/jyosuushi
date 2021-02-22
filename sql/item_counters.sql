@@ -586,4 +586,22 @@ VALUES('share of stock', '株', NULL);
 INSERT INTO
   "item_counters" (item_id, counter_id, relevance)
 VALUES('decorative plant', '株', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('book', '部', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('newspaper', '部', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('magazine', '部', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('copy', '部', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('copy', '枚', NULL);
+INSERT INTO
+  "item_counters" (item_id, counter_id, relevance)
+VALUES('flyer', '部', NULL);
 COMMIT;

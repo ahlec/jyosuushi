@@ -43,6 +43,7 @@ export const COUNTER_IDS: ReadonlySet<string> = new Set([
   "足",
   "軒",
   "週",
+  "部",
   "階",
   "頭",
 ]);

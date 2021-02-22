@@ -34,6 +34,7 @@ import * as 歳Components from "@data/counter-components/歳";
 import * as 缶Components from "@data/counter-components/缶";
 import * as 羽Components from "@data/counter-components/羽";
 import * as 試合Components from "@data/counter-components/試合";
+import * as 部Components from "@data/counter-components/部";
 import * as 階Components from "@data/counter-components/階";
 import * as 頭Components from "@data/counter-components/頭";
 
@@ -287,6 +288,10 @@ export const COUNTER_冊: Counter = {
       distinction: 冊Components.Disambiguation巻,
       otherCounterId: "巻",
     },
+    {
+      distinction: 冊Components.Disambiguation部,
+      otherCounterId: "部",
+    },
   ],
   englishName: "books",
   externalLinks: [
@@ -311,6 +316,9 @@ export const COUNTER_冊: Counter = {
     冊Components.Footnote3,
     冊Components.Footnote4,
     冊Components.Footnote5,
+    冊Components.Footnote6,
+    冊Components.Footnote7,
+    冊Components.Footnote8,
   ],
   irregulars: {},
   kanji: {
@@ -1893,6 +1901,48 @@ export const COUNTER_週: Counter = {
   ],
 };
 
+export const COUNTER_部: Counter = {
+  counterId: "部",
+  disambiguations: [
+    {
+      distinction: 部Components.Disambiguation冊,
+      otherCounterId: "冊",
+    },
+  ],
+  englishName: "parts, copies",
+  externalLinks: [],
+  footnotes: [
+    部Components.Footnote1,
+    部Components.Footnote2,
+    部Components.Footnote3,
+  ],
+  irregulars: {},
+  kanji: {
+    additionalKanji: [],
+    primaryKanji: "部",
+  },
+  leadIn: null,
+  notes: null,
+  readings: [
+    {
+      counterId: "部",
+      kana: "ぶ",
+      kangoConjugationOptions: {
+        allowsKuFor9: false,
+        allowsKyuuFor9: true,
+        allowsNanaFor7: true,
+        allowsShiFor4: false,
+        allowsShichiFor7: false,
+        allowsYoFor4: false,
+        allowsYonFor4: true,
+      },
+      readingId: "ぶ",
+      wagoStyle: null,
+      wordOrigin: WordOrigin.Chinese,
+    },
+  ],
+};
+
 export const COUNTER_階: Counter = {
   counterId: "階",
   disambiguations: [],
@@ -2016,6 +2066,7 @@ export const COUNTERS_LOOKUP: { [counterId: string]: Counter } = {
   足: COUNTER_足,
   軒: COUNTER_軒,
   週: COUNTER_週,
+  部: COUNTER_部,
   階: COUNTER_階,
   頭: COUNTER_頭,
 };

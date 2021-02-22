@@ -189,4 +189,7 @@ VALUES('office-life', '社', '2021-02-20 05:15:28');
 INSERT INTO
   "study_pack_contents" (pack_id, counter_id, date_added)
 VALUES('office-life', '円', '2021-02-20 05:15:28');
+INSERT INTO
+  "study_pack_contents" (pack_id, counter_id, date_added)
+VALUES('office-life', '部', '2021-02-22 02:28:08');
 COMMIT;
