@@ -1,18 +1,17 @@
-@import "../../../../palette";
-@import "../../../constants";
+@use "@jyosuushi/ui/_constants";
 
 .counterCollectionView {
   overflow-y: auto;
 }
 
 .breadcrumbContainer {
-  padding: $page-margin;
+  padding: constants.$page-margin;
   padding-bottom: 5px;
 }
 
 .pageArea {
   display: grid;
-  gap: $page-margin;
+  gap: constants.$page-margin;
   grid-template-columns: 1fr;
-  padding: $page-margin;
+  padding: constants.$page-margin;
 }

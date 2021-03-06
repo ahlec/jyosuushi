@@ -1,13 +1,13 @@
-@import "../../constants";
-@import "../../palette";
+@use "@jyosuushi/_constants";
+@use "@jyosuushi/palette";
 
 .standardButton {
-  background-color: $pink-light;
-  border: 1px solid $pink-base;
+  background-color: palette.$pink-light;
+  border: 1px solid palette.$pink-base;
   border-radius: 4px;
-  color: $black-lightest;
+  color: palette.$black-lightest;
   cursor: pointer;
-  font-family: $font-family;
+  font-family: constants.$font-family;
   padding: 6px;
 
   &:hover:not(:disabled) {
@@ -16,9 +16,9 @@
   }
 
   &:disabled {
-    background-color: $pink-lightest;
-    border-color: $pink-light;
-    color: $pink-dark;
+    background-color: palette.$pink-lightest;
+    border-color: palette.$pink-light;
+    color: palette.$pink-dark;
     cursor: default;
     opacity: 0.5;
   }

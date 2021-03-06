@@ -1,11 +1,11 @@
-@import "../../../palette";
-@import "../../constants";
+@use "@jyosuushi/palette";
+@use "@jyosuushi/ui/_constants";
 
 .SettingsPage {
-  padding: $page-margin;
+  padding: constants.$page-margin;
 
   h1 {
-    border-bottom: 1px solid $app-outline;
+    border-bottom: 1px solid palette.$app-outline;
     font-size: 24px;
     font-weight: bold;
     margin: 0 auto 15px;

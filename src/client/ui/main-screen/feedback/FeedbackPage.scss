@@ -1,8 +1,8 @@
-@import "../../../palette";
-@import "../../constants";
+@use "@jyosuushi/palette";
+@use "@jyosuushi/ui/_constants";
 
 .FeedbackPage {
-  padding: $page-margin;
+  padding: constants.$page-margin;
 
   p {
     margin: 10px;
@@ -18,7 +18,7 @@
 
   hr {
     border: 0;
-    border-top: 1px solid $app-outline;
+    border-top: 1px solid palette.$app-outline;
     margin: 25px auto;
     width: 60%;
   }

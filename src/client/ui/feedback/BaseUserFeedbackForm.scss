@@ -1,12 +1,12 @@
-@import "../../constants";
-@import "../../palette";
+@use "@jyosuushi/_constants";
+@use "@jyosuushi/palette";
 
 $textarea-padding: 4px;
 $textarea-border-width: 1px;
 
 .BaseUserFeedbackForm {
   .explanation {
-    color: $black-lightest;
+    color: palette.$black-lightest;
     font-size: 13px;
     text-align: center;
   }
@@ -18,22 +18,22 @@ $textarea-border-width: 1px;
     }
 
     .input-element {
-      border: $textarea-border-width solid $black-light;
+      border: $textarea-border-width solid palette.$black-light;
       border-radius: 4px;
       display: block;
-      font-family: $font-family;
+      font-family: constants.$font-family;
       margin: 4px 0;
       padding: $textarea-padding;
       resize: none;
       width: calc(100% - #{($textarea-padding + $textarea-border-width) * 2});
 
       &:focus {
-        outline: 2px solid $blue-base;
+        outline: 2px solid palette.$blue-base;
       }
     }
 
     .context-footer {
-      color: $black-light;
+      color: palette.$black-light;
       font-size: 11px;
       text-align: right;
     }
@@ -54,8 +54,8 @@ $textarea-border-width: 1px;
   }
 
   .error-container {
-    background-color: $incorrect-light;
-    border: 1px solid $incorrect-dark;
+    background-color: palette.$incorrect-light;
+    border: 1px solid palette.$incorrect-dark;
     margin-top: 6px;
     padding: 8px;
     text-align: center;

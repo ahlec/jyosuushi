@@ -1,16 +1,16 @@
-@import "../../../../palette";
-@import "../../../constants";
+@use "@jyosuushi/palette";
+@use "@jyosuushi/ui/_constants";
 
 .page {
-  padding: $page-margin;
+  padding: constants.$page-margin;
 }
 
 .breadcrumbContainer {
-  margin-bottom: $page-margin;
+  margin-bottom: constants.$page-margin;
 }
 
 .header {
-  border-bottom: 1px solid $app-outline;
+  border-bottom: 1px solid palette.$app-outline;
   font-size: 24px;
   font-weight: bold;
   margin: 0 auto 10px;

@@ -1,14 +1,14 @@
-@import "../../../../palette";
-@import "../../../constants";
+@use "@jyosuushi/palette";
+@use "@jyosuushi/ui/_constants";
 
 .AuthPageLayout {
   margin: auto;
-  padding: $page-margin;
+  padding: constants.$page-margin;
   width: 75%;
 }
 
 .pageHeader {
-  border-bottom: 1px solid $app-outline;
+  border-bottom: 1px solid palette.$app-outline;
   font-size: 28px;
   font-weight: bold;
   margin: 0 auto 15px;

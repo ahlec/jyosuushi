@@ -23,7 +23,7 @@
     "favicon": "rimraf ./favicons && real-favicon generate faviconDescription.json faviconData.json favicons",
     "codegen": "concurrently -n GraphQL,SCSS,Locales \"yarn codegen:gql\" \"yarn codegen:scss\" \"yarn codegen:i18n\"",
     "codegen:gql": "graphql-codegen",
-    "codegen:scss": "tsm src/client",
+    "codegen:scss": "tsm src/client --aliasPrefixes.@jyosuushi src/client/",
     "codegen:i18n": "yarn ts-node ./scripts/i18n/compile.ts",
     "i18n:extract": "yarn ts-node ./scripts/i18n/extract.ts"
   },
@@ -95,7 +95,7 @@
     "remark-ruby": "^0.2.1",
     "request": "^2.88.2",
     "rimraf": "^3.0.2",
-    "sass": "^1.26.10",
+    "sass": "^1.32.8",
     "sass-loader": "^9.0.2",
     "sql-formatter": "^2.3.3",
     "sqlite": "^4.0.11",

@@ -1,11 +1,11 @@
-@import "../../constants";
+@use "@jyosuushi/ui/_constants";
 
 .PreparePage {
   display: flex;
   flex: 1;
   flex-direction: column;
   height: 100%;
-  padding: $page-margin;
+  padding: constants.$page-margin;
 
   p {
     margin-bottom: 10px;

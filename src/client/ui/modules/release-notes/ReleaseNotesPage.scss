@@ -1,18 +1,18 @@
-@import "../../../palette";
-@import "../../constants";
+@use "@jyosuushi/palette";
+@use "@jyosuushi/ui/_constants";
 
 .ReleaseNotesPage {
-  padding: $page-margin;
+  padding: constants.$page-margin;
 
   .version-container {
     .version-header {
-      color: $pink-darkest;
+      color: palette.$pink-darkest;
       font-size: 1.5em;
       font-weight: 600;
       line-height: 1.5;
 
       .date {
-        color: $black-lightest;
+        color: palette.$black-lightest;
         font-size: 13px;
         font-style: italic;
         font-weight: normal;
@@ -20,7 +20,7 @@
     }
 
     .contents {
-      border-left: 2px solid $pink-light;
+      border-left: 2px solid palette.$pink-light;
       margin-left: 3px;
       padding-left: 15px;
     }

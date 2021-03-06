@@ -1,5 +1,5 @@
-@import "../../../../palette";
-@import "../../../constants";
+@use "@jyosuushi/palette";
+@use "@jyosuushi/ui/_constants";
 
 .ExploreCounterPage {
   .contents {
@@ -12,7 +12,7 @@
     }
 
     section + section {
-      border-top: 1px solid $black-light;
+      border-top: 1px solid palette.$black-light;
       margin-top: 25px;
       padding-top: 25px;
     }
@@ -20,6 +20,6 @@
 }
 
 .breadcrumbContainer {
-  margin: $page-margin;
+  margin: constants.$page-margin;
   margin-bottom: 5px;
 }
