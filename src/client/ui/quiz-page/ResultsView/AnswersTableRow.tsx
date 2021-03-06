@@ -11,7 +11,7 @@ import {
 } from "@jyosuushi/interfaces";
 
 import useCounterDisplay from "@jyosuushi/hooks/useCounterDisplay";
-import Furigana from "@jyosuushi/ui/Furigana";
+import Furigana from "@jyosuushi/ui/components/Furigana";
 
 import styles from "./AnswersTableRow.scss";
 

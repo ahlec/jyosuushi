@@ -1,7 +1,7 @@
 {
   "tags": ["client"],
   "exports": [
-    "interfaces",
+    "interfaces/*",
     {
       "modules": "ui/data-components/**/*",
       "accessibleTo": ["data"]

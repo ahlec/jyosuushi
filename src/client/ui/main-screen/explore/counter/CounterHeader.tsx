@@ -4,7 +4,7 @@ import useLocale from "@jyosuushi/i18n/useLocale";
 import { Counter } from "@jyosuushi/interfaces";
 
 import useCounterDisplay from "@jyosuushi/hooks/useCounterDisplay";
-import Furigana from "@jyosuushi/ui/Furigana";
+import Furigana from "@jyosuushi/ui/components/Furigana";
 
 import PageHeader from "@jyosuushi/ui/main-screen/explore/components/page-header/PageHeader";
 import { HeaderSubtitleEntryDefinition } from "@jyosuushi/ui/main-screen/explore/components/page-header/types";

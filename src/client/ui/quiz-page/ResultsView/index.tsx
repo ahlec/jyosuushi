@@ -14,7 +14,7 @@ import { State, UserAnswer, UserAnswerJudgment } from "@jyosuushi/redux";
 import { ignoreLastAnswer } from "@jyosuushi/redux/actions";
 import { Dispatch } from "@jyosuushi/redux/store";
 
-import JudgmentBubble from "@jyosuushi/ui/JudgmentBubble";
+import JudgmentBubble from "@jyosuushi/ui/components/JudgmentBubble";
 import StandardButton from "@jyosuushi/ui/components/StandardButton";
 
 import AnswersTable from "./AnswersTable";

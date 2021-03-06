@@ -1,5 +1,5 @@
 import { ComponentType } from "react";
-import { KangoConjugationOptions } from "./japanese/interfaces";
+import { KangoConjugationOptions } from "@jyosuushi/japanese/interfaces";
 
 export enum ExternalLinkLanguage {
   Japanese = "japanese",

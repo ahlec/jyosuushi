@@ -9,7 +9,7 @@ import useLocale from "@jyosuushi/i18n/useLocale";
 import { Question } from "@jyosuushi/interfaces";
 import { UserAnswer } from "@jyosuushi/redux";
 
-import JudgmentBubble from "@jyosuushi/ui/JudgmentBubble";
+import JudgmentBubble from "@jyosuushi/ui/components/JudgmentBubble";
 
 import styles from "./HistoryRow.scss";
 

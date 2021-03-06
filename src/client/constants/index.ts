@@ -1,6 +1,6 @@
 import { defineMessages, MessageDescriptor } from "react-intl";
 
-import { AmountRange } from "./redux";
+import { AmountRange } from "@jyosuushi/redux";
 
 export const ONE_SECOND = 1000;
 export const ONE_MINUTE = ONE_SECOND * 60;

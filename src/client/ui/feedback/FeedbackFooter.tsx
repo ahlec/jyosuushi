@@ -3,11 +3,11 @@ import { defineMessages, FormattedMessage } from "react-intl";
 
 import InlineTrigger from "@jyosuushi/ui/components/InlineTrigger";
 
-import { BugReportModal } from "@jyosuushi/ui/feedback/BugReport";
-import { FeatureSuggestionModal } from "@jyosuushi/ui/feedback/FeatureSuggestion";
-
 import BugIcon from "@jyosuushi/icons/bug.png";
 import CommentsIcon from "@jyosuushi/icons/comments.png";
+
+import { BugReportModal } from "./BugReport";
+import { FeatureSuggestionModal } from "./FeatureSuggestion";
 
 import styles from "./FeedbackFooter.scss";
 

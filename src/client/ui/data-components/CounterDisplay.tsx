@@ -1,6 +1,6 @@
 import React from "react";
 
-import Furigana from "@jyosuushi/ui/Furigana";
+import Furigana from "@jyosuushi/ui/components/Furigana";
 
 interface ComponentProps {
   primaryText: string;

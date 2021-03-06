@@ -2,7 +2,7 @@ import { COUNTERS_LOOKUP } from "@data/counters";
 
 import { CounterCollection } from "@jyosuushi/graphql/types.generated";
 
-import { Counter } from "./interfaces";
+import { Counter } from "@jyosuushi/interfaces";
 
 export function randomFromArray<T>(arr: ReadonlyArray<T>): T {
   return arr[Math.floor(Math.random() * arr.length)];

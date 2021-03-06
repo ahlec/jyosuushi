@@ -3,7 +3,7 @@
     "original": {
       "defaultMessage": "Gigantic",
       "filenames": [
-        "src/client/constants.ts"
+        "src/client/constants/index.ts"
       ]
     },
     "translation": ""
@@ -12,7 +12,7 @@
     "original": {
       "defaultMessage": "Massive",
       "filenames": [
-        "src/client/constants.ts"
+        "src/client/constants/index.ts"
       ]
     },
     "translation": ""
@@ -21,7 +21,7 @@
     "original": {
       "defaultMessage": "Average",
       "filenames": [
-        "src/client/constants.ts"
+        "src/client/constants/index.ts"
       ]
     },
     "translation": ""
@@ -30,7 +30,7 @@
     "original": {
       "defaultMessage": "Tiny",
       "filenames": [
-        "src/client/constants.ts"
+        "src/client/constants/index.ts"
       ]
     },
     "translation": ""
@@ -195,7 +195,7 @@
     "original": {
       "defaultMessage": "Your thoughts are super appreciated! {reportBug} or {submitFeedback}.",
       "filenames": [
-        "src/client/ui/FeedbackFooter.tsx"
+        "src/client/ui/feedback/FeedbackFooter.tsx"
       ]
     },
     "translation": ""
@@ -204,7 +204,7 @@
     "original": {
       "defaultMessage": "Report a Bug",
       "filenames": [
-        "src/client/ui/FeedbackFooter.tsx"
+        "src/client/ui/feedback/FeedbackFooter.tsx"
       ]
     },
     "translation": ""
@@ -213,7 +213,7 @@
     "original": {
       "defaultMessage": "Submit Feedback",
       "filenames": [
-        "src/client/ui/FeedbackFooter.tsx"
+        "src/client/ui/feedback/FeedbackFooter.tsx"
       ]
     },
     "translation": ""

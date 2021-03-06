@@ -10,7 +10,7 @@ import { Dispatch } from "@jyosuushi/redux/store";
 
 import TooltipButton from "@jyosuushi/ui/components/TooltipButton";
 
-import Furigana from "@jyosuushi/ui/Furigana";
+import Furigana from "@jyosuushi/ui/components/Furigana";
 import Modal from "@jyosuushi/ui/components/popups/Modal";
 import QuizHistory from "@jyosuushi/ui/QuizHistory";
 

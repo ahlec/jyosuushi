@@ -9,7 +9,9 @@ import Action, {
   ActionClassNames,
   ActionDefinition,
 } from "@jyosuushi/ui/components/Action";
-import Furigana, { FuriganaClassNames } from "@jyosuushi/ui/Furigana";
+import Furigana, {
+  FuriganaClassNames,
+} from "@jyosuushi/ui/components/Furigana";
 import LoadingSpinner from "@jyosuushi/ui/components/LoadingSpinner";
 import useCounterDisplay from "@jyosuushi/hooks/useCounterDisplay";
 

@@ -7,7 +7,7 @@ import withQuizManager, {
 } from "@jyosuushi/quiz/withQuizManager";
 import { QuizState, State } from "@jyosuushi/redux";
 
-import FeedbackFooter from "@jyosuushi/ui/FeedbackFooter";
+import FeedbackFooter from "@jyosuushi/ui/feedback/FeedbackFooter";
 import AnswerInput from "./AnswerInput";
 import QuestionDisplay from "./QuestionDisplay";
 import QuizWrapup from "./QuizWrapup";
