@@ -1658,6 +1658,274 @@
     },
     "translation": ""
   },
+  "QuizHistory.historyRow.submittedLabel": {
+    "original": {
+      "defaultMessage": "Submitted:",
+      "filenames": [
+        "src/client/ui/modules/quiz/components/history-display/HistoryRow.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.AnswerInput.buttonSkipQuestion": {
+    "original": {
+      "defaultMessage": "Skip this question",
+      "filenames": [
+        "src/client/ui/modules/quiz/views/question/AnswerInput/index.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.AnswerInput.howToSubmit": {
+    "original": {
+      "defaultMessage": "Press the [enter] key when you're finished, or click the arrow button to submit.",
+      "filenames": [
+        "src/client/ui/modules/quiz/views/question/AnswerInput/index.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.AnswerInput.TsuNotice.text": {
+    "original": {
+      "defaultMessage": "While 〜つ and 〜個 are always valid counters, you can't use them here. You'll have to be more specific!",
+      "filenames": [
+        "src/client/ui/modules/quiz/views/question/AnswerInput/TsuNotice/index.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quizPage.QuestionDisplay.text": {
+    "original": {
+      "defaultMessage": "{amount} {itemName}",
+      "filenames": [
+        "src/client/ui/modules/quiz/views/question/QuestionDisplay.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.results.AnswersTable.columnHeaders.counter": {
+    "original": {
+      "defaultMessage": "Counter",
+      "filenames": [
+        "src/client/ui/modules/quiz/views/question/ResultsView/AnswersTable.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.results.AnswersTable.columnHeaders.hiragana": {
+    "original": {
+      "defaultMessage": "Hiragana",
+      "filenames": [
+        "src/client/ui/modules/quiz/views/question/ResultsView/AnswersTable.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.results.AnswersTable.columnHeaders.kanji": {
+    "original": {
+      "defaultMessage": "Kanji",
+      "filenames": [
+        "src/client/ui/modules/quiz/views/question/ResultsView/AnswersTable.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.results.AnswersTable.columnHeaders.rule": {
+    "original": {
+      "defaultMessage": "Rule",
+      "filenames": [
+        "src/client/ui/modules/quiz/views/question/ResultsView/AnswersTable.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.results.AnswersTable.columnHeaders.studyPack": {
+    "original": {
+      "defaultMessage": "Study Pack",
+      "filenames": [
+        "src/client/ui/modules/quiz/views/question/ResultsView/AnswersTable.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.results.AnswersTable.kanji.noKanjiForCounter": {
+    "original": {
+      "defaultMessage": "(none)",
+      "filenames": [
+        "src/client/ui/modules/quiz/views/question/ResultsView/AnswersTableRow.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.results.AnswersTable.readingsLabels.irregular": {
+    "original": {
+      "defaultMessage": "(irregular)",
+      "filenames": [
+        "src/client/ui/modules/quiz/views/question/ResultsView/AnswersTableRow.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.results.AnswersTable.readingsLabel.nonKango": {
+    "original": {
+      "defaultMessage": "(not 漢語)",
+      "filenames": [
+        "src/client/ui/modules/quiz/views/question/ResultsView/AnswersTableRow.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.results.buttonIgnoreAnswer": {
+    "original": {
+      "defaultMessage": "Ignore Answer",
+      "filenames": [
+        "src/client/ui/modules/quiz/views/question/ResultsView/index.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.results.buttonNextQuestion": {
+    "original": {
+      "defaultMessage": "Next Question",
+      "filenames": [
+        "src/client/ui/modules/quiz/views/question/ResultsView/index.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.results.header.correct": {
+    "original": {
+      "defaultMessage": "Correct!",
+      "filenames": [
+        "src/client/ui/modules/quiz/views/question/ResultsView/index.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.results.header.incorrect": {
+    "original": {
+      "defaultMessage": "Not quite right...",
+      "filenames": [
+        "src/client/ui/modules/quiz/views/question/ResultsView/index.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.results.header.skipped": {
+    "original": {
+      "defaultMessage": "Skipped",
+      "filenames": [
+        "src/client/ui/modules/quiz/views/question/ResultsView/index.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.results.table.intro": {
+    "original": {
+      "defaultMessage": "Here are all of the possible answers based on the sets you have enabled:",
+      "filenames": [
+        "src/client/ui/modules/quiz/views/question/ResultsView/index.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.results.skippedQuestion": {
+    "original": {
+      "defaultMessage": "Alright! You don't need to worry about this question!",
+      "filenames": [
+        "src/client/ui/modules/quiz/views/question/ResultsView/index.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.QuizWrapup.quitQuiz": {
+    "original": {
+      "defaultMessage": "Leave",
+      "filenames": [
+        "src/client/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.QuizWrapup.restartQuiz": {
+    "original": {
+      "defaultMessage": "Restart",
+      "filenames": [
+        "src/client/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.QuizWrapup.encouragement.highScore1": {
+    "original": {
+      "defaultMessage": "That was astounding, really.",
+      "description": "(A random message displayed if the user got a high score; does not need to be a literal translation)",
+      "filenames": [
+        "src/client/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.QuizWrapup.encouragement.highScore2": {
+    "original": {
+      "defaultMessage": "Look at how far you've come on your journey!",
+      "description": "(A random message displayed if the user got a high score; does not need to be a literal translation)",
+      "filenames": [
+        "src/client/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.QuizWrapup.encouragement.highScore3": {
+    "original": {
+      "defaultMessage": "This stuff isn't easy, and you're aceing it!",
+      "description": "(A random message displayed if the user got a high score; does not need to be a literal translation)",
+      "filenames": [
+        "src/client/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.QuizWrapup.encouragement.highScore4": {
+    "original": {
+      "defaultMessage": "It's taken a lot of work to get here; pat yourself on the back.",
+      "description": "(A random message displayed if the user got a high score; does not need to be a literal translation)",
+      "filenames": [
+        "src/client/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.QuizWrapup.encouragement.lowScore1": {
+    "original": {
+      "defaultMessage": "You're trying your best, and that's the key to success!",
+      "description": "(A random message displayed if the user got a low score; does not need to be a literal translation)",
+      "filenames": [
+        "src/client/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.QuizWrapup.encouragement.lowScore2": {
+    "original": {
+      "defaultMessage": "You've learned so much to get here, I know you'll get to where you want to go!",
+      "description": "(A random message displayed if the user got a low score; does not need to be a literal translation)",
+      "filenames": [
+        "src/client/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.QuizWrapup.encouragement.lowScore3": {
+    "original": {
+      "defaultMessage": "This stuff isn't easy; practice WILL make perfect.",
+      "description": "(A random message displayed if the user got a low score; does not need to be a literal translation)",
+      "filenames": [
+        "src/client/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
+      ]
+    },
+    "translation": ""
+  },
   "releaseNotes.browserNames.chrome": {
     "original": {
       "defaultMessage": "Chrome",
@@ -1736,274 +2004,6 @@
       "description": "Text to appear in place of release notes for the version that was the initial release.",
       "filenames": [
         "src/client/ui/modules/release-notes/ReleaseNotesPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "quiz-page.AnswerInput.buttonSkipQuestion": {
-    "original": {
-      "defaultMessage": "Skip this question",
-      "filenames": [
-        "src/client/ui/quiz-page/AnswerInput/index.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "quiz-page.AnswerInput.howToSubmit": {
-    "original": {
-      "defaultMessage": "Press the [enter] key when you're finished, or click the arrow button to submit.",
-      "filenames": [
-        "src/client/ui/quiz-page/AnswerInput/index.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "quiz-page.AnswerInput.TsuNotice.text": {
-    "original": {
-      "defaultMessage": "While 〜つ and 〜個 are always valid counters, you can't use them here. You'll have to be more specific!",
-      "filenames": [
-        "src/client/ui/quiz-page/AnswerInput/TsuNotice/index.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "quizPage.QuestionDisplay.text": {
-    "original": {
-      "defaultMessage": "{amount} {itemName}",
-      "filenames": [
-        "src/client/ui/quiz-page/QuestionDisplay.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "quiz-page.QuizWrapup.quitQuiz": {
-    "original": {
-      "defaultMessage": "Leave",
-      "filenames": [
-        "src/client/ui/quiz-page/QuizWrapup.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "quiz-page.QuizWrapup.restartQuiz": {
-    "original": {
-      "defaultMessage": "Restart",
-      "filenames": [
-        "src/client/ui/quiz-page/QuizWrapup.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "quiz-page.QuizWrapup.encouragement.highScore1": {
-    "original": {
-      "defaultMessage": "That was astounding, really.",
-      "description": "(A random message displayed if the user got a high score; does not need to be a literal translation)",
-      "filenames": [
-        "src/client/ui/quiz-page/QuizWrapup.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "quiz-page.QuizWrapup.encouragement.highScore2": {
-    "original": {
-      "defaultMessage": "Look at how far you've come on your journey!",
-      "description": "(A random message displayed if the user got a high score; does not need to be a literal translation)",
-      "filenames": [
-        "src/client/ui/quiz-page/QuizWrapup.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "quiz-page.QuizWrapup.encouragement.highScore3": {
-    "original": {
-      "defaultMessage": "This stuff isn't easy, and you're aceing it!",
-      "description": "(A random message displayed if the user got a high score; does not need to be a literal translation)",
-      "filenames": [
-        "src/client/ui/quiz-page/QuizWrapup.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "quiz-page.QuizWrapup.encouragement.highScore4": {
-    "original": {
-      "defaultMessage": "It's taken a lot of work to get here; pat yourself on the back.",
-      "description": "(A random message displayed if the user got a high score; does not need to be a literal translation)",
-      "filenames": [
-        "src/client/ui/quiz-page/QuizWrapup.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "quiz-page.QuizWrapup.encouragement.lowScore1": {
-    "original": {
-      "defaultMessage": "You're trying your best, and that's the key to success!",
-      "description": "(A random message displayed if the user got a low score; does not need to be a literal translation)",
-      "filenames": [
-        "src/client/ui/quiz-page/QuizWrapup.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "quiz-page.QuizWrapup.encouragement.lowScore2": {
-    "original": {
-      "defaultMessage": "You've learned so much to get here, I know you'll get to where you want to go!",
-      "description": "(A random message displayed if the user got a low score; does not need to be a literal translation)",
-      "filenames": [
-        "src/client/ui/quiz-page/QuizWrapup.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "quiz-page.QuizWrapup.encouragement.lowScore3": {
-    "original": {
-      "defaultMessage": "This stuff isn't easy; practice WILL make perfect.",
-      "description": "(A random message displayed if the user got a low score; does not need to be a literal translation)",
-      "filenames": [
-        "src/client/ui/quiz-page/QuizWrapup.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "quiz-page.results.AnswersTable.columnHeaders.counter": {
-    "original": {
-      "defaultMessage": "Counter",
-      "filenames": [
-        "src/client/ui/quiz-page/ResultsView/AnswersTable.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "quiz-page.results.AnswersTable.columnHeaders.hiragana": {
-    "original": {
-      "defaultMessage": "Hiragana",
-      "filenames": [
-        "src/client/ui/quiz-page/ResultsView/AnswersTable.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "quiz-page.results.AnswersTable.columnHeaders.kanji": {
-    "original": {
-      "defaultMessage": "Kanji",
-      "filenames": [
-        "src/client/ui/quiz-page/ResultsView/AnswersTable.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "quiz-page.results.AnswersTable.columnHeaders.rule": {
-    "original": {
-      "defaultMessage": "Rule",
-      "filenames": [
-        "src/client/ui/quiz-page/ResultsView/AnswersTable.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "quiz-page.results.AnswersTable.columnHeaders.studyPack": {
-    "original": {
-      "defaultMessage": "Study Pack",
-      "filenames": [
-        "src/client/ui/quiz-page/ResultsView/AnswersTable.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "quiz-page.results.AnswersTable.kanji.noKanjiForCounter": {
-    "original": {
-      "defaultMessage": "(none)",
-      "filenames": [
-        "src/client/ui/quiz-page/ResultsView/AnswersTableRow.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "quiz-page.results.AnswersTable.readingsLabels.irregular": {
-    "original": {
-      "defaultMessage": "(irregular)",
-      "filenames": [
-        "src/client/ui/quiz-page/ResultsView/AnswersTableRow.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "quiz-page.results.AnswersTable.readingsLabel.nonKango": {
-    "original": {
-      "defaultMessage": "(not 漢語)",
-      "filenames": [
-        "src/client/ui/quiz-page/ResultsView/AnswersTableRow.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "quiz-page.results.buttonIgnoreAnswer": {
-    "original": {
-      "defaultMessage": "Ignore Answer",
-      "filenames": [
-        "src/client/ui/quiz-page/ResultsView/index.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "quiz-page.results.buttonNextQuestion": {
-    "original": {
-      "defaultMessage": "Next Question",
-      "filenames": [
-        "src/client/ui/quiz-page/ResultsView/index.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "quiz-page.results.header.correct": {
-    "original": {
-      "defaultMessage": "Correct!",
-      "filenames": [
-        "src/client/ui/quiz-page/ResultsView/index.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "quiz-page.results.header.incorrect": {
-    "original": {
-      "defaultMessage": "Not quite right...",
-      "filenames": [
-        "src/client/ui/quiz-page/ResultsView/index.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "quiz-page.results.header.skipped": {
-    "original": {
-      "defaultMessage": "Skipped",
-      "filenames": [
-        "src/client/ui/quiz-page/ResultsView/index.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "quiz-page.results.table.intro": {
-    "original": {
-      "defaultMessage": "Here are all of the possible answers based on the sets you have enabled:",
-      "filenames": [
-        "src/client/ui/quiz-page/ResultsView/index.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "quiz-page.results.skippedQuestion": {
-    "original": {
-      "defaultMessage": "Alright! You don't need to worry about this question!",
-      "filenames": [
-        "src/client/ui/quiz-page/ResultsView/index.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "QuizHistory.historyRow.submittedLabel": {
-    "original": {
-      "defaultMessage": "Submitted:",
-      "filenames": [
-        "src/client/ui/QuizHistory/HistoryRow.tsx"
       ]
     },
     "translation": ""

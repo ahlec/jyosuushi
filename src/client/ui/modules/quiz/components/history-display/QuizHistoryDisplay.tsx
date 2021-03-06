@@ -6,7 +6,7 @@ import { State, UserAnswer } from "@jyosuushi/redux";
 
 import HistoryRow from "./HistoryRow";
 
-import styles from "./index.scss";
+import styles from "./QuizHistoryDisplay.scss";
 
 interface ProvidedProps {
   rowClassName: string;
@@ -33,7 +33,7 @@ function mapStateToProps(state: State): ReduxProps {
 
 type ComponentProps = ProvidedProps & ReduxProps;
 
-class QuizHistory extends React.PureComponent<ComponentProps> {
+class QuizHistoryDisplay extends React.PureComponent<ComponentProps> {
   public render(): React.ReactNode {
     const { askedQuestions, currentQuestion } = this.props;
 
@@ -67,4 +67,4 @@ class QuizHistory extends React.PureComponent<ComponentProps> {
   }
 }
 
-export default connect(mapStateToProps)(QuizHistory);
+export default connect(mapStateToProps)(QuizHistoryDisplay);

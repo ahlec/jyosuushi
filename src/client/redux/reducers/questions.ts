@@ -29,7 +29,7 @@ import {
   ActionRestartQuiz,
   ActionStartQuiz,
 } from "@jyosuushi/redux/actions";
-import makeQuiz from "@jyosuushi/quiz/QuizMaker";
+import makeQuiz from "@jyosuushi/ui/modules/quiz/state/QuizMaker";
 
 function makeQuestion(
   { itemId, possibleAmounts }: PendingQuestion,

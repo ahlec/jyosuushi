@@ -16,7 +16,7 @@ import AuthenticationManager from "./AuthenticationManager";
 import Header from "./Header";
 import MainScreen from "./main-screen/MainScreen";
 import NavigationManager from "./NavigationManager";
-import QuizPage from "./quiz-page";
+import QuizPage from "./modules/quiz/QuizPage";
 import ToastDisplayContainer from "./toasts/ToastDisplayContainer";
 import ToastManager from "./toasts/ToastManager";
 

@@ -1,0 +1,29 @@
+{
+  "tags": ["client-module-quiz"],
+  "exports": [
+    "QuizPage",
+    "components/history-display/QuizHistoryDisplay",
+    "state/*"
+  ],
+  "imports": [
+    "client-components",
+    "client-constants",
+    "client-feedback",
+    "client-graphql",
+    "client-hooks",
+    "client-interfaces",
+    "client-i18n",
+    "client-japanese",
+    "client-redux",
+    "client-utils",
+    "data"
+  ],
+  "dependencies": [
+    "classnames",
+    "lodash",
+    "react",
+    "react-ga",
+    "react-intl",
+    "react-redux"
+  ]
+}

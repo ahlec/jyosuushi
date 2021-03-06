@@ -8,8 +8,8 @@ import { BrowserRouter } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
 
 import IntlProvider from "./i18n/IntlProvider";
-import QuizManagerContext from "./quiz/context";
-import QuizManager from "./quiz/QuizManager";
+import QuizManagerContext from "./ui/modules/quiz/state/context";
+import QuizManager from "./ui/modules/quiz/state/QuizManager";
 import { createRedux } from "./redux/store";
 import Container from "./ui/Container";
 

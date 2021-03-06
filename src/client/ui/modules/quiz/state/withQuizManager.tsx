@@ -8,8 +8,8 @@ export interface InjectedProps {
 }
 
 export default function withQuizManager<TComponentProps>(
-  Component: React.ComponentClass<TComponentProps & InjectedProps>
-): React.ComponentClass<TComponentProps> {
+  Component: React.ComponentType<TComponentProps & InjectedProps>
+): React.ComponentType<TComponentProps> {
   return class WithQuizManager extends React.PureComponent<TComponentProps> {
     public render(): React.ReactNode {
       return (

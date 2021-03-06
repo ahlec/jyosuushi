@@ -9,13 +9,13 @@ import { connect } from "react-redux";
 
 import StandardButton from "@jyosuushi/ui/components/StandardButton";
 
-import QuizManager from "@jyosuushi/quiz/QuizManager";
+import QuizManager from "@jyosuushi/ui/modules/quiz/state/QuizManager";
 import { Scorecard, State } from "@jyosuushi/redux";
 import { leaveQuiz } from "@jyosuushi/redux/actions";
 import { Dispatch } from "@jyosuushi/redux/store";
 import { randomFromArray } from "@jyosuushi/utils";
 
-import QuizHistory from "@jyosuushi/ui/QuizHistory";
+import QuizHistoryDisplay from "@jyosuushi/ui/modules/quiz/components/history-display/QuizHistoryDisplay";
 
 import styles from "./QuizWrapup.scss";
 
@@ -137,7 +137,7 @@ class QuizWrapup extends React.PureComponent<ComponentProps> {
             )}
           </FormattedMessage>
         </div>
-        <QuizHistory rowClassName="" />
+        <QuizHistoryDisplay rowClassName="" />
       </div>
     );
   }

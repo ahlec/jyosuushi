@@ -12,7 +12,7 @@ import TooltipButton from "@jyosuushi/ui/components/TooltipButton";
 
 import Furigana from "@jyosuushi/ui/components/Furigana";
 import Modal from "@jyosuushi/ui/components/popups/Modal";
-import QuizHistory from "@jyosuushi/ui/QuizHistory";
+import QuizHistoryDisplay from "@jyosuushi/ui/modules/quiz/components/history-display/QuizHistoryDisplay";
 
 import AbortConfirmationModal from "./AbortConfirmationModal";
 import Score from "./Score";
@@ -257,7 +257,7 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
           isOpen={showHistoryModal}
           onRequestClose={this.onCloseHistory}
         >
-          <QuizHistory rowClassName={styles.rows} />
+          <QuizHistoryDisplay rowClassName={styles.rows} />
         </Modal>
         <AbortConfirmationModal
           isOpen={isPromptingToLeave}

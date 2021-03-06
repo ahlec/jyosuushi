@@ -1,41 +1,26 @@
-import * as React from "react";
-import { connect } from "react-redux";
+import React from "react";
 
 import { Question } from "@jyosuushi/interfaces";
-import withQuizManager, {
-  InjectedProps,
-} from "@jyosuushi/quiz/withQuizManager";
-import { QuizState, State } from "@jyosuushi/redux";
+import QuizManager from "@jyosuushi/ui/modules/quiz/state/QuizManager";
+import { QuizState } from "@jyosuushi/redux";
 
 import FeedbackFooter from "@jyosuushi/ui/feedback/FeedbackFooter";
 import AnswerInput from "./AnswerInput";
 import QuestionDisplay from "./QuestionDisplay";
-import QuizWrapup from "./QuizWrapup";
 import ResultsView from "./ResultsView";
 
-import styles from "./index.scss";
+import styles from "./QuestionView.scss";
 
 const KEY_ENTER = 13;
 
-interface ProvidedProps {
+interface ComponentProps {
+  currentQuestion: Question;
+  quizManager: QuizManager;
+  quizState: QuizState;
   enabled: boolean;
 }
 
-interface ReduxProps {
-  currentQuestion: Question | null;
-  quizState: QuizState;
-}
-
-function mapStateToProps(state: State): ReduxProps {
-  return {
-    currentQuestion: state.questions.currentQuestion,
-    quizState: state.quizState,
-  };
-}
-
-type ComponentProps = ProvidedProps & ReduxProps & InjectedProps;
-
-class QuizPage extends React.PureComponent<ComponentProps> {
+class QuestionView extends React.PureComponent<ComponentProps> {
   public componentDidMount(): void {
     window.addEventListener("keydown", this.onKeyDown);
   }
@@ -45,19 +30,7 @@ class QuizPage extends React.PureComponent<ComponentProps> {
   }
 
   public render(): React.ReactNode {
-    const { currentQuestion, enabled, quizManager, quizState } = this.props;
-    if (quizState.state === "not-in-quiz") {
-      return null;
-    }
-
-    if (quizState.state === "quiz-wrapup") {
-      return <QuizWrapup quizManager={quizManager} />;
-    }
-
-    if (!currentQuestion) {
-      throw new Error("Cannot render quiz page without question");
-    }
-
+    const { currentQuestion, enabled, quizState } = this.props;
     return (
       <div className={styles.questionPage}>
         <QuestionDisplay currentQuestion={currentQuestion} />
@@ -108,4 +81,4 @@ class QuizPage extends React.PureComponent<ComponentProps> {
   };
 }
 
-export default connect(mapStateToProps)(withQuizManager(QuizPage));
+export default QuestionView;
