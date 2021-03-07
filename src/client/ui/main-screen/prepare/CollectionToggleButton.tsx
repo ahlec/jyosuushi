@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 import { KeyCode } from "@jyosuushi/constants";
 
-import { getCounterCollectionPath } from "@jyosuushi/ui/main-screen/explore/pathing";
+import { getCounterCollectionPath } from "@jyosuushi/ui/modules/explore/pathing";
 
 import CheckIcon from "@jyosuushi/ui/main-screen/check.svg";
 

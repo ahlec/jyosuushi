@@ -281,501 +281,6 @@
     },
     "translation": ""
   },
-  "explorePage.BreadcrumbBar.collection.prefix": {
-    "original": {
-      "defaultMessage": "Collection:",
-      "filenames": [
-        "src/client/ui/main-screen/explore/BreadcrumbBar.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.BreadcrumbBar.counter.prefix": {
-    "original": {
-      "defaultMessage": "Counter:",
-      "filenames": [
-        "src/client/ui/main-screen/explore/BreadcrumbBar.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.BreadcrumbBar.explorePageName": {
-    "original": {
-      "defaultMessage": "Explore",
-      "filenames": [
-        "src/client/ui/main-screen/explore/BreadcrumbBar.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.collections.CollectionHeader.subtitle.dateCreated": {
-    "original": {
-      "defaultMessage": "Created <bold>{value}</bold>",
-      "filenames": [
-        "src/client/ui/main-screen/explore/collections/CollectionHeader.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.collections.CollectionHeader.subtitle.dateLastUpdated": {
-    "original": {
-      "defaultMessage": "Last updated <bold>{value}</bold>",
-      "filenames": [
-        "src/client/ui/main-screen/explore/collections/CollectionHeader.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.collections.CollectionHeader.subtitle.label.standardCollection": {
-    "original": {
-      "defaultMessage": "Standard Collection",
-      "filenames": [
-        "src/client/ui/main-screen/explore/collections/CollectionHeader.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.collections.CollectionHeader.subtitle.label.userCollection": {
-    "original": {
-      "defaultMessage": "Custom Collection",
-      "filenames": [
-        "src/client/ui/main-screen/explore/collections/CollectionHeader.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.collections.DeleteCollectionConfirmationModal.header": {
-    "original": {
-      "defaultMessage": "Delete Collection",
-      "filenames": [
-        "src/client/ui/main-screen/explore/collections/DeleteCollectionConfirmationModal.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.collections.DeleteCollectionConfirmationModal.promptMessage": {
-    "original": {
-      "defaultMessage": "Are you sure you want to delete this collection? This cannot be undone.",
-      "filenames": [
-        "src/client/ui/main-screen/explore/collections/DeleteCollectionConfirmationModal.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.collections.EntriesCountIntro.emptyText": {
-    "original": {
-      "defaultMessage": "This collection currently has <bold>no counters</bold> in it.",
-      "filenames": [
-        "src/client/ui/main-screen/explore/collections/EntriesCountIntro.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.collections.EntriesCountIntro.text": {
-    "original": {
-      "defaultMessage": "This collection contains <bold>{numCounters, plural, one {# counter} other {# counters}}</bold>:",
-      "filenames": [
-        "src/client/ui/main-screen/explore/collections/EntriesCountIntro.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explore.collections.RenameCollectionModal.modalHeader": {
-    "original": {
-      "defaultMessage": "Rename Collection",
-      "filenames": [
-        "src/client/ui/main-screen/explore/collections/rename-collection-modal/RenameCollectionModal.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explore.collections.RenameCollectionModal.submitButtonLabel": {
-    "original": {
-      "defaultMessage": "Confirm",
-      "filenames": [
-        "src/client/ui/main-screen/explore/collections/rename-collection-modal/RenameCollectionModal.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explore.collections.useRenameCollection.errors.nameIncorrectLength": {
-    "original": {
-      "defaultMessage": "The name of a collection must be between {minLength} and {maxLength} characters.",
-      "filenames": [
-        "src/client/ui/main-screen/explore/collections/rename-collection-modal/useRenameCollection.ts"
-      ]
-    },
-    "translation": ""
-  },
-  "explore.collections.useRenameCollection.errors.notAuthenticated": {
-    "original": {
-      "defaultMessage": "Only authenticated users are able to use custom collections. Please log in or register and try again.",
-      "filenames": [
-        "src/client/ui/main-screen/explore/collections/rename-collection-modal/useRenameCollection.ts"
-      ]
-    },
-    "translation": ""
-  },
-  "explore.collections.useRenameCollection.errors.rateLimited": {
-    "original": {
-      "defaultMessage": "You have attempted to rename this collection too many times recently. Please wait a few minutes before trying again.",
-      "filenames": [
-        "src/client/ui/main-screen/explore/collections/rename-collection-modal/useRenameCollection.ts"
-      ]
-    },
-    "translation": ""
-  },
-  "explore.collections.useRenameCollection.errors.unknown": {
-    "original": {
-      "defaultMessage": "An error has occurred and the collection couldn't be rename. Please try again in a few minutes.",
-      "filenames": [
-        "src/client/ui/main-screen/explore/collections/rename-collection-modal/useRenameCollection.ts"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.collections.UserCollectionView.actionBar.addRemoveCounters": {
-    "original": {
-      "defaultMessage": "Add/Remove Counters",
-      "filenames": [
-        "src/client/ui/main-screen/explore/collections/UserCollectionView.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.collections.UserCollectionView.actionBar.delete": {
-    "original": {
-      "defaultMessage": "Delete",
-      "filenames": [
-        "src/client/ui/main-screen/explore/collections/UserCollectionView.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.collections.UserCollectionView.actionBar.rename": {
-    "original": {
-      "defaultMessage": "Rename",
-      "filenames": [
-        "src/client/ui/main-screen/explore/collections/UserCollectionView.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explore.landing.collection-name-form.CollectionNameForm.nameFieldLabel": {
-    "original": {
-      "defaultMessage": "Collection Name",
-      "filenames": [
-        "src/client/ui/main-screen/explore/components/collection-name-form/CollectionNameForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explore.components.collection-name-form.useCollectionNameValidation.errors.fieldRequred": {
-    "original": {
-      "defaultMessage": "The name of the new collection is required.",
-      "filenames": [
-        "src/client/ui/main-screen/explore/components/collection-name-form/useCollectionNameValidation.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explore.component.collection-name-form.useCollectionNameValidation.errors.invalidLength": {
-    "original": {
-      "defaultMessage": "Counter collection names must be between {minLength} and {maxLength} characters long.",
-      "filenames": [
-        "src/client/ui/main-screen/explore/components/collection-name-form/useCollectionNameValidation.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.counter.collection.introText": {
-    "original": {
-      "defaultMessage": "This counter is found in the following {count, plural, one {collection} other {collections}}:",
-      "filenames": [
-        "src/client/ui/main-screen/explore/counter/collection-membership/CollectionSection.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.counter.collection.notInAnyCollectionsText": {
-    "original": {
-      "defaultMessage": "This counter is not found in any collections.",
-      "filenames": [
-        "src/client/ui/main-screen/explore/counter/collection-membership/CollectionSection.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.counter.collections.edit-membership-dialog.dialogHeader": {
-    "original": {
-      "defaultMessage": "Add to Collections",
-      "filenames": [
-        "src/client/ui/main-screen/explore/counter/collection-membership/edit-membership-dialog/EditMembershipDialog.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.counter.conjugationSection.andSoForth": {
-    "original": {
-      "defaultMessage": "... and so forth",
-      "filenames": [
-        "src/client/ui/main-screen/explore/counter/ConjugationsSection.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.counter.conjugationSection.customCounterAmountInputPrefix": {
-    "original": {
-      "defaultMessage": "Or you can try out any number you'd like to here:",
-      "filenames": [
-        "src/client/ui/main-screen/explore/counter/ConjugationsSection.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.counter.conjugationSection.furtherIrregulars": {
-    "original": {
-      "defaultMessage": "There are some more irregulars later on as well though:",
-      "filenames": [
-        "src/client/ui/main-screen/explore/counter/ConjugationsSection.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.counter.conjugationSection.hereAreTheFirstXNumbers": {
-    "original": {
-      "defaultMessage": "Here {amount, plural, one {is} other {are}} the first {amount, plural, one {# number} other {# numbers}}.",
-      "filenames": [
-        "src/client/ui/main-screen/explore/counter/ConjugationsSection.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.counter.conjugationSection.introNoIrregulars": {
-    "original": {
-      "defaultMessage": "Luckily, there are no irregular conjugations with this counter!",
-      "filenames": [
-        "src/client/ui/main-screen/explore/counter/ConjugationsSection.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.counter.conjugationSection.introWithIrregulars": {
-    "original": {
-      "defaultMessage": "Make note of the {highlightedElement}.",
-      "filenames": [
-        "src/client/ui/main-screen/explore/counter/ConjugationsSection.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.counter.conjugationSection.numIrregulars": {
-    "original": {
-      "defaultMessage": "{numIrregulars, plural, one {1 irregular conjugation} other {# irregular conjugations}}",
-      "filenames": [
-        "src/client/ui/main-screen/explore/counter/ConjugationsSection.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.counter.collections.header": {
-    "original": {
-      "defaultMessage": "Collections",
-      "filenames": [
-        "src/client/ui/main-screen/explore/counter/ExploreCounterPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.counter.conjugations.header": {
-    "original": {
-      "defaultMessage": "Conjugations",
-      "filenames": [
-        "src/client/ui/main-screen/explore/counter/ExploreCounterPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.counter.disambiguation.header": {
-    "original": {
-      "defaultMessage": "Similar Counters",
-      "filenames": [
-        "src/client/ui/main-screen/explore/counter/ExploreCounterPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.counter.footnotes.header": {
-    "original": {
-      "defaultMessage": "References",
-      "filenames": [
-        "src/client/ui/main-screen/explore/counter/ExploreCounterPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.counter.info.header": {
-    "original": {
-      "defaultMessage": "Details",
-      "filenames": [
-        "src/client/ui/main-screen/explore/counter/ExploreCounterPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.counter.items.header": {
-    "original": {
-      "defaultMessage": "Items",
-      "filenames": [
-        "src/client/ui/main-screen/explore/counter/ExploreCounterPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.counter.collections.actions.editMembershipTooltip": {
-    "original": {
-      "defaultMessage": "Add or remove this counter from a custom collection.",
-      "filenames": [
-        "src/client/ui/main-screen/explore/counter/ExploreCounterPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.counter.info.externalLinksHeader": {
-    "original": {
-      "defaultMessage": "Further Reading",
-      "filenames": [
-        "src/client/ui/main-screen/explore/counter/InfoSection.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.counter.itemsSection.introText": {
-    "original": {
-      "defaultMessage": "The following {numItems, plural, one {is an example} other {are examples}} of what this is used to count:",
-      "filenames": [
-        "src/client/ui/main-screen/explore/counter/ItemsSection.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "main.explore.ExplorePage.serverErrorMessage": {
-    "original": {
-      "defaultMessage": "An error has occurred. Please try back later, we're working hard to fix it!",
-      "filenames": [
-        "src/client/ui/main-screen/explore/ExplorePage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.landing.AllCollections.pageHeader": {
-    "original": {
-      "defaultMessage": "Collections",
-      "filenames": [
-        "src/client/ui/main-screen/explore/landing/AllCollections.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.allCounters.pageHeader": {
-    "original": {
-      "defaultMessage": "Counters",
-      "filenames": [
-        "src/client/ui/main-screen/explore/landing/AllCounters.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.landing.CollectionLink.collectionSize": {
-    "original": {
-      "defaultMessage": "{size, plural, one {# counter} other {# counters}}",
-      "filenames": [
-        "src/client/ui/main-screen/explore/landing/CollectionLink.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.landing.CollectionLink.typeStandard": {
-    "original": {
-      "defaultMessage": "Standard",
-      "filenames": [
-        "src/client/ui/main-screen/explore/landing/CollectionLink.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.landing.CollectionLink.typeUser": {
-    "original": {
-      "defaultMessage": "Custom",
-      "filenames": [
-        "src/client/ui/main-screen/explore/landing/CollectionLink.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explore.landing.CreateCollectionModal.modalHeader": {
-    "original": {
-      "defaultMessage": "Create Custom Collection",
-      "filenames": [
-        "src/client/ui/main-screen/explore/landing/create-collection-modal/CreateCollectionModal.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explore.landing.CreateCollectionModal.submitButtonLabel": {
-    "original": {
-      "defaultMessage": "Create",
-      "filenames": [
-        "src/client/ui/main-screen/explore/landing/create-collection-modal/CreateCollectionModal.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explore.landing.create-collection-modal.useCreateCollection.errors.nameIncorrectLength": {
-    "original": {
-      "defaultMessage": "The name of a collection must be between {minLength} and {maxLength} characters.",
-      "filenames": [
-        "src/client/ui/main-screen/explore/landing/create-collection-modal/useCreateCollection.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explore.landing.create-collection-modal.useCreateCollection.errors.notAuthenticated": {
-    "original": {
-      "defaultMessage": "Only authenticated users are able to create custom collections. Please log in or register and try again.",
-      "filenames": [
-        "src/client/ui/main-screen/explore/landing/create-collection-modal/useCreateCollection.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explore.landing.create-collection-modal.useCreateCollection.errors.rateLimited": {
-    "original": {
-      "defaultMessage": "You have attempted to create a collection too many times recently. Please wait a few minutes before trying again.",
-      "filenames": [
-        "src/client/ui/main-screen/explore/landing/create-collection-modal/useCreateCollection.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explore.landing.create-collection-modal.useCreateCollection.errors.unknown": {
-    "original": {
-      "defaultMessage": "An error has occurred and the collection couldn't be created. Please try again in a few minutes.",
-      "filenames": [
-        "src/client/ui/main-screen/explore/landing/create-collection-modal/useCreateCollection.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explore.landing.CreateCollectionTile.buttonText": {
-    "original": {
-      "defaultMessage": "New Custom Collection",
-      "filenames": [
-        "src/client/ui/main-screen/explore/landing/CreateCollectionTile.tsx"
-      ]
-    },
-    "translation": ""
-  },
   "feedbackPage.links.contribute.description": {
     "original": {
       "defaultMessage": "The project is open source, and if you'd like to join in on working on the project, check out my GitHub!",
@@ -1654,6 +1159,501 @@
       "defaultMessage": "Reset Password",
       "filenames": [
         "src/client/ui/modules/authentication/pages/reset-password/ResetPasswordPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.BreadcrumbBar.collection.prefix": {
+    "original": {
+      "defaultMessage": "Collection:",
+      "filenames": [
+        "src/client/ui/modules/explore/components/breadcrumb-bar/BreadcrumbBar.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.BreadcrumbBar.counter.prefix": {
+    "original": {
+      "defaultMessage": "Counter:",
+      "filenames": [
+        "src/client/ui/modules/explore/components/breadcrumb-bar/BreadcrumbBar.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.BreadcrumbBar.explorePageName": {
+    "original": {
+      "defaultMessage": "Explore",
+      "filenames": [
+        "src/client/ui/modules/explore/components/breadcrumb-bar/BreadcrumbBar.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explore.landing.collection-name-form.CollectionNameForm.nameFieldLabel": {
+    "original": {
+      "defaultMessage": "Collection Name",
+      "filenames": [
+        "src/client/ui/modules/explore/components/collection-name-form/CollectionNameForm.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explore.components.collection-name-form.useCollectionNameValidation.errors.fieldRequred": {
+    "original": {
+      "defaultMessage": "The name of the new collection is required.",
+      "filenames": [
+        "src/client/ui/modules/explore/components/collection-name-form/useCollectionNameValidation.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explore.component.collection-name-form.useCollectionNameValidation.errors.invalidLength": {
+    "original": {
+      "defaultMessage": "Counter collection names must be between {minLength} and {maxLength} characters long.",
+      "filenames": [
+        "src/client/ui/modules/explore/components/collection-name-form/useCollectionNameValidation.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "main.explore.ExplorePage.serverErrorMessage": {
+    "original": {
+      "defaultMessage": "An error has occurred. Please try back later, we're working hard to fix it!",
+      "filenames": [
+        "src/client/ui/modules/explore/ExplorePage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.collections.CollectionHeader.subtitle.dateCreated": {
+    "original": {
+      "defaultMessage": "Created <bold>{value}</bold>",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/collection/CollectionHeader.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.collections.CollectionHeader.subtitle.dateLastUpdated": {
+    "original": {
+      "defaultMessage": "Last updated <bold>{value}</bold>",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/collection/CollectionHeader.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.collections.CollectionHeader.subtitle.label.standardCollection": {
+    "original": {
+      "defaultMessage": "Standard Collection",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/collection/CollectionHeader.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.collections.CollectionHeader.subtitle.label.userCollection": {
+    "original": {
+      "defaultMessage": "Custom Collection",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/collection/CollectionHeader.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.collections.DeleteCollectionConfirmationModal.header": {
+    "original": {
+      "defaultMessage": "Delete Collection",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/collection/DeleteCollectionConfirmationModal.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.collections.DeleteCollectionConfirmationModal.promptMessage": {
+    "original": {
+      "defaultMessage": "Are you sure you want to delete this collection? This cannot be undone.",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/collection/DeleteCollectionConfirmationModal.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.collections.EntriesCountIntro.emptyText": {
+    "original": {
+      "defaultMessage": "This collection currently has <bold>no counters</bold> in it.",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/collection/EntriesCountIntro.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.collections.EntriesCountIntro.text": {
+    "original": {
+      "defaultMessage": "This collection contains <bold>{numCounters, plural, one {# counter} other {# counters}}</bold>:",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/collection/EntriesCountIntro.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explore.collections.RenameCollectionModal.modalHeader": {
+    "original": {
+      "defaultMessage": "Rename Collection",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/collection/rename-collection-modal/RenameCollectionModal.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explore.collections.RenameCollectionModal.submitButtonLabel": {
+    "original": {
+      "defaultMessage": "Confirm",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/collection/rename-collection-modal/RenameCollectionModal.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explore.collections.useRenameCollection.errors.nameIncorrectLength": {
+    "original": {
+      "defaultMessage": "The name of a collection must be between {minLength} and {maxLength} characters.",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/collection/rename-collection-modal/useRenameCollection.ts"
+      ]
+    },
+    "translation": ""
+  },
+  "explore.collections.useRenameCollection.errors.notAuthenticated": {
+    "original": {
+      "defaultMessage": "Only authenticated users are able to use custom collections. Please log in or register and try again.",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/collection/rename-collection-modal/useRenameCollection.ts"
+      ]
+    },
+    "translation": ""
+  },
+  "explore.collections.useRenameCollection.errors.rateLimited": {
+    "original": {
+      "defaultMessage": "You have attempted to rename this collection too many times recently. Please wait a few minutes before trying again.",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/collection/rename-collection-modal/useRenameCollection.ts"
+      ]
+    },
+    "translation": ""
+  },
+  "explore.collections.useRenameCollection.errors.unknown": {
+    "original": {
+      "defaultMessage": "An error has occurred and the collection couldn't be rename. Please try again in a few minutes.",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/collection/rename-collection-modal/useRenameCollection.ts"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.collections.UserCollectionView.actionBar.addRemoveCounters": {
+    "original": {
+      "defaultMessage": "Add/Remove Counters",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/collection/UserCollectionView.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.collections.UserCollectionView.actionBar.delete": {
+    "original": {
+      "defaultMessage": "Delete",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/collection/UserCollectionView.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.collections.UserCollectionView.actionBar.rename": {
+    "original": {
+      "defaultMessage": "Rename",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/collection/UserCollectionView.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.counter.collection.introText": {
+    "original": {
+      "defaultMessage": "This counter is found in the following {count, plural, one {collection} other {collections}}:",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/counter/collection-membership/CollectionSection.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.counter.collection.notInAnyCollectionsText": {
+    "original": {
+      "defaultMessage": "This counter is not found in any collections.",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/counter/collection-membership/CollectionSection.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.counter.collections.edit-membership-dialog.dialogHeader": {
+    "original": {
+      "defaultMessage": "Add to Collections",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/counter/collection-membership/edit-membership-dialog/EditMembershipDialog.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.counter.conjugationSection.andSoForth": {
+    "original": {
+      "defaultMessage": "... and so forth",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/counter/ConjugationsSection.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.counter.conjugationSection.customCounterAmountInputPrefix": {
+    "original": {
+      "defaultMessage": "Or you can try out any number you'd like to here:",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/counter/ConjugationsSection.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.counter.conjugationSection.furtherIrregulars": {
+    "original": {
+      "defaultMessage": "There are some more irregulars later on as well though:",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/counter/ConjugationsSection.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.counter.conjugationSection.hereAreTheFirstXNumbers": {
+    "original": {
+      "defaultMessage": "Here {amount, plural, one {is} other {are}} the first {amount, plural, one {# number} other {# numbers}}.",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/counter/ConjugationsSection.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.counter.conjugationSection.introNoIrregulars": {
+    "original": {
+      "defaultMessage": "Luckily, there are no irregular conjugations with this counter!",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/counter/ConjugationsSection.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.counter.conjugationSection.introWithIrregulars": {
+    "original": {
+      "defaultMessage": "Make note of the {highlightedElement}.",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/counter/ConjugationsSection.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.counter.conjugationSection.numIrregulars": {
+    "original": {
+      "defaultMessage": "{numIrregulars, plural, one {1 irregular conjugation} other {# irregular conjugations}}",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/counter/ConjugationsSection.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.counter.collections.header": {
+    "original": {
+      "defaultMessage": "Collections",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/counter/ExploreCounterPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.counter.conjugations.header": {
+    "original": {
+      "defaultMessage": "Conjugations",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/counter/ExploreCounterPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.counter.disambiguation.header": {
+    "original": {
+      "defaultMessage": "Similar Counters",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/counter/ExploreCounterPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.counter.footnotes.header": {
+    "original": {
+      "defaultMessage": "References",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/counter/ExploreCounterPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.counter.info.header": {
+    "original": {
+      "defaultMessage": "Details",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/counter/ExploreCounterPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.counter.items.header": {
+    "original": {
+      "defaultMessage": "Items",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/counter/ExploreCounterPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.counter.collections.actions.editMembershipTooltip": {
+    "original": {
+      "defaultMessage": "Add or remove this counter from a custom collection.",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/counter/ExploreCounterPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.counter.info.externalLinksHeader": {
+    "original": {
+      "defaultMessage": "Further Reading",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/counter/InfoSection.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.counter.itemsSection.introText": {
+    "original": {
+      "defaultMessage": "The following {numItems, plural, one {is an example} other {are examples}} of what this is used to count:",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/counter/ItemsSection.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.landing.AllCollections.pageHeader": {
+    "original": {
+      "defaultMessage": "Collections",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/landing/AllCollections.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.allCounters.pageHeader": {
+    "original": {
+      "defaultMessage": "Counters",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/landing/AllCounters.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.landing.CollectionLink.collectionSize": {
+    "original": {
+      "defaultMessage": "{size, plural, one {# counter} other {# counters}}",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/landing/CollectionLink.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.landing.CollectionLink.typeStandard": {
+    "original": {
+      "defaultMessage": "Standard",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/landing/CollectionLink.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.landing.CollectionLink.typeUser": {
+    "original": {
+      "defaultMessage": "Custom",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/landing/CollectionLink.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explore.landing.CreateCollectionModal.modalHeader": {
+    "original": {
+      "defaultMessage": "Create Custom Collection",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/landing/create-collection-modal/CreateCollectionModal.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explore.landing.CreateCollectionModal.submitButtonLabel": {
+    "original": {
+      "defaultMessage": "Create",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/landing/create-collection-modal/CreateCollectionModal.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explore.landing.create-collection-modal.useCreateCollection.errors.nameIncorrectLength": {
+    "original": {
+      "defaultMessage": "The name of a collection must be between {minLength} and {maxLength} characters.",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/landing/create-collection-modal/useCreateCollection.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explore.landing.create-collection-modal.useCreateCollection.errors.notAuthenticated": {
+    "original": {
+      "defaultMessage": "Only authenticated users are able to create custom collections. Please log in or register and try again.",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/landing/create-collection-modal/useCreateCollection.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explore.landing.create-collection-modal.useCreateCollection.errors.rateLimited": {
+    "original": {
+      "defaultMessage": "You have attempted to create a collection too many times recently. Please wait a few minutes before trying again.",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/landing/create-collection-modal/useCreateCollection.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explore.landing.create-collection-modal.useCreateCollection.errors.unknown": {
+    "original": {
+      "defaultMessage": "An error has occurred and the collection couldn't be created. Please try again in a few minutes.",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/landing/create-collection-modal/useCreateCollection.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explore.landing.CreateCollectionTile.buttonText": {
+    "original": {
+      "defaultMessage": "New Custom Collection",
+      "filenames": [
+        "src/client/ui/modules/explore/pages/landing/CreateCollectionTile.tsx"
       ]
     },
     "translation": ""

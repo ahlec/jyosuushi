@@ -4,7 +4,7 @@ import { defineMessages, FormattedMessage } from "react-intl";
 
 import { Counter } from "@jyosuushi/interfaces";
 
-import CounterTile from "@jyosuushi/ui/main-screen/CounterTile";
+import CounterTile from "@jyosuushi/ui/components/CounterTile";
 
 import styles from "./CounterPreview.scss";
 
