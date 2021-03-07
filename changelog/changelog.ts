@@ -18,6 +18,37 @@ import { ChangelogVersion } from "./types";
 
 export const CHANGELOG: readonly ChangelogVersion[] = [
   {
+    version: "v3.1.0",
+    date: "7 March 2021",
+    newFeatures: [
+      {
+        label: "New counters.",
+        details:
+          "Meet the latest addition to the crew: 株, 試合, 店, 部, and the LONG overdue 杯.",
+      },
+      {
+        label: "New collection.",
+        details:
+          "You'll now be able to check out the **Office Life** collection, featuring counters you'd likely need for a corporate day job.",
+      },
+    ],
+    improvements: [],
+    bugFixes: [
+      {
+        text:
+          "Fixed an issue where external links for some counters displayed weird text symbols.",
+      },
+    ],
+    developerChanges: [
+      "Rewrote the Markdown parsing pipeline, improving reuse and maintainability as well as preparing groundwork for migrating data to server.",
+      "Updated the format of the Markdown-transpiled JSX components.",
+      "Counter external links now use Markdown instead of raw text.",
+      "Validation for external link Markdown added to `yarn db:audit`.",
+      "Updated Sass imports to use aliases instead of relative paths.",
+      "Migrated more code into the modules system (quizzes and data exploration).",
+    ],
+  },
+  {
     version: "v3.0.0",
     date: "12 February 2021",
     comments: `At long (long) last, I'm pleased to finally give you v3.0.0! This has been a tremendously long time in the making — almost a year's worth of development went in to this release. **助数詞を練習！！** reached a point where adding the features I wanted would require a ton of work. Additionally, balance that with a full-time job, full-time studies, a personal life, the apocalypse that was 2020... That's done though, and it's time to move forward.
