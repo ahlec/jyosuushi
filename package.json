@@ -145,7 +145,7 @@
     "gulp-rsync": "^0.0.9",
     "helmet": "^4.2.0",
     "is-wsl": "^2.2.0",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "memoize-one": "^5.1.1",
     "meyer-reset-scss": "^2.0.4",
     "node-ssh": "^11.1.1",
