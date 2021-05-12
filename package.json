@@ -149,7 +149,7 @@
     "memoize-one": "^5.1.1",
     "meyer-reset-scss": "^2.0.4",
     "node-ssh": "^11.1.1",
-    "nodemailer": "^6.4.11",
+    "nodemailer": "^6.4.16",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-ga": "^3.1.2",
