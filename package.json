@@ -127,7 +127,7 @@
     "@prisma/cli": "2.13.1",
     "@prisma/client": "2.13.1",
     "apollo-server-express": "^2.16.1",
-    "aws-sdk": "^2.730.0",
+    "aws-sdk": "^2.814.0",
     "bcrypt": "^5.0.0",
     "bowser": "^2.10.0",
     "classnames": "^2.2.6",
