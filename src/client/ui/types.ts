@@ -1,13 +1,9 @@
 import React from "react";
-import { ConnectedComponent } from "react-redux";
-import { RouteComponentProps } from "react-router";
 
-type ValidComponent<TProps> =
-  | React.ComponentType<TProps>
-  | ConnectedComponent<React.ComponentType<TProps & any>, unknown>;
+export type PageComponentProps = Record<string, never>;
 
 export interface PageDefinition {
-  component: ValidComponent<Partial<RouteComponentProps>>;
+  component: React.ComponentType<PageComponentProps>;
   primaryPath: string;
   aliasPaths: readonly string[];
 }

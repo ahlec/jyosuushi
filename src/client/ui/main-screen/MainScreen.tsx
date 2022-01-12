@@ -1,5 +1,5 @@
 import * as React from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { Redirect, Route, Switch } from "react-router-dom";
 
 import { State } from "@jyosuushi/redux";
@@ -15,49 +15,43 @@ import {
 
 import styles from "./MainScreen.scss";
 
-interface ReduxProps {
-  shouldRedirectToReleaseNotes: boolean;
-}
-
-function mapStateToProps(state: State): ReduxProps {
-  const { lastAccessedVersion } = state.user;
-  return {
-    shouldRedirectToReleaseNotes:
-      !!lastAccessedVersion && lastAccessedVersion !== JYOSUUSHI_CURRENT_SEMVER,
-  };
-}
-
-class MainScreen extends React.PureComponent<ReduxProps> {
-  public render(): React.ReactNode {
-    const { shouldRedirectToReleaseNotes } = this.props;
+function MainScreen(): React.ReactElement {
+  // Determine whether a new version has been released since the user last
+  // visited and they should be redirected to the release notes page
+  const shouldRedirectToReleaseNotes = useSelector((state: State): boolean => {
+    const { lastAccessedVersion } = state.user;
     return (
-      <div className={styles.mainScreen}>
-        <Sidebar />
-        <div className={styles.content}>
-          <Switch>
-            {UNORDERED_NESTED_PAGES.map(this.renderRoute)}
-            {this.renderRoute(PREPARE_PAGE)}
-          </Switch>
-        </div>
-        {shouldRedirectToReleaseNotes && (
-          <Redirect to={RELEASE_NOTES_PAGE.primaryPath} />
-        )}
-      </div>
+      !!lastAccessedVersion && lastAccessedVersion !== JYOSUUSHI_CURRENT_SEMVER
     );
-  }
+  });
 
-  private renderRoute = ({
-    component,
+  // Make a render function that converts a `PageDefinition` into a `<Route />`
+  const renderPageRoute = ({
+    component: PageComponent,
     primaryPath,
-  }: PageDefinition): React.ReactNode => {
-    return (
-      <Route
-        key={primaryPath}
-        path={primaryPath || "/"}
-        component={component}
-      />
-    );
-  };
+  }: PageDefinition): React.ReactElement => (
+    <Route
+      key={primaryPath}
+      path={primaryPath || "/"}
+      render={(): React.ReactElement => <PageComponent />}
+    />
+  );
+
+  // Render the component
+  return (
+    <div className={styles.mainScreen}>
+      <Sidebar />
+      <div className={styles.content}>
+        <Switch>
+          {UNORDERED_NESTED_PAGES.map(renderPageRoute)}
+          {renderPageRoute(PREPARE_PAGE)}
+        </Switch>
+      </div>
+      {shouldRedirectToReleaseNotes && (
+        <Redirect to={RELEASE_NOTES_PAGE.primaryPath} />
+      )}
+    </div>
+  );
 }
 
-export default connect(mapStateToProps)(MainScreen);
+export default MainScreen;
