@@ -188,3 +188,18 @@ export interface Question {
   possibleAmounts: ReadonlyArray<number>;
   validAnswers: ReadonlyArray<Answer>;
 }
+
+export interface CounterCollection {
+  id: string;
+  name: string;
+  counterIds: readonly string[];
+  dateLastUpdated: number;
+}
+
+export interface StandardCounterCollection extends CounterCollection {
+  description: string;
+}
+
+export interface UserCounterCollection extends CounterCollection {
+  dateCreated: number;
+}

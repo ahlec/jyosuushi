@@ -5,7 +5,7 @@ import { ITEMS_LOOKUP } from "@data/items";
 
 import { isNotNull } from "@shared/utils";
 
-import { CounterCollection } from "@jyosuushi/graphql/types.generated";
+import { CounterCollection } from "@jyosuushi/interfaces";
 
 import { conjugateCounter } from "@jyosuushi/japanese/counters";
 

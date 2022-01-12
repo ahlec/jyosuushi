@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from "react";
 import { defineMessages } from "react-intl";
 
-import { UserCounterCollection } from "@jyosuushi/graphql/types.generated";
+import { UserCounterCollection } from "@jyosuushi/interfaces";
 
 import BaseDialog from "@jyosuushi/ui/components/popups/BaseDialog";
 

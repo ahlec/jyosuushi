@@ -1,11 +1,9 @@
 import React, { useMemo } from "react";
 
 import { COUNTERS_LOOKUP } from "@data/counters";
+import { STANDARD_COLLECTIONS } from "@data/standard-collections";
 
-import {
-  StandardCounterCollection,
-  UserCounterCollection,
-} from "@jyosuushi/graphql/types.generated";
+import { UserCounterCollection } from "@jyosuushi/interfaces";
 
 import {
   getCounterCollectionPath,
@@ -22,20 +20,16 @@ export interface RouteDeclaration {
 }
 
 interface HookOptions {
-  isLoggedIn: boolean;
-  standardCollections: readonly StandardCounterCollection[];
   userCollections: readonly UserCounterCollection[];
 }
 
 function useExploreRoutes({
-  isLoggedIn,
-  standardCollections,
   userCollections,
 }: HookOptions): readonly RouteDeclaration[] {
   return useMemo((): readonly RouteDeclaration[] => {
     const result: RouteDeclaration[] = [];
 
-    standardCollections.forEach((collection): void => {
+    STANDARD_COLLECTIONS.forEach((collection): void => {
       result.push({
         component: function RouteWrapper(): React.ReactElement {
           return <StandardCollectionView collection={collection} />;
@@ -61,8 +55,6 @@ function useExploreRoutes({
           return (
             <ExploreCounterPage
               counter={counter}
-              isLoggedIn={isLoggedIn}
-              standardCollections={standardCollections}
               userCollections={userCollections}
             />
           );
@@ -73,7 +65,7 @@ function useExploreRoutes({
     });
 
     return result;
-  }, [isLoggedIn, standardCollections, userCollections]);
+  }, [userCollections]);
 }
 
 export default useExploreRoutes;

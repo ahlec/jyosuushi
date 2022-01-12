@@ -1,13 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { defineMessages } from "react-intl";
 
 import Modal from "@jyosuushi/ui/components/popups/Modal";
 
-import CollectionNameForm, {
-  CollectionNameFormError,
-} from "@jyosuushi/ui/modules/explore/components/collection-name-form/CollectionNameForm";
-
-import useRenameCollection from "./useRenameCollection";
+import CollectionNameForm from "@jyosuushi/ui/modules/explore/components/collection-name-form/CollectionNameForm";
 
 const INTL_MESSAGES = defineMessages({
   modalHeader: {
@@ -27,21 +23,10 @@ interface ComponentProps {
 }
 
 function RenameCollectionModal({
-  collectionId,
   currentName,
   onRequestClose,
 }: ComponentProps): React.ReactElement {
-  // Define component state
-  const [
-    backendError,
-    setBackendError,
-  ] = useState<CollectionNameFormError | null>(null);
-
-  // Connect with the backend
-  const renameCollection = useRenameCollection(collectionId, {
-    onError: setBackendError,
-    onSuccess: onRequestClose,
-  });
+  // TODO
 
   // Render the component
   return (
@@ -53,9 +38,8 @@ function RenameCollectionModal({
       onRequestClose={onRequestClose}
     >
       <CollectionNameForm
-        currentError={backendError}
         initialName={currentName}
-        onSubmit={renameCollection}
+        onSubmit={onRequestClose}
         submitTextButton={INTL_MESSAGES.submitButtonLabel}
       />
     </Modal>

@@ -2,7 +2,7 @@ import React, { useCallback, useMemo } from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
 import { useSelector } from "react-redux";
 
-import { CounterCollection } from "@jyosuushi/graphql/types.generated";
+import { CounterCollection } from "@jyosuushi/interfaces";
 import { getCurrentQuizMode } from "@jyosuushi/redux/selectors";
 
 import StandardButton from "@jyosuushi/ui/components/StandardButton";

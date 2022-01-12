@@ -2,7 +2,7 @@ import React, { useCallback, useMemo, useState } from "react";
 import { defineMessages } from "react-intl";
 import { Redirect } from "react-router-dom";
 
-import { UserCounterCollection } from "@jyosuushi/graphql/types.generated";
+import { UserCounterCollection } from "@jyosuushi/interfaces";
 
 import ActionBar, {
   ActionBarItemDefinition,

@@ -3,11 +3,11 @@ import React, { useCallback, useMemo, useState } from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
 import { useHistory } from "react-router";
 
+import { STANDARD_COLLECTIONS } from "@data/standard-collections";
 import {
   CounterCollection,
-  StandardCounterCollection,
   UserCounterCollection,
-} from "@jyosuushi/graphql/types.generated";
+} from "@jyosuushi/interfaces";
 
 import { getCounterCollectionPath } from "@jyosuushi/ui/modules/explore/pathing";
 
@@ -25,9 +25,7 @@ const INTL_MESSAGES = defineMessages({
 });
 
 interface ComponentProps {
-  canCreateCollections: boolean;
   headerClassName: string;
-  standardCollections: readonly StandardCounterCollection[];
   userCollections: readonly UserCounterCollection[];
 }
 
@@ -42,9 +40,7 @@ function useOrderedCollection<T extends CounterCollection>(
 }
 
 function AllCollections({
-  canCreateCollections,
   headerClassName,
-  standardCollections,
   userCollections,
 }: ComponentProps): React.ReactElement {
   // Connect with the rest of the app
@@ -70,7 +66,7 @@ function AllCollections({
   );
 
   // Enforce a consistent ordering scheme
-  const orderedStandardCollections = useOrderedCollection(standardCollections);
+  const orderedStandardCollections = useOrderedCollection(STANDARD_COLLECTIONS);
   const orderedUserCollections = useOrderedCollection(userCollections);
 
   // Render the component
@@ -99,14 +95,12 @@ function AllCollections({
           )
         )}
 
-        {canCreateCollections && (
-          <CreateCollectionTile
-            isModalOpen={isCreateModalOpen}
-            onClick={handleCreateClick}
-          />
-        )}
+        <CreateCollectionTile
+          isModalOpen={isCreateModalOpen}
+          onClick={handleCreateClick}
+        />
       </div>
-      {canCreateCollections && isCreateModalOpen && (
+      {isCreateModalOpen && (
         <CreateCollectionModal
           onCancel={handleCreateCollectionCancelled}
           onSuccess={handleCollectionCreatedSuccessfully}

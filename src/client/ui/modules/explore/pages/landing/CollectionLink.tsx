@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import {
   StandardCounterCollection,
   UserCounterCollection,
-} from "@jyosuushi/graphql/types.generated";
+} from "@jyosuushi/interfaces";
 
 import { getCounterCollectionPath } from "@jyosuushi/ui/modules/explore/pathing";
 

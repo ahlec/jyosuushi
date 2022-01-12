@@ -1,7 +1,7 @@
 import { LocationDescriptorObject } from "history";
 import React, { useCallback, useMemo } from "react";
 
-import { CounterCollection } from "@jyosuushi/graphql/types.generated";
+import { CounterCollection } from "@jyosuushi/interfaces";
 
 import { getCounterLink } from "@jyosuushi/ui/modules/explore/pathing";
 import { ExploreLocationState } from "@jyosuushi/ui/modules/explore/types";

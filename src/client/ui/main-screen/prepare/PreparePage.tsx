@@ -1,12 +1,11 @@
 import React, { useCallback, useMemo, useState } from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
 
-import {
-  CounterCollection,
-  useAvailableCounterCollectionsQuery,
-} from "@jyosuushi/graphql/types.generated";
+import { STANDARD_COLLECTIONS } from "@data/standard-collections";
+import { CounterCollection } from "@jyosuushi/interfaces";
 
 import InlineTrigger from "@jyosuushi/ui/components/InlineTrigger";
+import { PageComponentProps } from "@jyosuushi/ui/types";
 
 import QuizPreparationView from "./QuizPreparationView";
 import TutorialModal from "./TutorialModal";
@@ -35,19 +34,16 @@ function FormattedMessageBold(
   return <strong>{chunks}</strong>;
 }
 
-function PreparePage(): React.ReactElement {
+function PreparePage({
+  userCollections,
+}: PageComponentProps): React.ReactElement {
   // Define component state
   const [isShowingTutorial, setIsShowingTutorial] = useState<boolean>(false);
 
-  // Retrieve the necessary data from the server
-  const { data, error, loading } = useAvailableCounterCollectionsQuery();
+  // Combine the collections together into a single array
   const collections = useMemo((): readonly CounterCollection[] => {
-    if (!data) {
-      return [];
-    }
-
-    return [...data.standardCounterCollections, ...data.userCounterCollections];
-  }, [data]);
+    return [...STANDARD_COLLECTIONS, ...userCollections];
+  }, [userCollections]);
 
   // Handle events
   const handleOpenTutorialModalClick = useCallback(
@@ -84,7 +80,7 @@ function PreparePage(): React.ReactElement {
         }}
         tagName="p"
       />
-      {!loading && !error && <QuizPreparationView collections={collections} />}
+      <QuizPreparationView collections={collections} />
       <div className={styles.flex} />
       <TutorialModal
         isOpen={isShowingTutorial}

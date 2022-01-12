@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
 
-import { CounterCollection } from "@jyosuushi/graphql/types.generated";
+import { CounterCollection } from "@jyosuushi/interfaces";
 
 import CollectionToggleButton from "./CollectionToggleButton";
 

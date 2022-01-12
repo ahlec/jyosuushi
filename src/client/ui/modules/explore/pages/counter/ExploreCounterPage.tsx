@@ -2,10 +2,7 @@ import React, { useCallback, useMemo, useState } from "react";
 import { defineMessages } from "react-intl";
 import { Redirect, useLocation } from "react-router-dom";
 
-import {
-  StandardCounterCollection,
-  UserCounterCollection,
-} from "@jyosuushi/graphql/types.generated";
+import { UserCounterCollection } from "@jyosuushi/interfaces";
 import useLocale from "@jyosuushi/i18n/useLocale";
 
 import { Counter } from "@jyosuushi/interfaces";
@@ -39,8 +36,6 @@ import styles from "./ExploreCounterPage.scss";
 
 interface ComponentProps {
   counter: Counter;
-  isLoggedIn: boolean;
-  standardCollections: readonly StandardCounterCollection[];
   userCollections: readonly UserCounterCollection[];
 }
 
@@ -79,8 +74,6 @@ const NO_SECTION_ACTIONS: readonly SectionActionDefinition[] = [];
 
 function ExploreCounterPage({
   counter,
-  isLoggedIn,
-  standardCollections,
   userCollections,
 }: ComponentProps): React.ReactElement {
   // Connect to the rest of the app
@@ -202,22 +195,19 @@ function ExploreCounterPage({
           </SectionContainer>
         )}
         <SectionContainer
-          actions={isLoggedIn ? membershipSectionActions : NO_SECTION_ACTIONS}
+          actions={membershipSectionActions}
           header={INTL_MESSAGES.headerCollections}
         >
           <CollectionSection
             counterId={counter.counterId}
-            standardCollections={standardCollections}
             userCollections={userCollections}
           />
-          {isLoggedIn && (
-            <EditMembershipDialog
-              counterId={counter.counterId}
-              isOpen={isEditMembershipDialogOpen}
-              onRequestClose={handleRequestEditMembershipDialogClose}
-              userCollections={userCollections}
-            />
-          )}
+          <EditMembershipDialog
+            counterId={counter.counterId}
+            isOpen={isEditMembershipDialogOpen}
+            onRequestClose={handleRequestEditMembershipDialogClose}
+            userCollections={userCollections}
+          />
         </SectionContainer>
         {counter.footnotes.length > 0 && (
           <SectionContainer

@@ -1,7 +1,7 @@
 import { noop } from "lodash";
 import React, { useCallback, useState } from "react";
 
-import { UserCounterCollection } from "@jyosuushi/graphql/types.generated";
+import { UserCounterCollection } from "@jyosuushi/interfaces";
 
 import ToggleMembershipCheck, { CheckState } from "./ToggleMembershipCheck";
 

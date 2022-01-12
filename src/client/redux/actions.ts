@@ -1,4 +1,4 @@
-import { CounterCollection } from "@jyosuushi/graphql/types.generated";
+import { CounterCollection } from "@jyosuushi/interfaces";
 
 import { AmountRange, QuizMode } from "./index";
 

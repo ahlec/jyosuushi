@@ -1,7 +1,7 @@
 import { sortBy } from "lodash";
 import { useMemo, useState } from "react";
 
-import { CounterCollection } from "@jyosuushi/graphql/types.generated";
+import { CounterCollection } from "@jyosuushi/interfaces";
 
 interface HookResults {
   selectedCollections: readonly CounterCollection[];

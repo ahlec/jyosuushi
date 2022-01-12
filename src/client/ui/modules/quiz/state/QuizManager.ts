@@ -1,6 +1,6 @@
 import * as ReactGA from "react-ga";
 
-import { CounterCollection } from "@jyosuushi/graphql/types.generated";
+import { CounterCollection } from "@jyosuushi/interfaces";
 
 import { AmountRange } from "@jyosuushi/redux";
 import {

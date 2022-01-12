@@ -1,6 +1,6 @@
 import { COUNTERS_LOOKUP } from "@data/counters";
 
-import { CounterCollection } from "@jyosuushi/graphql/types.generated";
+import { CounterCollection } from "@jyosuushi/interfaces";
 
 import { Counter } from "@jyosuushi/interfaces";
 

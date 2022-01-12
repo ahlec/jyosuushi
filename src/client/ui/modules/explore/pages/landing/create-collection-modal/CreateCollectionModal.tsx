@@ -1,15 +1,11 @@
-import React, { useState } from "react";
+import React, { useCallback } from "react";
 import { defineMessages } from "react-intl";
 
-import { UserCounterCollection } from "@jyosuushi/graphql/types.generated";
+import { UserCounterCollection } from "@jyosuushi/interfaces";
 
 import Modal from "@jyosuushi/ui/components/popups/Modal";
 
-import CollectionNameForm, {
-  CollectionNameFormError,
-} from "@jyosuushi/ui/modules/explore/components/collection-name-form/CollectionNameForm";
-
-import useCreateCollection from "./useCreateCollection";
+import CollectionNameForm from "@jyosuushi/ui/modules/explore/components/collection-name-form/CollectionNameForm";
 
 const INTL_MESSAGES = defineMessages({
   modalHeader: {
@@ -31,17 +27,13 @@ function CreateCollectionModal({
   onCancel,
   onSuccess,
 }: ComponentProps): React.ReactElement {
-  // Define component state
-  const [
-    backendError,
-    setBackendError,
-  ] = useState<CollectionNameFormError | null>(null);
-
-  // Connect with the backend
-  const createCollection = useCreateCollection({
-    onError: setBackendError,
-    onSuccess,
-  });
+  // Handle events
+  const handleSubmit = useCallback(
+    (name: string): void => {
+      // TODO
+    },
+    [onSuccess]
+  );
 
   // Render the component
   return (
@@ -53,9 +45,8 @@ function CreateCollectionModal({
       onRequestClose={onCancel}
     >
       <CollectionNameForm
-        currentError={backendError}
         initialName=""
-        onSubmit={createCollection}
+        onSubmit={handleSubmit}
         submitTextButton={INTL_MESSAGES.submitButtonLabel}
       />
     </Modal>

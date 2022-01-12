@@ -3,7 +3,7 @@ import React, { useMemo } from "react";
 import {
   StandardCounterCollection,
   UserCounterCollection,
-} from "@jyosuushi/graphql/types.generated";
+} from "@jyosuushi/interfaces";
 
 import BreadcrumbBar, {
   BreadcrumbBarLinkDefinition,

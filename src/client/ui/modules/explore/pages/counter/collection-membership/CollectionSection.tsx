@@ -1,10 +1,8 @@
 import React, { useMemo } from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
 
-import {
-  StandardCounterCollection,
-  UserCounterCollection,
-} from "@jyosuushi/graphql/types.generated";
+import { STANDARD_COLLECTIONS } from "@data/standard-collections";
+import { UserCounterCollection } from "@jyosuushi/interfaces";
 
 import MembershipCell from "./MembershipCell";
 import { CollectionMembershipEntry } from "./types";
@@ -14,7 +12,6 @@ import styles from "./CollectionSection.scss";
 
 interface ComponentProps {
   counterId: string;
-  standardCollections: readonly StandardCounterCollection[];
   userCollections: readonly UserCounterCollection[];
 }
 
@@ -32,14 +29,13 @@ const INTL_MESSAGES = defineMessages({
 
 function CollectionSection({
   counterId,
-  standardCollections,
   userCollections,
 }: ComponentProps): React.ReactElement {
   // Determine collection membership for this counter
   const standardCollectionMembership = useCollectionMembership(
     "standard",
     counterId,
-    standardCollections
+    STANDARD_COLLECTIONS
   );
   const userCollectionMembership = useCollectionMembership(
     "user",

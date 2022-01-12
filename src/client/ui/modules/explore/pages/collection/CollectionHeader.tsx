@@ -4,7 +4,7 @@ import { defineMessages } from "react-intl";
 import {
   StandardCounterCollection,
   UserCounterCollection,
-} from "@jyosuushi/graphql/types.generated";
+} from "@jyosuushi/interfaces";
 
 import PageHeader from "@jyosuushi/ui/modules/explore/components/page-header/PageHeader";
 import { HeaderSubtitleEntryDefinition } from "@jyosuushi/ui/modules/explore/components/page-header/types";

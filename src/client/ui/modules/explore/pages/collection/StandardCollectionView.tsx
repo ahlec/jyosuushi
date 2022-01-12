@@ -1,6 +1,6 @@
 import React from "react";
 
-import { StandardCounterCollection } from "@jyosuushi/graphql/types.generated";
+import { StandardCounterCollection } from "@jyosuushi/interfaces";
 
 import BaseCounterCollectionView from "./BaseCounterCollectionView";
 import LinkedCollectionContentsTable from "./counters-table/LinkedCollectionContentsTable";

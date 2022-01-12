@@ -12,11 +12,6 @@ import useCollectionNameValidation from "./useCollectionNameValidation";
 
 import styles from "./CollectionNameForm.scss";
 
-export interface CollectionNameFormError {
-  message: MessageDescriptor;
-  messageValues: Record<string, unknown>;
-}
-
 const INTL_MESSAGES = defineMessages({
   nameLabel: {
     defaultMessage: "Collection Name",
@@ -26,14 +21,12 @@ const INTL_MESSAGES = defineMessages({
 });
 
 interface ComponentProps {
-  currentError: CollectionNameFormError | null;
   initialName: string;
   onSubmit: (name: string) => void;
   submitTextButton: MessageDescriptor;
 }
 
 function CollectionNameForm({
-  currentError,
   initialName,
   onSubmit,
   submitTextButton,
@@ -79,17 +72,10 @@ function CollectionNameForm({
           />
         )}
       </LabeledContainer>
-      {!!currentError && (
-        <ErrorDisplay
-          text={currentError.message}
-          values={currentError.messageValues}
-          variant="form-error"
-        />
-      )}
       <ActionBar>
         <FormButton
           action="submit"
-          disabled={currentValidName === null || !!currentError}
+          disabled={currentValidName === null}
           text={submitTextButton}
           variant="primary"
         />

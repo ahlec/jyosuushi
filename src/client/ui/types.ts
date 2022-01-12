@@ -1,6 +1,10 @@
 import React from "react";
 
-export type PageComponentProps = Record<string, never>;
+import { UserCounterCollection } from "@jyosuushi/interfaces";
+
+export type PageComponentProps = {
+  userCollections: readonly UserCounterCollection[];
+};
 
 export interface PageDefinition {
   component: React.ComponentType<PageComponentProps>;
