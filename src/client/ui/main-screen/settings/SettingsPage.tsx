@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { AmountRange, State } from "@jyosuushi/redux";
 import { setAmountRange, setInfiniteMode } from "@jyosuushi/redux/actions";
-import { Dispatch } from "@jyosuushi/redux/store";
 
 import Checkbox from "@jyosuushi/ui/components/Checkbox";
 import ChooserControl, {
@@ -15,20 +14,6 @@ import { AMOUNT_RANGES } from "@jyosuushi/constants";
 
 import Setting from "./Setting";
 import styles from "./SettingsPage.scss";
-
-interface ReduxProps {
-  currentInfiniteMode: boolean;
-  currentRange: AmountRange;
-}
-
-function mapStateToProps(state: State): ReduxProps {
-  return {
-    currentInfiniteMode: state.settings.infiniteMode,
-    currentRange: state.settings.amountRange,
-  };
-}
-
-type ComponentProps = ReduxProps & { dispatch: Dispatch };
 
 const INTL_MESSAGES = defineMessages({
   amountRangeChoiceRange: {
@@ -121,47 +106,61 @@ const AMOUNT_RANGE_CHOICES: ReadonlyArray<Choice<AmountRange>> = [
   },
 ];
 
-class SettingsPage extends React.PureComponent<ComponentProps> {
-  public render(): React.ReactNode {
-    const { currentInfiniteMode, currentRange } = this.props;
-    return (
-      <div className={styles.settingsPage}>
-        <FormattedMessage {...INTL_MESSAGES.pageHeader} tagName="h1" />
-        <Setting
-          className={styles.setting}
-          header={INTL_MESSAGES.amountRangeHeader}
-          description={INTL_MESSAGES.amountRangeDescription}
-        >
-          <ChooserControl
-            currentValue={currentRange}
-            onChoiceClicked={this.onCurrentRangeChanged}
-            choices={AMOUNT_RANGE_CHOICES}
-          />
-        </Setting>
-        <Setting
-          className={styles.setting}
-          header={INTL_MESSAGES.infiniteModeHeader}
-          description={INTL_MESSAGES.infiniteModeDescription}
-        >
-          <Checkbox
-            checked={currentInfiniteMode}
-            label={INTL_MESSAGES.infiniteModeCheckboxLabel}
-            onChange={this.onInfiniteModeChanged}
-          />
-        </Setting>
-      </div>
-    );
-  }
+function SettingsPage(): React.ReactElement {
+  // Connect with the rest of the app
+  const dispatch = useDispatch();
 
-  private onCurrentRangeChanged = (amountRange: AmountRange): void => {
-    const { dispatch } = this.props;
-    dispatch(setAmountRange(amountRange));
-  };
+  // Retrieve the current user settings
+  const currentInfiniteMode = useSelector(
+    (state: State): boolean => state.settings.infiniteMode
+  );
+  const currentRange = useSelector(
+    (state: State): AmountRange => state.settings.amountRange
+  );
 
-  private onInfiniteModeChanged = (infiniteMode: boolean): void => {
-    const { dispatch } = this.props;
-    dispatch(setInfiniteMode(infiniteMode));
-  };
+  // Handle events
+  const handleCurrentRangeChanged = useCallback(
+    (amountRange: AmountRange): void => {
+      dispatch(setAmountRange(amountRange));
+    },
+    [dispatch]
+  );
+
+  const handleInfiniteModeChanged = useCallback(
+    (infiniteMode: boolean): void => {
+      dispatch(setInfiniteMode(infiniteMode));
+    },
+    [dispatch]
+  );
+
+  // Render the component
+  return (
+    <div className={styles.settingsPage}>
+      <FormattedMessage {...INTL_MESSAGES.pageHeader} tagName="h1" />
+      <Setting
+        className={styles.setting}
+        header={INTL_MESSAGES.amountRangeHeader}
+        description={INTL_MESSAGES.amountRangeDescription}
+      >
+        <ChooserControl
+          currentValue={currentRange}
+          onChoiceClicked={handleCurrentRangeChanged}
+          choices={AMOUNT_RANGE_CHOICES}
+        />
+      </Setting>
+      <Setting
+        className={styles.setting}
+        header={INTL_MESSAGES.infiniteModeHeader}
+        description={INTL_MESSAGES.infiniteModeDescription}
+      >
+        <Checkbox
+          checked={currentInfiniteMode}
+          label={INTL_MESSAGES.infiniteModeCheckboxLabel}
+          onChange={handleInfiniteModeChanged}
+        />
+      </Setting>
+    </div>
+  );
 }
 
-export default connect(mapStateToProps)(SettingsPage);
+export default SettingsPage;
