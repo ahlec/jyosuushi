@@ -127,9 +127,8 @@ async function main(): Promise<void> {
       writeFunction: writeItemsFile,
     },
     {
-      directory: "server-src",
-      relativeFilename:
-        "modules/counter-collections/standard-collections.data.ts",
+      directory: "client-data",
+      relativeFilename: "standard-collections.ts",
       writeFunction: writeStandardCollectionsFile,
     },
     {
