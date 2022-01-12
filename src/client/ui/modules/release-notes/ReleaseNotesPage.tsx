@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import CHANGELOG, { ChangelogVersion, isFirstVersion } from "@changelog";
 
 import { markLatestVersion } from "@jyosuushi/redux/actions";
-import { Dispatch } from "@jyosuushi/redux/store";
 
 import IncrementalVersionDisplay from "./IncrementalVersionDisplay";
 
@@ -20,41 +19,42 @@ const INTL_MESSAGES = defineMessages({
   },
 });
 
-type ComponentProps = { dispatch: Dispatch };
+function ReleaseNotesPage(): React.ReactElement {
+  // Connect with the rest of the app
+  const dispatch = useDispatch();
 
-class ReleaseNotesPage extends React.PureComponent<ComponentProps> {
-  public componentDidMount(): void {
-    const { dispatch } = this.props;
+  // When the user visits this page, it should mark that the user has seen the
+  // patch notes for the latest version
+  useEffect((): void => {
     dispatch(markLatestVersion());
-  }
+  }, [dispatch]);
 
-  public render(): React.ReactNode {
-    return (
-      <div className={styles.releaseNotesPage}>
-        {CHANGELOG.map(this.renderVersion)}
-      </div>
-    );
-  }
-
-  private renderVersion = (version: ChangelogVersion): React.ReactNode => {
-    return (
-      <div key={version.version} className={styles.versionContainer}>
-        <div className={styles.versionHeader}>
-          {version.version}{" "}
-          <span className={styles.date}>({version.date})</span>
-        </div>
-        <div className={styles.contents}>
-          {isFirstVersion(version) ? (
-            <FormattedMessage
-              {...INTL_MESSAGES.specialVersionNotesInitialRelease}
-            />
-          ) : (
-            <IncrementalVersionDisplay version={version} />
-          )}
-        </div>
-      </div>
-    );
-  };
+  // Render the component
+  return (
+    <div className={styles.releaseNotesPage}>
+      {CHANGELOG.map(
+        (version: ChangelogVersion): React.ReactNode => {
+          return (
+            <div key={version.version} className={styles.versionContainer}>
+              <div className={styles.versionHeader}>
+                {version.version}{" "}
+                <span className={styles.date}>({version.date})</span>
+              </div>
+              <div className={styles.contents}>
+                {isFirstVersion(version) ? (
+                  <FormattedMessage
+                    {...INTL_MESSAGES.specialVersionNotesInitialRelease}
+                  />
+                ) : (
+                  <IncrementalVersionDisplay version={version} />
+                )}
+              </div>
+            </div>
+          );
+        }
+      )}
+    </div>
+  );
 }
 
-export default connect()(ReleaseNotesPage);
+export default ReleaseNotesPage;
