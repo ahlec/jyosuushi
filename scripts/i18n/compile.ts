@@ -24,8 +24,8 @@ async function compileFile(inputFile: string, outFile: string): Promise<void> {
 
 async function main(): Promise<void> {
   await Promise.all([
-    compileFile("./i18n/en.json", "src/client/i18n/translations/en.json"),
-    compileFile("./i18n/jp.json", "src/client/i18n/translations/jp.json"),
+    compileFile("./i18n/en.json", "src/i18n/translations/en.json"),
+    compileFile("./i18n/jp.json", "src/i18n/translations/jp.json"),
   ]);
 }
 

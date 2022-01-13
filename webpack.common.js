@@ -7,8 +7,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const ROOT_DIRECTORY = __dirname;
 const BUILD_DIRECTORY = path.resolve(ROOT_DIRECTORY, "dist-client");
 const FAVICON_DIRECTORY = path.resolve(ROOT_DIRECTORY, "favicons");
-const SOURCE_CLIENT_DIRECTORY = path.resolve(ROOT_DIRECTORY, "src/client");
-const SOURCE_SHARED_DIRECTORY = path.resolve(ROOT_DIRECTORY, "src/shared");
+const SOURCE_DIRECTORY = path.resolve(ROOT_DIRECTORY, "src");
 const DATA_DIRECTORY = path.resolve(ROOT_DIRECTORY, "data");
 const CONFIG_JSON_FILE = path.resolve(ROOT_DIRECTORY, "config.json");
 const CHANGELOG_FILE = path.resolve(ROOT_DIRECTORY, "changelog/index.ts");
@@ -28,7 +27,7 @@ if (!process.env.CI) {
 
 module.exports = {
   entry: {
-    app: SOURCE_CLIENT_DIRECTORY,
+    app: SOURCE_DIRECTORY,
     data: [
       path.resolve(DATA_DIRECTORY, "counters.ts"),
       path.resolve(DATA_DIRECTORY, "items.ts"),
@@ -43,8 +42,7 @@ module.exports = {
     alias: {
       "@changelog": CHANGELOG_FILE,
       "@data": DATA_DIRECTORY,
-      "@jyosuushi": SOURCE_CLIENT_DIRECTORY,
-      "@shared": SOURCE_SHARED_DIRECTORY,
+      "@jyosuushi": SOURCE_DIRECTORY,
     },
     extensions: [".js", ".jsx", ".json", ".ts", ".tsx", ".scss"],
   },
@@ -130,7 +128,7 @@ module.exports = {
       ],
     }),
     new HtmlWebpackPlugin({
-      template: path.resolve(SOURCE_CLIENT_DIRECTORY, "index.html"),
+      template: path.resolve(SOURCE_DIRECTORY, "index.html"),
     }),
   ],
 };

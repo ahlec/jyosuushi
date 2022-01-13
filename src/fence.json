@@ -1,0 +1,32 @@
+{
+  "tags": ["client"],
+  "exports": [
+    "interfaces/*",
+    {
+      "modules": "ui/data-components/**/*",
+      "accessibleTo": ["data"]
+    }
+  ],
+  "imports": ["changelog", "data"],
+  "dependencies": [
+    "classnames",
+    "history",
+    "lodash",
+    "memoize-one",
+    "react",
+    "react-dom",
+    "react-ga",
+    "react-intl",
+    "react-markdown",
+    "react-modal",
+    "react-router",
+    "react-router-dom",
+    "react-redux",
+    "react-tooltip",
+    "redux",
+    "redux-devtools-extension/logOnlyInProduction",
+    "redux-persist",
+    "redux-persist/**/*",
+    "uuid"
+  ]
+}

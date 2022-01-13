@@ -184,7 +184,7 @@ ${JSON.stringify(message, undefined, 2)}`
   );
 }
 
-const files = globSync("src/client/**/*.ts*");
+const files = globSync("src/**/*.ts*");
 extractAndWrite(files, {
   locales: ["en", "jp"],
   outDirectory: "./i18n",

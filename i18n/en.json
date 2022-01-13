@@ -3,7 +3,7 @@
     "original": {
       "defaultMessage": "Gigantic",
       "filenames": [
-        "src/client/constants/index.ts"
+        "src/constants/index.ts"
       ]
     },
     "translation": ""
@@ -12,7 +12,7 @@
     "original": {
       "defaultMessage": "Massive",
       "filenames": [
-        "src/client/constants/index.ts"
+        "src/constants/index.ts"
       ]
     },
     "translation": ""
@@ -21,7 +21,7 @@
     "original": {
       "defaultMessage": "Average",
       "filenames": [
-        "src/client/constants/index.ts"
+        "src/constants/index.ts"
       ]
     },
     "translation": ""
@@ -30,7 +30,7 @@
     "original": {
       "defaultMessage": "Tiny",
       "filenames": [
-        "src/client/constants/index.ts"
+        "src/constants/index.ts"
       ]
     },
     "translation": ""
@@ -40,7 +40,7 @@
       "defaultMessage": "No",
       "description": "Clicking this buttons cancels/declines the yes/no confirmation prompt given to the user.",
       "filenames": [
-        "src/client/ui/components/popups/BaseConfirmationDialog.tsx"
+        "src/ui/components/popups/BaseConfirmationDialog.tsx"
       ]
     },
     "translation": ""
@@ -50,7 +50,7 @@
       "defaultMessage": "Yes",
       "description": "Clicking this button confirms the yes/no confirmation prompt given to the user.",
       "filenames": [
-        "src/client/ui/components/popups/BaseConfirmationDialog.tsx"
+        "src/ui/components/popups/BaseConfirmationDialog.tsx"
       ]
     },
     "translation": ""
@@ -59,7 +59,7 @@
     "original": {
       "defaultMessage": "Application designed and coded by <alec>Alec Deitloff</alec>. Vector icons were taken from the <vectorIcons>Core - UI - Outlined</vectorIcons> collection. Sakura icon was made by <sakura>Freepik</sakura>. Small icons are part of the <silk>Silk</silk> collection.",
       "filenames": [
-        "src/client/ui/CreditsFooter.tsx"
+        "src/ui/CreditsFooter.tsx"
       ]
     },
     "translation": ""
@@ -68,7 +68,7 @@
     "original": {
       "defaultMessage": "End Quiz Early?",
       "filenames": [
-        "src/client/ui/Header/AbortConfirmationModal.tsx"
+        "src/ui/Header/AbortConfirmationModal.tsx"
       ]
     },
     "translation": ""
@@ -77,7 +77,7 @@
     "original": {
       "defaultMessage": "Are you sure you want to end the current quiz early?",
       "filenames": [
-        "src/client/ui/Header/AbortConfirmationModal.tsx"
+        "src/ui/Header/AbortConfirmationModal.tsx"
       ]
     },
     "translation": ""
@@ -86,7 +86,7 @@
     "original": {
       "defaultMessage": "History",
       "filenames": [
-        "src/client/ui/Header/index.tsx"
+        "src/ui/Header/index.tsx"
       ]
     },
     "translation": ""
@@ -95,7 +95,7 @@
     "original": {
       "defaultMessage": "Let's review Japanese counters!",
       "filenames": [
-        "src/client/ui/Header/index.tsx"
+        "src/ui/Header/index.tsx"
       ]
     },
     "translation": ""
@@ -104,7 +104,7 @@
     "original": {
       "defaultMessage": "History",
       "filenames": [
-        "src/client/ui/Header/index.tsx"
+        "src/ui/Header/index.tsx"
       ]
     },
     "translation": ""
@@ -113,7 +113,7 @@
     "original": {
       "defaultMessage": "Home",
       "filenames": [
-        "src/client/ui/Header/index.tsx"
+        "src/ui/Header/index.tsx"
       ]
     },
     "translation": ""
@@ -122,7 +122,7 @@
     "original": {
       "defaultMessage": "{x} / {y} correct",
       "filenames": [
-        "src/client/ui/Header/Score.tsx"
+        "src/ui/Header/Score.tsx"
       ]
     },
     "translation": ""
@@ -131,7 +131,7 @@
     "original": {
       "defaultMessage": "Officially submit bug reports or feature requests. Or, fork the repository and open a pull request — I'd love help on this project!",
       "filenames": [
-        "src/client/ui/main-screen/feedback/FeedbackPage.tsx"
+        "src/ui/main-screen/feedback/FeedbackPage.tsx"
       ]
     },
     "translation": ""
@@ -140,7 +140,7 @@
     "original": {
       "defaultMessage": "GitHub Repository",
       "filenames": [
-        "src/client/ui/main-screen/feedback/FeedbackPage.tsx"
+        "src/ui/main-screen/feedback/FeedbackPage.tsx"
       ]
     },
     "translation": ""
@@ -149,7 +149,7 @@
     "original": {
       "defaultMessage": "The project is open source and accepting bug reports, feature requests, and code contributions!",
       "filenames": [
-        "src/client/ui/main-screen/feedback/FeedbackPage.tsx"
+        "src/ui/main-screen/feedback/FeedbackPage.tsx"
       ]
     },
     "translation": ""
@@ -158,7 +158,7 @@
     "original": {
       "defaultMessage": "Send me a tweet or a direct message if you're not able to go through GitHub.",
       "filenames": [
-        "src/client/ui/main-screen/feedback/FeedbackPage.tsx"
+        "src/ui/main-screen/feedback/FeedbackPage.tsx"
       ]
     },
     "translation": ""
@@ -167,7 +167,7 @@
     "original": {
       "defaultMessage": "@AlecDeitloff",
       "filenames": [
-        "src/client/ui/main-screen/feedback/FeedbackPage.tsx"
+        "src/ui/main-screen/feedback/FeedbackPage.tsx"
       ]
     },
     "translation": ""
@@ -176,7 +176,7 @@
     "original": {
       "defaultMessage": "Collections",
       "filenames": [
-        "src/client/ui/main-screen/prepare/CollectionSelection.tsx"
+        "src/ui/main-screen/prepare/CollectionSelection.tsx"
       ]
     },
     "translation": ""
@@ -185,7 +185,7 @@
     "original": {
       "defaultMessage": "(select 1 or more)",
       "filenames": [
-        "src/client/ui/main-screen/prepare/CollectionSelection.tsx"
+        "src/ui/main-screen/prepare/CollectionSelection.tsx"
       ]
     },
     "translation": ""
@@ -194,7 +194,7 @@
     "original": {
       "defaultMessage": "{size, plural, one {# counter} other {# counters}}",
       "filenames": [
-        "src/client/ui/main-screen/prepare/CollectionToggleButton.tsx"
+        "src/ui/main-screen/prepare/CollectionToggleButton.tsx"
       ]
     },
     "translation": ""
@@ -203,7 +203,7 @@
     "original": {
       "defaultMessage": "View Details",
       "filenames": [
-        "src/client/ui/main-screen/prepare/CollectionToggleButton.tsx"
+        "src/ui/main-screen/prepare/CollectionToggleButton.tsx"
       ]
     },
     "translation": ""
@@ -212,7 +212,7 @@
     "original": {
       "defaultMessage": "{count, plural, one {# Counter} other {# Counters}} included",
       "filenames": [
-        "src/client/ui/main-screen/prepare/CounterPreview.tsx"
+        "src/ui/main-screen/prepare/CounterPreview.tsx"
       ]
     },
     "translation": ""
@@ -221,7 +221,7 @@
     "original": {
       "defaultMessage": "Japanese counters",
       "filenames": [
-        "src/client/ui/main-screen/prepare/PreparePage.tsx"
+        "src/ui/main-screen/prepare/PreparePage.tsx"
       ]
     },
     "translation": ""
@@ -230,7 +230,7 @@
     "original": {
       "defaultMessage": "Click here to read the tutorial.",
       "filenames": [
-        "src/client/ui/main-screen/prepare/PreparePage.tsx"
+        "src/ui/main-screen/prepare/PreparePage.tsx"
       ]
     },
     "translation": ""
@@ -239,7 +239,7 @@
     "original": {
       "defaultMessage": "Welcome to <bold>助数詞を練習</bold>! This is a tool that's meant to help you study {jyosuushiWikipediaLink}. You'll be given a random item and a random number, and then you tell us how you'd count that in Japanese. {tutorialLink}",
       "filenames": [
-        "src/client/ui/main-screen/prepare/PreparePage.tsx"
+        "src/ui/main-screen/prepare/PreparePage.tsx"
       ]
     },
     "translation": ""
@@ -248,7 +248,7 @@
     "original": {
       "defaultMessage": "Start Quiz!",
       "filenames": [
-        "src/client/ui/main-screen/prepare/QuizPreparationView.tsx"
+        "src/ui/main-screen/prepare/QuizPreparationView.tsx"
       ]
     },
     "translation": ""
@@ -257,7 +257,7 @@
     "original": {
       "defaultMessage": "On the main screen, find conveniently made packs of counters. Explore each of their details, and then choose the ones that contain the counters you want to study.",
       "filenames": [
-        "src/client/ui/main-screen/prepare/tutorial/index.ts"
+        "src/ui/main-screen/prepare/tutorial/index.ts"
       ]
     },
     "translation": ""
@@ -266,7 +266,7 @@
     "original": {
       "defaultMessage": "When you hit 'Start Quiz', you'll be prompted with random nouns of random amounts. Determine the appropriate counter for the noun, and then put in your answer.\n\nEven though they're valid, 〜つ and 〜個 aren't accepted answers!",
       "filenames": [
-        "src/client/ui/main-screen/prepare/tutorial/index.ts"
+        "src/ui/main-screen/prepare/tutorial/index.ts"
       ]
     },
     "translation": ""
@@ -275,7 +275,7 @@
     "original": {
       "defaultMessage": "If you don't want to answer, hit 'Skip this question'. It won't penalize you and will remove the question from the quiz.",
       "filenames": [
-        "src/client/ui/main-screen/prepare/tutorial/index.ts"
+        "src/ui/main-screen/prepare/tutorial/index.ts"
       ]
     },
     "translation": ""
@@ -284,7 +284,7 @@
     "original": {
       "defaultMessage": "Once you submit your answer, check your accuracy! It will show you all of the correct answers at this stage, so you can take note if you made a mistake.",
       "filenames": [
-        "src/client/ui/main-screen/prepare/tutorial/index.ts"
+        "src/ui/main-screen/prepare/tutorial/index.ts"
       ]
     },
     "translation": ""
@@ -293,7 +293,7 @@
     "original": {
       "defaultMessage": "If you made a typo or a genuine mistake, hit 'Ignore Answer'. It won't penalize you, and it will shuffle that question in for later to try again. It's up to you to stay honest!",
       "filenames": [
-        "src/client/ui/main-screen/prepare/tutorial/index.ts"
+        "src/ui/main-screen/prepare/tutorial/index.ts"
       ]
     },
     "translation": ""
@@ -302,7 +302,7 @@
     "original": {
       "defaultMessage": "When you've gone through all of your questions, you'll have a chance to see your overall results. From there, you can choose to change your study packs, or try this quiz again with new numbers and items.",
       "filenames": [
-        "src/client/ui/main-screen/prepare/tutorial/index.ts"
+        "src/ui/main-screen/prepare/tutorial/index.ts"
       ]
     },
     "translation": ""
@@ -311,7 +311,7 @@
     "original": {
       "defaultMessage": "Tutorial",
       "filenames": [
-        "src/client/ui/main-screen/prepare/TutorialModal.tsx"
+        "src/ui/main-screen/prepare/TutorialModal.tsx"
       ]
     },
     "translation": ""
@@ -320,7 +320,7 @@
     "original": {
       "defaultMessage": "{min}-{max}",
       "filenames": [
-        "src/client/ui/main-screen/settings/SettingsPage.tsx"
+        "src/ui/main-screen/settings/SettingsPage.tsx"
       ]
     },
     "translation": ""
@@ -329,7 +329,7 @@
     "original": {
       "defaultMessage": "Adjust the range of numbers generated.",
       "filenames": [
-        "src/client/ui/main-screen/settings/SettingsPage.tsx"
+        "src/ui/main-screen/settings/SettingsPage.tsx"
       ]
     },
     "translation": ""
@@ -338,7 +338,7 @@
     "original": {
       "defaultMessage": "Amounts Range",
       "filenames": [
-        "src/client/ui/main-screen/settings/SettingsPage.tsx"
+        "src/ui/main-screen/settings/SettingsPage.tsx"
       ]
     },
     "translation": ""
@@ -347,7 +347,7 @@
     "original": {
       "defaultMessage": "Infinite Mode",
       "filenames": [
-        "src/client/ui/main-screen/settings/SettingsPage.tsx"
+        "src/ui/main-screen/settings/SettingsPage.tsx"
       ]
     },
     "translation": ""
@@ -356,7 +356,7 @@
     "original": {
       "defaultMessage": "Choose whether the quiz has a finite number of questions, or if it goes on forever.",
       "filenames": [
-        "src/client/ui/main-screen/settings/SettingsPage.tsx"
+        "src/ui/main-screen/settings/SettingsPage.tsx"
       ]
     },
     "translation": ""
@@ -365,7 +365,7 @@
     "original": {
       "defaultMessage": "Infinite Mode",
       "filenames": [
-        "src/client/ui/main-screen/settings/SettingsPage.tsx"
+        "src/ui/main-screen/settings/SettingsPage.tsx"
       ]
     },
     "translation": ""
@@ -374,7 +374,7 @@
     "original": {
       "defaultMessage": "Settings",
       "filenames": [
-        "src/client/ui/main-screen/settings/SettingsPage.tsx"
+        "src/ui/main-screen/settings/SettingsPage.tsx"
       ]
     },
     "translation": ""
@@ -383,7 +383,7 @@
     "original": {
       "defaultMessage": "Explore",
       "filenames": [
-        "src/client/ui/main-screen/sidebar/Sidebar.tsx"
+        "src/ui/main-screen/sidebar/Sidebar.tsx"
       ]
     },
     "translation": ""
@@ -392,7 +392,7 @@
     "original": {
       "defaultMessage": "Feedback",
       "filenames": [
-        "src/client/ui/main-screen/sidebar/Sidebar.tsx"
+        "src/ui/main-screen/sidebar/Sidebar.tsx"
       ]
     },
     "translation": ""
@@ -401,7 +401,7 @@
     "original": {
       "defaultMessage": "Prepare",
       "filenames": [
-        "src/client/ui/main-screen/sidebar/Sidebar.tsx"
+        "src/ui/main-screen/sidebar/Sidebar.tsx"
       ]
     },
     "translation": ""
@@ -410,7 +410,7 @@
     "original": {
       "defaultMessage": "Release Notes",
       "filenames": [
-        "src/client/ui/main-screen/sidebar/Sidebar.tsx"
+        "src/ui/main-screen/sidebar/Sidebar.tsx"
       ]
     },
     "translation": ""
@@ -419,7 +419,7 @@
     "original": {
       "defaultMessage": "Settings",
       "filenames": [
-        "src/client/ui/main-screen/sidebar/Sidebar.tsx"
+        "src/ui/main-screen/sidebar/Sidebar.tsx"
       ]
     },
     "translation": ""
@@ -428,7 +428,7 @@
     "original": {
       "defaultMessage": "Collection:",
       "filenames": [
-        "src/client/ui/modules/explore/components/breadcrumb-bar/BreadcrumbBar.tsx"
+        "src/ui/modules/explore/components/breadcrumb-bar/BreadcrumbBar.tsx"
       ]
     },
     "translation": ""
@@ -437,7 +437,7 @@
     "original": {
       "defaultMessage": "Counter:",
       "filenames": [
-        "src/client/ui/modules/explore/components/breadcrumb-bar/BreadcrumbBar.tsx"
+        "src/ui/modules/explore/components/breadcrumb-bar/BreadcrumbBar.tsx"
       ]
     },
     "translation": ""
@@ -446,7 +446,7 @@
     "original": {
       "defaultMessage": "Explore",
       "filenames": [
-        "src/client/ui/modules/explore/components/breadcrumb-bar/BreadcrumbBar.tsx"
+        "src/ui/modules/explore/components/breadcrumb-bar/BreadcrumbBar.tsx"
       ]
     },
     "translation": ""
@@ -455,7 +455,7 @@
     "original": {
       "defaultMessage": "Collection Name",
       "filenames": [
-        "src/client/ui/modules/explore/components/collection-name-form/CollectionNameForm.tsx"
+        "src/ui/modules/explore/components/collection-name-form/CollectionNameForm.tsx"
       ]
     },
     "translation": ""
@@ -464,7 +464,7 @@
     "original": {
       "defaultMessage": "The name of the new collection is required.",
       "filenames": [
-        "src/client/ui/modules/explore/components/collection-name-form/useCollectionNameValidation.tsx"
+        "src/ui/modules/explore/components/collection-name-form/useCollectionNameValidation.tsx"
       ]
     },
     "translation": ""
@@ -473,7 +473,7 @@
     "original": {
       "defaultMessage": "Counter collection names must be between {minLength} and {maxLength} characters long.",
       "filenames": [
-        "src/client/ui/modules/explore/components/collection-name-form/useCollectionNameValidation.tsx"
+        "src/ui/modules/explore/components/collection-name-form/useCollectionNameValidation.tsx"
       ]
     },
     "translation": ""
@@ -482,7 +482,7 @@
     "original": {
       "defaultMessage": "Created <bold>{value}</bold>",
       "filenames": [
-        "src/client/ui/modules/explore/pages/collection/CollectionHeader.tsx"
+        "src/ui/modules/explore/pages/collection/CollectionHeader.tsx"
       ]
     },
     "translation": ""
@@ -491,7 +491,7 @@
     "original": {
       "defaultMessage": "Last updated <bold>{value}</bold>",
       "filenames": [
-        "src/client/ui/modules/explore/pages/collection/CollectionHeader.tsx"
+        "src/ui/modules/explore/pages/collection/CollectionHeader.tsx"
       ]
     },
     "translation": ""
@@ -500,7 +500,7 @@
     "original": {
       "defaultMessage": "Standard Collection",
       "filenames": [
-        "src/client/ui/modules/explore/pages/collection/CollectionHeader.tsx"
+        "src/ui/modules/explore/pages/collection/CollectionHeader.tsx"
       ]
     },
     "translation": ""
@@ -509,7 +509,7 @@
     "original": {
       "defaultMessage": "Custom Collection",
       "filenames": [
-        "src/client/ui/modules/explore/pages/collection/CollectionHeader.tsx"
+        "src/ui/modules/explore/pages/collection/CollectionHeader.tsx"
       ]
     },
     "translation": ""
@@ -518,7 +518,7 @@
     "original": {
       "defaultMessage": "Delete Collection",
       "filenames": [
-        "src/client/ui/modules/explore/pages/collection/DeleteCollectionConfirmationModal.tsx"
+        "src/ui/modules/explore/pages/collection/DeleteCollectionConfirmationModal.tsx"
       ]
     },
     "translation": ""
@@ -527,7 +527,7 @@
     "original": {
       "defaultMessage": "Are you sure you want to delete this collection? This cannot be undone.",
       "filenames": [
-        "src/client/ui/modules/explore/pages/collection/DeleteCollectionConfirmationModal.tsx"
+        "src/ui/modules/explore/pages/collection/DeleteCollectionConfirmationModal.tsx"
       ]
     },
     "translation": ""
@@ -536,7 +536,7 @@
     "original": {
       "defaultMessage": "This collection currently has <bold>no counters</bold> in it.",
       "filenames": [
-        "src/client/ui/modules/explore/pages/collection/EntriesCountIntro.tsx"
+        "src/ui/modules/explore/pages/collection/EntriesCountIntro.tsx"
       ]
     },
     "translation": ""
@@ -545,7 +545,7 @@
     "original": {
       "defaultMessage": "This collection contains <bold>{numCounters, plural, one {# counter} other {# counters}}</bold>:",
       "filenames": [
-        "src/client/ui/modules/explore/pages/collection/EntriesCountIntro.tsx"
+        "src/ui/modules/explore/pages/collection/EntriesCountIntro.tsx"
       ]
     },
     "translation": ""
@@ -554,7 +554,7 @@
     "original": {
       "defaultMessage": "Rename Collection",
       "filenames": [
-        "src/client/ui/modules/explore/pages/collection/RenameCollectionModal.tsx"
+        "src/ui/modules/explore/pages/collection/RenameCollectionModal.tsx"
       ]
     },
     "translation": ""
@@ -563,7 +563,7 @@
     "original": {
       "defaultMessage": "Confirm",
       "filenames": [
-        "src/client/ui/modules/explore/pages/collection/RenameCollectionModal.tsx"
+        "src/ui/modules/explore/pages/collection/RenameCollectionModal.tsx"
       ]
     },
     "translation": ""
@@ -572,7 +572,7 @@
     "original": {
       "defaultMessage": "Add/Remove Counters",
       "filenames": [
-        "src/client/ui/modules/explore/pages/collection/UserCollectionView.tsx"
+        "src/ui/modules/explore/pages/collection/UserCollectionView.tsx"
       ]
     },
     "translation": ""
@@ -581,7 +581,7 @@
     "original": {
       "defaultMessage": "Delete",
       "filenames": [
-        "src/client/ui/modules/explore/pages/collection/UserCollectionView.tsx"
+        "src/ui/modules/explore/pages/collection/UserCollectionView.tsx"
       ]
     },
     "translation": ""
@@ -590,7 +590,7 @@
     "original": {
       "defaultMessage": "Rename",
       "filenames": [
-        "src/client/ui/modules/explore/pages/collection/UserCollectionView.tsx"
+        "src/ui/modules/explore/pages/collection/UserCollectionView.tsx"
       ]
     },
     "translation": ""
@@ -599,7 +599,7 @@
     "original": {
       "defaultMessage": "This counter is found in the following {count, plural, one {collection} other {collections}}:",
       "filenames": [
-        "src/client/ui/modules/explore/pages/counter/collection-membership/CollectionSection.tsx"
+        "src/ui/modules/explore/pages/counter/collection-membership/CollectionSection.tsx"
       ]
     },
     "translation": ""
@@ -608,7 +608,7 @@
     "original": {
       "defaultMessage": "This counter is not found in any collections.",
       "filenames": [
-        "src/client/ui/modules/explore/pages/counter/collection-membership/CollectionSection.tsx"
+        "src/ui/modules/explore/pages/counter/collection-membership/CollectionSection.tsx"
       ]
     },
     "translation": ""
@@ -617,7 +617,7 @@
     "original": {
       "defaultMessage": "Add to Collections",
       "filenames": [
-        "src/client/ui/modules/explore/pages/counter/collection-membership/edit-membership-dialog/EditMembershipDialog.tsx"
+        "src/ui/modules/explore/pages/counter/collection-membership/edit-membership-dialog/EditMembershipDialog.tsx"
       ]
     },
     "translation": ""
@@ -626,7 +626,7 @@
     "original": {
       "defaultMessage": "... and so forth",
       "filenames": [
-        "src/client/ui/modules/explore/pages/counter/ConjugationsSection.tsx"
+        "src/ui/modules/explore/pages/counter/ConjugationsSection.tsx"
       ]
     },
     "translation": ""
@@ -635,7 +635,7 @@
     "original": {
       "defaultMessage": "Or you can try out any number you'd like to here:",
       "filenames": [
-        "src/client/ui/modules/explore/pages/counter/ConjugationsSection.tsx"
+        "src/ui/modules/explore/pages/counter/ConjugationsSection.tsx"
       ]
     },
     "translation": ""
@@ -644,7 +644,7 @@
     "original": {
       "defaultMessage": "There are some more irregulars later on as well though:",
       "filenames": [
-        "src/client/ui/modules/explore/pages/counter/ConjugationsSection.tsx"
+        "src/ui/modules/explore/pages/counter/ConjugationsSection.tsx"
       ]
     },
     "translation": ""
@@ -653,7 +653,7 @@
     "original": {
       "defaultMessage": "Here {amount, plural, one {is} other {are}} the first {amount, plural, one {# number} other {# numbers}}.",
       "filenames": [
-        "src/client/ui/modules/explore/pages/counter/ConjugationsSection.tsx"
+        "src/ui/modules/explore/pages/counter/ConjugationsSection.tsx"
       ]
     },
     "translation": ""
@@ -662,7 +662,7 @@
     "original": {
       "defaultMessage": "Luckily, there are no irregular conjugations with this counter!",
       "filenames": [
-        "src/client/ui/modules/explore/pages/counter/ConjugationsSection.tsx"
+        "src/ui/modules/explore/pages/counter/ConjugationsSection.tsx"
       ]
     },
     "translation": ""
@@ -671,7 +671,7 @@
     "original": {
       "defaultMessage": "Make note of the {highlightedElement}.",
       "filenames": [
-        "src/client/ui/modules/explore/pages/counter/ConjugationsSection.tsx"
+        "src/ui/modules/explore/pages/counter/ConjugationsSection.tsx"
       ]
     },
     "translation": ""
@@ -680,7 +680,7 @@
     "original": {
       "defaultMessage": "{numIrregulars, plural, one {1 irregular conjugation} other {# irregular conjugations}}",
       "filenames": [
-        "src/client/ui/modules/explore/pages/counter/ConjugationsSection.tsx"
+        "src/ui/modules/explore/pages/counter/ConjugationsSection.tsx"
       ]
     },
     "translation": ""
@@ -689,7 +689,7 @@
     "original": {
       "defaultMessage": "Collections",
       "filenames": [
-        "src/client/ui/modules/explore/pages/counter/ExploreCounterPage.tsx"
+        "src/ui/modules/explore/pages/counter/ExploreCounterPage.tsx"
       ]
     },
     "translation": ""
@@ -698,7 +698,7 @@
     "original": {
       "defaultMessage": "Conjugations",
       "filenames": [
-        "src/client/ui/modules/explore/pages/counter/ExploreCounterPage.tsx"
+        "src/ui/modules/explore/pages/counter/ExploreCounterPage.tsx"
       ]
     },
     "translation": ""
@@ -707,7 +707,7 @@
     "original": {
       "defaultMessage": "Similar Counters",
       "filenames": [
-        "src/client/ui/modules/explore/pages/counter/ExploreCounterPage.tsx"
+        "src/ui/modules/explore/pages/counter/ExploreCounterPage.tsx"
       ]
     },
     "translation": ""
@@ -716,7 +716,7 @@
     "original": {
       "defaultMessage": "References",
       "filenames": [
-        "src/client/ui/modules/explore/pages/counter/ExploreCounterPage.tsx"
+        "src/ui/modules/explore/pages/counter/ExploreCounterPage.tsx"
       ]
     },
     "translation": ""
@@ -725,7 +725,7 @@
     "original": {
       "defaultMessage": "Details",
       "filenames": [
-        "src/client/ui/modules/explore/pages/counter/ExploreCounterPage.tsx"
+        "src/ui/modules/explore/pages/counter/ExploreCounterPage.tsx"
       ]
     },
     "translation": ""
@@ -734,7 +734,7 @@
     "original": {
       "defaultMessage": "Items",
       "filenames": [
-        "src/client/ui/modules/explore/pages/counter/ExploreCounterPage.tsx"
+        "src/ui/modules/explore/pages/counter/ExploreCounterPage.tsx"
       ]
     },
     "translation": ""
@@ -743,7 +743,7 @@
     "original": {
       "defaultMessage": "Add or remove this counter from a custom collection.",
       "filenames": [
-        "src/client/ui/modules/explore/pages/counter/ExploreCounterPage.tsx"
+        "src/ui/modules/explore/pages/counter/ExploreCounterPage.tsx"
       ]
     },
     "translation": ""
@@ -752,7 +752,7 @@
     "original": {
       "defaultMessage": "Further Reading",
       "filenames": [
-        "src/client/ui/modules/explore/pages/counter/InfoSection.tsx"
+        "src/ui/modules/explore/pages/counter/InfoSection.tsx"
       ]
     },
     "translation": ""
@@ -761,7 +761,7 @@
     "original": {
       "defaultMessage": "The following {numItems, plural, one {is an example} other {are examples}} of what this is used to count:",
       "filenames": [
-        "src/client/ui/modules/explore/pages/counter/ItemsSection.tsx"
+        "src/ui/modules/explore/pages/counter/ItemsSection.tsx"
       ]
     },
     "translation": ""
@@ -770,7 +770,7 @@
     "original": {
       "defaultMessage": "Collections",
       "filenames": [
-        "src/client/ui/modules/explore/pages/landing/AllCollections.tsx"
+        "src/ui/modules/explore/pages/landing/AllCollections.tsx"
       ]
     },
     "translation": ""
@@ -779,7 +779,7 @@
     "original": {
       "defaultMessage": "Counters",
       "filenames": [
-        "src/client/ui/modules/explore/pages/landing/AllCounters.tsx"
+        "src/ui/modules/explore/pages/landing/AllCounters.tsx"
       ]
     },
     "translation": ""
@@ -788,7 +788,7 @@
     "original": {
       "defaultMessage": "{size, plural, one {# counter} other {# counters}}",
       "filenames": [
-        "src/client/ui/modules/explore/pages/landing/CollectionLink.tsx"
+        "src/ui/modules/explore/pages/landing/CollectionLink.tsx"
       ]
     },
     "translation": ""
@@ -797,7 +797,7 @@
     "original": {
       "defaultMessage": "Standard",
       "filenames": [
-        "src/client/ui/modules/explore/pages/landing/CollectionLink.tsx"
+        "src/ui/modules/explore/pages/landing/CollectionLink.tsx"
       ]
     },
     "translation": ""
@@ -806,7 +806,7 @@
     "original": {
       "defaultMessage": "Custom",
       "filenames": [
-        "src/client/ui/modules/explore/pages/landing/CollectionLink.tsx"
+        "src/ui/modules/explore/pages/landing/CollectionLink.tsx"
       ]
     },
     "translation": ""
@@ -815,7 +815,7 @@
     "original": {
       "defaultMessage": "Create Custom Collection",
       "filenames": [
-        "src/client/ui/modules/explore/pages/landing/CreateCollectionModal.tsx"
+        "src/ui/modules/explore/pages/landing/CreateCollectionModal.tsx"
       ]
     },
     "translation": ""
@@ -824,7 +824,7 @@
     "original": {
       "defaultMessage": "Create",
       "filenames": [
-        "src/client/ui/modules/explore/pages/landing/CreateCollectionModal.tsx"
+        "src/ui/modules/explore/pages/landing/CreateCollectionModal.tsx"
       ]
     },
     "translation": ""
@@ -833,7 +833,7 @@
     "original": {
       "defaultMessage": "New Custom Collection",
       "filenames": [
-        "src/client/ui/modules/explore/pages/landing/CreateCollectionTile.tsx"
+        "src/ui/modules/explore/pages/landing/CreateCollectionTile.tsx"
       ]
     },
     "translation": ""
@@ -842,7 +842,7 @@
     "original": {
       "defaultMessage": "Submitted:",
       "filenames": [
-        "src/client/ui/modules/quiz/components/history-display/HistoryRow.tsx"
+        "src/ui/modules/quiz/components/history-display/HistoryRow.tsx"
       ]
     },
     "translation": ""
@@ -851,7 +851,7 @@
     "original": {
       "defaultMessage": "Skip this question",
       "filenames": [
-        "src/client/ui/modules/quiz/views/question/AnswerInput/index.tsx"
+        "src/ui/modules/quiz/views/question/AnswerInput/index.tsx"
       ]
     },
     "translation": ""
@@ -860,7 +860,7 @@
     "original": {
       "defaultMessage": "Press the [enter] key when you're finished, or click the arrow button to submit.",
       "filenames": [
-        "src/client/ui/modules/quiz/views/question/AnswerInput/index.tsx"
+        "src/ui/modules/quiz/views/question/AnswerInput/index.tsx"
       ]
     },
     "translation": ""
@@ -869,7 +869,7 @@
     "original": {
       "defaultMessage": "While 〜つ and 〜個 are always valid counters, you can't use them here. You'll have to be more specific!",
       "filenames": [
-        "src/client/ui/modules/quiz/views/question/AnswerInput/TsuNotice/index.tsx"
+        "src/ui/modules/quiz/views/question/AnswerInput/TsuNotice/index.tsx"
       ]
     },
     "translation": ""
@@ -878,7 +878,7 @@
     "original": {
       "defaultMessage": "{amount} {itemName}",
       "filenames": [
-        "src/client/ui/modules/quiz/views/question/QuestionDisplay.tsx"
+        "src/ui/modules/quiz/views/question/QuestionDisplay.tsx"
       ]
     },
     "translation": ""
@@ -887,7 +887,7 @@
     "original": {
       "defaultMessage": "Counter",
       "filenames": [
-        "src/client/ui/modules/quiz/views/question/ResultsView/AnswersTable.tsx"
+        "src/ui/modules/quiz/views/question/ResultsView/AnswersTable.tsx"
       ]
     },
     "translation": ""
@@ -896,7 +896,7 @@
     "original": {
       "defaultMessage": "Hiragana",
       "filenames": [
-        "src/client/ui/modules/quiz/views/question/ResultsView/AnswersTable.tsx"
+        "src/ui/modules/quiz/views/question/ResultsView/AnswersTable.tsx"
       ]
     },
     "translation": ""
@@ -905,7 +905,7 @@
     "original": {
       "defaultMessage": "Kanji",
       "filenames": [
-        "src/client/ui/modules/quiz/views/question/ResultsView/AnswersTable.tsx"
+        "src/ui/modules/quiz/views/question/ResultsView/AnswersTable.tsx"
       ]
     },
     "translation": ""
@@ -914,7 +914,7 @@
     "original": {
       "defaultMessage": "Rule",
       "filenames": [
-        "src/client/ui/modules/quiz/views/question/ResultsView/AnswersTable.tsx"
+        "src/ui/modules/quiz/views/question/ResultsView/AnswersTable.tsx"
       ]
     },
     "translation": ""
@@ -923,7 +923,7 @@
     "original": {
       "defaultMessage": "Study Pack",
       "filenames": [
-        "src/client/ui/modules/quiz/views/question/ResultsView/AnswersTable.tsx"
+        "src/ui/modules/quiz/views/question/ResultsView/AnswersTable.tsx"
       ]
     },
     "translation": ""
@@ -932,7 +932,7 @@
     "original": {
       "defaultMessage": "(none)",
       "filenames": [
-        "src/client/ui/modules/quiz/views/question/ResultsView/AnswersTableRow.tsx"
+        "src/ui/modules/quiz/views/question/ResultsView/AnswersTableRow.tsx"
       ]
     },
     "translation": ""
@@ -941,7 +941,7 @@
     "original": {
       "defaultMessage": "(irregular)",
       "filenames": [
-        "src/client/ui/modules/quiz/views/question/ResultsView/AnswersTableRow.tsx"
+        "src/ui/modules/quiz/views/question/ResultsView/AnswersTableRow.tsx"
       ]
     },
     "translation": ""
@@ -950,7 +950,7 @@
     "original": {
       "defaultMessage": "(not 漢語)",
       "filenames": [
-        "src/client/ui/modules/quiz/views/question/ResultsView/AnswersTableRow.tsx"
+        "src/ui/modules/quiz/views/question/ResultsView/AnswersTableRow.tsx"
       ]
     },
     "translation": ""
@@ -959,7 +959,7 @@
     "original": {
       "defaultMessage": "Ignore Answer",
       "filenames": [
-        "src/client/ui/modules/quiz/views/question/ResultsView/index.tsx"
+        "src/ui/modules/quiz/views/question/ResultsView/index.tsx"
       ]
     },
     "translation": ""
@@ -968,7 +968,7 @@
     "original": {
       "defaultMessage": "Next Question",
       "filenames": [
-        "src/client/ui/modules/quiz/views/question/ResultsView/index.tsx"
+        "src/ui/modules/quiz/views/question/ResultsView/index.tsx"
       ]
     },
     "translation": ""
@@ -977,7 +977,7 @@
     "original": {
       "defaultMessage": "Correct!",
       "filenames": [
-        "src/client/ui/modules/quiz/views/question/ResultsView/index.tsx"
+        "src/ui/modules/quiz/views/question/ResultsView/index.tsx"
       ]
     },
     "translation": ""
@@ -986,7 +986,7 @@
     "original": {
       "defaultMessage": "Not quite right...",
       "filenames": [
-        "src/client/ui/modules/quiz/views/question/ResultsView/index.tsx"
+        "src/ui/modules/quiz/views/question/ResultsView/index.tsx"
       ]
     },
     "translation": ""
@@ -995,7 +995,7 @@
     "original": {
       "defaultMessage": "Skipped",
       "filenames": [
-        "src/client/ui/modules/quiz/views/question/ResultsView/index.tsx"
+        "src/ui/modules/quiz/views/question/ResultsView/index.tsx"
       ]
     },
     "translation": ""
@@ -1004,7 +1004,7 @@
     "original": {
       "defaultMessage": "Here are all of the possible answers based on the sets you have enabled:",
       "filenames": [
-        "src/client/ui/modules/quiz/views/question/ResultsView/index.tsx"
+        "src/ui/modules/quiz/views/question/ResultsView/index.tsx"
       ]
     },
     "translation": ""
@@ -1013,7 +1013,7 @@
     "original": {
       "defaultMessage": "Alright! You don't need to worry about this question!",
       "filenames": [
-        "src/client/ui/modules/quiz/views/question/ResultsView/index.tsx"
+        "src/ui/modules/quiz/views/question/ResultsView/index.tsx"
       ]
     },
     "translation": ""
@@ -1022,7 +1022,7 @@
     "original": {
       "defaultMessage": "Leave",
       "filenames": [
-        "src/client/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
+        "src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
       ]
     },
     "translation": ""
@@ -1031,7 +1031,7 @@
     "original": {
       "defaultMessage": "Restart",
       "filenames": [
-        "src/client/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
+        "src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
       ]
     },
     "translation": ""
@@ -1041,7 +1041,7 @@
       "defaultMessage": "That was astounding, really.",
       "description": "(A random message displayed if the user got a high score; does not need to be a literal translation)",
       "filenames": [
-        "src/client/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
+        "src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
       ]
     },
     "translation": ""
@@ -1051,7 +1051,7 @@
       "defaultMessage": "Look at how far you've come on your journey!",
       "description": "(A random message displayed if the user got a high score; does not need to be a literal translation)",
       "filenames": [
-        "src/client/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
+        "src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
       ]
     },
     "translation": ""
@@ -1061,7 +1061,7 @@
       "defaultMessage": "This stuff isn't easy, and you're aceing it!",
       "description": "(A random message displayed if the user got a high score; does not need to be a literal translation)",
       "filenames": [
-        "src/client/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
+        "src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
       ]
     },
     "translation": ""
@@ -1071,7 +1071,7 @@
       "defaultMessage": "It's taken a lot of work to get here; pat yourself on the back.",
       "description": "(A random message displayed if the user got a high score; does not need to be a literal translation)",
       "filenames": [
-        "src/client/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
+        "src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
       ]
     },
     "translation": ""
@@ -1081,7 +1081,7 @@
       "defaultMessage": "You're trying your best, and that's the key to success!",
       "description": "(A random message displayed if the user got a low score; does not need to be a literal translation)",
       "filenames": [
-        "src/client/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
+        "src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
       ]
     },
     "translation": ""
@@ -1091,7 +1091,7 @@
       "defaultMessage": "You've learned so much to get here, I know you'll get to where you want to go!",
       "description": "(A random message displayed if the user got a low score; does not need to be a literal translation)",
       "filenames": [
-        "src/client/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
+        "src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
       ]
     },
     "translation": ""
@@ -1101,7 +1101,7 @@
       "defaultMessage": "This stuff isn't easy; practice WILL make perfect.",
       "description": "(A random message displayed if the user got a low score; does not need to be a literal translation)",
       "filenames": [
-        "src/client/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
+        "src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
       ]
     },
     "translation": ""
@@ -1110,7 +1110,7 @@
     "original": {
       "defaultMessage": "Chrome",
       "filenames": [
-        "src/client/ui/modules/release-notes/components/BugFixEntryDisplay.tsx"
+        "src/ui/modules/release-notes/components/BugFixEntryDisplay.tsx"
       ]
     },
     "translation": ""
@@ -1119,7 +1119,7 @@
     "original": {
       "defaultMessage": "Microsoft Edge",
       "filenames": [
-        "src/client/ui/modules/release-notes/components/BugFixEntryDisplay.tsx"
+        "src/ui/modules/release-notes/components/BugFixEntryDisplay.tsx"
       ]
     },
     "translation": ""
@@ -1128,7 +1128,7 @@
     "original": {
       "defaultMessage": "Firefox",
       "filenames": [
-        "src/client/ui/modules/release-notes/components/BugFixEntryDisplay.tsx"
+        "src/ui/modules/release-notes/components/BugFixEntryDisplay.tsx"
       ]
     },
     "translation": ""
@@ -1137,7 +1137,7 @@
     "original": {
       "defaultMessage": "Internet Explorer",
       "filenames": [
-        "src/client/ui/modules/release-notes/components/BugFixEntryDisplay.tsx"
+        "src/ui/modules/release-notes/components/BugFixEntryDisplay.tsx"
       ]
     },
     "translation": ""
@@ -1146,7 +1146,7 @@
     "original": {
       "defaultMessage": "Safari",
       "filenames": [
-        "src/client/ui/modules/release-notes/components/BugFixEntryDisplay.tsx"
+        "src/ui/modules/release-notes/components/BugFixEntryDisplay.tsx"
       ]
     },
     "translation": ""
@@ -1155,7 +1155,7 @@
     "original": {
       "defaultMessage": "Bug Fixes",
       "filenames": [
-        "src/client/ui/modules/release-notes/IncrementalVersionDisplay.tsx"
+        "src/ui/modules/release-notes/IncrementalVersionDisplay.tsx"
       ]
     },
     "translation": ""
@@ -1164,7 +1164,7 @@
     "original": {
       "defaultMessage": "Improvements",
       "filenames": [
-        "src/client/ui/modules/release-notes/IncrementalVersionDisplay.tsx"
+        "src/ui/modules/release-notes/IncrementalVersionDisplay.tsx"
       ]
     },
     "translation": ""
@@ -1173,7 +1173,7 @@
     "original": {
       "defaultMessage": "New Features",
       "filenames": [
-        "src/client/ui/modules/release-notes/IncrementalVersionDisplay.tsx"
+        "src/ui/modules/release-notes/IncrementalVersionDisplay.tsx"
       ]
     },
     "translation": ""
@@ -1183,7 +1183,7 @@
       "defaultMessage": "Initial release.",
       "description": "Text to appear in place of release notes for the version that was the initial release.",
       "filenames": [
-        "src/client/ui/modules/release-notes/ReleaseNotesPage.tsx"
+        "src/ui/modules/release-notes/ReleaseNotesPage.tsx"
       ]
     },
     "translation": ""

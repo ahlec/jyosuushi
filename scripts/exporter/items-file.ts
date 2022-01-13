@@ -4,7 +4,7 @@ import { Writable } from "stream";
 import { DbItemCounter } from "../database/schemas";
 import ValidatedDataSource from "../database/ValidatedDataSource";
 
-import { Item, ItemCounter } from "../../src/client/interfaces";
+import { Item, ItemCounter } from "../../src/interfaces";
 
 import { WriteFileResults } from "./types";
 import { getItemId, productionStringify, ProductionVariable } from "./utils";
