@@ -20,9 +20,6 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - run:
-          name: Generate Prisma library
-          command: yarn prisma generate
-      - run:
           name: Build database
           command: yarn db:create
       - run:
