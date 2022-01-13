@@ -1,8 +1,8 @@
 import React from "react";
 
 import {
+  CreateUserCounterCollectionFn,
   UserCounterCollection,
-  UserCounterCollectionManager,
 } from "@jyosuushi/interfaces";
 
 import AllCollections from "./AllCollections";
@@ -14,15 +14,15 @@ import BreadcrumbBar, {
 import styles from "./LandingView.scss";
 
 interface ComponentProps {
+  createUserCollection: CreateUserCounterCollectionFn;
   userCollections: readonly UserCounterCollection[];
-  userCollectionsManager: UserCounterCollectionManager;
 }
 
 const BREADCRUMB_BAR_LINKS: readonly BreadcrumbBarLinkDefinition[] = [];
 
 function LandingView({
+  createUserCollection,
   userCollections,
-  userCollectionsManager,
 }: ComponentProps): React.ReactElement {
   // Render the component
   return (
@@ -32,9 +32,9 @@ function LandingView({
       </div>
       <div>
         <AllCollections
+          createUserCollection={createUserCollection}
           headerClassName={styles.header}
           userCollections={userCollections}
-          userCollectionsManager={userCollectionsManager}
         />
         <AllCounters headerClassName={styles.header} />
       </div>

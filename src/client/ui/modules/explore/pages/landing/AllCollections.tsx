@@ -6,14 +6,14 @@ import { useHistory } from "react-router";
 import { STANDARD_COLLECTIONS } from "@data/standard-collections";
 import {
   CounterCollection,
+  CreateUserCounterCollectionFn,
   UserCounterCollection,
-  UserCounterCollectionManager,
 } from "@jyosuushi/interfaces";
 
 import { getCounterCollectionPath } from "@jyosuushi/ui/modules/explore/pathing";
 
 import CollectionLink from "./CollectionLink";
-import CreateCollectionModal from "./create-collection-modal/CreateCollectionModal";
+import CreateCollectionModal from "./CreateCollectionModal";
 import CreateCollectionTile from "./CreateCollectionTile";
 
 import styles from "./AllCollections.scss";
@@ -26,9 +26,9 @@ const INTL_MESSAGES = defineMessages({
 });
 
 interface ComponentProps {
+  createUserCollection: CreateUserCounterCollectionFn;
   headerClassName: string;
   userCollections: readonly UserCounterCollection[];
-  userCollectionsManager: UserCounterCollectionManager;
 }
 
 function useOrderedCollection<T extends CounterCollection>(
@@ -42,9 +42,9 @@ function useOrderedCollection<T extends CounterCollection>(
 }
 
 function AllCollections({
+  createUserCollection,
   headerClassName,
   userCollections,
-  userCollectionsManager,
 }: ComponentProps): React.ReactElement {
   // Connect with the rest of the app
   const history = useHistory();
@@ -62,8 +62,8 @@ function AllCollections({
   }, []);
 
   const handleCollectionCreatedSuccessfully = useCallback(
-    (collection: UserCounterCollection): void => {
-      history.push(getCounterCollectionPath(collection.id));
+    (collectionId: string): void => {
+      history.push(getCounterCollectionPath(collectionId));
     },
     [history]
   );
@@ -105,7 +105,7 @@ function AllCollections({
       </div>
       {isCreateModalOpen && (
         <CreateCollectionModal
-          manager={userCollectionsManager}
+          createUserCollection={createUserCollection}
           onCancel={handleCreateCollectionCancelled}
           onSuccess={handleCollectionCreatedSuccessfully}
         />

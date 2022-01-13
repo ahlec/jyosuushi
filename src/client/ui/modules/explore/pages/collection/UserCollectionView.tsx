@@ -2,10 +2,7 @@ import React, { useCallback, useMemo, useState } from "react";
 import { defineMessages } from "react-intl";
 import { Redirect, useHistory } from "react-router-dom";
 
-import {
-  UserCounterCollection,
-  UserCounterCollectionManager,
-} from "@jyosuushi/interfaces";
+import { UserCounterCollection } from "@jyosuushi/interfaces";
 
 import ActionBar, {
   ActionBarItemDefinition,
@@ -44,12 +41,10 @@ const INTL_MESSAGES = defineMessages({
 
 interface ComponentProps {
   collection: UserCounterCollection;
-  manager: UserCounterCollectionManager;
 }
 
 function UserCollectionView({
   collection,
-  manager,
 }: ComponentProps): React.ReactElement {
   const history = useHistory();
 
@@ -108,10 +103,10 @@ function UserCollectionView({
   );
 
   const handleDeleteConfirmed = useCallback((): void => {
-    manager.delete(collection.id).then((): void => {
+    collection.delete().then((): void => {
       history.replace(EXPLORE_PAGE_PATH);
     });
-  }, [collection.id, manager, history]);
+  }, [collection, history]);
 
   const handleAddCounter = useCallback(
     (counterId: string) => addCounterToCollection(counterId, collection.id),
@@ -160,9 +155,7 @@ function UserCollectionView({
       )}
       {isRenameModalOpen && (
         <RenameCollectionModal
-          collectionId={collection.id}
-          currentName={collection.name}
-          manager={manager}
+          collection={collection}
           onRequestClose={handleRequestCloseRenameModal}
         />
       )}

@@ -1,9 +1,9 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { v4 } from "uuid";
 
 import {
+  CreateUserCounterCollectionFn,
   UserCounterCollection,
-  UserCounterCollectionManager,
 } from "@jyosuushi/interfaces";
 import StorageWrapper from "@jyosuushi/utils/StorageWrapper";
 
@@ -31,12 +31,12 @@ type InternalCallbackFn = () => void;
 
 interface InternalState {
   callbacks: ReadonlyArray<InternalCallbackFn>;
-  collections: readonly UserCounterCollection[];
+  collections: readonly SerializedUserCollection[];
 }
 
 interface HookResults {
+  createUserCollection: CreateUserCounterCollectionFn;
   userCollections: readonly UserCounterCollection[];
-  userCollectionsManager: UserCounterCollectionManager;
 }
 
 function useUserCollections(): HookResults {
@@ -97,96 +97,107 @@ function useUserCollections(): HookResults {
     USER_COLLECTIONS_STORAGE.setValue(state.collections);
   }, [state.collections]);
 
-  // Create a memoized manager
-  const userCollectionsManager = useMemo(
-    (): UserCounterCollectionManager => ({
-      create: (name) =>
-        new Promise((resolve) => {
-          setState(
-            (current): InternalState => {
-              const collection: SerializedUserCollection = {
-                counterIds: [],
-                dateCreated: Date.now(),
-                dateLastUpdated: Date.now(),
-                id: v4(),
-                name,
-              };
+  // Convert our serialized data structures into our client types
+  const userCollections = useMemo(
+    (): readonly UserCounterCollection[] =>
+      state.collections.map(
+        (collection): UserCounterCollection => ({
+          ...collection,
+          delete: () =>
+            new Promise((resolve, reject) => {
+              setState(
+                (current): InternalState => {
+                  const nextCollections = current.collections.filter(
+                    (c) => c.id !== collection.id
+                  );
 
-              return {
-                callbacks: [...current.callbacks, () => resolve(collection)],
-                collections: [...current.collections, collection],
-              };
-            }
-          );
-        }),
-      delete: (id) =>
-        new Promise((resolve, reject) => {
-          setState(
-            (current): InternalState => {
-              const collections = current.collections.filter(
-                (c) => c.id !== id
+                  if (nextCollections.length === current.collections.length) {
+                    // We didn't remove anything -- so the collection must have already been deleted
+                    return {
+                      callbacks: [
+                        ...current.callbacks,
+                        () =>
+                          reject(new Error("This collection no longer exists")),
+                      ],
+                      collections: current.collections,
+                    };
+                  }
+
+                  return {
+                    callbacks: [...current.callbacks, resolve],
+                    collections: nextCollections,
+                  };
+                }
               );
+            }),
+          rename: (name) =>
+            new Promise((resolve, reject) => {
+              setState(
+                (current): InternalState => {
+                  const index = current.collections.findIndex(
+                    ({ id }) => id === collection.id
+                  );
+                  if (index < 0) {
+                    return {
+                      callbacks: [
+                        ...current.callbacks,
+                        () =>
+                          reject(new Error("This collection no longer exists")),
+                      ],
+                      collections: current.collections,
+                    };
+                  }
 
-              if (collections.length === current.collections.length) {
-                // We didn't remove anything -- so the ID must not exist
-                return {
-                  callbacks: [
-                    ...current.callbacks,
-                    () =>
-                      reject(new Error(`No collection with ID '${id}' exists`)),
-                  ],
-                  collections: current.collections,
-                };
-              }
+                  // Create a new container array and a new instance of the
+                  // collection object
+                  const nextCollections = [...current.collections];
+                  nextCollections[index] = {
+                    ...nextCollections[index],
+                    name,
+                  };
 
-              return {
-                callbacks: [...current.callbacks, resolve],
-                collections: collections,
-              };
-            }
-          );
-        }),
-      rename: (id, name) =>
-        new Promise((resolve, reject) => {
-          setState(
-            (current): InternalState => {
-              const index = current.collections.findIndex((c) => c.id === id);
-              if (index < 0) {
-                return {
-                  callbacks: [
-                    ...current.callbacks,
-                    () =>
-                      reject(
-                        new Error(`Coul not find collection with id '${id}'`)
-                      ),
-                  ],
-                  collections: current.collections,
-                };
-              }
+                  return {
+                    callbacks: [...current.callbacks, resolve],
+                    collections: nextCollections,
+                  };
+                }
+              );
+            }),
+        })
+      ),
+    [state.collections]
+  );
 
-              // Create a new container array and a new instance of the
-              // collection object
-              const nextCollections = [...current.collections];
-              nextCollections[index] = {
-                ...nextCollections[index],
-                name,
-              };
-
-              return {
-                callbacks: [...current.callbacks, resolve],
-                collections: nextCollections,
-              };
-            }
-          );
-        }),
-    }),
+  // Create a memoized function to create new user collections
+  const createUserCollection = useCallback<CreateUserCounterCollectionFn>(
+    (name) =>
+      new Promise((resolve) => {
+        setState(
+          (current): InternalState => {
+            const id = v4();
+            return {
+              callbacks: [...current.callbacks, () => resolve(id)],
+              collections: [
+                ...current.collections,
+                {
+                  counterIds: [],
+                  dateCreated: Date.now(),
+                  dateLastUpdated: Date.now(),
+                  id,
+                  name,
+                },
+              ],
+            };
+          }
+        );
+      }),
     []
   );
 
   // Return the public API
   return {
-    userCollections: state.collections,
-    userCollectionsManager,
+    createUserCollection,
+    userCollections,
   };
 }
 

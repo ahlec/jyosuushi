@@ -1,10 +1,7 @@
 import React, { useCallback } from "react";
 import { defineMessages } from "react-intl";
 
-import {
-  UserCounterCollection,
-  UserCounterCollectionManager,
-} from "@jyosuushi/interfaces";
+import { CreateUserCounterCollectionFn } from "@jyosuushi/interfaces";
 
 import Modal from "@jyosuushi/ui/components/popups/Modal";
 
@@ -22,22 +19,22 @@ const INTL_MESSAGES = defineMessages({
 });
 
 interface ComponentProps {
-  manager: UserCounterCollectionManager;
+  createUserCollection: CreateUserCounterCollectionFn;
   onCancel: () => void;
-  onSuccess: (collection: UserCounterCollection) => void;
+  onSuccess: (collectionId: string) => void;
 }
 
 function CreateCollectionModal({
-  manager,
+  createUserCollection,
   onCancel,
   onSuccess,
 }: ComponentProps): React.ReactElement {
   // Handle events
   const handleSubmit = useCallback(
     (name: string): void => {
-      manager.create(name).then(onSuccess);
+      createUserCollection(name).then(onSuccess);
     },
-    [manager, onSuccess]
+    [createUserCollection, onSuccess]
   );
 
   // Render the component

@@ -1,13 +1,13 @@
 import React from "react";
 
 import {
+  CreateUserCounterCollectionFn,
   UserCounterCollection,
-  UserCounterCollectionManager,
 } from "@jyosuushi/interfaces";
 
 export type PageComponentProps = {
+  createUserCollection: CreateUserCounterCollectionFn;
   userCollections: readonly UserCounterCollection[];
-  userCollectionsManager: UserCounterCollectionManager;
 };
 
 export interface PageDefinition {

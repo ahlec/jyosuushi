@@ -3,10 +3,7 @@ import React, { useMemo } from "react";
 import { COUNTERS_LOOKUP } from "@data/counters";
 import { STANDARD_COLLECTIONS } from "@data/standard-collections";
 
-import {
-  UserCounterCollection,
-  UserCounterCollectionManager,
-} from "@jyosuushi/interfaces";
+import { UserCounterCollection } from "@jyosuushi/interfaces";
 
 import {
   getCounterCollectionPath,
@@ -24,12 +21,10 @@ export interface RouteDeclaration {
 
 interface HookOptions {
   userCollections: readonly UserCounterCollection[];
-  userCollectionsManager: UserCounterCollectionManager;
 }
 
 function useExploreRoutes({
   userCollections,
-  userCollectionsManager,
 }: HookOptions): readonly RouteDeclaration[] {
   return useMemo((): readonly RouteDeclaration[] => {
     const result: RouteDeclaration[] = [];
@@ -47,12 +42,7 @@ function useExploreRoutes({
     userCollections.forEach((collection): void => {
       result.push({
         component: function RouteWrapper(): React.ReactElement {
-          return (
-            <UserCollectionView
-              collection={collection}
-              manager={userCollectionsManager}
-            />
-          );
+          return <UserCollectionView collection={collection} />;
         },
         key: `user-collection-${collection.id}`,
         path: getCounterCollectionPath(collection.id),
@@ -75,7 +65,7 @@ function useExploreRoutes({
     });
 
     return result;
-  }, [userCollections, userCollectionsManager]);
+  }, [userCollections]);
 }
 
 export default useExploreRoutes;
