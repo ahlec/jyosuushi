@@ -49,6 +49,7 @@
     "@typescript-eslint/parser": "^3.6.1",
     "@zerollup/ts-transform-paths": "^1.7.18",
     "autoprefixer": "^9.8.5",
+    "browserslist": "^4.19.1",
     "chalk": "^4.1.0",
     "cli-real-favicon": "^0.0.8",
     "concurrently": "^5.2.0",
