@@ -1,8 +1,11 @@
 import React, { useCallback, useMemo, useState } from "react";
 import { defineMessages } from "react-intl";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 
-import { UserCounterCollection } from "@jyosuushi/interfaces";
+import {
+  UserCounterCollection,
+  UserCounterCollectionManager,
+} from "@jyosuushi/interfaces";
 
 import ActionBar, {
   ActionBarItemDefinition,
@@ -11,14 +14,14 @@ import ActionBar, {
 import PencilIcon from "@jyosuushi/ui/modules/explore/pencil.svg";
 import useAddCounterToCollection from "@jyosuushi/ui/modules/explore/hooks/useAddCounterToCollection";
 import useRemoveCounterFromCollection from "@jyosuushi/ui/modules/explore/hooks/useRemoveCounterFromCollection";
+import { EXPLORE_PAGE_PATH } from "@jyosuushi/ui/modules/explore/pathing";
 
 import BaseCounterCollectionView from "./BaseCounterCollectionView";
 import LinkedCollectionContentsTable from "./counters-table/LinkedCollectionContentsTable";
 import DeleteCollectionConfirmationModal from "./DeleteCollectionConfirmationModal";
 import EntriesCountIntro from "./EntriesCountIntro";
 import ManageCountersTable from "./counters-table/ManageCountersTable";
-import RenameCollectionModal from "./rename-collection-modal/RenameCollectionModal";
-import useDeleteCollection from "./useDeleteCollection";
+import RenameCollectionModal from "./RenameCollectionModal";
 
 import AddIcon from "./add.svg";
 import TrashIcon from "./trash.svg";
@@ -41,11 +44,15 @@ const INTL_MESSAGES = defineMessages({
 
 interface ComponentProps {
   collection: UserCounterCollection;
+  manager: UserCounterCollectionManager;
 }
 
 function UserCollectionView({
   collection,
+  manager,
 }: ComponentProps): React.ReactElement {
+  const history = useHistory();
+
   // Define component state
   const [isEditingContents, setIsEditingContents] = useState<boolean>(false);
   const [isRenameModalOpen, setIsRenameModalOpen] = useState<boolean>(false);
@@ -56,7 +63,6 @@ function UserCollectionView({
     callback: addCounterToCollection,
     redirectRequest: addCounterRedirectRequest,
   } = useAddCounterToCollection();
-  const deleteCollection = useDeleteCollection(collection.id);
   const {
     callback: removeCounterFromCollection,
     redirectRequest: removeCounterRedirectRequest,
@@ -100,6 +106,12 @@ function UserCollectionView({
     (): void => setIsDeleteModalOpen(false),
     []
   );
+
+  const handleDeleteConfirmed = useCallback((): void => {
+    manager.delete(collection.id).then((): void => {
+      history.replace(EXPLORE_PAGE_PATH);
+    });
+  }, [collection.id, manager, history]);
 
   const handleAddCounter = useCallback(
     (counterId: string) => addCounterToCollection(counterId, collection.id),
@@ -150,12 +162,13 @@ function UserCollectionView({
         <RenameCollectionModal
           collectionId={collection.id}
           currentName={collection.name}
+          manager={manager}
           onRequestClose={handleRequestCloseRenameModal}
         />
       )}
       {isDeleteModalOpen && (
         <DeleteCollectionConfirmationModal
-          onConfirm={deleteCollection}
+          onConfirm={handleDeleteConfirmed}
           onRequestClose={handleRequestCloseDeleteModal}
         />
       )}

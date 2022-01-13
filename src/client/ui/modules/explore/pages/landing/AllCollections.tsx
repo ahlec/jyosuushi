@@ -7,6 +7,7 @@ import { STANDARD_COLLECTIONS } from "@data/standard-collections";
 import {
   CounterCollection,
   UserCounterCollection,
+  UserCounterCollectionManager,
 } from "@jyosuushi/interfaces";
 
 import { getCounterCollectionPath } from "@jyosuushi/ui/modules/explore/pathing";
@@ -27,6 +28,7 @@ const INTL_MESSAGES = defineMessages({
 interface ComponentProps {
   headerClassName: string;
   userCollections: readonly UserCounterCollection[];
+  userCollectionsManager: UserCounterCollectionManager;
 }
 
 function useOrderedCollection<T extends CounterCollection>(
@@ -42,6 +44,7 @@ function useOrderedCollection<T extends CounterCollection>(
 function AllCollections({
   headerClassName,
   userCollections,
+  userCollectionsManager,
 }: ComponentProps): React.ReactElement {
   // Connect with the rest of the app
   const history = useHistory();
@@ -102,6 +105,7 @@ function AllCollections({
       </div>
       {isCreateModalOpen && (
         <CreateCollectionModal
+          manager={userCollectionsManager}
           onCancel={handleCreateCollectionCancelled}
           onSuccess={handleCollectionCreatedSuccessfully}
         />

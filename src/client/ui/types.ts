@@ -1,9 +1,13 @@
 import React from "react";
 
-import { UserCounterCollection } from "@jyosuushi/interfaces";
+import {
+  UserCounterCollection,
+  UserCounterCollectionManager,
+} from "@jyosuushi/interfaces";
 
 export type PageComponentProps = {
   userCollections: readonly UserCounterCollection[];
+  userCollectionsManager: UserCounterCollectionManager;
 };
 
 export interface PageDefinition {

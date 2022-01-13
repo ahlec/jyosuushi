@@ -19,7 +19,7 @@ import styles from "./MainScreen.scss";
 
 function MainScreen(): React.ReactElement {
   // Retrieve the list of custom user collections
-  const { userCollections } = useUserCollections();
+  const { userCollections, userCollectionsManager } = useUserCollections();
 
   // Determine whether a new version has been released since the user last
   // visited and they should be redirected to the release notes page
@@ -39,7 +39,10 @@ function MainScreen(): React.ReactElement {
       key={primaryPath}
       path={primaryPath || "/"}
       render={(): React.ReactElement => (
-        <PageComponent userCollections={userCollections} />
+        <PageComponent
+          userCollections={userCollections}
+          userCollectionsManager={userCollectionsManager}
+        />
       )}
     />
   );

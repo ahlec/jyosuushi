@@ -8,16 +8,23 @@ import LandingView from "./pages/landing/LandingView";
 
 function ExplorePage({
   userCollections,
+  userCollectionsManager,
 }: PageComponentProps): React.ReactElement {
   // Create a memoized function to render the fallback, main page
   const renderLandingPage = useCallback(
-    (): React.ReactElement => <LandingView userCollections={userCollections} />,
-    [userCollections]
+    (): React.ReactElement => (
+      <LandingView
+        userCollections={userCollections}
+        userCollectionsManager={userCollectionsManager}
+      />
+    ),
+    [userCollections, userCollectionsManager]
   );
 
   // Process the current data we have into routes
   const routes = useExploreRoutes({
     userCollections,
+    userCollectionsManager,
   });
 
   // Render the component

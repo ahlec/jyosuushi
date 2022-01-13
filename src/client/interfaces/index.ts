@@ -203,3 +203,22 @@ export interface StandardCounterCollection extends CounterCollection {
 export interface UserCounterCollection extends CounterCollection {
   dateCreated: number;
 }
+
+export interface UserCounterCollectionManager {
+  /**
+   * Creates a user collection, resolving after the change has taken place and
+   * returning the created collection.
+   */
+  create: (name: string) => Promise<UserCounterCollection>;
+
+  /**
+   * Changes the name for a user collection, resolving after the change has
+   * taken place.
+   */
+  rename: (id: string, name: string) => Promise<void>;
+
+  /**
+   * Deletes a user collection by ID, resolving after the change has taken place.
+   */
+  delete: (id: string) => Promise<void>;
+}
