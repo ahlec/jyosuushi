@@ -3,7 +3,6 @@
   "clientS3Bucket": "",
   "serverDestination": "",
   "serverPrivateKeyFilename": "",
-  "serverPublicAddress": "",
   "serverUploadAddress": "",
   "serverUploadUsername": ""
 }

@@ -17,7 +17,7 @@ const untildify = require("untildify");
 const { merge: webpackMerge } = require("webpack-merge");
 const webpackStream = require("webpack-stream");
 
-const makeCommonWebpackConfig = require("./webpack.common.js");
+const commonWebpack = require("./webpack.common.js");
 
 /******************************/
 /*         <  CONFIG  >       */
@@ -68,12 +68,6 @@ function getDeployConfig() {
       default: null,
       doc:
         "The filename to the file on the local filesystem housing the private key that should be used for deploying server files to EC2.",
-      format: "nonempty-string",
-    },
-    serverPublicAddress: {
-      default: null,
-      doc:
-        "The public address (public URL or public IP address) of the EC2 instance hosting the server. This should be the URL that the client should make API calls to.",
       format: "nonempty-string",
     },
     serverUploadAddress: {
@@ -132,18 +126,8 @@ function cleanClient() {
 }
 
 function transpileBundleClient() {
-  let serverPublicAddress;
-  if (typeof process.env.SERVER_PUBLIC_ADDRESS === "string") {
-    // In addition to general utility, this is used by the CircleCI build
-    // validation step, since the CI doesn't have a deploy config file.
-    serverPublicAddress = process.env.SERVER_PUBLIC_ADDRESS;
-  } else {
-    const config = getDeployConfig();
-    serverPublicAddress = config.serverPublicAddress;
-  }
-
   return webpackStream(
-    webpackMerge(makeCommonWebpackConfig(serverPublicAddress), {
+    webpackMerge(commonWebpack, {
       mode: "production",
     })
   ).pipe(dest("./dist-client"));
