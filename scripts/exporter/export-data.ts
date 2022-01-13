@@ -4,11 +4,10 @@ import { WritableStream } from "memory-streams";
 import path from "path";
 import prettier from "prettier";
 
-import { DATA_DIRECTORY, SERVER_SRC_DIRECTORY } from "../constants";
+import { DATA_DIRECTORY } from "../constants";
 import Database from "../database/Database";
 import ValidatedDataSource from "../database/ValidatedDataSource";
 
-import writeCounterIdsFile from "./counter-ids-file";
 import writeCountersFile from "./counters/write-file";
 import writeItemsFile from "./items-file";
 import writeStandardCollectionsFile from "./standard-collections-file";
@@ -32,18 +31,7 @@ function exportFile(
   const rawJavaScript = `${FILE_HEADER_COMMENT}${stream.toString()}`;
   const javaScript = prettier.format(rawJavaScript, { parser: "typescript" });
 
-  let filename: string;
-  switch (file.directory) {
-    case "client-data": {
-      filename = path.resolve(DATA_DIRECTORY, file.relativeFilename);
-      break;
-    }
-    case "server-src": {
-      filename = path.resolve(SERVER_SRC_DIRECTORY, file.relativeFilename);
-      break;
-    }
-  }
-
+  const filename = path.resolve(DATA_DIRECTORY, file.relativeFilename);
   const directory = path.dirname(filename);
   if (!fs.existsSync(directory)) {
     fs.mkdirSync(directory, { recursive: true });
@@ -117,24 +105,16 @@ async function main(): Promise<void> {
 
   const queue: FileExportRequest[] = [
     {
-      directory: "client-data",
       relativeFilename: "counters.ts",
       writeFunction: writeCountersFile,
     },
     {
-      directory: "client-data",
       relativeFilename: "items.ts",
       writeFunction: writeItemsFile,
     },
     {
-      directory: "client-data",
       relativeFilename: "standard-collections.ts",
       writeFunction: writeStandardCollectionsFile,
-    },
-    {
-      directory: "server-src",
-      relativeFilename: "modules/counter-collections/counter-ids.data.ts",
-      writeFunction: writeCounterIdsFile,
     },
   ];
 
