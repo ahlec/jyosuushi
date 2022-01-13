@@ -1,174 +1,59 @@
-import React, { useState } from "react";
-import {
-  defineMessages,
-  FormattedMessage,
-  MessageDescriptor,
-} from "react-intl";
+import React from "react";
+import { defineMessages, FormattedMessage } from "react-intl";
 
-import InlineTrigger from "@jyosuushi/ui/components/InlineTrigger";
+import IconGitHub from "./github.svg";
+import IconTwitter from "./twitter.svg";
 
-import BugIcon from "@jyosuushi/icons/bug.png";
-import CommentsIcon from "@jyosuushi/icons/comments.png";
-import CodeIcon from "@jyosuushi/icons/code.png";
-
-import { BugReportModal } from "@jyosuushi/ui/feedback/BugReport";
-import { FeatureSuggestionModal } from "@jyosuushi/ui/feedback/FeatureSuggestion";
-
+import FeedbackLink from "./FeedbackLink";
 import styles from "./FeedbackPage.scss";
-
-enum FeedbackPageModal {
-  BugReport = "bug-report",
-  FeatureSuggestion = "feature-suggestion",
-}
-
-type LinkEntry = {
-  description: MessageDescriptor;
-  icon: string;
-  linkText: MessageDescriptor;
-} & (
-  | {
-      type: "external-link";
-      url: string;
-    }
-  | {
-      type: "modal";
-      id: FeedbackPageModal;
-      modal: React.ComponentType<{ onRequestClose: () => void }>;
-    }
-);
 
 const INTL_MESSAGES = defineMessages({
   contributeDescription: {
     defaultMessage:
-      "The project is open source, and if you'd like to join in on working on the project, check out my GitHub!",
+      "Officially submit bug reports or feature requests. Or, fork the repository and open a pull request — I'd love help on this project!",
     id: "feedbackPage.links.contribute.description",
   },
   contributeLink: {
-    defaultMessage: "Help contribute",
+    defaultMessage: "GitHub Repository",
     id: "feedbackPage.links.contribute.link",
   },
   pageIntro: {
     defaultMessage:
-      "We're in open beta right now and I hope you enjoy the application! Expect updates frequently!",
+      "The project is open source and accepting bug reports, feature requests, and code contributions!",
     id: "feedbackPage.intro",
   },
-  reportBugDescription: {
+  personalTwitterDescription: {
     defaultMessage:
-      "Please help me make a more perfect service! A brief description of the problem (or a mistake with Japanese!) will help me track it down and fix it right away!",
-    id: "feedbackPage.links.reportBug.description",
+      "Send me a tweet or a direct message if you're not able to go through GitHub.",
+    id: "feedbackPage.links.personalTwitter.description",
   },
-  reportBugLink: {
-    defaultMessage: "Report a bug",
-    id: "feedbackPage.links.reportBug.link",
-  },
-  submitFeedbackDescription: {
-    defaultMessage:
-      "Share with me anything that you'd like to see happen, or any ideas on how I can improve this service!",
-    id: "feedbackPage.links.submitFeedback.description",
-  },
-  submitFeedbackLink: {
-    defaultMessage: "Submit feedback and ideas",
-    id: "feedbackPage.links.submitFeedback.linkText",
+  personalTwitterText: {
+    defaultMessage: "@AlecDeitloff",
+    id: "feedbackPage.links.personalTwitter.link",
   },
 });
 
-const LINKS: ReadonlyArray<LinkEntry> = [
-  {
-    description: INTL_MESSAGES.submitFeedbackDescription,
-    icon: CommentsIcon,
-    id: FeedbackPageModal.FeatureSuggestion,
-    linkText: INTL_MESSAGES.submitFeedbackLink,
-    modal: FeatureSuggestionModal,
-    type: "modal",
-  },
-  {
-    description: INTL_MESSAGES.reportBugDescription,
-    icon: BugIcon,
-    id: FeedbackPageModal.BugReport,
-    linkText: INTL_MESSAGES.reportBugLink,
-    modal: BugReportModal,
-    type: "modal",
-  },
-  {
-    description: INTL_MESSAGES.contributeDescription,
-    icon: CodeIcon,
-    linkText: INTL_MESSAGES.contributeLink,
-    type: "external-link",
-    url: "https://github.com/ahlec/jyosuushi",
-  },
-];
-
 function FeedbackPage(): React.ReactElement {
-  // Define state
-  const [openModal, setOpenModal] = useState<FeedbackPageModal | null>(null);
-
-  // Handle events
-  const handleRequestCloseModal = (): void => setOpenModal(null);
-
-  // Render an individual link
-  const renderLink = (link: LinkEntry, index: number): React.ReactNode => {
-    let linkComponent: React.ReactElement;
-    let followupComponent: React.ReactNode;
-    switch (link.type) {
-      case "external-link": {
-        linkComponent = (
-          <a
-            className={styles.feedbackLink}
-            href={link.url}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img src={link.icon} alt="" />{" "}
-            <FormattedMessage {...link.linkText} tagName="strong" />
-          </a>
-        );
-        followupComponent = null;
-        break;
-      }
-      case "modal": {
-        linkComponent = (
-          <InlineTrigger
-            className={styles.feedbackLink}
-            onTrigger={(): void => setOpenModal(link.id)}
-          >
-            <img src={link.icon} alt="" />{" "}
-            <FormattedMessage {...link.linkText} tagName="strong" />
-          </InlineTrigger>
-        );
-
-        if (openModal && link.id === openModal) {
-          const { modal: ModalComponent } = link;
-          followupComponent = (
-            <ModalComponent onRequestClose={handleRequestCloseModal} />
-          );
-        } else {
-          followupComponent = null;
-        }
-
-        break;
-      }
-    }
-
-    return (
-      <p key={index} className={styles.linkEntry}>
-        {linkComponent}
-        {". "}
-        <span className={styles.small}>
-          <FormattedMessage {...link.description} />
-        </span>
-        {followupComponent}
-      </p>
-    );
-  };
-
-  // Render this component
   return (
     <div className={styles.feedbackPage}>
       <p className={styles.intro}>
         <FormattedMessage {...INTL_MESSAGES.pageIntro} />
       </p>
       <hr />
-      {LINKS.map(renderLink)}
+      <FeedbackLink
+        className={styles.linkEntry}
+        description={INTL_MESSAGES.contributeDescription}
+        icon={IconGitHub}
+        text={INTL_MESSAGES.contributeLink}
+        url="https://github.com/ahlec/jyosuushi"
+      />
+      <FeedbackLink
+        className={styles.linkEntry}
+        description={INTL_MESSAGES.personalTwitterDescription}
+        icon={IconTwitter}
+        text={INTL_MESSAGES.personalTwitterText}
+        url="https://twitter.com/AlecDeitloff"
+      />
     </div>
   );
 }

@@ -4,7 +4,6 @@ import { Question } from "@jyosuushi/interfaces";
 import QuizManager from "@jyosuushi/ui/modules/quiz/state/QuizManager";
 import { QuizState } from "@jyosuushi/redux";
 
-import FeedbackFooter from "@jyosuushi/ui/feedback/FeedbackFooter";
 import AnswerInput from "./AnswerInput";
 import QuestionDisplay from "./QuestionDisplay";
 import ResultsView from "./ResultsView";
@@ -47,7 +46,6 @@ class QuestionView extends React.PureComponent<ComponentProps> {
           />
         )}
         <div className={styles.flex} />
-        <FeedbackFooter />
       </div>
     );
   }

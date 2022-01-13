@@ -64,160 +64,6 @@
     },
     "translation": ""
   },
-  "feedback.BaseUserFeedbackForm.buttons.clearMessage": {
-    "original": {
-      "defaultMessage": "Clear",
-      "filenames": [
-        "src/client/ui/feedback/BaseUserFeedbackForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "feedback.BaseUserFeedbackForm.buttons.submit": {
-    "original": {
-      "defaultMessage": "Submit",
-      "filenames": [
-        "src/client/ui/feedback/BaseUserFeedbackForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "feedback.BaseUserFeedbackForm.errors.serverCommunicationFailed": {
-    "original": {
-      "defaultMessage": "There was an error with the server when trying to submit your feedback. Please try again later.",
-      "filenames": [
-        "src/client/ui/feedback/BaseUserFeedbackForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "feedback.BaseUserFeedbackForm.errors.submissionFailed": {
-    "original": {
-      "defaultMessage": "Your feedback was unable to be saved. Please try again.",
-      "description": "Could communicate with the server, but the server rejected the submission because of validation reasons.",
-      "filenames": [
-        "src/client/ui/feedback/BaseUserFeedbackForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "feedback.BaseUserFeedbackForm.fields.message.label": {
-    "original": {
-      "defaultMessage": "Message",
-      "filenames": [
-        "src/client/ui/feedback/BaseUserFeedbackForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "feedback.BaseUserFeedbackForm.fields.message.numRemainingCharacters": {
-    "original": {
-      "defaultMessage": "You have {numRemaining, plural, one {# character} other {# characters}} remaining.",
-      "filenames": [
-        "src/client/ui/feedback/BaseUserFeedbackForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "feedback.BaseUserFeedbackForm.fields.message.validation.tooLong": {
-    "original": {
-      "defaultMessage": "Your message is too long to submit.",
-      "filenames": [
-        "src/client/ui/feedback/BaseUserFeedbackForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "feedback.BaseUserFeedbackForm.fields.message.validation.tooShort": {
-    "original": {
-      "defaultMessage": "Your message requires {numMoreCharactersRequired, plural, one {# more character} other {# more characters}}.",
-      "filenames": [
-        "src/client/ui/feedback/BaseUserFeedbackForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "feedback.bugReport.formExplanation": {
-    "original": {
-      "defaultMessage": "Please describe the bug that you've encountered, including what you were doing when it happened. The more details you give, the more likely we'll be able to fix it.",
-      "filenames": [
-        "src/client/ui/feedback/BugReport.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "feedback.bugReport.modalHeader": {
-    "original": {
-      "defaultMessage": "Report a Bug",
-      "filenames": [
-        "src/client/ui/feedback/BugReport.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "feedback.bugReport.successToast": {
-    "original": {
-      "defaultMessage": "Your bug report has been submitted.",
-      "filenames": [
-        "src/client/ui/feedback/BugReport.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "feedback.submitFeedback.formExplanation": {
-    "original": {
-      "defaultMessage": "What would you like to see come to this site?",
-      "filenames": [
-        "src/client/ui/feedback/FeatureSuggestion.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "feedback.submitFeedback.modalHeader": {
-    "original": {
-      "defaultMessage": "Submit Feedback",
-      "filenames": [
-        "src/client/ui/feedback/FeatureSuggestion.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "feedback.submitFeedback.successToast": {
-    "original": {
-      "defaultMessage": "Your suggestion has been submitted.",
-      "filenames": [
-        "src/client/ui/feedback/FeatureSuggestion.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "FeedbackFooter.contents": {
-    "original": {
-      "defaultMessage": "Your thoughts are super appreciated! {reportBug} or {submitFeedback}.",
-      "filenames": [
-        "src/client/ui/feedback/FeedbackFooter.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "FeedbackFooter.reportBugLink": {
-    "original": {
-      "defaultMessage": "Report a Bug",
-      "filenames": [
-        "src/client/ui/feedback/FeedbackFooter.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "FeedbackFooter.submitFeedbackLink": {
-    "original": {
-      "defaultMessage": "Submit Feedback",
-      "filenames": [
-        "src/client/ui/feedback/FeedbackFooter.tsx"
-      ]
-    },
-    "translation": ""
-  },
   "header.AbortConfirmationModal.header": {
     "original": {
       "defaultMessage": "End Quiz Early?",
@@ -283,7 +129,7 @@
   },
   "feedbackPage.links.contribute.description": {
     "original": {
-      "defaultMessage": "The project is open source, and if you'd like to join in on working on the project, check out my GitHub!",
+      "defaultMessage": "Officially submit bug reports or feature requests. Or, fork the repository and open a pull request — I'd love help on this project!",
       "filenames": [
         "src/client/ui/main-screen/feedback/FeedbackPage.tsx"
       ]
@@ -292,7 +138,7 @@
   },
   "feedbackPage.links.contribute.link": {
     "original": {
-      "defaultMessage": "Help contribute",
+      "defaultMessage": "GitHub Repository",
       "filenames": [
         "src/client/ui/main-screen/feedback/FeedbackPage.tsx"
       ]
@@ -301,43 +147,25 @@
   },
   "feedbackPage.intro": {
     "original": {
-      "defaultMessage": "We're in open beta right now and I hope you enjoy the application! Expect updates frequently!",
+      "defaultMessage": "The project is open source and accepting bug reports, feature requests, and code contributions!",
       "filenames": [
         "src/client/ui/main-screen/feedback/FeedbackPage.tsx"
       ]
     },
     "translation": ""
   },
-  "feedbackPage.links.reportBug.description": {
+  "feedbackPage.links.personalTwitter.description": {
     "original": {
-      "defaultMessage": "Please help me make a more perfect service! A brief description of the problem (or a mistake with Japanese!) will help me track it down and fix it right away!",
+      "defaultMessage": "Send me a tweet or a direct message if you're not able to go through GitHub.",
       "filenames": [
         "src/client/ui/main-screen/feedback/FeedbackPage.tsx"
       ]
     },
     "translation": ""
   },
-  "feedbackPage.links.reportBug.link": {
+  "feedbackPage.links.personalTwitter.link": {
     "original": {
-      "defaultMessage": "Report a bug",
-      "filenames": [
-        "src/client/ui/main-screen/feedback/FeedbackPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "feedbackPage.links.submitFeedback.description": {
-    "original": {
-      "defaultMessage": "Share with me anything that you'd like to see happen, or any ideas on how I can improve this service!",
-      "filenames": [
-        "src/client/ui/main-screen/feedback/FeedbackPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "feedbackPage.links.submitFeedback.linkText": {
-    "original": {
-      "defaultMessage": "Submit feedback and ideas",
+      "defaultMessage": "@AlecDeitloff",
       "filenames": [
         "src/client/ui/main-screen/feedback/FeedbackPage.tsx"
       ]
@@ -569,27 +397,9 @@
     },
     "translation": ""
   },
-  "Sidebar.pages.login": {
-    "original": {
-      "defaultMessage": "Login",
-      "filenames": [
-        "src/client/ui/main-screen/sidebar/Sidebar.tsx"
-      ]
-    },
-    "translation": ""
-  },
   "Sidebar.pages.prepare": {
     "original": {
       "defaultMessage": "Prepare",
-      "filenames": [
-        "src/client/ui/main-screen/sidebar/Sidebar.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "Sidebar.pages.profile": {
-    "original": {
-      "defaultMessage": "Your Profile",
       "filenames": [
         "src/client/ui/main-screen/sidebar/Sidebar.tsx"
       ]
@@ -610,555 +420,6 @@
       "defaultMessage": "Settings",
       "filenames": [
         "src/client/ui/main-screen/sidebar/Sidebar.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "authentication.errors.emailBadFormat": {
-    "original": {
-      "defaultMessage": "This should be an email.",
-      "filenames": [
-        "src/client/ui/modules/authentication/error-messages.ts"
-      ]
-    },
-    "translation": ""
-  },
-  "authentication.errors.fieldEmpty": {
-    "original": {
-      "defaultMessage": "This field must be specified.",
-      "filenames": [
-        "src/client/ui/modules/authentication/error-messages.ts"
-      ]
-    },
-    "translation": ""
-  },
-  "authentication.errors.passwordMissingNumeral": {
-    "original": {
-      "defaultMessage": "Your password must have at least one numerical character (0-9).",
-      "filenames": [
-        "src/client/ui/modules/authentication/error-messages.ts"
-      ]
-    },
-    "translation": ""
-  },
-  "authentication.errors.passwordTooShort": {
-    "original": {
-      "defaultMessage": "Your password must be at least {minLength, plural, one {1 character} other {# characters}} long.",
-      "filenames": [
-        "src/client/ui/modules/authentication/error-messages.ts"
-      ]
-    },
-    "translation": ""
-  },
-  "authentication.errors.passwordsDontMatch": {
-    "original": {
-      "defaultMessage": "Passwords do not match.",
-      "filenames": [
-        "src/client/ui/modules/authentication/error-messages.ts"
-      ]
-    },
-    "translation": ""
-  },
-  "authentication.errors.unknown": {
-    "original": {
-      "defaultMessage": "An error occurred while trying to process your request. Please try again in a moment.",
-      "filenames": [
-        "src/client/ui/modules/authentication/error-messages.ts"
-      ]
-    },
-    "translation": ""
-  },
-  "forgot-password.form.button.resetPassword": {
-    "original": {
-      "defaultMessage": "Reset Password",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/forgot-password/ForgotPasswordForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "forgot-password.form.email.label": {
-    "original": {
-      "defaultMessage": "Email",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/forgot-password/ForgotPasswordForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "forgot-password.errors.rateLimited": {
-    "original": {
-      "defaultMessage": "You have attempted to reset your password too many times too quickly. Please try again after a minute.",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/forgot-password/ForgotPasswordPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "forgot-password.description": {
-    "original": {
-      "defaultMessage": "Use this form to send an email that will guide you through resetting your password.",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/forgot-password/ForgotPasswordPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "forgot-password.header": {
-    "original": {
-      "defaultMessage": "Reset Password",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/forgot-password/ForgotPasswordPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "forgot-password.possibleSuccess": {
-    "original": {
-      "defaultMessage": "<bold>Please check your email inbox.</bold> If the email specified is registered with us, you will receive a link to reset your password shortly.",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/forgot-password/ForgotPasswordPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "login-page.login-form.buttons.login": {
-    "original": {
-      "defaultMessage": "Login",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/login/LoginForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "login-page.login-form.email.label": {
-    "original": {
-      "defaultMessage": "Email",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/login/LoginForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "login-page.login-form.password.label": {
-    "original": {
-      "defaultMessage": "Password",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/login/LoginForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "login-page.login-form.forgot-password": {
-    "original": {
-      "defaultMessage": "Forgot password?",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/login/LoginForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "login-page.errors.credentialsInvalid": {
-    "original": {
-      "defaultMessage": "The email/password combination provided was incorrect.",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/login/LoginPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "login-page.errors.rateLimited": {
-    "original": {
-      "defaultMessage": "You have attempted to log in too many times. Please try again after a minute.",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/login/LoginPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "login-page.login.header": {
-    "original": {
-      "defaultMessage": "Sign in",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/login/LoginPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "login-page.resend-email-verification.header": {
-    "original": {
-      "defaultMessage": "Verification Required",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/login/LoginPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "login-page.login.description": {
-    "original": {
-      "defaultMessage": "Log in to your account to create custom quizzes and track your results.",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/login/LoginPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "login-page.login.registerAccountParagraph": {
-    "original": {
-      "defaultMessage": "Or, click <link>here</link> to register an account with us for free.",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/login/LoginPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "login-page.verification-required.errorEmailSentTooRecently": {
-    "original": {
-      "defaultMessage": "A verification link was recently sent to your inbox. Please wait a few minutes before requesting a new link.",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/login/ResendVerificationEmailForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "login-page.verification-required.errorRateLimited": {
-    "original": {
-      "defaultMessage": "You've requested too many verification emails recently. Please wait a few minutes and try again.",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/login/ResendVerificationEmailForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "login-page.verification-required.errorUnknownError": {
-    "original": {
-      "defaultMessage": "An error occurred while trying to request your new verification email. Please try again in a few seconds or reach out to the developers.",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/login/ResendVerificationEmailForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "login-page.verification-required.explanationBrief": {
-    "original": {
-      "defaultMessage": "You must verify your email before you can log in.",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/login/ResendVerificationEmailForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "login-page.verification-required.explanationDetailed": {
-    "original": {
-      "defaultMessage": "A link was sent to your email when you registered; following that link will verify your account and allow you to log in.",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/login/ResendVerificationEmailForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "login-page.verification-required.explanationResend": {
-    "original": {
-      "defaultMessage": "If you haven't received the email or no longer have it, you can click the button below to send a new link to the same address.",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/login/ResendVerificationEmailForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "login-page.verification-required.requestSuccessMessage": {
-    "original": {
-      "defaultMessage": "A verification link was just sent to your email address. Give it a few seconds to arrive, and check your spam folder to make sure it wasn't caught there.",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/login/ResendVerificationEmailForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "login-page.verification-required.resendButtonLabel": {
-    "original": {
-      "defaultMessage": "Resend Verification Email",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/login/ResendVerificationEmailForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "profile.change-password.form.buttons.confirm": {
-    "original": {
-      "defaultMessage": "Change Password",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/profile/change-password/ChangePasswordForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "profile.change-password.form.confirm-password.label": {
-    "original": {
-      "defaultMessage": "Confirm New Password",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/profile/change-password/ChangePasswordForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "profile.change-password.form.new-password.label": {
-    "original": {
-      "defaultMessage": "New Password",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/profile/change-password/ChangePasswordForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "profile.change-password.form.old-password.label": {
-    "original": {
-      "defaultMessage": "Current Password",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/profile/change-password/ChangePasswordForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "profile-page.change-password-modal.errors.noLongerAuthenticated": {
-    "original": {
-      "defaultMessage": "An error has occurred. Please try refreshing the page.",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/profile/change-password/ChangePasswordModal.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "profile-page.change-password-modal.errors.oldPasswordIncorrect": {
-    "original": {
-      "defaultMessage": "Password does not match your current password.",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/profile/change-password/ChangePasswordModal.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "profile-page.change-password-modal.errors.rateLimited": {
-    "original": {
-      "defaultMessage": "You have attempted to change your password too many times too quickly. Please try again after a minute.",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/profile/change-password/ChangePasswordModal.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "profile-page.change-password-modal.header": {
-    "original": {
-      "defaultMessage": "Change Password",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/profile/change-password/ChangePasswordModal.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "profile-page.fields.password.open-modal-button-label": {
-    "original": {
-      "defaultMessage": "Change Password",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/profile/ProfilePage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "profile-page.fields.date-registered.header": {
-    "original": {
-      "defaultMessage": "Date Registered",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/profile/ProfilePage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "profile-page.fields.email.header": {
-    "original": {
-      "defaultMessage": "Email",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/profile/ProfilePage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "profile-page.fields.password.header": {
-    "original": {
-      "defaultMessage": "Password",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/profile/ProfilePage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "profile-page.logout.button-label": {
-    "original": {
-      "defaultMessage": "Logout",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/profile/ProfilePage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "profile-page.page-purpose": {
-    "original": {
-      "defaultMessage": "Manage your account details and track your progress.",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/profile/ProfilePage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "profile-page.page-title": {
-    "original": {
-      "defaultMessage": "Your Profile",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/profile/ProfilePage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "profile-page.fields.password.last-changed-label": {
-    "original": {
-      "defaultMessage": "Date last changed: {date}",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/profile/ProfilePage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "register-account.RegisterAccountForm.buttons.register": {
-    "original": {
-      "defaultMessage": "Register",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/register-account/RegisterAccountForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "register-account.RegisterAccountForm.email.label": {
-    "original": {
-      "defaultMessage": "Email",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/register-account/RegisterAccountForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "register-account.RegisterAccountForm.password.label": {
-    "original": {
-      "defaultMessage": "Password",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/register-account/RegisterAccountForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "register-account.RegisterAccountPage.errors.accountAlreadyExists": {
-    "original": {
-      "defaultMessage": "An account with this email already exists.",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/register-account/RegisterAccountPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "register-account.RegisterAccountPage.errors.rateLimited": {
-    "original": {
-      "defaultMessage": "You have attempted to register an account too many times. Please try again after a minute.",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/register-account/RegisterAccountPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "register-account.RegisterAccountPage.header": {
-    "original": {
-      "defaultMessage": "Register Account",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/register-account/RegisterAccountPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "register-account.RegisterAccountPage.description": {
-    "original": {
-      "defaultMessage": "Register an account for free to create custom quizzes and track your results.",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/register-account/RegisterAccountPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "register-account.RegisterAccountPage.success": {
-    "original": {
-      "defaultMessage": "Your account has been registered! Please <bold>check your email</bold> to verify your account and log in.",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/register-account/RegisterAccountPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "reset-password.reset-password-form.buttons.changePassword": {
-    "original": {
-      "defaultMessage": "Change Password",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/reset-password/ResetPasswordForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "reset-password.reset-password-form.confirmPassword.label": {
-    "original": {
-      "defaultMessage": "Confirm password",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/reset-password/ResetPasswordForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "reset-password.reset-password-form.password.label": {
-    "original": {
-      "defaultMessage": "Password",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/reset-password/ResetPasswordForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "reset-password.reset-password-form.validation.passwordsDontMatch": {
-    "original": {
-      "defaultMessage": "Passwords do not match.",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/reset-password/ResetPasswordForm.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "reset-password.errors.rateLimited": {
-    "original": {
-      "defaultMessage": "You have attempted to reset your password too many times too quickly. Please try again after a minute.",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/reset-password/ResetPasswordPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "reset-password.description": {
-    "original": {
-      "defaultMessage": "Choose a new password for your account. It should be at least {minLength, plural, one {# character} other {# characters}} long and include at least one numeral.",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/reset-password/ResetPasswordPage.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "reset-password.header": {
-    "original": {
-      "defaultMessage": "Reset Password",
-      "filenames": [
-        "src/client/ui/modules/authentication/pages/reset-password/ResetPasswordPage.tsx"
       ]
     },
     "translation": ""
@@ -1213,15 +474,6 @@
       "defaultMessage": "Counter collection names must be between {minLength} and {maxLength} characters long.",
       "filenames": [
         "src/client/ui/modules/explore/components/collection-name-form/useCollectionNameValidation.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "main.explore.ExplorePage.serverErrorMessage": {
-    "original": {
-      "defaultMessage": "An error has occurred. Please try back later, we're working hard to fix it!",
-      "filenames": [
-        "src/client/ui/modules/explore/ExplorePage.tsx"
       ]
     },
     "translation": ""
@@ -1302,7 +554,7 @@
     "original": {
       "defaultMessage": "Rename Collection",
       "filenames": [
-        "src/client/ui/modules/explore/pages/collection/rename-collection-modal/RenameCollectionModal.tsx"
+        "src/client/ui/modules/explore/pages/collection/RenameCollectionModal.tsx"
       ]
     },
     "translation": ""
@@ -1311,43 +563,7 @@
     "original": {
       "defaultMessage": "Confirm",
       "filenames": [
-        "src/client/ui/modules/explore/pages/collection/rename-collection-modal/RenameCollectionModal.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explore.collections.useRenameCollection.errors.nameIncorrectLength": {
-    "original": {
-      "defaultMessage": "The name of a collection must be between {minLength} and {maxLength} characters.",
-      "filenames": [
-        "src/client/ui/modules/explore/pages/collection/rename-collection-modal/useRenameCollection.ts"
-      ]
-    },
-    "translation": ""
-  },
-  "explore.collections.useRenameCollection.errors.notAuthenticated": {
-    "original": {
-      "defaultMessage": "Only authenticated users are able to use custom collections. Please log in or register and try again.",
-      "filenames": [
-        "src/client/ui/modules/explore/pages/collection/rename-collection-modal/useRenameCollection.ts"
-      ]
-    },
-    "translation": ""
-  },
-  "explore.collections.useRenameCollection.errors.rateLimited": {
-    "original": {
-      "defaultMessage": "You have attempted to rename this collection too many times recently. Please wait a few minutes before trying again.",
-      "filenames": [
-        "src/client/ui/modules/explore/pages/collection/rename-collection-modal/useRenameCollection.ts"
-      ]
-    },
-    "translation": ""
-  },
-  "explore.collections.useRenameCollection.errors.unknown": {
-    "original": {
-      "defaultMessage": "An error has occurred and the collection couldn't be rename. Please try again in a few minutes.",
-      "filenames": [
-        "src/client/ui/modules/explore/pages/collection/rename-collection-modal/useRenameCollection.ts"
+        "src/client/ui/modules/explore/pages/collection/RenameCollectionModal.tsx"
       ]
     },
     "translation": ""
@@ -1599,7 +815,7 @@
     "original": {
       "defaultMessage": "Create Custom Collection",
       "filenames": [
-        "src/client/ui/modules/explore/pages/landing/create-collection-modal/CreateCollectionModal.tsx"
+        "src/client/ui/modules/explore/pages/landing/CreateCollectionModal.tsx"
       ]
     },
     "translation": ""
@@ -1608,43 +824,7 @@
     "original": {
       "defaultMessage": "Create",
       "filenames": [
-        "src/client/ui/modules/explore/pages/landing/create-collection-modal/CreateCollectionModal.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explore.landing.create-collection-modal.useCreateCollection.errors.nameIncorrectLength": {
-    "original": {
-      "defaultMessage": "The name of a collection must be between {minLength} and {maxLength} characters.",
-      "filenames": [
-        "src/client/ui/modules/explore/pages/landing/create-collection-modal/useCreateCollection.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explore.landing.create-collection-modal.useCreateCollection.errors.notAuthenticated": {
-    "original": {
-      "defaultMessage": "Only authenticated users are able to create custom collections. Please log in or register and try again.",
-      "filenames": [
-        "src/client/ui/modules/explore/pages/landing/create-collection-modal/useCreateCollection.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explore.landing.create-collection-modal.useCreateCollection.errors.rateLimited": {
-    "original": {
-      "defaultMessage": "You have attempted to create a collection too many times recently. Please wait a few minutes before trying again.",
-      "filenames": [
-        "src/client/ui/modules/explore/pages/landing/create-collection-modal/useCreateCollection.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explore.landing.create-collection-modal.useCreateCollection.errors.unknown": {
-    "original": {
-      "defaultMessage": "An error has occurred and the collection couldn't be created. Please try again in a few minutes.",
-      "filenames": [
-        "src/client/ui/modules/explore/pages/landing/create-collection-modal/useCreateCollection.tsx"
+        "src/client/ui/modules/explore/pages/landing/CreateCollectionModal.tsx"
       ]
     },
     "translation": ""
