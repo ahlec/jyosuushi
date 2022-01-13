@@ -1,13 +1,9 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback } from "react";
 import { defineMessages } from "react-intl";
 
 import { UserCounterCollection } from "@jyosuushi/interfaces";
 
 import BaseDialog from "@jyosuushi/ui/components/popups/BaseDialog";
-
-import useAddCounterToCollection from "@jyosuushi/ui/modules/explore/hooks/useAddCounterToCollection";
-import useRemoveCounterFromCollection from "@jyosuushi/ui/modules/explore/hooks/useRemoveCounterFromCollection";
-import { RedirectLocation } from "@jyosuushi/ui/modules/explore/pages/counter/types";
 
 import CollectionRow from "./CollectionRow";
 
@@ -34,12 +30,8 @@ interface ComponentProps {
   /**
    * A callback that can be invoked to request that the dialog be closed. This
    * will not be called if {@link ComponentProps.isOpen} is false.
-   *
-   * If this modal is closing with the recommendation to redirect elsewhere,
-   * the requested redirect will be included as the first parameter. If this
-   * modal is closing with normal behavior, the first parameter will be null.
    */
-  onRequestClose: (redirectLocation: RedirectLocation | null) => void;
+  onRequestClose: () => void;
 
   /**
    * The array of custom collections that the currently authenticated user has
@@ -54,42 +46,17 @@ function EditMembershipDialog({
   onRequestClose,
   userCollections,
 }: ComponentProps): React.ReactElement {
-  // Connect with the server
-  const {
-    callback: addCounterToCollection,
-    redirectRequest: addRedirectRequest,
-  } = useAddCounterToCollection();
-  const {
-    callback: removeCounterFromCollection,
-    redirectRequest: removeRedirectRequest,
-  } = useRemoveCounterFromCollection();
-
-  // Current the normal `onRequestClose` callback
-  const handleRequestClose = useCallback((): void => onRequestClose(null), [
-    onRequestClose,
-  ]);
-
-  // If one of the callbacks has requested a redirect, bubble that up
-  const redirectRequest = addRedirectRequest || removeRedirectRequest;
-  useEffect((): void => {
-    if (!redirectRequest) {
-      return;
-    }
-
-    onRequestClose(redirectRequest);
-  }, [onRequestClose, redirectRequest]);
-
   // Handle events
   const handleAddToCollection = useCallback(
-    (collectionId: string): Promise<void> =>
-      addCounterToCollection(counterId, collectionId),
-    [addCounterToCollection, counterId]
+    (collection: UserCounterCollection): Promise<void> =>
+      collection.addCounter(counterId),
+    [counterId]
   );
 
   const handleRemoveFromCollection = useCallback(
-    (collectionId: string): Promise<void> =>
-      removeCounterFromCollection(counterId, collectionId),
-    [removeCounterFromCollection, counterId]
+    (collection: UserCounterCollection): Promise<void> =>
+      collection.removeCounter(counterId),
+    [counterId]
   );
 
   // Render the component
@@ -101,7 +68,7 @@ function EditMembershipDialog({
       contentClassName={styles.content}
       header={INTL_MESSAGES.dialogHeader}
       isOpen={isOpen}
-      onRequestClose={handleRequestClose}
+      onRequestClose={onRequestClose}
     >
       <div className={styles.collections}>
         {userCollections.map(

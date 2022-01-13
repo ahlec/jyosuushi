@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useState } from "react";
 import { defineMessages } from "react-intl";
-import { Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import { UserCounterCollection } from "@jyosuushi/interfaces";
 
@@ -9,8 +9,6 @@ import ActionBar, {
 } from "@jyosuushi/ui/modules/explore/components/action-bar/ActionBar";
 
 import PencilIcon from "@jyosuushi/ui/modules/explore/pencil.svg";
-import useAddCounterToCollection from "@jyosuushi/ui/modules/explore/hooks/useAddCounterToCollection";
-import useRemoveCounterFromCollection from "@jyosuushi/ui/modules/explore/hooks/useRemoveCounterFromCollection";
 import { EXPLORE_PAGE_PATH } from "@jyosuushi/ui/modules/explore/pathing";
 
 import BaseCounterCollectionView from "./BaseCounterCollectionView";
@@ -52,16 +50,6 @@ function UserCollectionView({
   const [isEditingContents, setIsEditingContents] = useState<boolean>(false);
   const [isRenameModalOpen, setIsRenameModalOpen] = useState<boolean>(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
-
-  // Connect with the backend
-  const {
-    callback: addCounterToCollection,
-    redirectRequest: addCounterRedirectRequest,
-  } = useAddCounterToCollection();
-  const {
-    callback: removeCounterFromCollection,
-    redirectRequest: removeCounterRedirectRequest,
-  } = useRemoveCounterFromCollection();
 
   // Prepare the action bar
   const actionBarItems = useMemo(
@@ -109,35 +97,14 @@ function UserCollectionView({
   }, [collection, history]);
 
   const handleAddCounter = useCallback(
-    (counterId: string) => addCounterToCollection(counterId, collection.id),
-    [addCounterToCollection, collection.id]
+    (counterId: string) => collection.addCounter(counterId),
+    [collection]
   );
 
   const handleRemoveCounter = useCallback(
-    (counterId: string) =>
-      removeCounterFromCollection(counterId, collection.id),
-    [removeCounterFromCollection, collection.id]
+    (counterId: string) => collection.removeCounter(counterId),
+    [collection]
   );
-
-  // Handle redirecting to a different location, if one of our API requests
-  // indicates we should redirect
-  const redirectRequest =
-    addCounterRedirectRequest || removeCounterRedirectRequest;
-  if (redirectRequest) {
-    let to: string;
-    switch (redirectRequest) {
-      case "explore-landing-page": {
-        to = "/explore";
-        break;
-      }
-      case "profile": {
-        to = "/profile";
-        break;
-      }
-    }
-
-    return <Redirect to={to} />;
-  }
 
   // Render the component
   return (

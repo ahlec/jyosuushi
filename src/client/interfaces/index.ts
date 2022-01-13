@@ -213,6 +213,18 @@ export interface UserCounterCollection extends CounterCollection {
    * Deletes this collection, resolving after the change has taken place.
    */
   delete: () => Promise<void>;
+
+  /**
+   * Adds a counter to this collection, resolving after the change has
+   * taken place.
+   */
+  addCounter: (counterId: string) => Promise<void>;
+
+  /**
+   * Removes a counter from this collection, resolving after the change has
+   * taken place.
+   */
+  removeCounter: (counterId: string) => Promise<void>;
 }
 
 /**

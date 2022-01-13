@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useState } from "react";
 import { defineMessages } from "react-intl";
-import { Redirect, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import { UserCounterCollection } from "@jyosuushi/interfaces";
 import useLocale from "@jyosuushi/i18n/useLocale";
@@ -28,7 +28,6 @@ import FootnotesSection from "./FootnotesSection";
 import InfoSection, { hasInfoSectionContents } from "./InfoSection";
 import ItemsSection, { hasItemsSectionContents } from "./ItemsSection";
 import SectionContainer, { SectionActionDefinition } from "./SectionContainer";
-import { RedirectLocation } from "./types";
 
 import PencilIcon from "@jyosuushi/ui/modules/explore/pencil.svg";
 
@@ -80,12 +79,6 @@ function ExploreCounterPage({
   const locale = useLocale();
   const location = useLocation();
 
-  // Define component state
-  const [
-    redirectRequest,
-    setRedirectRequest,
-  ] = useState<RedirectLocation | null>(null);
-
   // Handle editing collection membership
   const [isEditMembershipDialogOpen, setIsEditMembershipDialogOpen] = useState<
     boolean
@@ -102,13 +95,9 @@ function ExploreCounterPage({
     []
   );
 
-  const handleRequestEditMembershipDialogClose = useCallback(
-    (redirectTo: RedirectLocation | null): void => {
-      setIsEditMembershipDialogOpen(false);
-      setRedirectRequest(redirectTo);
-    },
-    []
-  );
+  const handleRequestEditMembershipDialogClose = useCallback((): void => {
+    setIsEditMembershipDialogOpen(false);
+  }, []);
 
   // Determine the links that should apear in the breadcrumb bar
   const breadcrumbLinks = useMemo((): readonly BreadcrumbBarLinkDefinition[] => {
@@ -137,21 +126,6 @@ function ExploreCounterPage({
 
     return links;
   }, [counter, locale, location.state]);
-
-  // If we should be redirecting to another location, do so here.
-  if (redirectRequest) {
-    switch (redirectRequest) {
-      case "explore-landing-page": {
-        return <Redirect to="/explore" />;
-      }
-      case "profile": {
-        return <Redirect to="/profile" />;
-      }
-      default: {
-        return redirectRequest;
-      }
-    }
-  }
 
   // Render the component
   return (

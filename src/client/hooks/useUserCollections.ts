@@ -97,12 +97,62 @@ function useUserCollections(): HookResults {
     USER_COLLECTIONS_STORAGE.setValue(state.collections);
   }, [state.collections]);
 
+  // Build a utility function that generates a field mutator for UserCounterCollections
+  // (the general case for functions).
+  const mutateCollectionField = useCallback(
+    (
+      collectionId: string,
+      generate: (current: SerializedUserCollection) => SerializedUserCollection
+    ): Promise<void> => {
+      return new Promise((resolve, reject) => {
+        setState(
+          (current): InternalState => {
+            const index = current.collections.findIndex(
+              ({ id }) => id === collectionId
+            );
+            if (index < 0) {
+              return {
+                callbacks: [
+                  ...current.callbacks,
+                  () => reject(new Error("This collection no longer exists")),
+                ],
+                collections: current.collections,
+              };
+            }
+
+            // Create a new container array and a new instance of the
+            // collection object
+            const nextCollections = [...current.collections];
+            nextCollections[index] = generate(nextCollections[index]);
+
+            return {
+              callbacks: [...current.callbacks, resolve],
+              collections: nextCollections,
+            };
+          }
+        );
+      });
+    },
+    []
+  );
+
   // Convert our serialized data structures into our client types
   const userCollections = useMemo(
     (): readonly UserCounterCollection[] =>
       state.collections.map(
         (collection): UserCounterCollection => ({
           ...collection,
+          addCounter: (counterId) =>
+            mutateCollectionField(collection.id, (current) => {
+              if (current.counterIds.includes(counterId)) {
+                return current;
+              }
+
+              return {
+                ...current,
+                counterIds: [...current.counterIds, counterId],
+              };
+            }),
           delete: () =>
             new Promise((resolve, reject) => {
               setState(
@@ -130,42 +180,29 @@ function useUserCollections(): HookResults {
                 }
               );
             }),
-          rename: (name) =>
-            new Promise((resolve, reject) => {
-              setState(
-                (current): InternalState => {
-                  const index = current.collections.findIndex(
-                    ({ id }) => id === collection.id
-                  );
-                  if (index < 0) {
-                    return {
-                      callbacks: [
-                        ...current.callbacks,
-                        () =>
-                          reject(new Error("This collection no longer exists")),
-                      ],
-                      collections: current.collections,
-                    };
-                  }
+          removeCounter: (counterId) =>
+            mutateCollectionField(collection.id, (current) => {
+              const index = current.counterIds.indexOf(counterId);
+              if (index < 0) {
+                return current;
+              }
 
-                  // Create a new container array and a new instance of the
-                  // collection object
-                  const nextCollections = [...current.collections];
-                  nextCollections[index] = {
-                    ...nextCollections[index],
-                    name,
-                  };
+              const nextCounters = [...current.counterIds];
+              nextCounters.splice(index, 1);
 
-                  return {
-                    callbacks: [...current.callbacks, resolve],
-                    collections: nextCollections,
-                  };
-                }
-              );
+              return {
+                ...current,
+                counterIds: nextCounters,
+              };
             }),
+          rename: (name) =>
+            mutateCollectionField(collection.id, (current) => ({
+              ...current,
+              name,
+            })),
         })
       ),
-    [state.collections]
+    [state.collections, mutateCollectionField]
   );
 
   // Create a memoized function to create new user collections

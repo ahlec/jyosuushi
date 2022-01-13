@@ -3,8 +3,8 @@ import { Route, Switch } from "react-router-dom";
 
 import { PageComponentProps } from "@jyosuushi/ui/types";
 
-import useExploreRoutes from "./hooks/useExploreRoutes";
 import LandingView from "./pages/landing/LandingView";
+import useExploreRoutes from "./useExploreRoutes";
 
 function ExplorePage({
   createUserCollection,

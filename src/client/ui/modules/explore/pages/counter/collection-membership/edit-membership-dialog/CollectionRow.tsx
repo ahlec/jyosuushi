@@ -23,19 +23,14 @@ interface ComponentProps {
   /**
    * A callback which will be invoked if the user has indicated that they
    * wish to add the current counter to this collection.
-   *
-   * In general, this won't be called when
    */
-  onAddToCollection: (collectionId: string) => Promise<void>;
+  onAddToCollection: (collection: UserCounterCollection) => Promise<void>;
 
   /**
    * A callback which will be invoked if the user has indicated that they
    * wish to remove the current counter from this collection.
-   *
-   * In general, this won't be called when
-   * {@link ComponentProps.isCounterInCollection} is false.
    */
-  onRemoveFromCollection: (collectionId: string) => Promise<void>;
+  onRemoveFromCollection: (collection: UserCounterCollection) => Promise<void>;
 }
 
 function CollectionRow({
@@ -51,20 +46,20 @@ function CollectionRow({
   const handleAdd = useCallback(async (): Promise<void> => {
     try {
       setIsPerforming(true);
-      await onAddToCollection(collection.id);
+      await onAddToCollection(collection);
     } finally {
       setIsPerforming(false);
     }
-  }, [collection.id, onAddToCollection]);
+  }, [collection, onAddToCollection]);
 
   const handleRemove = useCallback(async (): Promise<void> => {
     try {
       setIsPerforming(true);
-      await onRemoveFromCollection(collection.id);
+      await onRemoveFromCollection(collection);
     } finally {
       setIsPerforming(false);
     }
-  }, [collection.id, onRemoveFromCollection]);
+  }, [collection, onRemoveFromCollection]);
 
   // Determine the current state to display
   let checkState: CheckState;
