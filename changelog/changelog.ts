@@ -18,6 +18,28 @@ import { ChangelogVersion } from "./types";
 
 export const CHANGELOG: readonly ChangelogVersion[] = [
   {
+    version: "v4.0.0",
+    date: "12 January 2022",
+    comments: `Version 3.0.0 rolled out user accounts as a solution to allowing you to create custom collections. However, this increased development complexity considerably and introduced a number of negative side effects — server instability, slow network requests, and requiring visitors to give their information (via registration) in order to access features. The uptake of user accounts was also rather low (though huge thanks and appreciation to everybody who registered).
+    
+I've opted to remove the backend from the application, fixing our downtime issues. This also removes user accounts. But custom collections still remain! They will now be saved in your browser. This comes with tradeoffs, but I hope you'll find this to be a net win.`,
+    bugFixes: [],
+    improvements: [
+      {
+        label: "In-browser custom collections.",
+        details:
+          "Custom collections no longer require user accounts, and are super fast!",
+      },
+      {
+        label: "Dramatically improved stability.",
+        details:
+          "Removal of the backend server removes any risk of the downtime we've seen throughout the past year, in perpetuity.",
+      },
+    ],
+    newFeatures: [],
+    developerChanges: ["Removed the backend server."],
+  },
+  {
     version: "v3.1.0",
     date: "7 March 2021",
     newFeatures: [
