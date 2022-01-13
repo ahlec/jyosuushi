@@ -1,8 +1,4 @@
 {
   "clientCloudfrontDistId": "",
-  "clientS3Bucket": "",
-  "serverDestination": "",
-  "serverPrivateKeyFilename": "",
-  "serverUploadAddress": "",
-  "serverUploadUsername": ""
+  "clientS3Bucket": ""
 }
