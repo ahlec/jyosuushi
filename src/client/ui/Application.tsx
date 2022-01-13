@@ -12,7 +12,6 @@ import {
 import { State } from "@jyosuushi/redux";
 import { getIsQuizActive } from "@jyosuushi/redux/selectors";
 
-import AuthenticationManager from "./AuthenticationManager";
 import Header from "./Header";
 import MainScreen from "./main-screen/MainScreen";
 import NavigationManager from "./NavigationManager";
@@ -57,7 +56,6 @@ class Application extends React.PureComponent<ComponentProps, ComponentState> {
           )}
         >
           <NavigationManager />
-          <AuthenticationManager />
           <Header
             isQuizActive={isQuizActive}
             onModalOpened={this.onHeaderModalOpened}

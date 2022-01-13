@@ -1,6 +1,0 @@
-mutation RequestEmailVerification($email: String!, $password: String!) {
-  requestEmailVerification(email: $email, password: $password) {
-    error
-    success
-  }
-}

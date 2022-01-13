@@ -10,7 +10,7 @@ import { CollectionMembershipEntry } from "./types";
 
 type CollectionType = "standard" | "user";
 
-interface GraphQlCollectionTypes {
+interface CollectionDataStructuresByType {
   standard: StandardCounterCollection;
   user: UserCounterCollection;
 }
@@ -18,7 +18,7 @@ interface GraphQlCollectionTypes {
 function useCollectionMembership<T extends CollectionType>(
   type: T,
   counterId: string,
-  collections: readonly GraphQlCollectionTypes[T][]
+  collections: readonly CollectionDataStructuresByType[T][]
 ): readonly CollectionMembershipEntry[] {
   return useMemo((): readonly CollectionMembershipEntry[] => {
     const entries: CollectionMembershipEntry[] = [];

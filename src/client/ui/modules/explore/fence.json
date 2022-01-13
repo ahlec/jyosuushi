@@ -3,7 +3,6 @@
   "exports": ["pages", "pathing"],
   "imports": [
     "client-components",
-    "client-graphql",
     "client-hooks",
     "client-interfaces",
     "client-i18n",
@@ -14,9 +13,7 @@
     "shared"
   ],
   "dependencies": [
-    "@apollo/client",
     "classnames",
-    "graphql-tag",
     "history",
     "lodash",
     "memoize-one",

@@ -8,7 +8,6 @@
   "imports": [
     "client-components",
     "client-constants",
-    "client-graphql",
     "client-hooks",
     "client-interfaces",
     "client-i18n",
