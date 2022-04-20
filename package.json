@@ -105,7 +105,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
-    "convict": "^6.0.0",
+    "convict": "^6.2.2",
     "convict-format-with-validator": "^6.0.0",
     "cosmiconfig": "^7.0.0",
     "lodash": "^4.17.21",
