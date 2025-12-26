@@ -2,8 +2,7 @@ import { execSync } from "child_process";
 import { existsSync, readFileSync, unlinkSync, writeFileSync } from "fs";
 import * as path from "path";
 import { format as formatSql } from "sql-formatter";
-import { Database as SQLiteDatabase, open as openSQLite } from "sqlite";
-import sqlite3 from "sqlite3";
+import BetterSqlite3 from "better-sqlite3";
 
 import {
   SchemaEntryTypes,
@@ -69,10 +68,7 @@ export default class Database implements AsyncDatabaseIndexer {
       unlinkSync(DATABASE_FILE);
     }
 
-    const db = await openSQLite({
-      driver: sqlite3.Database,
-      filename: DATABASE_FILE,
-    });
+    const db = new BetterSqlite3(DATABASE_FILE);
     for (const schema of ALL_SCHEMAS) {
       const file = path.resolve(SQL_DIRECTORY, `./${schema}.sql`);
       const sql = readFileSync(file);
@@ -84,14 +80,11 @@ export default class Database implements AsyncDatabaseIndexer {
   }
 
   public static async open(): Promise<Database> {
-    const db = await openSQLite({
-      driver: sqlite3.Database,
-      filename: DATABASE_FILE,
-    });
+    const db = new BetterSqlite3(DATABASE_FILE, { fileMustExist: true });
     return new Database(db);
   }
 
-  private constructor(private readonly connection: SQLiteDatabase) {}
+  private constructor(private readonly connection: BetterSqlite3.Database) {}
 
   public get counter_additional_readings(): Promise<
     ReadonlyArray<DbCounterAdditionalReading>
@@ -208,33 +201,33 @@ export default class Database implements AsyncDatabaseIndexer {
     await this.connection.close();
   }
 
-  private retrieve<
+  private async retrieve<
     TSchema extends Schemas | EnumSchemas,
     TEntry = SchemaEntryTypes[TSchema]
   >(schema: TSchema): Promise<ReadonlyArray<TEntry>> {
-    return this.connection.all(`SELECT * FROM ${schema}`);
+    return this.connection.prepare<[], TEntry>(`SELECT * FROM ${schema}`).all();
   }
 
   private async dumpTable(schema: Schemas | EnumSchemas): Promise<string> {
-    const creation = await this.connection.get<{ sql: string }>(
-      `SELECT sql FROM sqlite_master WHERE name = '${schema}'`
-    );
+    const creation = this.connection
+      .prepare<[], { sql: string }>(
+        `SELECT sql FROM sqlite_master WHERE name = '${schema}'`
+      )
+      .get();
     if (!creation) {
       throw new Error(`Could not find \`${schema}\` in sqlite_master.`);
     }
 
-    const columns = await this.connection.all<readonly { name: string }[]>(
-      `PRAGMA table_info('${schema}')`
-    );
+    const columns = this.connection
+      .prepare<[], { name: string }>(`PRAGMA table_info('${schema}')`)
+      .all();
     const insertColumnsList = columns
       .map(({ name }): string => name)
       .join(", ");
 
-    const rows = await this.connection.all<
-      readonly {
-        [columnName: string]: string | number;
-      }[]
-    >(`SELECT * FROM ${schema}`);
+    const rows = this.connection
+      .prepare<[], Record<string, string | number>>(`SELECT * FROM ${schema}`)
+      .all();
     const insertStatements = rows.map(
       (values): string =>
         `INSERT INTO "${schema}" (${insertColumnsList}) VALUES(${columns

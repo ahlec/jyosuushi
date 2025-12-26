@@ -82,8 +82,6 @@
     "sass": "^1.32.8",
     "sass-loader": "^9.0.2",
     "sql-formatter": "^2.3.3",
-    "sqlite": "^4.0.11",
-    "sqlite3": "^5.0.0",
     "style-loader": "^1.2.1",
     "stylelint": "^13.6.1",
     "stylelint-config-css-modules": "^2.2.0",
@@ -104,6 +102,8 @@
     "webpack-merge": "^5.0.9"
   },
   "dependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "better-sqlite3": "^12.5.0",
     "classnames": "^2.2.6",
     "convict": "^6.0.0",
     "convict-format-with-validator": "^6.0.0",
