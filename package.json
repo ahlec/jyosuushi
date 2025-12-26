@@ -4,7 +4,7 @@
   "author": "Alec Jacob Deitloff <alec.deitloff@gmail.com>",
   "license": "MIT",
   "engines": {
-    "node": ">=12.0.0"
+    "node": "24.12.0"
   },
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.js",
