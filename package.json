@@ -58,6 +58,7 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.20.3",
     "eslint-plugin-react-hooks": "^4.0.8",
+    "glob": "^13.0.0",
     "good-fences": "^0.9.1",
     "gulp": "^4.0.2",
     "gulp-awspublish": "^4.1.2",
