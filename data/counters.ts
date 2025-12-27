@@ -115,8 +115,7 @@ export const COUNTER_ヶ月: Counter = {
       displayText: "月: Counting Months",
       language: ExternalLinkLanguage.English,
       siteName: "Tofugu",
-      url:
-        "https://www.tofugu.com/japanese/japanese-counter-tsuki-gatsu-getsu/",
+      url: "https://www.tofugu.com/japanese/japanese-counter-tsuki-gatsu-getsu/",
     },
   ],
   footnotes: [],

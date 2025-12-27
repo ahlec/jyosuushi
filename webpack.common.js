@@ -21,7 +21,7 @@ if (!process.env.CI) {
   configJson = JSON.parse(fs.readFileSync(CONFIG_JSON_FILE));
 } else {
   configJson = JSON.parse(
-    fs.readFileSync(path.resolve(ROOT_DIRECTORY, "config.json-template"))
+    fs.readFileSync(path.resolve(ROOT_DIRECTORY, "config.json-template")),
   );
 }
 
@@ -115,7 +115,7 @@ module.exports = {
           test: /[\\/]node_modules[\\]/,
           name: function (module) {
             const packageName = module.context.match(
-              /[\\/]node_modules[\\/](.*?)([\\/]|$)/
+              /[\\/]node_modules[\\/](.*?)([\\/]|$)/,
             )[1];
             return packageName;
           },
@@ -126,7 +126,7 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       CONFIG_GOOGLE_ANALYTICS_TRACKING_ID: JSON.stringify(
-        configJson.GOOGLE_ANALYTICS_TRACKING_ID
+        configJson.GOOGLE_ANALYTICS_TRACKING_ID,
       ),
       JYOSUUSHI_CURRENT_SEMVER: JSON.stringify(process.env.npm_package_version),
     }),

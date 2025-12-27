@@ -11,7 +11,7 @@ export function randomFromArray<T>(arr: ReadonlyArray<T>): T {
 function permutateTwoArrays<T>(
   first: ReadonlyArray<T>,
   second: ReadonlyArray<T>,
-  combiner: (first: T, second: T) => T | null
+  combiner: (first: T, second: T) => T | null,
 ): ReadonlyArray<T> {
   if (!first.length) {
     return second;
@@ -37,7 +37,7 @@ function permutateTwoArrays<T>(
 // from [["a", "b"], ["c", "d"]], get ["ac", "ad", "bc", "bd"]
 export function permutate<T>(
   arrays: ReadonlyArray<ReadonlyArray<T>>,
-  combiner: (first: T, second: T) => T | null
+  combiner: (first: T, second: T) => T | null,
 ): ReadonlyArray<T> {
   if (arrays.length === 0) {
     return [];
@@ -54,7 +54,7 @@ export function permutate<T>(
   return permutateTwoArrays(
     arrays[0],
     permutate(arrays.slice(1), combiner),
-    combiner
+    combiner,
   );
 }
 
@@ -63,7 +63,7 @@ function compareCounters(a: Counter, b: Counter): number {
 }
 
 export function getDistinctCounters(
-  collections: readonly CounterCollection[]
+  collections: readonly CounterCollection[],
 ): readonly Counter[] {
   const counters: Counter[] = [];
   const encountered = new Set<string>();
@@ -85,7 +85,7 @@ export function getDistinctCounters(
 
 export function interleave<TItem, TInterleaved>(
   arr: ReadonlyArray<TItem>,
-  item: TInterleaved
+  item: TInterleaved,
 ): ReadonlyArray<TItem | TInterleaved> {
   if (arr.length <= 1) {
     return arr;

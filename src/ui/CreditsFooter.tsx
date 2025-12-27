@@ -12,7 +12,7 @@ const INTL_MESSAGES = defineMessages({
 });
 
 function AlecsPersonalSiteLink(
-  chunks: readonly React.ReactNode[]
+  chunks: readonly React.ReactNode[],
 ): React.ReactElement {
   return (
     <a
@@ -26,7 +26,7 @@ function AlecsPersonalSiteLink(
 }
 
 function VectorIconsLink(
-  chunks: readonly React.ReactNode[]
+  chunks: readonly React.ReactNode[],
 ): React.ReactElement {
   return (
     <a

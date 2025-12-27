@@ -47,7 +47,7 @@ function QuizPreparationView({
   // Collate the counters that will be quizzed on, based on selected collections
   const selectedCounters = useMemo(
     () => getDistinctCounters(selectedCollections),
-    [selectedCollections]
+    [selectedCollections],
   );
 
   // Render the component

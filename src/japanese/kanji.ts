@@ -64,5 +64,5 @@ export const getKanjiForNumber: (amount: number) => string = memoize(
     }
 
     return piecesToConcatenate.join("");
-  }
+  },
 );

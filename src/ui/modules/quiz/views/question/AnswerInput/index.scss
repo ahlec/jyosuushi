@@ -43,7 +43,9 @@
         pointer-events: none;
         right: 10px;
         transform: translateX(10px);
-        transition: opacity 0.2s, transform 0.2s;
+        transition:
+          opacity 0.2s,
+          transform 0.2s;
         width: 48px;
 
         &.show {
@@ -66,7 +68,9 @@
     opacity: 0;
     text-align: center;
     transform: translateY(-10px);
-    transition: opacity 0.2s, transform 0.2s;
+    transition:
+      opacity 0.2s,
+      transform 0.2s;
 
     &.has-value {
       opacity: 0.8;

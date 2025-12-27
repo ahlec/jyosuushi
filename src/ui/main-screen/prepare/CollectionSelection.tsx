@@ -57,7 +57,7 @@ function CollectionSelection({
 
       onSelectionChange(next);
     },
-    [currentlySelectedCollectionIds, onSelectionChange]
+    [currentlySelectedCollectionIds, onSelectionChange],
   );
 
   // Render the component
@@ -80,7 +80,7 @@ function CollectionSelection({
               isSelected={currentlySelectedCollectionIds.has(collection.id)}
               onToggle={handleCollectionToggled}
             />
-          )
+          ),
         )}
       </div>
     </div>

@@ -27,7 +27,7 @@ function MembershipCell({
       className={classnames(
         styles.cell,
         COLLECTION_TYPE_CSS_CLASS_NAMES[entry.collectionType],
-        className
+        className,
       )}
       to={getCounterCollectionPath(entry.collectionId)}
     >

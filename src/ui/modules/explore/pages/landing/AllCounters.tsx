@@ -30,7 +30,7 @@ function AllCounters({ headerClassName }: ComponentProps): React.ReactElement {
   // Sort the counters alphabetically
   const allSortedCounters = useMemo(
     (): readonly Counter[] => orderCounters(values(COUNTERS_LOOKUP), locale),
-    [locale]
+    [locale],
   );
 
   // Render component
@@ -43,7 +43,7 @@ function AllCounters({ headerClassName }: ComponentProps): React.ReactElement {
         {allSortedCounters.map(
           (counter): React.ReactElement => (
             <CounterTile key={counter.counterId} counter={counter} />
-          )
+          ),
         )}
       </div>
     </div>

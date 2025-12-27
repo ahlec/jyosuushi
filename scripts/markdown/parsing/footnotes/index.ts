@@ -17,7 +17,7 @@ function insertBefore<T>(list: T[], before: T, value: T): void {
 
 function attachParser(
   parser: ParserConstructor | ParserFunction,
-  { footnotesCountingStart }: FootnoteOptions
+  { footnotesCountingStart }: FootnoteOptions,
 ): void {
   const proto = parser.prototype;
   const blocks = proto.blockTokenizers;
@@ -55,7 +55,7 @@ function attachParser(
   blocks.footnoteDefinition = createFootnoteDefinitionTokenizer(
     interruptors,
     blocks,
-    idTracker
+    idTracker,
   );
   spans.footnoteCall = createFootnoteCallsTokenizer(idTracker);
   spans.reference = reference;
@@ -65,13 +65,13 @@ function attachParser(
 
 function isRemarkParser(parser: ParserConstructor | ParserFunction): boolean {
   return Boolean(
-    parser && parser.prototype && parser.prototype.blockTokenizers
+    parser && parser.prototype && parser.prototype.blockTokenizers,
   );
 }
 
 export default function footnotes(
   this: Processor<unknown>,
-  options: FootnoteOptions
+  options: FootnoteOptions,
 ): void {
   const parser = this.Parser;
 

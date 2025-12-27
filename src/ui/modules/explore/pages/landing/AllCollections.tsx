@@ -32,12 +32,12 @@ interface ComponentProps {
 }
 
 function useOrderedCollection<T extends CounterCollection>(
-  collections: readonly T[]
+  collections: readonly T[],
 ): readonly T[] {
   return useMemo(
     (): readonly T[] =>
       orderBy(collections, (collection): string => collection.name),
-    [collections]
+    [collections],
   );
 }
 
@@ -65,7 +65,7 @@ function AllCollections({
     (collectionId: string): void => {
       navigate(getCounterCollectionPath(collectionId));
     },
-    [navigate]
+    [navigate],
   );
 
   // Enforce a consistent ordering scheme
@@ -86,7 +86,7 @@ function AllCollections({
               collection={collection}
               variant="standard"
             />
-          )
+          ),
         )}
         {orderedUserCollections.map(
           (collection): React.ReactElement => (
@@ -95,7 +95,7 @@ function AllCollections({
               collection={collection}
               variant="user"
             />
-          )
+          ),
         )}
 
         <CreateCollectionTile

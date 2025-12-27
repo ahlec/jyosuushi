@@ -71,7 +71,7 @@ function Modal({
       contentClassName={classnames(
         styles.content,
         contentClassName,
-        hasStandardHeight && styles.standardHeight
+        hasStandardHeight && styles.standardHeight,
       )}
       header={header}
       headerClassName={styles.header}

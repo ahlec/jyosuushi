@@ -22,7 +22,7 @@ function Application(): React.ReactElement {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   const isQuizActive = useSelector((state: State): boolean =>
-    getIsQuizActive(state)
+    getIsQuizActive(state),
   );
 
   const renderNecessaryRedirect = (): React.ReactNode => {
@@ -41,7 +41,7 @@ function Application(): React.ReactElement {
       <div
         className={classnames(
           styles.application,
-          isQuizActive && styles.quizActive
+          isQuizActive && styles.quizActive,
         )}
       >
         <NavigationManager />

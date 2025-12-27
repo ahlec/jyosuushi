@@ -53,7 +53,7 @@ function ToastDisplay({
 
     const timeoutId = window.setTimeout(
       (): void => closeToast(toast.id),
-      displayTime
+      displayTime,
     );
     return (): void => window.clearTimeout(timeoutId);
   }, [intl, toast.id, toast.message, closeToast]);
@@ -67,7 +67,7 @@ function ToastDisplay({
       className={classnames(
         styles.toastDisplay,
         VARIANT_TO_CSS_CLASS_NAME[toast.variant],
-        className
+        className,
       )}
     >
       <FormattedMessage {...toast.message}>

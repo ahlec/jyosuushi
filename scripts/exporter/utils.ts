@@ -21,7 +21,7 @@ export function getStudyPackId(id: string): string {
 
 const COUNTER_NOTES_COMPONENTS_DIRECTORY = path.resolve(
   DATA_DIRECTORY,
-  "./counter-notes/"
+  "./counter-notes/",
 );
 
 export interface CounterNotesComponentInfo {
@@ -31,13 +31,13 @@ export interface CounterNotesComponentInfo {
 }
 
 export function getCounterNotesComponent(
-  counterId: string
+  counterId: string,
 ): CounterNotesComponentInfo {
   const componentName = `${counterId}Notes`;
   return {
     absoluteFilename: path.resolve(
       COUNTER_NOTES_COMPONENTS_DIRECTORY,
-      `./${componentName}.tsx`
+      `./${componentName}.tsx`,
     ),
     componentName,
     importPath: `@data/counter-notes/${componentName}`,
@@ -46,11 +46,11 @@ export function getCounterNotesComponent(
 
 export function getDisambiguationId(
   counter1Id: string,
-  counter2Id: string
+  counter2Id: string,
 ): string {
   return `DISAMBIGUATION_${getVariableFromId(
     "",
-    counter1Id
+    counter1Id,
   )}${getVariableFromId("", counter2Id)}`;
 }
 

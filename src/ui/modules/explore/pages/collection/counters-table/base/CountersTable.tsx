@@ -33,7 +33,7 @@ function CountersTable({
   const allCounters = useMemo(
     (): readonly Counter[] =>
       orderCounters(Object.values(COUNTERS_LOOKUP), locale),
-    [locale]
+    [locale],
   );
 
   // Render the component
@@ -53,7 +53,7 @@ function CountersTable({
           >
             {tileChildrenGenerator && tileChildrenGenerator(counter.counterId)}
           </CounterTableTile>
-        ) : null
+        ) : null,
       )}
     </div>
   );

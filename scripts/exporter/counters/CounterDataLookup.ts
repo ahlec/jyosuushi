@@ -52,7 +52,7 @@ class CounterDataLookup {
       }
 
       this.disambiguationsLookup[disambiguation.counter1_id]?.push(
-        disambiguation
+        disambiguation,
       );
 
       if (!this.disambiguationsLookup[disambiguation.counter2_id]) {
@@ -60,7 +60,7 @@ class CounterDataLookup {
       }
 
       this.disambiguationsLookup[disambiguation.counter2_id]?.push(
-        disambiguation
+        disambiguation,
       );
     }
 

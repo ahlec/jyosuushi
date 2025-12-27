@@ -32,27 +32,25 @@ function ReleaseNotesPage(): React.ReactElement {
   // Render the component
   return (
     <div className={styles.releaseNotesPage}>
-      {CHANGELOG.map(
-        (version: ChangelogVersion): React.ReactNode => {
-          return (
-            <div key={version.version} className={styles.versionContainer}>
-              <div className={styles.versionHeader}>
-                {version.version}{" "}
-                <span className={styles.date}>({version.date})</span>
-              </div>
-              <div className={styles.contents}>
-                {isFirstVersion(version) ? (
-                  <FormattedMessage
-                    {...INTL_MESSAGES.specialVersionNotesInitialRelease}
-                  />
-                ) : (
-                  <IncrementalVersionDisplay version={version} />
-                )}
-              </div>
+      {CHANGELOG.map((version: ChangelogVersion): React.ReactNode => {
+        return (
+          <div key={version.version} className={styles.versionContainer}>
+            <div className={styles.versionHeader}>
+              {version.version}{" "}
+              <span className={styles.date}>({version.date})</span>
             </div>
-          );
-        }
-      )}
+            <div className={styles.contents}>
+              {isFirstVersion(version) ? (
+                <FormattedMessage
+                  {...INTL_MESSAGES.specialVersionNotesInitialRelease}
+                />
+              ) : (
+                <IncrementalVersionDisplay version={version} />
+              )}
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }

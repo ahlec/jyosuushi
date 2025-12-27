@@ -29,7 +29,7 @@ function SidebarEntry({
         classnames(
           styles.entry,
           page ? styles.variantLink : styles.variantInert,
-          isActive && styles.active
+          isActive && styles.active,
         )
       }
       onClick={page ? undefined : preventDefault}

@@ -39,7 +39,7 @@ class QuizManager {
 
   public startNewQuiz(
     collections: readonly CounterCollection[],
-    mode: QuizMode
+    mode: QuizMode,
   ): void {
     if (!collections.length) {
       throw new Error("Must provide at least one collection to quiz over.");

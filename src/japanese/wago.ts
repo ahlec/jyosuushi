@@ -17,7 +17,7 @@ const BASE_TEN: ReadonlyArray<ReadonlyArray<string>> = [
 function createRank(
   amount: number,
   readingForOne: string,
-  validEndingsForEverythingElse: ReadonlyArray<string>
+  validEndingsForEverythingElse: ReadonlyArray<string>,
 ): ReadonlyArray<string> {
   if (amount <= 0 || amount >= BASE_TEN.length) {
     throw new Error();
@@ -28,12 +28,12 @@ function createRank(
   }
 
   return validEndingsForEverythingElse.map(
-    (ending) => `${BASE_TEN[amount]}${ending}`
+    (ending) => `${BASE_TEN[amount]}${ending}`,
   );
 }
 
 function combineWagoPieces(
-  pieces: ReadonlyArray<ReadonlyArray<string>>
+  pieces: ReadonlyArray<ReadonlyArray<string>>,
 ): ReadonlyArray<string> {
   return permutate(interleave(pieces, ["あまり"]), (a, b) => `${a}${b}`);
 }

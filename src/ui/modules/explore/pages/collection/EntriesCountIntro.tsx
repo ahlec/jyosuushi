@@ -17,7 +17,7 @@ const INTL_MESSAGES = defineMessages({
 });
 
 function FormattedMessageBold(
-  chunks: readonly React.ReactNode[]
+  chunks: readonly React.ReactNode[],
 ): React.ReactElement {
   return <strong className={styles.bold}>{chunks}</strong>;
 }

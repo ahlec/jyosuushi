@@ -69,7 +69,7 @@ function SectionContainer({
                   onClick={action.onClick}
                   text={action.tooltip}
                 />
-              )
+              ),
             )}
           </div>
         )}

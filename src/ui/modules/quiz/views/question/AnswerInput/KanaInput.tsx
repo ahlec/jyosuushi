@@ -135,7 +135,7 @@ export default class KanaInput extends React.PureComponent<ComponentProps> {
         } else {
           const withoutUnconvertedFinalN = rawValue.substr(
             0,
-            rawValue.length - 1
+            rawValue.length - 1,
           );
           validValue = withoutUnconvertedFinalN + "ん";
           isValid = kana.isOnlyKana(withoutUnconvertedFinalN);
@@ -162,7 +162,7 @@ export default class KanaInput extends React.PureComponent<ComponentProps> {
 
   private applyChangeEventToBuffer(
     event: React.ChangeEvent<HTMLInputElement>,
-    currentPosition: number
+    currentPosition: number,
   ): string {
     const { conversionBuffer, lastPosition, rawValue } = this.props.value
       ? this.props.value

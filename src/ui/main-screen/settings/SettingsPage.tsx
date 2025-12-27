@@ -113,10 +113,10 @@ function SettingsPage(): React.ReactElement {
 
   // Retrieve the current user settings
   const currentInfiniteMode = useSelector(
-    (state: State): boolean => state.settings.infiniteMode
+    (state: State): boolean => state.settings.infiniteMode,
   );
   const currentRange = useSelector(
-    (state: State): AmountRange => state.settings.amountRange
+    (state: State): AmountRange => state.settings.amountRange,
   );
 
   // Handle events
@@ -124,14 +124,14 @@ function SettingsPage(): React.ReactElement {
     (amountRange: AmountRange): void => {
       dispatch(setAmountRange(amountRange));
     },
-    [dispatch]
+    [dispatch],
   );
 
   const handleInfiniteModeChanged = useCallback(
     (infiniteMode: boolean): void => {
       dispatch(setInfiniteMode(infiniteMode));
     },
-    [dispatch]
+    [dispatch],
   );
 
   // Render the component

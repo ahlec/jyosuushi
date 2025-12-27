@@ -48,17 +48,17 @@ export const breakDownNumber: (value: number) => NumberBreakdown = memoize(
       lowestUnit: remainder
         ? "solo"
         : jyuu
-        ? "jyuu"
-        : hyaku
-        ? "hyaku"
-        : sen
-        ? "sen"
-        : man
-        ? "man"
-        : oku
-        ? "oku"
-        : "solo",
+          ? "jyuu"
+          : hyaku
+            ? "hyaku"
+            : sen
+              ? "sen"
+              : man
+                ? "man"
+                : oku
+                  ? "oku"
+                  : "solo",
     };
     /* eslint-enable sort-keys */
-  }
+  },
 );

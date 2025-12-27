@@ -67,7 +67,7 @@ type ProtoCounter = Omit<
 };
 
 function convertToProductionExternalLink(
-  db: PreparedCounterExternalLink
+  db: PreparedCounterExternalLink,
 ): ProtoExternalLink {
   let externalLinkLanguageEnumField: string;
   switch (db.language) {
@@ -85,7 +85,7 @@ function convertToProductionExternalLink(
     description: db.description,
     displayText: db.link_text,
     language: new ProductionVariable(
-      `ExternalLinkLanguage.${externalLinkLanguageEnumField}`
+      `ExternalLinkLanguage.${externalLinkLanguageEnumField}`,
     ),
     siteName: db.site_name,
     url: db.url,
@@ -95,7 +95,7 @@ function convertToProductionExternalLink(
 function convertToProductionDisambiguation(
   counterId: string,
   disambiguation: DbCounterDisambiguation,
-  nestedComponents: CounterComponentsLookup
+  nestedComponents: CounterComponentsLookup,
 ): ProtoDisambiguation {
   const otherCounterId = getOtherCounterId(counterId, disambiguation);
   const component = nestedComponents.disambiguationComponents[otherCounterId];
@@ -110,7 +110,7 @@ function convertToProductionDisambiguation(
 }
 
 export function convertToProductionIrregularType(
-  dbType: DbIrregularType
+  dbType: DbIrregularType,
 ): ProductionVariable {
   switch (dbType) {
     case DbIrregularType.ArbitraryReading: {
@@ -123,7 +123,7 @@ export function convertToProductionIrregularType(
 }
 
 function getIrregularCountingSystem(
-  type: DbIrregularType
+  type: DbIrregularType,
 ): ProductionVariable | null {
   switch (type) {
     case DbIrregularType.ArbitraryReading: {
@@ -138,7 +138,7 @@ function getIrregularCountingSystem(
 function convertToProductionReading(
   counterId: string,
   dbReading: DbCounterReading,
-  dbWagoStyle: DbWagoStyle | undefined
+  dbWagoStyle: DbWagoStyle | undefined,
 ): ProtoCounterReading {
   return {
     counterId,
@@ -174,7 +174,7 @@ function convertToProductionReading(
 
 function convertToProductionKanji(
   primaryKanji: string,
-  alternativeKanji: ReadonlyArray<DbCounterAlternativeKanji>
+  alternativeKanji: ReadonlyArray<DbCounterAlternativeKanji>,
 ): CounterKanjiInfo {
   return {
     additionalKanji: alternativeKanji.map(({ kanji }) => kanji),
@@ -183,7 +183,7 @@ function convertToProductionKanji(
 }
 
 function convertToProductionIrregularsMap(
-  dbIrregulars: ReadonlyArray<DbCounterIrregular>
+  dbIrregulars: ReadonlyArray<DbCounterIrregular>,
 ): ProtoCounter["irregulars"] {
   const result: ProtoCounter["irregulars"] = {};
 
@@ -208,10 +208,11 @@ function convertToProductionIrregularsMap(
       (dbIrregular): ProtoCounterIrregular => ({
         amount,
         countingSystem: getIrregularCountingSystem(dbIrregular.irregular_type),
-        doesPresenceEraseRegularConjugations: !!dbIrregular.does_presence_erase_regular_conjugations,
+        doesPresenceEraseRegularConjugations:
+          !!dbIrregular.does_presence_erase_regular_conjugations,
         reading: dbIrregular.kana,
         type: convertToProductionIrregularType(dbIrregular.irregular_type),
-      })
+      }),
     );
   }
 
@@ -223,7 +224,7 @@ export function convertToProtoCounter(
   joinData: CounterJoinData,
   nestedComponents: CounterComponentsLookup,
   externalLinks: readonly PreparedCounterExternalLink[],
-  footnoteComponents: ReadonlyArray<ProductionVariable>
+  footnoteComponents: ReadonlyArray<ProductionVariable>,
 ): ProtoCounter {
   return {
     counterId: counter.counter_id,
@@ -232,8 +233,8 @@ export function convertToProtoCounter(
         convertToProductionDisambiguation(
           counter.counter_id,
           disambiguation,
-          nestedComponents
-        )
+          nestedComponents,
+        ),
     ),
     englishName: counter.english_name,
     externalLinks: externalLinks.map(convertToProductionExternalLink),
@@ -242,7 +243,7 @@ export function convertToProtoCounter(
     kanji: counter.primary_kanji
       ? convertToProductionKanji(
           counter.primary_kanji,
-          joinData.alternativeKanji
+          joinData.alternativeKanji,
         )
       : null,
     leadIn: counter.lead_in ? counter.lead_in : null,
@@ -253,8 +254,8 @@ export function convertToProtoCounter(
         reading,
         reading.wago_style
           ? joinData.allDefinedWagoStyles[reading.wago_style]
-          : undefined
-      )
+          : undefined,
+      ),
     ),
   };
 }

@@ -19,7 +19,7 @@ export interface WriteFileResults {
 
 export type WriteFunction = (
   stream: Writable,
-  dataSource: ValidatedDataSource
+  dataSource: ValidatedDataSource,
 ) => WriteFileResults;
 
 export interface FileExportRequest {

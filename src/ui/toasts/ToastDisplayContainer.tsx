@@ -16,7 +16,7 @@ function ToastDisplayContainer(): React.ReactElement {
       {currentToasts.map(
         (toast: Toast): React.ReactElement => (
           <ToastDisplay key={toast.id} className={styles.toast} toast={toast} />
-        )
+        ),
       )}
     </div>
   );

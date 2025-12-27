@@ -6,7 +6,9 @@ export interface CounterComponentsLookup {
   notesComponent: ProductionVariable | null;
 }
 
-export interface PreparedCounterExternalLink
-  extends Omit<DbCounterExternalLink, "description"> {
+export interface PreparedCounterExternalLink extends Omit<
+  DbCounterExternalLink,
+  "description"
+> {
   description: ProductionVariable;
 }

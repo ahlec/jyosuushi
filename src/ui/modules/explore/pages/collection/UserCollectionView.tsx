@@ -24,8 +24,7 @@ import TrashIcon from "./trash.svg";
 const INTL_MESSAGES = defineMessages({
   addRemoveCountersActionButtonItem: {
     defaultMessage: "Add/Remove Counters",
-    id:
-      "explorePage.collections.UserCollectionView.actionBar.addRemoveCounters",
+    id: "explorePage.collections.UserCollectionView.actionBar.addRemoveCounters",
   },
   deleteActionButtonItem: {
     defaultMessage: "Delete",
@@ -76,18 +75,18 @@ function UserCollectionView({
         text: INTL_MESSAGES.deleteActionButtonItem,
       },
     ],
-    [isEditingContents]
+    [isEditingContents],
   );
 
   // Handle events
   const handleRequestCloseRenameModal = useCallback(
     (): void => setIsRenameModalOpen(false),
-    []
+    [],
   );
 
   const handleRequestCloseDeleteModal = useCallback(
     (): void => setIsDeleteModalOpen(false),
-    []
+    [],
   );
 
   const handleDeleteConfirmed = useCallback((): void => {
@@ -98,12 +97,12 @@ function UserCollectionView({
 
   const handleAddCounter = useCallback(
     (counterId: string) => collection.addCounter(counterId),
-    [collection]
+    [collection],
   );
 
   const handleRemoveCounter = useCallback(
     (counterId: string) => collection.removeCounter(counterId),
-    [collection]
+    [collection],
   );
 
   // Render the component

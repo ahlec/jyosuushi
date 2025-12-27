@@ -25,7 +25,7 @@ function ExplorePage({
             path={route.path}
             element={<route.component />}
           />
-        )
+        ),
       )}
       <Route
         path="/"

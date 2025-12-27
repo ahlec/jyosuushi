@@ -43,5 +43,5 @@ root.render(
         </BrowserRouter>
       </IntlProvider>
     </PersistGate>
-  </Provider>
+  </Provider>,
 );

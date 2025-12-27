@@ -37,7 +37,7 @@ function assertIsHastNode(node: Node): asserts node is HastNode {
       throw new Error(
         `Encountered a "text" node where value = '${
           node.value
-        }' (${typeof node.value})`
+        }' (${typeof node.value})`,
       );
     }
 
@@ -50,7 +50,7 @@ function assertIsHastNode(node: Node): asserts node is HastNode {
       throw new Error(
         `Encountered an "element" node where tagName = '${
           node.tagName
-        }' (${typeof node.tagName})`
+        }' (${typeof node.tagName})`,
       );
     }
 
@@ -60,14 +60,14 @@ function assertIsHastNode(node: Node): asserts node is HastNode {
         Array.isArray(node.properties)
       ) {
         throw new Error(
-          `Encountered an "element" node where properties looked strange (${typeof node.properties})`
+          `Encountered an "element" node where properties looked strange (${typeof node.properties})`,
         );
       }
     }
 
     if (!Array.isArray(node.children)) {
       throw new Error(
-        `Encountered an "element" node where children wasn't a defined array (${typeof node.children})`
+        `Encountered an "element" node where children wasn't a defined array (${typeof node.children})`,
       );
     }
 
@@ -80,16 +80,16 @@ function assertIsHastNode(node: Node): asserts node is HastNode {
 
   // Unrecognized node type
   throw new Error(
-    `Encountered an unexpected node type '${node.type}' (${typeof node.type})`
+    `Encountered an unexpected node type '${node.type}' (${typeof node.type})`,
   );
 }
 
 function assertIsHastSyntaxTree(
-  tree: Node
+  tree: Node,
 ): asserts tree is HastSyntaxTree & { [key: string]: unknown } {
   if (tree.type !== "root") {
     throw new Error(
-      `Encountered 'hast' syntax tree where type = '${tree.type}'`
+      `Encountered 'hast' syntax tree where type = '${tree.type}'`,
     );
   }
 
@@ -107,7 +107,7 @@ export function parseMarkdown(
   markdown: string,
   currentLocation: IntrasiteLinkLocation | null,
   counterRegistry: CounterRegistry,
-  footnotesCountingStart: number
+  footnotesCountingStart: number,
 ): ParseResult {
   // Create a bucket for warnings
   const pluginWarningsCollector = new PluginWarningsCollector();

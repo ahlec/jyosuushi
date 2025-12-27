@@ -6,9 +6,9 @@ import { Counter } from "@jyosuushi/interfaces";
 
 export function orderCounters(
   counters: readonly Counter[],
-  locale: Locale
+  locale: Locale,
 ): readonly Counter[] {
   return orderBy(counters, (counter): string =>
-    locale.dataLocalizers.getCounterName(counter)
+    locale.dataLocalizers.getCounterName(counter),
   );
 }

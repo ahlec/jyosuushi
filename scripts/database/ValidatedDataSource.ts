@@ -47,7 +47,7 @@ type Indexer = {
 };
 
 function validateWagoStyles(
-  snapshot: DatabaseSnapshot
+  snapshot: DatabaseSnapshot,
 ): ValidatedResult<DbWagoStyle> {
   const valid: DbWagoStyle[] = [];
   const error: Array<InvalidResultEntry<DbWagoStyle>> = [];
@@ -65,8 +65,7 @@ function validateWagoStyles(
     if (wagoStyle.range_end_inclusive > 10) {
       errorReasons.push({
         showsInAudit: true,
-        text:
-          "Standard wago range cannot go above 10 (these values require being listed as irregular)",
+        text: "Standard wago range cannot go above 10 (these values require being listed as irregular)",
       });
     }
 
@@ -82,16 +81,14 @@ function validateWagoStyles(
     if (wagoStyle.range_end_inclusive < 2 && wagoStyle.also_uses_kango_two) {
       warnings.push({
         entry: wagoStyle,
-        text:
-          "range_end_inclusive was less than 2, but was configured with `also_uses_kango_two` anyways",
+        text: "range_end_inclusive was less than 2, but was configured with `also_uses_kango_two` anyways",
       });
     }
 
     if (wagoStyle.range_end_inclusive < 3 && wagoStyle.also_uses_kango_three) {
       warnings.push({
         entry: wagoStyle,
-        text:
-          "range_end_inclusive was less than 3, but was configured with `also_uses_kango_three` anyways",
+        text: "range_end_inclusive was less than 3, but was configured with `also_uses_kango_three` anyways",
       });
     }
 
@@ -107,7 +104,7 @@ function validateWagoStyles(
 }
 
 function validateCounters(
-  snapshot: DatabaseSnapshot
+  snapshot: DatabaseSnapshot,
 ): ValidatedResult<DbCounter> {
   const valid: DbCounter[] = [];
   const ignored: Array<InvalidResultEntry<DbCounter>> = [];
@@ -168,8 +165,7 @@ function validateCounters(
       // We've already reported an error for the case where < 1
       errorReasons.push({
         showsInAudit: true,
-        text:
-          "Counters without primary kanji must have no more than one reading.",
+        text: "Counters without primary kanji must have no more than one reading.",
       });
     }
 
@@ -248,7 +244,7 @@ function validateCounters(
 function validateCounterReadings(
   snapshot: DatabaseSnapshot,
   validCounterIds: ReadonlySet<string>,
-  validWagoStyleHandles: ReadonlySet<string>
+  validWagoStyleHandles: ReadonlySet<string>,
 ): ValidatedResult<DbCounterReading> {
   const valid: DbCounterReading[] = [];
   const ignored: Array<InvalidResultEntry<DbCounterReading>> = [];
@@ -287,8 +283,7 @@ function validateCounterReadings(
     ) {
       errorReasons.push({
         showsInAudit: true,
-        text:
-          "Counter reading is configured to use wago style that doesn't exist or isn't valid.",
+        text: "Counter reading is configured to use wago style that doesn't exist or isn't valid.",
       });
     }
 
@@ -328,7 +323,7 @@ function validateCounterReadings(
 
 function validateCounterAlternativeKanji(
   snapshot: DatabaseSnapshot,
-  validCounterIds: ReadonlySet<string>
+  validCounterIds: ReadonlySet<string>,
 ): ValidatedResult<DbCounterAlternativeKanji> {
   const valid: DbCounterAlternativeKanji[] = [];
   const ignored: Array<InvalidResultEntry<DbCounterAlternativeKanji>> = [];
@@ -385,7 +380,7 @@ function validateCounterAlternativeKanji(
 
 function validateItems(
   snapshot: DatabaseSnapshot,
-  validCounterIds: ReadonlySet<string>
+  validCounterIds: ReadonlySet<string>,
 ): ValidatedResult<DbItem> {
   const valid: DbItem[] = [];
   const error: Array<InvalidResultEntry<DbItem>> = [];
@@ -444,10 +439,10 @@ function validateItems(
 }
 
 function validateSingleCounterDependentDb<
-  TSchemaType extends { counter_id: string }
+  TSchemaType extends { counter_id: string },
 >(
   entries: ReadonlyArray<TSchemaType>,
-  validCounterIds: ReadonlySet<string>
+  validCounterIds: ReadonlySet<string>,
 ): ValidatedResult<TSchemaType> {
   const valid: TSchemaType[] = [];
   const ignored: Array<InvalidResultEntry<TSchemaType>> = [];
@@ -480,7 +475,7 @@ function validateSingleCounterDependentDb<
 
 function validateCounterDisambiguations(
   snapshot: DatabaseSnapshot,
-  validCounterIds: ReadonlySet<string>
+  validCounterIds: ReadonlySet<string>,
 ): ValidatedResult<DbCounterDisambiguation> {
   const error: Array<InvalidResultEntry<DbCounterDisambiguation>> = [];
   const valid: DbCounterDisambiguation[] = [];
@@ -488,8 +483,8 @@ function validateCounterDisambiguations(
 
   const combinations = new Set(
     snapshot.counter_disambiguations.map(
-      ({ counter1_id, counter2_id }) => `${counter1_id}${counter2_id}`
-    )
+      ({ counter1_id, counter2_id }) => `${counter1_id}${counter2_id}`,
+    ),
   );
 
   for (const disambiguation of snapshot.counter_disambiguations) {
@@ -546,7 +541,7 @@ function validateCounterDisambiguations(
 
 function validateCounterExternalLinks(
   snapshot: DatabaseSnapshot,
-  validCounterIds: ReadonlySet<string>
+  validCounterIds: ReadonlySet<string>,
 ): ValidatedResult<DbCounterExternalLink> {
   const valid: DbCounterExternalLink[] = [];
   const ignored: Array<InvalidResultEntry<DbCounterExternalLink>> = [];
@@ -578,8 +573,7 @@ function validateCounterExternalLinks(
         reasons: [
           {
             showsInAudit: true,
-            text:
-              "Two (or more) external links for this counter share this URL (URLs must be unique per counter)",
+            text: "Two (or more) external links for this counter share this URL (URLs must be unique per counter)",
           },
         ],
       });
@@ -605,7 +599,7 @@ function validateCounterExternalLinks(
 
     const descriptionValiation = validateInlineMarkdown(
       entry.description,
-      counterRegistry
+      counterRegistry,
     );
     if (!descriptionValiation.valid) {
       error.push({
@@ -634,7 +628,7 @@ function validateCounterExternalLinks(
 
 function validateCounterIrregulars(
   snapshot: DatabaseSnapshot,
-  validCounterIds: ReadonlySet<string>
+  validCounterIds: ReadonlySet<string>,
 ): ValidatedResult<DbCounterIrregular> {
   const valid: DbCounterIrregular[] = [];
   const ignored: Array<InvalidResultEntry<DbCounterIrregular>> = [];
@@ -671,7 +665,7 @@ function validateCounterIrregulars(
 function validateItemCounters(
   snapshot: DatabaseSnapshot,
   validItemIds: ReadonlySet<string>,
-  validCounterIds: ReadonlySet<string>
+  validCounterIds: ReadonlySet<string>,
 ): ValidatedResult<DbItemCounter> {
   const valid: DbItemCounter[] = [];
   const ignored: Array<InvalidResultEntry<DbItemCounter>> = [];
@@ -714,7 +708,7 @@ function validateItemCounters(
 
 function validateStudyPacks(
   snapshot: DatabaseSnapshot,
-  validStudyPackContents: ReadonlyArray<DbStudyPackContent>
+  validStudyPackContents: ReadonlyArray<DbStudyPackContent>,
 ): ValidatedResult<DbStudyPack> {
   const valid: DbStudyPack[] = [];
   const ignored: Array<InvalidResultEntry<DbStudyPack>> = [];
@@ -752,43 +746,43 @@ function validateStudyPacks(
 
 export default class ValidatedDataSource implements Indexer {
   public static async validate(
-    database: Database
+    database: Database,
   ): Promise<ValidatedDataSource> {
     const snapshot = await database.getSnapshot();
 
     const wago_style = validateWagoStyles(snapshot);
     const validWagoStyleHandles = new Set(
-      wago_style.valid.map(({ wago_style_handle }) => wago_style_handle)
+      wago_style.valid.map(({ wago_style_handle }) => wago_style_handle),
     );
 
     const counters = validateCounters(snapshot);
     const validCounterIds = new Set(
-      counters.valid.map(({ counter_id }) => counter_id)
+      counters.valid.map(({ counter_id }) => counter_id),
     );
     const counter_additional_readings = validateSingleCounterDependentDb(
       snapshot.counter_additional_readings,
-      validCounterIds
+      validCounterIds,
     );
     const counter_readings = validateCounterReadings(
       snapshot,
       validCounterIds,
-      validWagoStyleHandles
+      validWagoStyleHandles,
     );
     const counter_disambiguations = validateCounterDisambiguations(
       snapshot,
-      validCounterIds
+      validCounterIds,
     );
     const counter_external_links = validateCounterExternalLinks(
       snapshot,
-      validCounterIds
+      validCounterIds,
     );
     const counter_alternative_kanji = validateCounterAlternativeKanji(
       snapshot,
-      validCounterIds
+      validCounterIds,
     );
     const counter_irregulars = validateCounterIrregulars(
       snapshot,
-      validCounterIds
+      validCounterIds,
     );
 
     const items = validateItems(snapshot, validCounterIds);
@@ -796,12 +790,12 @@ export default class ValidatedDataSource implements Indexer {
     const item_counters = validateItemCounters(
       snapshot,
       validItemIds,
-      validCounterIds
+      validCounterIds,
     );
 
     const study_pack_contents = validateSingleCounterDependentDb(
       snapshot.study_pack_contents,
-      validCounterIds
+      validCounterIds,
     );
     const study_packs = validateStudyPacks(snapshot, study_pack_contents.valid);
 
@@ -817,33 +811,25 @@ export default class ValidatedDataSource implements Indexer {
       items,
       study_pack_contents,
       study_packs,
-      wago_style
+      wago_style,
     );
   }
 
   public readonly hasErrors: boolean;
 
   private constructor(
-    public readonly counter_additional_readings: ValidatedResult<
-      DbCounterAdditionalReading
-    >,
-    public readonly counter_disambiguations: ValidatedResult<
-      DbCounterDisambiguation
-    >,
-    public readonly counter_external_links: ValidatedResult<
-      DbCounterExternalLink
-    >,
+    public readonly counter_additional_readings: ValidatedResult<DbCounterAdditionalReading>,
+    public readonly counter_disambiguations: ValidatedResult<DbCounterDisambiguation>,
+    public readonly counter_external_links: ValidatedResult<DbCounterExternalLink>,
     public readonly counter_irregulars: ValidatedResult<DbCounterIrregular>,
-    public readonly counter_alternative_kanji: ValidatedResult<
-      DbCounterAlternativeKanji
-    >,
+    public readonly counter_alternative_kanji: ValidatedResult<DbCounterAlternativeKanji>,
     public readonly counter_readings: ValidatedResult<DbCounterReading>,
     public readonly counters: ValidatedResult<DbCounter>,
     public readonly item_counters: ValidatedResult<DbItemCounter>,
     public readonly items: ValidatedResult<DbItem>,
     public readonly study_pack_contents: ValidatedResult<DbStudyPackContent>,
     public readonly study_packs: ValidatedResult<DbStudyPack>,
-    public readonly wago_style: ValidatedResult<DbWagoStyle>
+    public readonly wago_style: ValidatedResult<DbWagoStyle>,
   ) {
     this.hasErrors = Object.values(Schemas)
       .map((schema) => this.getSchema(schema))
@@ -851,7 +837,7 @@ export default class ValidatedDataSource implements Indexer {
   }
 
   public getSchema<TSchema extends Schemas>(
-    schema: TSchema
+    schema: TSchema,
   ): ValidatedResult<SchemaEntryTypes[TSchema]> {
     return (this as any)[schema];
   }

@@ -6,7 +6,7 @@ interface SerializedStructure<TData> {
 }
 
 function isSerializedStructure<TData>(
-  value: unknown
+  value: unknown,
 ): value is SerializedStructure<TData> {
   if (!isIndexableObject(value)) {
     return false;
@@ -27,7 +27,7 @@ class StorageWrapper<TData extends ValueStorageType> {
   public constructor(
     private readonly storageKey: string,
     private readonly retention: "local" | "session",
-    private readonly currentSchema: number
+    private readonly currentSchema: number,
   ) {}
 
   public get exists(): boolean {

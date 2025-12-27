@@ -33,7 +33,7 @@ function ToggleMembershipCheck({ state }: ComponentProps): React.ReactElement {
             styles.icon,
             state === "in-collection"
               ? styles.alreadyInCollection
-              : styles.notInCollection
+              : styles.notInCollection,
           )}
         />
       );

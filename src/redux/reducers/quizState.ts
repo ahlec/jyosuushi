@@ -8,7 +8,7 @@ const DEFAULT_STATE: QuizState = {
 
 export default function quizStateReducer(
   state: QuizState = DEFAULT_STATE,
-  action: ReduxAction
+  action: ReduxAction,
 ): QuizState {
   switch (action.type) {
     case "start-quiz":

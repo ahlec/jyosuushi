@@ -42,7 +42,7 @@ function PageHeader({
       <div
         className={classnames(
           styles.overlay,
-          BACKGROUND_OVERLAY_CSS_CLASS_NAMES[colorTheme]
+          BACKGROUND_OVERLAY_CSS_CLASS_NAMES[colorTheme],
         )}
       />
       <div className={styles.contents}>

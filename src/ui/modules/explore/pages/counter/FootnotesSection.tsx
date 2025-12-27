@@ -22,7 +22,7 @@ class FootnotesSection extends React.PureComponent<ComponentProps> {
 
   private renderFootnote = (
     component: MarkdownComponent,
-    index: number
+    index: number,
   ): React.ReactNode => {
     return (
       <MarkdownPresenter

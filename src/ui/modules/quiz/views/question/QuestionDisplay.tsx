@@ -34,7 +34,7 @@ function QuestionDisplay({
         amount: currentQuestion.amount,
         itemName: locale.dataLocalizers.getItemName(
           item,
-          currentQuestion.amount
+          currentQuestion.amount,
         ),
       }}
     >

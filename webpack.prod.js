@@ -5,5 +5,5 @@ module.exports = merge(
   {
     mode: "production",
   },
-  commonWebpack
+  commonWebpack,
 );

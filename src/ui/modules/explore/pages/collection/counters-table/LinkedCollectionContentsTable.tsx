@@ -33,7 +33,7 @@ function LinkedCollectionContentsTable({
       },
       variant: "link",
     }),
-    [collection.id, collection.name]
+    [collection.id, collection.name],
   );
 
   // Create a memoized predicate to whittle down all of the counters to just

@@ -10,7 +10,7 @@ function superscriptMarkdownPlugin(this: Processor<unknown>): void {
     this: RemarkParser,
     eat: Eat,
     value: string,
-    silent: boolean
+    silent: boolean,
   ): Node | boolean | void {
     const marker = value[0];
     const now = eat.now();
@@ -52,7 +52,7 @@ function superscriptMarkdownPlugin(this: Processor<unknown>): void {
 
   superscriptLinkTokenizer.locator = (
     value: string,
-    fromIndex: number
+    fromIndex: number,
   ): number => {
     return value.indexOf("^", fromIndex);
   };

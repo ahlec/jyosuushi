@@ -21,14 +21,14 @@ function japaneseNumberIteratee(num: ConjugatedJapaneseWord): string {
 }
 
 export function uniqueWords(
-  words: ReadonlyArray<ConjugatedJapaneseWord>
+  words: ReadonlyArray<ConjugatedJapaneseWord>,
 ): ReadonlyArray<ConjugatedJapaneseWord> {
   return uniqBy(words, japaneseNumberIteratee);
 }
 
 function japaneseNumberCombiner(
   first: TaggableJapaneseWord,
-  second: TaggableJapaneseWord
+  second: TaggableJapaneseWord,
 ): TaggableJapaneseWord | null {
   // Require matching tags, if there are tags
   if (!areTagsCompatible(first.tags, second.tags)) {
@@ -47,13 +47,13 @@ function japaneseNumberCombiner(
 }
 
 export function permutateTaggableWords(
-  chunks: ReadonlyArray<ReadonlyArray<TaggableJapaneseWord>>
+  chunks: ReadonlyArray<ReadonlyArray<TaggableJapaneseWord>>,
 ): ReadonlyArray<TaggableJapaneseWord> {
   return permutate(chunks, japaneseNumberCombiner);
 }
 
 function castAwayTaggableInternal(
-  word: TaggableJapaneseWord
+  word: TaggableJapaneseWord,
 ): ConjugatedJapaneseWord {
   return {
     isStrange: word.tags.has("strange"),
@@ -62,13 +62,13 @@ function castAwayTaggableInternal(
 }
 
 export function castAwayTaggable(
-  words: ReadonlyArray<TaggableJapaneseWord>
+  words: ReadonlyArray<TaggableJapaneseWord>,
 ): ReadonlyArray<ConjugatedJapaneseWord> {
   return words.map(castAwayTaggableInternal);
 }
 
 function castToTaggableInternal(
-  word: JapaneseWord | TaggableJapaneseWord
+  word: JapaneseWord | TaggableJapaneseWord,
 ): TaggableJapaneseWord {
   return {
     ...word,
@@ -77,7 +77,7 @@ function castToTaggableInternal(
 }
 
 export function castToTaggable(
-  words: ReadonlyArray<JapaneseWord | TaggableJapaneseWord>
+  words: ReadonlyArray<JapaneseWord | TaggableJapaneseWord>,
 ): ReadonlyArray<TaggableJapaneseWord> {
   return words.map(castToTaggableInternal);
 }

@@ -71,7 +71,7 @@ async function extract(files: readonly string[]): Promise<ExtractionResult[]> {
     files.map(async (fn) => {
       const source = await readFile(fn, "utf8");
       return processFile(source, fn);
-    })
+    }),
   );
 
   return results.filter(isNotUndefined);
@@ -79,12 +79,12 @@ async function extract(files: readonly string[]): Promise<ExtractionResult[]> {
 
 const areOriginalsSame: (
   a: LocaleFileEntry["original"],
-  b: LocaleFileEntry["original"]
+  b: LocaleFileEntry["original"],
 ) => boolean = isEqual;
 
 async function mergeAndWrite(
   destinationFilePath: string,
-  extractedMessages: Map<string, ExtractedMessage>
+  extractedMessages: Map<string, ExtractedMessage>,
 ): Promise<void> {
   // Create the output file using the raw extractions
   const contents: Record<string, LocaleFileEntry> = {};
@@ -124,7 +124,7 @@ async function mergeAndWrite(
 
 async function extractAndWrite(
   files: readonly string[],
-  { locales, outDirectory }: ExtractCLIOptions
+  { locales, outDirectory }: ExtractCLIOptions,
 ) {
   const extractionResults = await extract(files);
   const extractedMessages = new Map<string, ExtractedMessage>();
@@ -135,7 +135,7 @@ async function extractAndWrite(
       if (!id) {
         throw new Error(
           `[FormatJS CLI] Missing message id for message: 
-${JSON.stringify(message, undefined, 2)}`
+${JSON.stringify(message, undefined, 2)}`,
         );
       }
 
@@ -144,8 +144,8 @@ ${JSON.stringify(message, undefined, 2)}`
           `Missing defaultMessage for message: ${JSON.stringify(
             message,
             undefined,
-            2
-          )}`
+            2,
+          )}`,
         );
       }
 
@@ -157,7 +157,7 @@ ${JSON.stringify(message, undefined, 2)}`
         ) {
           throw new Error(
             `[FormatJS CLI] Duplicate message id: "${id}", ` +
-              "but the `description` and/or `defaultMessage` are different."
+              "but the `description` and/or `defaultMessage` are different.",
           );
         }
 
@@ -178,9 +178,9 @@ ${JSON.stringify(message, undefined, 2)}`
       (locale: string): Promise<void> =>
         mergeAndWrite(
           path.resolve(outDirectory, `${locale}.json`),
-          extractedMessages
-        )
-    )
+          extractedMessages,
+        ),
+    ),
   );
 }
 

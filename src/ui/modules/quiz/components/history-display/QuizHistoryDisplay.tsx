@@ -55,7 +55,7 @@ class QuizHistoryDisplay extends React.PureComponent<ComponentProps> {
 
   private renderQuestionRow(
     index: number,
-    question: Question
+    question: Question,
   ): React.ReactElement {
     const { rowClassName, userAnswers } = this.props;
     return (

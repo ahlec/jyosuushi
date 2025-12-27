@@ -114,7 +114,7 @@ class QuizWrapup extends React.PureComponent<ComponentProps> {
       : 0;
 
     const encouragementDescriptor = randomFromArray(
-      grade <= 50 ? LOW_SCORE_ENCOURAGEMENTS : HIGH_SCORE_ENCOURAGEMENTS
+      grade <= 50 ? LOW_SCORE_ENCOURAGEMENTS : HIGH_SCORE_ENCOURAGEMENTS,
     );
 
     return (

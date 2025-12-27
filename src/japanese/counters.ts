@@ -131,7 +131,7 @@ function conjugateRegularWagoReading(
   amount: number,
   counterId: string,
   kanji: ReadonlyArray<string> | null,
-  style: CounterWagoStyle
+  style: CounterWagoStyle,
 ): ReadonlyArray<Conjugation> {
   const numbers = conjugateWagoNumber(amount);
   return numbers.map(
@@ -142,7 +142,7 @@ function conjugateRegularWagoReading(
       irregularType: null,
       kanji,
       reading: `${numberBase}${style.kana}`,
-    })
+    }),
   );
 }
 
@@ -151,7 +151,7 @@ function conjugateRegularKangoReading(
   counterId: string,
   kanji: ReadonlyArray<string> | null,
   readingKana: string,
-  conjugationOptions: KangoConjugationOptions
+  conjugationOptions: KangoConjugationOptions,
 ): ReadonlyArray<Conjugation> {
   const counterFirstConsonant = getLeadingConsonant(readingKana);
   const amountBreakdown = breakDownNumber(amount);
@@ -256,7 +256,7 @@ function conjugateRegularKangoReading(
           ? HIRAGANA.changeGyou(firstKana, gyou) + followingKana
           : readingKana,
         tags: tag ? new Set([tag]) : new Set(),
-      })
+      }),
     );
   } else {
     finalizedCounter = [
@@ -286,7 +286,7 @@ function conjugateRegularReadings(
   amount: number,
   counterId: string,
   kanji: ReadonlyArray<string> | null,
-  reading: CounterReading
+  reading: CounterReading,
 ): ReadonlyArray<Conjugation> {
   const regularConjugations: Conjugation[] = [];
 
@@ -297,8 +297,8 @@ function conjugateRegularReadings(
         amount,
         counterId,
         kanji,
-        reading.wagoStyle
-      )
+        reading.wagoStyle,
+      ),
     );
 
     switch (amount) {
@@ -330,8 +330,8 @@ function conjugateRegularReadings(
         counterId,
         kanji,
         reading.kana,
-        reading.kangoConjugationOptions
-      )
+        reading.kangoConjugationOptions,
+      ),
     );
   }
 
@@ -347,7 +347,7 @@ function conjugateRegularReadings(
  */
 export const conjugateCounter: (
   amount: number,
-  counter: Counter
+  counter: Counter,
 ) => ReadonlyArray<Conjugation> = memoize(
   (amount: number, counter: Counter): ReadonlyArray<Conjugation> => {
     if (amount <= 0) {
@@ -394,13 +394,13 @@ export const conjugateCounter: (
       results.push(
         ...flatten(
           counter.readings.map((reading) =>
-            conjugateRegularReadings(amount, counter.counterId, kanji, reading)
-          )
-        )
+            conjugateRegularReadings(amount, counter.counterId, kanji, reading),
+          ),
+        ),
       );
     }
 
     return results;
   },
-  (amount: number, counter: Counter) => [amount, counter.counterId].join("-")
+  (amount: number, counter: Counter) => [amount, counter.counterId].join("-"),
 );

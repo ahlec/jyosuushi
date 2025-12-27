@@ -10,7 +10,7 @@ async function main(): Promise<void> {
   } catch (err) {
     console.error(
       chalk.red.bold("ERROR."),
-      err instanceof Error ? err.message : JSON.stringify(err)
+      err instanceof Error ? err.message : JSON.stringify(err),
     );
     if (err instanceof Error && err.stack) {
       console.error(err.stack);

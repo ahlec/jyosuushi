@@ -235,7 +235,8 @@ export function CounterNotes(): React.ReactElement {
             2
           </a>
         </sup>{" "}
-        though what age <em>exactly</em> is a subjective and loosely-felt rule.{" "}
+        though what age <em>exactly</em> is a subjective and loosely-felt
+        rule.{" "}
       </p>
     </>
   );

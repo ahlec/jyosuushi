@@ -14,7 +14,7 @@ const DEFAULT_SCORECARD: Scorecard = {
 
 export default function scorecardReducer(
   state: Scorecard | undefined = DEFAULT_SCORECARD,
-  action: ReduxAction
+  action: ReduxAction,
 ): Scorecard {
   switch (action.type) {
     case "start-quiz":
@@ -36,7 +36,7 @@ export default function scorecardReducer(
       const mostMissedCounterId =
         maxBy(
           Object.keys(nextCounterTallies),
-          (counterId: string) => nextCounterTallies[counterId]
+          (counterId: string) => nextCounterTallies[counterId],
         ) || null;
       return {
         ...state,
@@ -58,7 +58,7 @@ export default function scorecardReducer(
       const mostMissedCounterId =
         maxBy(
           Object.keys(nextCounterTallies),
-          (counterId: string) => nextCounterTallies[counterId]
+          (counterId: string) => nextCounterTallies[counterId],
         ) || null;
       return {
         ...state,

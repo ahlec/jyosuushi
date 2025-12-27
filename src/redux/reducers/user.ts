@@ -8,7 +8,7 @@ const DEFAULT_STATE: User = {
 
 export default function userReducer(
   state: User = DEFAULT_STATE,
-  action: ReduxAction
+  action: ReduxAction,
 ): User {
   switch (action.type) {
     case "mark-latest-version":

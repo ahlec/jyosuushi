@@ -43,7 +43,7 @@ function onlyCountersWithOutput(results: CounterExportResults): boolean {
 }
 
 function convertCounterResultsToOutput(
-  results: CounterExportResults
+  results: CounterExportResults,
 ): ExportOutputEntry {
   return {
     contents: results.consoleOutput,
@@ -54,7 +54,7 @@ function convertCounterResultsToOutput(
 
 export default function writeCountersFile(
   stream: Writable,
-  dataSource: ValidatedDataSource
+  dataSource: ValidatedDataSource,
 ): WriteFileResults {
   const dataLookup = new CounterDataLookup(dataSource);
 
@@ -74,18 +74,18 @@ export default function writeCountersFile(
       exportSingleCounter(
         counter,
         dataLookup.getJoinData(counter.counter_id),
-        allExportedCounters
-      )
+        allExportedCounters,
+      ),
   );
 
   // Write out imports
   stream.write(
-    'import { Counter, CounterIrregularType, CountingSystem, ExternalLinkLanguage, WordOrigin } from "@jyosuushi/interfaces";\n'
+    'import { Counter, CounterIrregularType, CountingSystem, ExternalLinkLanguage, WordOrigin } from "@jyosuushi/interfaces";\n',
   );
 
   const orderedImports = sortBy(
     flatten(counters.map(selectImports)),
-    selectImportFilepath
+    selectImportFilepath,
   );
   if (orderedImports.length) {
     stream.write("\n\n");
@@ -98,7 +98,7 @@ export default function writeCountersFile(
   // Write out individual counter variables
   for (const { declaredValue, variableName } of counters) {
     stream.write(
-      `\n\nexport const ${variableName}: Counter = ${declaredValue};`
+      `\n\nexport const ${variableName}: Counter = ${declaredValue};`,
     );
   }
 
@@ -108,17 +108,17 @@ export default function writeCountersFile(
   const lookup = counters.reduce(
     (
       obj: { [counterId: string]: ProductionVariable },
-      { counterId, variableName }
+      { counterId, variableName },
     ) => {
       obj[counterId] = new ProductionVariable(variableName);
       return obj;
     },
-    {}
+    {},
   );
   stream.write(
     `export const COUNTERS_LOOKUP: { [counterId: string]: Counter; } = ${productionStringify(
-      lookup
-    )};`
+      lookup,
+    )};`,
   );
 
   // Return

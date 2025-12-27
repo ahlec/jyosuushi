@@ -21,9 +21,7 @@ interface ComponentProps {
   counters: readonly Counter[];
 }
 
-export default class CounterPreview extends React.PureComponent<
-  ComponentProps
-> {
+export default class CounterPreview extends React.PureComponent<ComponentProps> {
   public render(): React.ReactNode {
     const { className, counters } = this.props;
 

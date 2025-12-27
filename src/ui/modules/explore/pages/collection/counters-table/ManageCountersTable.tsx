@@ -37,20 +37,20 @@ function ManageCountersTable({
   // change.
   const memoizedAddCounter = useMemo(
     () => memoize((counterId: string) => () => onAddCounter(counterId)),
-    [onAddCounter]
+    [onAddCounter],
   );
 
   // Do the same thing for `onRemoveCounter`
   const memoizedRemoveCounter = useMemo(
     () => memoize((counterId: string) => () => onRemoveCounter(counterId)),
-    [onRemoveCounter]
+    [onRemoveCounter],
   );
 
   // Create a Set of the counters currently in the collection, to allow for
   // O(1) lookup.
   const counters = useMemo(
     (): ReadonlySet<string> => new Set(collectionCounters),
-    [collectionCounters]
+    [collectionCounters],
   );
 
   // Create the tile action creator that will be used to tell tiles that they
@@ -62,7 +62,7 @@ function ManageCountersTable({
         : memoizedAddCounter(counterId),
       variant: "button",
     }),
-    [counters, memoizedAddCounter, memoizedRemoveCounter]
+    [counters, memoizedAddCounter, memoizedRemoveCounter],
   );
 
   // Create a function that returns which custom CSS class should be applied
@@ -70,7 +70,7 @@ function ManageCountersTable({
   const tileClassNameGenerator = useCallback(
     (counterId: string): string =>
       counters.has(counterId) ? styles.inCollection : styles.notInCollection,
-    [counters]
+    [counters],
   );
 
   // Create a function that will render "already checked" iconography into the
@@ -83,7 +83,7 @@ function ManageCountersTable({
 
       return <CounterInCollectionTick className={styles.tick} />;
     },
-    [counters]
+    [counters],
   );
 
   // Render the component

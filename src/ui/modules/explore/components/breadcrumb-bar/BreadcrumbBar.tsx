@@ -71,7 +71,7 @@ function BreadcrumbBar({ links }: ComponentProps): React.ReactElement {
           />{" "}
           {definition.entityName}
         </NavLink>
-      )
+      ),
     ),
   ];
 

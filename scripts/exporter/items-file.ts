@@ -51,10 +51,10 @@ function convertToItemVariable(db: DbItemCounter): ProductionVariable {
 
 export default function writeItemsFile(
   stream: Writable,
-  dataSource: ValidatedDataSource
+  dataSource: ValidatedDataSource,
 ): WriteFileResults {
   stream.write(
-    'import { CounterItemRelevance, Item } from "@jyosuushi/interfaces";'
+    'import { CounterItemRelevance, Item } from "@jyosuushi/interfaces";',
   );
 
   const countersLookup: { [itemId: string]: DbItemCounter[] } = {};
@@ -79,7 +79,7 @@ export default function writeItemsFile(
 
     const item: ProtoItem = {
       counters: (countersLookup[dbItem.item_id] || []).map(
-        convertToProductionCounterLink
+        convertToProductionCounterLink,
       ),
       englishPlural: dbItem.english_plural,
       englishSingular: dbItem.english_singular,
@@ -89,7 +89,7 @@ export default function writeItemsFile(
     };
 
     stream.write(
-      `\n\nconst ${variableName}: Item = ${productionStringify(item)};`
+      `\n\nconst ${variableName}: Item = ${productionStringify(item)};`,
     );
   }
 
@@ -100,30 +100,30 @@ export default function writeItemsFile(
       obj[item_id] = new ProductionVariable(getItemId(item_id));
       return obj;
     },
-    {}
+    {},
   );
   stream.write(
     `export const ITEMS_LOOKUP: { [itemId: string]: Item; } = ${productionStringify(
-      lookup
-    )};`
+      lookup,
+    )};`,
   );
 
   const itemsFromCounter = sortBy(Object.keys(itemsFromCounterLookup)).reduce(
     (
       obj: { [counterId: string]: ReadonlyArray<ProductionVariable> },
-      counterId
+      counterId,
     ) => {
       obj[counterId] = itemsFromCounterLookup[counterId].map(
-        convertToItemVariable
+        convertToItemVariable,
       );
       return obj;
     },
-    {}
+    {},
   );
   stream.write(
     `\nexport const ITEMS_FROM_COUNTER: { [counterId: string]: ReadonlyArray<Item>; } = ${productionStringify(
-      itemsFromCounter
-    )};`
+      itemsFromCounter,
+    )};`,
   );
 
   return {

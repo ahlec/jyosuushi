@@ -29,21 +29,19 @@ function getDeployConfig() {
 
   if (!existsSync(DEPLOY_CONFIG_FILENAME)) {
     throw new Error(
-      `Building/deploying requires defining the config file '${DEPLOY_CONFIG_FILENAME}'`
+      `Building/deploying requires defining the config file '${DEPLOY_CONFIG_FILENAME}'`,
     );
   }
 
   deployConfig = convict({
     clientCloudfrontDistId: {
       default: null,
-      doc:
-        "The ID of the Cloudfront distribution handling the S3 bucket that the client files go into.",
+      doc: "The ID of the Cloudfront distribution handling the S3 bucket that the client files go into.",
       format: "nonempty-string",
     },
     clientS3Bucket: {
       default: null,
-      doc:
-        "The name of the S3 bucket that client files should be deployed into.",
+      doc: "The name of the S3 bucket that client files should be deployed into.",
       format: "nonempty-string",
     },
   })
@@ -68,7 +66,7 @@ const uploadClient = () => {
     },
     {
       cacheFileName: ".s3-upload-cache",
-    }
+    },
   );
 
   return src("./dist-client/**/*")
@@ -76,13 +74,13 @@ const uploadClient = () => {
       publisher.publish({
         "Cache-Control": "max-age=315360000, no-transform, public",
         "x-amz-acl": "public-read",
-      })
+      }),
     )
     .pipe(publisher.sync())
     .pipe(
       cloudfront({
         distribution: config.clientCloudfrontDistId,
-      })
+      }),
     )
     .pipe(publisher.cache())
     .pipe(awsPublish.reporter());

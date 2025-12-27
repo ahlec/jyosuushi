@@ -9,7 +9,7 @@ export interface CounterDisplayProperties {
 }
 
 export function isCounterDisplayProperties(
-  obj: unknown
+  obj: unknown,
 ): obj is CounterDisplayProperties {
   if (!isIndexableObject(obj)) {
     return false;
@@ -35,7 +35,7 @@ export interface IntrasiteLinkProperties {
 }
 
 export function isIntrasiteLinkProperties(
-  obj: unknown
+  obj: unknown,
 ): obj is IntrasiteLinkProperties {
   if (!isIndexableObject(obj)) {
     return false;

@@ -19,11 +19,11 @@ function ToastManager({ children }: ComponentProps): React.ReactElement {
     (): ToastContext => ({
       closeToast: (id: string): void => {
         const cleared = openToasts.filter(
-          (toast: Toast): boolean => toast.id !== id
+          (toast: Toast): boolean => toast.id !== id,
         );
         if (cleared.length === openToasts.length) {
           console.warn(
-            `Unable to find an open toast with the ID of '${id}'. This is a noop.`
+            `Unable to find an open toast with the ID of '${id}'. This is a noop.`,
           );
           return;
         }
@@ -40,7 +40,7 @@ function ToastManager({ children }: ComponentProps): React.ReactElement {
         ]);
       },
     }),
-    [nextToastId, openToasts]
+    [nextToastId, openToasts],
   );
 
   // Provide context and continue to render DOM

@@ -80,9 +80,8 @@ function ExploreCounterPage({
   const location = useLocation();
 
   // Handle editing collection membership
-  const [isEditMembershipDialogOpen, setIsEditMembershipDialogOpen] = useState<
-    boolean
-  >(false);
+  const [isEditMembershipDialogOpen, setIsEditMembershipDialogOpen] =
+    useState<boolean>(false);
   const membershipSectionActions = useMemo(
     (): readonly SectionActionDefinition[] => [
       {
@@ -92,7 +91,7 @@ function ExploreCounterPage({
         uniqueId: "edit",
       },
     ],
-    []
+    [],
   );
 
   const handleRequestEditMembershipDialogClose = useCallback((): void => {
@@ -100,32 +99,33 @@ function ExploreCounterPage({
   }, []);
 
   // Determine the links that should apear in the breadcrumb bar
-  const breadcrumbLinks = useMemo((): readonly BreadcrumbBarLinkDefinition[] => {
-    if (!counter) {
-      return [];
-    }
+  const breadcrumbLinks =
+    useMemo((): readonly BreadcrumbBarLinkDefinition[] => {
+      if (!counter) {
+        return [];
+      }
 
-    const links: BreadcrumbBarLinkDefinition[] = [
-      {
-        entityName: locale.dataLocalizers.getCounterName(counter),
-        entityType: "counter",
-        link: getCounterLink(counter.counterId),
-      },
-    ];
+      const links: BreadcrumbBarLinkDefinition[] = [
+        {
+          entityName: locale.dataLocalizers.getCounterName(counter),
+          entityType: "counter",
+          link: getCounterLink(counter.counterId),
+        },
+      ];
 
-    if (
-      isExploreLocationState(location.state) &&
-      location.state.fromCollection
-    ) {
-      links.unshift({
-        entityName: location.state.fromCollection.name,
-        entityType: "collection",
-        link: getCounterCollectionPath(location.state.fromCollection.id),
-      });
-    }
+      if (
+        isExploreLocationState(location.state) &&
+        location.state.fromCollection
+      ) {
+        links.unshift({
+          entityName: location.state.fromCollection.name,
+          entityType: "collection",
+          link: getCounterCollectionPath(location.state.fromCollection.id),
+        });
+      }
 
-    return links;
-  }, [counter, locale, location.state]);
+      return links;
+    }, [counter, locale, location.state]);
 
   // Render the component
   return (

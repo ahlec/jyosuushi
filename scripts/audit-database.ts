@@ -26,11 +26,11 @@ interface InvalidEntry {
 function appendInvalidEntries<TSchema extends Schemas>(
   schema: TSchema,
   dbEntries: ReadonlyArray<InvalidResultEntry<SchemaEntryTypes[TSchema]>>,
-  arr: InvalidEntry[]
+  arr: InvalidEntry[],
 ): void {
   for (const dbEntry of dbEntries) {
     const auditableReasons = dbEntry.reasons.filter(
-      ({ showsInAudit }) => showsInAudit
+      ({ showsInAudit }) => showsInAudit,
     );
     if (auditableReasons.length) {
       arr.push({
@@ -43,7 +43,7 @@ function appendInvalidEntries<TSchema extends Schemas>(
 }
 
 function getHashKeyFromIdentifierFields(
-  fields: ReadonlyArray<IdentifierField>
+  fields: ReadonlyArray<IdentifierField>,
 ): string {
   return fields.map(({ value }): string => value).join("|");
 }
@@ -51,7 +51,7 @@ function getHashKeyFromIdentifierFields(
 function groupAndAppendWarnings<TSchema extends Schemas>(
   schema: TSchema,
   warnings: ReadonlyArray<Warning<SchemaEntryTypes[TSchema]>>,
-  arr: InvalidEntry[]
+  arr: InvalidEntry[],
 ): void {
   const lookup: {
     [key: string]: {
@@ -95,7 +95,7 @@ function printInvalidEntry(entry: InvalidEntry): void {
     indentationLength = clamp(
       firstLine.length + 2,
       MIN_INDENTATION,
-      MAX_INDENTATION
+      MAX_INDENTATION,
     );
   } else {
     indentationLength = MIN_INDENTATION;
@@ -137,7 +137,7 @@ async function main(): Promise<void> {
 
   console.log();
   console.log(
-    `[${chalk.rgb(238, 64, 0).underline("IGNORED")}] (${ignored.length})`
+    `[${chalk.rgb(238, 64, 0).underline("IGNORED")}] (${ignored.length})`,
   );
   console.log(chalk.gray("These items won't be included in the export."));
   if (ignored.length) {
@@ -149,7 +149,7 @@ async function main(): Promise<void> {
   console.log();
   console.log(`[${chalk.yellow.underline("WARNINGS")}] (${warnings.length})`);
   console.log(
-    chalk.gray("These items are still exported, but should be investigated.")
+    chalk.gray("These items are still exported, but should be investigated."),
   );
   if (warnings.length) {
     warnings.forEach(printInvalidEntry);

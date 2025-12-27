@@ -22,21 +22,19 @@ function ChooserControl<TValue>({
   // Render component
   return (
     <div className={styles.chooserControl}>
-      {choices.map(
-        (choice: Choice<TValue>): React.ReactNode => {
-          const isSelected = choice.value === currentValue;
-          return (
-            <ChoiceElement
-              key={choice.id}
-              choice={choice}
-              isSelected={isSelected}
-              onSelected={
-                isSelected ? noop : (): void => onChoiceClicked(choice.value)
-              }
-            />
-          );
-        }
-      )}
+      {choices.map((choice: Choice<TValue>): React.ReactNode => {
+        const isSelected = choice.value === currentValue;
+        return (
+          <ChoiceElement
+            key={choice.id}
+            choice={choice}
+            isSelected={isSelected}
+            onSelected={
+              isSelected ? noop : (): void => onChoiceClicked(choice.value)
+            }
+          />
+        );
+      })}
     </div>
   );
 }

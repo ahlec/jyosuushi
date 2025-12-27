@@ -139,7 +139,7 @@ class ResultsView extends React.PureComponent<ComponentProps> {
   private onIgnoreClicked = (): void => {
     const { currentQuestion, dispatch } = this.props;
     const counters = uniq(
-      currentQuestion.validAnswers.map(({ counterId }: Answer) => counterId)
+      currentQuestion.validAnswers.map(({ counterId }: Answer) => counterId),
     );
 
     ReactGA.event({

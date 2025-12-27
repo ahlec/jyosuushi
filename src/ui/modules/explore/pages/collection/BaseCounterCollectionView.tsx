@@ -31,7 +31,7 @@ function BaseCounterCollectionView({
         link: getCounterCollectionPath(collection.id),
       },
     ],
-    [collection.id, collection.name]
+    [collection.id, collection.name],
   );
 
   // Render the component

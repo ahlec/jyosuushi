@@ -30,7 +30,7 @@ function CounterHeader({ counter }: ComponentProps): React.ReactElement {
         value: "",
       },
     ],
-    [mainText]
+    [mainText],
   );
 
   // Render the component

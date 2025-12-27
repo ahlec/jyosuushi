@@ -27,7 +27,7 @@ export interface InlineTokenizer {
     this: RemarkParser,
     eat: Eat,
     value: string,
-    silent: boolean
+    silent: boolean,
   ): TokenizerReturnType;
 
   locator: (value: string, fromIndex: number) => number;
@@ -37,5 +37,5 @@ export type BlockTokenizer = (
   this: RemarkParser,
   eat: Eat,
   value: string,
-  silent: boolean
+  silent: boolean,
 ) => TokenizerReturnType;

@@ -25,7 +25,7 @@ function parseDbTimestamp(dateTime: string): number {
 
 function writeStandardCollectionsFile(
   stream: Writable,
-  dataSource: ValidatedDataSource
+  dataSource: ValidatedDataSource,
 ): WriteFileResults {
   stream.write("interface StandardCounterCollection {\n");
   stream.write("  id: string;\n");
@@ -53,11 +53,11 @@ function writeStandardCollectionsFile(
     ]);
 
     const individualModificationDates = counters.map(({ date_added }): number =>
-      parseDbTimestamp(date_added)
+      parseDbTimestamp(date_added),
     );
     if (studyPack.date_counter_last_removed) {
       individualModificationDates.push(
-        parseDbTimestamp(studyPack.date_counter_last_removed)
+        parseDbTimestamp(studyPack.date_counter_last_removed),
       );
     }
 
@@ -71,8 +71,8 @@ function writeStandardCollectionsFile(
 
     stream.write(
       `\n\nconst ${variableName}: StandardCounterCollection = ${productionStringify(
-        collection
-      )};`
+        collection,
+      )};`,
     );
   });
 
@@ -81,9 +81,9 @@ function writeStandardCollectionsFile(
   stream.write(
     `\n\nexport const STANDARD_COLLECTIONS: readonly StandardCounterCollection[] = ${productionStringify(
       sortedCollections.map(
-        ({ pack_id }) => new ProductionVariable(getStudyPackId(pack_id))
-      )
-    )}`
+        ({ pack_id }) => new ProductionVariable(getStudyPackId(pack_id)),
+      ),
+    )}`,
   );
 
   return {

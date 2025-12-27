@@ -43,10 +43,10 @@ function CounterTableTile({
 
   // Use the provided function to determine what action this tile should
   // perform.
-  const action = useMemo(() => actionCreator(counter.counterId), [
-    actionCreator,
-    counter.counterId,
-  ]);
+  const action = useMemo(
+    () => actionCreator(counter.counterId),
+    [actionCreator, counter.counterId],
+  );
 
   // Create an object that will dictate the CSS classes to use on <Action />
   const actionClasses = useMemo(
@@ -54,7 +54,7 @@ function CounterTableTile({
       always: classnames(styles.tile, className),
       whileProcessing: styles.processing,
     }),
-    [className]
+    [className],
   );
 
   // Render the component

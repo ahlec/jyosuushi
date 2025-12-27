@@ -9,7 +9,7 @@ import {
 } from "./constants";
 
 export function createReplacementReferenceParser(
-  originalReference: InlineTokenizer
+  originalReference: InlineTokenizer,
 ): InlineTokenizer {
   // Do not allow `![^` or `[^` as a normal reference, do pass all other values
   // through.
@@ -17,7 +17,7 @@ export function createReplacementReferenceParser(
     this: RemarkParser,
     eat: Eat,
     value: string,
-    silent: boolean
+    silent: boolean,
   ): Node | boolean | void {
     let index = 0;
     if (value.charCodeAt(index) === KEYCODE_EXCLAMATION_MARK) {

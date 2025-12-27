@@ -10,5 +10,5 @@ module.exports = merge(
     devtool: "inline-source-map",
     mode: "development",
   },
-  commonWebpack
+  commonWebpack,
 );

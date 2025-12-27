@@ -8,7 +8,7 @@ const DEFAULT_SETTINGS: Settings = {
 
 export default function settingsReducer(
   state: Settings | undefined = DEFAULT_SETTINGS,
-  action: ReduxAction
+  action: ReduxAction,
 ): Settings {
   switch (action.type) {
     case "set-amount-range": {

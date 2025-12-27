@@ -5,7 +5,7 @@ import { ToastContext } from "./types";
 
 function stubNoop(): void {
   console.warn(
-    "Toast context is being used but has not been provided. This is a noop."
+    "Toast context is being used but has not been provided. This is a noop.",
   );
 }
 

@@ -57,8 +57,7 @@ I've opted to remove the backend from the application, fixing our downtime issue
     improvements: [],
     bugFixes: [
       {
-        text:
-          "Fixed an issue where external links for some counters displayed weird text symbols.",
+        text: "Fixed an issue where external links for some counters displayed weird text symbols.",
       },
     ],
     developerChanges: [
@@ -129,8 +128,7 @@ Finally, you can follow us on Twitter at [@jyosuushi](https://www.twitter.com/jy
     bugFixes: [
       {
         browser: "firefox",
-        text:
-          "Fixed a bug that prevented using the enter key to progress to the next question during quizzes.",
+        text: "Fixed a bug that prevented using the enter key to progress to the next question during quizzes.",
       },
     ],
     developerChanges: [],
@@ -142,8 +140,7 @@ Finally, you can follow us on Twitter at [@jyosuushi](https://www.twitter.com/jy
     improvements: [],
     bugFixes: [
       {
-        text:
-          "Fixed an error that would prevent progression in quizzes that contained the counter 時 (that is, the _Essential_ and _JLPT N5_ study packs).",
+        text: "Fixed an error that would prevent progression in quizzes that contained the counter 時 (that is, the _Essential_ and _JLPT N5_ study packs).",
       },
     ],
     developerChanges: [],
@@ -155,8 +152,7 @@ Finally, you can follow us on Twitter at [@jyosuushi](https://www.twitter.com/jy
     improvements: [],
     bugFixes: [
       {
-        text:
-          'Fixed a bug where counters that used alternative readings (such as 人 allow for 4 to be read as "よ") would incorrectly apply this change elsewhere in the number (producing readings like よじゅうよにん instead of よ**ん**じゅうよにん).',
+        text: 'Fixed a bug where counters that used alternative readings (such as 人 allow for 4 to be read as "よ") would incorrectly apply this change elsewhere in the number (producing readings like よじゅうよにん instead of よ**ん**じゅうよにん).',
       },
     ],
     developerChanges: ["Migrated from TSLint to ESLint."],
@@ -209,12 +205,10 @@ Finally, you can follow us on Twitter at [@jyosuushi](https://www.twitter.com/jy
     ],
     bugFixes: [
       {
-        text:
-          "Fixed a bug where per-item maximum values were ignored and it lead to wonky questions (like 39 0'clock).",
+        text: "Fixed a bug where per-item maximum values were ignored and it lead to wonky questions (like 39 0'clock).",
       },
       {
-        text:
-          "Fixed a bug where you could go to pages for counters or study packs that didn't exist.",
+        text: "Fixed a bug where you could go to pages for counters or study packs that didn't exist.",
       },
     ],
     developerChanges: [
@@ -266,8 +260,7 @@ Finally, you can follow us on Twitter at [@jyosuushi](https://www.twitter.com/jy
     improvements: [],
     bugFixes: [
       {
-        text:
-          "Fixed a bug where the number of irregular conjugations after the first 17 wouldn't be included in the count of total irregulars.",
+        text: "Fixed a bug where the number of irregular conjugations after the first 17 wouldn't be included in the count of total irregulars.",
       },
       { text: "Added a missing conjugation rule between 8 and か行." },
     ],
@@ -304,17 +297,14 @@ Finally, you can follow us on Twitter at [@jyosuushi](https://www.twitter.com/jy
       },
       {
         browser: "safari",
-        text:
-          "Fixed a bug where the tutorial had the text rendering on top of images.",
+        text: "Fixed a bug where the tutorial had the text rendering on top of images.",
       },
       {
         browser: "firefox",
-        text:
-          "Fixed a bug where the furigana were floating off to the side of the kanji.",
+        text: "Fixed a bug where the furigana were floating off to the side of the kanji.",
       },
       {
-        text:
-          "Switched to using Google Forms to address issues with previous bug report/submission box.",
+        text: "Switched to using Google Forms to address issues with previous bug report/submission box.",
       },
     ],
     developerChanges: [],

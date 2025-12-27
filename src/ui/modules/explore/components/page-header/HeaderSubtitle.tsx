@@ -30,7 +30,7 @@ function HeaderSubtitle({
             key={`separator-${index - 1}`}
             className={classnames(
               styles.separator,
-              SEPARATOR_CSS_CLASS_NAMES[color]
+              SEPARATOR_CSS_CLASS_NAMES[color],
             )}
           >
             |

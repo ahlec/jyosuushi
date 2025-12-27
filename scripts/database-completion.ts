@@ -15,7 +15,7 @@ interface CounterAnalysis {
 function analyzeCounter(
   counter: DbCounter,
   countersWithExternalLinks: ReadonlySet<string>,
-  countersWithDisambiguations: ReadonlySet<string>
+  countersWithDisambiguations: ReadonlySet<string>,
 ): CounterAnalysis {
   let score = 0;
   const missingPieces: string[] = [];
@@ -64,12 +64,12 @@ const COLUMN_SEPARATION = "  ";
 function outputAnalysisBucket(
   header: string,
   analyses: ReadonlyArray<CounterAnalysis>,
-  totalPopulationCount: number
+  totalPopulationCount: number,
 ): void {
   console.log(
     `[${chalk.rgb(92, 36, 110)(header)}] ${
       analyses.length
-    } / ${totalPopulationCount} items`
+    } / ${totalPopulationCount} items`,
   );
 
   for (const analysis of analyses) {
@@ -80,17 +80,17 @@ function outputAnalysisBucket(
       ? `${chalk.yellow("missing areas:")} ${analysis.missingPieces.join(", ")}`
       : "";
     const percentStr = `${Math.round(
-      (analysis.score / analysis.totalScore) * 100
+      (analysis.score / analysis.totalScore) * 100,
     )}%`;
 
     console.log(
       analysis.counterId.padStart(4, CJK_SPACE_CHARACTER),
       COLUMN_SEPARATION,
       `${chalk.gray("〔")}${progressBar}${chalk.gray("〕")}${percentStr.padEnd(
-        4
+        4,
       )}`,
       COLUMN_SEPARATION,
-      missingAreas
+      missingAreas,
     );
   }
 
@@ -119,11 +119,11 @@ async function main(): Promise<void> {
       analyzeCounter(
         counter,
         countersWithExternalLinks,
-        countersWithDisambiguations
-      )
+        countersWithDisambiguations,
+      ),
     ),
     selectScore,
-    ["desc"]
+    ["desc"],
   );
 
   // Chunk it

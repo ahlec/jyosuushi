@@ -174,7 +174,7 @@ export default class Database implements AsyncDatabaseIndexer {
     for (const schema of Object.values(Schemas)) {
       // Get the .sql file at HEAD
       const headSql = execSync(
-        `git show HEAD:${RELATIVE_SQL_DIRECTORY}/${schema}.sql`
+        `git show HEAD:${RELATIVE_SQL_DIRECTORY}/${schema}.sql`,
       ).toString();
 
       // Get the current SQLite DDL
@@ -203,16 +203,17 @@ export default class Database implements AsyncDatabaseIndexer {
 
   private async retrieve<
     TSchema extends Schemas | EnumSchemas,
-    TEntry = SchemaEntryTypes[TSchema]
+    TEntry = SchemaEntryTypes[TSchema],
   >(schema: TSchema): Promise<ReadonlyArray<TEntry>> {
     return this.connection.prepare<[], TEntry>(`SELECT * FROM ${schema}`).all();
   }
 
   private async dumpTable(schema: Schemas | EnumSchemas): Promise<string> {
     const creation = this.connection
-      .prepare<[], { sql: string }>(
-        `SELECT sql FROM sqlite_master WHERE name = '${schema}'`
-      )
+      .prepare<
+        [],
+        { sql: string }
+      >(`SELECT sql FROM sqlite_master WHERE name = '${schema}'`)
       .get();
     if (!creation) {
       throw new Error(`Could not find \`${schema}\` in sqlite_master.`);
@@ -232,7 +233,7 @@ export default class Database implements AsyncDatabaseIndexer {
       (values): string =>
         `INSERT INTO "${schema}" (${insertColumnsList}) VALUES(${columns
           .map(({ name }): string => formatSqlValueForDump(values[name]))
-          .join(", ")});`
+          .join(", ")});`,
     );
 
     return formatSql(
@@ -242,7 +243,7 @@ export default class Database implements AsyncDatabaseIndexer {
         creation.sql.endsWith(";") ? creation.sql : `${creation.sql};`,
         ...insertStatements,
         "COMMIT;",
-      ].join("\n")
+      ].join("\n"),
     );
   }
 }

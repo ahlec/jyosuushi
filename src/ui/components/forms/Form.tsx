@@ -19,7 +19,7 @@ function Form({
       e.preventDefault();
       onSubmit();
     },
-    [onSubmit]
+    [onSubmit],
   );
 
   return (

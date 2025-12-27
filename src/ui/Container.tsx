@@ -27,7 +27,7 @@ class Container extends React.PureComponent<ReduxProps> {
       <div
         className={classnames(
           styles.container,
-          isQuizActive && styles.quizActive
+          isQuizActive && styles.quizActive,
         )}
       >
         <Application />

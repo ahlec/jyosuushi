@@ -14,86 +14,85 @@ interface FirstTenWords extends JapaneseWord {
   strange?: boolean;
 }
 
-const FIRST_TEN_NUMBERS: ReadonlyArray<ReadonlyArray<
-  Readonly<FirstTenWords>
->> = [
+const FIRST_TEN_NUMBERS: ReadonlyArray<ReadonlyArray<Readonly<FirstTenWords>>> =
   [
-    {
-      kana: "ゼロ",
-    },
-    {
-      kana: "れい",
-    },
-  ],
-  [
-    {
-      kana: "いち",
-    },
-  ],
-  [
-    {
-      kana: "に",
-    },
-  ],
-  [
-    {
-      kana: "さん",
-    },
-  ],
-  [
-    {
-      isValid: (options): boolean => options.allowsYonFor4,
-      kana: "よん",
-    },
-    {
-      isValid: (options): boolean => options.allowsYoFor4,
-      kana: "よ",
-      strange: true,
-    },
-    {
-      isValid: (options): boolean => options.allowsShiFor4,
-      kana: "し",
-      strange: true,
-    },
-  ],
-  [
-    {
-      kana: "ご",
-    },
-  ],
-  [
-    {
-      kana: "ろく",
-    },
-  ],
-  [
-    {
-      isValid: (options): boolean => options.allowsShichiFor7,
-      kana: "しち",
-      strange: true,
-    },
-    {
-      isValid: (options): boolean => options.allowsNanaFor7,
-      kana: "なな",
-    },
-  ],
-  [
-    {
-      kana: "はち",
-    },
-  ],
-  [
-    {
-      isValid: (options): boolean => options.allowsKyuuFor9,
-      kana: "きゅう",
-    },
-    {
-      isValid: (options): boolean => options.allowsKuFor9,
-      kana: "く",
-      strange: true,
-    },
-  ],
-];
+    [
+      {
+        kana: "ゼロ",
+      },
+      {
+        kana: "れい",
+      },
+    ],
+    [
+      {
+        kana: "いち",
+      },
+    ],
+    [
+      {
+        kana: "に",
+      },
+    ],
+    [
+      {
+        kana: "さん",
+      },
+    ],
+    [
+      {
+        isValid: (options): boolean => options.allowsYonFor4,
+        kana: "よん",
+      },
+      {
+        isValid: (options): boolean => options.allowsYoFor4,
+        kana: "よ",
+        strange: true,
+      },
+      {
+        isValid: (options): boolean => options.allowsShiFor4,
+        kana: "し",
+        strange: true,
+      },
+    ],
+    [
+      {
+        kana: "ご",
+      },
+    ],
+    [
+      {
+        kana: "ろく",
+      },
+    ],
+    [
+      {
+        isValid: (options): boolean => options.allowsShichiFor7,
+        kana: "しち",
+        strange: true,
+      },
+      {
+        isValid: (options): boolean => options.allowsNanaFor7,
+        kana: "なな",
+      },
+    ],
+    [
+      {
+        kana: "はち",
+      },
+    ],
+    [
+      {
+        isValid: (options): boolean => options.allowsKyuuFor9,
+        kana: "きゅう",
+      },
+      {
+        isValid: (options): boolean => options.allowsKuFor9,
+        kana: "く",
+        strange: true,
+      },
+    ],
+  ];
 
 const OKU_NUMBER: ReadonlyArray<Readonly<JapaneseWord>> = [
   {
@@ -185,7 +184,7 @@ export interface FinalNumberChanges {
 
 function applySingleChange(
   words: ReadonlyArray<TaggableJapaneseWord>,
-  change: NumberChange
+  change: NumberChange,
 ): ReadonlyArray<TaggableJapaneseWord> {
   switch (change.type) {
     case "trailing-small-tsu": {
@@ -193,7 +192,7 @@ function applySingleChange(
         ({ kana, tags }): TaggableJapaneseWord => ({
           kana: kana.slice(0, -1) + "っ",
           tags,
-        })
+        }),
       );
     }
     case "omit": {
@@ -212,7 +211,7 @@ function applySingleChange(
         (word): TaggableJapaneseWord => ({
           ...word,
           tags: new Set(word.tags).add(change.tag),
-        })
+        }),
       );
     }
     case "preserve": {
@@ -223,7 +222,7 @@ function applySingleChange(
 
 function applyUniqueChanges(
   words: ReadonlyArray<JapaneseWord | TaggableJapaneseWord>,
-  changes: ReadonlyArray<ReadonlyArray<NumberChange>> | false | undefined
+  changes: ReadonlyArray<ReadonlyArray<NumberChange>> | false | undefined,
 ): ReadonlyArray<TaggableJapaneseWord> {
   if (!changes) {
     return castToTaggable(words);
@@ -231,9 +230,8 @@ function applyUniqueChanges(
 
   const results: Array<ReadonlyArray<TaggableJapaneseWord>> = [];
   for (const changeSet of changes) {
-    let currentPermutation: ReadonlyArray<TaggableJapaneseWord> = castToTaggable(
-      words
-    );
+    let currentPermutation: ReadonlyArray<TaggableJapaneseWord> =
+      castToTaggable(words);
     for (const change of changeSet) {
       currentPermutation = applySingleChange(currentPermutation, change);
     }
@@ -257,7 +255,7 @@ const TYPICAL_COUNTING_CONJUGATION_OPTIONS: KangoConjugationOptions = {
 function conjugateKangoNumberInternal(
   amount: number,
   options: KangoConjugationOptions,
-  finalNumberChanges?: FinalNumberChanges
+  finalNumberChanges?: FinalNumberChanges,
 ): ReadonlyArray<TaggableJapaneseWord> {
   const chunks: Array<ReadonlyArray<TaggableJapaneseWord>> = [];
   const breakdown = breakDownNumber(amount);
@@ -267,8 +265,8 @@ function conjugateKangoNumberInternal(
       conjugateKangoNumberInternal(
         breakdown.oku,
         TYPICAL_COUNTING_CONJUGATION_OPTIONS,
-        OMIT_ONE
-      )
+        OMIT_ONE,
+      ),
     );
 
     const change =
@@ -283,8 +281,8 @@ function conjugateKangoNumberInternal(
       conjugateKangoNumberInternal(
         breakdown.man,
         TYPICAL_COUNTING_CONJUGATION_OPTIONS,
-        OMIT_ONE
-      )
+        OMIT_ONE,
+      ),
     );
 
     const change =
@@ -299,8 +297,8 @@ function conjugateKangoNumberInternal(
       conjugateKangoNumberInternal(
         breakdown.sen,
         TYPICAL_COUNTING_CONJUGATION_OPTIONS,
-        SEN_CHANGES
-      )
+        SEN_CHANGES,
+      ),
     );
 
     const senBreakdown = breakDownNumber(breakdown.sen);
@@ -321,8 +319,8 @@ function conjugateKangoNumberInternal(
       conjugateKangoNumberInternal(
         breakdown.hyaku,
         TYPICAL_COUNTING_CONJUGATION_OPTIONS,
-        HYAKU_CHANGES
-      )
+        HYAKU_CHANGES,
+      ),
     );
 
     const hyakuBreakdown = breakDownNumber(breakdown.hyaku);
@@ -357,8 +355,8 @@ function conjugateKangoNumberInternal(
       conjugateKangoNumberInternal(
         breakdown.jyuu,
         TYPICAL_COUNTING_CONJUGATION_OPTIONS,
-        OMIT_ONE
-      )
+        OMIT_ONE,
+      ),
     );
 
     const change =
@@ -381,10 +379,10 @@ function conjugateKangoNumberInternal(
             (word: Readonly<FirstTenWords>): TaggableJapaneseWord => ({
               kana: word.kana,
               tags: word.strange ? new Set<Tag>(["strange"]) : new Set(),
-            })
+            }),
           ),
-        change
-      )
+        change,
+      ),
     );
   }
 
@@ -397,13 +395,15 @@ const MEMOIZE_RESOLVER = new Map<FinalNumberChanges, Map<number, string>>();
 export const conjugateKangoNumber: (
   amount: number,
   options: KangoConjugationOptions,
-  finalNumberChanges?: FinalNumberChanges
+  finalNumberChanges?: FinalNumberChanges,
 ) => ReadonlyArray<TaggableJapaneseWord> = memoize(
   conjugateKangoNumberInternal,
   (
     amount: number,
     options: KangoConjugationOptions,
-    finalNumberChanges: FinalNumberChanges | undefined = UNDEFINED_FINAL_CHANGES
+    finalNumberChanges:
+      | FinalNumberChanges
+      | undefined = UNDEFINED_FINAL_CHANGES,
   ) => {
     let fncMap = MEMOIZE_RESOLVER.get(finalNumberChanges);
     if (!fncMap) {
@@ -428,5 +428,5 @@ export const conjugateKangoNumber: (
     ].join()}`;
 
     return id;
-  }
+  },
 );

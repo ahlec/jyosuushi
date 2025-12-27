@@ -50,9 +50,7 @@ const JUDGMENT_TO_CSS_CLASS_NAME: {
   skipped: styles.skipped,
 };
 
-export default class JudgmentBubble extends React.PureComponent<
-  ComponentProps
-> {
+export default class JudgmentBubble extends React.PureComponent<ComponentProps> {
   public render(): React.ReactNode {
     const { className, judgment, shape } = this.props;
 
@@ -79,7 +77,7 @@ export default class JudgmentBubble extends React.PureComponent<
           styles.judgmentBubble,
           SHAPE_TO_CSS_CLASS_NAME[shape],
           JUDGMENT_TO_CSS_CLASS_NAME[judgment],
-          className
+          className,
         )}
       >
         {contents}

@@ -34,7 +34,7 @@ function CreateCollectionTile({
     <button
       className={classnames(
         styles.tile,
-        (isHovered || isModalOpen) && styles.active
+        (isHovered || isModalOpen) && styles.active,
       )}
       onClick={onClick}
       onMouseOver={handleMouseOver}

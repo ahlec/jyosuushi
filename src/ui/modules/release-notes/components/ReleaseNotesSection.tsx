@@ -42,7 +42,7 @@ function ReleaseNotesSection<TEntry>({
             <li key={index} className={styles.entry}>
               {renderEntry(entry)}
             </li>
-          )
+          ),
         )}
       </ul>
     </div>

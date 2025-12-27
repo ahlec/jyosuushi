@@ -15,8 +15,7 @@ import * as styles from "./CollectionNameForm.scss";
 const INTL_MESSAGES = defineMessages({
   nameLabel: {
     defaultMessage: "Collection Name",
-    id:
-      "explore.landing.collection-name-form.CollectionNameForm.nameFieldLabel",
+    id: "explore.landing.collection-name-form.CollectionNameForm.nameFieldLabel",
   },
 });
 

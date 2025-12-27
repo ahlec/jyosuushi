@@ -61,14 +61,14 @@ function parseLabel(value: string): ParsedLabelInfo | null {
 }
 
 export function createFootnoteCallsTokenizer(
-  idTracker: IdTracker
+  idTracker: IdTracker,
 ): InlineTokenizer {
   // Parse a footnote call / footnote reference, such as `[^label]`
   function footnoteCall(
     this: RemarkParser,
     eat: Eat,
     value: string,
-    silent: boolean
+    silent: boolean,
   ): Node | boolean | void {
     const label = parseLabel(value);
     if (!label) {

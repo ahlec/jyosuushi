@@ -22,7 +22,7 @@ function isIgnoredNode(node: HastNode): boolean {
 
 function validateHastNode(
   node: HastNode,
-  context: HastNodeValidationContext
+  context: HastNodeValidationContext,
 ): ValidationResult {
   // If this node should be ignored, consider it valid
   if (isIgnoredNode(node)) {
@@ -88,12 +88,12 @@ function validateHastNode(
 }
 
 export function validateInlineSyntaxTree(
-  tree: HastSyntaxTree
+  tree: HastSyntaxTree,
 ): ValidationResult {
   const violations: ValidationViolation[] = [];
 
   const nonIgnoredChildren = tree.children.filter(
-    (child): boolean => !isIgnoredNode(child)
+    (child): boolean => !isIgnoredNode(child),
   );
 
   // Syntax tree isn't valid for inline if it has more than one block element

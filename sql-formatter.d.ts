@@ -5,6 +5,6 @@ declare module "sql-formatter" {
       language?: "db2" | "n1ql" | "pl/sql" | "sql";
       indent?: string;
       params: object;
-    }
+    },
   ): string;
 }

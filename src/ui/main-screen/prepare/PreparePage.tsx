@@ -29,7 +29,7 @@ const INTL_MESSAGES = defineMessages({
 });
 
 function FormattedMessageBold(
-  chunks: readonly React.ReactNode[]
+  chunks: readonly React.ReactNode[],
 ): React.ReactElement {
   return <strong>{chunks}</strong>;
 }
@@ -48,12 +48,12 @@ function PreparePage({
   // Handle events
   const handleOpenTutorialModalClick = useCallback(
     (): void => setIsShowingTutorial(true),
-    []
+    [],
   );
 
   const handleRequestTutorialModalClose = useCallback(
     (): void => setIsShowingTutorial(false),
-    []
+    [],
   );
 
   // Render the component

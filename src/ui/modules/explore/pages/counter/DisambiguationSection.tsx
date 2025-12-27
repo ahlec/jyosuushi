@@ -19,9 +19,7 @@ interface ComponentProps {
   counter: Counter;
 }
 
-export default class DisambiguationSection extends React.PureComponent<
-  ComponentProps
-> {
+export default class DisambiguationSection extends React.PureComponent<ComponentProps> {
   public render(): React.ReactNode {
     const {
       counter: { disambiguations },

@@ -25,10 +25,10 @@ const INTL_MESSAGES = defineMessages({
 function Score({ className }: ComponentProps): React.ReactElement {
   // Connect to the rest of the application
   const numCorrectAnswers = useSelector(
-    (state: State) => state.scorecard.numCorrectAnswers
+    (state: State) => state.scorecard.numCorrectAnswers,
   );
   const numIncorrectAnswers = useSelector(
-    (state: State) => state.scorecard.numIncorrectAnswers
+    (state: State) => state.scorecard.numIncorrectAnswers,
   );
 
   // Don't render contents if we haven't answered anything yet.

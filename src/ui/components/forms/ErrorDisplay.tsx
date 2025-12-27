@@ -20,7 +20,7 @@ function ErrorDisplay({
       className={classnames(
         styles.errorDisplay,
         variant === "form-error" && styles.variantForm,
-        variant === "field-error" && styles.variantField
+        variant === "field-error" && styles.variantField,
       )}
     >
       <FormattedMessage {...text} values={values} />

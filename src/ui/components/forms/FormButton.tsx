@@ -53,7 +53,7 @@ function FormButton({
     <StandardButton
       className={classnames(
         styles.formButton,
-        variant === "primary" && styles.variantPrimary
+        variant === "primary" && styles.variantPrimary,
       )}
       disabled={disabled}
       onClick={handleClick}

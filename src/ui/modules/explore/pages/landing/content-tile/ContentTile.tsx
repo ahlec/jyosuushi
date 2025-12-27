@@ -47,7 +47,7 @@ function ContentTile({
       <div
         className={classnames(
           styles.horizontalAdornment,
-          styles.bottomAdornment
+          styles.bottomAdornment,
         )}
       />
       <TileCorner className={styles.bottomLeftCorner} color={color} />

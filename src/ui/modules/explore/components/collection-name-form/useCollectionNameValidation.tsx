@@ -9,14 +9,12 @@ import {
 const INTL_MESSAGES = defineMessages({
   errorFieldRequired: {
     defaultMessage: "The name of the new collection is required.",
-    id:
-      "explore.components.collection-name-form.useCollectionNameValidation.errors.fieldRequred",
+    id: "explore.components.collection-name-form.useCollectionNameValidation.errors.fieldRequred",
   },
   errorInvalidLength: {
     defaultMessage:
       "Counter collection names must be between {minLength} and {maxLength} characters long.",
-    id:
-      "explore.component.collection-name-form.useCollectionNameValidation.errors.invalidLength",
+    id: "explore.component.collection-name-form.useCollectionNameValidation.errors.invalidLength",
   },
 });
 

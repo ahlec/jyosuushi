@@ -80,7 +80,7 @@ function Action({
         className.always,
         definition.variant === "button" &&
           isProcessingClick &&
-          className.whileProcessing
+          className.whileProcessing,
       );
     }
   }

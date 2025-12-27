@@ -53,7 +53,7 @@ function LoadingSpinner({
       className={classnames(
         styles.loadingSpinner,
         COLOR_CLASS_NAMES[color],
-        className
+        className,
       )}
       style={{
         height: size,

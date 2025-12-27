@@ -35,14 +35,14 @@ interface Redux {
 }
 
 export function createRedux(): Redux {
-  const reducers = (combineReducers({
+  const reducers = combineReducers({
     questions: questionsReducer,
     quizState: quizStateReducer,
     scorecard: scorecardReducer,
     settings: settingsReducer,
     user: userReducer,
     userAnswers: userAnswersReducer,
-  }) as unknown) as Reducer<State, Action>;
+  }) as unknown as Reducer<State, Action>;
   const store = createStore<
     State,
     Action,
@@ -59,9 +59,9 @@ export function createRedux(): Redux {
         storage,
         version: 1,
       },
-      reducers
+      reducers,
     ),
-    composeWithDevTools()
+    composeWithDevTools(),
   );
   const persistor = persistStore(store);
   return {

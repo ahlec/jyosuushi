@@ -21,15 +21,17 @@ const FILE_HEADER_COMMENT = `// DO NOT HAND-MODIFY THIS FILE!!
 // This file was built using \`yarn db:export\` from the SQLite database.
 // Modifications will be lost if they are made manually and not through the database.\n\n`;
 
-function exportFile(
+async function exportFile(
   file: FileExportRequest,
-  dataSource: ValidatedDataSource
-): WriteFileResults {
+  dataSource: ValidatedDataSource,
+): Promise<WriteFileResults> {
   const stream = new WritableStream();
   const writeResults = file.writeFunction(stream, dataSource);
 
   const rawJavaScript = `${FILE_HEADER_COMMENT}${stream.toString()}`;
-  const javaScript = prettier.format(rawJavaScript, { parser: "typescript" });
+  const javaScript = await prettier.format(rawJavaScript, {
+    parser: "typescript",
+  });
 
   const filename = path.resolve(DATA_DIRECTORY, file.relativeFilename);
   const directory = path.dirname(filename);
@@ -49,7 +51,7 @@ interface ExportFileOutput {
 function printExportOutputEntry(
   output: ExportOutputEntry,
   indentationLevel: number,
-  bullet: string
+  bullet: string,
 ): void {
   const indentation = "  ".repeat(indentationLevel);
   if (typeof output === "string") {
@@ -91,12 +93,14 @@ async function main(): Promise<void> {
 
   if (dataSource.hasErrors) {
     console.error(
-      chalk.redBright("Database is in an invalid state and cannot be exported.")
+      chalk.redBright(
+        "Database is in an invalid state and cannot be exported.",
+      ),
     );
     console.error(
       "Use",
       chalk.cyan("yarn db:audit"),
-      "to identify the problem spots."
+      "to identify the problem spots.",
     );
 
     process.exit(1);
@@ -126,7 +130,7 @@ async function main(): Promise<void> {
         break;
       }
 
-      const result = exportFile(file, dataSource);
+      const result = await exportFile(file, dataSource);
       if (result.output.length) {
         output.push({
           filename: file.relativeFilename,
@@ -141,7 +145,7 @@ async function main(): Promise<void> {
   } catch (err) {
     console.log(
       `${chalk.red("FATAL ERROR")}.`,
-      err instanceof Error ? err.message : err
+      err instanceof Error ? err.message : err,
     );
     if (err instanceof Error && err.stack) {
       console.log(chalk.gray(err.stack));

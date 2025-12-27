@@ -50,13 +50,13 @@ function EditMembershipDialog({
   const handleAddToCollection = useCallback(
     (collection: UserCounterCollection): Promise<void> =>
       collection.addCounter(counterId),
-    [counterId]
+    [counterId],
   );
 
   const handleRemoveFromCollection = useCallback(
     (collection: UserCounterCollection): Promise<void> =>
       collection.removeCounter(counterId),
-    [counterId]
+    [counterId],
   );
 
   // Render the component
@@ -82,7 +82,7 @@ function EditMembershipDialog({
               onAddToCollection={handleAddToCollection}
               onRemoveFromCollection={handleRemoveFromCollection}
             />
-          )
+          ),
         )}
       </div>
     </BaseDialog>

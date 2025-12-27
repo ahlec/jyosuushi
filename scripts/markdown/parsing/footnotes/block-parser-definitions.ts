@@ -36,7 +36,7 @@ function interrupt(
   list: InterruptorsArray,
   tokenizers: { [method: string]: BlockTokenizer },
   context: RemarkParser,
-  parameters: Parameters<BlockTokenizer>
+  parameters: Parameters<BlockTokenizer>,
 ): boolean {
   for (const [method] of list) {
     if (tokenizers[method].apply(context, parameters)) {
@@ -90,7 +90,7 @@ function parseLabel(value: string, valueStart: number): ParsedLabelInfo | null {
 }
 
 function removeTrailingEmptyLines(
-  lines: readonly ContentLine[]
+  lines: readonly ContentLine[],
 ): readonly ContentLine[] {
   let trimmedLength = lines.length;
 
@@ -114,7 +114,7 @@ function removeTrailingEmptyLines(
 function parseContentLines(
   value: string,
   valueStart: number,
-  containsFootnoteDefinitionInterruption: (str: string) => boolean
+  containsFootnoteDefinitionInterruption: (str: string) => boolean,
 ): readonly ContentLine[] {
   let start = 0;
   let indent: number | undefined = 0;
@@ -160,7 +160,7 @@ function parseContentLines(
           mostRecentLine &&
           (mostRecentLine.contentStart === mostRecentLine.contentEnd ||
             containsFootnoteDefinitionInterruption(
-              value.slice(index, MAX_SLICE)
+              value.slice(index, MAX_SLICE),
             ))
         ) {
           break;
@@ -181,13 +181,13 @@ function parseContentLines(
 export function createFootnoteDefinitionTokenizer(
   interruptors: InterruptorsArray,
   blockToknenizers: { [method: string]: BlockTokenizer },
-  idTracker: IdTracker
+  idTracker: IdTracker,
 ): BlockTokenizer {
   return function footnoteDefinition(
     this: RemarkParser,
     eat: Eat,
     value: string,
-    silent: boolean
+    silent: boolean,
   ): Node | boolean | void {
     // Skip initial whitespace.
     let startValueIndex = 0;
@@ -227,7 +227,7 @@ export function createFootnoteDefinitionTokenizer(
       value,
       label.end + 1,
       (str: string): boolean =>
-        interrupt(interruptors, blockToknenizers, this, [eat, str, true])
+        interrupt(interruptors, blockToknenizers, this, [eat, str, true]),
     );
 
     // Add all, but ignore the final line feed.

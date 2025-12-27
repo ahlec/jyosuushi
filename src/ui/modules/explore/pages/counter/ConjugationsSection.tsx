@@ -78,7 +78,7 @@ export default class ConjugationsSection extends React.PureComponent<
       }
 
       return results;
-    }
+    },
   );
 
   private readonly memoizeNumIrregulars = memoizeOne(
@@ -87,9 +87,9 @@ export default class ConjugationsSection extends React.PureComponent<
         (sum: number, amountStr: string): number => {
           return sum + counter.irregulars[parseInt(amountStr, 10)].length;
         },
-        0
+        0,
       );
-    }
+    },
   );
 
   private readonly memoizeIrregularsBeyondExampleTable = memoizeOne(
@@ -108,7 +108,7 @@ export default class ConjugationsSection extends React.PureComponent<
       });
 
       return sortBy(results, ({ amount }: ConjugationTile): number => amount);
-    }
+    },
   );
 
   public render(): React.ReactNode {
@@ -145,7 +145,7 @@ export default class ConjugationsSection extends React.PureComponent<
         </p>
         <div className={styles.conjugatedUserInput}>
           {conjugateCounter(currentUserInput, counter).map(
-            this.renderCurrentUserInputItem
+            this.renderCurrentUserInputItem,
           )}
         </div>
         <input
@@ -199,7 +199,7 @@ export default class ConjugationsSection extends React.PureComponent<
 
   private renderCurrentUserInputItem = (
     conjugation: Conjugation,
-    index: number
+    index: number,
   ): React.ReactNode => (
     <div
       key={index}
@@ -207,8 +207,8 @@ export default class ConjugationsSection extends React.PureComponent<
         conjugation.irregularType
           ? styles.irregular
           : conjugation.countingSystem !== CountingSystem.Kango
-          ? styles.nonKango
-          : ""
+            ? styles.nonKango
+            : ""
       }
     >
       {conjugation.reading}
@@ -227,8 +227,8 @@ export default class ConjugationsSection extends React.PureComponent<
           irregularType
             ? styles.irregular
             : countingSystem !== CountingSystem.Kango
-            ? styles.nonKango
-            : ""
+              ? styles.nonKango
+              : ""
         }
       >
         {reading}
@@ -237,7 +237,7 @@ export default class ConjugationsSection extends React.PureComponent<
   };
 
   private onUserInputChanged = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ): void => {
     const newValue = event.target.valueAsNumber;
 
