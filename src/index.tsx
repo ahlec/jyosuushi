@@ -12,7 +12,7 @@ import QuizManager from "./ui/modules/quiz/state/QuizManager";
 import { createRedux } from "./redux/store";
 import Container from "./ui/Container";
 
-import "meyer-reset-scss/reset.scss";
+import "./reset.scss";
 import "./index.scss";
 
 ReactGA.initialize(CONFIG_GOOGLE_ANALYTICS_TRACKING_ID, {
