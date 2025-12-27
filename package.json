@@ -78,7 +78,7 @@
     "remark-react": "^7.0.1",
     "remark-ruby": "^0.2.1",
     "request": "^2.88.2",
-    "rimraf": "^3.0.2",
+    "rimraf": "^6.1.2",
     "sass": "^1.97.1",
     "sass-loader": "^16.0.6",
     "sql-formatter": "^2.3.3",
