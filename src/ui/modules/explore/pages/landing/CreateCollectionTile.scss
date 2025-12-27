@@ -16,18 +16,6 @@
   width: constants.$tile-width;
 }
 
-.active {
-  .icon {
-    path {
-      fill: palette.$blue-darkest;
-    }
-  }
-
-  .text {
-    display: block;
-  }
-}
-
 .icon {
   height: 80%;
   width: 80%;
@@ -41,4 +29,16 @@
   color: palette.$blue-darkest;
   display: none;
   font-size: 14px;
+}
+
+.active {
+  .icon {
+    path {
+      fill: palette.$blue-darkest;
+    }
+  }
+
+  .text {
+    display: block;
+  }
 }

@@ -5,6 +5,28 @@ $disabled-color: palette.$gray-light;
 $regular-color: palette.$green-dark;
 $hover-color: palette.$green-darkest;
 
+.icon {
+  height: 16px;
+  margin-right: 5px;
+  width: 16px;
+
+  path {
+    fill: $regular-color;
+  }
+}
+
+.active {
+  background-color: palette.$green-lightest;
+  border-color: palette.$green-base;
+  color: $active-color;
+
+  .icon {
+    path {
+      fill: $active-color;
+    }
+  }
+}
+
 .container {
   align-items: center;
   border: 1px solid transparent;
@@ -34,27 +56,5 @@ $hover-color: palette.$green-darkest;
         fill: $hover-color;
       }
     }
-  }
-}
-
-.active {
-  background-color: palette.$green-lightest;
-  border-color: palette.$green-base;
-  color: $active-color;
-
-  .icon {
-    path {
-      fill: $active-color;
-    }
-  }
-}
-
-.icon {
-  height: 16px;
-  margin-right: 5px;
-  width: 16px;
-
-  path {
-    fill: $regular-color;
   }
 }

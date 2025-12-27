@@ -111,6 +111,7 @@
 
   .content {
     $button-inset-margin: 5px;
+
     display: flex;
 
     .left,
@@ -124,8 +125,18 @@
       transition: background-color 0.2s;
       user-select: none;
 
+      svg {
+        opacity: 0.2;
+        transition: opacity 0.1s;
+        width: 48px;
+      }
+
       &.enabled {
         cursor: pointer;
+
+        svg {
+          opacity: 0.6;
+        }
 
         &:hover {
           background-color: ModalShared.$modal-header;
@@ -134,16 +145,6 @@
             opacity: 1;
           }
         }
-
-        svg {
-          opacity: 0.6;
-        }
-      }
-
-      svg {
-        opacity: 0.2;
-        transition: opacity 0.1s;
-        width: 48px;
       }
     }
 
@@ -163,6 +164,7 @@
       .current,
       .previous {
         $separation-padding: 6px;
+
         align-items: center;
         display: flex;
         flex-direction: column;
@@ -200,6 +202,10 @@
             transition: opacity 0.1s;
             width: 12px;
 
+            circle {
+              fill: ModalShared.$modal-button;
+            }
+
             &.active {
               cursor: default;
               opacity: 1;
@@ -211,10 +217,6 @@
 
             &:hover {
               opacity: 1;
-            }
-
-            circle {
-              fill: ModalShared.$modal-button;
             }
           }
         }

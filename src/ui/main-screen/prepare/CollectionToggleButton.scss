@@ -20,22 +20,6 @@
     position: relative;
     width: 100%;
 
-    &:hover {
-      background-color: palette.$blue-lightest;
-
-      &.checked {
-        background-color: palette.$blue-base;
-      }
-    }
-
-    &.checked {
-      background-color: palette.$blue-dark;
-
-      .check {
-        opacity: 0.7;
-      }
-    }
-
     .check {
       height: 45px;
       left: -7px;
@@ -50,6 +34,22 @@
 
       circle {
         stroke: palette.$white;
+      }
+    }
+
+    &.checked {
+      background-color: palette.$blue-dark;
+
+      .check {
+        opacity: 0.7;
+      }
+    }
+
+    &:hover {
+      background-color: palette.$blue-lightest;
+
+      &.checked {
+        background-color: palette.$blue-base;
       }
     }
 

@@ -15,11 +15,9 @@ html {
 body {
   background: url("diag.png");
   font-family: constants.$font-family;
-  overflow-x: auto;
-  overflow-y: scroll;
+  overflow: auto scroll;
 }
 
-/* stylelint-disable-next-line selector-max-id */
 :global(#root) {
   height: 100%;
 }

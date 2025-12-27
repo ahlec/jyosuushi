@@ -14,20 +14,21 @@ $horizontal-adornment-bg-opacity: 0.75;
   width: constants.$tile-width;
 }
 
+.horizontalAdornment {
+  height: $horizontal-adornment-height;
+
+  &.topAdornment {
+    border-bottom: 1px solid palette.$white;
+  }
+
+  &.bottomAdornment {
+    border-top: 1px solid palette.$white;
+  }
+}
+
 .colorPink {
   background-color: palette.$pink-lightest;
   border-color: constants.$pink-tile-border-color;
-
-  &:hover {
-    background-color: palette.$pink-light;
-
-    .horizontalAdornment {
-      background-color: rgba(
-        palette.$pink-base,
-        $horizontal-adornment-bg-opacity
-      );
-    }
-  }
 
   .horizontalAdornment {
     background-color: rgba(
@@ -46,17 +47,6 @@ $horizontal-adornment-bg-opacity: 0.75;
   background-color: palette.$blue-lightest;
   border-color: constants.$blue-tile-border-color;
 
-  &:hover {
-    background-color: palette.$blue-light;
-
-    .horizontalAdornment {
-      background-color: rgba(
-        palette.$blue-base,
-        $horizontal-adornment-bg-opacity
-      );
-    }
-  }
-
   .horizontalAdornment {
     background-color: rgba(
       palette.$blue-light,
@@ -74,17 +64,6 @@ $horizontal-adornment-bg-opacity: 0.75;
   background-color: palette.$green-lightest;
   border-color: constants.$green-tile-border-color;
 
-  &:hover {
-    background-color: palette.$green-light;
-
-    .horizontalAdornment {
-      background-color: rgba(
-        palette.$green-base,
-        $horizontal-adornment-bg-opacity
-      );
-    }
-  }
-
   .horizontalAdornment {
     background-color: rgba(
       palette.$green-light,
@@ -95,6 +74,39 @@ $horizontal-adornment-bg-opacity: 0.75;
     &.bottomAdornment {
       border-color: constants.$green-tile-border-color;
     }
+  }
+}
+
+.colorPink:hover {
+  background-color: palette.$pink-light;
+
+  .horizontalAdornment {
+    background-color: rgba(
+      palette.$pink-base,
+      $horizontal-adornment-bg-opacity
+    );
+  }
+}
+
+.colorBlue:hover {
+  background-color: palette.$blue-light;
+
+  .horizontalAdornment {
+    background-color: rgba(
+      palette.$blue-base,
+      $horizontal-adornment-bg-opacity
+    );
+  }
+}
+
+.colorGreen:hover {
+  background-color: palette.$green-light;
+
+  .horizontalAdornment {
+    background-color: rgba(
+      palette.$green-base,
+      $horizontal-adornment-bg-opacity
+    );
   }
 }
 
@@ -125,18 +137,6 @@ $horizontal-adornment-bg-opacity: 0.75;
   color: palette.$black-light;
   font-size: 0.75em;
   text-align: center;
-}
-
-.horizontalAdornment {
-  height: $horizontal-adornment-height;
-
-  &.topAdornment {
-    border-bottom: 1px solid palette.$white;
-  }
-
-  &.bottomAdornment {
-    border-top: 1px solid palette.$white;
-  }
 }
 
 .bottomLeftCorner {

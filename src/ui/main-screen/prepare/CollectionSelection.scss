@@ -9,8 +9,7 @@
     border-bottom: 1px solid palette.$black-dark;
     border-top: 1px solid palette.$black-dark;
     display: grid;
-    grid-column-gap: 5px;
-    grid-row-gap: 5px;
+    gap: 5px;
     grid-template-columns: 1fr 1fr 1fr;
     margin-top: 20px;
     padding: 15px 30px 10px;

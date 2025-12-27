@@ -1,6 +1,12 @@
 @use "@jyosuushi/palette";
 
 .MarkdownPresenter {
+  img {
+    // If the image element isn't the only child of a block element, then we need
+    // to size the image so that it's inline with the rest of the text.
+    max-height: 16px;
+  }
+
   p {
     line-height: 2;
 
@@ -36,12 +42,6 @@
     a {
       text-decoration: none;
     }
-  }
-
-  img {
-    // If the image element isn't the only child of a block element, then we need
-    // to size the image so that it's inline with the rest of the text.
-    max-height: 16px;
   }
 
   ol,
