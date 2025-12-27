@@ -1,6 +1,3 @@
-/* eslint-env node,es6 */
-/* eslint-disable @typescript-eslint/no-var-requires */
-
 const convict = require("convict");
 const { existsSync } = require("fs");
 const { src } = require("gulp");

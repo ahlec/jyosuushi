@@ -6,6 +6,7 @@ import react from "eslint-plugin-react";
 import jsxA11Y from "eslint-plugin-jsx-a11y";
 import calmReactIntl from "@calm/eslint-plugin-react-intl";
 import pluginReactHooks from "eslint-plugin-react-hooks";
+import globals from "globals";
 
 export default defineConfig([
   eslint.configs.recommended,
@@ -31,22 +32,22 @@ export default defineConfig([
       "@calm/react-intl/missing-attribute": [
         "error",
         {
-          noTrailingWhitespace: true,
-          noSpreadOperator: false,
-          requireDescription: false,
           formatDefineMessages: true,
+          noSpreadOperator: false,
+          noTrailingWhitespace: true,
           requireDefaultMessage: true,
+          requireDescription: false,
           requireIdAsString: true,
         },
       ],
       "@calm/react-intl/missing-formatted-message": [
         "error",
         {
-          noTrailingWhitespace: true,
-          ignoreLinks: false,
-          enforceLabels: true,
           enforceImageAlts: false,
           enforceInputProps: true,
+          enforceLabels: true,
+          ignoreLinks: false,
+          noTrailingWhitespace: true,
         },
       ],
       "@calm/react-intl/missing-values": "error",
@@ -61,6 +62,26 @@ export default defineConfig([
       react: {
         version: "detect",
       },
+    },
+  },
+  {
+    files: [
+      ".stylelintrc.js",
+      "gulpfile.js",
+      "postcss.config.js",
+      "webpack.common.js",
+      "webpack.dev.js",
+      "webpack.prod.js",
+    ],
+    languageOptions: {
+      globals: {
+        ...globals.node,
+      },
+      sourceType: "commonjs",
+    },
+    name: "CJS config files",
+    rules: {
+      "@typescript-eslint/no-require-imports": "off",
     },
   },
 ]);

@@ -33,19 +33,6 @@ module.exports = {
       path.resolve(DATA_DIRECTORY, "items.ts"),
     ],
   },
-  output: {
-    path: BUILD_DIRECTORY,
-    filename: "[name].[hash].js",
-    publicPath: "/",
-  },
-  resolve: {
-    alias: {
-      "@changelog": CHANGELOG_FILE,
-      "@data": DATA_DIRECTORY,
-      "@jyosuushi": SOURCE_DIRECTORY,
-    },
-    extensions: [".js", ".jsx", ".json", ".ts", ".tsx", ".scss"],
-  },
   module: {
     rules: [
       {
@@ -84,10 +71,14 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        options: {
-          esModule: false,
-        },
-        loader: "@svgr/webpack",
+        use: [
+          {
+            loader: "@svgr/webpack",
+            options: {
+              esModule: false,
+            },
+          },
+        ],
       },
       {
         test: /node_modules\/vfile\/core\.js/,
@@ -107,21 +98,26 @@ module.exports = {
     moduleIds: "deterministic",
     runtimeChunk: "single",
     splitChunks: {
-      chunks: "all",
-      maxInitialRequests: Infinity,
-      minSize: 0,
       cacheGroups: {
         vendor: {
-          test: /[\\/]node_modules[\\]/,
           name: function (module) {
             const packageName = module.context.match(
               /[\\/]node_modules[\\/](.*?)([\\/]|$)/,
             )[1];
             return packageName;
           },
+          test: /[\\/]node_modules[\\]/,
         },
       },
+      chunks: "all",
+      maxInitialRequests: Infinity,
+      minSize: 0,
     },
+  },
+  output: {
+    filename: "[name].[hash].js",
+    path: BUILD_DIRECTORY,
+    publicPath: "/",
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -146,4 +142,12 @@ module.exports = {
       template: path.resolve(SOURCE_DIRECTORY, "index.html"),
     }),
   ],
+  resolve: {
+    alias: {
+      "@changelog": CHANGELOG_FILE,
+      "@data": DATA_DIRECTORY,
+      "@jyosuushi": SOURCE_DIRECTORY,
+    },
+    extensions: [".js", ".jsx", ".json", ".ts", ".tsx", ".scss"],
+  },
 };
