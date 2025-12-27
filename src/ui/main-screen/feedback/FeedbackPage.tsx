@@ -5,7 +5,7 @@ import IconGitHub from "./github.svg";
 import IconTwitter from "./twitter.svg";
 
 import FeedbackLink from "./FeedbackLink";
-import styles from "./FeedbackPage.scss";
+import * as styles from "./FeedbackPage.scss";
 
 const INTL_MESSAGES = defineMessages({
   contributeDescription: {

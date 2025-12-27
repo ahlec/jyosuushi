@@ -6,7 +6,7 @@ import { Counter } from "@jyosuushi/interfaces";
 
 import CounterTile from "@jyosuushi/ui/components/CounterTile";
 
-import styles from "./CounterPreview.scss";
+import * as styles from "./CounterPreview.scss";
 
 const INTL_MESSAGES = defineMessages({
   header: {

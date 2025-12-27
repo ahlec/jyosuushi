@@ -1,7 +1,7 @@
 import React from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
 
-import styles from "./CreditsFooter.scss";
+import * as styles from "./CreditsFooter.scss";
 
 const INTL_MESSAGES = defineMessages({
   credits: {

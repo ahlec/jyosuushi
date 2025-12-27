@@ -5,7 +5,7 @@ import CountersTable from "./base/CountersTable";
 import { TileActionCreatorFn } from "./base/types";
 import CounterInCollectionTick from "./CounterInCollectionTick";
 
-import styles from "./ManageCountersTable.scss";
+import * as styles from "./ManageCountersTable.scss";
 
 interface ComponentProps {
   /**

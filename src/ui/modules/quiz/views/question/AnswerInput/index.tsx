@@ -22,7 +22,7 @@ import RightIcon from "@jyosuushi/ui/right.svg";
 
 import TsuNotice from "./TsuNotice";
 
-import styles from "./index.scss";
+import * as styles from "./index.scss";
 
 interface ProvidedProps {
   buttonsClassName: string;

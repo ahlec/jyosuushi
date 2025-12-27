@@ -3,7 +3,7 @@
 import classnames from "classnames";
 import React from "react";
 
-import styles from "./LoadingSpinner.scss";
+import * as styles from "./LoadingSpinner.scss";
 
 type SpinnerColor = "pink" | "green" | "blue";
 

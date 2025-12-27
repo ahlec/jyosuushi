@@ -7,7 +7,7 @@ import BaseDialog from "@jyosuushi/ui/components/popups/BaseDialog";
 
 import CollectionRow from "./CollectionRow";
 
-import styles from "./EditMembershipDialog.scss";
+import * as styles from "./EditMembershipDialog.scss";
 
 const INTL_MESSAGES = defineMessages({
   dialogHeader: {

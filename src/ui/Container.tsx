@@ -8,7 +8,7 @@ import { getIsQuizActive } from "@jyosuushi/redux/selectors";
 import Application from "./Application";
 import CreditsFooter from "./CreditsFooter";
 
-import styles from "./Container.scss";
+import * as styles from "./Container.scss";
 
 interface ReduxProps {
   isQuizActive: boolean;

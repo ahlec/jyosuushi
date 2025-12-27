@@ -5,7 +5,7 @@ import { UserAnswerJudgment } from "@jyosuushi/redux";
 
 import Furigana from "./Furigana";
 
-import styles from "./JudgmentBubble.scss";
+import * as styles from "./JudgmentBubble.scss";
 
 const RESULT_BUBBLE_CONTENTS: {
   [judgment in UserAnswerJudgment]: { kanji: string; kana: string };

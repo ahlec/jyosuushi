@@ -6,7 +6,7 @@ import { Choice } from "./types";
 
 export { Choice };
 
-import styles from "./ChooserControl.scss";
+import * as styles from "./ChooserControl.scss";
 
 interface ComponentProps<TValue> {
   choices: ReadonlyArray<Choice<TValue>>;

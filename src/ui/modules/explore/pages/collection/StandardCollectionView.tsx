@@ -6,7 +6,7 @@ import BaseCounterCollectionView from "./BaseCounterCollectionView";
 import LinkedCollectionContentsTable from "./counters-table/LinkedCollectionContentsTable";
 import EntriesCountIntro from "./EntriesCountIntro";
 
-import styles from "./StandardCollectionView.scss";
+import * as styles from "./StandardCollectionView.scss";
 
 interface ComponentProps {
   collection: StandardCounterCollection;

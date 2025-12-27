@@ -7,7 +7,7 @@ import ReactTooltip from "react-tooltip";
 
 import { State } from "@jyosuushi/redux";
 
-import styles from "./Score.scss";
+import * as styles from "./Score.scss";
 
 interface ComponentProps {
   className: string;

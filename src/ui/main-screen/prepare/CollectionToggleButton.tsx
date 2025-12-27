@@ -9,7 +9,7 @@ import { getCounterCollectionPath } from "@jyosuushi/ui/modules/explore/pathing"
 
 import CheckIcon from "@jyosuushi/ui/main-screen/check.svg";
 
-import styles from "./CollectionToggleButton.scss";
+import * as styles from "./CollectionToggleButton.scss";
 
 interface ComponentProps {
   collectionId: string;

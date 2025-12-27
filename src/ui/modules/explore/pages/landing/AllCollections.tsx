@@ -16,7 +16,7 @@ import CollectionLink from "./CollectionLink";
 import CreateCollectionModal from "./CreateCollectionModal";
 import CreateCollectionTile from "./CreateCollectionTile";
 
-import styles from "./AllCollections.scss";
+import * as styles from "./AllCollections.scss";
 
 const INTL_MESSAGES = defineMessages({
   pageHeader: {

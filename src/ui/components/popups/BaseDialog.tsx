@@ -7,7 +7,7 @@ import CloseIcon from "@jyosuushi/icons/close.svg";
 
 import BasePopup from "./BasePopup";
 
-import styles from "./BaseDialog.scss";
+import * as styles from "./BaseDialog.scss";
 
 const BUTTON_PADDING = parseInt(styles.sassButtonPadding);
 

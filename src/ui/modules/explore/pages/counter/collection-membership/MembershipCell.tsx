@@ -6,7 +6,7 @@ import { getCounterCollectionPath } from "@jyosuushi/ui/modules/explore/pathing"
 
 import { CollectionMembershipEntry } from "./types";
 
-import styles from "./MembershipCell.scss";
+import * as styles from "./MembershipCell.scss";
 
 interface ComponentProps {
   className: string;

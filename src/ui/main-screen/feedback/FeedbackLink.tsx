@@ -1,7 +1,7 @@
 import React from "react";
 import { FormattedMessage, MessageDescriptor } from "react-intl";
 
-import styles from "./FeedbackLink.scss";
+import * as styles from "./FeedbackLink.scss";
 
 interface ComponentProps {
   className: string;

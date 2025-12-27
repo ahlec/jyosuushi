@@ -17,7 +17,7 @@ import useCounterDisplay from "@jyosuushi/hooks/useCounterDisplay";
 
 import { TileActionCreatorFn } from "./types";
 
-import styles from "./CounterTableTile.scss";
+import * as styles from "./CounterTableTile.scss";
 
 interface ComponentProps {
   actionCreator: TileActionCreatorFn;

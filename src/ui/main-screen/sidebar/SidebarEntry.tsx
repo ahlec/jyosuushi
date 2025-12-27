@@ -6,7 +6,7 @@ import { match as Match, NavLink } from "react-router-dom";
 
 import { PageDefinition } from "@jyosuushi/ui/types";
 
-import styles from "./SidebarEntry.scss";
+import * as styles from "./SidebarEntry.scss";
 
 interface ComponentProps {
   icon: React.ComponentClass<React.SVGProps<SVGSVGElement>>;

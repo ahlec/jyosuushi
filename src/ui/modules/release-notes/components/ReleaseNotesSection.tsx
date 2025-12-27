@@ -1,7 +1,7 @@
 import React from "react";
 import { FormattedMessage, MessageDescriptor } from "react-intl";
 
-import styles from "./ReleaseNotesSection.scss";
+import * as styles from "./ReleaseNotesSection.scss";
 
 interface ComponentProps<TEntry> {
   /**

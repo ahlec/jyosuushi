@@ -13,7 +13,7 @@ import ChooserControl, {
 import { AMOUNT_RANGES } from "@jyosuushi/constants";
 
 import Setting from "./Setting";
-import styles from "./SettingsPage.scss";
+import * as styles from "./SettingsPage.scss";
 
 const INTL_MESSAGES = defineMessages({
   amountRangeChoiceRange: {

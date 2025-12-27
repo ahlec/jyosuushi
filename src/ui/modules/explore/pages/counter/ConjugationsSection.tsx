@@ -6,7 +6,7 @@ import { defineMessages, FormattedMessage } from "react-intl";
 import { Conjugation, Counter, CountingSystem } from "@jyosuushi/interfaces";
 import { conjugateCounter } from "@jyosuushi/japanese/counters";
 
-import styles from "./ConjugationsSection.scss";
+import * as styles from "./ConjugationsSection.scss";
 
 const AMOUNTS_TO_DISPLAY = 17;
 const MIN_USER_INPUT = 1;

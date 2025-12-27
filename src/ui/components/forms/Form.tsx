@@ -1,7 +1,7 @@
 import classnames from "classnames";
 import React, { useCallback } from "react";
 
-import styles from "./Form.scss";
+import * as styles from "./Form.scss";
 
 interface ComponentProps {
   children: React.ReactNode;

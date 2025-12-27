@@ -9,7 +9,7 @@ import { NavLink } from "react-router-dom";
 import { EXPLORE_PAGE_PATH } from "@jyosuushi/ui/modules/explore/pathing";
 import { interleave } from "@jyosuushi/utils";
 
-import styles from "./BreadcrumbBar.scss";
+import * as styles from "./BreadcrumbBar.scss";
 
 const INTL_MESSAGES = defineMessages({
   categoryPrefixCollection: {

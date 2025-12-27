@@ -4,7 +4,7 @@ import { FormattedMessage, MessageDescriptor } from "react-intl";
 
 import StandardButton from "@jyosuushi/ui/components/StandardButton";
 
-import styles from "./FormButton.scss";
+import * as styles from "./FormButton.scss";
 
 interface ComponentProps {
   action: "submit" | "reset" | (() => void);

@@ -2,7 +2,7 @@ import classnames from "classnames";
 import React from "react";
 import { FormattedMessage, MessageDescriptor } from "react-intl";
 
-import styles from "./ActionBarItem.scss";
+import * as styles from "./ActionBarItem.scss";
 
 interface ComponentProps {
   icon: SvgIcon;

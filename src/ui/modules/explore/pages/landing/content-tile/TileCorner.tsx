@@ -3,7 +3,7 @@ import React from "react";
 
 import { TileColor } from "./types";
 
-import styles from "./TileCorner.scss";
+import * as styles from "./TileCorner.scss";
 
 interface ComponentProps {
   className: string;

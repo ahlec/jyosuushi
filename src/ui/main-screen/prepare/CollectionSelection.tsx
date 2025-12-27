@@ -5,7 +5,7 @@ import { CounterCollection } from "@jyosuushi/interfaces";
 
 import CollectionToggleButton from "./CollectionToggleButton";
 
-import styles from "./CollectionSelection.scss";
+import * as styles from "./CollectionSelection.scss";
 
 interface ComponentProps {
   /**

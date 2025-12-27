@@ -3,7 +3,7 @@ import React, { useMemo } from "react";
 import { FormattedMessage, MessageDescriptor } from "react-intl";
 import ReactTooltip from "react-tooltip";
 
-import styles from "./TooltipButton.scss";
+import * as styles from "./TooltipButton.scss";
 
 interface ComponentProps {
   enabled: boolean;

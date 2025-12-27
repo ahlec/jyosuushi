@@ -10,7 +10,7 @@ import StringInput from "@jyosuushi/ui/components/forms/StringInput";
 
 import useCollectionNameValidation from "./useCollectionNameValidation";
 
-import styles from "./CollectionNameForm.scss";
+import * as styles from "./CollectionNameForm.scss";
 
 const INTL_MESSAGES = defineMessages({
   nameLabel: {

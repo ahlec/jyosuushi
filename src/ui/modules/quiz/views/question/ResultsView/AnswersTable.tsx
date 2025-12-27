@@ -7,7 +7,7 @@ import { Question } from "@jyosuushi/interfaces";
 import { UserAnswer } from "@jyosuushi/redux";
 
 import AnswersTableRow, { AnswersTableRowData } from "./AnswersTableRow";
-import styles from "./AnswersTable.scss";
+import * as styles from "./AnswersTable.scss";
 
 interface ComponentProps {
   currentQuestion: Question;

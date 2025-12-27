@@ -21,7 +21,7 @@ import HistoryIcon from "./history.svg";
 import HomeIcon from "./home.svg";
 import SakuraIcon from "./sakura.svg";
 
-import styles from "./index.scss";
+import * as styles from "./index.scss";
 
 interface ProvidedProps {
   isQuizActive: boolean;

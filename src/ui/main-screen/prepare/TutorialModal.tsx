@@ -12,7 +12,7 @@ import RightIcon from "@jyosuushi/ui/right.svg";
 
 import { TUTORIAL_PAGES } from "./tutorial";
 
-import styles from "./TutorialModal.scss";
+import * as styles from "./TutorialModal.scss";
 
 interface ComponentProps {
   isOpen: boolean;

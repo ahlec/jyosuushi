@@ -10,7 +10,7 @@ import { PageComponentProps } from "@jyosuushi/ui/types";
 import QuizPreparationView from "./QuizPreparationView";
 import TutorialModal from "./TutorialModal";
 
-import styles from "./PreparePage.scss";
+import * as styles from "./PreparePage.scss";
 
 const INTL_MESSAGES = defineMessages({
   linksJyosuushiWikipedia: {

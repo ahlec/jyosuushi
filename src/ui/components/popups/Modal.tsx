@@ -4,7 +4,7 @@ import { MessageDescriptor } from "react-intl";
 
 import BaseDialog from "./BaseDialog";
 
-import styles from "./Modal.scss";
+import * as styles from "./Modal.scss";
 
 interface ComponentProps {
   /**

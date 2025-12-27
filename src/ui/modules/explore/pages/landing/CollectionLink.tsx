@@ -11,7 +11,7 @@ import { getCounterCollectionPath } from "@jyosuushi/ui/modules/explore/pathing"
 
 import ContentTile from "./content-tile/ContentTile";
 
-import styles from "./CollectionLink.scss";
+import * as styles from "./CollectionLink.scss";
 
 const INTL_MESSAGES = defineMessages({
   collectionSize: {

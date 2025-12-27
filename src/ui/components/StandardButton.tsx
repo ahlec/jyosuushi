@@ -1,7 +1,7 @@
 import classnames from "classnames";
 import React from "react";
 
-import styles from "./StandardButton.scss";
+import * as styles from "./StandardButton.scss";
 
 interface ComponentProps {
   className?: string;

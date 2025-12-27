@@ -6,7 +6,7 @@ import { Counter } from "@jyosuushi/interfaces";
 import { getCounterLink } from "@jyosuushi/ui/modules/explore/pathing";
 import { getPrimaryJapaneseRepresentation } from "@jyosuushi/utils";
 
-import styles from "./CounterTile.scss";
+import * as styles from "./CounterTile.scss";
 
 interface ComponentProps {
   counter: Counter;

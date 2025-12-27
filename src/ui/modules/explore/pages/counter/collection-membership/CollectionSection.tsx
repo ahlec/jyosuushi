@@ -8,7 +8,7 @@ import MembershipCell from "./MembershipCell";
 import { CollectionMembershipEntry } from "./types";
 import useCollectionMembership from "./useCollectionMembership";
 
-import styles from "./CollectionSection.scss";
+import * as styles from "./CollectionSection.scss";
 
 interface ComponentProps {
   counterId: string;

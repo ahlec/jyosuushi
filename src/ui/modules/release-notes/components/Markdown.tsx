@@ -2,7 +2,7 @@ import classnames from "classnames";
 import * as React from "react";
 import ReactMarkdown, { NodeType } from "react-markdown";
 
-import styles from "./Markdown.scss";
+import * as styles from "./Markdown.scss";
 
 interface ComponentProps {
   allowParagraphs?: boolean;

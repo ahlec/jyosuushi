@@ -4,7 +4,7 @@ import { MarkdownComponent } from "@jyosuushi/interfaces";
 
 import MarkdownPresenter from "./MarkdownPresenter";
 
-import styles from "./FootnotesSection.scss";
+import * as styles from "./FootnotesSection.scss";
 
 interface ComponentProps {
   footnotes: ReadonlyArray<MarkdownComponent>;

@@ -10,7 +10,7 @@ import { ONE_SECOND } from "@jyosuushi/constants";
 import { Toast, ToastVariant } from "./types";
 import useToast from "./useToast";
 
-import styles from "./ToastDisplay.scss";
+import * as styles from "./ToastDisplay.scss";
 
 interface ComponentProps {
   /**

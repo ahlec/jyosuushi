@@ -6,7 +6,7 @@ import { State } from "@jyosuushi/redux";
 
 import TsuWarningModel, { NUM_DEFAULT_WARNINGS } from "./model";
 
-import styles from "./index.scss";
+import * as styles from "./index.scss";
 
 interface ReduxProps {
   numQuestionsAsked: number;

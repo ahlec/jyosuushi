@@ -8,7 +8,7 @@ import { markLatestVersion } from "@jyosuushi/redux/actions";
 
 import IncrementalVersionDisplay from "./IncrementalVersionDisplay";
 
-import styles from "./ReleaseNotesPage.scss";
+import * as styles from "./ReleaseNotesPage.scss";
 
 const INTL_MESSAGES = defineMessages({
   specialVersionNotesInitialRelease: {

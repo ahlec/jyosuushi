@@ -15,7 +15,7 @@ import {
   UNORDERED_NESTED_PAGES,
 } from "./pages";
 
-import styles from "./MainScreen.scss";
+import * as styles from "./MainScreen.scss";
 
 function MainScreen(): React.ReactElement {
   // Retrieve the list of custom user collections

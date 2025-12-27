@@ -4,7 +4,7 @@ import React from "react";
 import SubtitleEntry from "./SubtitleEntry";
 import { HeaderColorTheme, HeaderSubtitleEntryDefinition } from "./types";
 
-import styles from "./HeaderSubtitle.scss";
+import * as styles from "./HeaderSubtitle.scss";
 
 interface ComponentProps {
   color: HeaderColorTheme;

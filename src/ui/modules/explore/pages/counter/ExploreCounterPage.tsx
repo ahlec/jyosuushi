@@ -31,7 +31,7 @@ import SectionContainer, { SectionActionDefinition } from "./SectionContainer";
 
 import PencilIcon from "@jyosuushi/ui/modules/explore/pencil.svg";
 
-import styles from "./ExploreCounterPage.scss";
+import * as styles from "./ExploreCounterPage.scss";
 
 interface ComponentProps {
   counter: Counter;

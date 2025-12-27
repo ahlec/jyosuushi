@@ -6,7 +6,7 @@ import { State, UserAnswer } from "@jyosuushi/redux";
 
 import HistoryRow from "./HistoryRow";
 
-import styles from "./QuizHistoryDisplay.scss";
+import * as styles from "./QuizHistoryDisplay.scss";
 
 interface ProvidedProps {
   rowClassName: string;

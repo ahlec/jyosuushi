@@ -12,7 +12,7 @@ import FeatureEntryDisplay from "./components/FeatureEntryDisplay";
 import Markdown from "./components/Markdown";
 import ReleaseNotesSection from "./components/ReleaseNotesSection";
 
-import styles from "./IncrementalVersionDisplay.scss";
+import * as styles from "./IncrementalVersionDisplay.scss";
 
 const INTL_MESSAGES = defineMessages({
   sectionHeaderBugFixes: {

@@ -10,7 +10,7 @@ import { Counter } from "@jyosuushi/interfaces";
 import CounterTile from "@jyosuushi/ui/components/CounterTile";
 import { orderCounters } from "@jyosuushi/ui/modules/explore/utils";
 
-import styles from "./AllCounters.scss";
+import * as styles from "./AllCounters.scss";
 
 const INTL_MESSAGES = defineMessages({
   pageHeader: {

@@ -4,7 +4,7 @@ import { defineMessages, FormattedMessage } from "react-intl";
 import { ITEMS_LOOKUP } from "@data/items";
 import { Question } from "@jyosuushi/interfaces";
 
-import styles from "./QuestionDisplay.scss";
+import * as styles from "./QuestionDisplay.scss";
 import useLocale from "@jyosuushi/i18n/useLocale";
 
 interface ComponentProps {

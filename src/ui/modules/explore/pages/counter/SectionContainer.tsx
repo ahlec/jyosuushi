@@ -3,7 +3,7 @@ import { FormattedMessage, MessageDescriptor } from "react-intl";
 
 import TooltipButton from "@jyosuushi/ui/components/TooltipButton";
 
-import styles from "./SectionContainer.scss";
+import * as styles from "./SectionContainer.scss";
 
 export interface SectionActionDefinition {
   /**

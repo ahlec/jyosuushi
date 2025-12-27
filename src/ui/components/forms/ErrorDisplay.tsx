@@ -2,7 +2,7 @@ import classnames from "classnames";
 import React from "react";
 import { FormattedMessage, MessageDescriptor } from "react-intl";
 
-import styles from "./ErrorDisplay.scss";
+import * as styles from "./ErrorDisplay.scss";
 
 interface ComponentProps {
   text: MessageDescriptor;

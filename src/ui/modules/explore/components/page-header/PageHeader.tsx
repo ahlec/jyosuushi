@@ -3,7 +3,7 @@ import React from "react";
 
 import HeaderSubtitle from "./HeaderSubtitle";
 import { HeaderColorTheme, HeaderSubtitleEntryDefinition } from "./types";
-import styles from "./PageHeader.scss";
+import * as styles from "./PageHeader.scss";
 
 interface ComponentProps {
   /**

@@ -6,7 +6,7 @@ import { ITEMS_FROM_COUNTER } from "@data/items";
 import useLocale from "@jyosuushi/i18n/useLocale";
 import { Counter, Item } from "@jyosuushi/interfaces";
 
-import styles from "./ItemsSection.scss";
+import * as styles from "./ItemsSection.scss";
 
 export function hasItemsSectionContents(counter: Counter): boolean {
   const items = ITEMS_FROM_COUNTER[counter.counterId];

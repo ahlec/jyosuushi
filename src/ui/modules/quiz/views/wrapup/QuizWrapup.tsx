@@ -17,7 +17,7 @@ import { randomFromArray } from "@jyosuushi/utils";
 
 import QuizHistoryDisplay from "@jyosuushi/ui/modules/quiz/components/history-display/QuizHistoryDisplay";
 
-import styles from "./QuizWrapup.scss";
+import * as styles from "./QuizWrapup.scss";
 
 interface ProvidedProps {
   quizManager: QuizManager;

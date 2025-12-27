@@ -9,7 +9,7 @@ import { BugFixBrowser, BugFixEntry } from "@changelog";
 
 import Markdown from "./Markdown";
 
-import styles from "./BugFixEntryDisplay.scss";
+import * as styles from "./BugFixEntryDisplay.scss";
 
 const INTL_MESSAGES = defineMessages({
   browserChrome: {

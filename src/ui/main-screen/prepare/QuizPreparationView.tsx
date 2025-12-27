@@ -14,7 +14,7 @@ import CollectionSelection from "./CollectionSelection";
 import CounterPreview from "./CounterPreview";
 import useSelectedCollections from "./useSelectedCollections";
 
-import styles from "./QuizPreparationView.scss";
+import * as styles from "./QuizPreparationView.scss";
 
 const INTL_MESSAGES = defineMessages({
   buttonStartQuiz: {

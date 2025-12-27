@@ -13,7 +13,7 @@ import {
 import useCounterDisplay from "@jyosuushi/hooks/useCounterDisplay";
 import Furigana from "@jyosuushi/ui/components/Furigana";
 
-import styles from "./AnswersTableRow.scss";
+import * as styles from "./AnswersTableRow.scss";
 
 export interface AnswersTableRowData {
   counter: Counter;

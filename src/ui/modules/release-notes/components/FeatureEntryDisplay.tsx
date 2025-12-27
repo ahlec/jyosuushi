@@ -4,7 +4,7 @@ import { ConsumerFacingEntry } from "@changelog";
 
 import Markdown from "./Markdown";
 
-import styles from "./FeatureEntryDisplay.scss";
+import * as styles from "./FeatureEntryDisplay.scss";
 
 interface ComponentProps {
   entry: ConsumerFacingEntry;

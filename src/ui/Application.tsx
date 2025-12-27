@@ -19,7 +19,7 @@ import QuizPage from "./modules/quiz/QuizPage";
 import ToastDisplayContainer from "./toasts/ToastDisplayContainer";
 import ToastManager from "./toasts/ToastManager";
 
-import styles from "./Application.scss";
+import * as styles from "./Application.scss";
 
 const QUIZ_SCREEN_PATH = "/quiz";
 

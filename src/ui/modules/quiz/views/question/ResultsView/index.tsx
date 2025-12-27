@@ -19,7 +19,7 @@ import StandardButton from "@jyosuushi/ui/components/StandardButton";
 
 import AnswersTable from "./AnswersTable";
 
-import styles from "./index.scss";
+import * as styles from "./index.scss";
 
 interface ProvidedProps {
   className: string;

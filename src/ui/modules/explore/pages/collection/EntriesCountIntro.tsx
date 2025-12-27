@@ -1,7 +1,7 @@
 import React from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
 
-import styles from "./EntriesCountIntro.scss";
+import * as styles from "./EntriesCountIntro.scss";
 
 const INTL_MESSAGES = defineMessages({
   emptyText: {
