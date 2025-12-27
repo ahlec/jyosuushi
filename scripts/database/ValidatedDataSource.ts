@@ -839,6 +839,6 @@ export default class ValidatedDataSource implements Indexer {
   public getSchema<TSchema extends Schemas>(
     schema: TSchema,
   ): ValidatedResult<SchemaEntryTypes[TSchema]> {
-    return (this as any)[schema];
+    return this[schema] as ValidatedResult<SchemaEntryTypes[TSchema]>;
   }
 }

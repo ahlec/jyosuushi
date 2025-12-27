@@ -159,7 +159,7 @@ export default class Database implements AsyncDatabaseIndexer {
   }
 
   public async getSnapshot(): Promise<DatabaseSnapshot> {
-    const snapshot: any = {};
+    const snapshot: { [S in Schemas]?: unknown } = {};
 
     const asyncTasks = Object.values(Schemas).map(async (schema) => {
       const rows = await this.retrieve(schema);

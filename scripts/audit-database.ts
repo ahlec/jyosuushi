@@ -34,7 +34,7 @@ function appendInvalidEntries<TSchema extends Schemas>(
     );
     if (auditableReasons.length) {
       arr.push({
-        id: ENTRY_IDENTIFIERS_RETRIEVER[schema](dbEntry.entry as any), // TODO: Better typing
+        id: ENTRY_IDENTIFIERS_RETRIEVER[schema](dbEntry.entry),
         reasons: auditableReasons.map(({ text }) => text),
         schema,
       });
@@ -61,7 +61,7 @@ function groupAndAppendWarnings<TSchema extends Schemas>(
   } = {};
 
   for (const warning of warnings) {
-    const id = ENTRY_IDENTIFIERS_RETRIEVER[schema](warning.entry as any);
+    const id = ENTRY_IDENTIFIERS_RETRIEVER[schema](warning.entry);
     const lookupKey = getHashKeyFromIdentifierFields(id);
     if (!lookup[lookupKey]) {
       lookup[lookupKey] = {
