@@ -1,11 +1,11 @@
-@import "@jyosuushi/palette";
+@use "@jyosuushi/palette";
 
 .MarkdownPresenter {
   p {
     line-height: 2;
 
     > img:only-child {
-      border: 1px solid $black-base;
+      border: 1px solid palette.$black-base;
       display: block;
       margin: auto;
       max-height: unset;

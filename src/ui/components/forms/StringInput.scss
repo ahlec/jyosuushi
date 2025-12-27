@@ -1,8 +1,8 @@
-@import "@jyosuushi/palette";
+@use "@jyosuushi/palette";
 
 .StringInput {
-  background-color: $blue-lightest;
-  border: 1px solid $app-outline;
+  background-color: palette.$blue-lightest;
+  border: 1px solid palette.$app-outline;
   border-radius: 4px;
   padding: 10px 15px;
 }

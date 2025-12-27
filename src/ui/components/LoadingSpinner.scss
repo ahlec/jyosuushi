@@ -1,6 +1,6 @@
 // Taken and modified from https://loading.io/css/
 
-@import "@jyosuushi/palette";
+@use "@jyosuushi/palette";
 
 @mixin color-ring($color) {
   border-color: $color transparent transparent transparent;
@@ -12,15 +12,15 @@
 }
 
 .blue .ring {
-  @include color-ring($blue-darkest);
+  @include color-ring(palette.$blue-darkest);
 }
 
 .green .ring {
-  @include color-ring($green-darkest);
+  @include color-ring(palette.$green-darkest);
 }
 
 .pink .ring {
-  @include color-ring($pink-darkest);
+  @include color-ring(palette.$pink-darkest);
 }
 
 .ring {

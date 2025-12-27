@@ -1,4 +1,4 @@
-@import "@jyosuushi/palette";
+@use "@jyosuushi/palette";
 
 .BreadcrumbBar {
   font-size: 14px;
@@ -9,11 +9,11 @@
   }
 
   a {
-    color: $blue-dark;
+    color: palette.$blue-dark;
     text-decoration: none;
 
     &.active {
-      color: $black-dark;
+      color: palette.$black-dark;
       cursor: default;
       font-weight: bold;
       pointer-events: none;

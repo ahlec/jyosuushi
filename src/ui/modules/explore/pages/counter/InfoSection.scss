@@ -1,8 +1,8 @@
-@import "@jyosuushi/palette";
+@use "@jyosuushi/palette";
 
 .InfoSection {
   .notes {
-    color: $black-lightest;
+    color: palette.$black-lightest;
     font-size: 15px;
     margin: 6px;
     text-align: left;

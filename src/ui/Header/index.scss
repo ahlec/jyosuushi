@@ -1,4 +1,4 @@
-@import "@jyosuushi/palette";
+@use "@jyosuushi/palette";
 
 // Constants
 $header-vertical-padding: 12px;
@@ -32,7 +32,7 @@ $font-size-quiz: 20px;
 @keyframes home-main-shrink {
   from {
     font-size: $font-size-main-home;
-    text-shadow: 1px 1px $pink-darkest;
+    text-shadow: 1px 1px palette.$pink-darkest;
   }
 
   to {
@@ -112,9 +112,9 @@ $font-size-quiz: 20px;
 
 // CSS
 .Header {
-  background-color: $pink-dark;
-  border-bottom: 1px solid $app-outline;
-  color: $black-dark;
+  background-color: palette.$pink-dark;
+  border-bottom: 1px solid palette.$app-outline;
+  color: palette.$black-dark;
   overflow: hidden;
   padding: $header-vertical-padding $header-horizontal-padding;
   position: relative;
@@ -130,7 +130,7 @@ $font-size-quiz: 20px;
 
     .main {
       font-size: $font-size-main-home;
-      text-shadow: 1px 1px $pink-darkest;
+      text-shadow: 1px 1px palette.$pink-darkest;
     }
 
     .subheader,
@@ -295,7 +295,7 @@ $font-size-quiz: 20px;
       }
 
       .button-wrapper {
-        border-left-color: $black-darkest;
+        border-left-color: palette.$black-darkest;
       }
     }
 

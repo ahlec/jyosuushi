@@ -1,19 +1,19 @@
-@import "@jyosuushi/palette";
-@import "@jyosuushi/ui/components/CounterTile";
+@use "@jyosuushi/palette";
+@use "@jyosuushi/ui/components/CounterTile";
 
 .CounterPreview {
   margin: auto;
   width: 70%;
 
   h3 {
-    border-bottom: 1px solid $black-base;
-    color: $black-base;
+    border-bottom: 1px solid palette.$black-base;
+    color: palette.$black-base;
     margin-bottom: 8px;
     padding-bottom: 2px;
   }
 
   .counters {
-    max-height: $min-counter-height * 3;
+    max-height: CounterTile.$min-counter-height * 3;
     overflow-y: auto;
     text-align: center;
   }

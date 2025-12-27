@@ -1,8 +1,8 @@
-@import "@jyosuushi/palette";
+@use "@jyosuushi/palette";
 
 .header {
   align-items: center;
-  border-bottom: 1px solid $black-dark;
+  border-bottom: 1px solid palette.$black-dark;
   display: flex;
   font-size: 24px;
   font-weight: bold;

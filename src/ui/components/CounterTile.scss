@@ -1,4 +1,4 @@
-@import "@jyosuushi/palette";
+@use "@jyosuushi/palette";
 
 $min-counter-height: 75px;
 
@@ -15,19 +15,19 @@ $min-counter-height: 75px;
   width: calc((100% - 6px) / 3);
 
   &:hover {
-    background-color: $blue-lightest;
-    border-color: $blue-base;
+    background-color: palette.$blue-lightest;
+    border-color: palette.$blue-base;
   }
 
   .kanji {
-    color: $black-base;
+    color: palette.$black-base;
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 5px;
   }
 
   .name {
-    color: $black-lightest;
+    color: palette.$black-lightest;
     text-align: center;
   }
 }

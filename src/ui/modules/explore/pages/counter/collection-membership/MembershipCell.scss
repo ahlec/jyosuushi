@@ -1,4 +1,4 @@
-@import "@jyosuushi/palette";
+@use "@jyosuushi/palette";
 
 .cell {
   border-radius: 3px;
@@ -13,23 +13,23 @@
 .cell,
 .cell:visited,
 .cell:hover {
-  color: $black-dark;
+  color: palette.$black-dark;
 }
 
 .standard {
-  background-color: $blue-lightest;
-  border-color: $blue-dark;
+  background-color: palette.$blue-lightest;
+  border-color: palette.$blue-dark;
 
   &:hover {
-    background-color: $blue-light;
+    background-color: palette.$blue-light;
   }
 }
 
 .user {
-  background-color: $green-lightest;
-  border-color: $green-dark;
+  background-color: palette.$green-lightest;
+  border-color: palette.$green-dark;
 
   &:hover {
-    background-color: $green-light;
+    background-color: palette.$green-light;
   }
 }

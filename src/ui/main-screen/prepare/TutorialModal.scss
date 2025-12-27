@@ -1,4 +1,4 @@
-@import "@jyosuushi/ui/components/popups/ModalShared";
+@use "@jyosuushi/ui/components/popups/ModalShared";
 
 @mixin animate-element($keyframe) {
   animation-duration: 0.2s;
@@ -128,7 +128,7 @@
         cursor: pointer;
 
         &:hover {
-          background-color: $modal-header;
+          background-color: ModalShared.$modal-header;
 
           svg {
             opacity: 1;
@@ -176,7 +176,7 @@
           margin: 15px 0;
 
           img {
-            border: 1px solid $modal-border;
+            border: 1px solid ModalShared.$modal-border;
             height: 307px;
             width: 400px;
           }
@@ -205,7 +205,7 @@
               opacity: 1;
 
               circle {
-                fill: $modal-button-hover;
+                fill: ModalShared.$modal-button-hover;
               }
             }
 
@@ -214,7 +214,7 @@
             }
 
             circle {
-              fill: $modal-button;
+              fill: ModalShared.$modal-button;
             }
           }
         }

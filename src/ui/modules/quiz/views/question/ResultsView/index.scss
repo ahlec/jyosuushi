@@ -1,4 +1,4 @@
-@import "@jyosuushi/palette";
+@use "@jyosuushi/palette";
 
 .ResultsView {
   display: flex;
@@ -12,24 +12,24 @@
       margin-left: 20px;
 
       h3 {
-        border-bottom: 1px solid $black-darkest;
+        border-bottom: 1px solid palette.$black-darkest;
         font-size: 40px;
         font-weight: bold;
         margin-top: 20px;
 
         &.incorrect {
-          border-color: $incorrect-medium;
-          color: $incorrect-dark;
+          border-color: palette.$incorrect-medium;
+          color: palette.$incorrect-dark;
         }
 
         &.correct {
-          border-color: $correct-medium;
-          color: $correct-dark;
+          border-color: palette.$correct-medium;
+          color: palette.$correct-dark;
         }
 
         &.skipped {
-          border-color: $skipped-medium;
-          color: $skipped-dark;
+          border-color: palette.$skipped-medium;
+          color: palette.$skipped-dark;
         }
       }
 
@@ -40,8 +40,8 @@
   }
 
   .ignore-answer {
-    background-color: $skipped-light;
-    border-color: $skipped-medium;
+    background-color: palette.$skipped-light;
+    border-color: palette.$skipped-medium;
     margin-right: 10px;
   }
 }

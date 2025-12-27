@@ -1,12 +1,12 @@
-@import "@jyosuushi/palette";
+@use "@jyosuushi/palette";
 
 .ConjugationsSection {
   .irregular {
-    color: $counter-irregular;
+    color: palette.$counter-irregular;
   }
 
   .non-kango {
-    color: $counter-non-kango;
+    color: palette.$counter-non-kango;
   }
 
   .examples-prefix {
@@ -19,8 +19,8 @@
 
     > div {
       align-items: center;
-      border-left: 1px solid $app-outline;
-      border-top: 1px solid $app-outline;
+      border-left: 1px solid palette.$app-outline;
+      border-top: 1px solid palette.$app-outline;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -59,7 +59,7 @@
   }
 
   .current-user-input {
-    border: 1px solid $app-outline;
+    border: 1px solid palette.$app-outline;
     border-radius: 5px;
     font-size: 24px;
     margin-top: 10px;

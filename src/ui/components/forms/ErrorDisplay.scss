@@ -1,7 +1,7 @@
-@import "@jyosuushi/palette";
+@use "@jyosuushi/palette";
 
 .ErrorDisplay {
-  color: $error-text;
+  color: palette.$error-text;
   display: block;
 }
 

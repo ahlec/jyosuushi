@@ -1,4 +1,4 @@
-@import "@jyosuushi/palette";
+@use "@jyosuushi/palette";
 
 $padding: 10px;
 $icon-dimension: 20px;
@@ -12,8 +12,8 @@ $icon-dimension: 20px;
   padding: $padding;
 
   &.success {
-    background-color: $green-lightest;
-    border-color: $green-darkest;
+    background-color: palette.$green-lightest;
+    border-color: palette.$green-darkest;
   }
 
   .message {

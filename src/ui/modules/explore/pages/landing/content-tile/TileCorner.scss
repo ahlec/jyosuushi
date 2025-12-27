@@ -1,6 +1,6 @@
 @use "sass:math";
-@import "@jyosuushi/palette";
-@import "./constants";
+@use "@jyosuushi/palette";
+@use "./constants";
 
 $dimension: 15px;
 $line-dimension: math.ceil(math.hypot($dimension, $dimension));
@@ -14,7 +14,7 @@ $line-dimension: math.ceil(math.hypot($dimension, $dimension));
 .line {
   $offset-amount: $dimension / 2;
 
-  background-color: $white;
+  background-color: palette.$white;
   height: $line-dimension;
   pointer-events: none;
   transform: rotateZ(45deg)
@@ -23,13 +23,16 @@ $line-dimension: math.ceil(math.hypot($dimension, $dimension));
 }
 
 .pinkLine {
-  border-bottom: $tile-border-thickness solid $pink-tile-border-color;
+  border-bottom: constants.$tile-border-thickness solid
+    constants.$pink-tile-border-color;
 }
 
 .greenLine {
-  border-bottom: $tile-border-thickness solid $green-tile-border-color;
+  border-bottom: constants.$tile-border-thickness solid
+    constants.$green-tile-border-color;
 }
 
 .blueLine {
-  border-bottom: $tile-border-thickness solid $blue-tile-border-color;
+  border-bottom: constants.$tile-border-thickness solid
+    constants.$blue-tile-border-color;
 }

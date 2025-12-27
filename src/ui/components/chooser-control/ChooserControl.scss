@@ -1,4 +1,4 @@
-@import "@jyosuushi/palette";
+@use "@jyosuushi/palette";
 
 $border-radius: 6px;
 
@@ -6,8 +6,8 @@ $border-radius: 6px;
   display: flex;
 
   .choice {
-    background-color: $green-lightest;
-    border: 1px solid $green-darkest;
+    background-color: palette.$green-lightest;
+    border: 1px solid palette.$green-darkest;
     border-left-width: 0;
     cursor: pointer;
     flex: 1;
@@ -15,7 +15,7 @@ $border-radius: 6px;
     text-align: center;
 
     &:hover {
-      background-color: $green-light;
+      background-color: palette.$green-light;
     }
 
     &:first-child {
@@ -30,11 +30,11 @@ $border-radius: 6px;
     }
 
     &.selected {
-      background-color: $green-base;
+      background-color: palette.$green-base;
       cursor: default;
 
       &:hover {
-        background-color: $green-base;
+        background-color: palette.$green-base;
       }
     }
 

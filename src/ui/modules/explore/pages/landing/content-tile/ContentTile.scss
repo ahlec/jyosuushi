@@ -1,81 +1,99 @@
-@import "@jyosuushi/palette";
-@import "./constants";
+@use "@jyosuushi/palette";
+@use "./constants";
 
 $horizontal-adornment-height: 4px;
 $horizontal-adornment-bg-opacity: 0.75;
 
 .tile {
-  border: $tile-border-thickness solid $white;
+  border: constants.$tile-border-thickness solid palette.$white;
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  min-height: $tile-min-height;
+  min-height: constants.$tile-min-height;
   position: relative;
-  width: $tile-width;
+  width: constants.$tile-width;
 }
 
 .colorPink {
-  background-color: $pink-lightest;
-  border-color: $pink-tile-border-color;
+  background-color: palette.$pink-lightest;
+  border-color: constants.$pink-tile-border-color;
 
   &:hover {
-    background-color: $pink-light;
+    background-color: palette.$pink-light;
 
     .horizontalAdornment {
-      background-color: rgba($pink-base, $horizontal-adornment-bg-opacity);
+      background-color: rgba(
+        palette.$pink-base,
+        $horizontal-adornment-bg-opacity
+      );
     }
   }
 
   .horizontalAdornment {
-    background-color: rgba($pink-light, $horizontal-adornment-bg-opacity);
+    background-color: rgba(
+      palette.$pink-light,
+      $horizontal-adornment-bg-opacity
+    );
 
     &.topAdornment,
     &.bottomAdornment {
-      border-color: $pink-tile-border-color;
+      border-color: constants.$pink-tile-border-color;
     }
   }
 }
 
 .colorBlue {
-  background-color: $blue-lightest;
-  border-color: $blue-tile-border-color;
+  background-color: palette.$blue-lightest;
+  border-color: constants.$blue-tile-border-color;
 
   &:hover {
-    background-color: $blue-light;
+    background-color: palette.$blue-light;
 
     .horizontalAdornment {
-      background-color: rgba($blue-base, $horizontal-adornment-bg-opacity);
+      background-color: rgba(
+        palette.$blue-base,
+        $horizontal-adornment-bg-opacity
+      );
     }
   }
 
   .horizontalAdornment {
-    background-color: rgba($blue-light, $horizontal-adornment-bg-opacity);
+    background-color: rgba(
+      palette.$blue-light,
+      $horizontal-adornment-bg-opacity
+    );
 
     &.topAdornment,
     &.bottomAdornment {
-      border-color: $blue-tile-border-color;
+      border-color: constants.$blue-tile-border-color;
     }
   }
 }
 
 .colorGreen {
-  background-color: $green-lightest;
-  border-color: $green-tile-border-color;
+  background-color: palette.$green-lightest;
+  border-color: constants.$green-tile-border-color;
 
   &:hover {
-    background-color: $green-light;
+    background-color: palette.$green-light;
 
     .horizontalAdornment {
-      background-color: rgba($green-base, $horizontal-adornment-bg-opacity);
+      background-color: rgba(
+        palette.$green-base,
+        $horizontal-adornment-bg-opacity
+      );
     }
   }
 
   .horizontalAdornment {
-    background-color: rgba($green-light, $horizontal-adornment-bg-opacity);
+    background-color: rgba(
+      palette.$green-light,
+      $horizontal-adornment-bg-opacity
+    );
 
     &.topAdornment,
     &.bottomAdornment {
-      border-color: $green-tile-border-color;
+      border-color: constants.$green-tile-border-color;
     }
   }
 }
@@ -92,19 +110,19 @@ $horizontal-adornment-bg-opacity: 0.75;
 }
 
 .primary {
-  color: $black-base;
+  color: palette.$black-base;
   font-weight: bold;
   text-align: center;
 }
 
 .separator {
-  background-color: $black-dark;
+  background-color: palette.$black-dark;
   height: 1px;
   width: 80%;
 }
 
 .secondary {
-  color: $black-light;
+  color: palette.$black-light;
   font-size: 0.75em;
   text-align: center;
 }
@@ -113,23 +131,23 @@ $horizontal-adornment-bg-opacity: 0.75;
   height: $horizontal-adornment-height;
 
   &.topAdornment {
-    border-bottom: 1px solid $white;
+    border-bottom: 1px solid palette.$white;
   }
 
   &.bottomAdornment {
-    border-top: 1px solid $white;
+    border-top: 1px solid palette.$white;
   }
 }
 
 .bottomLeftCorner {
-  bottom: 0 - $tile-border-thickness;
-  left: 0 - $tile-border-thickness;
+  bottom: 0 - constants.$tile-border-thickness;
+  left: 0 - constants.$tile-border-thickness;
   position: absolute;
   transform: rotateZ(180deg);
 }
 
 .topRightCorner {
   position: absolute;
-  right: 0 - $tile-border-thickness;
-  top: 0 - $tile-border-thickness;
+  right: 0 - constants.$tile-border-thickness;
+  top: 0 - constants.$tile-border-thickness;
 }

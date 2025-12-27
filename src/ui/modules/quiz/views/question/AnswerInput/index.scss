@@ -1,4 +1,4 @@
-@import "@jyosuushi/palette";
+@use "@jyosuushi/palette";
 
 .AnswerInput {
   &.disabled {
@@ -10,11 +10,11 @@
     position: relative;
 
     input {
-      background-color: $blue-light;
-      border: 3px solid $blue-dark;
+      background-color: palette.$blue-light;
+      border: 3px solid palette.$blue-dark;
       border-left: 0;
       border-right: 0;
-      color: $black-base;
+      color: palette.$black-base;
       flex: 1;
       font-size: 48px;
       outline: none;
@@ -33,12 +33,12 @@
       width: 48px;
 
       .submit-button {
-        background-color: $blue-base;
+        background-color: palette.$blue-base;
         border-radius: 4px;
         cursor: pointer;
         height: 48px;
         opacity: 0;
-        outline-color: $black-dark;
+        outline-color: palette.$black-dark;
         padding: 6px;
         pointer-events: none;
         right: 10px;
@@ -53,7 +53,7 @@
         }
 
         &:hover {
-          background-color: $blue-dark;
+          background-color: palette.$blue-dark;
           padding: 5px;
         }
       }
