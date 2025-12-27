@@ -15,9 +15,10 @@
     "preserveConstEnums": true,
     "removeComments": true,
     "sourceMap": true,
+    "skipLibCheck": true,
     "strictNullChecks": true,
     "target": "ES2017",
-    "typeRoots": ["node_modules/@types", "./types"]
+    "typeRoots": ["./types"]
   },
   "include": ["data/**/*", "src/**/*", "scripts/**/*"],
   "exclude": ["**/@types.ts"]

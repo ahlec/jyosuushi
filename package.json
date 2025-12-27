@@ -93,7 +93,7 @@
     "ts-node": "^8.10.2",
     "tsconfig-paths": "^3.9.0",
     "typed-scss-modules": "^2.0.1",
-    "typescript": "^3.9.7",
+    "typescript": "^5.9.3",
     "unified": "^9.0.0",
     "webpack": "^5.104.1",
     "webpack-cli": "^6.0.1",
