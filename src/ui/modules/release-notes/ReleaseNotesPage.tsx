@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
-import { useDispatch } from "react-redux";
 
 import CHANGELOG, { ChangelogVersion, isFirstVersion } from "@changelog";
 
 import { markLatestVersion } from "@jyosuushi/redux/actions";
+import { useDispatch } from "@jyosuushi/redux/useDispatch";
 
 import IncrementalVersionDisplay from "./IncrementalVersionDisplay";
 

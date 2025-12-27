@@ -23,12 +23,7 @@ import {
   QuestionsState,
   QuizCounterDefinition,
 } from "@jyosuushi/redux";
-import {
-  ActionIgnoreLastAnswer,
-  ActionNextQuestion,
-  ActionRestartQuiz,
-  ActionStartQuiz,
-} from "@jyosuushi/redux/actions";
+import { ReduxAction } from "@jyosuushi/redux/actions";
 import makeQuiz from "@jyosuushi/ui/modules/quiz/state/QuizMaker";
 
 function makeQuestion(
@@ -114,12 +109,6 @@ function makeQuizFromDefinedCounters(
   return makeQuiz(countersArray, amountRange);
 }
 
-type ReducerAction =
-  | ActionStartQuiz
-  | ActionRestartQuiz
-  | ActionNextQuestion
-  | ActionIgnoreLastAnswer;
-
 const DEFAULT_STATE: QuestionsState = {
   asked: [],
   currentQuestion: null,
@@ -133,7 +122,7 @@ const DEFAULT_STATE: QuestionsState = {
 
 export default function questionsReducer(
   state: QuestionsState = DEFAULT_STATE,
-  action: ReducerAction
+  action: ReduxAction
 ): QuestionsState {
   switch (action.type) {
     case "start-quiz": {

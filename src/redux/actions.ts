@@ -148,3 +148,17 @@ export function markLatestVersion(): ActionMarkLatestVersion {
     type: "mark-latest-version",
   };
 }
+
+export type ReduxAction =
+  | ActionMarkLatestVersion
+  | ActionLeaveQuiz
+  | ActionEndQuiz
+  | ActionNextQuestion
+  | ActionSkipQuestion
+  | ActionIgnoreLastAnswer
+  | ActionSubmitIncorrectAnswer
+  | ActionSubmitCorrectAnswer
+  | ActionRestartQuiz
+  | ActionStartQuiz
+  | ActionSetInfiniteMode
+  | ActionSetAmountRange;

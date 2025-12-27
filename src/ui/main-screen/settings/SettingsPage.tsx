@@ -1,9 +1,10 @@
 import React, { useCallback } from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import { AmountRange, State } from "@jyosuushi/redux";
 import { setAmountRange, setInfiniteMode } from "@jyosuushi/redux/actions";
+import { useDispatch } from "@jyosuushi/redux/useDispatch";
 
 import Checkbox from "@jyosuushi/ui/components/Checkbox";
 import ChooserControl, {

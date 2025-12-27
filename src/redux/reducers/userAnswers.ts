@@ -1,20 +1,5 @@
 import { UserAnswer, UserAnswerJudgment } from "@jyosuushi/redux";
-import {
-  ActionIgnoreLastAnswer,
-  ActionRestartQuiz,
-  ActionSkipQuestion,
-  ActionStartQuiz,
-  ActionSubmitCorrectAnswer,
-  ActionSubmitIncorrectAnswer,
-} from "@jyosuushi/redux/actions";
-
-type ReducerAction =
-  | ActionIgnoreLastAnswer
-  | ActionRestartQuiz
-  | ActionSkipQuestion
-  | ActionStartQuiz
-  | ActionSubmitCorrectAnswer
-  | ActionSubmitIncorrectAnswer;
+import { ReduxAction } from "@jyosuushi/redux/actions";
 
 function updateJudgmentOnLast(
   state: ReadonlyArray<UserAnswer>,
@@ -35,7 +20,7 @@ function updateJudgmentOnLast(
 
 export default function userAnswersReducer(
   state: ReadonlyArray<UserAnswer> | undefined = [],
-  action: ReducerAction
+  action: ReduxAction
 ): ReadonlyArray<UserAnswer> {
   switch (action.type) {
     case "start-quiz":
