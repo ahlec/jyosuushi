@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { defineMessages, MessageDescriptor } from "react-intl";
+import { defineMessages, MessageDescriptor, PrimitiveType } from "react-intl";
 
 import {
   MAX_COLLECTION_NAME_LENGTH,
@@ -28,7 +28,7 @@ export type ValidationResult =
   | {
       valid: false;
       message: MessageDescriptor;
-      messageValues: Record<string, unknown>;
+      messageValues: Record<string, React.ReactNode | PrimitiveType>;
     };
 
 function useCollectionNameValidation(rawName: string): ValidationResult {

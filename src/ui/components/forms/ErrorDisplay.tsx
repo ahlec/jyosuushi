@@ -1,12 +1,12 @@
 import classnames from "classnames";
 import React from "react";
-import { FormattedMessage, MessageDescriptor } from "react-intl";
+import { FormattedMessage, MessageDescriptor, PrimitiveType } from "react-intl";
 
 import * as styles from "./ErrorDisplay.scss";
 
 interface ComponentProps {
   text: MessageDescriptor;
-  values: Record<string, unknown> | undefined;
+  values: Record<string, React.ReactNode | PrimitiveType> | undefined;
   variant: "form-error" | "field-error";
 }
 
