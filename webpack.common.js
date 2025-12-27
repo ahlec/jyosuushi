@@ -50,7 +50,12 @@ module.exports = {
     rules: [
       {
         test: /\.(ts|tsx)$/,
-        loader: "ts-loader",
+        use: {
+          loader: "ts-loader",
+          options: {
+            transpileOnly: true,
+          },
+        },
       },
       {
         test: /\.scss$/,
@@ -59,8 +64,9 @@ module.exports = {
           {
             loader: "css-loader",
             options: {
-              localsConvention: "camelCase",
-              modules: true,
+              modules: {
+                exportLocalsConvention: "camelCase",
+              },
             },
           },
           "postcss-loader",
@@ -74,10 +80,7 @@ module.exports = {
       },
       {
         test: /\.(png|jpg)$/,
-        options: {
-          esModule: false,
-        },
-        loader: "url-loader",
+        type: "asset/inline",
       },
       {
         test: /\.svg$/,
@@ -89,6 +92,7 @@ module.exports = {
     ],
   },
   optimization: {
+    moduleIds: "deterministic",
     runtimeChunk: "single",
     splitChunks: {
       chunks: "all",
@@ -108,7 +112,6 @@ module.exports = {
     },
   },
   plugins: [
-    new webpack.HashedModuleIdsPlugin(),
     new webpack.DefinePlugin({
       CONFIG_GOOGLE_ANALYTICS_TRACKING_ID: JSON.stringify(
         configJson.GOOGLE_ANALYTICS_TRACKING_ID
