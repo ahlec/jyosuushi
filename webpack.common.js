@@ -89,6 +89,18 @@ module.exports = {
         },
         loader: "@svgr/webpack",
       },
+      {
+        test: /node_modules\/vfile\/core\.js/,
+        use: [
+          {
+            loader: "imports-loader",
+            options: {
+              imports: ["single process/browser process"],
+              type: "commonjs",
+            },
+          },
+        ],
+      },
     ],
   },
   optimization: {
