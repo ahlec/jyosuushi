@@ -1,4 +1,4 @@
-@import "@jyosuushi/palette";
+@use "@jyosuushi/palette";
 
 .DisambiguationSection {
   .disambiguation {
@@ -12,7 +12,7 @@
       margin-right: 10px;
 
       .counter {
-        border: 8px solid $pink-light;
+        border: 8px solid palette.$pink-light;
         border-radius: 100%;
         display: block;
         font-size: 48px;

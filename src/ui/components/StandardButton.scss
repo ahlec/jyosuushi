@@ -1,4 +1,4 @@
-@use "@jyosuushi/_constants";
+@use "@jyosuushi/constants";
 @use "@jyosuushi/palette";
 
 .standardButton {
@@ -10,16 +10,16 @@
   font-family: constants.$font-family;
   padding: 6px;
 
-  &:hover:not(:disabled) {
-    border-width: 2px;
-    padding: 5px;
-  }
-
   &:disabled {
     background-color: palette.$pink-lightest;
     border-color: palette.$pink-light;
     color: palette.$pink-dark;
     cursor: default;
     opacity: 0.5;
+  }
+
+  &:hover:not(:disabled) {
+    border-width: 2px;
+    padding: 5px;
   }
 }

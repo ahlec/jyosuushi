@@ -2,6 +2,7 @@ import {
   Action,
   combineReducers,
   createStore,
+  Reducer,
   Dispatch as ReduxDispatch,
   Store as ReduxStore,
 } from "redux";
@@ -34,16 +35,21 @@ interface Redux {
 }
 
 export function createRedux(): Redux {
-  const reducers = combineReducers<State>({
+  const reducers = combineReducers({
     questions: questionsReducer,
     quizState: quizStateReducer,
     scorecard: scorecardReducer,
     settings: settingsReducer,
     user: userReducer,
     userAnswers: userAnswersReducer,
-  });
-  const store = createStore<State, Action, unknown, unknown>(
-    persistReducer(
+  }) as unknown as Reducer<State, Action>;
+  const store = createStore<
+    State,
+    Action,
+    Record<string, never>,
+    Record<string, never>
+  >(
+    persistReducer<State, Action>(
       {
         key: "root",
         migrate: createMigrate({
@@ -53,9 +59,9 @@ export function createRedux(): Redux {
         storage,
         version: 1,
       },
-      reducers
+      reducers,
     ),
-    composeWithDevTools()
+    composeWithDevTools(),
   );
   const persistor = persistStore(store);
   return {

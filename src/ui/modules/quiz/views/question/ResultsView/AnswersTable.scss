@@ -1,14 +1,14 @@
-@import "@jyosuushi/palette";
+@use "@jyosuushi/palette";
 
 .AnswersTable {
   width: 100%;
 
   th {
-    border-bottom: 1px solid $black-dark;
+    border-bottom: 1px solid palette.$black-dark;
     padding-bottom: 4px;
   }
 
   tr {
-    border-bottom: 1px solid $black-dark;
+    border-bottom: 1px solid palette.$black-dark;
   }
 }

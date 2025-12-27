@@ -1,5 +1,5 @@
-import React, { useCallback } from "react";
-import { Route, Switch } from "react-router-dom";
+import React from "react";
+import { Route, Routes } from "react-router";
 
 import { PageComponentProps } from "@jyosuushi/ui/types";
 
@@ -10,17 +10,6 @@ function ExplorePage({
   createUserCollection,
   userCollections,
 }: PageComponentProps): React.ReactElement {
-  // Create a memoized function to render the fallback, main page
-  const renderLandingPage = useCallback(
-    (): React.ReactElement => (
-      <LandingView
-        createUserCollection={createUserCollection}
-        userCollections={userCollections}
-      />
-    ),
-    [createUserCollection, userCollections]
-  );
-
   // Process the current data we have into routes
   const routes = useExploreRoutes({
     userCollections,
@@ -28,14 +17,26 @@ function ExplorePage({
 
   // Render the component
   return (
-    <Switch>
+    <Routes>
       {routes.map(
         (route): React.ReactElement => (
-          <Route key={route.key} path={route.path} render={route.component} />
-        )
+          <Route
+            key={route.key}
+            path={route.path}
+            element={<route.component />}
+          />
+        ),
       )}
-      <Route render={renderLandingPage} />
-    </Switch>
+      <Route
+        path="/"
+        element={
+          <LandingView
+            createUserCollection={createUserCollection}
+            userCollections={userCollections}
+          />
+        }
+      />
+    </Routes>
   );
 }
 

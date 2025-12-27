@@ -7,7 +7,7 @@ import { Question } from "@jyosuushi/interfaces";
 import { UserAnswer } from "@jyosuushi/redux";
 
 import AnswersTableRow, { AnswersTableRowData } from "./AnswersTableRow";
-import styles from "./AnswersTable.scss";
+import * as styles from "./AnswersTable.scss";
 
 interface ComponentProps {
   currentQuestion: Question;
@@ -45,7 +45,7 @@ function AnswersTable({
   const rows = useMemo((): readonly AnswersTableRowData[] => {
     const answersByCounterId = groupBy(
       currentQuestion.validAnswers,
-      (answer) => answer.counterId
+      (answer) => answer.counterId,
     );
 
     return Object.keys(answersByCounterId).map(
@@ -61,15 +61,15 @@ function AnswersTable({
             flatten(
               answers.map(
                 ({ kanji }): ReadonlyArray<string> =>
-                  kanji === null ? [] : kanji
-              )
-            )
+                  kanji === null ? [] : kanji,
+              ),
+            ),
           ),
           wasUsersCorrectAnswer:
             usersAnswer.judgment === "correct" &&
             !!answers.find((answer) => answer.kana === usersAnswer.input),
         };
-      }
+      },
     );
   }, [currentQuestion, usersAnswer.input, usersAnswer.judgment]);
 
@@ -87,7 +87,7 @@ function AnswersTable({
         {rows.map(
           (data): React.ReactElement => (
             <AnswersTableRow key={data.counter.counterId} data={data} />
-          )
+          ),
         )}
       </tbody>
     </table>

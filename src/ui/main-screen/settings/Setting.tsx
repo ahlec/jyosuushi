@@ -1,7 +1,7 @@
 import React from "react";
 import { FormattedMessage, MessageDescriptor } from "react-intl";
 
-import styles from "./Setting.scss";
+import * as styles from "./Setting.scss";
 
 interface ComponentProps {
   children: React.ReactNode;

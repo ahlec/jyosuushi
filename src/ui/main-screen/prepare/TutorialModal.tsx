@@ -12,7 +12,7 @@ import RightIcon from "@jyosuushi/ui/right.svg";
 
 import { TUTORIAL_PAGES } from "./tutorial";
 
-import styles from "./TutorialModal.scss";
+import * as styles from "./TutorialModal.scss";
 
 interface ComponentProps {
   isOpen: boolean;
@@ -68,24 +68,23 @@ export default class TutorialModal extends React.PureComponent<
   });
 
   private handleNavigationButtonKeyPress = memoize(
-    (direction: "left" | "right") => (
-      e: React.KeyboardEvent<HTMLDivElement>
-    ): void => {
-      if (e.which !== KeyCode.Enter && e.which !== KeyCode.Space) {
-        return;
-      }
+    (direction: "left" | "right") =>
+      (e: React.KeyboardEvent<HTMLDivElement>): void => {
+        if (e.which !== KeyCode.Enter && e.which !== KeyCode.Space) {
+          return;
+        }
 
-      switch (direction) {
-        case "left": {
-          this.onClickLeft();
-          break;
+        switch (direction) {
+          case "left": {
+            this.onClickLeft();
+            break;
+          }
+          case "right": {
+            this.onClickRight();
+            break;
+          }
         }
-        case "right": {
-          this.onClickRight();
-          break;
-        }
-      }
-    }
+      },
   );
 
   public componentDidMount(): void {
@@ -108,7 +107,7 @@ export default class TutorialModal extends React.PureComponent<
       <Modal
         className={classnames(
           styles.tutorialModal,
-          transition && TRANSITION_TO_CSS_CLASS_NAMES[transition]
+          transition && TRANSITION_TO_CSS_CLASS_NAMES[transition],
         )}
         contentClassName={styles.content}
         header={INTL_MESSAGES.modalHeader}
@@ -118,7 +117,7 @@ export default class TutorialModal extends React.PureComponent<
         <div
           className={classnames(
             styles.left,
-            !isChangingPage && currentPage > 0 && styles.enabled
+            !isChangingPage && currentPage > 0 && styles.enabled,
           )}
           onClick={this.onClickLeft}
           onKeyPress={this.handleNavigationButtonKeyPress("left")}
@@ -140,7 +139,7 @@ export default class TutorialModal extends React.PureComponent<
         <div
           className={classnames(
             styles.right,
-            isRightButtonEnabled && styles.enabled
+            isRightButtonEnabled && styles.enabled,
           )}
           onClick={this.onClickRight}
           onKeyPress={this.handleNavigationButtonKeyPress("right")}
@@ -165,7 +164,7 @@ export default class TutorialModal extends React.PureComponent<
         </div>
         <div className={styles.navigation}>
           {TUTORIAL_PAGES.map((_, index) =>
-            this.renderNavigationLink(pageNumber, index)
+            this.renderNavigationLink(pageNumber, index),
           )}
         </div>
       </React.Fragment>
@@ -174,14 +173,14 @@ export default class TutorialModal extends React.PureComponent<
 
   private renderNavigationLink = (
     onPageNumber: number,
-    linkedPageNumber: number
+    linkedPageNumber: number,
   ): React.ReactNode => {
     return (
       <svg
         key={linkedPageNumber}
         className={classnames(
           styles.navigationLink,
-          linkedPageNumber === onPageNumber && styles.active
+          linkedPageNumber === onPageNumber && styles.active,
         )}
         viewBox="0 0 10 10"
         onClick={this.onClickPageLink(linkedPageNumber)}

@@ -9,7 +9,7 @@ import StandardButton from "@jyosuushi/ui/components/StandardButton";
 
 import BaseDialog from "./BaseDialog";
 
-import styles from "./BaseConfirmationDialog.scss";
+import * as styles from "./BaseConfirmationDialog.scss";
 
 const INTL_MESSAGES = defineMessages({
   buttonNo: {

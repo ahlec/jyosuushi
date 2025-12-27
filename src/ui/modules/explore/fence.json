@@ -14,12 +14,10 @@
   ],
   "dependencies": [
     "classnames",
-    "history",
     "lodash",
     "memoize-one",
     "react",
     "react-intl",
-    "react-router",
-    "react-router-dom"
+    "react-router"
   ]
 }

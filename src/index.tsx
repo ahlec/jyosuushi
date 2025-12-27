@@ -1,9 +1,9 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import * as ReactGA from "react-ga";
 import Modal from "react-modal";
 import { Provider } from "react-redux";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router";
 import { PersistGate } from "redux-persist/integration/react";
 
 import IntlProvider from "./i18n/IntlProvider";
@@ -12,7 +12,7 @@ import QuizManager from "./ui/modules/quiz/state/QuizManager";
 import { createRedux } from "./redux/store";
 import Container from "./ui/Container";
 
-import "meyer-reset-scss/reset.scss";
+import "./reset.scss";
 import "./index.scss";
 
 ReactGA.initialize(CONFIG_GOOGLE_ANALYTICS_TRACKING_ID, {
@@ -25,11 +25,14 @@ const redux = createRedux();
 const quizManager = new QuizManager(redux.store);
 
 const rootElement = document.getElementById("root");
-if (rootElement) {
-  Modal.setAppElement(rootElement);
+if (!rootElement) {
+  throw new Error("Unable to find root element to hook into");
 }
 
-ReactDOM.render(
+Modal.setAppElement(rootElement);
+const root = createRoot(rootElement);
+
+root.render(
   <Provider store={redux.store}>
     <PersistGate loading={null} persistor={redux.persistor}>
       <IntlProvider>
@@ -41,5 +44,4 @@ ReactDOM.render(
       </IntlProvider>
     </PersistGate>
   </Provider>,
-  rootElement
 );

@@ -1,9 +1,10 @@
 import React, { useCallback } from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import { AmountRange, State } from "@jyosuushi/redux";
 import { setAmountRange, setInfiniteMode } from "@jyosuushi/redux/actions";
+import { useDispatch } from "@jyosuushi/redux/useDispatch";
 
 import Checkbox from "@jyosuushi/ui/components/Checkbox";
 import ChooserControl, {
@@ -13,7 +14,7 @@ import ChooserControl, {
 import { AMOUNT_RANGES } from "@jyosuushi/constants";
 
 import Setting from "./Setting";
-import styles from "./SettingsPage.scss";
+import * as styles from "./SettingsPage.scss";
 
 const INTL_MESSAGES = defineMessages({
   amountRangeChoiceRange: {
@@ -112,10 +113,10 @@ function SettingsPage(): React.ReactElement {
 
   // Retrieve the current user settings
   const currentInfiniteMode = useSelector(
-    (state: State): boolean => state.settings.infiniteMode
+    (state: State): boolean => state.settings.infiniteMode,
   );
   const currentRange = useSelector(
-    (state: State): AmountRange => state.settings.amountRange
+    (state: State): AmountRange => state.settings.amountRange,
   );
 
   // Handle events
@@ -123,14 +124,14 @@ function SettingsPage(): React.ReactElement {
     (amountRange: AmountRange): void => {
       dispatch(setAmountRange(amountRange));
     },
-    [dispatch]
+    [dispatch],
   );
 
   const handleInfiniteModeChanged = useCallback(
     (infiniteMode: boolean): void => {
       dispatch(setInfiniteMode(infiniteMode));
     },
-    [dispatch]
+    [dispatch],
   );
 
   // Render the component

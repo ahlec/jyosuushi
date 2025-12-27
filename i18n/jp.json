@@ -2,36 +2,28 @@
   "constants.quizAmountRanges.nameGiant": {
     "original": {
       "defaultMessage": "Gigantic",
-      "filenames": [
-        "src/constants/index.ts"
-      ]
+      "filenames": ["src/constants/index.ts"]
     },
     "translation": ""
   },
   "constants.quizAmountRanges.nameLarge": {
     "original": {
       "defaultMessage": "Massive",
-      "filenames": [
-        "src/constants/index.ts"
-      ]
+      "filenames": ["src/constants/index.ts"]
     },
     "translation": ""
   },
   "constants.quizAmountRanges.nameMedium": {
     "original": {
       "defaultMessage": "Average",
-      "filenames": [
-        "src/constants/index.ts"
-      ]
+      "filenames": ["src/constants/index.ts"]
     },
     "translation": ""
   },
   "constants.quizAmountRanges.nameSmall": {
     "original": {
       "defaultMessage": "Tiny",
-      "filenames": [
-        "src/constants/index.ts"
-      ]
+      "filenames": ["src/constants/index.ts"]
     },
     "translation": ""
   },
@@ -39,9 +31,7 @@
     "original": {
       "defaultMessage": "No",
       "description": "Clicking this buttons cancels/declines the yes/no confirmation prompt given to the user.",
-      "filenames": [
-        "src/ui/components/popups/BaseConfirmationDialog.tsx"
-      ]
+      "filenames": ["src/ui/components/popups/BaseConfirmationDialog.tsx"]
     },
     "translation": ""
   },
@@ -49,378 +39,294 @@
     "original": {
       "defaultMessage": "Yes",
       "description": "Clicking this button confirms the yes/no confirmation prompt given to the user.",
-      "filenames": [
-        "src/ui/components/popups/BaseConfirmationDialog.tsx"
-      ]
+      "filenames": ["src/ui/components/popups/BaseConfirmationDialog.tsx"]
     },
     "translation": ""
   },
   "CreditsFooter.credits": {
     "original": {
       "defaultMessage": "Application designed and coded by <alec>Alec Deitloff</alec>. Vector icons were taken from the <vectorIcons>Core - UI - Outlined</vectorIcons> collection. Sakura icon was made by <sakura>Freepik</sakura>. Small icons are part of the <silk>Silk</silk> collection.",
-      "filenames": [
-        "src/ui/CreditsFooter.tsx"
-      ]
+      "filenames": ["src/ui/CreditsFooter.tsx"]
     },
     "translation": ""
   },
   "header.AbortConfirmationModal.header": {
     "original": {
       "defaultMessage": "End Quiz Early?",
-      "filenames": [
-        "src/ui/Header/AbortConfirmationModal.tsx"
-      ]
+      "filenames": ["src/ui/Header/AbortConfirmationModal.tsx"]
     },
     "translation": ""
   },
   "header.AbortConfirmationModal.question": {
     "original": {
       "defaultMessage": "Are you sure you want to end the current quiz early?",
-      "filenames": [
-        "src/ui/Header/AbortConfirmationModal.tsx"
-      ]
+      "filenames": ["src/ui/Header/AbortConfirmationModal.tsx"]
     },
     "translation": ""
   },
   "header.historyModalHeader": {
     "original": {
       "defaultMessage": "History",
-      "filenames": [
-        "src/ui/Header/index.tsx"
-      ]
+      "filenames": ["src/ui/Header/index.tsx"]
     },
     "translation": ""
   },
   "header.siteTagLine": {
     "original": {
       "defaultMessage": "Let's review Japanese counters!",
-      "filenames": [
-        "src/ui/Header/index.tsx"
-      ]
+      "filenames": ["src/ui/Header/index.tsx"]
     },
     "translation": ""
   },
   "header.quiz-buttons.historyButtonTooltip": {
     "original": {
       "defaultMessage": "History",
-      "filenames": [
-        "src/ui/Header/index.tsx"
-      ]
+      "filenames": ["src/ui/Header/index.tsx"]
     },
     "translation": ""
   },
   "header.quiz-buttons.homeButtonTooltip": {
     "original": {
       "defaultMessage": "Home",
-      "filenames": [
-        "src/ui/Header/index.tsx"
-      ]
+      "filenames": ["src/ui/Header/index.tsx"]
     },
     "translation": ""
   },
   "header.score.xOfYCorrect": {
     "original": {
       "defaultMessage": "{x} / {y} correct",
-      "filenames": [
-        "src/ui/Header/Score.tsx"
-      ]
+      "filenames": ["src/ui/Header/Score.tsx"]
     },
     "translation": ""
   },
   "feedbackPage.links.contribute.description": {
     "original": {
       "defaultMessage": "Officially submit bug reports or feature requests. Or, fork the repository and open a pull request — I'd love help on this project!",
-      "filenames": [
-        "src/ui/main-screen/feedback/FeedbackPage.tsx"
-      ]
+      "filenames": ["src/ui/main-screen/feedback/FeedbackPage.tsx"]
     },
     "translation": ""
   },
   "feedbackPage.links.contribute.link": {
     "original": {
       "defaultMessage": "GitHub Repository",
-      "filenames": [
-        "src/ui/main-screen/feedback/FeedbackPage.tsx"
-      ]
+      "filenames": ["src/ui/main-screen/feedback/FeedbackPage.tsx"]
     },
     "translation": ""
   },
   "feedbackPage.intro": {
     "original": {
       "defaultMessage": "The project is open source and accepting bug reports, feature requests, and code contributions!",
-      "filenames": [
-        "src/ui/main-screen/feedback/FeedbackPage.tsx"
-      ]
+      "filenames": ["src/ui/main-screen/feedback/FeedbackPage.tsx"]
     },
     "translation": ""
   },
   "feedbackPage.links.personalTwitter.description": {
     "original": {
       "defaultMessage": "Send me a tweet or a direct message if you're not able to go through GitHub.",
-      "filenames": [
-        "src/ui/main-screen/feedback/FeedbackPage.tsx"
-      ]
+      "filenames": ["src/ui/main-screen/feedback/FeedbackPage.tsx"]
     },
     "translation": ""
   },
   "feedbackPage.links.personalTwitter.link": {
     "original": {
       "defaultMessage": "@AlecDeitloff",
-      "filenames": [
-        "src/ui/main-screen/feedback/FeedbackPage.tsx"
-      ]
+      "filenames": ["src/ui/main-screen/feedback/FeedbackPage.tsx"]
     },
     "translation": ""
   },
   "preparePage.CollectionSelection.header": {
     "original": {
       "defaultMessage": "Collections",
-      "filenames": [
-        "src/ui/main-screen/prepare/CollectionSelection.tsx"
-      ]
+      "filenames": ["src/ui/main-screen/prepare/CollectionSelection.tsx"]
     },
     "translation": ""
   },
   "preparePage.CollectionSelection.subheader": {
     "original": {
       "defaultMessage": "(select 1 or more)",
-      "filenames": [
-        "src/ui/main-screen/prepare/CollectionSelection.tsx"
-      ]
+      "filenames": ["src/ui/main-screen/prepare/CollectionSelection.tsx"]
     },
     "translation": ""
   },
   "preparePage.CollectionToggleButton.collectionSizeLabel": {
     "original": {
       "defaultMessage": "{size, plural, one {# counter} other {# counters}}",
-      "filenames": [
-        "src/ui/main-screen/prepare/CollectionToggleButton.tsx"
-      ]
+      "filenames": ["src/ui/main-screen/prepare/CollectionToggleButton.tsx"]
     },
     "translation": ""
   },
   "preparePage.CollectionToggleButton.viewContentsLink": {
     "original": {
       "defaultMessage": "View Details",
-      "filenames": [
-        "src/ui/main-screen/prepare/CollectionToggleButton.tsx"
-      ]
+      "filenames": ["src/ui/main-screen/prepare/CollectionToggleButton.tsx"]
     },
     "translation": ""
   },
   "preparePage.CounterPreview.header": {
     "original": {
       "defaultMessage": "{count, plural, one {# Counter} other {# Counters}} included",
-      "filenames": [
-        "src/ui/main-screen/prepare/CounterPreview.tsx"
-      ]
+      "filenames": ["src/ui/main-screen/prepare/CounterPreview.tsx"]
     },
     "translation": ""
   },
   "preparePage.links.jyosuushiWikipediaPage": {
     "original": {
       "defaultMessage": "Japanese counters",
-      "filenames": [
-        "src/ui/main-screen/prepare/PreparePage.tsx"
-      ]
+      "filenames": ["src/ui/main-screen/prepare/PreparePage.tsx"]
     },
     "translation": ""
   },
   "preparePage.links.tutorial": {
     "original": {
       "defaultMessage": "Click here to read the tutorial.",
-      "filenames": [
-        "src/ui/main-screen/prepare/PreparePage.tsx"
-      ]
+      "filenames": ["src/ui/main-screen/prepare/PreparePage.tsx"]
     },
     "translation": ""
   },
   "preparePage.welcomeMessage": {
     "original": {
       "defaultMessage": "Welcome to <bold>助数詞を練習</bold>! This is a tool that's meant to help you study {jyosuushiWikipediaLink}. You'll be given a random item and a random number, and then you tell us how you'd count that in Japanese. {tutorialLink}",
-      "filenames": [
-        "src/ui/main-screen/prepare/PreparePage.tsx"
-      ]
+      "filenames": ["src/ui/main-screen/prepare/PreparePage.tsx"]
     },
     "translation": ""
   },
   "preparePage.QuizPreparationView.buttonStartQuiz": {
     "original": {
       "defaultMessage": "Start Quiz!",
-      "filenames": [
-        "src/ui/main-screen/prepare/QuizPreparationView.tsx"
-      ]
+      "filenames": ["src/ui/main-screen/prepare/QuizPreparationView.tsx"]
     },
     "translation": ""
   },
   "mainScreen.tutorial.page1": {
     "original": {
       "defaultMessage": "On the main screen, find conveniently made packs of counters. Explore each of their details, and then choose the ones that contain the counters you want to study.",
-      "filenames": [
-        "src/ui/main-screen/prepare/tutorial/index.ts"
-      ]
+      "filenames": ["src/ui/main-screen/prepare/tutorial/index.ts"]
     },
     "translation": ""
   },
   "mainScreen.tutorial.page2": {
     "original": {
       "defaultMessage": "When you hit 'Start Quiz', you'll be prompted with random nouns of random amounts. Determine the appropriate counter for the noun, and then put in your answer.\n\nEven though they're valid, 〜つ and 〜個 aren't accepted answers!",
-      "filenames": [
-        "src/ui/main-screen/prepare/tutorial/index.ts"
-      ]
+      "filenames": ["src/ui/main-screen/prepare/tutorial/index.ts"]
     },
     "translation": ""
   },
   "mainScreen.tutorial.page3": {
     "original": {
       "defaultMessage": "If you don't want to answer, hit 'Skip this question'. It won't penalize you and will remove the question from the quiz.",
-      "filenames": [
-        "src/ui/main-screen/prepare/tutorial/index.ts"
-      ]
+      "filenames": ["src/ui/main-screen/prepare/tutorial/index.ts"]
     },
     "translation": ""
   },
   "mainScreen.tutorial.page4": {
     "original": {
       "defaultMessage": "Once you submit your answer, check your accuracy! It will show you all of the correct answers at this stage, so you can take note if you made a mistake.",
-      "filenames": [
-        "src/ui/main-screen/prepare/tutorial/index.ts"
-      ]
+      "filenames": ["src/ui/main-screen/prepare/tutorial/index.ts"]
     },
     "translation": ""
   },
   "mainScreen.tutorial.page5": {
     "original": {
       "defaultMessage": "If you made a typo or a genuine mistake, hit 'Ignore Answer'. It won't penalize you, and it will shuffle that question in for later to try again. It's up to you to stay honest!",
-      "filenames": [
-        "src/ui/main-screen/prepare/tutorial/index.ts"
-      ]
+      "filenames": ["src/ui/main-screen/prepare/tutorial/index.ts"]
     },
     "translation": ""
   },
   "mainScreen.tutorial.page6": {
     "original": {
       "defaultMessage": "When you've gone through all of your questions, you'll have a chance to see your overall results. From there, you can choose to change your study packs, or try this quiz again with new numbers and items.",
-      "filenames": [
-        "src/ui/main-screen/prepare/tutorial/index.ts"
-      ]
+      "filenames": ["src/ui/main-screen/prepare/tutorial/index.ts"]
     },
     "translation": ""
   },
   "mainScreen.tutorial.modalHeader": {
     "original": {
       "defaultMessage": "Tutorial",
-      "filenames": [
-        "src/ui/main-screen/prepare/TutorialModal.tsx"
-      ]
+      "filenames": ["src/ui/main-screen/prepare/TutorialModal.tsx"]
     },
     "translation": ""
   },
   "settings.quiz.amountRange.choiceRange": {
     "original": {
       "defaultMessage": "{min}-{max}",
-      "filenames": [
-        "src/ui/main-screen/settings/SettingsPage.tsx"
-      ]
+      "filenames": ["src/ui/main-screen/settings/SettingsPage.tsx"]
     },
     "translation": ""
   },
   "settings.quiz.amountRange.description": {
     "original": {
       "defaultMessage": "Adjust the range of numbers generated.",
-      "filenames": [
-        "src/ui/main-screen/settings/SettingsPage.tsx"
-      ]
+      "filenames": ["src/ui/main-screen/settings/SettingsPage.tsx"]
     },
     "translation": ""
   },
   "settings.quiz.amountRange.header": {
     "original": {
       "defaultMessage": "Amounts Range",
-      "filenames": [
-        "src/ui/main-screen/settings/SettingsPage.tsx"
-      ]
+      "filenames": ["src/ui/main-screen/settings/SettingsPage.tsx"]
     },
     "translation": ""
   },
   "settings.quiz.infiniteMode.checkboxLabel": {
     "original": {
       "defaultMessage": "Infinite Mode",
-      "filenames": [
-        "src/ui/main-screen/settings/SettingsPage.tsx"
-      ]
+      "filenames": ["src/ui/main-screen/settings/SettingsPage.tsx"]
     },
     "translation": ""
   },
   "settings.quiz.infiniteMode.description": {
     "original": {
       "defaultMessage": "Choose whether the quiz has a finite number of questions, or if it goes on forever.",
-      "filenames": [
-        "src/ui/main-screen/settings/SettingsPage.tsx"
-      ]
+      "filenames": ["src/ui/main-screen/settings/SettingsPage.tsx"]
     },
     "translation": ""
   },
   "settings.quiz.infiniteMode.header": {
     "original": {
       "defaultMessage": "Infinite Mode",
-      "filenames": [
-        "src/ui/main-screen/settings/SettingsPage.tsx"
-      ]
+      "filenames": ["src/ui/main-screen/settings/SettingsPage.tsx"]
     },
     "translation": ""
   },
   "settings.pageHeader": {
     "original": {
       "defaultMessage": "Settings",
-      "filenames": [
-        "src/ui/main-screen/settings/SettingsPage.tsx"
-      ]
+      "filenames": ["src/ui/main-screen/settings/SettingsPage.tsx"]
     },
     "translation": ""
   },
   "Sidebar.pages.explore": {
     "original": {
       "defaultMessage": "Explore",
-      "filenames": [
-        "src/ui/main-screen/sidebar/Sidebar.tsx"
-      ]
+      "filenames": ["src/ui/main-screen/sidebar/Sidebar.tsx"]
     },
     "translation": ""
   },
   "Sidebar.pages.feedback": {
     "original": {
       "defaultMessage": "Feedback",
-      "filenames": [
-        "src/ui/main-screen/sidebar/Sidebar.tsx"
-      ]
+      "filenames": ["src/ui/main-screen/sidebar/Sidebar.tsx"]
     },
     "translation": ""
   },
   "Sidebar.pages.prepare": {
     "original": {
       "defaultMessage": "Prepare",
-      "filenames": [
-        "src/ui/main-screen/sidebar/Sidebar.tsx"
-      ]
+      "filenames": ["src/ui/main-screen/sidebar/Sidebar.tsx"]
     },
     "translation": ""
   },
   "Sidebar.pages.releaseNotes": {
     "original": {
       "defaultMessage": "Release Notes",
-      "filenames": [
-        "src/ui/main-screen/sidebar/Sidebar.tsx"
-      ]
+      "filenames": ["src/ui/main-screen/sidebar/Sidebar.tsx"]
     },
     "translation": ""
   },
   "Sidebar.pages.settings": {
     "original": {
       "defaultMessage": "Settings",
-      "filenames": [
-        "src/ui/main-screen/sidebar/Sidebar.tsx"
-      ]
+      "filenames": ["src/ui/main-screen/sidebar/Sidebar.tsx"]
     },
     "translation": ""
   },
@@ -751,63 +657,49 @@
   "explorePage.counter.info.externalLinksHeader": {
     "original": {
       "defaultMessage": "Further Reading",
-      "filenames": [
-        "src/ui/modules/explore/pages/counter/InfoSection.tsx"
-      ]
+      "filenames": ["src/ui/modules/explore/pages/counter/InfoSection.tsx"]
     },
     "translation": ""
   },
   "explorePage.counter.itemsSection.introText": {
     "original": {
       "defaultMessage": "The following {numItems, plural, one {is an example} other {are examples}} of what this is used to count:",
-      "filenames": [
-        "src/ui/modules/explore/pages/counter/ItemsSection.tsx"
-      ]
+      "filenames": ["src/ui/modules/explore/pages/counter/ItemsSection.tsx"]
     },
     "translation": ""
   },
   "explorePage.landing.AllCollections.pageHeader": {
     "original": {
       "defaultMessage": "Collections",
-      "filenames": [
-        "src/ui/modules/explore/pages/landing/AllCollections.tsx"
-      ]
+      "filenames": ["src/ui/modules/explore/pages/landing/AllCollections.tsx"]
     },
     "translation": ""
   },
   "explorePage.allCounters.pageHeader": {
     "original": {
       "defaultMessage": "Counters",
-      "filenames": [
-        "src/ui/modules/explore/pages/landing/AllCounters.tsx"
-      ]
+      "filenames": ["src/ui/modules/explore/pages/landing/AllCounters.tsx"]
     },
     "translation": ""
   },
   "explorePage.landing.CollectionLink.collectionSize": {
     "original": {
       "defaultMessage": "{size, plural, one {# counter} other {# counters}}",
-      "filenames": [
-        "src/ui/modules/explore/pages/landing/CollectionLink.tsx"
-      ]
+      "filenames": ["src/ui/modules/explore/pages/landing/CollectionLink.tsx"]
     },
     "translation": ""
   },
   "explorePage.landing.CollectionLink.typeStandard": {
     "original": {
       "defaultMessage": "Standard",
-      "filenames": [
-        "src/ui/modules/explore/pages/landing/CollectionLink.tsx"
-      ]
+      "filenames": ["src/ui/modules/explore/pages/landing/CollectionLink.tsx"]
     },
     "translation": ""
   },
   "explorePage.landing.CollectionLink.typeUser": {
     "original": {
       "defaultMessage": "Custom",
-      "filenames": [
-        "src/ui/modules/explore/pages/landing/CollectionLink.tsx"
-      ]
+      "filenames": ["src/ui/modules/explore/pages/landing/CollectionLink.tsx"]
     },
     "translation": ""
   },
@@ -850,18 +742,14 @@
   "quiz-page.AnswerInput.buttonSkipQuestion": {
     "original": {
       "defaultMessage": "Skip this question",
-      "filenames": [
-        "src/ui/modules/quiz/views/question/AnswerInput/index.tsx"
-      ]
+      "filenames": ["src/ui/modules/quiz/views/question/AnswerInput/index.tsx"]
     },
     "translation": ""
   },
   "quiz-page.AnswerInput.howToSubmit": {
     "original": {
       "defaultMessage": "Press the [enter] key when you're finished, or click the arrow button to submit.",
-      "filenames": [
-        "src/ui/modules/quiz/views/question/AnswerInput/index.tsx"
-      ]
+      "filenames": ["src/ui/modules/quiz/views/question/AnswerInput/index.tsx"]
     },
     "translation": ""
   },
@@ -877,9 +765,7 @@
   "quizPage.QuestionDisplay.text": {
     "original": {
       "defaultMessage": "{amount} {itemName}",
-      "filenames": [
-        "src/ui/modules/quiz/views/question/QuestionDisplay.tsx"
-      ]
+      "filenames": ["src/ui/modules/quiz/views/question/QuestionDisplay.tsx"]
     },
     "translation": ""
   },
@@ -958,81 +844,63 @@
   "quiz-page.results.buttonIgnoreAnswer": {
     "original": {
       "defaultMessage": "Ignore Answer",
-      "filenames": [
-        "src/ui/modules/quiz/views/question/ResultsView/index.tsx"
-      ]
+      "filenames": ["src/ui/modules/quiz/views/question/ResultsView/index.tsx"]
     },
     "translation": ""
   },
   "quiz-page.results.buttonNextQuestion": {
     "original": {
       "defaultMessage": "Next Question",
-      "filenames": [
-        "src/ui/modules/quiz/views/question/ResultsView/index.tsx"
-      ]
+      "filenames": ["src/ui/modules/quiz/views/question/ResultsView/index.tsx"]
     },
     "translation": ""
   },
   "quiz-page.results.header.correct": {
     "original": {
       "defaultMessage": "Correct!",
-      "filenames": [
-        "src/ui/modules/quiz/views/question/ResultsView/index.tsx"
-      ]
+      "filenames": ["src/ui/modules/quiz/views/question/ResultsView/index.tsx"]
     },
     "translation": ""
   },
   "quiz-page.results.header.incorrect": {
     "original": {
       "defaultMessage": "Not quite right...",
-      "filenames": [
-        "src/ui/modules/quiz/views/question/ResultsView/index.tsx"
-      ]
+      "filenames": ["src/ui/modules/quiz/views/question/ResultsView/index.tsx"]
     },
     "translation": ""
   },
   "quiz-page.results.header.skipped": {
     "original": {
       "defaultMessage": "Skipped",
-      "filenames": [
-        "src/ui/modules/quiz/views/question/ResultsView/index.tsx"
-      ]
+      "filenames": ["src/ui/modules/quiz/views/question/ResultsView/index.tsx"]
     },
     "translation": ""
   },
   "quiz-page.results.table.intro": {
     "original": {
       "defaultMessage": "Here are all of the possible answers based on the sets you have enabled:",
-      "filenames": [
-        "src/ui/modules/quiz/views/question/ResultsView/index.tsx"
-      ]
+      "filenames": ["src/ui/modules/quiz/views/question/ResultsView/index.tsx"]
     },
     "translation": ""
   },
   "quiz-page.results.skippedQuestion": {
     "original": {
       "defaultMessage": "Alright! You don't need to worry about this question!",
-      "filenames": [
-        "src/ui/modules/quiz/views/question/ResultsView/index.tsx"
-      ]
+      "filenames": ["src/ui/modules/quiz/views/question/ResultsView/index.tsx"]
     },
     "translation": ""
   },
   "quiz-page.QuizWrapup.quitQuiz": {
     "original": {
       "defaultMessage": "Leave",
-      "filenames": [
-        "src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
-      ]
+      "filenames": ["src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"]
     },
     "translation": ""
   },
   "quiz-page.QuizWrapup.restartQuiz": {
     "original": {
       "defaultMessage": "Restart",
-      "filenames": [
-        "src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
-      ]
+      "filenames": ["src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"]
     },
     "translation": ""
   },
@@ -1040,9 +908,7 @@
     "original": {
       "defaultMessage": "That was astounding, really.",
       "description": "(A random message displayed if the user got a high score; does not need to be a literal translation)",
-      "filenames": [
-        "src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
-      ]
+      "filenames": ["src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"]
     },
     "translation": ""
   },
@@ -1050,9 +916,7 @@
     "original": {
       "defaultMessage": "Look at how far you've come on your journey!",
       "description": "(A random message displayed if the user got a high score; does not need to be a literal translation)",
-      "filenames": [
-        "src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
-      ]
+      "filenames": ["src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"]
     },
     "translation": ""
   },
@@ -1060,9 +924,7 @@
     "original": {
       "defaultMessage": "This stuff isn't easy, and you're aceing it!",
       "description": "(A random message displayed if the user got a high score; does not need to be a literal translation)",
-      "filenames": [
-        "src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
-      ]
+      "filenames": ["src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"]
     },
     "translation": ""
   },
@@ -1070,9 +932,7 @@
     "original": {
       "defaultMessage": "It's taken a lot of work to get here; pat yourself on the back.",
       "description": "(A random message displayed if the user got a high score; does not need to be a literal translation)",
-      "filenames": [
-        "src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
-      ]
+      "filenames": ["src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"]
     },
     "translation": ""
   },
@@ -1080,9 +940,7 @@
     "original": {
       "defaultMessage": "You're trying your best, and that's the key to success!",
       "description": "(A random message displayed if the user got a low score; does not need to be a literal translation)",
-      "filenames": [
-        "src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
-      ]
+      "filenames": ["src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"]
     },
     "translation": ""
   },
@@ -1090,9 +948,7 @@
     "original": {
       "defaultMessage": "You've learned so much to get here, I know you'll get to where you want to go!",
       "description": "(A random message displayed if the user got a low score; does not need to be a literal translation)",
-      "filenames": [
-        "src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
-      ]
+      "filenames": ["src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"]
     },
     "translation": ""
   },
@@ -1100,9 +956,7 @@
     "original": {
       "defaultMessage": "This stuff isn't easy; practice WILL make perfect.",
       "description": "(A random message displayed if the user got a low score; does not need to be a literal translation)",
-      "filenames": [
-        "src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
-      ]
+      "filenames": ["src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"]
     },
     "translation": ""
   },
@@ -1182,9 +1036,7 @@
     "original": {
       "defaultMessage": "Initial release.",
       "description": "Text to appear in place of release notes for the version that was the initial release.",
-      "filenames": [
-        "src/ui/modules/release-notes/ReleaseNotesPage.tsx"
-      ]
+      "filenames": ["src/ui/modules/release-notes/ReleaseNotesPage.tsx"]
     },
     "translation": ""
   }

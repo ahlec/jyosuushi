@@ -7,7 +7,7 @@ import { KeyCode } from "@jyosuushi/constants";
 
 import { Choice } from "./types";
 
-import styles from "./ChooserControl.scss";
+import * as styles from "./ChooserControl.scss";
 
 interface ComponentProps<TValue> {
   choice: Choice<TValue>;

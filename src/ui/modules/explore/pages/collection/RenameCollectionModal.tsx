@@ -31,7 +31,7 @@ function RenameCollectionModal({
     (name: string): void => {
       collection.rename(name).then(onRequestClose);
     },
-    [collection, onRequestClose]
+    [collection, onRequestClose],
   );
 
   // Render the component

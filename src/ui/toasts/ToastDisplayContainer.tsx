@@ -4,7 +4,7 @@ import ToastDisplay from "./ToastDisplay";
 import { Toast } from "./types";
 import useToast from "./useToast";
 
-import styles from "./ToastDisplayContainer.scss";
+import * as styles from "./ToastDisplayContainer.scss";
 
 function ToastDisplayContainer(): React.ReactElement {
   // Connect to the rest of the app
@@ -16,7 +16,7 @@ function ToastDisplayContainer(): React.ReactElement {
       {currentToasts.map(
         (toast: Toast): React.ReactElement => (
           <ToastDisplay key={toast.id} className={styles.toast} toast={toast} />
-        )
+        ),
       )}
     </div>
   );

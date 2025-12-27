@@ -1,4 +1,4 @@
-@import "@jyosuushi/palette";
+@use "@jyosuushi/palette";
 
 .QuizWrapup {
   align-items: center;
@@ -12,7 +12,7 @@
   }
 
   .buttons {
-    border-bottom: 1px solid $pink-base;
+    border-bottom: 1px solid palette.$pink-base;
     margin-top: 20px;
     padding-bottom: 10px;
     text-align: center;

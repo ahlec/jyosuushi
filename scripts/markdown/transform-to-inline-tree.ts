@@ -1,7 +1,7 @@
 import { HastNode, HastSyntaxTree } from "./types";
 
 function transformChildrenToInline(
-  children: readonly HastNode[]
+  children: readonly HastNode[],
 ): readonly HastNode[] {
   const transformed: HastNode[] = [];
 
@@ -30,7 +30,7 @@ function transformChildrenToInline(
 }
 
 export function transformToInlineSyntaxTree(
-  syntaxTree: HastSyntaxTree
+  syntaxTree: HastSyntaxTree,
 ): HastSyntaxTree {
   return {
     children: transformChildrenToInline(syntaxTree.children),

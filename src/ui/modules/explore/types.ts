@@ -16,7 +16,7 @@ export interface ExploreLocationState {
 }
 
 export function isExploreLocationState(
-  obj: unknown
+  obj: unknown,
 ): obj is ExploreLocationState {
   if (!isIndexableObject(obj)) {
     return false;

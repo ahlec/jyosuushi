@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "./ActionBar.scss";
+import * as styles from "./ActionBar.scss";
 
 type AllowedChildrenTypes = React.ReactElement | undefined;
 

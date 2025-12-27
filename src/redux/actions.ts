@@ -36,7 +36,7 @@ export interface ActionStartQuiz {
 export function startQuiz(
   collections: readonly CounterCollection[],
   mode: QuizMode,
-  amountRange: AmountRange
+  amountRange: AmountRange,
 ): ActionStartQuiz {
   return {
     amountRange,
@@ -62,7 +62,7 @@ export interface ActionSubmitCorrectAnswer {
 }
 
 export function submitCorrectAnswer(
-  providedAnswer: string
+  providedAnswer: string,
 ): ActionSubmitCorrectAnswer {
   return {
     providedAnswer,
@@ -78,7 +78,7 @@ export interface ActionSubmitIncorrectAnswer {
 
 export function submitIncorrectAnswer(
   providedAnswer: string,
-  possibleCounters: ReadonlyArray<string>
+  possibleCounters: ReadonlyArray<string>,
 ): ActionSubmitIncorrectAnswer {
   return {
     possibleCounters,
@@ -93,7 +93,7 @@ export interface ActionIgnoreLastAnswer {
 }
 
 export function ignoreLastAnswer(
-  possibleCounters: ReadonlyArray<string>
+  possibleCounters: ReadonlyArray<string>,
 ): ActionIgnoreLastAnswer {
   return {
     possibleCounters,
@@ -148,3 +148,17 @@ export function markLatestVersion(): ActionMarkLatestVersion {
     type: "mark-latest-version",
   };
 }
+
+export type ReduxAction =
+  | ActionMarkLatestVersion
+  | ActionLeaveQuiz
+  | ActionEndQuiz
+  | ActionNextQuestion
+  | ActionSkipQuestion
+  | ActionIgnoreLastAnswer
+  | ActionSubmitIncorrectAnswer
+  | ActionSubmitCorrectAnswer
+  | ActionRestartQuiz
+  | ActionStartQuiz
+  | ActionSetInfiniteMode
+  | ActionSetAmountRange;

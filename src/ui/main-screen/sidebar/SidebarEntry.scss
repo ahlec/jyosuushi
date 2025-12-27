@@ -1,9 +1,9 @@
-@import "@jyosuushi/palette";
+@use "@jyosuushi/palette";
 
 .entry {
   align-items: center;
   border-bottom: 1px solid transparent;
-  color: $black-base;
+  color: palette.$black-base;
   display: flex;
   flex-direction: column;
   font-size: 14px;
@@ -14,7 +14,7 @@
   transition: filter 0.1s;
 
   &:visited {
-    color: $black-base;
+    color: palette.$black-base;
   }
 
   &:not(:first-child) {
@@ -31,18 +31,18 @@
   cursor: pointer;
 
   &:hover {
-    background-color: $blue-light;
-    color: $black-base;
+    background-color: palette.$blue-light;
+    color: palette.$black-base;
   }
 
   &.active,
   &.active:hover {
-    background-color: $blue-base;
-    border-bottom-color: $app-outline;
+    background-color: palette.$blue-base;
+    border-bottom-color: palette.$app-outline;
   }
 
   &:not(:first-child).active {
-    border-top-color: $app-outline;
+    border-top-color: palette.$app-outline;
   }
 }
 

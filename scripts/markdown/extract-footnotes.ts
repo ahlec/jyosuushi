@@ -30,7 +30,7 @@ function isFootnoteLiElement(node: HastNode): boolean {
 function collectAllNodes(
   node: HastNode,
   predicate: (node: HastNode) => boolean,
-  nodes: HastNode[]
+  nodes: HastNode[],
 ): void {
   if (predicate(node)) {
     nodes.push(node);
@@ -38,7 +38,7 @@ function collectAllNodes(
 
   if (node.type === "element") {
     node.children.forEach((child): void =>
-      collectAllNodes(child, predicate, nodes)
+      collectAllNodes(child, predicate, nodes),
     );
   }
 }
@@ -48,7 +48,7 @@ function collectFootnoteNodes(tree: HastSyntaxTree): readonly HastNode[] {
   // only if there's at least one footnote in the document.
   const containers: HastNode[] = [];
   tree.children.forEach((child): void =>
-    collectAllNodes(child, isNodeFootnotesContainer, containers)
+    collectAllNodes(child, isNodeFootnotesContainer, containers),
   );
   if (containers.length < 1) {
     return [];
@@ -84,7 +84,7 @@ function convertNodeToFootnote(node: HastNode): Footnote {
 }
 
 export function extractFootnotes(
-  hastSyntaxTree: HastSyntaxTree
+  hastSyntaxTree: HastSyntaxTree,
 ): readonly Footnote[] {
   const footnoteNodes = collectFootnoteNodes(hastSyntaxTree);
   return footnoteNodes.map(convertNodeToFootnote);

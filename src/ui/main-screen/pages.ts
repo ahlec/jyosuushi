@@ -8,19 +8,16 @@ import { EXPLORE_PAGE } from "@jyosuushi/ui/modules/explore/pages";
 import { RELEASE_NOTES_PAGE } from "@jyosuushi/ui/modules/release-notes/pages";
 
 export const PREPARE_PAGE: PageDefinition = {
-  aliasPaths: ["/"],
   component: PreparePage,
-  primaryPath: "",
+  primaryPath: "/",
 };
 
 export const SETTINGS_PAGE: PageDefinition = {
-  aliasPaths: [],
   component: SettingsPage,
   primaryPath: "/settings",
 };
 
 export const FEEDBACK_PAGE: PageDefinition = {
-  aliasPaths: [],
   component: FeedbackPage,
   primaryPath: "/feedback",
 };

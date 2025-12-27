@@ -1,7 +1,7 @@
 import React from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
 
-import styles from "./CreditsFooter.scss";
+import * as styles from "./CreditsFooter.scss";
 
 const INTL_MESSAGES = defineMessages({
   credits: {
@@ -12,7 +12,7 @@ const INTL_MESSAGES = defineMessages({
 });
 
 function AlecsPersonalSiteLink(
-  chunks: readonly React.ReactNode[]
+  chunks: readonly React.ReactNode[],
 ): React.ReactElement {
   return (
     <a
@@ -26,7 +26,7 @@ function AlecsPersonalSiteLink(
 }
 
 function VectorIconsLink(
-  chunks: readonly React.ReactNode[]
+  chunks: readonly React.ReactNode[],
 ): React.ReactElement {
   return (
     <a

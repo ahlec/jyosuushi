@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useState } from "react";
 import { defineMessages } from "react-intl";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 import { UserCounterCollection } from "@jyosuushi/interfaces";
 
@@ -24,8 +24,7 @@ import TrashIcon from "./trash.svg";
 const INTL_MESSAGES = defineMessages({
   addRemoveCountersActionButtonItem: {
     defaultMessage: "Add/Remove Counters",
-    id:
-      "explorePage.collections.UserCollectionView.actionBar.addRemoveCounters",
+    id: "explorePage.collections.UserCollectionView.actionBar.addRemoveCounters",
   },
   deleteActionButtonItem: {
     defaultMessage: "Delete",
@@ -44,7 +43,7 @@ interface ComponentProps {
 function UserCollectionView({
   collection,
 }: ComponentProps): React.ReactElement {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   // Define component state
   const [isEditingContents, setIsEditingContents] = useState<boolean>(false);
@@ -76,34 +75,34 @@ function UserCollectionView({
         text: INTL_MESSAGES.deleteActionButtonItem,
       },
     ],
-    [isEditingContents]
+    [isEditingContents],
   );
 
   // Handle events
   const handleRequestCloseRenameModal = useCallback(
     (): void => setIsRenameModalOpen(false),
-    []
+    [],
   );
 
   const handleRequestCloseDeleteModal = useCallback(
     (): void => setIsDeleteModalOpen(false),
-    []
+    [],
   );
 
   const handleDeleteConfirmed = useCallback((): void => {
     collection.delete().then((): void => {
-      history.replace(EXPLORE_PAGE_PATH);
+      navigate(EXPLORE_PAGE_PATH, { replace: true });
     });
-  }, [collection, history]);
+  }, [collection, navigate]);
 
   const handleAddCounter = useCallback(
     (counterId: string) => collection.addCounter(counterId),
-    [collection]
+    [collection],
   );
 
   const handleRemoveCounter = useCallback(
     (counterId: string) => collection.removeCounter(counterId),
-    [collection]
+    [collection],
   );
 
   // Render the component

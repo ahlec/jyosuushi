@@ -6,7 +6,7 @@ import { Counter } from "@jyosuushi/interfaces";
 
 import CounterTile from "@jyosuushi/ui/components/CounterTile";
 
-import styles from "./CounterPreview.scss";
+import * as styles from "./CounterPreview.scss";
 
 const INTL_MESSAGES = defineMessages({
   header: {
@@ -21,9 +21,7 @@ interface ComponentProps {
   counters: readonly Counter[];
 }
 
-export default class CounterPreview extends React.PureComponent<
-  ComponentProps
-> {
+export default class CounterPreview extends React.PureComponent<ComponentProps> {
   public render(): React.ReactNode {
     const { className, counters } = this.props;
 

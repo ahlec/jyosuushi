@@ -41,7 +41,7 @@ export default class TsuWarningModel {
           return new TsuWarningModel(numWarnings);
         }
       }
-    } catch (err) {
+    } catch {
       // Fallthrough
     }
 

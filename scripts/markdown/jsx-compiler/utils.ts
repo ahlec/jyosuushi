@@ -6,7 +6,7 @@ const BASE_COMPONENT_USAGE: JsxComponentUsage = {
 };
 
 export function mergeComponentUsages(
-  usages: readonly JsxComponentUsage[]
+  usages: readonly JsxComponentUsage[],
 ): JsxComponentUsage {
   const combined: JsxComponentUsage = { ...BASE_COMPONENT_USAGE };
   usages.forEach((usage): void => {
@@ -17,7 +17,7 @@ export function mergeComponentUsages(
         }
 
         combined[key] = true;
-      }
+      },
     );
   });
   return combined;

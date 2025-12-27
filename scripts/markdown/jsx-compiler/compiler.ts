@@ -25,7 +25,7 @@ function isIgnoredNode(node: HastNode): boolean {
 
 function compileHastNodeToJsx(
   node: HastNode,
-  { isInsideReactNode }: CompileContext
+  { isInsideReactNode }: CompileContext,
 ): JsxRepresentation {
   // If we're a text element, we can convert to JSX here
   if (node.type === "text") {
@@ -48,7 +48,7 @@ function compileHastNodeToJsx(
     children.push(
       compileHastNodeToJsx(child, {
         isInsideReactNode: true,
-      })
+      }),
     );
   });
 
@@ -58,7 +58,7 @@ function compileHastNodeToJsx(
 
 export function compileToJsx(node: HastSyntaxTree): JsxRepresentation {
   const exportedRootChildren = node.children.filter(
-    (child): boolean => !isIgnoredNode(child)
+    (child): boolean => !isIgnoredNode(child),
   );
   const isRootWrappedInFragment = exportedRootChildren.length !== 1;
 
@@ -67,7 +67,7 @@ export function compileToJsx(node: HastSyntaxTree): JsxRepresentation {
     (child): JsxRepresentation =>
       compileHastNodeToJsx(child, {
         isInsideReactNode: isRootWrappedInFragment,
-      })
+      }),
   );
 
   // Combine the blocks together into a single JSX element
@@ -90,7 +90,7 @@ export function compileToJsx(node: HastSyntaxTree): JsxRepresentation {
   // Return the compiled results
   return {
     componentUsage: mergeComponentUsages(
-      blocks.map((block) => block.componentUsage)
+      blocks.map((block) => block.componentUsage),
     ),
     jsx,
   };

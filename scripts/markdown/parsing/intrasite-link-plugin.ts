@@ -51,7 +51,7 @@ function parseIntrasiteLinkContents(contents: string): IntrasiteLinkDefinition {
       });
     } catch {
       throw new Error(
-        `Encountered an error trying to parse key-value custom arguments '${match[4]}' ('${contents}')`
+        `Encountered an error trying to parse key-value custom arguments '${match[4]}' ('${contents}')`,
       );
     }
   }
@@ -66,7 +66,7 @@ function parseIntrasiteLinkContents(contents: string): IntrasiteLinkDefinition {
           }
           default: {
             throw new Error(
-              `Unrecognized property '${key}' on counter intralink ('${contents}')`
+              `Unrecognized property '${key}' on counter intralink ('${contents}')`,
             );
           }
         }
@@ -81,7 +81,7 @@ function parseIntrasiteLinkContents(contents: string): IntrasiteLinkDefinition {
     }
     default: {
       throw new Error(
-        `Unrecognized intrasite link type '${match[1]}' ('${contents}')`
+        `Unrecognized intrasite link type '${match[1]}' ('${contents}')`,
       );
     }
   }
@@ -89,14 +89,14 @@ function parseIntrasiteLinkContents(contents: string): IntrasiteLinkDefinition {
 
 function isIntrasiteLinkToLocation(
   definition: IntrasiteLinkDefinition,
-  location: IntrasiteLinkLocation
+  location: IntrasiteLinkLocation,
 ): boolean {
   return definition.id === location.id;
 }
 
 function intrasiteLinkMarkdownPlugin(
   this: Processor<unknown>,
-  config: IntrasiteLinkConfig
+  config: IntrasiteLinkConfig,
 ): void {
   const Parser = this.Parser;
 
@@ -104,7 +104,7 @@ function intrasiteLinkMarkdownPlugin(
     this: RemarkParser,
     eat: Eat,
     value: string,
-    silent: boolean
+    silent: boolean,
   ): Node | boolean | void {
     const marker = value[0];
     const now = eat.now();
@@ -124,7 +124,7 @@ function intrasiteLinkMarkdownPlugin(
       }
 
       const definition = parseIntrasiteLinkContents(
-        value.substring(1, endMarkerIndex)
+        value.substring(1, endMarkerIndex),
       );
 
       if (silent) {
@@ -134,7 +134,7 @@ function intrasiteLinkMarkdownPlugin(
       const handleNonExportedContent = (): Node => {
         if (config.warningsCollector) {
           config.warningsCollector.add(
-            `Intrasite ${definition.type} link to '${definition.id}' would navigate to non-exported content. No link generated.`
+            `Intrasite ${definition.type} link to '${definition.id}' would navigate to non-exported content. No link generated.`,
           );
         }
 
@@ -199,7 +199,7 @@ function intrasiteLinkMarkdownPlugin(
 
   intrasiteLinkTokenizer.locator = (
     value: string,
-    fromIndex: number
+    fromIndex: number,
   ): number => {
     return value.indexOf("<", fromIndex);
   };

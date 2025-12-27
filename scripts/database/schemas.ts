@@ -169,7 +169,7 @@ export interface IdentifierField {
 
 export const ENTRY_IDENTIFIERS_RETRIEVER: {
   [schema in Schemas]: (
-    entry: SchemaEntryTypes[schema]
+    entry: SchemaEntryTypes[schema],
   ) => ReadonlyArray<IdentifierField>;
 } = {
   [Schemas.CounterAdditionalReadings]: (entry) => [

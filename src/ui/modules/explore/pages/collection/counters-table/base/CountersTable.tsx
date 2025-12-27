@@ -10,7 +10,7 @@ import { orderCounters } from "@jyosuushi/ui/modules/explore/utils";
 import CounterTableTile from "./CounterTableTile";
 import { TileActionCreatorFn } from "./types";
 
-import styles from "./CountersTable.scss";
+import * as styles from "./CountersTable.scss";
 
 interface ComponentProps {
   isCounterVisible: (counterId: string) => boolean;
@@ -33,7 +33,7 @@ function CountersTable({
   const allCounters = useMemo(
     (): readonly Counter[] =>
       orderCounters(Object.values(COUNTERS_LOOKUP), locale),
-    [locale]
+    [locale],
   );
 
   // Render the component
@@ -53,7 +53,7 @@ function CountersTable({
           >
             {tileChildrenGenerator && tileChildrenGenerator(counter.counterId)}
           </CounterTableTile>
-        ) : null
+        ) : null,
       )}
     </div>
   );

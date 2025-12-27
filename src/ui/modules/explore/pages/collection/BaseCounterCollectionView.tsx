@@ -11,7 +11,7 @@ import BreadcrumbBar, {
 import { getCounterCollectionPath } from "@jyosuushi/ui/modules/explore/pathing";
 
 import CollectionHeader from "./CollectionHeader";
-import styles from "./BaseCounterCollectionView.scss";
+import * as styles from "./BaseCounterCollectionView.scss";
 
 interface ComponentProps {
   children: React.ReactNode;
@@ -31,7 +31,7 @@ function BaseCounterCollectionView({
         link: getCounterCollectionPath(collection.id),
       },
     ],
-    [collection.id, collection.name]
+    [collection.id, collection.name],
   );
 
   // Render the component

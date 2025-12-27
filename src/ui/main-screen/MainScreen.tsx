@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
-import { Redirect, Route, Switch } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router";
 
 import { State } from "@jyosuushi/redux";
 import { PageDefinition } from "@jyosuushi/ui/types";
@@ -15,7 +15,7 @@ import {
   UNORDERED_NESTED_PAGES,
 } from "./pages";
 
-import styles from "./MainScreen.scss";
+import * as styles from "./MainScreen.scss";
 
 function MainScreen(): React.ReactElement {
   // Retrieve the list of custom user collections
@@ -34,31 +34,40 @@ function MainScreen(): React.ReactElement {
   const renderPageRoute = ({
     component: PageComponent,
     primaryPath,
-  }: PageDefinition): React.ReactElement => (
-    <Route
-      key={primaryPath}
-      path={primaryPath || "/"}
-      render={(): React.ReactElement => (
-        <PageComponent
-          createUserCollection={createUserCollection}
-          userCollections={userCollections}
-        />
-      )}
-    />
-  );
+  }: PageDefinition): React.ReactElement => {
+    let path = primaryPath;
+    if (!path.endsWith("/")) {
+      path += "/";
+    }
+
+    path += "*";
+
+    return (
+      <Route
+        key={primaryPath}
+        path={path}
+        element={
+          <PageComponent
+            createUserCollection={createUserCollection}
+            userCollections={userCollections}
+          />
+        }
+      />
+    );
+  };
 
   // Render the component
   return (
     <div className={styles.mainScreen}>
       <Sidebar />
       <div className={styles.content}>
-        <Switch>
+        <Routes>
           {UNORDERED_NESTED_PAGES.map(renderPageRoute)}
           {renderPageRoute(PREPARE_PAGE)}
-        </Switch>
+        </Routes>
       </div>
       {shouldRedirectToReleaseNotes && (
-        <Redirect to={RELEASE_NOTES_PAGE.primaryPath} />
+        <Navigate to={RELEASE_NOTES_PAGE.primaryPath} />
       )}
     </div>
   );

@@ -1,12 +1,12 @@
 import classnames from "classnames";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 import { getCounterCollectionPath } from "@jyosuushi/ui/modules/explore/pathing";
 
 import { CollectionMembershipEntry } from "./types";
 
-import styles from "./MembershipCell.scss";
+import * as styles from "./MembershipCell.scss";
 
 interface ComponentProps {
   className: string;
@@ -27,7 +27,7 @@ function MembershipCell({
       className={classnames(
         styles.cell,
         COLLECTION_TYPE_CSS_CLASS_NAMES[entry.collectionType],
-        className
+        className,
       )}
       to={getCounterCollectionPath(entry.collectionId)}
     >

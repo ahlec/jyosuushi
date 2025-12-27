@@ -1,24 +1,5 @@
 import { QuizState } from "@jyosuushi/redux";
-import {
-  ActionEndQuiz,
-  ActionLeaveQuiz,
-  ActionNextQuestion,
-  ActionRestartQuiz,
-  ActionSkipQuestion,
-  ActionStartQuiz,
-  ActionSubmitCorrectAnswer,
-  ActionSubmitIncorrectAnswer,
-} from "@jyosuushi/redux/actions";
-
-type ReducerAction =
-  | ActionEndQuiz
-  | ActionSubmitCorrectAnswer
-  | ActionSubmitIncorrectAnswer
-  | ActionNextQuestion
-  | ActionSkipQuestion
-  | ActionStartQuiz
-  | ActionRestartQuiz
-  | ActionLeaveQuiz;
+import { ReduxAction } from "@jyosuushi/redux/actions";
 
 const DEFAULT_STATE: QuizState = {
   mode: "regular",
@@ -27,7 +8,7 @@ const DEFAULT_STATE: QuizState = {
 
 export default function quizStateReducer(
   state: QuizState = DEFAULT_STATE,
-  action: ReducerAction
+  action: ReduxAction,
 ): QuizState {
   switch (action.type) {
     case "start-quiz":

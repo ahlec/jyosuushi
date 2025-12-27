@@ -139,7 +139,7 @@ interface GoJyuuOnLookup {
   [codepoint: number]: { dan: Dan; gyou: Gyou };
 }
 const GOJYUUON_FROM_CODEPOINTS: GoJyuuOnLookup = Object.keys(
-  GOJYUUON_HIRAGANA_CODEPOINTS
+  GOJYUUON_HIRAGANA_CODEPOINTS,
 ).reduce((lookup: GoJyuuOnLookup, gyou: Gyou) => {
   Object.keys(GOJYUUON_HIRAGANA_CODEPOINTS[gyou]).map((dan: Dan) => {
     const codepoint = GOJYUUON_HIRAGANA_CODEPOINTS[gyou][dan];
@@ -161,7 +161,7 @@ export class KanaDefinition {
   public constructor(
     public readonly codepointStart: number,
     public readonly codepointEnd: number,
-    public readonly conversionChart: ConversionChart
+    public readonly conversionChart: ConversionChart,
   ) {
     this.deltaFromHiragana = this.codepointStart - HIRAGANA_CODEPOINT_START;
   }
@@ -536,7 +536,7 @@ const DELTA_HIRAGANA_TO_KATAKANA =
   CODEPOINT_KATAKANA_FIRST - HIRAGANA.codepointStart;
 
 const katakanaConversionChart: ConversionChart = Object.keys(
-  HIRAGANA.conversionChart
+  HIRAGANA.conversionChart,
 ).reduce((katakana: ConversionChart, romaji: string) => {
   const characters: string[] = [];
   const hiragana = HIRAGANA.conversionChart[romaji];
@@ -556,7 +556,7 @@ const katakanaConversionChart: ConversionChart = Object.keys(
 export const Katakana = new KanaDefinition(
   CODEPOINT_KATAKANA_FIRST,
   CODEPOINT_KATAKANA_LAST,
-  katakanaConversionChart
+  katakanaConversionChart,
 );
 
 export function getAsHiragana(kana: string): string {
@@ -573,7 +573,7 @@ export function getAsHiragana(kana: string): string {
       codepoint <= Katakana.codepointEnd
     ) {
       characters.push(
-        String.fromCharCode(codepoint - DELTA_HIRAGANA_TO_KATAKANA)
+        String.fromCharCode(codepoint - DELTA_HIRAGANA_TO_KATAKANA),
       );
     } else {
       throw new Error(`'${kana[index]}' is not kana!`);

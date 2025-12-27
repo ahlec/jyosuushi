@@ -5,7 +5,7 @@ import { UserCounterCollection } from "@jyosuushi/interfaces";
 
 import ToggleMembershipCheck, { CheckState } from "./ToggleMembershipCheck";
 
-import styles from "./CollectionRow.scss";
+import * as styles from "./CollectionRow.scss";
 
 interface ComponentProps {
   /**

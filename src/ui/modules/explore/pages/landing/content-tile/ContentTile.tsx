@@ -5,7 +5,7 @@ import { FormattedMessage, MessageDescriptor } from "react-intl";
 import TileCorner from "./TileCorner";
 import { TileColor } from "./types";
 
-import styles from "./ContentTile.scss";
+import * as styles from "./ContentTile.scss";
 
 interface ComponentProps {
   children?: React.ReactNode;
@@ -47,7 +47,7 @@ function ContentTile({
       <div
         className={classnames(
           styles.horizontalAdornment,
-          styles.bottomAdornment
+          styles.bottomAdornment,
         )}
       />
       <TileCorner className={styles.bottomLeftCorner} color={color} />

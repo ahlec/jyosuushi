@@ -6,7 +6,7 @@ import { ITEMS_FROM_COUNTER } from "@data/items";
 import useLocale from "@jyosuushi/i18n/useLocale";
 import { Counter, Item } from "@jyosuushi/interfaces";
 
-import styles from "./ItemsSection.scss";
+import * as styles from "./ItemsSection.scss";
 
 export function hasItemsSectionContents(counter: Counter): boolean {
   const items = ITEMS_FROM_COUNTER[counter.counterId];
@@ -42,22 +42,20 @@ function ItemsSection({ counter }: ComponentProps): React.ReactElement {
         {(text) => <p className={styles.itemsPrefix}>{text}</p>}
       </FormattedMessage>
       <div className={styles.itemsList}>
-        {items.map(
-          (item: Item): React.ReactNode => {
-            return (
-              <div key={item.itemId}>
-                {locale.dataLocalizers.getItemName(
-                  item,
-                  /**
-                   * Random number, but let's try to get the unambiguously-large
-                   * plural in all languages.
-                   **/
-                  100
-                )}
-              </div>
-            );
-          }
-        )}
+        {items.map((item: Item): React.ReactNode => {
+          return (
+            <div key={item.itemId}>
+              {locale.dataLocalizers.getItemName(
+                item,
+                /**
+                 * Random number, but let's try to get the unambiguously-large
+                 * plural in all languages.
+                 **/
+                100,
+              )}
+            </div>
+          );
+        })}
       </div>
     </section>
   );

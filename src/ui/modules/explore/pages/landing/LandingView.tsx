@@ -11,7 +11,7 @@ import BreadcrumbBar, {
   BreadcrumbBarLinkDefinition,
 } from "@jyosuushi/ui/modules/explore/components/breadcrumb-bar/BreadcrumbBar";
 
-import styles from "./LandingView.scss";
+import * as styles from "./LandingView.scss";
 
 interface ComponentProps {
   createUserCollection: CreateUserCounterCollectionFn;

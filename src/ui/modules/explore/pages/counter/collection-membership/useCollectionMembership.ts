@@ -18,7 +18,7 @@ interface CollectionDataStructuresByType {
 function useCollectionMembership<T extends CollectionType>(
   type: T,
   counterId: string,
-  collections: readonly CollectionDataStructuresByType[T][]
+  collections: readonly CollectionDataStructuresByType[T][],
 ): readonly CollectionMembershipEntry[] {
   return useMemo((): readonly CollectionMembershipEntry[] => {
     const entries: CollectionMembershipEntry[] = [];
@@ -34,7 +34,7 @@ function useCollectionMembership<T extends CollectionType>(
           collectionName: collection.name,
           collectionType: type,
         });
-      }
+      },
     );
 
     return entries;

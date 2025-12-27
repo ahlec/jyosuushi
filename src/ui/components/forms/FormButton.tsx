@@ -4,7 +4,7 @@ import { FormattedMessage, MessageDescriptor } from "react-intl";
 
 import StandardButton from "@jyosuushi/ui/components/StandardButton";
 
-import styles from "./FormButton.scss";
+import * as styles from "./FormButton.scss";
 
 interface ComponentProps {
   action: "submit" | "reset" | (() => void);
@@ -53,7 +53,7 @@ function FormButton({
     <StandardButton
       className={classnames(
         styles.formButton,
-        variant === "primary" && styles.variantPrimary
+        variant === "primary" && styles.variantPrimary,
       )}
       disabled={disabled}
       onClick={handleClick}

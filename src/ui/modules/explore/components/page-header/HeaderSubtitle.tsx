@@ -4,7 +4,7 @@ import React from "react";
 import SubtitleEntry from "./SubtitleEntry";
 import { HeaderColorTheme, HeaderSubtitleEntryDefinition } from "./types";
 
-import styles from "./HeaderSubtitle.scss";
+import * as styles from "./HeaderSubtitle.scss";
 
 interface ComponentProps {
   color: HeaderColorTheme;
@@ -30,7 +30,7 @@ function HeaderSubtitle({
             key={`separator-${index - 1}`}
             className={classnames(
               styles.separator,
-              SEPARATOR_CSS_CLASS_NAMES[color]
+              SEPARATOR_CSS_CLASS_NAMES[color],
             )}
           >
             |

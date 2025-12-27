@@ -1,8 +1,8 @@
 import classnames from "classnames";
 import * as React from "react";
-import ReactMarkdown, { NodeType } from "react-markdown";
+import ReactMarkdown from "react-markdown";
 
-import styles from "./Markdown.scss";
+import * as styles from "./Markdown.scss";
 
 interface ComponentProps {
   allowParagraphs?: boolean;
@@ -10,21 +10,25 @@ interface ComponentProps {
   source: string;
 }
 
-const NO_DISALLOWED_TYPES: NodeType[] = [];
-const DISALLOWED_TYPES: NodeType[] = ["paragraph"];
+const NO_DISALLOWED_TYPES: readonly string[] = [];
+const DISALLOWED_TYPES: readonly string[] = ["p"];
 
 function Markdown({
   allowParagraphs = false,
   className,
   source,
-}: ComponentProps): JSX.Element {
+}: ComponentProps): React.ReactElement {
   return (
-    <ReactMarkdown
-      className={classnames(styles.markdown, className)}
-      disallowedTypes={allowParagraphs ? NO_DISALLOWED_TYPES : DISALLOWED_TYPES}
-      source={source}
-      unwrapDisallowed={true}
-    />
+    <div className={classnames(styles.markdown, className)}>
+      <ReactMarkdown
+        disallowedElements={
+          allowParagraphs ? NO_DISALLOWED_TYPES : DISALLOWED_TYPES
+        }
+        unwrapDisallowed={true}
+      >
+        {source}
+      </ReactMarkdown>
+    </div>
   );
 }
 

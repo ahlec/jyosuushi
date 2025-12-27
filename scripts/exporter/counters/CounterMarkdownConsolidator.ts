@@ -33,7 +33,7 @@ class CounterMarkdownConsolidator {
   public constructor(
     counterId: string,
     public readonly importedNamespace: string,
-    private readonly allExportedCounters: CounterRegistry
+    private readonly allExportedCounters: CounterRegistry,
   ) {
     this.intrasiteLinkLocation = {
       id: counterId,
@@ -54,7 +54,7 @@ class CounterMarkdownConsolidator {
   public addMarkdown(
     componentName: string,
     markdown: string,
-    style: MarkdownStyle
+    style: MarkdownStyle,
   ): ProductionVariable {
     const { body, footnotes, warnings } = convertMarkdownToJSX(markdown, {
       allExportedCounters: this.allExportedCounters,
@@ -81,8 +81,8 @@ class CounterMarkdownConsolidator {
       });
       this.footnoteComponentVariables.push(
         new ProductionVariable(
-          `${this.importedNamespace}.${footnoteComponentName}`
-        )
+          `${this.importedNamespace}.${footnoteComponentName}`,
+        ),
       );
     }
 

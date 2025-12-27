@@ -1,7 +1,7 @@
 import React from "react";
 import { FormattedMessage, MessageDescriptor } from "react-intl";
 
-import styles from "./LabeledContainer.scss";
+import * as styles from "./LabeledContainer.scss";
 
 type AllowedChildType = React.ReactElement | false | undefined | null;
 

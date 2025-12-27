@@ -3,7 +3,7 @@ import React from "react";
 
 import CheckIcon from "@jyosuushi/ui/main-screen/check.svg";
 
-import styles from "./CounterInCollectionTick.scss";
+import * as styles from "./CounterInCollectionTick.scss";
 
 interface ComponentProps {
   className: string;

@@ -1,7 +1,7 @@
-@import "@jyosuushi/palette";
+@use "@jyosuushi/palette";
 
-$modal-border: $green-darkest;
-$modal-background: $green-lightest;
-$modal-header: $green-base;
-$modal-button: $black-darkest;
-$modal-button-hover: $green-darkest;
+$modal-border: palette.$green-darkest;
+$modal-background: palette.$green-lightest;
+$modal-header: palette.$green-base;
+$modal-button: palette.$black-darkest;
+$modal-button-hover: palette.$green-darkest;

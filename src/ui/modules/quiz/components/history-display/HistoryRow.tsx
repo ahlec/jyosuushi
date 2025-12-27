@@ -11,7 +11,7 @@ import { UserAnswer } from "@jyosuushi/redux";
 
 import JudgmentBubble from "@jyosuushi/ui/components/JudgmentBubble";
 
-import styles from "./HistoryRow.scss";
+import * as styles from "./HistoryRow.scss";
 
 interface ComponentProps {
   className: string;

@@ -1,24 +1,7 @@
 import { maxBy } from "lodash";
 
 import { Scorecard } from "@jyosuushi/redux";
-import {
-  ActionIgnoreLastAnswer,
-  ActionLeaveQuiz,
-  ActionRestartQuiz,
-  ActionSkipQuestion,
-  ActionStartQuiz,
-  ActionSubmitCorrectAnswer,
-  ActionSubmitIncorrectAnswer,
-} from "@jyosuushi/redux/actions";
-
-type ReducerAction =
-  | ActionStartQuiz
-  | ActionRestartQuiz
-  | ActionLeaveQuiz
-  | ActionSubmitCorrectAnswer
-  | ActionSubmitIncorrectAnswer
-  | ActionIgnoreLastAnswer
-  | ActionSkipQuestion;
+import { ReduxAction } from "@jyosuushi/redux/actions";
 
 const DEFAULT_SCORECARD: Scorecard = {
   missedCounterTallies: {},
@@ -31,7 +14,7 @@ const DEFAULT_SCORECARD: Scorecard = {
 
 export default function scorecardReducer(
   state: Scorecard | undefined = DEFAULT_SCORECARD,
-  action: ReducerAction
+  action: ReduxAction,
 ): Scorecard {
   switch (action.type) {
     case "start-quiz":
@@ -53,7 +36,7 @@ export default function scorecardReducer(
       const mostMissedCounterId =
         maxBy(
           Object.keys(nextCounterTallies),
-          (counterId: string) => nextCounterTallies[counterId]
+          (counterId: string) => nextCounterTallies[counterId],
         ) || null;
       return {
         ...state,
@@ -75,7 +58,7 @@ export default function scorecardReducer(
       const mostMissedCounterId =
         maxBy(
           Object.keys(nextCounterTallies),
-          (counterId: string) => nextCounterTallies[counterId]
+          (counterId: string) => nextCounterTallies[counterId],
         ) || null;
       return {
         ...state,

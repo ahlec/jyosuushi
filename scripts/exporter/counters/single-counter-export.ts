@@ -37,7 +37,7 @@ export interface CounterExportResults {
 function exportSingleCounter(
   counter: DbCounter,
   joinData: CounterJoinData,
-  allExportedCounters: CounterRegistry
+  allExportedCounters: CounterRegistry,
 ): CounterExportResults {
   // ORDER MATTERS HERE!
   // Add things to the consolidator in the order they'll appear in
@@ -45,13 +45,13 @@ function exportSingleCounter(
   const markdownConsolidator = new CounterMarkdownConsolidator(
     counter.counter_id,
     `${counter.counter_id}Components`,
-    allExportedCounters
+    allExportedCounters,
   );
   const notesComponent = counter.notes
     ? markdownConsolidator.addMarkdown(
         "CounterNotes",
         counter.notes,
-        MarkdownStyle.Block
+        MarkdownStyle.Block,
       )
     : null;
 
@@ -61,9 +61,9 @@ function exportSingleCounter(
       description: markdownConsolidator.addMarkdown(
         `ExternalLink${index}`,
         externalLink.description,
-        MarkdownStyle.Inline
+        MarkdownStyle.Inline,
       ),
-    })
+    }),
   );
 
   const disambiguationComponents: {
@@ -72,12 +72,12 @@ function exportSingleCounter(
   for (const disambiguation of joinData.disambiguations) {
     const otherCounterId = getOtherCounterId(
       counter.counter_id,
-      disambiguation
+      disambiguation,
     );
     disambiguationComponents[otherCounterId] = markdownConsolidator.addMarkdown(
       `Disambiguation${otherCounterId}`,
       disambiguation.distinction,
-      MarkdownStyle.Block
+      MarkdownStyle.Block,
     );
   }
 
@@ -90,7 +90,7 @@ function exportSingleCounter(
       notesComponent,
     },
     externalLinks,
-    markdownConsolidator.footnoteComponentVariables
+    markdownConsolidator.footnoteComponentVariables,
   );
 
   let fileExportRequests: ReadonlyArray<FileExportRequest>;
@@ -103,7 +103,7 @@ function exportSingleCounter(
         writeFunction: (stream): WriteFileResults =>
           writeCounterComponentsFile(
             markdownConsolidator.markdownComponents,
-            stream
+            stream,
           ),
       },
     ];

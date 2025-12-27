@@ -12,10 +12,10 @@ This is where [`good-fences`](https://github.com/smikula/good-fences) comes in. 
 
 These fences can be errected anywhere within the repository, and are defined by **fence.json** files in that directory. A quick breakdown here outlines how to read one:
 
-* **`tags`**: An array of globally-unique strings that name this fence, so other **fence.json** files can refer to this one;
-* **`exports`**: An array of relative filepaths inside this fence which other areas can import (file-level whitelist);
-* **`imports`**: An array of tags for other **fence.json** files which are permitted to be imported; 
-* **`dependencies`**: An array of NPM modules that can be imported.
+- **`tags`**: An array of globally-unique strings that name this fence, so other **fence.json** files can refer to this one;
+- **`exports`**: An array of relative filepaths inside this fence which other areas can import (file-level whitelist);
+- **`imports`**: An array of tags for other **fence.json** files which are permitted to be imported;
+- **`dependencies`**: An array of NPM modules that can be imported.
 
 `good-fences` is here to ensure that we are mindful around which dependencies are allowed to be used (preventing project bloat or dependency misuse), and to ensure that if there are private/privileged files somewhere, that that protection is codified/enforced.
 
@@ -25,7 +25,7 @@ During your regular course of work, you should be minimally blocked by `good-fen
 
 **Dependency gotchas:**
 
-* `good-fences` is not tracked by ESLint, so violations will **NOT** show up in your IDE or when running `yarn lint`. To check this, you'll need to explicitly run `yarn gf`.
+- `good-fences` is not tracked by ESLint, so violations will **NOT** show up in your IDE or when running `yarn lint`. To check this, you'll need to explicitly run `yarn gf`.
 
 ## Client
 
@@ -35,7 +35,7 @@ The following sections detail development patterns or good-to-know details about
 
 All of the CSS for the client is written using [Sass](https://sass-lang.com/), giving us access to preprocessor variables, functions, and so on. Sass is a superset of standard CSS, meaning that those unfamiliar with it do not have a hard barrier (though learning it is recommended, and it's really pretty simple).
 
-More importantly, however, all Sass files are imported into the client using [CSS Modules](https://github.com/css-modules/css-modules). Simply put, you would write your CSS classes using their "regular" names (eg, `.submitButton`),  but when the client is built these names will be scrambled (eg, `._1ac3IAdV7KgbgsPA3sNBPH`). This solves problems commonly seen in large applications where there are name conflicts (two locations both created their own `.submitButton` styles). In order to bridge the gap between the names you write and the values at runtime, when you import the stylesheet in your React component, you import it into a variable, which has string variables for each development name, mapping to their runtime name. Using this looks something like so:
+More importantly, however, all Sass files are imported into the client using [CSS Modules](https://github.com/css-modules/css-modules). Simply put, you would write your CSS classes using their "regular" names (eg, `.submitButton`), but when the client is built these names will be scrambled (eg, `._1ac3IAdV7KgbgsPA3sNBPH`). This solves problems commonly seen in large applications where there are name conflicts (two locations both created their own `.submitButton` styles). In order to bridge the gap between the names you write and the values at runtime, when you import the stylesheet in your React component, you import it into a variable, which has string variables for each development name, mapping to their runtime name. Using this looks something like so:
 
 ```jsx
 import React from 'react';
@@ -73,10 +73,10 @@ Of final note here: since we're importing and using variables from the Sass file
 
 **CSS Gotchas:**
 
-* You'll need to run `yarn codegen:scss` manually whenever you add/rename/delete a CSS class, in order to use it without compile error in TypeScript;
-* The only valid file extension for CSS files in the repository is **.scss** (this is the only extension the Webpack configuration recognizes);
-* Every Sass file is configured with CSS Modules — you will always need to import your Sass file like the example above;
-* CSS Modules is configured to rename the variables to lowerCamelCase, so if you declare `.MyOther_Thing` it will produce the variable `.myOtherThing`. It's recommended to name everything in lowerCamelCase from the start to avoid headache.
+- You'll need to run `yarn codegen:scss` manually whenever you add/rename/delete a CSS class, in order to use it without compile error in TypeScript;
+- The only valid file extension for CSS files in the repository is **.scss** (this is the only extension the Webpack configuration recognizes);
+- Every Sass file is configured with CSS Modules — you will always need to import your Sass file like the example above;
+- CSS Modules is configured to rename the variables to lowerCamelCase, so if you declare `.MyOther_Thing` it will produce the variable `.myOtherThing`. It's recommended to name everything in lowerCamelCase from the start to avoid headache.
 
 ### Localization
 
@@ -121,8 +121,8 @@ In order to actually localize your text, there is a custom script that will read
 
 **Localization Gotchas:**
 
-* Make sure to always run the `yarn i18n:extract` command (and `yarn codegen:i18n`, or `yarn codegen` more broadly) when working with localization strings;
-* Watch out for places where you're codifying the grammar of a language by accident. Multiple `<FormattedMessage />` components shouldn't appear next to each other because it's usually indicating that you're developing with English grammar in mind; use [variables](https://formatjs.io/docs/react-intl/components/#message-syntax) or [rich text formatting](https://formatjs.io/docs/react-intl/components/#rich-text-formatting) to solve these problems instead.
+- Make sure to always run the `yarn i18n:extract` command (and `yarn codegen:i18n`, or `yarn codegen` more broadly) when working with localization strings;
+- Watch out for places where you're codifying the grammar of a language by accident. Multiple `<FormattedMessage />` components shouldn't appear next to each other because it's usually indicating that you're developing with English grammar in mind; use [variables](https://formatjs.io/docs/react-intl/components/#message-syntax) or [rich text formatting](https://formatjs.io/docs/react-intl/components/#rich-text-formatting) to solve these problems instead.
 
 ## Before pushing
 

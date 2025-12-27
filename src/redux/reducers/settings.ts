@@ -1,10 +1,5 @@
 import { AmountRange, Settings } from "@jyosuushi/redux";
-import {
-  ActionSetAmountRange,
-  ActionSetInfiniteMode,
-} from "@jyosuushi/redux/actions";
-
-type ReducerAction = ActionSetAmountRange | ActionSetInfiniteMode;
+import { ReduxAction } from "@jyosuushi/redux/actions";
 
 const DEFAULT_SETTINGS: Settings = {
   amountRange: AmountRange.Medium,
@@ -13,7 +8,7 @@ const DEFAULT_SETTINGS: Settings = {
 
 export default function settingsReducer(
   state: Settings | undefined = DEFAULT_SETTINGS,
-  action: ReducerAction
+  action: ReduxAction,
 ): Settings {
   switch (action.type) {
     case "set-amount-range": {

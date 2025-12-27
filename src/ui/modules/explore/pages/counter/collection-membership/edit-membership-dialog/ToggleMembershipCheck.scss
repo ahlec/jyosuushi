@@ -20,13 +20,6 @@ $dimensions: 20px;
   }
 }
 
-button:hover .alreadyInCollection,
-button:hover .notInCollection {
-  path {
-    opacity: 0.3;
-  }
-}
-
 .alreadyInCollection {
   path {
     transition: opacity 100ms;
@@ -37,5 +30,12 @@ button:hover .notInCollection {
   path {
     opacity: 0;
     transition: opacity 100ms;
+  }
+}
+
+button:hover .alreadyInCollection,
+button:hover .notInCollection {
+  path {
+    opacity: 0.3;
   }
 }

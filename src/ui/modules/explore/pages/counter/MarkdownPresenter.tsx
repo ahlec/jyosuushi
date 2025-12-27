@@ -3,7 +3,7 @@ import * as React from "react";
 
 import { MarkdownComponent } from "@jyosuushi/interfaces";
 
-import styles from "./MarkdownPresenter.scss";
+import * as styles from "./MarkdownPresenter.scss";
 
 interface ComponentProps {
   component: MarkdownComponent;

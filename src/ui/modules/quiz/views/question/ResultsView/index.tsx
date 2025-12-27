@@ -19,7 +19,7 @@ import StandardButton from "@jyosuushi/ui/components/StandardButton";
 
 import AnswersTable from "./AnswersTable";
 
-import styles from "./index.scss";
+import * as styles from "./index.scss";
 
 interface ProvidedProps {
   className: string;
@@ -139,7 +139,7 @@ class ResultsView extends React.PureComponent<ComponentProps> {
   private onIgnoreClicked = (): void => {
     const { currentQuestion, dispatch } = this.props;
     const counters = uniq(
-      currentQuestion.validAnswers.map(({ counterId }: Answer) => counterId)
+      currentQuestion.validAnswers.map(({ counterId }: Answer) => counterId),
     );
 
     ReactGA.event({

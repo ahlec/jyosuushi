@@ -21,7 +21,7 @@ if (!process.env.CI) {
   configJson = JSON.parse(fs.readFileSync(CONFIG_JSON_FILE));
 } else {
   configJson = JSON.parse(
-    fs.readFileSync(path.resolve(ROOT_DIRECTORY, "config.json-template"))
+    fs.readFileSync(path.resolve(ROOT_DIRECTORY, "config.json-template")),
   );
 }
 
@@ -33,24 +33,16 @@ module.exports = {
       path.resolve(DATA_DIRECTORY, "items.ts"),
     ],
   },
-  output: {
-    path: BUILD_DIRECTORY,
-    filename: "[name].[hash].js",
-    publicPath: "/",
-  },
-  resolve: {
-    alias: {
-      "@changelog": CHANGELOG_FILE,
-      "@data": DATA_DIRECTORY,
-      "@jyosuushi": SOURCE_DIRECTORY,
-    },
-    extensions: [".js", ".jsx", ".json", ".ts", ".tsx", ".scss"],
-  },
   module: {
     rules: [
       {
         test: /\.(ts|tsx)$/,
-        loader: "ts-loader",
+        use: {
+          loader: "ts-loader",
+          options: {
+            transpileOnly: true,
+          },
+        },
       },
       {
         test: /\.scss$/,
@@ -59,8 +51,9 @@ module.exports = {
           {
             loader: "css-loader",
             options: {
-              localsConvention: "camelCase",
-              modules: true,
+              modules: {
+                exportLocalsConvention: "camelCase",
+              },
             },
           },
           "postcss-loader",
@@ -74,44 +67,62 @@ module.exports = {
       },
       {
         test: /\.(png|jpg)$/,
-        options: {
-          esModule: false,
-        },
-        loader: "url-loader",
+        type: "asset/inline",
       },
       {
         test: /\.svg$/,
-        options: {
-          esModule: false,
-        },
-        loader: "@svgr/webpack",
+        use: [
+          {
+            loader: "@svgr/webpack",
+            options: {
+              esModule: false,
+            },
+          },
+        ],
+      },
+      {
+        test: /node_modules\/vfile\/core\.js/,
+        use: [
+          {
+            loader: "imports-loader",
+            options: {
+              imports: ["single process/browser process"],
+              type: "commonjs",
+            },
+          },
+        ],
       },
     ],
   },
   optimization: {
+    moduleIds: "deterministic",
     runtimeChunk: "single",
     splitChunks: {
-      chunks: "all",
-      maxInitialRequests: Infinity,
-      minSize: 0,
       cacheGroups: {
         vendor: {
-          test: /[\\/]node_modules[\\]/,
           name: function (module) {
             const packageName = module.context.match(
-              /[\\/]node_modules[\\/](.*?)([\\/]|$)/
+              /[\\/]node_modules[\\/](.*?)([\\/]|$)/,
             )[1];
             return packageName;
           },
+          test: /[\\/]node_modules[\\]/,
         },
       },
+      chunks: "all",
+      maxInitialRequests: Infinity,
+      minSize: 0,
     },
   },
+  output: {
+    filename: "[name].[contenthash].js",
+    path: BUILD_DIRECTORY,
+    publicPath: "/",
+  },
   plugins: [
-    new webpack.HashedModuleIdsPlugin(),
     new webpack.DefinePlugin({
       CONFIG_GOOGLE_ANALYTICS_TRACKING_ID: JSON.stringify(
-        configJson.GOOGLE_ANALYTICS_TRACKING_ID
+        configJson.GOOGLE_ANALYTICS_TRACKING_ID,
       ),
       JYOSUUSHI_CURRENT_SEMVER: JSON.stringify(process.env.npm_package_version),
     }),
@@ -131,4 +142,12 @@ module.exports = {
       template: path.resolve(SOURCE_DIRECTORY, "index.html"),
     }),
   ],
+  resolve: {
+    alias: {
+      "@changelog": CHANGELOG_FILE,
+      "@data": DATA_DIRECTORY,
+      "@jyosuushi": SOURCE_DIRECTORY,
+    },
+    extensions: [".js", ".jsx", ".json", ".ts", ".tsx", ".scss"],
+  },
 };

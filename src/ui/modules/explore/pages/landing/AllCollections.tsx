@@ -1,7 +1,7 @@
 import { orderBy } from "lodash";
 import React, { useCallback, useMemo, useState } from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router";
 
 import { STANDARD_COLLECTIONS } from "@data/standard-collections";
 import {
@@ -16,7 +16,7 @@ import CollectionLink from "./CollectionLink";
 import CreateCollectionModal from "./CreateCollectionModal";
 import CreateCollectionTile from "./CreateCollectionTile";
 
-import styles from "./AllCollections.scss";
+import * as styles from "./AllCollections.scss";
 
 const INTL_MESSAGES = defineMessages({
   pageHeader: {
@@ -32,12 +32,12 @@ interface ComponentProps {
 }
 
 function useOrderedCollection<T extends CounterCollection>(
-  collections: readonly T[]
+  collections: readonly T[],
 ): readonly T[] {
   return useMemo(
     (): readonly T[] =>
       orderBy(collections, (collection): string => collection.name),
-    [collections]
+    [collections],
   );
 }
 
@@ -47,7 +47,7 @@ function AllCollections({
   userCollections,
 }: ComponentProps): React.ReactElement {
   // Connect with the rest of the app
-  const history = useHistory();
+  const navigate = useNavigate();
 
   // Define component state
   const [isCreateModalOpen, setIsCreateModalOpen] = useState<boolean>(false);
@@ -63,9 +63,9 @@ function AllCollections({
 
   const handleCollectionCreatedSuccessfully = useCallback(
     (collectionId: string): void => {
-      history.push(getCounterCollectionPath(collectionId));
+      navigate(getCounterCollectionPath(collectionId));
     },
-    [history]
+    [navigate],
   );
 
   // Enforce a consistent ordering scheme
@@ -86,7 +86,7 @@ function AllCollections({
               collection={collection}
               variant="standard"
             />
-          )
+          ),
         )}
         {orderedUserCollections.map(
           (collection): React.ReactElement => (
@@ -95,7 +95,7 @@ function AllCollections({
               collection={collection}
               variant="user"
             />
-          )
+          ),
         )}
 
         <CreateCollectionTile

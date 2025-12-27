@@ -1,4 +1,5 @@
-@import "@jyosuushi/palette";
+@use "sass:math";
+@use "@jyosuushi/palette";
 
 $checkbox-height: 50px;
 $box-dimension: $checkbox-height - 15px;
@@ -6,8 +7,8 @@ $horizontal-padding: 10px;
 
 .Checkbox {
   align-items: center;
-  background-color: $green-lightest;
-  border: 1px solid $green-darkest;
+  background-color: palette.$green-lightest;
+  border: 1px solid palette.$green-darkest;
   border-radius: 6px;
   cursor: pointer;
   display: flex;
@@ -17,24 +18,24 @@ $horizontal-padding: 10px;
   width: 250px;
 
   &:hover {
-    background-color: $green-light;
+    background-color: palette.$green-light;
   }
 
   &.checked {
-    background-color: $green-base;
+    background-color: palette.$green-base;
 
     &:hover {
-      background-color: $green-dark;
+      background-color: palette.$green-dark;
     }
   }
 
   .icon {
     height: $box-dimension;
-    margin-right: ($horizontal-padding / 2);
+    margin-right: math.div($horizontal-padding, 2);
     width: $box-dimension;
 
     circle {
-      fill: $white;
+      fill: palette.$white;
     }
   }
 

@@ -1,8 +1,8 @@
-@import "@jyosuushi/palette";
+@use "@jyosuushi/palette";
 
 .Sidebar {
-  background-color: $blue-lightest;
-  border-right: 1px solid $app-outline;
+  background-color: palette.$blue-lightest;
+  border-right: 1px solid palette.$app-outline;
   display: flex;
   flex-direction: column;
   min-width: 90px;

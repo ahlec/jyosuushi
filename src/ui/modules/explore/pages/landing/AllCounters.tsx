@@ -10,7 +10,7 @@ import { Counter } from "@jyosuushi/interfaces";
 import CounterTile from "@jyosuushi/ui/components/CounterTile";
 import { orderCounters } from "@jyosuushi/ui/modules/explore/utils";
 
-import styles from "./AllCounters.scss";
+import * as styles from "./AllCounters.scss";
 
 const INTL_MESSAGES = defineMessages({
   pageHeader: {
@@ -30,7 +30,7 @@ function AllCounters({ headerClassName }: ComponentProps): React.ReactElement {
   // Sort the counters alphabetically
   const allSortedCounters = useMemo(
     (): readonly Counter[] => orderCounters(values(COUNTERS_LOOKUP), locale),
-    [locale]
+    [locale],
   );
 
   // Render component
@@ -43,7 +43,7 @@ function AllCounters({ headerClassName }: ComponentProps): React.ReactElement {
         {allSortedCounters.map(
           (counter): React.ReactElement => (
             <CounterTile key={counter.counterId} counter={counter} />
-          )
+          ),
         )}
       </div>
     </div>

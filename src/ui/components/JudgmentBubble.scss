@@ -1,11 +1,11 @@
-@import "@jyosuushi/palette";
+@use "@jyosuushi/palette";
 
 .JudgmentBubble {
   align-items: center;
   justify-content: center;
 
   &.block-circle {
-    border: 15px solid $black-darkest;
+    border: 15px solid palette.$black-darkest;
     border-radius: 200px;
     display: flex;
     font-size: 60px;
@@ -14,7 +14,7 @@
   }
 
   &.inline {
-    border: 2px solid $black-darkest;
+    border: 2px solid palette.$black-darkest;
     border-radius: 4px;
     display: inline-flex;
     font-size: 18px;
@@ -23,27 +23,27 @@
   }
 
   &.incorrect {
-    background-color: $incorrect-light;
-    border-color: $incorrect-medium;
-    color: $incorrect-dark;
+    background-color: palette.$incorrect-light;
+    border-color: palette.$incorrect-medium;
+    color: palette.$incorrect-dark;
   }
 
   &.correct {
-    background-color: $correct-light;
-    border-color: $correct-medium;
-    color: $correct-dark;
+    background-color: palette.$correct-light;
+    border-color: palette.$correct-medium;
+    color: palette.$correct-dark;
   }
 
   &.skipped {
-    background-color: $skipped-light;
-    border-color: $skipped-medium;
-    color: $skipped-dark;
+    background-color: palette.$skipped-light;
+    border-color: palette.$skipped-medium;
+    color: palette.$skipped-dark;
   }
 
   &.ignored {
-    background-color: $ignored-light;
-    border-color: $ignored-medium;
-    color: $ignored-dark;
+    background-color: palette.$ignored-light;
+    border-color: palette.$ignored-medium;
+    color: palette.$ignored-dark;
   }
 
   rt {

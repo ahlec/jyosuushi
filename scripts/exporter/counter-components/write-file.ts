@@ -7,11 +7,11 @@ import { WriteFileResults } from "../types";
 
 function writeCounterComponentsFile(
   components: readonly CounterMarkdownComponent[],
-  stream: Writable
+  stream: Writable,
 ): WriteFileResults {
   // Determine the components that need to be imported for this file
   const componentUsage = mergeComponentUsages(
-    components.map((component) => component.componentUsage)
+    components.map((component) => component.componentUsage),
   );
 
   // Write out imports
@@ -19,13 +19,13 @@ function writeCounterComponentsFile(
 
   if (componentUsage.counterDisplay) {
     stream.write(
-      'import CounterDisplay from "@jyosuushi/ui/data-components/CounterDisplay";\n'
+      'import CounterDisplay from "@jyosuushi/ui/data-components/CounterDisplay";\n',
     );
   }
 
   if (componentUsage.intrasiteLink) {
     stream.write(
-      'import IntrasiteLink from "@jyosuushi/ui/data-components/IntrasiteLink";\n'
+      'import IntrasiteLink from "@jyosuushi/ui/data-components/IntrasiteLink";\n',
     );
   }
 

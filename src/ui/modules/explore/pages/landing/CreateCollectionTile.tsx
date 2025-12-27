@@ -4,7 +4,7 @@ import { defineMessages, FormattedMessage } from "react-intl";
 
 import IconNewCollection from "./icon-new-collection.svg";
 
-import styles from "./CreateCollectionTile.scss";
+import * as styles from "./CreateCollectionTile.scss";
 
 const INTL_MESSAGES = defineMessages({
   buttonText: {
@@ -34,7 +34,7 @@ function CreateCollectionTile({
     <button
       className={classnames(
         styles.tile,
-        (isHovered || isModalOpen) && styles.active
+        (isHovered || isModalOpen) && styles.active,
       )}
       onClick={onClick}
       onMouseOver={handleMouseOver}

@@ -1,14 +1,14 @@
 import classnames from "classnames";
-import { LocationDescriptorObject } from "history";
 import React, { useCallback, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, To } from "react-router";
 
 type ButtonClickFn = () => void | Promise<void>;
 
-export type ActionDefinition =
+export type ActionDefinition<T> =
   | {
       variant: "link";
-      to: LocationDescriptorObject;
+      to: To;
+      state?: T;
     }
   | {
       variant: "button";
@@ -33,7 +33,7 @@ export interface ActionClassNames {
 interface ComponentProps {
   children: React.ReactNode;
   className?: ActionClassNames | string;
-  definition: ActionDefinition;
+  definition: ActionDefinition<unknown>;
 }
 
 function Action({
@@ -80,7 +80,7 @@ function Action({
         className.always,
         definition.variant === "button" &&
           isProcessingClick &&
-          className.whileProcessing
+          className.whileProcessing,
       );
     }
   }
@@ -89,7 +89,11 @@ function Action({
   switch (definition.variant) {
     case "link": {
       return (
-        <Link className={resolvedClassName} to={definition.to}>
+        <Link
+          className={resolvedClassName}
+          to={definition.to}
+          state={definition.state}
+        >
           {children}
         </Link>
       );

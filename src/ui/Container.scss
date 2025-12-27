@@ -1,14 +1,14 @@
-@import "constants";
+@use "constants";
 
 .Container {
   display: flex;
   flex-direction: column;
   margin: auto;
-  max-width: $normal-container-width;
+  max-width: constants.$normal-container-width;
   min-height: 100%;
   transition: max-width 0.25s ease-in;
 
   &.quiz-active {
-    max-width: $quiz-container-width;
+    max-width: constants.$quiz-container-width;
   }
 }

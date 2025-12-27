@@ -1,13 +1,13 @@
-@import "@jyosuushi/palette";
+@use "@jyosuushi/palette";
 
 .InlineTrigger {
-  color: $pink-darkest;
+  color: palette.$pink-darkest;
   cursor: pointer;
   font-weight: 600;
   text-decoration: underline;
 
   &:hover {
-    color: $pink-dark;
+    color: palette.$pink-dark;
     text-decoration: none;
   }
 }

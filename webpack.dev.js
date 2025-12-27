@@ -1,5 +1,4 @@
 const { merge } = require("webpack-merge");
-const webpack = require("webpack");
 const commonWebpack = require("./webpack.common.js");
 
 module.exports = merge(
@@ -10,7 +9,6 @@ module.exports = merge(
     },
     devtool: "inline-source-map",
     mode: "development",
-    plugins: [new webpack.HotModuleReplacementPlugin()],
   },
-  commonWebpack
+  commonWebpack,
 );

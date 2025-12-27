@@ -1,10 +1,5 @@
 import { User } from "@jyosuushi/redux";
-import {
-  ActionMarkLatestVersion,
-  ActionNextQuestion,
-} from "@jyosuushi/redux/actions";
-
-type ReducerAction = ActionMarkLatestVersion | ActionNextQuestion;
+import { ReduxAction } from "@jyosuushi/redux/actions";
 
 const DEFAULT_STATE: User = {
   lastAccessedVersion: JYOSUUSHI_CURRENT_SEMVER,
@@ -13,7 +8,7 @@ const DEFAULT_STATE: User = {
 
 export default function userReducer(
   state: User = DEFAULT_STATE,
-  action: ReducerAction
+  action: ReduxAction,
 ): User {
   switch (action.type) {
     case "mark-latest-version":

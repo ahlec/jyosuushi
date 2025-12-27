@@ -1,31 +1,19 @@
-@import "@jyosuushi/palette";
-@import "./content-tile/constants";
+@use "@jyosuushi/palette";
+@use "./content-tile/constants";
 
 .tile {
   align-items: center;
-  color: $black-base;
+  color: palette.$black-base;
   cursor: pointer;
   display: inline-flex;
   flex-direction: column;
   font-weight: bold;
-  height: $tile-min-height;
+  height: constants.$tile-min-height;
   justify-content: center;
   padding: 6px;
   text-align: center;
   text-decoration: none;
-  width: $tile-width;
-}
-
-.active {
-  .icon {
-    path {
-      fill: $blue-darkest;
-    }
-  }
-
-  .text {
-    display: block;
-  }
+  width: constants.$tile-width;
 }
 
 .icon {
@@ -33,12 +21,24 @@
   width: 80%;
 
   path {
-    fill: $blue-base;
+    fill: palette.$blue-base;
   }
 }
 
 .text {
-  color: $blue-darkest;
+  color: palette.$blue-darkest;
   display: none;
   font-size: 14px;
+}
+
+.active {
+  .icon {
+    path {
+      fill: palette.$blue-darkest;
+    }
+  }
+
+  .text {
+    display: block;
+  }
 }

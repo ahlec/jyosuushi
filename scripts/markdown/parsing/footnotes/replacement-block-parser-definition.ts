@@ -13,14 +13,14 @@ import {
 } from "./constants";
 
 export function createReplacementDefinitionParser(
-  originalDefinition: BlockTokenizer
+  originalDefinition: BlockTokenizer,
 ): BlockTokenizer {
   // Do not allow `[^` as a normal definition, do pass all other values through.
   function replacement(
     this: RemarkParser,
     eat: Eat,
     value: string,
-    silent: boolean
+    silent: boolean,
   ): TokenizerReturnType {
     let index = 0;
     let code = value.charCodeAt(index);

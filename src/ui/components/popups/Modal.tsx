@@ -4,7 +4,7 @@ import { MessageDescriptor } from "react-intl";
 
 import BaseDialog from "./BaseDialog";
 
-import styles from "./Modal.scss";
+import * as styles from "./Modal.scss";
 
 interface ComponentProps {
   /**
@@ -71,7 +71,7 @@ function Modal({
       contentClassName={classnames(
         styles.content,
         contentClassName,
-        hasStandardHeight && styles.standardHeight
+        hasStandardHeight && styles.standardHeight,
       )}
       header={header}
       headerClassName={styles.header}

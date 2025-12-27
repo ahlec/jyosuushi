@@ -32,7 +32,7 @@ function useCounterDisplay(counter: Counter): CounterDisplay {
       furigana,
       writing,
     }),
-    [furigana, writing]
+    [furigana, writing],
   );
 }
 

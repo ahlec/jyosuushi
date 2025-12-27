@@ -14,7 +14,7 @@ import CollectionSelection from "./CollectionSelection";
 import CounterPreview from "./CounterPreview";
 import useSelectedCollections from "./useSelectedCollections";
 
-import styles from "./QuizPreparationView.scss";
+import * as styles from "./QuizPreparationView.scss";
 
 const INTL_MESSAGES = defineMessages({
   buttonStartQuiz: {
@@ -47,7 +47,7 @@ function QuizPreparationView({
   // Collate the counters that will be quizzed on, based on selected collections
   const selectedCounters = useMemo(
     () => getDistinctCounters(selectedCollections),
-    [selectedCollections]
+    [selectedCollections],
   );
 
   // Render the component

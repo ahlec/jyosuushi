@@ -1,37 +1,35 @@
-@import "constants";
-@import "palette";
+@use "constants";
+@use "palette";
 
 html,
 body {
-  background-color: $pink-light;
+  background-color: palette.$pink-light;
   height: 100%;
 }
 
 html {
-  background-color: $pink-light;
+  background-color: palette.$pink-light;
   overflow: hidden;
 }
 
 body {
   background: url("diag.png");
-  font-family: $font-family;
-  overflow-x: auto;
-  overflow-y: scroll;
+  font-family: constants.$font-family;
+  overflow: auto scroll;
 }
 
-/* stylelint-disable-next-line selector-max-id */
 :global(#root) {
   height: 100%;
 }
 
 .ReactModalPortal {
-  font-family: $font-family;
+  font-family: constants.$font-family;
 }
 
 a,
 a:visited,
 .link {
-  color: $pink-darkest;
+  color: palette.$pink-darkest;
   cursor: pointer;
   font-weight: 600;
   text-decoration: underline;
@@ -39,7 +37,7 @@ a:visited,
 
 a:hover,
 .link:hover {
-  color: $pink-dark;
+  color: palette.$pink-dark;
   text-decoration: none;
 }
 
@@ -51,22 +49,22 @@ button {
 }
 
 :global(.__react_component_tooltip.type-dark) {
-  background-color: $black-dark;
+  background-color: palette.$black-dark;
 
   &:global(.place-left)::after {
-    border-left-color: $black-dark;
+    border-left-color: palette.$black-dark;
   }
 
   &:global(.place-bottom)::after {
-    border-bottom-color: $black-dark;
+    border-bottom-color: palette.$black-dark;
   }
 
   &:global(.place-right)::after {
-    border-right-color: $black-dark;
+    border-right-color: palette.$black-dark;
   }
 
   &:global(.place-top)::after {
-    border-top-color: $black-dark;
+    border-top-color: palette.$black-dark;
   }
 
   &:global(.show) {

@@ -3,7 +3,7 @@ import { FormattedMessage, FormattedDate, MessageDescriptor } from "react-intl";
 
 import { AcceptedValueType } from "./types";
 
-import styles from "./SubtitleEntry.scss";
+import * as styles from "./SubtitleEntry.scss";
 
 interface ComponentProps {
   message: MessageDescriptor | string;
@@ -11,7 +11,7 @@ interface ComponentProps {
 }
 
 function FormattedMessageBold(
-  chunks: readonly React.ReactNode[]
+  chunks: readonly React.ReactNode[],
 ): React.ReactElement {
   return <strong className={styles.bold}>{chunks}</strong>;
 }

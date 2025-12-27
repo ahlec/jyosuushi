@@ -5,7 +5,7 @@ import { CounterCollection } from "@jyosuushi/interfaces";
 
 import CollectionToggleButton from "./CollectionToggleButton";
 
-import styles from "./CollectionSelection.scss";
+import * as styles from "./CollectionSelection.scss";
 
 interface ComponentProps {
   /**
@@ -57,7 +57,7 @@ function CollectionSelection({
 
       onSelectionChange(next);
     },
-    [currentlySelectedCollectionIds, onSelectionChange]
+    [currentlySelectedCollectionIds, onSelectionChange],
   );
 
   // Render the component
@@ -80,7 +80,7 @@ function CollectionSelection({
               isSelected={currentlySelectedCollectionIds.has(collection.id)}
               onToggle={handleCollectionToggled}
             />
-          )
+          ),
         )}
       </div>
     </div>

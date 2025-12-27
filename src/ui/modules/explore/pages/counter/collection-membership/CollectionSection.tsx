@@ -8,7 +8,7 @@ import MembershipCell from "./MembershipCell";
 import { CollectionMembershipEntry } from "./types";
 import useCollectionMembership from "./useCollectionMembership";
 
-import styles from "./CollectionSection.scss";
+import * as styles from "./CollectionSection.scss";
 
 interface ComponentProps {
   counterId: string;
@@ -35,19 +35,19 @@ function CollectionSection({
   const standardCollectionMembership = useCollectionMembership(
     "standard",
     counterId,
-    STANDARD_COLLECTIONS
+    STANDARD_COLLECTIONS,
   );
   const userCollectionMembership = useCollectionMembership(
     "user",
     counterId,
-    userCollections
+    userCollections,
   );
   const membershipEntries = useMemo(
     (): readonly CollectionMembershipEntry[] => [
       ...standardCollectionMembership,
       ...userCollectionMembership,
     ],
-    [standardCollectionMembership, userCollectionMembership]
+    [standardCollectionMembership, userCollectionMembership],
   );
 
   // Render the component
@@ -68,27 +68,25 @@ function CollectionSection({
         />
       </div>
       <div className={styles.grid}>
-        {membershipEntries.map(
-          (entry, index): React.ReactElement => {
-            const isLeftColumn = index % 2 === 0;
-            let className: string;
-            if (index === membershipEntries.length - 1 && isLeftColumn) {
-              className = styles.middleColumn;
-            } else if (isLeftColumn) {
-              className = styles.leftColumn;
-            } else {
-              className = styles.rightColumn;
-            }
-
-            return (
-              <MembershipCell
-                key={entry.collectionId}
-                className={className}
-                entry={entry}
-              />
-            );
+        {membershipEntries.map((entry, index): React.ReactElement => {
+          const isLeftColumn = index % 2 === 0;
+          let className: string;
+          if (index === membershipEntries.length - 1 && isLeftColumn) {
+            className = styles.middleColumn;
+          } else if (isLeftColumn) {
+            className = styles.leftColumn;
+          } else {
+            className = styles.rightColumn;
           }
-        )}
+
+          return (
+            <MembershipCell
+              key={entry.collectionId}
+              className={className}
+              entry={entry}
+            />
+          );
+        })}
       </div>
     </div>
   );

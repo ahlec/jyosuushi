@@ -21,7 +21,7 @@ import HistoryIcon from "./history.svg";
 import HomeIcon from "./home.svg";
 import SakuraIcon from "./sakura.svg";
 
-import styles from "./index.scss";
+import * as styles from "./index.scss";
 
 interface ProvidedProps {
   isQuizActive: boolean;
@@ -188,7 +188,7 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
         className={classnames(
           styles.header,
           LAYOUT_TO_CSS_CLASS_NAME[layout],
-          STAGE_DEFINITIONS[stage].cssClassName
+          STAGE_DEFINITIONS[stage].cssClassName,
         )}
         onAnimationEnd={this.onAnimationEnd}
       >
@@ -228,7 +228,7 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
           className={classnames(
             styles.scorecard,
             hasAnsweredQuestion && styles.hasAnsweredQuestion,
-            numAnswered > 0 && styles.hasScore
+            numAnswered > 0 && styles.hasScore,
           )}
         >
           <div className={styles.onlyIfAnswered}>
@@ -271,7 +271,7 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
   private onAnimationEnd = ({ animationName }: React.AnimationEvent): void => {
     const completedStage = Object.values(Stage).find(
       (stage: Stage): boolean =>
-        STAGE_DEFINITIONS[stage].animationName === animationName
+        STAGE_DEFINITIONS[stage].animationName === animationName,
     );
 
     if (!completedStage) {

@@ -12,7 +12,7 @@ import IconFlagUsa from "@jyosuushi/icons/flag-usa.png";
 
 import MarkdownPresenter from "./MarkdownPresenter";
 
-import styles from "./InfoSection.scss";
+import * as styles from "./InfoSection.scss";
 
 interface ComponentProps {
   counter: Counter;

@@ -1,4 +1,4 @@
-@import "@jyosuushi/palette";
+@use "@jyosuushi/palette";
 
 .CreditsFooter {
   font-size: 12px;
@@ -7,12 +7,12 @@
 
   a,
   a:visited {
-    color: $green-darkest;
+    color: palette.$green-darkest;
     text-decoration: none;
   }
 
   a:hover {
-    color: $green-dark;
+    color: palette.$green-dark;
     text-decoration: underline;
   }
 }

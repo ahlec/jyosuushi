@@ -7,7 +7,7 @@ import { KeyCode } from "@jyosuushi/constants";
 import CheckIcon from "@jyosuushi/ui/main-screen/check.svg";
 import CircleIcon from "@jyosuushi/ui/main-screen/circle.svg";
 
-import styles from "./Checkbox.scss";
+import * as styles from "./Checkbox.scss";
 
 interface ComponentProps {
   checked: boolean;

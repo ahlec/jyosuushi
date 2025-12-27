@@ -8,7 +8,7 @@ export interface InjectedProps {
 }
 
 export default function withQuizManager<TComponentProps>(
-  Component: React.ComponentType<TComponentProps & InjectedProps>
+  Component: React.ComponentType<TComponentProps & InjectedProps>,
 ): React.ComponentType<TComponentProps> {
   return class WithQuizManager extends React.PureComponent<TComponentProps> {
     public render(): React.ReactNode {
@@ -20,7 +20,7 @@ export default function withQuizManager<TComponentProps>(
     }
 
     private renderComponent = (
-      quizManager: QuizManager | undefined
+      quizManager: QuizManager | undefined,
     ): React.ReactNode => {
       if (!quizManager) {
         return null;

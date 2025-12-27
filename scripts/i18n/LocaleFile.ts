@@ -32,7 +32,7 @@ function isLocaleFileEntry(obj: unknown): obj is LocaleFileEntry {
   if (
     !isArrayOf(
       original["filenames"],
-      (val): val is string => typeof val === "string"
+      (val): val is string => typeof val === "string",
     )
   ) {
     return false;
@@ -68,8 +68,8 @@ class LocaleFile {
     if (invalidIds.size > 0) {
       throw new Error(
         `${filename} has ${invalidIds.size} invalid keys: ${Array.from(
-          invalidIds
-        ).join(", ")}`
+          invalidIds,
+        ).join(", ")}`,
       );
     }
 
@@ -77,7 +77,7 @@ class LocaleFile {
   }
 
   public constructor(
-    private readonly contents: Record<string, LocaleFileEntry>
+    private readonly contents: Record<string, LocaleFileEntry>,
   ) {}
 
   public get entries(): readonly [string, LocaleFileEntry][] {

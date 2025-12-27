@@ -3,7 +3,7 @@
 import classnames from "classnames";
 import React from "react";
 
-import styles from "./LoadingSpinner.scss";
+import * as styles from "./LoadingSpinner.scss";
 
 type SpinnerColor = "pink" | "green" | "blue";
 
@@ -53,7 +53,7 @@ function LoadingSpinner({
       className={classnames(
         styles.loadingSpinner,
         COLOR_CLASS_NAMES[color],
-        className
+        className,
       )}
       style={{
         height: size,

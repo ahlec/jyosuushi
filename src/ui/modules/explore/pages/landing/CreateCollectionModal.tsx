@@ -34,7 +34,7 @@ function CreateCollectionModal({
     (name: string): void => {
       createUserCollection(name).then(onSuccess);
     },
-    [createUserCollection, onSuccess]
+    [createUserCollection, onSuccess],
   );
 
   // Render the component

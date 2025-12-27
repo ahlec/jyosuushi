@@ -20,13 +20,11 @@ const INTL_MESSAGES = defineMessages({
   },
   standardCollectionLabel: {
     defaultMessage: "Standard Collection",
-    id:
-      "explorePage.collections.CollectionHeader.subtitle.label.standardCollection",
+    id: "explorePage.collections.CollectionHeader.subtitle.label.standardCollection",
   },
   userCollectionLabel: {
     defaultMessage: "Custom Collection",
-    id:
-      "explorePage.collections.CollectionHeader.subtitle.label.userCollection",
+    id: "explorePage.collections.CollectionHeader.subtitle.label.userCollection",
   },
 });
 
@@ -35,40 +33,41 @@ interface ComponentProps {
 }
 
 function isUserCollection(
-  collection: StandardCounterCollection | UserCounterCollection
+  collection: StandardCounterCollection | UserCounterCollection,
 ): collection is UserCounterCollection {
   return "dateCreated" in collection;
 }
 
 function CollectionHeader({ collection }: ComponentProps): React.ReactElement {
   // Determine the subtitle entries
-  const subtitleEntries = useMemo((): readonly HeaderSubtitleEntryDefinition[] => {
-    const entries: HeaderSubtitleEntryDefinition[] = [
-      {
-        text: isUserCollection(collection)
-          ? INTL_MESSAGES.userCollectionLabel
-          : INTL_MESSAGES.standardCollectionLabel,
-        uniqueId: "label",
-        value: "",
-      },
-    ];
+  const subtitleEntries =
+    useMemo((): readonly HeaderSubtitleEntryDefinition[] => {
+      const entries: HeaderSubtitleEntryDefinition[] = [
+        {
+          text: isUserCollection(collection)
+            ? INTL_MESSAGES.userCollectionLabel
+            : INTL_MESSAGES.standardCollectionLabel,
+          uniqueId: "label",
+          value: "",
+        },
+      ];
 
-    if (isUserCollection(collection)) {
+      if (isUserCollection(collection)) {
+        entries.push({
+          text: INTL_MESSAGES.dateCreated,
+          uniqueId: "created",
+          value: collection.dateCreated,
+        });
+      }
+
       entries.push({
-        text: INTL_MESSAGES.dateCreated,
-        uniqueId: "created",
-        value: collection.dateCreated,
+        text: INTL_MESSAGES.dateLastUpdated,
+        uniqueId: "last-updated",
+        value: collection.dateLastUpdated,
       });
-    }
 
-    entries.push({
-      text: INTL_MESSAGES.dateLastUpdated,
-      uniqueId: "last-updated",
-      value: collection.dateLastUpdated,
-    });
-
-    return entries;
-  }, [collection]);
+      return entries;
+    }, [collection]);
 
   // Render the component
   return (

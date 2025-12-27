@@ -28,7 +28,7 @@ interface QuizItems {
 }
 
 function getDistinctItems(
-  counters: ReadonlyArray<Counter>
+  counters: ReadonlyArray<Counter>,
 ): ReadonlyArray<Item> {
   const distinct: Item[] = [];
   const encountered = new Set<string>();
@@ -76,7 +76,7 @@ const getAmountRegions = memoize(
   (
     counter: Counter,
     min: number,
-    max: number
+    max: number,
   ): ReadonlyArray<ReadonlyArray<number>> => {
     const regions: Array<ReadonlyArray<number>> = [];
 
@@ -90,7 +90,7 @@ const getAmountRegions = memoize(
     let boringAmounts: number[] = [];
     for (let amount = Math.max(min, 11); amount <= max; amount++) {
       const hasAnyIrregulars = conjugateCounter(amount, counter).some(
-        isConjugationIrregular
+        isConjugationIrregular,
       );
       if (!hasAnyIrregulars) {
         regions.push([amount]);
@@ -110,14 +110,14 @@ const getAmountRegions = memoize(
     return regions;
   },
   (counter: Counter, min: number, max: number) =>
-    `${counter.counterId}-${min}-${max}`
+    `${counter.counterId}-${min}-${max}`,
 );
 
 function getRandomAmount(
   counter: Counter,
   item: Item,
   amountRange: AmountRange,
-  usedAmountRegions: ReadonlySet<string>
+  usedAmountRegions: ReadonlySet<string>,
 ):
   | { success: true; amounts: ReadonlyArray<number>; id: string }
   | { success: false } {
@@ -125,7 +125,7 @@ function getRandomAmount(
     ...getAmountRegions(
       counter,
       Math.max(item.minQuantity, 1),
-      Math.min(item.maxQuantity, AMOUNT_RANGES[amountRange].max)
+      Math.min(item.maxQuantity, AMOUNT_RANGES[amountRange].max),
     ),
   ];
 
@@ -153,16 +153,16 @@ function getRandomAmount(
 function makeQuestionsForCounter(
   counter: Counter,
   quizItems: QuizItems,
-  amountRange: AmountRange
+  amountRange: AmountRange,
 ): ReadonlyArray<PendingQuestion> {
   const questions: PendingQuestion[] = [];
   const validItems = ITEMS_FROM_COUNTER[counter.counterId].filter(
-    ({ itemId }) => quizItems[itemId].numRemaining > 0
+    ({ itemId }) => quizItems[itemId].numRemaining > 0,
   );
 
   const numCounterQuestions = random(
     MIN_NUMBER_QUESTIONS_PER_COUNTER,
-    MAX_NUMBER_QUESTIONS_PER_COUNTER
+    MAX_NUMBER_QUESTIONS_PER_COUNTER,
   );
   while (questions.length < numCounterQuestions && validItems.length) {
     const item = randomFromArray(validItems);
@@ -170,7 +170,7 @@ function makeQuestionsForCounter(
       counter,
       item,
       amountRange,
-      quizItems[item.itemId].usedAmountRegions
+      quizItems[item.itemId].usedAmountRegions,
     );
 
     let isItemDepleted = !randomAmount.success;
@@ -197,7 +197,7 @@ function makeQuestionsForCounter(
 
 export default function makeQuiz(
   counters: readonly Counter[],
-  amountRange: AmountRange
+  amountRange: AmountRange,
 ): ReadonlyArray<PendingQuestion> {
   const items = getDistinctItems(counters);
   const quizItems = planOutItems(items);
@@ -207,7 +207,7 @@ export default function makeQuiz(
     const counterQuestions = makeQuestionsForCounter(
       counter,
       quizItems,
-      amountRange
+      amountRange,
     );
     questions.push(...counterQuestions);
   }

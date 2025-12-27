@@ -10,7 +10,7 @@ interface HookResults {
 }
 
 function useSelectedCollections(
-  collections: readonly CounterCollection[]
+  collections: readonly CounterCollection[],
 ): HookResults {
   // Define hook state to manage the selected collections
   const [rawSelectedCollectionIds, setSelectedCollectionIds] = useState<
@@ -50,7 +50,7 @@ function useSelectedCollections(
   // Convert the Redux data into the actual study pack objects
   const selectedCollections = useMemo((): readonly CounterCollection[] => {
     const orderedCollectionIds = sortBy(
-      Array.from(validatedSelectedCollectionIds)
+      Array.from(validatedSelectedCollectionIds),
     );
     const results: CounterCollection[] = [];
 

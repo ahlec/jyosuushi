@@ -34,7 +34,7 @@ function embededImages(config: EmbededImagesConfig): Transformer {
       try {
         const imageContents = fs.readFileSync(
           path.resolve(config.rootDirectory, node.url),
-          "base64"
+          "base64",
         );
 
         const mime = mimes.getType(path.extname(node.url));

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 import { COUNTERS_LOOKUP } from "@data/counters";
 
@@ -9,7 +9,7 @@ import { getPrimaryJapaneseRepresentation } from "@jyosuushi/utils";
 import { getCounterLink } from "@jyosuushi/ui/modules/explore/pathing";
 
 import MarkdownPresenter from "./MarkdownPresenter";
-import styles from "./DisambiguationSection.scss";
+import * as styles from "./DisambiguationSection.scss";
 
 export function hasDisambiguationSection(counter: Counter): boolean {
   return counter.disambiguations.length > 0;
@@ -19,9 +19,7 @@ interface ComponentProps {
   counter: Counter;
 }
 
-export default class DisambiguationSection extends React.PureComponent<
-  ComponentProps
-> {
+export default class DisambiguationSection extends React.PureComponent<ComponentProps> {
   public render(): React.ReactNode {
     const {
       counter: { disambiguations },

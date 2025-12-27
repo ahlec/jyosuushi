@@ -6,7 +6,7 @@ import { State, UserAnswer } from "@jyosuushi/redux";
 
 import HistoryRow from "./HistoryRow";
 
-import styles from "./QuizHistoryDisplay.scss";
+import * as styles from "./QuizHistoryDisplay.scss";
 
 interface ProvidedProps {
   rowClassName: string;
@@ -37,7 +37,7 @@ class QuizHistoryDisplay extends React.PureComponent<ComponentProps> {
   public render(): React.ReactNode {
     const { askedQuestions, currentQuestion } = this.props;
 
-    const rows: JSX.Element[] = [];
+    const rows: React.ReactElement[] = [];
     for (let index = 0; index < askedQuestions.length; ++index) {
       rows.push(this.renderQuestionRow(index, askedQuestions[index]));
     }
@@ -53,7 +53,10 @@ class QuizHistoryDisplay extends React.PureComponent<ComponentProps> {
     );
   }
 
-  private renderQuestionRow(index: number, question: Question): JSX.Element {
+  private renderQuestionRow(
+    index: number,
+    question: Question,
+  ): React.ReactElement {
     const { rowClassName, userAnswers } = this.props;
     return (
       <HistoryRow

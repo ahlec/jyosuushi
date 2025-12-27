@@ -1,4 +1,4 @@
-@import "@jyosuushi/palette";
+@use "@jyosuushi/palette";
 
 .content {
   padding: 15px;
@@ -11,13 +11,13 @@
 
 .cancelButton,
 .confirmButton {
-  background-color: $green-base;
-  border-color: $green-dark;
+  background-color: palette.$green-base;
+  border-color: palette.$green-dark;
   font-size: 18px;
   width: 70px;
 }
 
 .confirmButton {
-  background-color: $green-dark;
+  background-color: palette.$green-dark;
   margin-left: 8px;
 }

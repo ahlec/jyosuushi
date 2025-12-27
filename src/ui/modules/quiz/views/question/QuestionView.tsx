@@ -8,7 +8,7 @@ import AnswerInput from "./AnswerInput";
 import QuestionDisplay from "./QuestionDisplay";
 import ResultsView from "./ResultsView";
 
-import styles from "./QuestionView.scss";
+import * as styles from "./QuestionView.scss";
 
 const KEY_ENTER = 13;
 

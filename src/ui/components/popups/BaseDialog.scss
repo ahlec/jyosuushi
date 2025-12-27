@@ -1,16 +1,17 @@
+@use "sass:math";
 @use "@jyosuushi/palette";
 
 $border-thickness: 1px;
 $border-color: palette.$green-darkest;
 $body-background-color: palette.$green-lightest;
 $header-background-color: palette.$green-base;
-
 $button-color: palette.$black-darkest;
 $button-hover-color: palette.$green-darkest;
 $button-padding: 4px;
 
 :export {
-  SASS_BUTTON_PADDING: $button-padding / 1px;
+  /* stylelint-disable-next-line property-no-unknown -- This is defining a variable to export, not a CSS property */
+  SASS_BUTTON_PADDING: math.div($button-padding, 1px);
 }
 
 .baseDialog {
@@ -42,6 +43,15 @@ $button-padding: 4px;
   right: $button-padding;
   top: $button-padding;
 
+  svg {
+    height: 32px;
+    width: 32px;
+
+    path {
+      fill: $button-color;
+    }
+  }
+
   &:hover:not(:disabled) {
     path {
       fill: $button-hover-color;
@@ -52,19 +62,9 @@ $button-padding: 4px;
     cursor: default;
     opacity: 0.4;
   }
-
-  svg {
-    height: 32px;
-    width: 32px;
-
-    path {
-      fill: $button-color;
-    }
-  }
 }
 
 .content {
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden auto;
   position: relative;
 }

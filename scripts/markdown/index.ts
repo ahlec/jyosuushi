@@ -61,14 +61,14 @@ export function convertMarkdownToJSX(
     currentLocation,
     footnotesCountingStart,
     style,
-  }: ConvertMarkdownToJsxOptions
+  }: ConvertMarkdownToJsxOptions,
 ): MarkdownToJsxResults {
   // Parse the provided Markdown
   const { hastSyntaxTree, warnings } = parseMarkdown(
     markdown,
     currentLocation,
     allExportedCounters,
-    footnotesCountingStart
+    footnotesCountingStart,
   );
 
   // Validate and transform the tree, as applicable
@@ -98,7 +98,7 @@ export function convertMarkdownToJSX(
         children: [node.syntaxTree],
         type: "root",
       }),
-    })
+    }),
   );
 
   // Compile the body of the markdown to JSX
@@ -114,14 +114,14 @@ export function convertMarkdownToJSX(
 
 export function validateInlineMarkdown(
   markdown: string,
-  allExportedCounters: CounterRegistry
+  allExportedCounters: CounterRegistry,
 ): ValidationResult {
   // Parse the provided Markdown
   const { hastSyntaxTree } = parseMarkdown(
     markdown,
     null,
     allExportedCounters,
-    0
+    0,
   );
 
   // Run the validation

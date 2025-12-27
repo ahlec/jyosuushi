@@ -5,10 +5,7 @@ import { Counter } from "@jyosuushi/interfaces";
 
 import useLocale from "@jyosuushi/i18n/useLocale";
 
-import Action, {
-  ActionClassNames,
-  ActionDefinition,
-} from "@jyosuushi/ui/components/Action";
+import Action, { ActionClassNames } from "@jyosuushi/ui/components/Action";
 import Furigana, {
   FuriganaClassNames,
 } from "@jyosuushi/ui/components/Furigana";
@@ -17,7 +14,7 @@ import useCounterDisplay from "@jyosuushi/hooks/useCounterDisplay";
 
 import { TileActionCreatorFn } from "./types";
 
-import styles from "./CounterTableTile.scss";
+import * as styles from "./CounterTableTile.scss";
 
 interface ComponentProps {
   actionCreator: TileActionCreatorFn;
@@ -47,8 +44,8 @@ function CounterTableTile({
   // Use the provided function to determine what action this tile should
   // perform.
   const action = useMemo(
-    (): ActionDefinition => actionCreator(counter.counterId),
-    [actionCreator, counter.counterId]
+    () => actionCreator(counter.counterId),
+    [actionCreator, counter.counterId],
   );
 
   // Create an object that will dictate the CSS classes to use on <Action />
@@ -57,7 +54,7 @@ function CounterTableTile({
       always: classnames(styles.tile, className),
       whileProcessing: styles.processing,
     }),
-    [className]
+    [className],
   );
 
   // Render the component

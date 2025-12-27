@@ -23,7 +23,7 @@ const TAG_INCOMPATIBILITIES: { [tag in Tag]: ReadonlySet<Tag> } = {
 
 function checkCompatibility(
   source: ReadonlySet<Tag>,
-  other: ReadonlySet<Tag>
+  other: ReadonlySet<Tag>,
 ): boolean {
   for (const tag of source) {
     const incompatibilities = TAG_INCOMPATIBILITIES[tag];
@@ -39,7 +39,7 @@ function checkCompatibility(
 
 export function areTagsCompatible(
   first: ReadonlySet<Tag>,
-  second: ReadonlySet<Tag>
+  second: ReadonlySet<Tag>,
 ): boolean {
   return checkCompatibility(first, second) && checkCompatibility(second, first);
 }

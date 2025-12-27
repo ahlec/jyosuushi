@@ -13,7 +13,7 @@ import { mergeComponentUsages } from "./utils";
 export function writeNodeAsJsx(
   tagName: string,
   properties: Record<string, unknown>,
-  children: readonly JsxRepresentation[]
+  children: readonly JsxRepresentation[],
 ): JsxRepresentation {
   // Interpret the JSX tag
   let jsxTag: string;

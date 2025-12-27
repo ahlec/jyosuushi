@@ -1,8 +1,8 @@
-@import "@jyosuushi/palette";
+@use "@jyosuushi/palette";
 
 .answersTableRow {
   td {
-    border-left: 1px solid $black-lightest;
+    border-left: 1px solid palette.$black-lightest;
     font-size: 18px;
     padding: 20px 0;
     text-align: center;
@@ -25,7 +25,7 @@
 }
 
 .correct {
-  background-color: $green-light;
+  background-color: palette.$green-light;
 
   .cell-rule,
   .cell-study-pack,

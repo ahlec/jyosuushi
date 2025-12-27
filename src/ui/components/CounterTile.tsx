@@ -1,12 +1,12 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 import useLocale from "@jyosuushi/i18n/useLocale";
 import { Counter } from "@jyosuushi/interfaces";
 import { getCounterLink } from "@jyosuushi/ui/modules/explore/pathing";
 import { getPrimaryJapaneseRepresentation } from "@jyosuushi/utils";
 
-import styles from "./CounterTile.scss";
+import * as styles from "./CounterTile.scss";
 
 interface ComponentProps {
   counter: Counter;

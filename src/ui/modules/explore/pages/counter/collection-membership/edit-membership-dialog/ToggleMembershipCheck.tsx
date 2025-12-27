@@ -5,7 +5,7 @@ import IconCheck from "@jyosuushi/ui/main-screen/check.svg";
 
 import LoadingSpinner from "@jyosuushi/ui/components/LoadingSpinner";
 
-import styles from "./ToggleMembershipCheck.scss";
+import * as styles from "./ToggleMembershipCheck.scss";
 
 export type CheckState = "in-collection" | "not-in-collection" | "toggling";
 
@@ -33,7 +33,7 @@ function ToggleMembershipCheck({ state }: ComponentProps): React.ReactElement {
             styles.icon,
             state === "in-collection"
               ? styles.alreadyInCollection
-              : styles.notInCollection
+              : styles.notInCollection,
           )}
         />
       );

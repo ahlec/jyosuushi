@@ -1,8 +1,8 @@
-import { MessageDescriptor } from "react-intl";
+import { MessageDescriptor, PrimitiveType } from "react-intl";
 
 interface LocalizedText {
   descriptor: MessageDescriptor;
-  values?: Record<string, unknown>;
+  values?: Record<string, React.ReactNode | PrimitiveType>;
 }
 
 export interface Choice<TValue> {

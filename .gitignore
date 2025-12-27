@@ -19,9 +19,7 @@ dist-client/
 dist-server/
 
 # Deploying
-.s3-upload-cache
-deploy.config.json
-logs/
+.s3deployerrc.json
 
 # Yarn
 yarn-error.log

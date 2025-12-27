@@ -23,24 +23,19 @@ import {
   QuestionsState,
   QuizCounterDefinition,
 } from "@jyosuushi/redux";
-import {
-  ActionIgnoreLastAnswer,
-  ActionNextQuestion,
-  ActionRestartQuiz,
-  ActionStartQuiz,
-} from "@jyosuushi/redux/actions";
+import { ReduxAction } from "@jyosuushi/redux/actions";
 import makeQuiz from "@jyosuushi/ui/modules/quiz/state/QuizMaker";
 
 function makeQuestion(
   { itemId, possibleAmounts }: PendingQuestion,
-  enabledCounters: DefinedQuizCounters
+  enabledCounters: DefinedQuizCounters,
 ): Question {
   const amount = randomFromArray(possibleAmounts);
 
   const counters = ITEMS_LOOKUP[itemId].counters
     .map(
       ({ counterId }): QuizCounterDefinition | null =>
-        enabledCounters[counterId] || null
+        enabledCounters[counterId] || null,
     )
     .filter(isNotNull);
   const validAnswers: Answer[] = [];
@@ -48,7 +43,7 @@ function makeQuestion(
   for (const counter of counters) {
     const answers = conjugateCounter(
       amount,
-      COUNTERS_LOOKUP[counter.counterId]
+      COUNTERS_LOOKUP[counter.counterId],
     );
     for (const answer of answers) {
       validAnswers.push({
@@ -71,7 +66,7 @@ function makeQuestion(
 }
 
 function collateDefinedQuizCounters(
-  collections: readonly CounterCollection[]
+  collections: readonly CounterCollection[],
 ): DefinedQuizCounters {
   const counterIdsToCollections = new Map<
     string,
@@ -106,19 +101,13 @@ function collateDefinedQuizCounters(
 
 function makeQuizFromDefinedCounters(
   counters: DefinedQuizCounters,
-  amountRange: AmountRange
+  amountRange: AmountRange,
 ): readonly PendingQuestion[] {
   const countersArray = Object.keys(counters).map(
-    (counterId) => COUNTERS_LOOKUP[counterId]
+    (counterId) => COUNTERS_LOOKUP[counterId],
   );
   return makeQuiz(countersArray, amountRange);
 }
-
-type ReducerAction =
-  | ActionStartQuiz
-  | ActionRestartQuiz
-  | ActionNextQuestion
-  | ActionIgnoreLastAnswer;
 
 const DEFAULT_STATE: QuestionsState = {
   asked: [],
@@ -133,7 +122,7 @@ const DEFAULT_STATE: QuestionsState = {
 
 export default function questionsReducer(
   state: QuestionsState = DEFAULT_STATE,
-  action: ReducerAction
+  action: ReduxAction,
 ): QuestionsState {
   switch (action.type) {
     case "start-quiz": {
@@ -141,7 +130,7 @@ export default function questionsReducer(
 
       const questions = makeQuizFromDefinedCounters(
         enabledCounters,
-        action.amountRange
+        action.amountRange,
       );
       const [first, ...rest] = questions;
       return {
@@ -158,7 +147,7 @@ export default function questionsReducer(
     case "restart-quiz": {
       const [first, ...rest] = makeQuizFromDefinedCounters(
         state.seed.enabledCounters,
-        state.seed.amountRange
+        state.seed.amountRange,
       );
 
       return {
@@ -177,7 +166,7 @@ export default function questionsReducer(
       if (!state.queue.length && state.seed.shouldReplenishOnExhaustion) {
         queue = makeQuizFromDefinedCounters(
           state.seed.enabledCounters,
-          state.seed.amountRange
+          state.seed.amountRange,
         );
       } else {
         queue = state.queue;

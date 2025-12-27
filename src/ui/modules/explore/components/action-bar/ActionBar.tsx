@@ -4,7 +4,7 @@ import { MessageDescriptor } from "react-intl";
 
 import ActionBarItem from "./ActionBarItem";
 
-import styles from "./ActionBar.scss";
+import * as styles from "./ActionBar.scss";
 
 export interface ActionBarItemDefinition {
   isActive: boolean;

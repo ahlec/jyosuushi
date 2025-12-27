@@ -36,7 +36,7 @@ function updateQuestionLikeObject(questionLike: any): any {
     ...rest,
     possibleAmounts: range(
       interestRegion.startInclusive,
-      interestRegion.endInclusive + 1
+      interestRegion.endInclusive + 1,
     ),
   };
 }
@@ -87,7 +87,7 @@ export default function migrateV1(state: any): any {
     scorecard: {
       ...state.scorecard,
       missedCounterTallies: updateMissedCounterTallies(
-        state.scorecard.missedCounterTallies
+        state.scorecard.missedCounterTallies,
       ),
       mostMissedCounterId: state.scorecard.mostMissedCounterId
         ? convertCounterId(state.scorecard.mostMissedCounterId)

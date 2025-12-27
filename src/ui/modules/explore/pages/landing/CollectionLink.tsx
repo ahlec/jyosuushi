@@ -1,6 +1,6 @@
 import React from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 import {
   StandardCounterCollection,
@@ -11,7 +11,7 @@ import { getCounterCollectionPath } from "@jyosuushi/ui/modules/explore/pathing"
 
 import ContentTile from "./content-tile/ContentTile";
 
-import styles from "./CollectionLink.scss";
+import * as styles from "./CollectionLink.scss";
 
 const INTL_MESSAGES = defineMessages({
   collectionSize: {

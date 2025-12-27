@@ -2,7 +2,7 @@ import classnames from "classnames";
 import React from "react";
 import { KeyCode } from "@jyosuushi/constants";
 
-import styles from "./InlineTrigger.scss";
+import * as styles from "./InlineTrigger.scss";
 
 interface ComponentProps {
   children: React.ReactNode;

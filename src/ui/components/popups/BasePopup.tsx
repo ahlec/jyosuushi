@@ -3,7 +3,7 @@ import { noop } from "lodash";
 import React from "react";
 import ReactModal from "react-modal";
 
-import styles from "./BasePopup.scss";
+import * as styles from "./BasePopup.scss";
 
 interface ComponentProps {
   /**

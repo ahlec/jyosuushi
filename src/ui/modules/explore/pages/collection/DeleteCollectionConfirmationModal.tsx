@@ -11,8 +11,7 @@ const INTL_MESSAGES = defineMessages({
   promptMessage: {
     defaultMessage:
       "Are you sure you want to delete this collection? This cannot be undone.",
-    id:
-      "explorePage.collections.DeleteCollectionConfirmationModal.promptMessage",
+    id: "explorePage.collections.DeleteCollectionConfirmationModal.promptMessage",
   },
 });
 

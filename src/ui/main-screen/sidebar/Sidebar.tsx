@@ -16,7 +16,7 @@ import ReleaseNotesPageIcon from "./release-notes-icon.svg";
 import SettingsPageIcon from "./settings-icon.svg";
 
 import SidebarEntry from "./SidebarEntry";
-import styles from "./Sidebar.scss";
+import * as styles from "./Sidebar.scss";
 
 const INTL_MESSAGES = defineMessages({
   explorePage: {

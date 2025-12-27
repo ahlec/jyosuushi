@@ -13,7 +13,7 @@ import {
 import useCounterDisplay from "@jyosuushi/hooks/useCounterDisplay";
 import Furigana from "@jyosuushi/ui/components/Furigana";
 
-import styles from "./AnswersTableRow.scss";
+import * as styles from "./AnswersTableRow.scss";
 
 export interface AnswersTableRowData {
   counter: Counter;
@@ -75,7 +75,7 @@ function AnswersTableRow({ data }: ComponentProps): React.ReactElement {
       key={data.counter.counterId}
       className={classnames(
         styles.answersTableRow,
-        data.wasUsersCorrectAnswer && styles.correct
+        data.wasUsersCorrectAnswer && styles.correct,
       )}
     >
       <td className={styles.cellCounter}>
@@ -93,7 +93,7 @@ function AnswersTableRow({ data }: ComponentProps): React.ReactElement {
             <div key={collection.id} className="study-pack">
               {collection.name}
             </div>
-          )
+          ),
         )}
       </td>
       <td className={styles.cellKanji}>
@@ -103,7 +103,7 @@ function AnswersTableRow({ data }: ComponentProps): React.ReactElement {
               <div key={kanji} className="kanji">
                 {kanji}
               </div>
-            )
+            ),
           )
         ) : (
           <FormattedMessage {...INTL_MESSAGES.noKanjiForCounter} />
@@ -121,7 +121,7 @@ function AnswersTableRow({ data }: ComponentProps): React.ReactElement {
                 key={kana}
                 className={classnames(
                   styles.kana,
-                  data.usersCorrectKana === kana && styles.correct
+                  data.usersCorrectKana === kana && styles.correct,
                 )}
               >
                 {kana}
@@ -136,7 +136,7 @@ function AnswersTableRow({ data }: ComponentProps): React.ReactElement {
                 ) : null}
               </div>
             );
-          }
+          },
         )}
       </td>
     </tr>

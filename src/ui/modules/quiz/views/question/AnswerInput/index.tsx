@@ -22,7 +22,7 @@ import RightIcon from "@jyosuushi/ui/right.svg";
 
 import TsuNotice from "./TsuNotice";
 
-import styles from "./index.scss";
+import * as styles from "./index.scss";
 
 interface ProvidedProps {
   buttonsClassName: string;
@@ -96,7 +96,7 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
             <button
               className={classnames(
                 styles.submitButton,
-                !!value && enabled && styles.show
+                !!value && enabled && styles.show,
               )}
               onClick={this.onClickSubmitButton}
               disabled={!enabled}
@@ -111,7 +111,7 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
               className={classnames(
                 styles.submitInstructions,
                 !!value && enabled && styles.hasValue,
-                !!value && !value.validValue && enabled && "invalid"
+                !!value && !value.validValue && enabled && "invalid",
               )}
             >
               {text}
@@ -172,8 +172,8 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
       dispatch(
         submitIncorrectAnswer(
           value.validValue,
-          uniq(currentQuestion.validAnswers.map(getCounterId))
-        )
+          uniq(currentQuestion.validAnswers.map(getCounterId)),
+        ),
       );
     }
   }
