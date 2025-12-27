@@ -66,7 +66,6 @@ export default defineConfig([
   },
   {
     files: [
-      "gulpfile.js",
       "postcss.config.js",
       "stylelint.config.mjs",
       "webpack.common.js",
