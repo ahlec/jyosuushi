@@ -12,13 +12,16 @@ $line-dimension: math.ceil(math.hypot($dimension, $dimension));
 }
 
 .line {
-  $offset-amount: $dimension / 2;
+  $offset-amount: math.div($dimension, 2);
 
   background-color: palette.$white;
   height: $line-dimension;
   pointer-events: none;
   transform: rotateZ(45deg)
-    translate(#{ceil(-$dimension / 2) + 1}, -$line-dimension / 2);
+    translate(
+      #{ceil(math.div(-$dimension, 2)) + 1},
+      #{math.div(-$line-dimension, 2)}
+    );
   width: $line-dimension;
 }
 

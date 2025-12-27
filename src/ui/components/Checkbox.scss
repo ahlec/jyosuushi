@@ -1,3 +1,4 @@
+@use "sass:math";
 @use "@jyosuushi/palette";
 
 $checkbox-height: 50px;
@@ -30,7 +31,7 @@ $horizontal-padding: 10px;
 
   .icon {
     height: $box-dimension;
-    margin-right: ($horizontal-padding / 2);
+    margin-right: math.div($horizontal-padding, 2);
     width: $box-dimension;
 
     circle {

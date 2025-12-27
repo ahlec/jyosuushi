@@ -1,3 +1,4 @@
+@use "sass:math";
 @use "@jyosuushi/palette";
 
 $border-thickness: 1px;
@@ -10,7 +11,7 @@ $button-hover-color: palette.$green-darkest;
 $button-padding: 4px;
 
 :export {
-  SASS_BUTTON_PADDING: $button-padding / 1px;
+  SASS_BUTTON_PADDING: math.div($button-padding, 1px);
 }
 
 .baseDialog {
