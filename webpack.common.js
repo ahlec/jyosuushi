@@ -115,7 +115,7 @@ module.exports = {
     },
   },
   output: {
-    filename: "[name].[hash].js",
+    filename: "[name].[contenthash].js",
     path: BUILD_DIRECTORY,
     publicPath: "/",
   },
