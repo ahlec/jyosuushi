@@ -1,7 +1,7 @@
 import { orderBy } from "lodash";
 import React, { useCallback, useMemo, useState } from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router";
 
 import { STANDARD_COLLECTIONS } from "@data/standard-collections";
 import {
@@ -47,7 +47,7 @@ function AllCollections({
   userCollections,
 }: ComponentProps): React.ReactElement {
   // Connect with the rest of the app
-  const history = useHistory();
+  const navigate = useNavigate();
 
   // Define component state
   const [isCreateModalOpen, setIsCreateModalOpen] = useState<boolean>(false);
@@ -63,9 +63,9 @@ function AllCollections({
 
   const handleCollectionCreatedSuccessfully = useCallback(
     (collectionId: string): void => {
-      history.push(getCounterCollectionPath(collectionId));
+      navigate(getCounterCollectionPath(collectionId));
     },
-    [history]
+    [navigate]
   );
 
   // Enforce a consistent ordering scheme

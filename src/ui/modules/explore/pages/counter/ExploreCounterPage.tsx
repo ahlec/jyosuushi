@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useState } from "react";
 import { defineMessages } from "react-intl";
-import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router";
 
 import { UserCounterCollection } from "@jyosuushi/interfaces";
 import useLocale from "@jyosuushi/i18n/useLocale";

@@ -1,7 +1,7 @@
 import classnames from "classnames";
 import React from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 import { KeyCode } from "@jyosuushi/constants";
 

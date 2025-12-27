@@ -1,6 +1,6 @@
 import classnames from "classnames";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 import { getCounterCollectionPath } from "@jyosuushi/ui/modules/explore/pathing";
 

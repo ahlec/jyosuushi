@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useState } from "react";
 import { defineMessages } from "react-intl";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 import { UserCounterCollection } from "@jyosuushi/interfaces";
 
@@ -44,7 +44,7 @@ interface ComponentProps {
 function UserCollectionView({
   collection,
 }: ComponentProps): React.ReactElement {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   // Define component state
   const [isEditingContents, setIsEditingContents] = useState<boolean>(false);
@@ -92,9 +92,9 @@ function UserCollectionView({
 
   const handleDeleteConfirmed = useCallback((): void => {
     collection.delete().then((): void => {
-      history.replace(EXPLORE_PAGE_PATH);
+      navigate(EXPLORE_PAGE_PATH, { replace: true });
     });
-  }, [collection, history]);
+  }, [collection, navigate]);
 
   const handleAddCounter = useCallback(
     (counterId: string) => collection.addCounter(counterId),

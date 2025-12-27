@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import * as ReactGA from "react-ga";
 import Modal from "react-modal";
 import { Provider } from "react-redux";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router";
 import { PersistGate } from "redux-persist/integration/react";
 
 import IntlProvider from "./i18n/IntlProvider";

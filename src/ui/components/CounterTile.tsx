@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 import useLocale from "@jyosuushi/i18n/useLocale";
 import { Counter } from "@jyosuushi/interfaces";

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router";
 
 const NavigationManager: React.FC = () => {
   // Listen for pathname changing and scroll to top when it changes

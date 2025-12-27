@@ -13,5 +13,4 @@ export type PageComponentProps = {
 export interface PageDefinition {
   component: React.ComponentType<PageComponentProps>;
   primaryPath: string;
-  aliasPaths: readonly string[];
 }

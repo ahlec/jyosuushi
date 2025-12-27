@@ -1,7 +1,7 @@
 import classnames from "classnames";
 import * as React from "react";
 import { useSelector } from "react-redux";
-import { Redirect, Route, Switch, useLocation } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router";
 
 import { State } from "@jyosuushi/redux";
 import { getIsQuizActive } from "@jyosuushi/redux/selectors";
@@ -28,11 +28,11 @@ function Application(): React.ReactElement {
   const renderNecessaryRedirect = (): React.ReactNode => {
     const isOnQuizScreen = pathname === QUIZ_SCREEN_PATH;
     if (isOnQuizScreen && !isQuizActive) {
-      return <Redirect to="/" />;
+      return <Navigate to="/" />;
     }
 
     if (!isOnQuizScreen && isQuizActive) {
-      return <Redirect to={QUIZ_SCREEN_PATH} />;
+      return <Navigate to={QUIZ_SCREEN_PATH} />;
     }
   };
 
@@ -47,13 +47,13 @@ function Application(): React.ReactElement {
         <NavigationManager />
         <Header isQuizActive={isQuizActive} onModalOpened={setIsModalOpen} />
         {renderNecessaryRedirect()}
-        <Switch>
+        <Routes>
           <Route
             path={QUIZ_SCREEN_PATH}
-            render={() => <QuizPage enabled={!isModalOpen} />}
+            element={<QuizPage enabled={!isModalOpen} />}
           />
-          <Route render={() => <MainScreen />} />
-        </Switch>
+          <Route path="/*" element={<MainScreen />} />
+        </Routes>
         <ToastDisplayContainer />
       </div>
     </ToastManager>

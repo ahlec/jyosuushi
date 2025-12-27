@@ -1,8 +1,8 @@
-import { LocationDescriptorObject } from "history";
 import React, { useCallback, useMemo } from "react";
 
 import { CounterCollection } from "@jyosuushi/interfaces";
 
+import { ActionDefinition } from "@jyosuushi/ui/components/Action";
 import { getCounterLink } from "@jyosuushi/ui/modules/explore/pathing";
 import { ExploreLocationState } from "@jyosuushi/ui/modules/explore/types";
 
@@ -19,24 +19,20 @@ function LinkedCollectionContentsTable({
   // Create the tile action creator that will be used to tell tiles that they
   // should operate as links to the specific counter's profile page.
   const tileActionCreator = useCallback<TileActionCreatorFn>(
-    (counterId) => {
-      const to: LocationDescriptorObject<ExploreLocationState> = {
-        pathname: getCounterLink(counterId),
-        state: {
-          fromCollection: {
-            id: collection.id,
-            name: collection.name,
-          },
-          schema: "v2",
-          type: "explore-location-state",
+    (counterId): ActionDefinition<ExploreLocationState> => ({
+      state: {
+        fromCollection: {
+          id: collection.id,
+          name: collection.name,
         },
-      };
-
-      return {
-        to,
-        variant: "link",
-      };
-    },
+        schema: "v2",
+        type: "explore-location-state",
+      },
+      to: {
+        pathname: getCounterLink(counterId),
+      },
+      variant: "link",
+    }),
     [collection.id, collection.name]
   );
 

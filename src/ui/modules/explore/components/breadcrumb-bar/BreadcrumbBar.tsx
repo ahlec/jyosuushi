@@ -4,7 +4,7 @@ import {
   FormattedMessage,
   MessageDescriptor,
 } from "react-intl";
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router";
 
 import { EXPLORE_PAGE_PATH } from "@jyosuushi/ui/modules/explore/pathing";
 import { interleave } from "@jyosuushi/utils";
@@ -50,9 +50,9 @@ function BreadcrumbBar({ links }: ComponentProps): React.ReactElement {
   const linkElements: React.ReactElement[] = [
     <NavLink
       key={EXPLORE_PAGE_PATH}
-      exact={true}
+      end
       to={EXPLORE_PAGE_PATH}
-      activeClassName={styles.active}
+      className={({ isActive }) => (isActive ? styles.active : undefined)}
     >
       <FormattedMessage {...INTL_MESSAGES.explorePageName} />
     </NavLink>,
@@ -60,9 +60,9 @@ function BreadcrumbBar({ links }: ComponentProps): React.ReactElement {
       (definition): React.ReactElement => (
         <NavLink
           key={definition.link}
-          exact={true}
+          end
           to={definition.link}
-          activeClassName={styles.active}
+          className={({ isActive }) => (isActive ? styles.active : undefined)}
         >
           <FormattedMessage
             {...BREADCRUMB_BAR_ENTITY_TYPE_PREFIX_MESSAGE[

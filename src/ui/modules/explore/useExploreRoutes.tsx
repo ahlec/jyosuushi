@@ -35,7 +35,7 @@ function useExploreRoutes({
           return <StandardCollectionView collection={collection} />;
         },
         key: `standard-collection-${collection.id}`,
-        path: getCounterCollectionPath(collection.id),
+        path: getCounterCollectionPath(collection.id, { full: false }),
       });
     });
 
@@ -45,7 +45,7 @@ function useExploreRoutes({
           return <UserCollectionView collection={collection} />;
         },
         key: `user-collection-${collection.id}`,
-        path: getCounterCollectionPath(collection.id),
+        path: getCounterCollectionPath(collection.id, { full: false }),
       });
     });
 
@@ -60,7 +60,7 @@ function useExploreRoutes({
           );
         },
         key: `counter-${counter.counterId}`,
-        path: getCounterLink(counter.counterId),
+        path: getCounterLink(counter.counterId, { full: false }),
       });
     });
 
