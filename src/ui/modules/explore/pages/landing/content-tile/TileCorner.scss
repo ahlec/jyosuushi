@@ -19,7 +19,7 @@ $line-dimension: math.ceil(math.hypot($dimension, $dimension));
   pointer-events: none;
   transform: rotateZ(45deg)
     translate(
-      #{ceil(math.div(-$dimension, 2)) + 1},
+      #{math.ceil(math.div(-$dimension, 2)) + 1},
       #{math.div(-$line-dimension, 2)}
     );
   width: $line-dimension;
