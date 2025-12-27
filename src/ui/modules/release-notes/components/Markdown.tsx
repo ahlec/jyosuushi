@@ -17,7 +17,7 @@ function Markdown({
   allowParagraphs = false,
   className,
   source,
-}: ComponentProps): JSX.Element {
+}: ComponentProps): React.ReactElement {
   return (
     <ReactMarkdown
       className={classnames(styles.markdown, className)}
