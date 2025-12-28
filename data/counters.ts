@@ -1090,8 +1090,8 @@ export const COUNTER_日: Counter = {
       counterId: "日",
       kana: "にち",
       kangoConjugationOptions: {
-        allowsKuFor9: false,
-        allowsKyuuFor9: true,
+        allowsKuFor9: true,
+        allowsKyuuFor9: false,
         allowsNanaFor7: true,
         allowsShiFor4: false,
         allowsShichiFor7: false,
