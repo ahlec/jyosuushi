@@ -1,592 +1,449 @@
 {
-  "constants.quizAmountRanges.nameGiant": {
-    "original": {
-      "defaultMessage": "Gigantic",
-      "filenames": ["src/constants/index.ts"]
-    },
-    "translation": ""
-  },
-  "constants.quizAmountRanges.nameLarge": {
-    "original": {
-      "defaultMessage": "Massive",
-      "filenames": ["src/constants/index.ts"]
-    },
-    "translation": ""
-  },
-  "constants.quizAmountRanges.nameMedium": {
-    "original": {
-      "defaultMessage": "Average",
-      "filenames": ["src/constants/index.ts"]
-    },
-    "translation": ""
-  },
-  "constants.quizAmountRanges.nameSmall": {
-    "original": {
-      "defaultMessage": "Tiny",
-      "filenames": ["src/constants/index.ts"]
-    },
-    "translation": ""
-  },
-  "components.popups.BaseConfirmationDialog.buttonNo": {
-    "original": {
-      "defaultMessage": "No",
-      "description": "Clicking this buttons cancels/declines the yes/no confirmation prompt given to the user.",
-      "filenames": ["src/ui/components/popups/BaseConfirmationDialog.tsx"]
-    },
-    "translation": ""
-  },
-  "components.popups.BaseConfirmationDialog.buttonYes": {
-    "original": {
-      "defaultMessage": "Yes",
-      "description": "Clicking this button confirms the yes/no confirmation prompt given to the user.",
-      "filenames": ["src/ui/components/popups/BaseConfirmationDialog.tsx"]
-    },
-    "translation": ""
-  },
   "CreditsFooter.credits": {
     "original": {
       "defaultMessage": "Application designed and coded by <alec>Alec Deitloff</alec>. Vector icons were taken from the <vectorIcons>Core - UI - Outlined</vectorIcons> collection. Sakura icon was made by <sakura>Freepik</sakura>. Small icons are part of the <silk>Silk</silk> collection.",
-      "filenames": ["src/ui/CreditsFooter.tsx"]
+      "filenames": [
+        "src/ui/CreditsFooter.tsx"
+      ]
     },
     "translation": ""
   },
-  "header.AbortConfirmationModal.header": {
+  "releaseNotes.specialVersionNotes.initialRelease": {
     "original": {
-      "defaultMessage": "End Quiz Early?",
-      "filenames": ["src/ui/Header/AbortConfirmationModal.tsx"]
+      "defaultMessage": "Initial release.",
+      "description": "Text to appear in place of release notes for the version that was the initial release.",
+      "filenames": [
+        "src/ui/modules/release-notes/ReleaseNotesPage.tsx"
+      ]
     },
     "translation": ""
   },
-  "header.AbortConfirmationModal.question": {
+  "releaseNotes.sectionHeaders.bugFixes": {
     "original": {
-      "defaultMessage": "Are you sure you want to end the current quiz early?",
-      "filenames": ["src/ui/Header/AbortConfirmationModal.tsx"]
+      "defaultMessage": "Bug Fixes",
+      "filenames": [
+        "src/ui/modules/release-notes/IncrementalVersionDisplay.tsx"
+      ]
     },
     "translation": ""
   },
-  "header.historyModalHeader": {
+  "releaseNotes.sectionHeaders.improvements": {
     "original": {
-      "defaultMessage": "History",
-      "filenames": ["src/ui/Header/index.tsx"]
+      "defaultMessage": "Improvements",
+      "filenames": [
+        "src/ui/modules/release-notes/IncrementalVersionDisplay.tsx"
+      ]
     },
     "translation": ""
   },
-  "header.siteTagLine": {
+  "releaseNotes.sectionHeaders.newFeatures": {
     "original": {
-      "defaultMessage": "Let's review Japanese counters!",
-      "filenames": ["src/ui/Header/index.tsx"]
+      "defaultMessage": "New Features",
+      "filenames": [
+        "src/ui/modules/release-notes/IncrementalVersionDisplay.tsx"
+      ]
     },
     "translation": ""
   },
-  "header.quiz-buttons.historyButtonTooltip": {
+  "releaseNotes.browserNames.chrome": {
     "original": {
-      "defaultMessage": "History",
-      "filenames": ["src/ui/Header/index.tsx"]
+      "defaultMessage": "Chrome",
+      "filenames": [
+        "src/ui/modules/release-notes/components/BugFixEntryDisplay.tsx"
+      ]
     },
     "translation": ""
   },
-  "header.quiz-buttons.homeButtonTooltip": {
+  "releaseNotes.browserNames.edge": {
     "original": {
-      "defaultMessage": "Home",
-      "filenames": ["src/ui/Header/index.tsx"]
+      "defaultMessage": "Microsoft Edge",
+      "filenames": [
+        "src/ui/modules/release-notes/components/BugFixEntryDisplay.tsx"
+      ]
     },
     "translation": ""
   },
-  "header.score.xOfYCorrect": {
+  "releaseNotes.browserNames.firefox": {
     "original": {
-      "defaultMessage": "{x} / {y} correct",
-      "filenames": ["src/ui/Header/Score.tsx"]
+      "defaultMessage": "Firefox",
+      "filenames": [
+        "src/ui/modules/release-notes/components/BugFixEntryDisplay.tsx"
+      ]
     },
     "translation": ""
   },
-  "feedbackPage.links.contribute.description": {
+  "releaseNotes.browserNames.ie": {
     "original": {
-      "defaultMessage": "Officially submit bug reports or feature requests. Or, fork the repository and open a pull request — I'd love help on this project!",
-      "filenames": ["src/ui/main-screen/feedback/FeedbackPage.tsx"]
+      "defaultMessage": "Internet Explorer",
+      "filenames": [
+        "src/ui/modules/release-notes/components/BugFixEntryDisplay.tsx"
+      ]
     },
     "translation": ""
   },
-  "feedbackPage.links.contribute.link": {
+  "releaseNotes.browserNames.safari": {
     "original": {
-      "defaultMessage": "GitHub Repository",
-      "filenames": ["src/ui/main-screen/feedback/FeedbackPage.tsx"]
+      "defaultMessage": "Safari",
+      "filenames": [
+        "src/ui/modules/release-notes/components/BugFixEntryDisplay.tsx"
+      ]
     },
     "translation": ""
   },
-  "feedbackPage.intro": {
+  "quiz-page.QuizWrapup.quitQuiz": {
     "original": {
-      "defaultMessage": "The project is open source and accepting bug reports, feature requests, and code contributions!",
-      "filenames": ["src/ui/main-screen/feedback/FeedbackPage.tsx"]
+      "defaultMessage": "Leave",
+      "filenames": [
+        "src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
+      ]
     },
     "translation": ""
   },
-  "feedbackPage.links.personalTwitter.description": {
+  "quiz-page.QuizWrapup.restartQuiz": {
     "original": {
-      "defaultMessage": "Send me a tweet or a direct message if you're not able to go through GitHub.",
-      "filenames": ["src/ui/main-screen/feedback/FeedbackPage.tsx"]
+      "defaultMessage": "Restart",
+      "filenames": [
+        "src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
+      ]
     },
     "translation": ""
   },
-  "feedbackPage.links.personalTwitter.link": {
+  "quiz-page.QuizWrapup.encouragement.highScore1": {
     "original": {
-      "defaultMessage": "@AlecDeitloff",
-      "filenames": ["src/ui/main-screen/feedback/FeedbackPage.tsx"]
+      "defaultMessage": "That was astounding, really.",
+      "description": "(A random message displayed if the user got a high score; does not need to be a literal translation)",
+      "filenames": [
+        "src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
+      ]
     },
     "translation": ""
   },
-  "preparePage.CollectionSelection.header": {
+  "quiz-page.QuizWrapup.encouragement.highScore2": {
     "original": {
-      "defaultMessage": "Collections",
-      "filenames": ["src/ui/main-screen/prepare/CollectionSelection.tsx"]
+      "defaultMessage": "Look at how far you've come on your journey!",
+      "description": "(A random message displayed if the user got a high score; does not need to be a literal translation)",
+      "filenames": [
+        "src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
+      ]
     },
     "translation": ""
   },
-  "preparePage.CollectionSelection.subheader": {
+  "quiz-page.QuizWrapup.encouragement.highScore3": {
     "original": {
-      "defaultMessage": "(select 1 or more)",
-      "filenames": ["src/ui/main-screen/prepare/CollectionSelection.tsx"]
+      "defaultMessage": "This stuff isn't easy, and you're aceing it!",
+      "description": "(A random message displayed if the user got a high score; does not need to be a literal translation)",
+      "filenames": [
+        "src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
+      ]
     },
     "translation": ""
   },
-  "preparePage.CollectionToggleButton.collectionSizeLabel": {
+  "quiz-page.QuizWrapup.encouragement.highScore4": {
+    "original": {
+      "defaultMessage": "It's taken a lot of work to get here; pat yourself on the back.",
+      "description": "(A random message displayed if the user got a high score; does not need to be a literal translation)",
+      "filenames": [
+        "src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.QuizWrapup.encouragement.lowScore1": {
+    "original": {
+      "defaultMessage": "You're trying your best, and that's the key to success!",
+      "description": "(A random message displayed if the user got a low score; does not need to be a literal translation)",
+      "filenames": [
+        "src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.QuizWrapup.encouragement.lowScore2": {
+    "original": {
+      "defaultMessage": "You've learned so much to get here, I know you'll get to where you want to go!",
+      "description": "(A random message displayed if the user got a low score; does not need to be a literal translation)",
+      "filenames": [
+        "src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.QuizWrapup.encouragement.lowScore3": {
+    "original": {
+      "defaultMessage": "This stuff isn't easy; practice WILL make perfect.",
+      "description": "(A random message displayed if the user got a low score; does not need to be a literal translation)",
+      "filenames": [
+        "src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quizPage.QuestionDisplay.text": {
+    "original": {
+      "defaultMessage": "{amount} {itemName}",
+      "filenames": [
+        "src/ui/modules/quiz/views/question/QuestionDisplay.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.results.buttonIgnoreAnswer": {
+    "original": {
+      "defaultMessage": "Ignore Answer",
+      "filenames": [
+        "src/ui/modules/quiz/views/question/ResultsView/index.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.results.buttonNextQuestion": {
+    "original": {
+      "defaultMessage": "Next Question",
+      "filenames": [
+        "src/ui/modules/quiz/views/question/ResultsView/index.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.results.header.correct": {
+    "original": {
+      "defaultMessage": "Correct!",
+      "filenames": [
+        "src/ui/modules/quiz/views/question/ResultsView/index.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.results.header.incorrect": {
+    "original": {
+      "defaultMessage": "Not quite right...",
+      "filenames": [
+        "src/ui/modules/quiz/views/question/ResultsView/index.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.results.header.skipped": {
+    "original": {
+      "defaultMessage": "Skipped",
+      "filenames": [
+        "src/ui/modules/quiz/views/question/ResultsView/index.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.results.table.intro": {
+    "original": {
+      "defaultMessage": "Here are all of the possible answers based on the sets you have enabled:",
+      "filenames": [
+        "src/ui/modules/quiz/views/question/ResultsView/index.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.results.skippedQuestion": {
+    "original": {
+      "defaultMessage": "Alright! You don't need to worry about this question!",
+      "filenames": [
+        "src/ui/modules/quiz/views/question/ResultsView/index.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.results.AnswersTable.kanji.noKanjiForCounter": {
+    "original": {
+      "defaultMessage": "(none)",
+      "filenames": [
+        "src/ui/modules/quiz/views/question/ResultsView/AnswersTableRow.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.results.AnswersTable.readingsLabels.irregular": {
+    "original": {
+      "defaultMessage": "(irregular)",
+      "filenames": [
+        "src/ui/modules/quiz/views/question/ResultsView/AnswersTableRow.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.results.AnswersTable.readingsLabel.nonKango": {
+    "original": {
+      "defaultMessage": "(not 漢語)",
+      "filenames": [
+        "src/ui/modules/quiz/views/question/ResultsView/AnswersTableRow.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.results.AnswersTable.columnHeaders.counter": {
+    "original": {
+      "defaultMessage": "Counter",
+      "filenames": [
+        "src/ui/modules/quiz/views/question/ResultsView/AnswersTable.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.results.AnswersTable.columnHeaders.hiragana": {
+    "original": {
+      "defaultMessage": "Hiragana",
+      "filenames": [
+        "src/ui/modules/quiz/views/question/ResultsView/AnswersTable.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.results.AnswersTable.columnHeaders.kanji": {
+    "original": {
+      "defaultMessage": "Kanji",
+      "filenames": [
+        "src/ui/modules/quiz/views/question/ResultsView/AnswersTable.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.results.AnswersTable.columnHeaders.rule": {
+    "original": {
+      "defaultMessage": "Rule",
+      "filenames": [
+        "src/ui/modules/quiz/views/question/ResultsView/AnswersTable.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.results.AnswersTable.columnHeaders.studyPack": {
+    "original": {
+      "defaultMessage": "Study Pack",
+      "filenames": [
+        "src/ui/modules/quiz/views/question/ResultsView/AnswersTable.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.AnswerInput.buttonSkipQuestion": {
+    "original": {
+      "defaultMessage": "Skip this question",
+      "filenames": [
+        "src/ui/modules/quiz/views/question/AnswerInput/index.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.AnswerInput.howToSubmit": {
+    "original": {
+      "defaultMessage": "Press the [enter] key when you're finished, or click the arrow button to submit.",
+      "filenames": [
+        "src/ui/modules/quiz/views/question/AnswerInput/index.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.AnswerInput.TsuNotice.text": {
+    "original": {
+      "defaultMessage": "While 〜つ and 〜個 are always valid counters, you can't use them here. You'll have to be more specific!",
+      "filenames": [
+        "src/ui/modules/quiz/views/question/AnswerInput/TsuNotice/index.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "QuizHistory.historyRow.submittedLabel": {
+    "original": {
+      "defaultMessage": "Submitted:",
+      "filenames": [
+        "src/ui/modules/quiz/components/history-display/HistoryRow.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explore.landing.CreateCollectionTile.buttonText": {
+    "original": {
+      "defaultMessage": "New Custom Collection",
+      "filenames": [
+        "src/ui/modules/explore/pages/landing/CreateCollectionTile.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explore.landing.CreateCollectionModal.modalHeader": {
+    "original": {
+      "defaultMessage": "Create Custom Collection",
+      "filenames": [
+        "src/ui/modules/explore/pages/landing/CreateCollectionModal.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explore.landing.CreateCollectionModal.submitButtonLabel": {
+    "original": {
+      "defaultMessage": "Create",
+      "filenames": [
+        "src/ui/modules/explore/pages/landing/CreateCollectionModal.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.landing.CollectionLink.collectionSize": {
     "original": {
       "defaultMessage": "{size, plural, one {# counter} other {# counters}}",
-      "filenames": ["src/ui/main-screen/prepare/CollectionToggleButton.tsx"]
-    },
-    "translation": ""
-  },
-  "preparePage.CollectionToggleButton.viewContentsLink": {
-    "original": {
-      "defaultMessage": "View Details",
-      "filenames": ["src/ui/main-screen/prepare/CollectionToggleButton.tsx"]
-    },
-    "translation": ""
-  },
-  "preparePage.CounterPreview.header": {
-    "original": {
-      "defaultMessage": "{count, plural, one {# Counter} other {# Counters}} included",
-      "filenames": ["src/ui/main-screen/prepare/CounterPreview.tsx"]
-    },
-    "translation": ""
-  },
-  "preparePage.links.jyosuushiWikipediaPage": {
-    "original": {
-      "defaultMessage": "Japanese counters",
-      "filenames": ["src/ui/main-screen/prepare/PreparePage.tsx"]
-    },
-    "translation": ""
-  },
-  "preparePage.links.tutorial": {
-    "original": {
-      "defaultMessage": "Click here to read the tutorial.",
-      "filenames": ["src/ui/main-screen/prepare/PreparePage.tsx"]
-    },
-    "translation": ""
-  },
-  "preparePage.welcomeMessage": {
-    "original": {
-      "defaultMessage": "Welcome to <bold>助数詞を練習</bold>! This is a tool that's meant to help you study {jyosuushiWikipediaLink}. You'll be given a random item and a random number, and then you tell us how you'd count that in Japanese. {tutorialLink}",
-      "filenames": ["src/ui/main-screen/prepare/PreparePage.tsx"]
-    },
-    "translation": ""
-  },
-  "preparePage.QuizPreparationView.buttonStartQuiz": {
-    "original": {
-      "defaultMessage": "Start Quiz!",
-      "filenames": ["src/ui/main-screen/prepare/QuizPreparationView.tsx"]
-    },
-    "translation": ""
-  },
-  "mainScreen.tutorial.page1": {
-    "original": {
-      "defaultMessage": "On the main screen, find conveniently made packs of counters. Explore each of their details, and then choose the ones that contain the counters you want to study.",
-      "filenames": ["src/ui/main-screen/prepare/tutorial/index.ts"]
-    },
-    "translation": ""
-  },
-  "mainScreen.tutorial.page2": {
-    "original": {
-      "defaultMessage": "When you hit 'Start Quiz', you'll be prompted with random nouns of random amounts. Determine the appropriate counter for the noun, and then put in your answer.\n\nEven though they're valid, 〜つ and 〜個 aren't accepted answers!",
-      "filenames": ["src/ui/main-screen/prepare/tutorial/index.ts"]
-    },
-    "translation": ""
-  },
-  "mainScreen.tutorial.page3": {
-    "original": {
-      "defaultMessage": "If you don't want to answer, hit 'Skip this question'. It won't penalize you and will remove the question from the quiz.",
-      "filenames": ["src/ui/main-screen/prepare/tutorial/index.ts"]
-    },
-    "translation": ""
-  },
-  "mainScreen.tutorial.page4": {
-    "original": {
-      "defaultMessage": "Once you submit your answer, check your accuracy! It will show you all of the correct answers at this stage, so you can take note if you made a mistake.",
-      "filenames": ["src/ui/main-screen/prepare/tutorial/index.ts"]
-    },
-    "translation": ""
-  },
-  "mainScreen.tutorial.page5": {
-    "original": {
-      "defaultMessage": "If you made a typo or a genuine mistake, hit 'Ignore Answer'. It won't penalize you, and it will shuffle that question in for later to try again. It's up to you to stay honest!",
-      "filenames": ["src/ui/main-screen/prepare/tutorial/index.ts"]
-    },
-    "translation": ""
-  },
-  "mainScreen.tutorial.page6": {
-    "original": {
-      "defaultMessage": "When you've gone through all of your questions, you'll have a chance to see your overall results. From there, you can choose to change your study packs, or try this quiz again with new numbers and items.",
-      "filenames": ["src/ui/main-screen/prepare/tutorial/index.ts"]
-    },
-    "translation": ""
-  },
-  "mainScreen.tutorial.modalHeader": {
-    "original": {
-      "defaultMessage": "Tutorial",
-      "filenames": ["src/ui/main-screen/prepare/TutorialModal.tsx"]
-    },
-    "translation": ""
-  },
-  "settings.quiz.amountRange.choiceRange": {
-    "original": {
-      "defaultMessage": "{min}-{max}",
-      "filenames": ["src/ui/main-screen/settings/SettingsPage.tsx"]
-    },
-    "translation": ""
-  },
-  "settings.quiz.amountRange.description": {
-    "original": {
-      "defaultMessage": "Adjust the range of numbers generated.",
-      "filenames": ["src/ui/main-screen/settings/SettingsPage.tsx"]
-    },
-    "translation": ""
-  },
-  "settings.quiz.amountRange.header": {
-    "original": {
-      "defaultMessage": "Amounts Range",
-      "filenames": ["src/ui/main-screen/settings/SettingsPage.tsx"]
-    },
-    "translation": ""
-  },
-  "settings.quiz.infiniteMode.checkboxLabel": {
-    "original": {
-      "defaultMessage": "Infinite Mode",
-      "filenames": ["src/ui/main-screen/settings/SettingsPage.tsx"]
-    },
-    "translation": ""
-  },
-  "settings.quiz.infiniteMode.description": {
-    "original": {
-      "defaultMessage": "Choose whether the quiz has a finite number of questions, or if it goes on forever.",
-      "filenames": ["src/ui/main-screen/settings/SettingsPage.tsx"]
-    },
-    "translation": ""
-  },
-  "settings.quiz.infiniteMode.header": {
-    "original": {
-      "defaultMessage": "Infinite Mode",
-      "filenames": ["src/ui/main-screen/settings/SettingsPage.tsx"]
-    },
-    "translation": ""
-  },
-  "settings.pageHeader": {
-    "original": {
-      "defaultMessage": "Settings",
-      "filenames": ["src/ui/main-screen/settings/SettingsPage.tsx"]
-    },
-    "translation": ""
-  },
-  "Sidebar.pages.explore": {
-    "original": {
-      "defaultMessage": "Explore",
-      "filenames": ["src/ui/main-screen/sidebar/Sidebar.tsx"]
-    },
-    "translation": ""
-  },
-  "Sidebar.pages.feedback": {
-    "original": {
-      "defaultMessage": "Feedback",
-      "filenames": ["src/ui/main-screen/sidebar/Sidebar.tsx"]
-    },
-    "translation": ""
-  },
-  "Sidebar.pages.prepare": {
-    "original": {
-      "defaultMessage": "Prepare",
-      "filenames": ["src/ui/main-screen/sidebar/Sidebar.tsx"]
-    },
-    "translation": ""
-  },
-  "Sidebar.pages.releaseNotes": {
-    "original": {
-      "defaultMessage": "Release Notes",
-      "filenames": ["src/ui/main-screen/sidebar/Sidebar.tsx"]
-    },
-    "translation": ""
-  },
-  "Sidebar.pages.settings": {
-    "original": {
-      "defaultMessage": "Settings",
-      "filenames": ["src/ui/main-screen/sidebar/Sidebar.tsx"]
-    },
-    "translation": ""
-  },
-  "explorePage.BreadcrumbBar.collection.prefix": {
-    "original": {
-      "defaultMessage": "Collection:",
       "filenames": [
-        "src/ui/modules/explore/components/breadcrumb-bar/BreadcrumbBar.tsx"
+        "src/ui/modules/explore/pages/landing/CollectionLink.tsx"
       ]
     },
     "translation": ""
   },
-  "explorePage.BreadcrumbBar.counter.prefix": {
+  "explorePage.landing.CollectionLink.typeStandard": {
     "original": {
-      "defaultMessage": "Counter:",
+      "defaultMessage": "Standard",
       "filenames": [
-        "src/ui/modules/explore/components/breadcrumb-bar/BreadcrumbBar.tsx"
+        "src/ui/modules/explore/pages/landing/CollectionLink.tsx"
       ]
     },
     "translation": ""
   },
-  "explorePage.BreadcrumbBar.explorePageName": {
+  "explorePage.landing.CollectionLink.typeUser": {
     "original": {
-      "defaultMessage": "Explore",
+      "defaultMessage": "Custom",
       "filenames": [
-        "src/ui/modules/explore/components/breadcrumb-bar/BreadcrumbBar.tsx"
+        "src/ui/modules/explore/pages/landing/CollectionLink.tsx"
       ]
     },
     "translation": ""
   },
-  "explore.landing.collection-name-form.CollectionNameForm.nameFieldLabel": {
+  "explorePage.allCounters.pageHeader": {
     "original": {
-      "defaultMessage": "Collection Name",
+      "defaultMessage": "Counters",
       "filenames": [
-        "src/ui/modules/explore/components/collection-name-form/CollectionNameForm.tsx"
+        "src/ui/modules/explore/pages/landing/AllCounters.tsx"
       ]
     },
     "translation": ""
   },
-  "explore.components.collection-name-form.useCollectionNameValidation.errors.fieldRequred": {
+  "explorePage.landing.AllCollections.pageHeader": {
     "original": {
-      "defaultMessage": "The name of the new collection is required.",
+      "defaultMessage": "Collections",
       "filenames": [
-        "src/ui/modules/explore/components/collection-name-form/useCollectionNameValidation.tsx"
+        "src/ui/modules/explore/pages/landing/AllCollections.tsx"
       ]
     },
     "translation": ""
   },
-  "explore.component.collection-name-form.useCollectionNameValidation.errors.invalidLength": {
+  "explorePage.counter.itemsSection.introText": {
     "original": {
-      "defaultMessage": "Counter collection names must be between {minLength} and {maxLength} characters long.",
+      "defaultMessage": "The following {numItems, plural, one {is an example} other {are examples}} of what this is used to count:",
       "filenames": [
-        "src/ui/modules/explore/components/collection-name-form/useCollectionNameValidation.tsx"
+        "src/ui/modules/explore/pages/counter/ItemsSection.tsx"
       ]
     },
     "translation": ""
   },
-  "explorePage.collections.CollectionHeader.subtitle.dateCreated": {
+  "explorePage.counter.info.externalLinksHeader": {
     "original": {
-      "defaultMessage": "Created <bold>{value}</bold>",
+      "defaultMessage": "Further Reading",
       "filenames": [
-        "src/ui/modules/explore/pages/collection/CollectionHeader.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.collections.CollectionHeader.subtitle.dateLastUpdated": {
-    "original": {
-      "defaultMessage": "Last updated <bold>{value}</bold>",
-      "filenames": [
-        "src/ui/modules/explore/pages/collection/CollectionHeader.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.collections.CollectionHeader.subtitle.label.standardCollection": {
-    "original": {
-      "defaultMessage": "Standard Collection",
-      "filenames": [
-        "src/ui/modules/explore/pages/collection/CollectionHeader.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.collections.CollectionHeader.subtitle.label.userCollection": {
-    "original": {
-      "defaultMessage": "Custom Collection",
-      "filenames": [
-        "src/ui/modules/explore/pages/collection/CollectionHeader.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.collections.DeleteCollectionConfirmationModal.header": {
-    "original": {
-      "defaultMessage": "Delete Collection",
-      "filenames": [
-        "src/ui/modules/explore/pages/collection/DeleteCollectionConfirmationModal.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.collections.DeleteCollectionConfirmationModal.promptMessage": {
-    "original": {
-      "defaultMessage": "Are you sure you want to delete this collection? This cannot be undone.",
-      "filenames": [
-        "src/ui/modules/explore/pages/collection/DeleteCollectionConfirmationModal.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.collections.EntriesCountIntro.emptyText": {
-    "original": {
-      "defaultMessage": "This collection currently has <bold>no counters</bold> in it.",
-      "filenames": [
-        "src/ui/modules/explore/pages/collection/EntriesCountIntro.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.collections.EntriesCountIntro.text": {
-    "original": {
-      "defaultMessage": "This collection contains <bold>{numCounters, plural, one {# counter} other {# counters}}</bold>:",
-      "filenames": [
-        "src/ui/modules/explore/pages/collection/EntriesCountIntro.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explore.collections.RenameCollectionModal.modalHeader": {
-    "original": {
-      "defaultMessage": "Rename Collection",
-      "filenames": [
-        "src/ui/modules/explore/pages/collection/RenameCollectionModal.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explore.collections.RenameCollectionModal.submitButtonLabel": {
-    "original": {
-      "defaultMessage": "Confirm",
-      "filenames": [
-        "src/ui/modules/explore/pages/collection/RenameCollectionModal.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.collections.UserCollectionView.actionBar.addRemoveCounters": {
-    "original": {
-      "defaultMessage": "Add/Remove Counters",
-      "filenames": [
-        "src/ui/modules/explore/pages/collection/UserCollectionView.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.collections.UserCollectionView.actionBar.delete": {
-    "original": {
-      "defaultMessage": "Delete",
-      "filenames": [
-        "src/ui/modules/explore/pages/collection/UserCollectionView.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.collections.UserCollectionView.actionBar.rename": {
-    "original": {
-      "defaultMessage": "Rename",
-      "filenames": [
-        "src/ui/modules/explore/pages/collection/UserCollectionView.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.counter.collection.introText": {
-    "original": {
-      "defaultMessage": "This counter is found in the following {count, plural, one {collection} other {collections}}:",
-      "filenames": [
-        "src/ui/modules/explore/pages/counter/collection-membership/CollectionSection.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.counter.collection.notInAnyCollectionsText": {
-    "original": {
-      "defaultMessage": "This counter is not found in any collections.",
-      "filenames": [
-        "src/ui/modules/explore/pages/counter/collection-membership/CollectionSection.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.counter.collections.edit-membership-dialog.dialogHeader": {
-    "original": {
-      "defaultMessage": "Add to Collections",
-      "filenames": [
-        "src/ui/modules/explore/pages/counter/collection-membership/edit-membership-dialog/EditMembershipDialog.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.counter.conjugationSection.andSoForth": {
-    "original": {
-      "defaultMessage": "... and so forth",
-      "filenames": [
-        "src/ui/modules/explore/pages/counter/ConjugationsSection.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.counter.conjugationSection.customCounterAmountInputPrefix": {
-    "original": {
-      "defaultMessage": "Or you can try out any number you'd like to here:",
-      "filenames": [
-        "src/ui/modules/explore/pages/counter/ConjugationsSection.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.counter.conjugationSection.furtherIrregulars": {
-    "original": {
-      "defaultMessage": "There are some more irregulars later on as well though:",
-      "filenames": [
-        "src/ui/modules/explore/pages/counter/ConjugationsSection.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.counter.conjugationSection.hereAreTheFirstXNumbers": {
-    "original": {
-      "defaultMessage": "Here {amount, plural, one {is} other {are}} the first {amount, plural, one {# number} other {# numbers}}.",
-      "filenames": [
-        "src/ui/modules/explore/pages/counter/ConjugationsSection.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.counter.conjugationSection.introNoIrregulars": {
-    "original": {
-      "defaultMessage": "Luckily, there are no irregular conjugations with this counter!",
-      "filenames": [
-        "src/ui/modules/explore/pages/counter/ConjugationsSection.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.counter.conjugationSection.introWithIrregulars": {
-    "original": {
-      "defaultMessage": "Make note of the {highlightedElement}.",
-      "filenames": [
-        "src/ui/modules/explore/pages/counter/ConjugationsSection.tsx"
-      ]
-    },
-    "translation": ""
-  },
-  "explorePage.counter.conjugationSection.numIrregulars": {
-    "original": {
-      "defaultMessage": "{numIrregulars, plural, one {1 irregular conjugation} other {# irregular conjugations}}",
-      "filenames": [
-        "src/ui/modules/explore/pages/counter/ConjugationsSection.tsx"
+        "src/ui/modules/explore/pages/counter/InfoSection.tsx"
       ]
     },
     "translation": ""
@@ -654,389 +511,680 @@
     },
     "translation": ""
   },
-  "explorePage.counter.info.externalLinksHeader": {
+  "explorePage.counter.conjugationSection.andSoForth": {
     "original": {
-      "defaultMessage": "Further Reading",
-      "filenames": ["src/ui/modules/explore/pages/counter/InfoSection.tsx"]
+      "defaultMessage": "... and so forth",
+      "filenames": [
+        "src/ui/modules/explore/pages/counter/ConjugationsSection.tsx"
+      ]
     },
     "translation": ""
   },
-  "explorePage.counter.itemsSection.introText": {
+  "explorePage.counter.conjugationSection.customCounterAmountInputPrefix": {
     "original": {
-      "defaultMessage": "The following {numItems, plural, one {is an example} other {are examples}} of what this is used to count:",
-      "filenames": ["src/ui/modules/explore/pages/counter/ItemsSection.tsx"]
+      "defaultMessage": "Or you can try out any number you'd like to here:",
+      "filenames": [
+        "src/ui/modules/explore/pages/counter/ConjugationsSection.tsx"
+      ]
     },
     "translation": ""
   },
-  "explorePage.landing.AllCollections.pageHeader": {
+  "explorePage.counter.conjugationSection.furtherIrregulars": {
     "original": {
-      "defaultMessage": "Collections",
-      "filenames": ["src/ui/modules/explore/pages/landing/AllCollections.tsx"]
+      "defaultMessage": "There are some more irregulars later on as well though:",
+      "filenames": [
+        "src/ui/modules/explore/pages/counter/ConjugationsSection.tsx"
+      ]
     },
     "translation": ""
   },
-  "explorePage.allCounters.pageHeader": {
+  "explorePage.counter.conjugationSection.hereAreTheFirstXNumbers": {
     "original": {
-      "defaultMessage": "Counters",
-      "filenames": ["src/ui/modules/explore/pages/landing/AllCounters.tsx"]
+      "defaultMessage": "Here {amount, plural, one {is} other {are}} the first {amount, plural, one {# number} other {# numbers}}.",
+      "filenames": [
+        "src/ui/modules/explore/pages/counter/ConjugationsSection.tsx"
+      ]
     },
     "translation": ""
   },
-  "explorePage.landing.CollectionLink.collectionSize": {
+  "explorePage.counter.conjugationSection.introNoIrregulars": {
+    "original": {
+      "defaultMessage": "Luckily, there are no irregular conjugations with this counter!",
+      "filenames": [
+        "src/ui/modules/explore/pages/counter/ConjugationsSection.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.counter.conjugationSection.introWithIrregulars": {
+    "original": {
+      "defaultMessage": "Make note of the {highlightedElement}.",
+      "filenames": [
+        "src/ui/modules/explore/pages/counter/ConjugationsSection.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.counter.conjugationSection.numIrregulars": {
+    "original": {
+      "defaultMessage": "{numIrregulars, plural, one {1 irregular conjugation} other {# irregular conjugations}}",
+      "filenames": [
+        "src/ui/modules/explore/pages/counter/ConjugationsSection.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.counter.collection.introText": {
+    "original": {
+      "defaultMessage": "This counter is found in the following {count, plural, one {collection} other {collections}}:",
+      "filenames": [
+        "src/ui/modules/explore/pages/counter/collection-membership/CollectionSection.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.counter.collection.notInAnyCollectionsText": {
+    "original": {
+      "defaultMessage": "This counter is not found in any collections.",
+      "filenames": [
+        "src/ui/modules/explore/pages/counter/collection-membership/CollectionSection.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.counter.collections.edit-membership-dialog.dialogHeader": {
+    "original": {
+      "defaultMessage": "Add to Collections",
+      "filenames": [
+        "src/ui/modules/explore/pages/counter/collection-membership/edit-membership-dialog/EditMembershipDialog.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.collections.UserCollectionView.actionBar.addRemoveCounters": {
+    "original": {
+      "defaultMessage": "Add/Remove Counters",
+      "filenames": [
+        "src/ui/modules/explore/pages/collection/UserCollectionView.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.collections.UserCollectionView.actionBar.delete": {
+    "original": {
+      "defaultMessage": "Delete",
+      "filenames": [
+        "src/ui/modules/explore/pages/collection/UserCollectionView.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.collections.UserCollectionView.actionBar.rename": {
+    "original": {
+      "defaultMessage": "Rename",
+      "filenames": [
+        "src/ui/modules/explore/pages/collection/UserCollectionView.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explore.collections.RenameCollectionModal.modalHeader": {
+    "original": {
+      "defaultMessage": "Rename Collection",
+      "filenames": [
+        "src/ui/modules/explore/pages/collection/RenameCollectionModal.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explore.collections.RenameCollectionModal.submitButtonLabel": {
+    "original": {
+      "defaultMessage": "Confirm",
+      "filenames": [
+        "src/ui/modules/explore/pages/collection/RenameCollectionModal.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.collections.EntriesCountIntro.emptyText": {
+    "original": {
+      "defaultMessage": "This collection currently has <bold>no counters</bold> in it.",
+      "filenames": [
+        "src/ui/modules/explore/pages/collection/EntriesCountIntro.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.collections.EntriesCountIntro.text": {
+    "original": {
+      "defaultMessage": "This collection contains <bold>{numCounters, plural, one {# counter} other {# counters}}</bold>:",
+      "filenames": [
+        "src/ui/modules/explore/pages/collection/EntriesCountIntro.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.collections.DeleteCollectionConfirmationModal.header": {
+    "original": {
+      "defaultMessage": "Delete Collection",
+      "filenames": [
+        "src/ui/modules/explore/pages/collection/DeleteCollectionConfirmationModal.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.collections.DeleteCollectionConfirmationModal.promptMessage": {
+    "original": {
+      "defaultMessage": "Are you sure you want to delete this collection? This cannot be undone.",
+      "filenames": [
+        "src/ui/modules/explore/pages/collection/DeleteCollectionConfirmationModal.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.collections.CollectionHeader.subtitle.dateCreated": {
+    "original": {
+      "defaultMessage": "Created <bold>{value}</bold>",
+      "filenames": [
+        "src/ui/modules/explore/pages/collection/CollectionHeader.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.collections.CollectionHeader.subtitle.dateLastUpdated": {
+    "original": {
+      "defaultMessage": "Last updated <bold>{value}</bold>",
+      "filenames": [
+        "src/ui/modules/explore/pages/collection/CollectionHeader.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.collections.CollectionHeader.subtitle.label.standardCollection": {
+    "original": {
+      "defaultMessage": "Standard Collection",
+      "filenames": [
+        "src/ui/modules/explore/pages/collection/CollectionHeader.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.collections.CollectionHeader.subtitle.label.userCollection": {
+    "original": {
+      "defaultMessage": "Custom Collection",
+      "filenames": [
+        "src/ui/modules/explore/pages/collection/CollectionHeader.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explore.components.collection-name-form.useCollectionNameValidation.errors.fieldRequred": {
+    "original": {
+      "defaultMessage": "The name of the new collection is required.",
+      "filenames": [
+        "src/ui/modules/explore/components/collection-name-form/useCollectionNameValidation.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explore.component.collection-name-form.useCollectionNameValidation.errors.invalidLength": {
+    "original": {
+      "defaultMessage": "Counter collection names must be between {minLength} and {maxLength} characters long.",
+      "filenames": [
+        "src/ui/modules/explore/components/collection-name-form/useCollectionNameValidation.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explore.landing.collection-name-form.CollectionNameForm.nameFieldLabel": {
+    "original": {
+      "defaultMessage": "Collection Name",
+      "filenames": [
+        "src/ui/modules/explore/components/collection-name-form/CollectionNameForm.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.BreadcrumbBar.collection.prefix": {
+    "original": {
+      "defaultMessage": "Collection:",
+      "filenames": [
+        "src/ui/modules/explore/components/breadcrumb-bar/BreadcrumbBar.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.BreadcrumbBar.counter.prefix": {
+    "original": {
+      "defaultMessage": "Counter:",
+      "filenames": [
+        "src/ui/modules/explore/components/breadcrumb-bar/BreadcrumbBar.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "explorePage.BreadcrumbBar.explorePageName": {
+    "original": {
+      "defaultMessage": "Explore",
+      "filenames": [
+        "src/ui/modules/explore/components/breadcrumb-bar/BreadcrumbBar.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "Sidebar.pages.explore": {
+    "original": {
+      "defaultMessage": "Explore",
+      "filenames": [
+        "src/ui/main-screen/sidebar/Sidebar.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "Sidebar.pages.feedback": {
+    "original": {
+      "defaultMessage": "Feedback",
+      "filenames": [
+        "src/ui/main-screen/sidebar/Sidebar.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "Sidebar.pages.prepare": {
+    "original": {
+      "defaultMessage": "Prepare",
+      "filenames": [
+        "src/ui/main-screen/sidebar/Sidebar.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "Sidebar.pages.releaseNotes": {
+    "original": {
+      "defaultMessage": "Release Notes",
+      "filenames": [
+        "src/ui/main-screen/sidebar/Sidebar.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "Sidebar.pages.settings": {
+    "original": {
+      "defaultMessage": "Settings",
+      "filenames": [
+        "src/ui/main-screen/sidebar/Sidebar.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "settings.quiz.amountRange.choiceRange": {
+    "original": {
+      "defaultMessage": "{min}-{max}",
+      "filenames": [
+        "src/ui/main-screen/settings/SettingsPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "settings.quiz.amountRange.description": {
+    "original": {
+      "defaultMessage": "Adjust the range of numbers generated.",
+      "filenames": [
+        "src/ui/main-screen/settings/SettingsPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "settings.quiz.amountRange.header": {
+    "original": {
+      "defaultMessage": "Amounts Range",
+      "filenames": [
+        "src/ui/main-screen/settings/SettingsPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "settings.quiz.infiniteMode.checkboxLabel": {
+    "original": {
+      "defaultMessage": "Infinite Mode",
+      "filenames": [
+        "src/ui/main-screen/settings/SettingsPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "settings.quiz.infiniteMode.description": {
+    "original": {
+      "defaultMessage": "Choose whether the quiz has a finite number of questions, or if it goes on forever.",
+      "filenames": [
+        "src/ui/main-screen/settings/SettingsPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "settings.quiz.infiniteMode.header": {
+    "original": {
+      "defaultMessage": "Infinite Mode",
+      "filenames": [
+        "src/ui/main-screen/settings/SettingsPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "settings.pageHeader": {
+    "original": {
+      "defaultMessage": "Settings",
+      "filenames": [
+        "src/ui/main-screen/settings/SettingsPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "mainScreen.tutorial.modalHeader": {
+    "original": {
+      "defaultMessage": "Tutorial",
+      "filenames": [
+        "src/ui/main-screen/prepare/TutorialModal.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "preparePage.QuizPreparationView.buttonStartQuiz": {
+    "original": {
+      "defaultMessage": "Start Quiz!",
+      "filenames": [
+        "src/ui/main-screen/prepare/QuizPreparationView.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "preparePage.links.jyosuushiWikipediaPage": {
+    "original": {
+      "defaultMessage": "Japanese counters",
+      "filenames": [
+        "src/ui/main-screen/prepare/PreparePage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "preparePage.links.tutorial": {
+    "original": {
+      "defaultMessage": "Click here to read the tutorial.",
+      "filenames": [
+        "src/ui/main-screen/prepare/PreparePage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "preparePage.welcomeMessage": {
+    "original": {
+      "defaultMessage": "Welcome to <bold>助数詞を練習</bold>! This is a tool that's meant to help you study {jyosuushiWikipediaLink}. You'll be given a random item and a random number, and then you tell us how you'd count that in Japanese. {tutorialLink}",
+      "filenames": [
+        "src/ui/main-screen/prepare/PreparePage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "preparePage.CounterPreview.header": {
+    "original": {
+      "defaultMessage": "{count, plural, one {# Counter} other {# Counters}} included",
+      "filenames": [
+        "src/ui/main-screen/prepare/CounterPreview.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "preparePage.CollectionToggleButton.collectionSizeLabel": {
     "original": {
       "defaultMessage": "{size, plural, one {# counter} other {# counters}}",
-      "filenames": ["src/ui/modules/explore/pages/landing/CollectionLink.tsx"]
-    },
-    "translation": ""
-  },
-  "explorePage.landing.CollectionLink.typeStandard": {
-    "original": {
-      "defaultMessage": "Standard",
-      "filenames": ["src/ui/modules/explore/pages/landing/CollectionLink.tsx"]
-    },
-    "translation": ""
-  },
-  "explorePage.landing.CollectionLink.typeUser": {
-    "original": {
-      "defaultMessage": "Custom",
-      "filenames": ["src/ui/modules/explore/pages/landing/CollectionLink.tsx"]
-    },
-    "translation": ""
-  },
-  "explore.landing.CreateCollectionModal.modalHeader": {
-    "original": {
-      "defaultMessage": "Create Custom Collection",
       "filenames": [
-        "src/ui/modules/explore/pages/landing/CreateCollectionModal.tsx"
+        "src/ui/main-screen/prepare/CollectionToggleButton.tsx"
       ]
     },
     "translation": ""
   },
-  "explore.landing.CreateCollectionModal.submitButtonLabel": {
+  "preparePage.CollectionToggleButton.viewContentsLink": {
     "original": {
-      "defaultMessage": "Create",
+      "defaultMessage": "View Details",
       "filenames": [
-        "src/ui/modules/explore/pages/landing/CreateCollectionModal.tsx"
+        "src/ui/main-screen/prepare/CollectionToggleButton.tsx"
       ]
     },
     "translation": ""
   },
-  "explore.landing.CreateCollectionTile.buttonText": {
+  "preparePage.CollectionSelection.header": {
     "original": {
-      "defaultMessage": "New Custom Collection",
+      "defaultMessage": "Collections",
       "filenames": [
-        "src/ui/modules/explore/pages/landing/CreateCollectionTile.tsx"
+        "src/ui/main-screen/prepare/CollectionSelection.tsx"
       ]
     },
     "translation": ""
   },
-  "QuizHistory.historyRow.submittedLabel": {
+  "preparePage.CollectionSelection.subheader": {
     "original": {
-      "defaultMessage": "Submitted:",
+      "defaultMessage": "(select 1 or more)",
       "filenames": [
-        "src/ui/modules/quiz/components/history-display/HistoryRow.tsx"
+        "src/ui/main-screen/prepare/CollectionSelection.tsx"
       ]
     },
     "translation": ""
   },
-  "quiz-page.AnswerInput.buttonSkipQuestion": {
+  "mainScreen.tutorial.page1": {
     "original": {
-      "defaultMessage": "Skip this question",
-      "filenames": ["src/ui/modules/quiz/views/question/AnswerInput/index.tsx"]
-    },
-    "translation": ""
-  },
-  "quiz-page.AnswerInput.howToSubmit": {
-    "original": {
-      "defaultMessage": "Press the [enter] key when you're finished, or click the arrow button to submit.",
-      "filenames": ["src/ui/modules/quiz/views/question/AnswerInput/index.tsx"]
-    },
-    "translation": ""
-  },
-  "quiz-page.AnswerInput.TsuNotice.text": {
-    "original": {
-      "defaultMessage": "While 〜つ and 〜個 are always valid counters, you can't use them here. You'll have to be more specific!",
+      "defaultMessage": "On the main screen, find conveniently made packs of counters. Explore each of their details, and then choose the ones that contain the counters you want to study.",
       "filenames": [
-        "src/ui/modules/quiz/views/question/AnswerInput/TsuNotice/index.tsx"
+        "src/ui/main-screen/prepare/tutorial/index.ts"
       ]
     },
     "translation": ""
   },
-  "quizPage.QuestionDisplay.text": {
+  "mainScreen.tutorial.page2": {
     "original": {
-      "defaultMessage": "{amount} {itemName}",
-      "filenames": ["src/ui/modules/quiz/views/question/QuestionDisplay.tsx"]
-    },
-    "translation": ""
-  },
-  "quiz-page.results.AnswersTable.columnHeaders.counter": {
-    "original": {
-      "defaultMessage": "Counter",
+      "defaultMessage": "When you hit 'Start Quiz', you'll be prompted with random nouns of random amounts. Determine the appropriate counter for the noun, and then put in your answer.\n\nEven though they're valid, 〜つ and 〜個 aren't accepted answers!",
       "filenames": [
-        "src/ui/modules/quiz/views/question/ResultsView/AnswersTable.tsx"
+        "src/ui/main-screen/prepare/tutorial/index.ts"
       ]
     },
     "translation": ""
   },
-  "quiz-page.results.AnswersTable.columnHeaders.hiragana": {
+  "mainScreen.tutorial.page3": {
     "original": {
-      "defaultMessage": "Hiragana",
+      "defaultMessage": "If you don't want to answer, hit 'Skip this question'. It won't penalize you and will remove the question from the quiz.",
       "filenames": [
-        "src/ui/modules/quiz/views/question/ResultsView/AnswersTable.tsx"
+        "src/ui/main-screen/prepare/tutorial/index.ts"
       ]
     },
     "translation": ""
   },
-  "quiz-page.results.AnswersTable.columnHeaders.kanji": {
+  "mainScreen.tutorial.page4": {
     "original": {
-      "defaultMessage": "Kanji",
+      "defaultMessage": "Once you submit your answer, check your accuracy! It will show you all of the correct answers at this stage, so you can take note if you made a mistake.",
       "filenames": [
-        "src/ui/modules/quiz/views/question/ResultsView/AnswersTable.tsx"
+        "src/ui/main-screen/prepare/tutorial/index.ts"
       ]
     },
     "translation": ""
   },
-  "quiz-page.results.AnswersTable.columnHeaders.rule": {
+  "mainScreen.tutorial.page5": {
     "original": {
-      "defaultMessage": "Rule",
+      "defaultMessage": "If you made a typo or a genuine mistake, hit 'Ignore Answer'. It won't penalize you, and it will shuffle that question in for later to try again. It's up to you to stay honest!",
       "filenames": [
-        "src/ui/modules/quiz/views/question/ResultsView/AnswersTable.tsx"
+        "src/ui/main-screen/prepare/tutorial/index.ts"
       ]
     },
     "translation": ""
   },
-  "quiz-page.results.AnswersTable.columnHeaders.studyPack": {
+  "mainScreen.tutorial.page6": {
     "original": {
-      "defaultMessage": "Study Pack",
+      "defaultMessage": "When you've gone through all of your questions, you'll have a chance to see your overall results. From there, you can choose to change your study packs, or try this quiz again with new numbers and items.",
       "filenames": [
-        "src/ui/modules/quiz/views/question/ResultsView/AnswersTable.tsx"
+        "src/ui/main-screen/prepare/tutorial/index.ts"
       ]
     },
     "translation": ""
   },
-  "quiz-page.results.AnswersTable.kanji.noKanjiForCounter": {
+  "feedbackPage.links.contribute.description": {
     "original": {
-      "defaultMessage": "(none)",
+      "defaultMessage": "Officially submit bug reports or feature requests. Or, fork the repository and open a pull request — I'd love help on this project!",
       "filenames": [
-        "src/ui/modules/quiz/views/question/ResultsView/AnswersTableRow.tsx"
+        "src/ui/main-screen/feedback/FeedbackPage.tsx"
       ]
     },
     "translation": ""
   },
-  "quiz-page.results.AnswersTable.readingsLabels.irregular": {
+  "feedbackPage.links.contribute.link": {
     "original": {
-      "defaultMessage": "(irregular)",
+      "defaultMessage": "GitHub Repository",
       "filenames": [
-        "src/ui/modules/quiz/views/question/ResultsView/AnswersTableRow.tsx"
+        "src/ui/main-screen/feedback/FeedbackPage.tsx"
       ]
     },
     "translation": ""
   },
-  "quiz-page.results.AnswersTable.readingsLabel.nonKango": {
+  "feedbackPage.intro": {
     "original": {
-      "defaultMessage": "(not 漢語)",
+      "defaultMessage": "The project is open source and accepting bug reports, feature requests, and code contributions!",
       "filenames": [
-        "src/ui/modules/quiz/views/question/ResultsView/AnswersTableRow.tsx"
+        "src/ui/main-screen/feedback/FeedbackPage.tsx"
       ]
     },
     "translation": ""
   },
-  "quiz-page.results.buttonIgnoreAnswer": {
+  "feedbackPage.links.personalTwitter.description": {
     "original": {
-      "defaultMessage": "Ignore Answer",
-      "filenames": ["src/ui/modules/quiz/views/question/ResultsView/index.tsx"]
-    },
-    "translation": ""
-  },
-  "quiz-page.results.buttonNextQuestion": {
-    "original": {
-      "defaultMessage": "Next Question",
-      "filenames": ["src/ui/modules/quiz/views/question/ResultsView/index.tsx"]
-    },
-    "translation": ""
-  },
-  "quiz-page.results.header.correct": {
-    "original": {
-      "defaultMessage": "Correct!",
-      "filenames": ["src/ui/modules/quiz/views/question/ResultsView/index.tsx"]
-    },
-    "translation": ""
-  },
-  "quiz-page.results.header.incorrect": {
-    "original": {
-      "defaultMessage": "Not quite right...",
-      "filenames": ["src/ui/modules/quiz/views/question/ResultsView/index.tsx"]
-    },
-    "translation": ""
-  },
-  "quiz-page.results.header.skipped": {
-    "original": {
-      "defaultMessage": "Skipped",
-      "filenames": ["src/ui/modules/quiz/views/question/ResultsView/index.tsx"]
-    },
-    "translation": ""
-  },
-  "quiz-page.results.table.intro": {
-    "original": {
-      "defaultMessage": "Here are all of the possible answers based on the sets you have enabled:",
-      "filenames": ["src/ui/modules/quiz/views/question/ResultsView/index.tsx"]
-    },
-    "translation": ""
-  },
-  "quiz-page.results.skippedQuestion": {
-    "original": {
-      "defaultMessage": "Alright! You don't need to worry about this question!",
-      "filenames": ["src/ui/modules/quiz/views/question/ResultsView/index.tsx"]
-    },
-    "translation": ""
-  },
-  "quiz-page.QuizWrapup.quitQuiz": {
-    "original": {
-      "defaultMessage": "Leave",
-      "filenames": ["src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"]
-    },
-    "translation": ""
-  },
-  "quiz-page.QuizWrapup.restartQuiz": {
-    "original": {
-      "defaultMessage": "Restart",
-      "filenames": ["src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"]
-    },
-    "translation": ""
-  },
-  "quiz-page.QuizWrapup.encouragement.highScore1": {
-    "original": {
-      "defaultMessage": "That was astounding, really.",
-      "description": "(A random message displayed if the user got a high score; does not need to be a literal translation)",
-      "filenames": ["src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"]
-    },
-    "translation": ""
-  },
-  "quiz-page.QuizWrapup.encouragement.highScore2": {
-    "original": {
-      "defaultMessage": "Look at how far you've come on your journey!",
-      "description": "(A random message displayed if the user got a high score; does not need to be a literal translation)",
-      "filenames": ["src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"]
-    },
-    "translation": ""
-  },
-  "quiz-page.QuizWrapup.encouragement.highScore3": {
-    "original": {
-      "defaultMessage": "This stuff isn't easy, and you're aceing it!",
-      "description": "(A random message displayed if the user got a high score; does not need to be a literal translation)",
-      "filenames": ["src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"]
-    },
-    "translation": ""
-  },
-  "quiz-page.QuizWrapup.encouragement.highScore4": {
-    "original": {
-      "defaultMessage": "It's taken a lot of work to get here; pat yourself on the back.",
-      "description": "(A random message displayed if the user got a high score; does not need to be a literal translation)",
-      "filenames": ["src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"]
-    },
-    "translation": ""
-  },
-  "quiz-page.QuizWrapup.encouragement.lowScore1": {
-    "original": {
-      "defaultMessage": "You're trying your best, and that's the key to success!",
-      "description": "(A random message displayed if the user got a low score; does not need to be a literal translation)",
-      "filenames": ["src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"]
-    },
-    "translation": ""
-  },
-  "quiz-page.QuizWrapup.encouragement.lowScore2": {
-    "original": {
-      "defaultMessage": "You've learned so much to get here, I know you'll get to where you want to go!",
-      "description": "(A random message displayed if the user got a low score; does not need to be a literal translation)",
-      "filenames": ["src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"]
-    },
-    "translation": ""
-  },
-  "quiz-page.QuizWrapup.encouragement.lowScore3": {
-    "original": {
-      "defaultMessage": "This stuff isn't easy; practice WILL make perfect.",
-      "description": "(A random message displayed if the user got a low score; does not need to be a literal translation)",
-      "filenames": ["src/ui/modules/quiz/views/wrapup/QuizWrapup.tsx"]
-    },
-    "translation": ""
-  },
-  "releaseNotes.browserNames.chrome": {
-    "original": {
-      "defaultMessage": "Chrome",
+      "defaultMessage": "Send me a tweet or a direct message if you're not able to go through GitHub.",
       "filenames": [
-        "src/ui/modules/release-notes/components/BugFixEntryDisplay.tsx"
+        "src/ui/main-screen/feedback/FeedbackPage.tsx"
       ]
     },
     "translation": ""
   },
-  "releaseNotes.browserNames.edge": {
+  "feedbackPage.links.personalTwitter.link": {
     "original": {
-      "defaultMessage": "Microsoft Edge",
+      "defaultMessage": "@AlecDeitloff",
       "filenames": [
-        "src/ui/modules/release-notes/components/BugFixEntryDisplay.tsx"
+        "src/ui/main-screen/feedback/FeedbackPage.tsx"
       ]
     },
     "translation": ""
   },
-  "releaseNotes.browserNames.firefox": {
+  "components.popups.BaseConfirmationDialog.buttonNo": {
     "original": {
-      "defaultMessage": "Firefox",
+      "defaultMessage": "No",
+      "description": "Clicking this buttons cancels/declines the yes/no confirmation prompt given to the user.",
       "filenames": [
-        "src/ui/modules/release-notes/components/BugFixEntryDisplay.tsx"
+        "src/ui/components/popups/BaseConfirmationDialog.tsx"
       ]
     },
     "translation": ""
   },
-  "releaseNotes.browserNames.ie": {
+  "components.popups.BaseConfirmationDialog.buttonYes": {
     "original": {
-      "defaultMessage": "Internet Explorer",
+      "defaultMessage": "Yes",
+      "description": "Clicking this button confirms the yes/no confirmation prompt given to the user.",
       "filenames": [
-        "src/ui/modules/release-notes/components/BugFixEntryDisplay.tsx"
+        "src/ui/components/popups/BaseConfirmationDialog.tsx"
       ]
     },
     "translation": ""
   },
-  "releaseNotes.browserNames.safari": {
+  "header.historyModalHeader": {
     "original": {
-      "defaultMessage": "Safari",
+      "defaultMessage": "History",
       "filenames": [
-        "src/ui/modules/release-notes/components/BugFixEntryDisplay.tsx"
+        "src/ui/Header/index.tsx"
       ]
     },
     "translation": ""
   },
-  "releaseNotes.sectionHeaders.bugFixes": {
+  "header.siteTagLine": {
     "original": {
-      "defaultMessage": "Bug Fixes",
+      "defaultMessage": "Let's review Japanese counters!",
       "filenames": [
-        "src/ui/modules/release-notes/IncrementalVersionDisplay.tsx"
+        "src/ui/Header/index.tsx"
       ]
     },
     "translation": ""
   },
-  "releaseNotes.sectionHeaders.improvements": {
+  "header.quiz-buttons.historyButtonTooltip": {
     "original": {
-      "defaultMessage": "Improvements",
+      "defaultMessage": "History",
       "filenames": [
-        "src/ui/modules/release-notes/IncrementalVersionDisplay.tsx"
+        "src/ui/Header/index.tsx"
       ]
     },
     "translation": ""
   },
-  "releaseNotes.sectionHeaders.newFeatures": {
+  "header.quiz-buttons.homeButtonTooltip": {
     "original": {
-      "defaultMessage": "New Features",
+      "defaultMessage": "Home",
       "filenames": [
-        "src/ui/modules/release-notes/IncrementalVersionDisplay.tsx"
+        "src/ui/Header/index.tsx"
       ]
     },
     "translation": ""
   },
-  "releaseNotes.specialVersionNotes.initialRelease": {
+  "header.score.xOfYCorrect": {
     "original": {
-      "defaultMessage": "Initial release.",
-      "description": "Text to appear in place of release notes for the version that was the initial release.",
-      "filenames": ["src/ui/modules/release-notes/ReleaseNotesPage.tsx"]
+      "defaultMessage": "{x} / {y} correct",
+      "filenames": [
+        "src/ui/Header/Score.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "header.AbortConfirmationModal.header": {
+    "original": {
+      "defaultMessage": "End Quiz Early?",
+      "filenames": [
+        "src/ui/Header/AbortConfirmationModal.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "header.AbortConfirmationModal.question": {
+    "original": {
+      "defaultMessage": "Are you sure you want to end the current quiz early?",
+      "filenames": [
+        "src/ui/Header/AbortConfirmationModal.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "constants.quizAmountRanges.nameGiant": {
+    "original": {
+      "defaultMessage": "Gigantic",
+      "filenames": [
+        "src/constants/index.ts"
+      ]
+    },
+    "translation": ""
+  },
+  "constants.quizAmountRanges.nameLarge": {
+    "original": {
+      "defaultMessage": "Massive",
+      "filenames": [
+        "src/constants/index.ts"
+      ]
+    },
+    "translation": ""
+  },
+  "constants.quizAmountRanges.nameMedium": {
+    "original": {
+      "defaultMessage": "Average",
+      "filenames": [
+        "src/constants/index.ts"
+      ]
+    },
+    "translation": ""
+  },
+  "constants.quizAmountRanges.nameSmall": {
+    "original": {
+      "defaultMessage": "Tiny",
+      "filenames": [
+        "src/constants/index.ts"
+      ]
     },
     "translation": ""
   }
