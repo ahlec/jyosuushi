@@ -1,0 +1,11 @@
+{
+  "bucket": {
+    "name": "INSERT_BUCKET_NAME_HERE",
+    "region": "us-west-1"
+  },
+  "buildDir": "./dist",
+  "cloudfront": {
+    "id": "INSERT_CLOUDFRONT_DISTRIBUTION_ID_HERE",
+    "region": "us-west-1"
+  }
+}

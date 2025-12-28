@@ -9,7 +9,7 @@
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
-    "clean": "rimraf ./dist-client",
+    "clean": "rimraf ./dist",
     "deploy": "s3-deployer",
     "db:create": "ts-node ./scripts/create-database.ts",
     "db:audit": "ts-node ./scripts/audit-database.ts",
@@ -33,6 +33,7 @@
     "@formatjs/cli": "^2.0.0",
     "@formatjs/ts-transformer": "^2.5.0",
     "@svgr/webpack": "^8.1.0",
+    "@types/better-sqlite3": "^7.6.13",
     "@types/classnames": "^2.2.10",
     "@types/lodash": "^4.14.178",
     "@types/mime": "^2.0.2",
@@ -42,8 +43,8 @@
     "@types/react-modal": "^3.16.3",
     "@types/unist": "^2.0.3",
     "@types/uuid": "^8.0.1",
-    "@zerollup/ts-transform-paths": "^1.7.18",
     "autoprefixer": "^10.4.23",
+    "better-sqlite3": "^12.5.0",
     "browserslist": "^4.28.1",
     "chalk": "^4.1.0",
     "cli-real-favicon": "^0.0.8",
@@ -99,10 +100,7 @@
     "webpack-merge": "^6.0.1"
   },
   "dependencies": {
-    "@types/better-sqlite3": "^7.6.13",
-    "better-sqlite3": "^12.5.0",
     "classnames": "^2.2.6",
-    "cosmiconfig": "^7.0.0",
     "lodash": "^4.17.21",
     "memoize-one": "^5.1.1",
     "react": "^19.2.3",

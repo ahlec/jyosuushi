@@ -15,12 +15,7 @@ export default defineConfig([
   configPrettier,
   jsxA11Y.flatConfigs.recommended,
   {
-    ignores: [
-      "**/*.generated.ts",
-      "**/*.generated.tsx",
-      "data/*",
-      "dist-client/*",
-    ],
+    ignores: ["**/*.generated.ts", "**/*.generated.tsx", "data/*", "dist/*"],
   },
   {
     name: "main",
