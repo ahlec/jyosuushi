@@ -9,7 +9,7 @@
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
-    "clean": "rimraf ./dist-client",
+    "clean": "rimraf ./dist",
     "deploy": "s3-deployer",
     "db:create": "ts-node ./scripts/create-database.ts",
     "db:audit": "ts-node ./scripts/audit-database.ts",

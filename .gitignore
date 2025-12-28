@@ -3,23 +3,12 @@ node_modules
 npm-debug.log
 
 # Local development
-*.env
-*.dev
 .DS_Store
-scrubber_cache/
-scripts/kazu/
 jyosuushi.sqlite
-
-# Docker
-Dockerfile
-
-# Builds/distribution builds
-build/
-dist-client/
-dist-server/
 
 # Deploying
 .s3deployerrc.json
+dist/
 
 # Yarn
 yarn-error.log
@@ -31,4 +20,4 @@ config.json
 *.generated.ts
 *.generated.tsx
 *.scss.d.ts
-src/client/i18n/translations/*.json
+src/i18n/translations/*.json
