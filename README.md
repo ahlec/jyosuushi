@@ -5,6 +5,7 @@ A browser-based webapp to facilitate studying [Japanese counters](https://en.wik
 ## Installation
 
 1. **Globally install [mise-en-place](https://mise.jdx.dev/).**
+
    This manages the versions of all other tools and is the only application required to be installed globally. When you `cd` into the repository, the tools in [mise.toml](https://github.com/ahlec/jyosuushi/blob/master/mise.toml) will automatically be installed.
 
    Confirm that everything is working by running
@@ -51,6 +52,9 @@ All data (counters, items, sets, etc) are authored and modified within a lightwe
 
 The database is built from SQL files found in the [sql/ directory](https://github.com/ahlec/jyosuushi/tree/master/sql).
 
+> [!WARNING]
+> Creating the SQLite database starts by deleting what was there already. If you have local changes, make sure to first run `yarn db:dump` to save your changes to SQL files.
+
 1. **Create your local database.**
 
    ```bash
@@ -59,15 +63,11 @@ The database is built from SQL files found in the [sql/ directory](https://githu
 
    This will create a new SQLite database from all of the SQL files in the directory.
 
-   > [!WARNING]
-   > This process will destroy the database file if it already exists. If you have unsaved local changes to the database, first run `yarn db:dump` to update the SQL files.
-
 2. **Open the SQLite file in your editor of choice.**
 
    The database file is saved as **jyosuushi.sqlite** in the root of the repository.
 
-   > [!NOTE]
-   > The SQLite database is purely for authoring data, and isn't used directly by the runtime. Use the following steps in this process to go from SQLite to the React application.
+   The SQLite database is purely for authoring data, and isn't used directly by the runtime. Changes you make to the SQLite database will not automatically show up in the application. Continue to the next steps to export your data for runtime.
 
 3. **Check for data errors.**
 
