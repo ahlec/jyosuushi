@@ -16,7 +16,7 @@ INSERT INTO
     irregular_type,
     does_presence_erase_regular_conjugations
   )
-VALUES('日', 10, 'とおか', 'arbitrary-reading', 0);
+VALUES('日', 10, 'とおか', 'arbitrary-reading', 1);
 INSERT INTO
   "counter_irregulars" (
     counter_id,

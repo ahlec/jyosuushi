@@ -1046,7 +1046,7 @@ export const COUNTER_日: Counter = {
       {
         amount: 10,
         countingSystem: null,
-        doesPresenceEraseRegularConjugations: false,
+        doesPresenceEraseRegularConjugations: true,
         reading: "とおか",
         type: CounterIrregularType.ArbitraryReading,
       },
