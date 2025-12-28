@@ -1,125 +1,113 @@
 # 助数詞を練習: Let's Review Japanese Counters!
 
-[![Twitter Follow](https://img.shields.io/twitter/follow/Jyosuushi.svg?style=social)](https://twitter.com/Jyosuushi)
-
 A browser-based webapp to facilitate studying [Japanese counters](https://en.wikipedia.org/wiki/Japanese_counter_word). A lightweight app inspired by the simplicity of [WaniKani](https://www.wanikani.com/), this application allows the user to select packs of counters they would like to study, and then presents a quiz with random amounts of random items, requiring the user to correctly count the specified item in Japanese.
 
-## Getting Started
+## Installation
 
-These instructions will get you a copy of the project up and running on your local machine for development and deployment.
+1. **Globally install [mise-en-place](https://mise.jdx.dev/).**
+   This manages the versions of all other tools and is the only application required to be installed globally. When you `cd` into the repository, the tools in [mise.toml](https://github.com/ahlec/jyosuushi/blob/master/mise.toml) will automatically be installed.
 
-### Prerequisites
+   Confirm that everything is working by running
 
-The project uses [Yarn](https://yarnpkg.com/) for package management.
+   ```bash
+   which node
+   ```
 
-Additionally, if you're going to be changing the favicon, make sure to globally install `cli-real-favicon`.
+   You should see a path like `/Users/my-user/.local/share/mise/installs/node/24.12.0/bin/node`. If you don't, run `mise activate` in your terminal and [add it to your shell's rc file](https://mise.jdx.dev/cli/activate.html).
 
-```
-yarn global add cli-real-favicon
-```
+2. **Install depdendencies.**
 
-I haven't found a way to get this to work without being a global installation.
+   ```bash
+   yarn install
+   ```
 
-### Installing
+3. **Generate development files.**
 
-1. Clone the repo
+   ```bash
+   yarn codegen
+   ```
 
-```
-git clone https://github.com/ahlec/jyosuushi.git
-```
+   This will produce type declaration files for the SCSS files, which are required to exist in order to pass type checking.
 
-2. Install packages
+4. **Create the development config file.**
 
-```
-yarn install
-```
+   ```bash
+   cp config.json-template config.json
+   ```
 
-3. Start the development server
+   This file defines required environment variables for development. If it doesn't exist, the application will not run.
 
-```
-yarn start
-```
+5. **Start the local server**
 
-At this point, you can navigate to `http://localhost:8080/`. As of right now, there is no persistence of data on a server or backend, so no setup of this kind is necessary for running or deployment.
+   ```bash
+   yarn start
+   ```
 
-## Configuration
+   This will host the local server at http://localhost:8080.
 
-Out of the box, the repository is configured to run locally in a development environment, in order to facilitate easily onboarding into the project.
+## Editing data
 
-Understandably, the default configuration values are not suitable for production environments. A valid set of default production values is maintained in **/prod.jyosuushirc**. When working on a production environment, remove the prefix to this filename:
+All data (counters, items, sets, etc) are authored and modified within a lightweight SQLite database. CLI scripts will take this data and transform it into runtime data, which is then built into the deployed app.
 
-```bash
-mv prod.jyosuushirc .jyosuushirc
-```
+The database is built from SQL files found in the [sql/ directory](https://github.com/ahlec/jyosuushi/tree/master/sql).
 
-Note that there are some fields in this file which are required to fill out and that the file isn't guaranteed or expected to work without some modification.
+1. **Create your local database.**
 
-When running the server in production mode (`NODE_ENV=production`), the server will throw an error if an explicit [cosmiconfig](https://github.com/davidtheclark/cosmiconfig) config for **jyosuushi** can not be found, as a safety measure.
+   ```bash
+   yarn db:create
+   ```
 
-## Deploying
+   This will create a new SQLite database from all of the SQL files in the directory.
 
-When you're ready to publish the webapp, all you need to do is build the application.
+   > [!WARNING]
+   > This process will destroy the database file if it already exists. If you have unsaved local changes to the database, first run `yarn db:dump` to update the SQL files.
 
-```
-yarn build
-```
+2. **Open the SQLite file in your editor of choice.**
 
-This will create the `build/` directory. On a successful build execution, copy the `build/` directory to a web directory on your server.
+   The database file is saved as **jyosuushi.sqlite** in the root of the repository.
 
-## Changing the favicon
+   > [!NOTE]
+   > The SQLite database is purely for authoring data, and isn't used directly by the runtime. Use the following steps in this process to go from SQLite to the React application.
 
-If you find yourself needing to change the favicon, export the full-resolution file to the root `favicon.png` file. After that, use the package script to generate the various favicon files.
+3. **Check for data errors.**
 
-```
-yarn favicon
-```
+   ```bash
+   yarn db:audit
+   ```
 
-## Updating data
+   This will lint the database, looking for data errors that would block exporting (eg, a counter defined without any readings) or warnings (eg, a non-essential field is empty). Resolve all errors and be aware of the warnings flagged.
 
-All of the data for the application is managed through a SQLite database for ease of use; the database allows us to have oversight in the way of foreign and unique keys while also cutting down to the bare minimum of necessary boilerplate.
+4. **Update your runtime files.**
 
-The database itself is not committed to the repository because, as a binary file, resolving merge conflicts is nigh impossible. Instead, we store the SQL files for the contents and can rebuild the database at any moment.
+   ```bash
+   yarn db:export
+   ```
 
-When you're working on data, the first step will be creating your local database.
+   This runs a complex transformation pipeline that creates the files in the [data/ directory](https://github.com/ahlec/jyosuushi/tree/master/data) from the SQLite database.
 
-```
-yarn db:create
-```
+   At this stage, you can now see your data changes in the local server.
 
-This will create a local database (deleting the file that was there before, so make sure to **dump** your changes if you had any!) and will also pull in all of the changes to your database to bring it up to date.
+5. **Save your data changes.**
 
-You then modify the SQLite database `jyosuushi.sqlite` in the root directory directly. When you have made your changes, you'll then need to run the script to export the data from there into TypeScript.
+   ```bash
+   yarn db:dump
+   ```
 
-```
-yarn db:export
-```
+   This command will take the full contents of your SQLite database and export them to the [sql/ directory](https://github.com/ahlec/jyosuushi/tree/master/sql). These files (and the exported/updated runtime files) are then committed to Git.
 
-When this is done, it will update the files in the `./data` directory. Subsequent builds or development servers will build against these updated files. Additionally, these files are tracked in the repository to allow for painlessly building after cloning the repository.
+### Updating your database
 
-When you are ready to submit a commit, you will need to dump all of your database back to the SQL files. To do this, you'll want to use another package script:
+The workflow for updating your database when you sync the repository is to:
 
-```
-yarn db:dump
-```
+1. **Dump your database**.
+   Use the `yarn db:dump` command. You can then commit these changes or `git stash` them for later.
 
-## Built With
+   You can skip this step if you don't have changes, or if you want to discard ALL changes you've made to your database.
 
-- [TypeScript](https://www.typescriptlang.org/)
-- [React](https://reactjs.org/) - The web framework for the application
-- [Redux](https://redux.js.org/) - State management for the application
-- [webpack](https://webpack.js.org/) - Module bundler and build system
-- [Yarn](https://yarnpkg.com/) - Package management
-- [SQLite](https://www.sqlite.org/index.html) - Pre-build database for quiz data
+2. **Recreate the database.**
+   Use `yarn db:create` to delete your old database file and recreate it from the SQL files currently checked out.
 
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/ahlec/jyosuushi/tags).
-
-## Authors
-
-- **Alec Deitloff** - _Initial work_ - [ahlec](https://github.com/ahlec)
-
-See also the list of [contributors](https://github.com/ahlec/jyosuushi/contributors) who participated in this project.
+All resolution of merge conflicts are done to the SQL files.
 
 ## License
 
@@ -127,5 +115,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-- [WaniKani](https://www.wanikani.com/) - Inspiration and a constant guiding light
-- [jquery-kana-input](https://github.com/argelius/jquery-kana-input) - Implementation basis for making a kana-based input box
+- [WaniKani](https://www.wanikani.com/) - Inspiration for the product and some design direction.
+- [jquery-kana-input](https://github.com/argelius/jquery-kana-input) - Implementation basis for making a kana-based input box.
