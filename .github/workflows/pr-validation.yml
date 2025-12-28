@@ -1,0 +1,48 @@
+name: PR Validation
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Setup node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24.12.0
+      - name: Locate yarn cache
+        id: yarn-cache-dir-path
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+      - name: Cache yarn dependencies
+        id: yarn-cache
+        uses: actions/cache@v5
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: v1-${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            v1-${{ runner.os }}-yarn-
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile --non-interactive
+      - name: Codegen
+        run: yarn codegen
+      - name: Type check
+        run: yarn tsc --noEmit
+      - name: Check project boundaries
+        run: yarn check-project-boundaries
+      - name: Lint code
+        run: yarn lint
+      - name: Ensure database files are up to date
+        run: |
+          yarn db:create
+          yarn db:export
+          git diff --exit-code data/*
+      - name: Audit data
+        run: yarn db:audit # Can reuse the database created in the previous step
+      - name: Ensure i18n files are up to date
+        run: |
+          yarn i18n:extract
+          yarn codegen:i18n
+          git diff --exit-code
+      - name: Build
+        run: yarn build

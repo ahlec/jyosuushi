@@ -13,7 +13,7 @@
     "lodash",
     "memoize-one",
     "react",
-    "react-dom",
+    "react-dom/client",
     "react-ga",
     "react-intl",
     "react-markdown",
