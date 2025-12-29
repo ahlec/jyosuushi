@@ -1346,8 +1346,8 @@ VALUES(
     0,
     1,
     0,
-    1,
-    0
+    0,
+    1
   );
 INSERT INTO
   "counter_readings" (
