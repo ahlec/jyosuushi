@@ -1,5 +1,4 @@
-import * as ReactGA from "react-ga";
-
+import type { PostHog } from "posthog-js/react";
 import { CounterCollection } from "@jyosuushi/interfaces";
 
 import { AmountRange } from "@jyosuushi/redux";
@@ -14,7 +13,10 @@ import { Store } from "@jyosuushi/redux/store";
 export type QuizMode = "regular" | "infinite";
 
 class QuizManager {
-  public constructor(private readonly store: Store) {}
+  public constructor(
+    private readonly store: Store,
+    private readonly posthog: PostHog,
+  ) {}
 
   public get hasNextQuestion(): boolean {
     const state = this.store.getState();
@@ -49,8 +51,7 @@ class QuizManager {
 
     const GOOGLE_ANALYTICS_CATEGORY = "Quiz Started";
 
-    ReactGA.event({
-      action: "Quiz Started",
+    this.posthog.capture("quiz-started", {
       category: GOOGLE_ANALYTICS_CATEGORY,
       label: `Mode: ${mode}`,
     });
@@ -62,16 +63,14 @@ class QuizManager {
         return;
       }
 
-      ReactGA.event({
-        action: "Standard collection selected",
+      this.posthog.capture("standard-collection-selected", {
         category: GOOGLE_ANALYTICS_CATEGORY,
         label: `${collection.name} (ID: ${collection.id})`,
       });
     });
 
     if (numUserCollections) {
-      ReactGA.event({
-        action: "User collection(s) selected",
+      this.posthog.capture("user-collection-selected", {
         category: GOOGLE_ANALYTICS_CATEGORY,
         value: numUserCollections,
       });
@@ -85,23 +84,20 @@ class QuizManager {
 
     const GOOGLE_ANALYTICS_CATEGORY = "Quiz Finished";
 
-    ReactGA.event({
-      action: "Questions answered",
+    this.posthog.capture("questions-answered", {
       category: GOOGLE_ANALYTICS_CATEGORY,
       value: numQuestionsAnswered,
     });
 
     if (scorecard.numSkippedQuestions) {
-      ReactGA.event({
-        action: "Finished with skipped questions",
+      this.posthog.capture("finished-with-skipped-questions", {
         category: GOOGLE_ANALYTICS_CATEGORY,
         value: scorecard.numSkippedQuestions,
       });
     }
 
     if (scorecard.numIgnoredAnswers) {
-      ReactGA.event({
-        action: "Finished with ignored answers",
+      this.posthog.capture("finished-with-ignored-answers", {
         category: GOOGLE_ANALYTICS_CATEGORY,
         value: scorecard.numIgnoredAnswers,
       });
@@ -112,11 +108,7 @@ class QuizManager {
 
   public restart(): void {
     this.store.dispatch(restartQuiz());
-
-    ReactGA.event({
-      action: "Quiz Restarted",
-      category: "Quiz Restarted",
-    });
+    this.posthog.capture("quiz-restarted");
   }
 
   public nextQuestion(): void {

@@ -10,7 +10,8 @@ declare module "*.md" {
   export default html;
 }
 
-declare const CONFIG_GOOGLE_ANALYTICS_TRACKING_ID: string;
+declare const CONFIG_POSTHOG_API_HOST: string;
+declare const CONFIG_POSTHOG_API_KEY: string;
 declare const JYOSUUSHI_CURRENT_SEMVER: string;
 
 type SvgIcon = React.ComponentClass<React.SVGProps<SVGSVGElement>>;

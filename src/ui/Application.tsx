@@ -1,4 +1,5 @@
 import classnames from "classnames";
+import { usePostHog } from "posthog-js/react";
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { Navigate, Route, Routes, useLocation } from "react-router";
@@ -19,6 +20,7 @@ const QUIZ_SCREEN_PATH = "/quiz";
 
 function Application(): React.ReactElement {
   const { pathname } = useLocation();
+  const posthog = usePostHog();
   const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   const isQuizActive = useSelector((state: State): boolean =>
@@ -45,7 +47,11 @@ function Application(): React.ReactElement {
         )}
       >
         <NavigationManager />
-        <Header isQuizActive={isQuizActive} onModalOpened={setIsModalOpen} />
+        <Header
+          isQuizActive={isQuizActive}
+          onModalOpened={setIsModalOpen}
+          posthog={posthog}
+        />
         {renderNecessaryRedirect()}
         <Routes>
           <Route

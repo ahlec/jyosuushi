@@ -19,8 +19,8 @@
   "dependencies": [
     "classnames",
     "lodash",
+    "posthog-js/react",
     "react",
-    "react-ga",
     "react-intl",
     "react-redux"
   ]

@@ -121,9 +121,8 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      CONFIG_GOOGLE_ANALYTICS_TRACKING_ID: JSON.stringify(
-        configJson.GOOGLE_ANALYTICS_TRACKING_ID,
-      ),
+      CONFIG_POSTHOG_API_HOST: JSON.stringify(configJson.POSTHOG_API_HOST),
+      CONFIG_POSTHOG_API_KEY: JSON.stringify(configJson.POSTHOG_API_KEY),
       JYOSUUSHI_CURRENT_SEMVER: JSON.stringify(process.env.npm_package_version),
     }),
     new CopyWebpackPlugin({

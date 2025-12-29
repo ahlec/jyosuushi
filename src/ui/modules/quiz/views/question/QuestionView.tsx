@@ -1,3 +1,4 @@
+import type { PostHog } from "posthog-js/react";
 import React from "react";
 
 import { Question } from "@jyosuushi/interfaces";
@@ -17,6 +18,7 @@ interface ComponentProps {
   quizManager: QuizManager;
   quizState: QuizState;
   enabled: boolean;
+  posthog: PostHog;
 }
 
 class QuestionView extends React.PureComponent<ComponentProps> {
@@ -29,7 +31,7 @@ class QuestionView extends React.PureComponent<ComponentProps> {
   }
 
   public render(): React.ReactNode {
-    const { currentQuestion, enabled, quizState } = this.props;
+    const { currentQuestion, enabled, posthog, quizState } = this.props;
     return (
       <div className={styles.questionPage}>
         <QuestionDisplay currentQuestion={currentQuestion} />
@@ -37,12 +39,14 @@ class QuestionView extends React.PureComponent<ComponentProps> {
           buttonsClassName={styles.buttons}
           currentQuestion={currentQuestion}
           enabled={enabled && quizState.state === "waiting-for-answer"}
+          posthog={posthog}
         />
         {quizState.state === "reviewing-answer" && (
           <ResultsView
             className={styles.resultsView}
             currentQuestion={currentQuestion}
             onClickNextQuestion={this.onClickNextQuestion}
+            posthog={posthog}
           />
         )}
         <div className={styles.flex} />

@@ -30,15 +30,7 @@ A browser-based webapp to facilitate studying [Japanese counters](https://en.wik
 
    This will produce type declaration files for the SCSS files, which are required to exist in order to pass type checking.
 
-4. **Create the development config file.**
-
-   ```bash
-   cp config.json-template config.json
-   ```
-
-   This file defines required environment variables for development. If it doesn't exist, the application will not run.
-
-5. **Start the local server**
+4. **Start the local server**
 
    ```bash
    yarn start

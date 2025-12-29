@@ -7,7 +7,7 @@ import { getCurrentQuizMode } from "@jyosuushi/redux/selectors";
 
 import StandardButton from "@jyosuushi/ui/components/StandardButton";
 
-import useQuizManager from "@jyosuushi/ui/modules/quiz/state/useQuizManager";
+import { useQuizManager } from "@jyosuushi/ui/modules/quiz/state/context";
 import { getDistinctCounters } from "@jyosuushi/utils";
 
 import CollectionSelection from "./CollectionSelection";
