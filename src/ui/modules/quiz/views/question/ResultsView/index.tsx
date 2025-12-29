@@ -138,14 +138,15 @@ class ResultsView extends React.PureComponent<ComponentProps> {
   }
 
   private onIgnoreClicked = (): void => {
-    const { currentQuestion, dispatch, posthog } = this.props;
+    const { currentQuestion, dispatch, posthog, usersAnswer } = this.props;
     const counters = uniq(
       currentQuestion.validAnswers.map(({ counterId }: Answer) => counterId),
     );
 
     posthog.capture("answer-ignored", {
-      category: "Quiz",
-      label: `${currentQuestion.amount} of '${currentQuestion.itemId}'`,
+      amount: currentQuestion.amount,
+      input: usersAnswer.input?.substring(0, 64) ?? "<<<null>>>",
+      itemId: currentQuestion.itemId,
     });
 
     dispatch(ignoreLastAnswer(counters));

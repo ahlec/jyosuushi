@@ -9,6 +9,7 @@ import {
   startQuiz,
 } from "@jyosuushi/redux/actions";
 import { Store } from "@jyosuushi/redux/store";
+import { isUserCollection } from "@jyosuushi/utils/typeguards";
 
 export type QuizMode = "regular" | "infinite";
 
@@ -47,61 +48,32 @@ class QuizManager {
       throw new Error("Must provide at least one collection to quiz over.");
     }
 
-    this.store.dispatch(startQuiz(collections, mode, this.amountRange));
-
-    const GOOGLE_ANALYTICS_CATEGORY = "Quiz Started";
+    const amountRange = this.amountRange;
+    this.store.dispatch(startQuiz(collections, mode, amountRange));
 
     this.posthog.capture("quiz-started", {
-      category: GOOGLE_ANALYTICS_CATEGORY,
-      label: `Mode: ${mode}`,
+      amountRange,
+      mode,
+      numCollections: collections.length,
     });
 
-    let numUserCollections = 0;
     collections.forEach((collection): void => {
-      if ("dateCreated" in collection) {
-        ++numUserCollections;
-        return;
-      }
-
-      this.posthog.capture("standard-collection-selected", {
-        category: GOOGLE_ANALYTICS_CATEGORY,
-        label: `${collection.name} (ID: ${collection.id})`,
+      this.posthog.capture("collection-used-in-quiz", {
+        id: collection.id,
+        kind: isUserCollection(collection) ? "user" : "standard",
       });
     });
-
-    if (numUserCollections) {
-      this.posthog.capture("user-collection-selected", {
-        category: GOOGLE_ANALYTICS_CATEGORY,
-        value: numUserCollections,
-      });
-    }
   }
 
   public endQuiz(): void {
     const { scorecard } = this.store.getState();
-    const numQuestionsAnswered =
-      scorecard.numCorrectAnswers + scorecard.numIncorrectAnswers;
 
-    const GOOGLE_ANALYTICS_CATEGORY = "Quiz Finished";
-
-    this.posthog.capture("questions-answered", {
-      category: GOOGLE_ANALYTICS_CATEGORY,
-      value: numQuestionsAnswered,
+    this.posthog.capture("quiz-completed", {
+      numCorrectAnswers: scorecard.numCorrectAnswers,
+      numIgnoredAnswers: scorecard.numIgnoredAnswers,
+      numSkippedQuestions: scorecard.numSkippedQuestions,
+      numWrongAnswers: scorecard.numIncorrectAnswers,
     });
-
-    if (scorecard.numSkippedQuestions) {
-      this.posthog.capture("finished-with-skipped-questions", {
-        category: GOOGLE_ANALYTICS_CATEGORY,
-        value: scorecard.numSkippedQuestions,
-      });
-    }
-
-    if (scorecard.numIgnoredAnswers) {
-      this.posthog.capture("finished-with-ignored-answers", {
-        category: GOOGLE_ANALYTICS_CATEGORY,
-        value: scorecard.numIgnoredAnswers,
-      });
-    }
 
     this.store.dispatch(endQuiz());
   }

@@ -335,11 +335,12 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
 
   private trackLeavingQuizEarly(): void {
     const { posthog, scorecard, totalNumberQuestions } = this.props;
-    const numQuestionsAnswered =
-      scorecard.numCorrectAnswers + scorecard.numIncorrectAnswers;
     posthog.capture("quiz-aborted", {
-      category: "Quiz",
-      label: `Answered: ${numQuestionsAnswered}, Skipped: ${scorecard.numSkippedQuestions}, Ignored: ${scorecard.numIgnoredAnswers}, Total: ${totalNumberQuestions}`,
+      numCorrectAnswers: scorecard.numCorrectAnswers,
+      numIgnoredAnswers: scorecard.numIgnoredAnswers,
+      numSkippedQuestions: scorecard.numSkippedQuestions,
+      numWrongAnswers: scorecard.numIncorrectAnswers,
+      totalNumberQuestions,
     });
   }
 }

@@ -193,8 +193,8 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
   private onSkipClicked = (): void => {
     const { currentQuestion, posthog } = this.props;
     posthog.capture("question-skipped", {
-      category: "Quiz",
-      label: `${currentQuestion.amount} of '${currentQuestion.itemId}'`,
+      amount: currentQuestion.amount,
+      itemId: currentQuestion.itemId,
     });
 
     this.props.dispatch(skipQuestion());
