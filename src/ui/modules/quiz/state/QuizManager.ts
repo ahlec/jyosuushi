@@ -1,5 +1,4 @@
-import * as ReactGA from "react-ga";
-
+import type { PostHog } from "posthog-js/react";
 import { CounterCollection } from "@jyosuushi/interfaces";
 
 import { AmountRange } from "@jyosuushi/redux";
@@ -10,11 +9,15 @@ import {
   startQuiz,
 } from "@jyosuushi/redux/actions";
 import { Store } from "@jyosuushi/redux/store";
+import { isUserCollection } from "@jyosuushi/utils/typeguards";
 
 export type QuizMode = "regular" | "infinite";
 
 class QuizManager {
-  public constructor(private readonly store: Store) {}
+  public constructor(
+    private readonly store: Store,
+    private readonly posthog: PostHog,
+  ) {}
 
   public get hasNextQuestion(): boolean {
     const state = this.store.getState();
@@ -45,78 +48,39 @@ class QuizManager {
       throw new Error("Must provide at least one collection to quiz over.");
     }
 
-    this.store.dispatch(startQuiz(collections, mode, this.amountRange));
+    const amountRange = this.amountRange;
+    this.store.dispatch(startQuiz(collections, mode, amountRange));
 
-    const GOOGLE_ANALYTICS_CATEGORY = "Quiz Started";
-
-    ReactGA.event({
-      action: "Quiz Started",
-      category: GOOGLE_ANALYTICS_CATEGORY,
-      label: `Mode: ${mode}`,
+    this.posthog.capture("quiz-started", {
+      amountRange,
+      mode,
+      numCollections: collections.length,
     });
 
-    let numUserCollections = 0;
     collections.forEach((collection): void => {
-      if ("dateCreated" in collection) {
-        ++numUserCollections;
-        return;
-      }
-
-      ReactGA.event({
-        action: "Standard collection selected",
-        category: GOOGLE_ANALYTICS_CATEGORY,
-        label: `${collection.name} (ID: ${collection.id})`,
+      this.posthog.capture("collection-used-in-quiz", {
+        id: collection.id,
+        kind: isUserCollection(collection) ? "user" : "standard",
       });
     });
-
-    if (numUserCollections) {
-      ReactGA.event({
-        action: "User collection(s) selected",
-        category: GOOGLE_ANALYTICS_CATEGORY,
-        value: numUserCollections,
-      });
-    }
   }
 
   public endQuiz(): void {
     const { scorecard } = this.store.getState();
-    const numQuestionsAnswered =
-      scorecard.numCorrectAnswers + scorecard.numIncorrectAnswers;
 
-    const GOOGLE_ANALYTICS_CATEGORY = "Quiz Finished";
-
-    ReactGA.event({
-      action: "Questions answered",
-      category: GOOGLE_ANALYTICS_CATEGORY,
-      value: numQuestionsAnswered,
+    this.posthog.capture("quiz-completed", {
+      numCorrectAnswers: scorecard.numCorrectAnswers,
+      numIgnoredAnswers: scorecard.numIgnoredAnswers,
+      numSkippedQuestions: scorecard.numSkippedQuestions,
+      numWrongAnswers: scorecard.numIncorrectAnswers,
     });
-
-    if (scorecard.numSkippedQuestions) {
-      ReactGA.event({
-        action: "Finished with skipped questions",
-        category: GOOGLE_ANALYTICS_CATEGORY,
-        value: scorecard.numSkippedQuestions,
-      });
-    }
-
-    if (scorecard.numIgnoredAnswers) {
-      ReactGA.event({
-        action: "Finished with ignored answers",
-        category: GOOGLE_ANALYTICS_CATEGORY,
-        value: scorecard.numIgnoredAnswers,
-      });
-    }
 
     this.store.dispatch(endQuiz());
   }
 
   public restart(): void {
     this.store.dispatch(restartQuiz());
-
-    ReactGA.event({
-      action: "Quiz Restarted",
-      category: "Quiz Restarted",
-    });
+    this.posthog.capture("quiz-restarted");
   }
 
   public nextQuestion(): void {

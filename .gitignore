@@ -13,9 +13,6 @@ dist/
 # Yarn
 yarn-error.log
 
-# Configuration files
-config.json
-
 # Codegen files
 *.generated.ts
 *.generated.tsx

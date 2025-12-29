@@ -1,12 +1,12 @@
 import classnames from "classnames";
 import { uniq } from "lodash";
+import type { PostHog } from "posthog-js/react";
 import * as React from "react";
 import {
   defineMessages,
   FormattedMessage,
   MessageDescriptor,
 } from "react-intl";
-import * as ReactGA from "react-ga";
 import { connect } from "react-redux";
 
 import { Answer, Question } from "@jyosuushi/interfaces";
@@ -25,6 +25,7 @@ interface ProvidedProps {
   className: string;
   currentQuestion: Question;
   onClickNextQuestion: () => void;
+  posthog: PostHog;
 }
 
 interface ReduxProps {
@@ -137,15 +138,15 @@ class ResultsView extends React.PureComponent<ComponentProps> {
   }
 
   private onIgnoreClicked = (): void => {
-    const { currentQuestion, dispatch } = this.props;
+    const { currentQuestion, dispatch, posthog, usersAnswer } = this.props;
     const counters = uniq(
       currentQuestion.validAnswers.map(({ counterId }: Answer) => counterId),
     );
 
-    ReactGA.event({
-      action: "Answer Ignored",
-      category: "Quiz",
-      label: `${currentQuestion.amount} of '${currentQuestion.itemId}'`,
+    posthog.capture("answer-ignored", {
+      amount: currentQuestion.amount,
+      input: usersAnswer.input?.substring(0, 64) ?? "<<<null>>>",
+      itemId: currentQuestion.itemId,
     });
 
     dispatch(ignoreLastAnswer(counters));

@@ -1,6 +1,6 @@
 import classnames from "classnames";
+import type { PostHog } from "posthog-js/react";
 import * as React from "react";
-import * as ReactGA from "react-ga";
 import { defineMessages, FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 
@@ -26,6 +26,7 @@ import * as styles from "./index.scss";
 interface ProvidedProps {
   isQuizActive: boolean;
   onModalOpened: (isOpen: boolean) => void;
+  posthog: PostHog;
 }
 
 interface ReduxProps {
@@ -333,13 +334,13 @@ class Header extends React.PureComponent<ComponentProps, ComponentState> {
   };
 
   private trackLeavingQuizEarly(): void {
-    const { scorecard, totalNumberQuestions } = this.props;
-    const numQuestionsAnswered =
-      scorecard.numCorrectAnswers + scorecard.numIncorrectAnswers;
-    ReactGA.event({
-      action: "Quiz Aborted",
-      category: "Quiz",
-      label: `Answered: ${numQuestionsAnswered}, Skipped: ${scorecard.numSkippedQuestions}, Ignored: ${scorecard.numIgnoredAnswers}, Total: ${totalNumberQuestions}`,
+    const { posthog, scorecard, totalNumberQuestions } = this.props;
+    posthog.capture("quiz-aborted", {
+      numCorrectAnswers: scorecard.numCorrectAnswers,
+      numIgnoredAnswers: scorecard.numIgnoredAnswers,
+      numSkippedQuestions: scorecard.numSkippedQuestions,
+      numWrongAnswers: scorecard.numIncorrectAnswers,
+      totalNumberQuestions,
     });
   }
 }

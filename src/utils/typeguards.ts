@@ -1,3 +1,8 @@
+import type {
+  CounterCollection,
+  UserCounterCollection,
+} from "@jyosuushi/interfaces";
+
 export function isIndexableObject(
   obj: unknown,
 ): obj is { [index: string]: unknown } {
@@ -6,4 +11,10 @@ export function isIndexableObject(
 
 export function isNotNull<T>(obj: T | null): obj is T {
   return obj !== null;
+}
+
+export function isUserCollection(
+  collection: CounterCollection,
+): collection is UserCounterCollection {
+  return "dateCreated" in collection;
 }

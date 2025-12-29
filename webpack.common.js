@@ -1,3 +1,4 @@
+// @ts-check
 const fs = require("fs");
 const path = require("path");
 const webpack = require("webpack");
@@ -12,19 +13,14 @@ const DATA_DIRECTORY = path.resolve(ROOT_DIRECTORY, "data");
 const CONFIG_JSON_FILE = path.resolve(ROOT_DIRECTORY, "config.json");
 const CHANGELOG_FILE = path.resolve(ROOT_DIRECTORY, "changelog/index.ts");
 
-let configJson;
-if (!process.env.CI) {
-  if (!fs.existsSync(CONFIG_JSON_FILE)) {
-    throw new Error(`${CONFIG_JSON_FILE} does not exist.`);
-  }
-
-  configJson = JSON.parse(fs.readFileSync(CONFIG_JSON_FILE));
-} else {
-  configJson = JSON.parse(
-    fs.readFileSync(path.resolve(ROOT_DIRECTORY, "config.json-template")),
-  );
+if (!fs.existsSync(CONFIG_JSON_FILE)) {
+  throw new Error(`${CONFIG_JSON_FILE} does not exist.`);
 }
 
+/** @type {import("./config.json")} */
+const configJson = JSON.parse(fs.readFileSync(CONFIG_JSON_FILE, "utf-8"));
+
+/** @type {import("webpack").Configuration} */
 module.exports = {
   entry: {
     app: SOURCE_DIRECTORY,
@@ -101,9 +97,9 @@ module.exports = {
       cacheGroups: {
         vendor: {
           name: function (module) {
-            const packageName = module.context.match(
+            const packageName = module.context?.match(
               /[\\/]node_modules[\\/](.*?)([\\/]|$)/,
-            )[1];
+            )?.[1];
             return packageName;
           },
           test: /[\\/]node_modules[\\]/,
@@ -121,9 +117,8 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      CONFIG_GOOGLE_ANALYTICS_TRACKING_ID: JSON.stringify(
-        configJson.GOOGLE_ANALYTICS_TRACKING_ID,
-      ),
+      CONFIG_POSTHOG_API_HOST: JSON.stringify(configJson.POSTHOG_API_HOST),
+      CONFIG_POSTHOG_API_KEY: JSON.stringify(configJson.POSTHOG_API_KEY),
       JYOSUUSHI_CURRENT_SEMVER: JSON.stringify(process.env.npm_package_version),
     }),
     new CopyWebpackPlugin({

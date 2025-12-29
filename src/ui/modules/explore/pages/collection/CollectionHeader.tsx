@@ -1,10 +1,11 @@
 import React, { useMemo } from "react";
 import { defineMessages } from "react-intl";
 
-import {
+import type {
   StandardCounterCollection,
   UserCounterCollection,
 } from "@jyosuushi/interfaces";
+import { isUserCollection } from "@jyosuushi/utils/typeguards";
 
 import PageHeader from "@jyosuushi/ui/modules/explore/components/page-header/PageHeader";
 import { HeaderSubtitleEntryDefinition } from "@jyosuushi/ui/modules/explore/components/page-header/types";
@@ -30,12 +31,6 @@ const INTL_MESSAGES = defineMessages({
 
 interface ComponentProps {
   collection: StandardCounterCollection | UserCounterCollection;
-}
-
-function isUserCollection(
-  collection: StandardCounterCollection | UserCounterCollection,
-): collection is UserCounterCollection {
-  return "dateCreated" in collection;
 }
 
 function CollectionHeader({ collection }: ComponentProps): React.ReactElement {

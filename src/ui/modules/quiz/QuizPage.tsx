@@ -1,10 +1,11 @@
+import { usePostHog } from "posthog-js/react";
 import * as React from "react";
 import { connect } from "react-redux";
 
 import { Question } from "@jyosuushi/interfaces";
 import { QuizState, State } from "@jyosuushi/redux";
 
-import withQuizManager, { InjectedProps } from "./state/withQuizManager";
+import { useQuizManager } from "./state/context";
 import QuestionView from "./views/question/QuestionView";
 import QuizWrapup from "./views/wrapup/QuizWrapup";
 
@@ -24,14 +25,16 @@ function mapStateToProps(state: State): ReduxProps {
   };
 }
 
-type ComponentProps = ProvidedProps & ReduxProps & InjectedProps;
+type ComponentProps = ProvidedProps & ReduxProps;
 
 function QuizPage({
   currentQuestion,
   enabled,
-  quizManager,
   quizState,
 }: ComponentProps): React.ReactElement | null {
+  const posthog = usePostHog();
+  const quizManager = useQuizManager();
+
   if (quizState.state === "not-in-quiz") {
     return null;
   }
@@ -48,10 +51,11 @@ function QuizPage({
     <QuestionView
       currentQuestion={currentQuestion}
       enabled={enabled}
+      posthog={posthog}
       quizManager={quizManager}
       quizState={quizState}
     />
   );
 }
 
-export default connect(mapStateToProps)(withQuizManager(QuizPage));
+export default connect(mapStateToProps)(QuizPage);

@@ -1,7 +1,7 @@
 import classnames from "classnames";
 import { uniq } from "lodash";
+import type { PostHog } from "posthog-js/react";
 import * as React from "react";
-import * as ReactGA from "react-ga";
 import { defineMessages, FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 
@@ -29,6 +29,7 @@ interface ProvidedProps {
   currentQuestion: Question;
   enabled: boolean;
   onAnswerSubmitted?: (usersCorrectAnswer: Answer | null) => void;
+  posthog: PostHog;
 }
 
 interface ReduxProps {
@@ -190,11 +191,10 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
   }
 
   private onSkipClicked = (): void => {
-    const { currentQuestion } = this.props;
-    ReactGA.event({
-      action: "Question Skipped",
-      category: "Quiz",
-      label: `${currentQuestion.amount} of '${currentQuestion.itemId}'`,
+    const { currentQuestion, posthog } = this.props;
+    posthog.capture("question-skipped", {
+      amount: currentQuestion.amount,
+      itemId: currentQuestion.itemId,
     });
 
     this.props.dispatch(skipQuestion());
