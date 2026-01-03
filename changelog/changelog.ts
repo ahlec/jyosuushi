@@ -18,6 +18,16 @@ import { ChangelogVersion } from "./types";
 
 export const CHANGELOG: readonly ChangelogVersion[] = [
   {
+    version: "v4.0.1",
+    date: "3 January 2026",
+    newFeatures: [],
+    improvements: [],
+    bugFixes: [{ text: "Corrected readings for 10日, 19日, 29日, and so on." }],
+    developerChanges: [
+      "Updated codebase to modern technologies to ensure future development.",
+    ],
+  },
+  {
     version: "v4.0.0",
     date: "12 January 2022",
     comments: `Version 3.0.0 rolled out user accounts as a solution to allowing you to create custom collections. However, this increased development complexity considerably and introduced a number of negative side effects — server instability, slow network requests, and requiring visitors to give their information (via registration) in order to access features. The uptake of user accounts was also rather low (though huge thanks and appreciation to everybody who registered).
