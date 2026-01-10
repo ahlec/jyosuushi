@@ -357,19 +357,19 @@ export const conjugateCounter: (
     const results: Conjugation[] = [];
     let includeRegularReadings = true;
 
-    const irregularDefinitions = counter.irregulars[amount];
-    if (irregularDefinitions && irregularDefinitions.length) {
-      for (const irregular of irregularDefinitions) {
+    const annotations = counter.annotations[amount];
+    if (annotations?.length) {
+      for (const annotation of annotations) {
         results.push({
           amount,
           counterId: counter.counterId,
-          countingSystem: irregular.countingSystem,
-          irregularType: irregular.type,
+          countingSystem: annotation.countingSystem,
+          irregularType: annotation.type,
           kanji: null,
-          reading: irregular.reading,
+          reading: annotation.reading,
         });
 
-        if (irregular.doesPresenceEraseRegularConjugations) {
+        if (annotation.doesPresenceEraseRegularConjugations) {
           includeRegularReadings = false;
         }
       }

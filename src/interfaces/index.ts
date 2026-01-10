@@ -86,7 +86,9 @@ export enum CounterIrregularType {
   SoundChange = "sound-change",
 }
 
-export interface CounterIrregular {
+export interface CounterAnnotationIrregular {
+  kind: "irregular";
+
   amount: number;
 
   countingSystem: CountingSystem | null;
@@ -106,6 +108,8 @@ export interface CounterIrregular {
   reading: string;
 }
 
+export type CounterAnnotation = CounterAnnotationIrregular;
+
 export type MarkdownComponent = ComponentType<Record<string, never>>;
 
 export interface CounterDisambiguation {
@@ -117,7 +121,15 @@ export interface Counter {
   counterId: string;
   englishName: string;
   footnotes: ReadonlyArray<MarkdownComponent>;
-  irregulars: { [amount: number]: ReadonlyArray<CounterIrregular> };
+  /**
+   * Annotations for specific numbers/amounts when using this counter
+   * (if there are any). This could be notes about the frequency of a
+   * reading, the presence of an irregular reading, etc.
+   *
+   */
+  annotations: {
+    [amount: number]: ReadonlyArray<CounterAnnotation> | undefined;
+  };
   kanji: CounterKanjiInfo | null;
   readings: ReadonlyArray<CounterReading>;
   leadIn: string | null;

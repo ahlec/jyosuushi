@@ -3,7 +3,12 @@ import memoizeOne from "memoize-one";
 import React from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
 
-import { Conjugation, Counter, CountingSystem } from "@jyosuushi/interfaces";
+import {
+  Conjugation,
+  Counter,
+  CounterAnnotation,
+  CountingSystem,
+} from "@jyosuushi/interfaces";
 import { conjugateCounter } from "@jyosuushi/japanese/counters";
 
 import * as styles from "./ConjugationsSection.scss";
@@ -83,9 +88,21 @@ export default class ConjugationsSection extends React.PureComponent<
 
   private readonly memoizeNumIrregulars = memoizeOne(
     (counter: Counter): number => {
-      return Object.keys(counter.irregulars).reduce(
-        (sum: number, amountStr: string): number => {
-          return sum + counter.irregulars[parseInt(amountStr, 10)].length;
+      return Object.values(counter.annotations).reduce(
+        (
+          sum: number,
+          annotations: ReadonlyArray<CounterAnnotation> | undefined,
+        ): number => {
+          let numIrregularsForAmount = 0;
+          annotations?.forEach((annotation): void => {
+            if (annotation.kind !== "irregular") {
+              return;
+            }
+
+            numIrregularsForAmount++;
+          });
+
+          return sum + numIrregularsForAmount;
         },
         0,
       );
@@ -95,9 +112,17 @@ export default class ConjugationsSection extends React.PureComponent<
   private readonly memoizeIrregularsBeyondExampleTable = memoizeOne(
     (counter: Counter): ReadonlyArray<ConjugationTile> => {
       const results: ConjugationTile[] = [];
-      Object.keys(counter.irregulars).forEach((amountStr) => {
+      Object.keys(counter.annotations).forEach((amountStr) => {
         const amount = parseInt(amountStr, 10);
         if (amount <= AMOUNTS_TO_DISPLAY) {
+          return;
+        }
+
+        if (
+          !counter.annotations[amount]?.some(
+            (annotation) => annotation.kind === "irregular",
+          )
+        ) {
           return;
         }
 

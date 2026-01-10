@@ -40,12 +40,12 @@ import * as 階Components from "@data/counter-components/階";
 import * as 頭Components from "@data/counter-components/頭";
 
 export const COUNTER_ヶ国: Counter = {
+  annotations: {},
   counterId: "ヶ国",
   disambiguations: [],
   englishName: "countries",
   externalLinks: [],
   footnotes: [],
-  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "ヶ国",
@@ -73,12 +73,12 @@ export const COUNTER_ヶ国: Counter = {
 };
 
 export const COUNTER_ヶ所: Counter = {
+  annotations: {},
   counterId: "ヶ所",
   disambiguations: [],
   englishName: "places",
   externalLinks: [],
   footnotes: [],
-  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "ヶ所",
@@ -106,6 +106,7 @@ export const COUNTER_ヶ所: Counter = {
 };
 
 export const COUNTER_ヶ月: Counter = {
+  annotations: {},
   counterId: "ヶ月",
   disambiguations: [],
   englishName: "months",
@@ -119,7 +120,6 @@ export const COUNTER_ヶ月: Counter = {
     },
   ],
   footnotes: [],
-  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "ヶ月",
@@ -147,6 +147,7 @@ export const COUNTER_ヶ月: Counter = {
 };
 
 export const COUNTER_人: Counter = {
+  annotations: {},
   counterId: "人",
   disambiguations: [
     {
@@ -182,7 +183,6 @@ export const COUNTER_人: Counter = {
     人Components.Footnote4,
     人Components.Footnote5,
   ],
-  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "人",
@@ -216,12 +216,12 @@ export const COUNTER_人: Counter = {
 };
 
 export const COUNTER_件: Counter = {
+  annotations: {},
   counterId: "件",
   disambiguations: [],
   englishName: "matters",
   externalLinks: [],
   footnotes: [],
-  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "件",
@@ -249,12 +249,12 @@ export const COUNTER_件: Counter = {
 };
 
 export const COUNTER_円: Counter = {
+  annotations: {},
   counterId: "円",
   disambiguations: [],
   englishName: "yen",
   externalLinks: [],
   footnotes: [],
-  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "円",
@@ -282,6 +282,7 @@ export const COUNTER_円: Counter = {
 };
 
 export const COUNTER_冊: Counter = {
+  annotations: {},
   counterId: "冊",
   disambiguations: [
     {
@@ -320,7 +321,6 @@ export const COUNTER_冊: Counter = {
     冊Components.Footnote7,
     冊Components.Footnote8,
   ],
-  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "冊",
@@ -348,6 +348,7 @@ export const COUNTER_冊: Counter = {
 };
 
 export const COUNTER_分: Counter = {
+  annotations: {},
   counterId: "分",
   disambiguations: [],
   englishName: "minutes",
@@ -361,7 +362,6 @@ export const COUNTER_分: Counter = {
     },
   ],
   footnotes: [],
-  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "分",
@@ -389,6 +389,7 @@ export const COUNTER_分: Counter = {
 };
 
 export const COUNTER_切れ: Counter = {
+  annotations: {},
   counterId: "切れ",
   disambiguations: [
     {
@@ -413,7 +414,6 @@ export const COUNTER_切れ: Counter = {
     切れComponents.Footnote4,
     切れComponents.Footnote5,
   ],
-  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "切れ",
@@ -447,6 +447,7 @@ export const COUNTER_切れ: Counter = {
 };
 
 export const COUNTER_匹: Counter = {
+  annotations: {},
   counterId: "匹",
   disambiguations: [
     {
@@ -465,7 +466,6 @@ export const COUNTER_匹: Counter = {
     },
   ],
   footnotes: [],
-  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "匹",
@@ -493,6 +493,7 @@ export const COUNTER_匹: Counter = {
 };
 
 export const COUNTER_口: Counter = {
+  annotations: {},
   counterId: "口",
   disambiguations: [
     {
@@ -532,7 +533,6 @@ export const COUNTER_口: Counter = {
     口Components.Footnote11,
     口Components.Footnote12,
   ],
-  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "口",
@@ -567,6 +567,7 @@ export const COUNTER_口: Counter = {
 };
 
 export const COUNTER_台: Counter = {
+  annotations: {},
   counterId: "台",
   disambiguations: [],
   englishName: "machines and large objects",
@@ -580,7 +581,6 @@ export const COUNTER_台: Counter = {
     },
   ],
   footnotes: [],
-  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "台",
@@ -608,6 +608,7 @@ export const COUNTER_台: Counter = {
 };
 
 export const COUNTER_名: Counter = {
+  annotations: {},
   counterId: "名",
   disambiguations: [
     {
@@ -626,7 +627,6 @@ export const COUNTER_名: Counter = {
     },
   ],
   footnotes: [],
-  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "名",
@@ -654,12 +654,12 @@ export const COUNTER_名: Counter = {
 };
 
 export const COUNTER_周: Counter = {
+  annotations: {},
   counterId: "周",
   disambiguations: [],
   englishName: "laps and circuits",
   externalLinks: [],
   footnotes: [],
-  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "周",
@@ -687,6 +687,7 @@ export const COUNTER_周: Counter = {
 };
 
 export const COUNTER_回: Counter = {
+  annotations: {},
   counterId: "回",
   disambiguations: [],
   englishName: "times (occurrences)",
@@ -700,7 +701,6 @@ export const COUNTER_回: Counter = {
     },
   ],
   footnotes: [],
-  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "回",
@@ -728,6 +728,7 @@ export const COUNTER_回: Counter = {
 };
 
 export const COUNTER_巻: Counter = {
+  annotations: {},
   counterId: "巻",
   disambiguations: [
     {
@@ -738,7 +739,6 @@ export const COUNTER_巻: Counter = {
   englishName: "volumes",
   externalLinks: [],
   footnotes: [巻Components.Footnote1, 巻Components.Footnote2],
-  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "巻",
@@ -766,12 +766,12 @@ export const COUNTER_巻: Counter = {
 };
 
 export const COUNTER_席: Counter = {
+  annotations: {},
   counterId: "席",
   disambiguations: [],
   englishName: "seats",
   externalLinks: [],
   footnotes: [],
-  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "席",
@@ -805,6 +805,7 @@ export const COUNTER_席: Counter = {
 };
 
 export const COUNTER_年: Counter = {
+  annotations: {},
   counterId: "年",
   disambiguations: [
     {
@@ -823,7 +824,6 @@ export const COUNTER_年: Counter = {
     },
   ],
   footnotes: [],
-  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "年",
@@ -851,6 +851,7 @@ export const COUNTER_年: Counter = {
 };
 
 export const COUNTER_店: Counter = {
+  annotations: {},
   counterId: "店",
   disambiguations: [],
   englishName: "stores",
@@ -864,7 +865,6 @@ export const COUNTER_店: Counter = {
     },
   ],
   footnotes: [],
-  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "店",
@@ -892,6 +892,7 @@ export const COUNTER_店: Counter = {
 };
 
 export const COUNTER_戦: Counter = {
+  annotations: {},
   counterId: "戦",
   disambiguations: [
     {
@@ -918,7 +919,6 @@ export const COUNTER_戦: Counter = {
     戦Components.Footnote6,
     戦Components.Footnote7,
   ],
-  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "戦",
@@ -947,6 +947,138 @@ export const COUNTER_戦: Counter = {
 };
 
 export const COUNTER_日: Counter = {
+  annotations: {
+    1: [
+      {
+        amount: 1,
+        countingSystem: null,
+        doesPresenceEraseRegularConjugations: true,
+        kind: "irregular",
+        reading: "ついたち",
+        type: CounterIrregularType.ArbitraryReading,
+      },
+    ],
+    2: [
+      {
+        amount: 2,
+        countingSystem: CountingSystem.Wago,
+        doesPresenceEraseRegularConjugations: true,
+        kind: "irregular",
+        reading: "ふつか",
+        type: CounterIrregularType.SoundChange,
+      },
+    ],
+    3: [
+      {
+        amount: 3,
+        countingSystem: CountingSystem.Wago,
+        doesPresenceEraseRegularConjugations: true,
+        kind: "irregular",
+        reading: "みっか",
+        type: CounterIrregularType.SoundChange,
+      },
+    ],
+    4: [
+      {
+        amount: 4,
+        countingSystem: CountingSystem.Wago,
+        doesPresenceEraseRegularConjugations: true,
+        kind: "irregular",
+        reading: "よっか",
+        type: CounterIrregularType.SoundChange,
+      },
+    ],
+    5: [
+      {
+        amount: 5,
+        countingSystem: CountingSystem.Wago,
+        doesPresenceEraseRegularConjugations: true,
+        kind: "irregular",
+        reading: "いつか",
+        type: CounterIrregularType.SoundChange,
+      },
+    ],
+    6: [
+      {
+        amount: 6,
+        countingSystem: CountingSystem.Wago,
+        doesPresenceEraseRegularConjugations: true,
+        kind: "irregular",
+        reading: "むいか",
+        type: CounterIrregularType.SoundChange,
+      },
+    ],
+    7: [
+      {
+        amount: 7,
+        countingSystem: CountingSystem.Wago,
+        doesPresenceEraseRegularConjugations: true,
+        kind: "irregular",
+        reading: "なのか",
+        type: CounterIrregularType.SoundChange,
+      },
+    ],
+    8: [
+      {
+        amount: 8,
+        countingSystem: CountingSystem.Wago,
+        doesPresenceEraseRegularConjugations: true,
+        kind: "irregular",
+        reading: "ようか",
+        type: CounterIrregularType.SoundChange,
+      },
+    ],
+    9: [
+      {
+        amount: 9,
+        countingSystem: CountingSystem.Wago,
+        doesPresenceEraseRegularConjugations: true,
+        kind: "irregular",
+        reading: "ここのか",
+        type: CounterIrregularType.SoundChange,
+      },
+    ],
+    10: [
+      {
+        amount: 10,
+        countingSystem: null,
+        doesPresenceEraseRegularConjugations: true,
+        kind: "irregular",
+        reading: "とおか",
+        type: CounterIrregularType.ArbitraryReading,
+      },
+    ],
+    14: [
+      {
+        amount: 14,
+        countingSystem: null,
+        doesPresenceEraseRegularConjugations: false,
+        kind: "irregular",
+        reading: "じゅうよっか",
+        type: CounterIrregularType.ArbitraryReading,
+      },
+    ],
+    20: [
+      {
+        amount: 20,
+        countingSystem: null,
+        doesPresenceEraseRegularConjugations: false,
+        kind: "irregular",
+        reading: "はつか",
+        type: CounterIrregularType.ArbitraryReading,
+      },
+    ],
+    24: [
+      {
+        amount: 24,
+        countingSystem: null,
+        doesPresenceEraseRegularConjugations: false,
+        kind: "irregular",
+        reading: "にじゅうよっか",
+        type: CounterIrregularType.ArbitraryReading,
+      },
+    ],
+  },
   counterId: "日",
   disambiguations: [],
   englishName: "days of the month",
@@ -960,125 +1092,6 @@ export const COUNTER_日: Counter = {
     },
   ],
   footnotes: [],
-  irregulars: {
-    1: [
-      {
-        amount: 1,
-        countingSystem: null,
-        doesPresenceEraseRegularConjugations: true,
-        reading: "ついたち",
-        type: CounterIrregularType.ArbitraryReading,
-      },
-    ],
-    2: [
-      {
-        amount: 2,
-        countingSystem: CountingSystem.Wago,
-        doesPresenceEraseRegularConjugations: true,
-        reading: "ふつか",
-        type: CounterIrregularType.SoundChange,
-      },
-    ],
-    3: [
-      {
-        amount: 3,
-        countingSystem: CountingSystem.Wago,
-        doesPresenceEraseRegularConjugations: true,
-        reading: "みっか",
-        type: CounterIrregularType.SoundChange,
-      },
-    ],
-    4: [
-      {
-        amount: 4,
-        countingSystem: CountingSystem.Wago,
-        doesPresenceEraseRegularConjugations: true,
-        reading: "よっか",
-        type: CounterIrregularType.SoundChange,
-      },
-    ],
-    5: [
-      {
-        amount: 5,
-        countingSystem: CountingSystem.Wago,
-        doesPresenceEraseRegularConjugations: true,
-        reading: "いつか",
-        type: CounterIrregularType.SoundChange,
-      },
-    ],
-    6: [
-      {
-        amount: 6,
-        countingSystem: CountingSystem.Wago,
-        doesPresenceEraseRegularConjugations: true,
-        reading: "むいか",
-        type: CounterIrregularType.SoundChange,
-      },
-    ],
-    7: [
-      {
-        amount: 7,
-        countingSystem: CountingSystem.Wago,
-        doesPresenceEraseRegularConjugations: true,
-        reading: "なのか",
-        type: CounterIrregularType.SoundChange,
-      },
-    ],
-    8: [
-      {
-        amount: 8,
-        countingSystem: CountingSystem.Wago,
-        doesPresenceEraseRegularConjugations: true,
-        reading: "ようか",
-        type: CounterIrregularType.SoundChange,
-      },
-    ],
-    9: [
-      {
-        amount: 9,
-        countingSystem: CountingSystem.Wago,
-        doesPresenceEraseRegularConjugations: true,
-        reading: "ここのか",
-        type: CounterIrregularType.SoundChange,
-      },
-    ],
-    10: [
-      {
-        amount: 10,
-        countingSystem: null,
-        doesPresenceEraseRegularConjugations: true,
-        reading: "とおか",
-        type: CounterIrregularType.ArbitraryReading,
-      },
-    ],
-    14: [
-      {
-        amount: 14,
-        countingSystem: null,
-        doesPresenceEraseRegularConjugations: false,
-        reading: "じゅうよっか",
-        type: CounterIrregularType.ArbitraryReading,
-      },
-    ],
-    20: [
-      {
-        amount: 20,
-        countingSystem: null,
-        doesPresenceEraseRegularConjugations: false,
-        reading: "はつか",
-        type: CounterIrregularType.ArbitraryReading,
-      },
-    ],
-    24: [
-      {
-        amount: 24,
-        countingSystem: null,
-        doesPresenceEraseRegularConjugations: false,
-        reading: "にじゅうよっか",
-        type: CounterIrregularType.ArbitraryReading,
-      },
-    ],
-  },
   kanji: {
     additionalKanji: [],
     primaryKanji: "日",
@@ -1106,6 +1119,7 @@ export const COUNTER_日: Counter = {
 };
 
 export const COUNTER_時: Counter = {
+  annotations: {},
   counterId: "時",
   disambiguations: [],
   englishName: "hours",
@@ -1119,7 +1133,6 @@ export const COUNTER_時: Counter = {
     },
   ],
   footnotes: [],
-  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "時",
@@ -1147,12 +1160,12 @@ export const COUNTER_時: Counter = {
 };
 
 export const COUNTER_曲: Counter = {
+  annotations: {},
   counterId: "曲",
   disambiguations: [],
   englishName: "songs",
   externalLinks: [],
   footnotes: [],
-  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "曲",
@@ -1180,6 +1193,7 @@ export const COUNTER_曲: Counter = {
 };
 
 export const COUNTER_本: Counter = {
+  annotations: {},
   counterId: "本",
   disambiguations: [
     {
@@ -1216,7 +1230,6 @@ export const COUNTER_本: Counter = {
     本Components.Footnote5,
     本Components.Footnote6,
   ],
-  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "本",
@@ -1245,12 +1258,12 @@ export const COUNTER_本: Counter = {
 };
 
 export const COUNTER_束: Counter = {
+  annotations: {},
   counterId: "束",
   disambiguations: [],
   englishName: "bundles",
   externalLinks: [],
   footnotes: [],
-  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "束",
@@ -1284,6 +1297,7 @@ export const COUNTER_束: Counter = {
 };
 
 export const COUNTER_杯: Counter = {
+  annotations: {},
   counterId: "杯",
   disambiguations: [
     {
@@ -1302,7 +1316,6 @@ export const COUNTER_杯: Counter = {
     },
   ],
   footnotes: [],
-  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "杯",
@@ -1330,6 +1343,7 @@ export const COUNTER_杯: Counter = {
 };
 
 export const COUNTER_枚: Counter = {
+  annotations: {},
   counterId: "枚",
   disambiguations: [],
   englishName: "flat objects",
@@ -1343,7 +1357,6 @@ export const COUNTER_枚: Counter = {
     },
   ],
   footnotes: [],
-  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "枚",
@@ -1371,6 +1384,7 @@ export const COUNTER_枚: Counter = {
 };
 
 export const COUNTER_校: Counter = {
+  annotations: {},
   counterId: "校",
   disambiguations: [],
   englishName: "schools",
@@ -1397,7 +1411,6 @@ export const COUNTER_校: Counter = {
     校Components.Footnote3,
     校Components.Footnote4,
   ],
-  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "校",
@@ -1425,6 +1438,7 @@ export const COUNTER_校: Counter = {
 };
 
 export const COUNTER_株: Counter = {
+  annotations: {},
   counterId: "株",
   disambiguations: [],
   englishName: "rooted plants, company stock",
@@ -1438,7 +1452,6 @@ export const COUNTER_株: Counter = {
     },
   ],
   footnotes: [],
-  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "株",
@@ -1472,6 +1485,18 @@ export const COUNTER_株: Counter = {
 };
 
 export const COUNTER_歳: Counter = {
+  annotations: {
+    20: [
+      {
+        amount: 20,
+        countingSystem: null,
+        doesPresenceEraseRegularConjugations: false,
+        kind: "irregular",
+        reading: "はたち",
+        type: CounterIrregularType.ArbitraryReading,
+      },
+    ],
+  },
   counterId: "歳",
   disambiguations: [
     {
@@ -1499,17 +1524,6 @@ export const COUNTER_歳: Counter = {
     歳Components.Footnote7,
     歳Components.Footnote8,
   ],
-  irregulars: {
-    20: [
-      {
-        amount: 20,
-        countingSystem: null,
-        doesPresenceEraseRegularConjugations: false,
-        reading: "はたち",
-        type: CounterIrregularType.ArbitraryReading,
-      },
-    ],
-  },
   kanji: {
     additionalKanji: ["才"],
     primaryKanji: "歳",
@@ -1538,12 +1552,12 @@ export const COUNTER_歳: Counter = {
 };
 
 export const COUNTER_皿: Counter = {
+  annotations: {},
   counterId: "皿",
   disambiguations: [],
   englishName: "plates of food",
   externalLinks: [],
   footnotes: [],
-  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "皿",
@@ -1577,12 +1591,12 @@ export const COUNTER_皿: Counter = {
 };
 
 export const COUNTER_社: Counter = {
+  annotations: {},
   counterId: "社",
   disambiguations: [],
   englishName: "companies and temples",
   externalLinks: [],
   footnotes: [],
-  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "社",
@@ -1610,12 +1624,12 @@ export const COUNTER_社: Counter = {
 };
 
 export const COUNTER_組: Counter = {
+  annotations: {},
   counterId: "組",
   disambiguations: [],
   englishName: "groups and pairs",
   externalLinks: [],
   footnotes: [],
-  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "組",
@@ -1643,6 +1657,7 @@ export const COUNTER_組: Counter = {
 };
 
 export const COUNTER_缶: Counter = {
+  annotations: {},
   counterId: "缶",
   disambiguations: [
     {
@@ -1653,7 +1668,6 @@ export const COUNTER_缶: Counter = {
   englishName: "cans",
   externalLinks: [],
   footnotes: [缶Components.Footnote1],
-  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "缶",
@@ -1687,6 +1701,7 @@ export const COUNTER_缶: Counter = {
 };
 
 export const COUNTER_羽: Counter = {
+  annotations: {},
   counterId: "羽",
   disambiguations: [],
   englishName: "birds and rabbits",
@@ -1700,7 +1715,6 @@ export const COUNTER_羽: Counter = {
     },
   ],
   footnotes: [],
-  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "羽",
@@ -1728,12 +1742,12 @@ export const COUNTER_羽: Counter = {
 };
 
 export const COUNTER_色: Counter = {
+  annotations: {},
   counterId: "色",
   disambiguations: [],
   englishName: "colours",
   externalLinks: [],
   footnotes: [],
-  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "色",
@@ -1761,6 +1775,7 @@ export const COUNTER_色: Counter = {
 };
 
 export const COUNTER_試合: Counter = {
+  annotations: {},
   counterId: "試合",
   disambiguations: [
     {
@@ -1783,7 +1798,6 @@ export const COUNTER_試合: Counter = {
     試合Components.Footnote2,
     試合Components.Footnote3,
   ],
-  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "試合",
@@ -1811,12 +1825,12 @@ export const COUNTER_試合: Counter = {
 };
 
 export const COUNTER_語: Counter = {
+  annotations: {},
   counterId: "語",
   disambiguations: [],
   englishName: "words",
   externalLinks: [],
   footnotes: [],
-  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "語",
@@ -1844,12 +1858,12 @@ export const COUNTER_語: Counter = {
 };
 
 export const COUNTER_足: Counter = {
+  annotations: {},
   counterId: "足",
   disambiguations: [],
   englishName: "pairs of footwear",
   externalLinks: [],
   footnotes: [],
-  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "足",
@@ -1877,12 +1891,12 @@ export const COUNTER_足: Counter = {
 };
 
 export const COUNTER_軒: Counter = {
+  annotations: {},
   counterId: "軒",
   disambiguations: [],
   englishName: "houses and buildings",
   externalLinks: [],
   footnotes: [],
-  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "軒",
@@ -1910,12 +1924,12 @@ export const COUNTER_軒: Counter = {
 };
 
 export const COUNTER_週: Counter = {
+  annotations: {},
   counterId: "週",
   disambiguations: [],
   englishName: "weeks",
   externalLinks: [],
   footnotes: [],
-  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "週",
@@ -1943,6 +1957,7 @@ export const COUNTER_週: Counter = {
 };
 
 export const COUNTER_部: Counter = {
+  annotations: {},
   counterId: "部",
   disambiguations: [
     {
@@ -1957,7 +1972,6 @@ export const COUNTER_部: Counter = {
     部Components.Footnote2,
     部Components.Footnote3,
   ],
-  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "部",
@@ -1985,6 +1999,7 @@ export const COUNTER_部: Counter = {
 };
 
 export const COUNTER_階: Counter = {
+  annotations: {},
   counterId: "階",
   disambiguations: [],
   englishName: "floors",
@@ -1998,7 +2013,6 @@ export const COUNTER_階: Counter = {
     },
   ],
   footnotes: [],
-  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "階",
@@ -2026,6 +2040,7 @@ export const COUNTER_階: Counter = {
 };
 
 export const COUNTER_頭: Counter = {
+  annotations: {},
   counterId: "頭",
   disambiguations: [],
   englishName: "large animals",
@@ -2039,7 +2054,6 @@ export const COUNTER_頭: Counter = {
     },
   ],
   footnotes: [],
-  irregulars: {},
   kanji: {
     additionalKanji: [],
     primaryKanji: "頭",

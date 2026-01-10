@@ -4,7 +4,7 @@ import {
   Counter,
   ExternalLink,
   CounterReading,
-  CounterIrregular,
+  CounterAnnotationIrregular,
   CounterKanjiInfo,
   CounterDisambiguation,
 } from "@jyosuushi/interfaces";
@@ -30,13 +30,15 @@ type ProtoCounterReading = Omit<CounterReading, "wordOrigin"> & {
   wordOrigin: ProductionVariable;
 };
 
-type ProtoCounterIrregular = Omit<
-  CounterIrregular,
+type ProtoCounterAnnotationIrregular = Omit<
+  CounterAnnotationIrregular,
   "countingSystem" | "type"
 > & {
   countingSystem: ProductionVariable | null;
   type: ProductionVariable;
 };
+
+type ProtoCounterAnnotation = ProtoCounterAnnotationIrregular;
 
 type ProtoExternalLink = Omit<ExternalLink, "description" | "language"> & {
   description: ProductionVariable;
@@ -52,15 +54,15 @@ type ProtoCounter = Omit<
   | "disambiguations"
   | "externalLinks"
   | "footnotes"
-  | "irregulars"
+  | "annotations"
   | "notes"
   | "readings"
 > & {
   disambiguations: ReadonlyArray<ProtoDisambiguation>;
   externalLinks: ReadonlyArray<ProtoExternalLink>;
   footnotes: ReadonlyArray<ProductionVariable>;
-  irregulars: {
-    [amount: number]: ReadonlyArray<ProtoCounterIrregular> | undefined;
+  annotations: {
+    [amount: number]: ReadonlyArray<ProtoCounterAnnotation> | undefined;
   };
   notes: ProductionVariable | null;
   readings: ReadonlyArray<ProtoCounterReading>;
@@ -182,10 +184,10 @@ function convertToProductionKanji(
   };
 }
 
-function convertToProductionIrregularsMap(
+function convertToProductionAnnotationsMap(
   dbIrregulars: ReadonlyArray<DbCounterIrregular>,
-): ProtoCounter["irregulars"] {
-  const result: ProtoCounter["irregulars"] = {};
+): ProtoCounter["annotations"] {
+  const result: ProtoCounter["annotations"] = {};
 
   const amountsLookup = new Map<number, DbCounterIrregular[]>();
   for (const irregular of dbIrregulars) {
@@ -205,11 +207,12 @@ function convertToProductionIrregularsMap(
     }
 
     result[amount] = irregulars.map(
-      (dbIrregular): ProtoCounterIrregular => ({
+      (dbIrregular): ProtoCounterAnnotationIrregular => ({
         amount,
         countingSystem: getIrregularCountingSystem(dbIrregular.irregular_type),
         doesPresenceEraseRegularConjugations:
           !!dbIrregular.does_presence_erase_regular_conjugations,
+        kind: "irregular",
         reading: dbIrregular.kana,
         type: convertToProductionIrregularType(dbIrregular.irregular_type),
       }),
@@ -227,6 +230,7 @@ export function convertToProtoCounter(
   footnoteComponents: ReadonlyArray<ProductionVariable>,
 ): ProtoCounter {
   return {
+    annotations: convertToProductionAnnotationsMap(joinData.irregulars),
     counterId: counter.counter_id,
     disambiguations: joinData.disambiguations.map(
       (disambiguation): ProtoDisambiguation =>
@@ -239,7 +243,6 @@ export function convertToProtoCounter(
     englishName: counter.english_name,
     externalLinks: externalLinks.map(convertToProductionExternalLink),
     footnotes: footnoteComponents,
-    irregulars: convertToProductionIrregularsMap(joinData.irregulars),
     kanji: counter.primary_kanji
       ? convertToProductionKanji(
           counter.primary_kanji,
