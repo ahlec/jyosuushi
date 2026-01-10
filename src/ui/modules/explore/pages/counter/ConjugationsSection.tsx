@@ -1,17 +1,11 @@
-import classnames from "classnames";
 import { clamp, sortBy } from "lodash";
 import memoizeOne from "memoize-one";
 import React from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
 
-import {
-  Conjugation,
-  Counter,
-  CounterAnnotation,
-  CounterFrequency,
-  CountingSystem,
-} from "@jyosuushi/interfaces";
+import { Conjugation, Counter, CounterAnnotation } from "@jyosuushi/interfaces";
 import { conjugateCounter } from "@jyosuushi/japanese/counters";
+import { CounterReading } from "@jyosuushi/ui/components/CounterReading";
 
 import * as styles from "./ConjugationsSection.scss";
 
@@ -31,15 +25,6 @@ interface ConjugationTile {
   amount: number;
   conjugations: ReadonlyArray<Conjugation>;
 }
-
-const FREQUENCY_DISPLAYS: Record<
-  CounterFrequency,
-  { className: string; prefix: string }
-> = {
-  [CounterFrequency.Common]: { className: "", prefix: "" },
-  [CounterFrequency.Uncommon]: { className: styles.uncommon, prefix: "uncom." },
-  [CounterFrequency.Archaic]: { className: styles.archaic, prefix: "arch." },
-};
 
 const INTL_MESSAGES = defineMessages({
   andSoForth: {
@@ -228,7 +213,9 @@ export default class ConjugationsSection extends React.PureComponent<
     return (
       <div className={styles.conjugationContainer} key={amount}>
         <div className={styles.amount}>{amount}</div>
-        <div>{conjugations.map(this.renderConjugation)}</div>
+        <div className={styles.conjugations}>
+          {conjugations.map(this.renderConjugation)}
+        </div>
       </div>
     );
   };
@@ -237,19 +224,14 @@ export default class ConjugationsSection extends React.PureComponent<
     conjugation: Conjugation,
     index: number,
   ): React.ReactNode => (
-    <div
+    <CounterReading
       key={index}
-      className={classnames(
-        conjugation.irregularType
-          ? styles.irregular
-          : conjugation.countingSystem !== CountingSystem.Kango
-            ? styles.nonKango
-            : "",
-        FREQUENCY_DISPLAYS[conjugation.frequency].className,
-      )}
-    >
-      {FREQUENCY_DISPLAYS[conjugation.frequency].prefix} {conjugation.reading}
-    </div>
+      countingSystem={conjugation.countingSystem}
+      frequency={conjugation.frequency}
+      irregularType={conjugation.irregularType}
+      kana={conjugation.reading}
+      showColor
+    />
   );
 
   private renderConjugation = ({
@@ -259,19 +241,14 @@ export default class ConjugationsSection extends React.PureComponent<
     reading,
   }: Conjugation): React.ReactNode => {
     return (
-      <div
+      <CounterReading
         key={reading}
-        className={classnames(
-          irregularType
-            ? styles.irregular
-            : countingSystem !== CountingSystem.Kango
-              ? styles.nonKango
-              : "",
-          FREQUENCY_DISPLAYS[frequency].className,
-        )}
-      >
-        {FREQUENCY_DISPLAYS[frequency].prefix} {reading}
-      </div>
+        countingSystem={countingSystem}
+        frequency={frequency}
+        irregularType={irregularType}
+        kana={reading}
+        showColor
+      />
     );
   };
 

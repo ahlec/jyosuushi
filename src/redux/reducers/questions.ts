@@ -50,6 +50,7 @@ function makeQuestion(
         collections: counter.collections,
         counterId: counter.counterId,
         countingSystem: answer.countingSystem,
+        frequency: answer.frequency,
         irregularType: answer.irregularType,
         kana: answer.reading,
         kanji: answer.kanji,

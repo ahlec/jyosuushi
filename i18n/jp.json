@@ -1069,6 +1069,24 @@
     },
     "translation": ""
   },
+  "components.counterReading.frequencyLabels.archaic": {
+    "original": {
+      "defaultMessage": "arch.",
+      "filenames": [
+        "src/ui/components/CounterReading.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "components.counterReading.frequencyLabels.uncommon": {
+    "original": {
+      "defaultMessage": "uncom.",
+      "filenames": [
+        "src/ui/components/CounterReading.tsx"
+      ]
+    },
+    "translation": ""
+  },
   "components.popups.BaseConfirmationDialog.buttonNo": {
     "original": {
       "defaultMessage": "No",

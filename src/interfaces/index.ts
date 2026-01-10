@@ -209,6 +209,7 @@ export interface Answer {
   counterId: string;
   collections: readonly CounterCollectionDescriptor[];
   countingSystem: CountingSystem | null;
+  frequency: CounterFrequency;
   irregularType: CounterIrregularType | null;
   kana: string;
   kanji: ReadonlyArray<string> | null;

@@ -11,6 +11,7 @@ import {
 } from "@jyosuushi/interfaces";
 
 import useCounterDisplay from "@jyosuushi/hooks/useCounterDisplay";
+import { CounterReading } from "@jyosuushi/ui/components/CounterReading";
 import Furigana from "@jyosuushi/ui/components/Furigana";
 
 import * as styles from "./AnswersTableRow.scss";
@@ -113,6 +114,7 @@ function AnswersTableRow({ data }: ComponentProps): React.ReactElement {
         {data.kanaAnswers.map(
           ({
             countingSystem,
+            frequency,
             irregularType,
             kana,
           }: Answer): React.ReactNode => {
@@ -124,7 +126,13 @@ function AnswersTableRow({ data }: ComponentProps): React.ReactElement {
                   data.usersCorrectKana === kana && styles.correct,
                 )}
               >
-                {kana}
+                <CounterReading
+                  countingSystem={countingSystem}
+                  frequency={frequency}
+                  irregularType={irregularType}
+                  kana={kana}
+                  showColor={false}
+                />
                 {irregularType ? (
                   <FormattedMessage {...INTL_MESSAGES.readingLabelIrregular}>
                     {(text) => <span className={styles.irregular}>{text}</span>}
