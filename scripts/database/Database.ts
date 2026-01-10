@@ -23,6 +23,8 @@ import {
   EnumSchemas,
   DbCounterAlternativeKanji,
   DbWagoStyle,
+  DbEnumCounterFrequency,
+  DbCounterReadingFrequency,
 } from "./schemas";
 
 const ROOT_DIRECTORY = path.resolve(__dirname, "../../");
@@ -120,6 +122,18 @@ export default class Database implements AsyncDatabaseIndexer {
 
   public get counters(): Promise<ReadonlyArray<DbCounter>> {
     return this.retrieve(Schemas.Counters);
+  }
+
+  public get counter_reading_frequency(): Promise<
+    ReadonlyArray<DbCounterReadingFrequency>
+  > {
+    return this.retrieve(Schemas.CounterReadingFrequency);
+  }
+
+  public get enum_counter_frequency(): Promise<
+    ReadonlyArray<DbEnumCounterFrequency>
+  > {
+    return this.retrieve(EnumSchemas.EnumCounterFrequency);
   }
 
   public get enum_external_link_language(): Promise<

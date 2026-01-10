@@ -1,5 +1,3 @@
-import { sortBy } from "lodash";
-
 import {
   Counter,
   ExternalLink,
@@ -7,6 +5,7 @@ import {
   CounterAnnotationIrregular,
   CounterKanjiInfo,
   CounterDisambiguation,
+  CounterAnnotationFrequency,
 } from "@jyosuushi/interfaces";
 
 import {
@@ -18,6 +17,8 @@ import {
   DbIrregularType,
   DbWagoStyle,
   DbCounterDisambiguation,
+  DbCounterReadingFrequency,
+  DbCounterReadingFrequencyEnum,
 } from "../../database/schemas";
 
 import { getWordOrigin, ProductionVariable } from "../utils";
@@ -38,7 +39,16 @@ type ProtoCounterAnnotationIrregular = Omit<
   type: ProductionVariable;
 };
 
-type ProtoCounterAnnotation = ProtoCounterAnnotationIrregular;
+type ProtoCounterAnnotationFrequency = Omit<
+  CounterAnnotationFrequency,
+  "frequency"
+> & {
+  frequency: ProductionVariable;
+};
+
+type ProtoCounterAnnotation =
+  | ProtoCounterAnnotationIrregular
+  | ProtoCounterAnnotationFrequency;
 
 type ProtoExternalLink = Omit<ExternalLink, "description" | "language"> & {
   description: ProductionVariable;
@@ -124,6 +134,18 @@ export function convertToProductionIrregularType(
   }
 }
 
+const FREQUENCY_ENUM_PRODUCTION_VARIABLE: Record<
+  DbCounterReadingFrequencyEnum,
+  ProductionVariable
+> = {
+  [DbCounterReadingFrequencyEnum.Uncommon]: new ProductionVariable(
+    "CounterFrequency.Uncommon",
+  ),
+  [DbCounterReadingFrequencyEnum.Archaic]: new ProductionVariable(
+    "CounterFrequency.Archaic",
+  ),
+};
+
 function getIrregularCountingSystem(
   type: DbIrregularType,
 ): ProductionVariable | null {
@@ -186,40 +208,44 @@ function convertToProductionKanji(
 
 function convertToProductionAnnotationsMap(
   dbIrregulars: ReadonlyArray<DbCounterIrregular>,
+  dbReadingFrequencies: ReadonlyArray<DbCounterReadingFrequency>,
 ): ProtoCounter["annotations"] {
   const result: ProtoCounter["annotations"] = {};
 
-  const amountsLookup = new Map<number, DbCounterIrregular[]>();
-  for (const irregular of dbIrregulars) {
-    if (!amountsLookup.has(irregular.number)) {
-      amountsLookup.set(irregular.number, []);
-    }
+  const addAnnotation = <T extends ProtoCounterAnnotation["kind"]>(
+    amount: number,
+    annotation: ProtoCounterAnnotation & { kind: T },
+  ): void => {
+    result[amount] = [...(result[amount] || []), annotation];
+  };
 
-    amountsLookup.get(irregular.number)?.push(irregular);
-  }
+  dbIrregulars.forEach((record): void => {
+    addAnnotation<"irregular">(record.number, {
+      amount: record.number,
+      countingSystem: getIrregularCountingSystem(record.irregular_type),
+      doesPresenceEraseRegularConjugations:
+        !!record.does_presence_erase_regular_conjugations,
+      kind: "irregular",
+      reading: record.kana,
+      type: convertToProductionIrregularType(record.irregular_type),
+    });
+  });
 
-  const orderedAmounts = sortBy(Array.from(amountsLookup.keys()));
+  dbReadingFrequencies.forEach((record): void => {
+    addAnnotation<"frequency">(record.amount, {
+      frequency: FREQUENCY_ENUM_PRODUCTION_VARIABLE[record.frequency],
+      kind: "frequency",
+      reading: record.kana,
+    });
+  });
 
-  for (const amount of orderedAmounts) {
-    const irregulars = amountsLookup.get(amount);
-    if (!irregulars) {
-      continue;
-    }
-
-    result[amount] = irregulars.map(
-      (dbIrregular): ProtoCounterAnnotationIrregular => ({
-        amount,
-        countingSystem: getIrregularCountingSystem(dbIrregular.irregular_type),
-        doesPresenceEraseRegularConjugations:
-          !!dbIrregular.does_presence_erase_regular_conjugations,
-        kind: "irregular",
-        reading: dbIrregular.kana,
-        type: convertToProductionIrregularType(dbIrregular.irregular_type),
-      }),
-    );
-  }
-
-  return result;
+  return Object.fromEntries(
+    Object.entries(result).sort(([amountAStr], [amountBStr]): number => {
+      const amountA = parseInt(amountAStr, 10);
+      const amountB = parseInt(amountBStr, 10);
+      return amountA - amountB;
+    }),
+  );
 }
 
 export function convertToProtoCounter(
@@ -230,7 +256,10 @@ export function convertToProtoCounter(
   footnoteComponents: ReadonlyArray<ProductionVariable>,
 ): ProtoCounter {
   return {
-    annotations: convertToProductionAnnotationsMap(joinData.irregulars),
+    annotations: convertToProductionAnnotationsMap(
+      joinData.irregulars,
+      joinData.readingFrequency,
+    ),
     counterId: counter.counter_id,
     disambiguations: joinData.disambiguations.map(
       (disambiguation): ProtoDisambiguation =>

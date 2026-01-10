@@ -4,6 +4,7 @@
 
 import {
   Counter,
+  CounterFrequency,
   CounterIrregularType,
   CountingSystem,
   ExternalLinkLanguage,
@@ -1066,6 +1067,11 @@ export const COUNTER_日: Counter = {
         kind: "irregular",
         reading: "はつか",
         type: CounterIrregularType.ArbitraryReading,
+      },
+      {
+        frequency: CounterFrequency.Uncommon,
+        kind: "frequency",
+        reading: "にじゅうにち",
       },
     ],
     24: [

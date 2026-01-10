@@ -360,6 +360,10 @@ export const conjugateCounter: (
     const annotations = counter.annotations[amount];
     if (annotations?.length) {
       for (const annotation of annotations) {
+        if (annotation.kind !== "irregular") {
+          continue;
+        }
+
         results.push({
           amount,
           counterId: counter.counterId,

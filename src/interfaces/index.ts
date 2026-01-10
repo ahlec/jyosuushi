@@ -86,6 +86,12 @@ export enum CounterIrregularType {
   SoundChange = "sound-change",
 }
 
+export enum CounterFrequency {
+  Common = "common",
+  Uncommon = "uncommon",
+  Archaic = "archaic",
+}
+
 export interface CounterAnnotationIrregular {
   kind: "irregular";
 
@@ -108,7 +114,20 @@ export interface CounterAnnotationIrregular {
   reading: string;
 }
 
-export type CounterAnnotation = CounterAnnotationIrregular;
+/**
+ * Annotation for the frequency of a specific reading.
+ * @note All readings are implicitly assumed to be
+ * common if they don't have a frequency annotation.
+ */
+export interface CounterAnnotationFrequency {
+  kind: "frequency";
+  reading: string;
+  frequency: CounterFrequency;
+}
+
+export type CounterAnnotation =
+  | CounterAnnotationIrregular
+  | CounterAnnotationFrequency;
 
 export type MarkdownComponent = ComponentType<Record<string, never>>;
 
