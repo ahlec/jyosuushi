@@ -194,6 +194,7 @@ export interface Conjugation {
   amount: number;
   counterId: string;
   countingSystem: CountingSystem | null;
+  frequency: CounterFrequency;
   irregularType: CounterIrregularType | null;
   kanji: ReadonlyArray<string> | null;
   reading: string;

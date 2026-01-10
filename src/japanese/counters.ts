@@ -6,6 +6,7 @@ import {
   Conjugation,
   CounterWagoStyle,
   CountingSystem,
+  CounterFrequency,
 } from "@jyosuushi/interfaces";
 
 import { getLeadingConsonant } from "./hepburn";
@@ -22,6 +23,8 @@ import {
   TaggableJapaneseWord,
   uniqueWords,
 } from "./words";
+
+type ConjugationWithoutMetadata = Omit<Conjugation, "frequency">;
 
 /* eslint-disable sort-keys */
 // JUSTIFICATION: We want to declare everything in a natural way of incrementing
@@ -132,10 +135,10 @@ function conjugateRegularWagoReading(
   counterId: string,
   kanji: ReadonlyArray<string> | null,
   style: CounterWagoStyle,
-): ReadonlyArray<Conjugation> {
+): ReadonlyArray<ConjugationWithoutMetadata> {
   const numbers = conjugateWagoNumber(amount);
   return numbers.map(
-    (numberBase): Conjugation => ({
+    (numberBase): ConjugationWithoutMetadata => ({
       amount,
       counterId,
       countingSystem: CountingSystem.Wago,
@@ -152,7 +155,7 @@ function conjugateRegularKangoReading(
   kanji: ReadonlyArray<string> | null,
   readingKana: string,
   conjugationOptions: KangoConjugationOptions,
-): ReadonlyArray<Conjugation> {
+): ReadonlyArray<ConjugationWithoutMetadata> {
   const counterFirstConsonant = getLeadingConsonant(readingKana);
   const amountBreakdown = breakDownNumber(amount);
   let numberChanges: FinalNumberChanges | undefined;
@@ -287,8 +290,8 @@ function conjugateRegularReadings(
   counterId: string,
   kanji: ReadonlyArray<string> | null,
   reading: CounterReading,
-): ReadonlyArray<Conjugation> {
-  const regularConjugations: Conjugation[] = [];
+): ReadonlyArray<ConjugationWithoutMetadata> {
+  const regularConjugations: ConjugationWithoutMetadata[] = [];
 
   let appendRegularKangoReadings: boolean;
   if (reading.wagoStyle && amount <= reading.wagoStyle.rangeEndInclusive) {
@@ -354,30 +357,37 @@ export const conjugateCounter: (
       throw new Error("Negative numbers and zero are not implemented (yet?)");
     }
 
-    const results: Conjugation[] = [];
+    const conjugations: ConjugationWithoutMetadata[] = [];
+    const frequenciesByReading: Record<string, CounterFrequency | undefined> =
+      {};
     let includeRegularReadings = true;
 
-    const annotations = counter.annotations[amount];
-    if (annotations?.length) {
-      for (const annotation of annotations) {
-        if (annotation.kind !== "irregular") {
-          continue;
+    counter.annotations[amount]?.forEach((annotation): void => {
+      switch (annotation.kind) {
+        case "frequency": {
+          frequenciesByReading[annotation.reading] = annotation.frequency;
+          break;
         }
+        case "irregular": {
+          conjugations.push({
+            amount,
+            counterId: counter.counterId,
+            countingSystem: annotation.countingSystem,
+            irregularType: annotation.type,
+            kanji: null,
+            reading: annotation.reading,
+          });
 
-        results.push({
-          amount,
-          counterId: counter.counterId,
-          countingSystem: annotation.countingSystem,
-          irregularType: annotation.type,
-          kanji: null,
-          reading: annotation.reading,
-        });
-
-        if (annotation.doesPresenceEraseRegularConjugations) {
-          includeRegularReadings = false;
+          if (annotation.doesPresenceEraseRegularConjugations) {
+            includeRegularReadings = false;
+          }
+          break;
+        }
+        default: {
+          return annotation;
         }
       }
-    }
+    });
 
     if (includeRegularReadings) {
       let kanji: ReadonlyArray<string> | null;
@@ -395,7 +405,7 @@ export const conjugateCounter: (
         kanji = null;
       }
 
-      results.push(
+      conjugations.push(
         ...flatten(
           counter.readings.map((reading) =>
             conjugateRegularReadings(amount, counter.counterId, kanji, reading),
@@ -404,7 +414,13 @@ export const conjugateCounter: (
       );
     }
 
-    return results;
+    return conjugations.map(
+      (conjugation): Conjugation => ({
+        ...conjugation,
+        frequency:
+          frequenciesByReading[conjugation.reading] ?? CounterFrequency.Common,
+      }),
+    );
   },
   (amount: number, counter: Counter) => [amount, counter.counterId].join("-"),
 );
