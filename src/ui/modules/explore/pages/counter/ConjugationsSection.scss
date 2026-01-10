@@ -9,6 +9,11 @@
     color: palette.$counter-non-kango;
   }
 
+  .uncommon,
+  .archaic {
+    font-style: italic;
+  }
+
   .examples-prefix {
     margin: 10px 0;
   }

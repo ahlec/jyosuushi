@@ -1,3 +1,4 @@
+import classnames from "classnames";
 import { clamp, sortBy } from "lodash";
 import memoizeOne from "memoize-one";
 import React from "react";
@@ -7,6 +8,7 @@ import {
   Conjugation,
   Counter,
   CounterAnnotation,
+  CounterFrequency,
   CountingSystem,
 } from "@jyosuushi/interfaces";
 import { conjugateCounter } from "@jyosuushi/japanese/counters";
@@ -29,6 +31,15 @@ interface ConjugationTile {
   amount: number;
   conjugations: ReadonlyArray<Conjugation>;
 }
+
+const FREQUENCY_DISPLAYS: Record<
+  CounterFrequency,
+  { className: string; prefix: string }
+> = {
+  [CounterFrequency.Common]: { className: "", prefix: "" },
+  [CounterFrequency.Uncommon]: { className: styles.uncommon, prefix: "uncom." },
+  [CounterFrequency.Archaic]: { className: styles.archaic, prefix: "arch." },
+};
 
 const INTL_MESSAGES = defineMessages({
   andSoForth: {
@@ -228,35 +239,38 @@ export default class ConjugationsSection extends React.PureComponent<
   ): React.ReactNode => (
     <div
       key={index}
-      className={
+      className={classnames(
         conjugation.irregularType
           ? styles.irregular
           : conjugation.countingSystem !== CountingSystem.Kango
             ? styles.nonKango
-            : ""
-      }
+            : "",
+        FREQUENCY_DISPLAYS[conjugation.frequency].className,
+      )}
     >
-      {conjugation.reading}
+      {FREQUENCY_DISPLAYS[conjugation.frequency].prefix} {conjugation.reading}
     </div>
   );
 
   private renderConjugation = ({
     countingSystem,
     irregularType,
+    frequency,
     reading,
   }: Conjugation): React.ReactNode => {
     return (
       <div
         key={reading}
-        className={
+        className={classnames(
           irregularType
             ? styles.irregular
             : countingSystem !== CountingSystem.Kango
               ? styles.nonKango
-              : ""
-        }
+              : "",
+          FREQUENCY_DISPLAYS[frequency].className,
+        )}
       >
-        {reading}
+        {FREQUENCY_DISPLAYS[frequency].prefix} {reading}
       </div>
     );
   };
