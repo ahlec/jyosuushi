@@ -1094,7 +1094,7 @@ export const COUNTER_日: Counter = {
         allowsKyuuFor9: false,
         allowsNanaFor7: true,
         allowsShiFor4: false,
-        allowsShichiFor7: false,
+        allowsShichiFor7: true,
         allowsYoFor4: false,
         allowsYonFor4: true,
       },
