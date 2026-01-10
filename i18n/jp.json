@@ -214,6 +214,15 @@
     },
     "translation": ""
   },
+  "quiz-page.results.header.correctButUncommon": {
+    "original": {
+      "defaultMessage": "Correct, but...",
+      "filenames": [
+        "src/ui/modules/quiz/views/question/ResultsView/index.tsx"
+      ]
+    },
+    "translation": ""
+  },
   "quiz-page.results.header.incorrect": {
     "original": {
       "defaultMessage": "Not quite right...",
@@ -244,6 +253,24 @@
   "quiz-page.results.skippedQuestion": {
     "original": {
       "defaultMessage": "Alright! You don't need to worry about this question!",
+      "filenames": [
+        "src/ui/modules/quiz/views/question/ResultsView/index.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.results.uncommonCallout.archaic": {
+    "original": {
+      "defaultMessage": "That is a correct answer, but it's an archaic reading for the counter. Unless you were intending to use an archaic reading, check the table below for more modern answers.",
+      "filenames": [
+        "src/ui/modules/quiz/views/question/ResultsView/index.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.results.uncommonCallout.uncommon": {
+    "original": {
+      "defaultMessage": "That is a correct answer, but it's an uncommon reading for the counter. Unless you were intending to use an uncommon reading, check the table below for more common answers.",
       "filenames": [
         "src/ui/modules/quiz/views/question/ResultsView/index.tsx"
       ]

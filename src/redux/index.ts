@@ -1,6 +1,7 @@
 import {
   Counter,
   CounterCollectionDescriptor,
+  CounterFrequency,
   PendingQuestion,
   Question,
 } from "@jyosuushi/interfaces";
@@ -57,13 +58,24 @@ export interface CountersStateItem {
 export type UserAnswerJudgment =
   | "incorrect"
   | "correct"
+  | "correct-but-uncommon"
   | "ignored"
   | "skipped";
 
-export interface UserAnswer {
-  input: string | null;
-  judgment: UserAnswerJudgment;
-}
+type ConstrainUserAnswer<
+  T extends { input: string | null; judgment: UserAnswerJudgment },
+> = T;
+export type UserAnswer = ConstrainUserAnswer<
+  | {
+      input: string | null;
+      judgment: "correct-but-uncommon";
+      readingFrequency: CounterFrequency;
+    }
+  | {
+      input: string | null;
+      judgment: "correct" | "incorrect" | "ignored" | "skipped";
+    }
+>;
 
 export type QuizMode = "regular" | "infinite";
 

@@ -14,6 +14,10 @@ const RESULT_BUBBLE_CONTENTS: {
     kana: "せいかい",
     kanji: "正解",
   },
+  "correct-but-uncommon": {
+    kana: "せいかい",
+    kanji: "正解",
+  },
   ignored: {
     kana: "むし",
     kanji: "無視",
@@ -45,6 +49,7 @@ const JUDGMENT_TO_CSS_CLASS_NAME: {
   [judgment in UserAnswerJudgment]: string;
 } = {
   correct: styles.correct,
+  "correct-but-uncommon": styles.correctButUncommon,
   ignored: styles.ignored,
   incorrect: styles.incorrect,
   skipped: styles.skipped,

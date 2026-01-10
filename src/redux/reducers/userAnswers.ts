@@ -1,22 +1,6 @@
-import { UserAnswer, UserAnswerJudgment } from "@jyosuushi/redux";
+import { CounterFrequency } from "@jyosuushi/interfaces";
+import { UserAnswer } from "@jyosuushi/redux";
 import { ReduxAction } from "@jyosuushi/redux/actions";
-
-function updateJudgmentOnLast(
-  state: ReadonlyArray<UserAnswer>,
-  judgment: UserAnswerJudgment,
-): ReadonlyArray<UserAnswer> {
-  if (!state || !state.length) {
-    // shouldn't happen, but let's just check
-    return state;
-  }
-
-  const next = [...state];
-  next[next.length - 1] = {
-    input: next[next.length - 1].input,
-    judgment,
-  };
-  return next;
-}
 
 export default function userAnswersReducer(
   state: ReadonlyArray<UserAnswer> | undefined = [],
@@ -31,7 +15,11 @@ export default function userAnswersReducer(
         ...state,
         {
           input: action.providedAnswer,
-          judgment: "correct",
+          judgment:
+            action.readingFrequency === CounterFrequency.Common
+              ? "correct"
+              : "correct-but-uncommon",
+          readingFrequency: action.readingFrequency,
         },
       ];
     case "submit-incorrect-answer":
@@ -42,8 +30,18 @@ export default function userAnswersReducer(
           judgment: "incorrect",
         },
       ];
-    case "ignore-last-answer":
-      return updateJudgmentOnLast(state, "ignored");
+    case "ignore-last-answer": {
+      if (!state.length) {
+        return state;
+      }
+
+      const next = [...state];
+      next[next.length - 1] = {
+        input: next[next.length - 1].input,
+        judgment: "ignored",
+      };
+      return next;
+    }
     case "skip-question":
       return [
         ...state,

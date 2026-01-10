@@ -34,6 +34,12 @@
     color: palette.$correct-dark;
   }
 
+  &.correct-but-uncommon {
+    background-color: palette.$correct-but-uncommon-light;
+    border-color: palette.$correct-but-uncommon-medium;
+    color: palette.$correct-but-uncommon-dark;
+  }
+
   &.skipped {
     background-color: palette.$skipped-light;
     border-color: palette.$skipped-medium;

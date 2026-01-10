@@ -16,21 +16,6 @@
         font-size: 40px;
         font-weight: bold;
         margin-top: 20px;
-
-        &.incorrect {
-          border-color: palette.$incorrect-medium;
-          color: palette.$incorrect-dark;
-        }
-
-        &.correct {
-          border-color: palette.$correct-medium;
-          color: palette.$correct-dark;
-        }
-
-        &.skipped {
-          border-color: palette.$skipped-medium;
-          color: palette.$skipped-dark;
-        }
       }
 
       p {

@@ -24,13 +24,20 @@
   }
 }
 
-.correct {
-  background-color: palette.$green-light;
-
+.correct,
+.correct-but-uncommon {
   .cell-rule,
   .cell-study-pack,
   .cell-kanji,
-  .cell-hiragana .kana.correct {
+  .cell-hiragana .kana.user-answer {
     font-weight: bold;
   }
+}
+
+.correct {
+  background-color: palette.$green-light;
+}
+
+.correct-but-uncommon {
+  background-color: palette.$correct-but-uncommon-light;
 }

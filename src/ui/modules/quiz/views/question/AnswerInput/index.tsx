@@ -168,7 +168,7 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
     }
 
     if (correct) {
-      dispatch(submitCorrectAnswer(value.validValue));
+      dispatch(submitCorrectAnswer(value.validValue, correct.frequency));
     } else {
       dispatch(
         submitIncorrectAnswer(
