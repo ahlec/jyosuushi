@@ -15,6 +15,13 @@ function FeatureEntryDisplay({ entry }: ComponentProps): React.ReactElement {
     <>
       <span className={styles.label}>{entry.label}</span>{" "}
       <Markdown className={styles.details} source={entry.details} />
+      {entry.nestedListItems?.length ? (
+        <ul className={styles.nestedItems}>
+          {entry.nestedListItems.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
+      ) : null}
     </>
   );
 }
