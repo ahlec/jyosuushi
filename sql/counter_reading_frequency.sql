@@ -25,4 +25,7 @@ VALUES('羽', 8, 'はっぱ', 'uncommon');
 INSERT INTO
   "counter_reading_frequency" (counter_id, amount, kana, frequency)
 VALUES('羽', 10, 'じっぱ', 'uncommon');
+INSERT INTO
+  "counter_reading_frequency" (counter_id, amount, kana, frequency)
+VALUES('年', 9, 'くねん', 'uncommon');
 COMMIT;

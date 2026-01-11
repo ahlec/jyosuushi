@@ -806,7 +806,15 @@ export const COUNTER_席: Counter = {
 };
 
 export const COUNTER_年: Counter = {
-  annotations: {},
+  annotations: {
+    9: [
+      {
+        frequency: CounterReadingFrequency.Uncommon,
+        kind: "frequency",
+        reading: "くねん",
+      },
+    ],
+  },
   counterId: "年",
   disambiguations: [
     {
