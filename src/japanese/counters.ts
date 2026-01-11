@@ -229,6 +229,11 @@ function conjugateRegularKangoReading(
       numberChanges = KANGO_COUNTER_W_CHANGES;
 
       switch (amountBreakdown.lowestUnit) {
+        case "man":
+        case "sen": {
+          counterChanges = [{}, COUNTER_BA_GYOU];
+          break;
+        }
         case "jyuu": {
           counterChanges = [
             { tag: "counter-wa-10-full-num" },
