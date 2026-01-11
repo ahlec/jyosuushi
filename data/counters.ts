@@ -1707,7 +1707,43 @@ export const COUNTER_缶: Counter = {
 };
 
 export const COUNTER_羽: Counter = {
-  annotations: {},
+  annotations: {
+    4: [
+      {
+        frequency: CounterReadingFrequency.Uncommon,
+        kind: "frequency",
+        reading: "よわ",
+      },
+    ],
+    6: [
+      {
+        frequency: CounterReadingFrequency.Uncommon,
+        kind: "frequency",
+        reading: "ろっぱ",
+      },
+    ],
+    7: [
+      {
+        frequency: CounterReadingFrequency.Uncommon,
+        kind: "frequency",
+        reading: "しちわ",
+      },
+    ],
+    8: [
+      {
+        frequency: CounterReadingFrequency.Uncommon,
+        kind: "frequency",
+        reading: "はっぱ",
+      },
+    ],
+    10: [
+      {
+        frequency: CounterReadingFrequency.Uncommon,
+        kind: "frequency",
+        reading: "じっぱ",
+      },
+    ],
+  },
   counterId: "羽",
   disambiguations: [],
   englishName: "birds and rabbits",

@@ -10,4 +10,19 @@ CREATE TABLE counter_reading_frequency (
 INSERT INTO
   "counter_reading_frequency" (counter_id, amount, kana, frequency)
 VALUES('日', 20, 'にじゅうにち', 'uncommon');
+INSERT INTO
+  "counter_reading_frequency" (counter_id, amount, kana, frequency)
+VALUES('羽', 7, 'しちわ', 'uncommon');
+INSERT INTO
+  "counter_reading_frequency" (counter_id, amount, kana, frequency)
+VALUES('羽', 4, 'よわ', 'uncommon');
+INSERT INTO
+  "counter_reading_frequency" (counter_id, amount, kana, frequency)
+VALUES('羽', 6, 'ろっぱ', 'uncommon');
+INSERT INTO
+  "counter_reading_frequency" (counter_id, amount, kana, frequency)
+VALUES('羽', 8, 'はっぱ', 'uncommon');
+INSERT INTO
+  "counter_reading_frequency" (counter_id, amount, kana, frequency)
+VALUES('羽', 10, 'じっぱ', 'uncommon');
 COMMIT;
