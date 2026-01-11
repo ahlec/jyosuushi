@@ -80,7 +80,7 @@ export default function writeCountersFile(
 
   // Write out imports
   stream.write(
-    'import { Counter, CounterIrregularType, CountingSystem, ExternalLinkLanguage, WordOrigin } from "@jyosuushi/interfaces";\n',
+    'import { Counter, CounterIrregularType, CounterReadingFrequency, CountingSystem, ExternalLinkLanguage, WordOrigin } from "@jyosuushi/interfaces";\n',
   );
 
   const orderedImports = sortBy(

@@ -38,30 +38,31 @@ function makeQuestion(
         enabledCounters[counterId] || null,
     )
     .filter(isNotNull);
-  const validAnswers: Answer[] = [];
+  const allReadings: Answer[] = [];
 
-  for (const counter of counters) {
-    const answers = conjugateCounter(
+  counters.forEach((counter): void => {
+    const conjugations = conjugateCounter(
       amount,
       COUNTERS_LOOKUP[counter.counterId],
     );
-    for (const answer of answers) {
-      validAnswers.push({
+    conjugations.forEach((conjugation): void => {
+      allReadings.push({
         collections: counter.collections,
         counterId: counter.counterId,
-        countingSystem: answer.countingSystem,
-        irregularType: answer.irregularType,
-        kana: answer.reading,
-        kanji: answer.kanji,
+        countingSystem: conjugation.countingSystem,
+        frequency: conjugation.frequency,
+        irregularType: conjugation.irregularType,
+        kana: conjugation.reading,
+        kanji: conjugation.kanji,
       });
-    }
-  }
+    });
+  });
 
   return {
+    allReadings,
     amount,
     itemId,
     possibleAmounts,
-    validAnswers,
   };
 }
 

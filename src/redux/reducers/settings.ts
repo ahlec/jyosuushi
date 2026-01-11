@@ -3,6 +3,7 @@ import { ReduxAction } from "@jyosuushi/redux/actions";
 
 const DEFAULT_SETTINGS: Settings = {
   amountRange: AmountRange.Medium,
+  failOnUncommonReadings: true,
   infiniteMode: false,
 };
 
@@ -21,6 +22,12 @@ export default function settingsReducer(
       return {
         ...state,
         infiniteMode: action.infiniteMode,
+      };
+    }
+    case "set-fail-on-uncommon-readings": {
+      return {
+        ...state,
+        failOnUncommonReadings: action.failOnUncommonReadings,
       };
     }
     default:

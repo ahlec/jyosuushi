@@ -1,4 +1,7 @@
-import { CounterCollection } from "@jyosuushi/interfaces";
+import {
+  CounterCollection,
+  CounterReadingFrequency,
+} from "@jyosuushi/interfaces";
 
 import { AmountRange, QuizMode } from "./index";
 
@@ -23,6 +26,20 @@ export function setInfiniteMode(infiniteMode: boolean): ActionSetInfiniteMode {
   return {
     infiniteMode,
     type: "set-infinite-mode",
+  };
+}
+
+export interface ActionSetFailOnUncommonReadings {
+  type: "set-fail-on-uncommon-readings";
+  failOnUncommonReadings: boolean;
+}
+
+export function setFailOnUncommonReadings(
+  failOnUncommonReadings: boolean,
+): ActionSetFailOnUncommonReadings {
+  return {
+    failOnUncommonReadings,
+    type: "set-fail-on-uncommon-readings",
   };
 }
 
@@ -59,13 +76,16 @@ export function restartQuiz(): ActionRestartQuiz {
 export interface ActionSubmitCorrectAnswer {
   type: "submit-correct-answer";
   providedAnswer: string;
+  readingFrequency: CounterReadingFrequency;
 }
 
 export function submitCorrectAnswer(
   providedAnswer: string,
+  readingFrequency: CounterReadingFrequency,
 ): ActionSubmitCorrectAnswer {
   return {
     providedAnswer,
+    readingFrequency,
     type: "submit-correct-answer",
   };
 }
@@ -74,15 +94,18 @@ export interface ActionSubmitIncorrectAnswer {
   type: "submit-incorrect-answer";
   providedAnswer: string;
   possibleCounters: ReadonlyArray<string>;
+  readingFrequency: CounterReadingFrequency | null;
 }
 
 export function submitIncorrectAnswer(
   providedAnswer: string,
   possibleCounters: ReadonlyArray<string>,
+  readingFrequency: CounterReadingFrequency | null,
 ): ActionSubmitIncorrectAnswer {
   return {
     possibleCounters,
     providedAnswer,
+    readingFrequency,
     type: "submit-incorrect-answer",
   };
 }
@@ -161,4 +184,5 @@ export type ReduxAction =
   | ActionRestartQuiz
   | ActionStartQuiz
   | ActionSetInfiniteMode
-  | ActionSetAmountRange;
+  | ActionSetAmountRange
+  | ActionSetFailOnUncommonReadings;

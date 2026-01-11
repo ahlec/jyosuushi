@@ -5,6 +5,7 @@ import {
   DbCounterAlternativeKanji,
   DbCounterIrregular,
   DbWagoStyle,
+  DbCounterReadingFrequency,
 } from "../../database/schemas";
 import ValidatedDataSource from "../../database/ValidatedDataSource";
 
@@ -13,6 +14,7 @@ export interface CounterJoinData {
   disambiguations: ReadonlyArray<DbCounterDisambiguation>;
   readings: ReadonlyArray<DbCounterReading>;
   irregulars: ReadonlyArray<DbCounterIrregular>;
+  readingFrequency: ReadonlyArray<DbCounterReadingFrequency>;
   alternativeKanji: ReadonlyArray<DbCounterAlternativeKanji>;
   allDefinedWagoStyles: { [handle: string]: DbWagoStyle };
 }
@@ -29,6 +31,9 @@ class CounterDataLookup {
   } = {};
   private readonly irregularsLookup: {
     [counterId: string]: DbCounterIrregular[] | undefined;
+  } = {};
+  private readonly readingFrequencyLookup: {
+    [counterId: string]: DbCounterReadingFrequency[] | undefined;
   } = {};
   private readonly alternativeKanjiLookup: {
     [counterId: string]: DbCounterAlternativeKanji[] | undefined;
@@ -80,6 +85,14 @@ class CounterDataLookup {
       this.irregularsLookup[irregular.counter_id]?.push(irregular);
     }
 
+    for (const record of dataSource.counter_reading_frequency.valid) {
+      if (!this.readingFrequencyLookup[record.counter_id]) {
+        this.readingFrequencyLookup[record.counter_id] = [];
+      }
+
+      this.readingFrequencyLookup[record.counter_id]?.push(record);
+    }
+
     for (const alternative of dataSource.counter_alternative_kanji.valid) {
       if (!this.alternativeKanjiLookup[alternative.counter_id]) {
         this.alternativeKanjiLookup[alternative.counter_id] = [];
@@ -100,6 +113,7 @@ class CounterDataLookup {
       disambiguations: this.disambiguationsLookup[counterId] || [],
       externalLinks: this.externalLinksLookup[counterId] || [],
       irregulars: this.irregularsLookup[counterId] || [],
+      readingFrequency: this.readingFrequencyLookup[counterId] || [],
       readings: this.readingsLookup[counterId] || [],
     };
   }

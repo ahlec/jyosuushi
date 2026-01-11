@@ -17,6 +17,7 @@ import {
   DbCounterReading,
   DbCounterAlternativeKanji,
   DbWagoStyle,
+  DbCounterReadingFrequency,
 } from "./schemas";
 import { analyzeText } from "./validation-utils";
 
@@ -662,6 +663,42 @@ function validateCounterIrregulars(
   };
 }
 
+function validateCounterReadingFrequency(
+  snapshot: DatabaseSnapshot,
+  validCounterIds: ReadonlySet<string>,
+): ValidatedResult<DbCounterReadingFrequency> {
+  const valid: DbCounterReadingFrequency[] = [];
+  const ignored: Array<InvalidResultEntry<DbCounterReadingFrequency>> = [];
+
+  for (const record of snapshot.counter_reading_frequency) {
+    const ignoredReasons: Reason[] = [];
+    if (!validCounterIds.has(record.counter_id)) {
+      ignoredReasons.push({
+        showsInAudit: false,
+        text: "Counter is not being exported.",
+      });
+    }
+
+    if (ignoredReasons.length) {
+      ignored.push({
+        entry: record,
+        reasons: ignoredReasons,
+      });
+
+      continue;
+    }
+
+    valid.push(record);
+  }
+
+  return {
+    error: [],
+    ignored,
+    valid,
+    warnings: [],
+  };
+}
+
 function validateItemCounters(
   snapshot: DatabaseSnapshot,
   validItemIds: ReadonlySet<string>,
@@ -784,6 +821,10 @@ export default class ValidatedDataSource implements Indexer {
       snapshot,
       validCounterIds,
     );
+    const counter_reading_frequency = validateCounterReadingFrequency(
+      snapshot,
+      validCounterIds,
+    );
 
     const items = validateItems(snapshot, validCounterIds);
     const validItemIds = new Set(items.valid.map(({ item_id }) => item_id));
@@ -806,6 +847,7 @@ export default class ValidatedDataSource implements Indexer {
       counter_irregulars,
       counter_alternative_kanji,
       counter_readings,
+      counter_reading_frequency,
       counters,
       item_counters,
       items,
@@ -824,6 +866,7 @@ export default class ValidatedDataSource implements Indexer {
     public readonly counter_irregulars: ValidatedResult<DbCounterIrregular>,
     public readonly counter_alternative_kanji: ValidatedResult<DbCounterAlternativeKanji>,
     public readonly counter_readings: ValidatedResult<DbCounterReading>,
+    public readonly counter_reading_frequency: ValidatedResult<DbCounterReadingFrequency>,
     public readonly counters: ValidatedResult<DbCounter>,
     public readonly item_counters: ValidatedResult<DbItemCounter>,
     public readonly items: ValidatedResult<DbItem>,

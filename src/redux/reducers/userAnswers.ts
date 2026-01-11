@@ -1,22 +1,6 @@
-import { UserAnswer, UserAnswerJudgment } from "@jyosuushi/redux";
+import { CounterReadingFrequency } from "@jyosuushi/interfaces";
+import { UserAnswer } from "@jyosuushi/redux";
 import { ReduxAction } from "@jyosuushi/redux/actions";
-
-function updateJudgmentOnLast(
-  state: ReadonlyArray<UserAnswer>,
-  judgment: UserAnswerJudgment,
-): ReadonlyArray<UserAnswer> {
-  if (!state || !state.length) {
-    // shouldn't happen, but let's just check
-    return state;
-  }
-
-  const next = [...state];
-  next[next.length - 1] = {
-    input: next[next.length - 1].input,
-    judgment,
-  };
-  return next;
-}
 
 export default function userAnswersReducer(
   state: ReadonlyArray<UserAnswer> | undefined = [],
@@ -29,10 +13,16 @@ export default function userAnswersReducer(
     case "submit-correct-answer":
       return [
         ...state,
-        {
-          input: action.providedAnswer,
-          judgment: "correct",
-        },
+        action.readingFrequency === CounterReadingFrequency.Common
+          ? {
+              input: action.providedAnswer,
+              judgment: "correct",
+            }
+          : {
+              input: action.providedAnswer,
+              judgment: "correct-but-uncommon",
+              readingFrequency: action.readingFrequency,
+            },
       ];
     case "submit-incorrect-answer":
       return [
@@ -40,10 +30,29 @@ export default function userAnswersReducer(
         {
           input: action.providedAnswer,
           judgment: "incorrect",
+          readingFrequency: action.readingFrequency,
         },
       ];
-    case "ignore-last-answer":
-      return updateJudgmentOnLast(state, "ignored");
+    case "ignore-last-answer": {
+      const next = [...state];
+      const last = next[next.length - 1];
+      if (!last) {
+        // Empty. Shouldn't happen, but protect
+        return state;
+      }
+
+      if (last.judgment !== "incorrect") {
+        // Shouldn't happen, but let's be defensive
+        return state;
+      }
+
+      next[next.length - 1] = {
+        input: last.input,
+        judgment: "ignored",
+        readingFrequency: last.readingFrequency,
+      };
+      return next;
+    }
     case "skip-question":
       return [
         ...state,

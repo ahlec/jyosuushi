@@ -16,6 +16,11 @@ export enum DbExternalLinkLanguage {
   English = "english",
 }
 
+export enum DbCounterReadingFrequencyEnum {
+  Uncommon = "uncommon",
+  Archaic = "archaic",
+}
+
 export interface DbCounterAdditionalReading {
   counter_id: string;
   kana: string;
@@ -43,6 +48,13 @@ export interface DbCounterIrregular {
   kana: string;
   irregular_type: DbIrregularType;
   does_presence_erase_regular_conjugations: boolean;
+}
+
+export interface DbCounterReadingFrequency {
+  counter_id: string;
+  amount: number;
+  kana: string;
+  frequency: DbCounterReadingFrequencyEnum;
 }
 
 export interface DbCounterReading {
@@ -84,6 +96,10 @@ export interface DbEnumIrregularType {
 
 export interface DbEnumExternalLinkLanguage {
   language: string;
+}
+
+export interface DbEnumCounterReadingFrequency {
+  frequency: string;
 }
 
 export interface DbItemCounter {
@@ -129,6 +145,7 @@ export enum Schemas {
   CounterDisambiguations = "counter_disambiguations",
   CounterExternalLinks = "counter_external_links",
   CounterIrregulars = "counter_irregulars",
+  CounterReadingFrequency = "counter_reading_frequency",
   CounterReadings = "counter_readings",
   Counters = "counters",
   ItemCounters = "item_counters",
@@ -139,6 +156,7 @@ export enum Schemas {
 }
 
 export enum EnumSchemas {
+  EnumCounterReadingFrequency = "enum_counter_reading_frequency",
   EnumExternalLinkLanguage = "enum_external_link_language",
   EnumIrregularType = "enum_irregular_type",
   EnumWordOrigin = "enum_word_origin",
@@ -151,7 +169,9 @@ export interface SchemaEntryTypes {
   [Schemas.CounterIrregulars]: DbCounterIrregular;
   [Schemas.CounterAlternativeKanji]: DbCounterAlternativeKanji;
   [Schemas.CounterReadings]: DbCounterReading;
+  [Schemas.CounterReadingFrequency]: DbCounterReadingFrequency;
   [Schemas.Counters]: DbCounter;
+  [EnumSchemas.EnumCounterReadingFrequency]: DbEnumCounterReadingFrequency;
   [EnumSchemas.EnumExternalLinkLanguage]: DbEnumExternalLinkLanguage;
   [EnumSchemas.EnumIrregularType]: DbEnumIrregularType;
   [EnumSchemas.EnumWordOrigin]: DbEnumWordOrigin;
@@ -191,6 +211,10 @@ export const ENTRY_IDENTIFIERS_RETRIEVER: {
   [Schemas.CounterIrregulars]: (entry) => [
     { name: "counter_id", value: entry.counter_id },
     { name: "number", value: entry.number.toString() },
+    { name: "kana", value: entry.kana },
+  ],
+  [Schemas.CounterReadingFrequency]: (entry) => [
+    { name: "counter_id", value: entry.counter_id },
     { name: "kana", value: entry.kana },
   ],
   [Schemas.CounterReadings]: (entry) => [

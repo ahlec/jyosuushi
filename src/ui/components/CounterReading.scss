@@ -1,0 +1,18 @@
+@use "@jyosuushi/palette";
+
+.irregular {
+  color: palette.$counter-irregular;
+}
+
+.non-kango {
+  color: palette.$counter-non-kango;
+}
+
+.uncommon,
+.archaic {
+  font-style: italic;
+
+  .prefix {
+    font-size: 14px;
+  }
+}

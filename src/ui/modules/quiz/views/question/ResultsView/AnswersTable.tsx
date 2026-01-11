@@ -44,19 +44,31 @@ function AnswersTable({
   // Determine the rows that should appear in the table
   const rows = useMemo((): readonly AnswersTableRowData[] => {
     const answersByCounterId = groupBy(
-      currentQuestion.validAnswers,
+      currentQuestion.allReadings,
       (answer) => answer.counterId,
     );
 
     return Object.keys(answersByCounterId).map(
       (counterId): AnswersTableRowData => {
         const answers = answersByCounterId[counterId];
+        const isRowOfCorrectAnswer = !!answers.find(
+          (answer) => answer.kana === usersAnswer.input,
+        );
         return {
           collections: answers[0].collections, // TODO
           counter: COUNTERS_LOOKUP[counterId],
+          highlighting:
+            isRowOfCorrectAnswer &&
+            (usersAnswer.judgment === "correct" ||
+              usersAnswer.judgment === "correct-but-uncommon")
+              ? usersAnswer.judgment
+              : "none",
           kanaAnswers: answers,
           usersCorrectKana:
-            usersAnswer.judgment === "correct" ? usersAnswer.input : null,
+            usersAnswer.judgment === "correct" ||
+            usersAnswer.judgment === "correct-but-uncommon"
+              ? usersAnswer.input
+              : null,
           validKanji: uniq(
             flatten(
               answers.map(
@@ -65,9 +77,6 @@ function AnswersTable({
               ),
             ),
           ),
-          wasUsersCorrectAnswer:
-            usersAnswer.judgment === "correct" &&
-            !!answers.find((answer) => answer.kana === usersAnswer.input),
         };
       },
     );

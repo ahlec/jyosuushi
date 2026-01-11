@@ -86,7 +86,15 @@ export enum CounterIrregularType {
   SoundChange = "sound-change",
 }
 
-export interface CounterIrregular {
+export enum CounterReadingFrequency {
+  Common = "common",
+  Uncommon = "uncommon",
+  Archaic = "archaic",
+}
+
+export interface CounterAnnotationIrregular {
+  kind: "irregular";
+
   amount: number;
 
   countingSystem: CountingSystem | null;
@@ -106,6 +114,21 @@ export interface CounterIrregular {
   reading: string;
 }
 
+/**
+ * Annotation for the frequency of a specific reading.
+ * @note All readings are implicitly assumed to be
+ * common if they don't have a frequency annotation.
+ */
+export interface CounterAnnotationFrequency {
+  kind: "frequency";
+  reading: string;
+  frequency: CounterReadingFrequency;
+}
+
+export type CounterAnnotation =
+  | CounterAnnotationIrregular
+  | CounterAnnotationFrequency;
+
 export type MarkdownComponent = ComponentType<Record<string, never>>;
 
 export interface CounterDisambiguation {
@@ -117,7 +140,15 @@ export interface Counter {
   counterId: string;
   englishName: string;
   footnotes: ReadonlyArray<MarkdownComponent>;
-  irregulars: { [amount: number]: ReadonlyArray<CounterIrregular> };
+  /**
+   * Annotations for specific numbers/amounts when using this counter
+   * (if there are any). This could be notes about the frequency of a
+   * reading, the presence of an irregular reading, etc.
+   *
+   */
+  annotations: {
+    [amount: number]: ReadonlyArray<CounterAnnotation> | undefined;
+  };
   kanji: CounterKanjiInfo | null;
   readings: ReadonlyArray<CounterReading>;
   leadIn: string | null;
@@ -163,6 +194,7 @@ export interface Conjugation {
   amount: number;
   counterId: string;
   countingSystem: CountingSystem | null;
+  frequency: CounterReadingFrequency;
   irregularType: CounterIrregularType | null;
   kanji: ReadonlyArray<string> | null;
   reading: string;
@@ -177,6 +209,7 @@ export interface Answer {
   counterId: string;
   collections: readonly CounterCollectionDescriptor[];
   countingSystem: CountingSystem | null;
+  frequency: CounterReadingFrequency;
   irregularType: CounterIrregularType | null;
   kana: string;
   kanji: ReadonlyArray<string> | null;
@@ -186,7 +219,7 @@ export interface Question {
   amount: number;
   itemId: string;
   possibleAmounts: ReadonlyArray<number>;
-  validAnswers: ReadonlyArray<Answer>;
+  allReadings: ReadonlyArray<Answer>;
 }
 
 export interface CounterCollection {

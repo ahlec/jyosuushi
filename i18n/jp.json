@@ -205,9 +205,27 @@
     },
     "translation": ""
   },
+  "quiz-page.results.failedUncommonBecauseOfSettings": {
+    "original": {
+      "defaultMessage": "Your answer was correct, BUT it used an uncommon reading for that counter, and your quiz settings consider uncommon readings as incorrect. You can change this from the settings page.",
+      "filenames": [
+        "src/ui/modules/quiz/views/question/ResultsView/index.tsx"
+      ]
+    },
+    "translation": ""
+  },
   "quiz-page.results.header.correct": {
     "original": {
       "defaultMessage": "Correct!",
+      "filenames": [
+        "src/ui/modules/quiz/views/question/ResultsView/index.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.results.header.correctButUncommon": {
+    "original": {
+      "defaultMessage": "Correct, but...",
       "filenames": [
         "src/ui/modules/quiz/views/question/ResultsView/index.tsx"
       ]
@@ -244,6 +262,24 @@
   "quiz-page.results.skippedQuestion": {
     "original": {
       "defaultMessage": "Alright! You don't need to worry about this question!",
+      "filenames": [
+        "src/ui/modules/quiz/views/question/ResultsView/index.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.results.uncommonCallout.archaic": {
+    "original": {
+      "defaultMessage": "That is a correct answer, but it's an archaic reading for the counter. Unless you were intending to use an archaic reading, check the table below for more modern answers.",
+      "filenames": [
+        "src/ui/modules/quiz/views/question/ResultsView/index.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "quiz-page.results.uncommonCallout.uncommon": {
+    "original": {
+      "defaultMessage": "That is a correct answer, but it's an uncommon reading for the counter. Unless you were intending to use an uncommon reading, check the table below for more common answers.",
       "filenames": [
         "src/ui/modules/quiz/views/question/ResultsView/index.tsx"
       ]
@@ -844,6 +880,33 @@
     },
     "translation": ""
   },
+  "settings.quiz.failOnUncommonReadings.checkboxLabel": {
+    "original": {
+      "defaultMessage": "Fail uncommon answers",
+      "filenames": [
+        "src/ui/main-screen/settings/SettingsPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "settings.quiz.failOnUncommonReadings.description": {
+    "original": {
+      "defaultMessage": "When using an uncommon reading for a counter during a quiz, this will always be called out. Additionally, you can choose whether to fail these answers.",
+      "filenames": [
+        "src/ui/main-screen/settings/SettingsPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "settings.quiz.failOnUncommonReadings.header": {
+    "original": {
+      "defaultMessage": "Fail on Uncommon Readings",
+      "filenames": [
+        "src/ui/main-screen/settings/SettingsPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
   "settings.quiz.infiniteMode.checkboxLabel": {
     "original": {
       "defaultMessage": "Infinite Mode",
@@ -1065,6 +1128,24 @@
       "defaultMessage": "@AlecDeitloff",
       "filenames": [
         "src/ui/main-screen/feedback/FeedbackPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "components.counterReading.frequencyLabels.archaic": {
+    "original": {
+      "defaultMessage": "arch.",
+      "filenames": [
+        "src/ui/components/CounterReading.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "components.counterReading.frequencyLabels.uncommon": {
+    "original": {
+      "defaultMessage": "uncom.",
+      "filenames": [
+        "src/ui/components/CounterReading.tsx"
       ]
     },
     "translation": ""

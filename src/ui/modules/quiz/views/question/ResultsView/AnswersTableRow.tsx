@@ -11,14 +11,17 @@ import {
 } from "@jyosuushi/interfaces";
 
 import useCounterDisplay from "@jyosuushi/hooks/useCounterDisplay";
+import { CounterReading } from "@jyosuushi/ui/components/CounterReading";
 import Furigana from "@jyosuushi/ui/components/Furigana";
 
 import * as styles from "./AnswersTableRow.scss";
 
+type RowHighlighting = "none" | "correct" | "correct-but-uncommon";
+
 export interface AnswersTableRowData {
   counter: Counter;
   collections: readonly CounterCollectionDescriptor[];
-
+  highlighting: RowHighlighting;
   kanaAnswers: ReadonlyArray<Answer>;
 
   /**
@@ -35,12 +38,6 @@ export interface AnswersTableRowData {
    * null.
    */
   usersCorrectKana: string | null;
-
-  /**
-   * A boolean that is true iff the user's answer was correct
-   * AND this row includes the answer that the user typed in.
-   */
-  wasUsersCorrectAnswer: boolean;
 }
 
 interface ComponentProps {
@@ -62,6 +59,12 @@ const INTL_MESSAGES = defineMessages({
   },
 });
 
+const HIGHLIGHTING_CLASS_NAME: Record<RowHighlighting, string> = {
+  correct: styles.correct,
+  "correct-but-uncommon": styles.correctButUncommon,
+  none: "",
+};
+
 function AnswersTableRow({ data }: ComponentProps): React.ReactElement {
   // Connect to the rest of the app
   const locale = useLocale();
@@ -75,7 +78,7 @@ function AnswersTableRow({ data }: ComponentProps): React.ReactElement {
       key={data.counter.counterId}
       className={classnames(
         styles.answersTableRow,
-        data.wasUsersCorrectAnswer && styles.correct,
+        HIGHLIGHTING_CLASS_NAME[data.highlighting],
       )}
     >
       <td className={styles.cellCounter}>
@@ -113,6 +116,7 @@ function AnswersTableRow({ data }: ComponentProps): React.ReactElement {
         {data.kanaAnswers.map(
           ({
             countingSystem,
+            frequency,
             irregularType,
             kana,
           }: Answer): React.ReactNode => {
@@ -121,10 +125,16 @@ function AnswersTableRow({ data }: ComponentProps): React.ReactElement {
                 key={kana}
                 className={classnames(
                   styles.kana,
-                  data.usersCorrectKana === kana && styles.correct,
+                  data.usersCorrectKana === kana && styles.userAnswer,
                 )}
               >
-                {kana}
+                <CounterReading
+                  countingSystem={countingSystem}
+                  frequency={frequency}
+                  irregularType={irregularType}
+                  kana={kana}
+                  showColor={false}
+                />
                 {irregularType ? (
                   <FormattedMessage {...INTL_MESSAGES.readingLabelIrregular}>
                     {(text) => <span className={styles.irregular}>{text}</span>}

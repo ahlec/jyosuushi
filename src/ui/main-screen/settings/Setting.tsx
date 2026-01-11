@@ -5,19 +5,17 @@ import * as styles from "./Setting.scss";
 
 interface ComponentProps {
   children: React.ReactNode;
-  className: string;
   description: MessageDescriptor;
   header: MessageDescriptor;
 }
 
 function Setting({
   children,
-  className,
   description,
   header,
 }: ComponentProps): React.ReactElement {
   return (
-    <div className={className}>
+    <div>
       <h3 className={styles.header}>
         <FormattedMessage {...header} />
       </h3>

@@ -1,6 +1,7 @@
 import {
   Counter,
   CounterCollectionDescriptor,
+  CounterReadingFrequency,
   PendingQuestion,
   Question,
 } from "@jyosuushi/interfaces";
@@ -15,6 +16,7 @@ export enum AmountRange {
 export interface Settings {
   amountRange: AmountRange;
   infiniteMode: boolean;
+  failOnUncommonReadings: boolean;
 }
 
 export interface Scorecard {
@@ -57,13 +59,29 @@ export interface CountersStateItem {
 export type UserAnswerJudgment =
   | "incorrect"
   | "correct"
+  | "correct-but-uncommon"
   | "ignored"
   | "skipped";
 
-export interface UserAnswer {
-  input: string | null;
-  judgment: UserAnswerJudgment;
-}
+type ConstrainUserAnswer<
+  T extends { input: string | null; judgment: UserAnswerJudgment },
+> = T;
+export type UserAnswer = ConstrainUserAnswer<
+  | {
+      input: string | null;
+      judgment: "correct-but-uncommon";
+      readingFrequency: CounterReadingFrequency;
+    }
+  | {
+      input: string | null;
+      judgment: "incorrect" | "ignored";
+      readingFrequency: CounterReadingFrequency | null;
+    }
+  | {
+      input: string | null;
+      judgment: "correct" | "skipped";
+    }
+>;
 
 export type QuizMode = "regular" | "infinite";
 
