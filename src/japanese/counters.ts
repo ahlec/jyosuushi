@@ -239,7 +239,7 @@ function conjugateRegularKangoReading(
         case "solo": {
           switch (amountBreakdown.solo) {
             case 3: {
-              counterChanges = [COUNTER_BA_GYOU];
+              counterChanges = [{}, COUNTER_BA_GYOU];
               break;
             }
             case 4: {
