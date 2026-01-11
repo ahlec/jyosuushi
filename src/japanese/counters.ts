@@ -116,13 +116,20 @@ const KANGO_COUNTER_W_CHANGES: FinalNumberChanges = {
   [JYUU]: [
     [
       { type: "trailing-small-tsu" },
-      { type: "tag", tag: "counter-wa-10-small-tsu" },
+      { type: "tag", tag: "counter-wa-10-100-small-tsu" },
     ],
     [
       { type: "replace", kana: "じっ", kanji: "十" },
-      { type: "tag", tag: "counter-wa-10-small-tsu" },
+      { type: "tag", tag: "counter-wa-10-100-small-tsu" },
     ],
-    [{ type: "preserve" }, { type: "tag", tag: "counter-wa-10-full-num" }],
+    [{ type: "preserve" }, { type: "tag", tag: "counter-wa-10-100-full-num" }],
+  ],
+  [HYAKU]: [
+    [
+      { type: "trailing-small-tsu" },
+      { type: "tag", tag: "counter-wa-10-100-small-tsu" },
+    ],
+    [{ type: "preserve" }, { type: "tag", tag: "counter-wa-10-100-full-num" }],
   ],
 };
 /* eslint-enable sort-keys */
@@ -234,10 +241,11 @@ function conjugateRegularKangoReading(
           counterChanges = [{}, COUNTER_BA_GYOU];
           break;
         }
-        case "jyuu": {
+        case "jyuu":
+        case "hyaku": {
           counterChanges = [
-            { tag: "counter-wa-10-full-num" },
-            { gyou: "pa", tag: "counter-wa-10-small-tsu" },
+            { tag: "counter-wa-10-100-full-num" },
+            { gyou: "pa", tag: "counter-wa-10-100-small-tsu" },
           ];
           break;
         }
