@@ -18,6 +18,31 @@ import { ChangelogVersion } from "./types";
 
 export const CHANGELOG: readonly ChangelogVersion[] = [
   {
+    version: "v4.1.0",
+    date: "10 January 2026",
+    newFeatures: [
+      {
+        label: "Counter reading frequencies.",
+        details:
+          "Uncommon or archaic readings for counters are now tracked within the application.",
+        nestedListItems: [
+          "Using an uncommon or archaic reading during a quiz will call out that you used an uncommon reading.",
+          "Added a new quiz setting to treat uncommon readings as incorrect answers.",
+        ],
+      },
+    ],
+    improvements: [],
+    bugFixes: [
+      { text: "Corrected readings for 17日, 27日, and so on." },
+      { text: "Corrected readings for 3羽, 13羽, 23羽, and so on." },
+      { text: "Corrected readings for 10羽, 20羽, 30羽, and so on." },
+      { text: "Corrected readings for 100羽, 200羽, 300羽, and so on." },
+      { text: "Corrected readings for 1000羽, 2000羽, 3000羽, and so on." },
+      { text: "Corrected readings for 10000羽, 20000羽, 30000羽, and so on." },
+    ],
+    developerChanges: [],
+  },
+  {
     version: "v4.0.1",
     date: "3 January 2026",
     newFeatures: [],
