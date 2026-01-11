@@ -1,4 +1,4 @@
-import { CounterFrequency } from "@jyosuushi/interfaces";
+import { CounterReadingFrequency } from "@jyosuushi/interfaces";
 import { UserAnswer } from "@jyosuushi/redux";
 import { ReduxAction } from "@jyosuushi/redux/actions";
 
@@ -13,7 +13,7 @@ export default function userAnswersReducer(
     case "submit-correct-answer":
       return [
         ...state,
-        action.readingFrequency === CounterFrequency.Common
+        action.readingFrequency === CounterReadingFrequency.Common
           ? {
               input: action.providedAnswer,
               judgment: "correct",

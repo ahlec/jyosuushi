@@ -139,10 +139,10 @@ const FREQUENCY_ENUM_PRODUCTION_VARIABLE: Record<
   ProductionVariable
 > = {
   [DbCounterReadingFrequencyEnum.Uncommon]: new ProductionVariable(
-    "CounterFrequency.Uncommon",
+    "CounterReadingFrequency.Uncommon",
   ),
   [DbCounterReadingFrequencyEnum.Archaic]: new ProductionVariable(
-    "CounterFrequency.Archaic",
+    "CounterReadingFrequency.Archaic",
   ),
 };
 

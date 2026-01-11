@@ -1,5 +1,5 @@
 import {
-  CounterFrequency,
+  CounterReadingFrequency,
   CounterIrregularType,
   CountingSystem,
 } from "@jyosuushi/interfaces";
@@ -24,18 +24,18 @@ const INTL_MESSAGES = defineMessages({
 });
 
 const READING_FREQUENCY_DISPLAYS: Record<
-  CounterFrequency,
+  CounterReadingFrequency,
   { className: string; prefix: MessageDescriptor | null }
 > = {
-  [CounterFrequency.Common]: {
+  [CounterReadingFrequency.Common]: {
     className: "",
     prefix: null,
   },
-  [CounterFrequency.Uncommon]: {
+  [CounterReadingFrequency.Uncommon]: {
     className: styles.uncommon,
     prefix: INTL_MESSAGES.prefixUncommon,
   },
-  [CounterFrequency.Archaic]: {
+  [CounterReadingFrequency.Archaic]: {
     className: styles.archaic,
     prefix: INTL_MESSAGES.prefixArchaic,
   },
@@ -43,7 +43,7 @@ const READING_FREQUENCY_DISPLAYS: Record<
 
 type Props = {
   countingSystem: CountingSystem | null;
-  frequency: CounterFrequency;
+  frequency: CounterReadingFrequency;
   irregularType: CounterIrregularType | null;
   kana: string;
   showColor: boolean;

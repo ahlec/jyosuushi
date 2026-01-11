@@ -1,4 +1,7 @@
-import { CounterCollection, CounterFrequency } from "@jyosuushi/interfaces";
+import {
+  CounterCollection,
+  CounterReadingFrequency,
+} from "@jyosuushi/interfaces";
 
 import { AmountRange, QuizMode } from "./index";
 
@@ -73,12 +76,12 @@ export function restartQuiz(): ActionRestartQuiz {
 export interface ActionSubmitCorrectAnswer {
   type: "submit-correct-answer";
   providedAnswer: string;
-  readingFrequency: CounterFrequency;
+  readingFrequency: CounterReadingFrequency;
 }
 
 export function submitCorrectAnswer(
   providedAnswer: string,
-  readingFrequency: CounterFrequency,
+  readingFrequency: CounterReadingFrequency,
 ): ActionSubmitCorrectAnswer {
   return {
     providedAnswer,
@@ -91,13 +94,13 @@ export interface ActionSubmitIncorrectAnswer {
   type: "submit-incorrect-answer";
   providedAnswer: string;
   possibleCounters: ReadonlyArray<string>;
-  readingFrequency: CounterFrequency | null;
+  readingFrequency: CounterReadingFrequency | null;
 }
 
 export function submitIncorrectAnswer(
   providedAnswer: string,
   possibleCounters: ReadonlyArray<string>,
-  readingFrequency: CounterFrequency | null,
+  readingFrequency: CounterReadingFrequency | null,
 ): ActionSubmitIncorrectAnswer {
   return {
     possibleCounters,

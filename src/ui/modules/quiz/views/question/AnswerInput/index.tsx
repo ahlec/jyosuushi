@@ -7,7 +7,11 @@ import { connect } from "react-redux";
 
 import StandardButton from "@jyosuushi/ui/components/StandardButton";
 
-import { Answer, CounterFrequency, Question } from "@jyosuushi/interfaces";
+import {
+  Answer,
+  CounterReadingFrequency,
+  Question,
+} from "@jyosuushi/interfaces";
 import { HIRAGANA } from "@jyosuushi/japanese/kana";
 import { State } from "@jyosuushi/redux";
 import {
@@ -185,7 +189,7 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
   private isCorrectAnswer(answer: Answer): boolean {
     const { failOnUncommonReadings } = this.props;
     if (failOnUncommonReadings) {
-      return answer.frequency === CounterFrequency.Common;
+      return answer.frequency === CounterReadingFrequency.Common;
     }
 
     return true;

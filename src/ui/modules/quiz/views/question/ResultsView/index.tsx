@@ -9,7 +9,11 @@ import {
 } from "react-intl";
 import { connect } from "react-redux";
 
-import { Answer, CounterFrequency, Question } from "@jyosuushi/interfaces";
+import {
+  Answer,
+  CounterReadingFrequency,
+  Question,
+} from "@jyosuushi/interfaces";
 import { State, UserAnswer, UserAnswerJudgment } from "@jyosuushi/redux";
 import { ignoreLastAnswer } from "@jyosuushi/redux/actions";
 import { Dispatch } from "@jyosuushi/redux/store";
@@ -107,13 +111,13 @@ function getFrequencyCallout(
   switch (usersAnswer.judgment) {
     case "correct-but-uncommon": {
       switch (usersAnswer.readingFrequency) {
-        case CounterFrequency.Common: {
+        case CounterReadingFrequency.Common: {
           return null;
         }
-        case CounterFrequency.Uncommon: {
+        case CounterReadingFrequency.Uncommon: {
           return INTL_MESSAGES.uncommonCalloutUncommon;
         }
-        case CounterFrequency.Archaic: {
+        case CounterReadingFrequency.Archaic: {
           return INTL_MESSAGES.uncommonCalloutArchaic;
         }
         default: {
@@ -127,7 +131,7 @@ function getFrequencyCallout(
     case "ignored": {
       if (
         !usersAnswer.readingFrequency ||
-        usersAnswer.readingFrequency === CounterFrequency.Common
+        usersAnswer.readingFrequency === CounterReadingFrequency.Common
       ) {
         return null;
       }

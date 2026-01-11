@@ -6,7 +6,7 @@ import {
   Conjugation,
   CounterWagoStyle,
   CountingSystem,
-  CounterFrequency,
+  CounterReadingFrequency,
 } from "@jyosuushi/interfaces";
 
 import { getLeadingConsonant } from "./hepburn";
@@ -358,8 +358,10 @@ export const conjugateCounter: (
     }
 
     const conjugations: ConjugationWithoutMetadata[] = [];
-    const frequenciesByReading: Record<string, CounterFrequency | undefined> =
-      {};
+    const frequenciesByReading: Record<
+      string,
+      CounterReadingFrequency | undefined
+    > = {};
     let includeRegularReadings = true;
 
     counter.annotations[amount]?.forEach((annotation): void => {
@@ -418,7 +420,8 @@ export const conjugateCounter: (
       (conjugation): Conjugation => ({
         ...conjugation,
         frequency:
-          frequenciesByReading[conjugation.reading] ?? CounterFrequency.Common,
+          frequenciesByReading[conjugation.reading] ??
+          CounterReadingFrequency.Common,
       }),
     );
   },

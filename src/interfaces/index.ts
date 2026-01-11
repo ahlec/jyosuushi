@@ -86,7 +86,7 @@ export enum CounterIrregularType {
   SoundChange = "sound-change",
 }
 
-export enum CounterFrequency {
+export enum CounterReadingFrequency {
   Common = "common",
   Uncommon = "uncommon",
   Archaic = "archaic",
@@ -122,7 +122,7 @@ export interface CounterAnnotationIrregular {
 export interface CounterAnnotationFrequency {
   kind: "frequency";
   reading: string;
-  frequency: CounterFrequency;
+  frequency: CounterReadingFrequency;
 }
 
 export type CounterAnnotation =
@@ -194,7 +194,7 @@ export interface Conjugation {
   amount: number;
   counterId: string;
   countingSystem: CountingSystem | null;
-  frequency: CounterFrequency;
+  frequency: CounterReadingFrequency;
   irregularType: CounterIrregularType | null;
   kanji: ReadonlyArray<string> | null;
   reading: string;
@@ -209,7 +209,7 @@ export interface Answer {
   counterId: string;
   collections: readonly CounterCollectionDescriptor[];
   countingSystem: CountingSystem | null;
-  frequency: CounterFrequency;
+  frequency: CounterReadingFrequency;
   irregularType: CounterIrregularType | null;
   kana: string;
   kanji: ReadonlyArray<string> | null;

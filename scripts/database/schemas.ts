@@ -98,7 +98,7 @@ export interface DbEnumExternalLinkLanguage {
   language: string;
 }
 
-export interface DbEnumCounterFrequency {
+export interface DbEnumCounterReadingFrequency {
   frequency: string;
 }
 
@@ -156,7 +156,7 @@ export enum Schemas {
 }
 
 export enum EnumSchemas {
-  EnumCounterFrequency = "enum_counter_frequency",
+  EnumCounterReadingFrequency = "enum_counter_reading_frequency",
   EnumExternalLinkLanguage = "enum_external_link_language",
   EnumIrregularType = "enum_irregular_type",
   EnumWordOrigin = "enum_word_origin",
@@ -171,7 +171,7 @@ export interface SchemaEntryTypes {
   [Schemas.CounterReadings]: DbCounterReading;
   [Schemas.CounterReadingFrequency]: DbCounterReadingFrequency;
   [Schemas.Counters]: DbCounter;
-  [EnumSchemas.EnumCounterFrequency]: DbEnumCounterFrequency;
+  [EnumSchemas.EnumCounterReadingFrequency]: DbEnumCounterReadingFrequency;
   [EnumSchemas.EnumExternalLinkLanguage]: DbEnumExternalLinkLanguage;
   [EnumSchemas.EnumIrregularType]: DbEnumIrregularType;
   [EnumSchemas.EnumWordOrigin]: DbEnumWordOrigin;

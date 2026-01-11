@@ -1,7 +1,7 @@
 import {
   Counter,
   CounterCollectionDescriptor,
-  CounterFrequency,
+  CounterReadingFrequency,
   PendingQuestion,
   Question,
 } from "@jyosuushi/interfaces";
@@ -70,12 +70,12 @@ export type UserAnswer = ConstrainUserAnswer<
   | {
       input: string | null;
       judgment: "correct-but-uncommon";
-      readingFrequency: CounterFrequency;
+      readingFrequency: CounterReadingFrequency;
     }
   | {
       input: string | null;
       judgment: "incorrect" | "ignored";
-      readingFrequency: CounterFrequency | null;
+      readingFrequency: CounterReadingFrequency | null;
     }
   | {
       input: string | null;
