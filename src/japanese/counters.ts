@@ -442,14 +442,30 @@ export const conjugateCounter: (
       );
     }
 
-    return conjugations.map(
-      (conjugation): Conjugation => ({
-        ...conjugation,
-        frequency:
-          frequenciesByReading[conjugation.reading] ??
-          CounterReadingFrequency.Common,
-      }),
-    );
+    return conjugations
+      .map(
+        (conjugation): Conjugation => ({
+          ...conjugation,
+          frequency:
+            frequenciesByReading[conjugation.reading] ??
+            CounterReadingFrequency.Common,
+        }),
+      )
+      .sort((a, b): number => {
+        // Common readings should come before less frequent ones
+        if (a.frequency !== b.frequency) {
+          if (a.frequency === CounterReadingFrequency.Common) {
+            return -1;
+          }
+
+          if (b.frequency === CounterReadingFrequency.Common) {
+            return 1;
+          }
+        }
+
+        // General order
+        return 0;
+      });
   },
   (amount: number, counter: Counter) => [amount, counter.counterId].join("-"),
 );
