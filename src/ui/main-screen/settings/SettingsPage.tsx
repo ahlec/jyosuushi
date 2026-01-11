@@ -3,7 +3,11 @@ import { defineMessages, FormattedMessage } from "react-intl";
 import { useSelector } from "react-redux";
 
 import { AmountRange, State } from "@jyosuushi/redux";
-import { setAmountRange, setInfiniteMode } from "@jyosuushi/redux/actions";
+import {
+  setAmountRange,
+  setFailOnUncommonReadings,
+  setInfiniteMode,
+} from "@jyosuushi/redux/actions";
 import { useDispatch } from "@jyosuushi/redux/useDispatch";
 
 import Checkbox from "@jyosuushi/ui/components/Checkbox";
@@ -28,6 +32,19 @@ const INTL_MESSAGES = defineMessages({
   amountRangeHeader: {
     defaultMessage: "Amounts Range",
     id: "settings.quiz.amountRange.header",
+  },
+  failOnUncommonCheckboxLabel: {
+    defaultMessage: "Fail uncommon answers",
+    id: "settings.quiz.failOnUncommonReadings.checkboxLabel",
+  },
+  failOnUncommonDescription: {
+    defaultMessage:
+      "When using an uncommon reading for a counter during a quiz, this will always be called out. Additionally, you can choose whether to fail these answers.",
+    id: "settings.quiz.failOnUncommonReadings.description",
+  },
+  failOnUncommonHeader: {
+    defaultMessage: "Fail on Uncommon Readings",
+    id: "settings.quiz.failOnUncommonReadings.header",
   },
   infiniteModeCheckboxLabel: {
     defaultMessage: "Infinite Mode",
@@ -118,6 +135,9 @@ function SettingsPage(): React.ReactElement {
   const currentRange = useSelector(
     (state: State): AmountRange => state.settings.amountRange,
   );
+  const failOnUncommonReadings = useSelector(
+    (state: State) => state.settings.failOnUncommonReadings,
+  );
 
   // Handle events
   const handleCurrentRangeChanged = useCallback(
@@ -134,32 +154,49 @@ function SettingsPage(): React.ReactElement {
     [dispatch],
   );
 
+  const handleFailOnUncommonChanged = useCallback(
+    (next: boolean): void => {
+      dispatch(setFailOnUncommonReadings(next));
+    },
+    [dispatch],
+  );
+
   // Render the component
   return (
     <div className={styles.settingsPage}>
       <FormattedMessage {...INTL_MESSAGES.pageHeader} tagName="h1" />
-      <Setting
-        className={styles.setting}
-        header={INTL_MESSAGES.amountRangeHeader}
-        description={INTL_MESSAGES.amountRangeDescription}
-      >
-        <ChooserControl
-          currentValue={currentRange}
-          onChoiceClicked={handleCurrentRangeChanged}
-          choices={AMOUNT_RANGE_CHOICES}
-        />
-      </Setting>
-      <Setting
-        className={styles.setting}
-        header={INTL_MESSAGES.infiniteModeHeader}
-        description={INTL_MESSAGES.infiniteModeDescription}
-      >
-        <Checkbox
-          checked={currentInfiniteMode}
-          label={INTL_MESSAGES.infiniteModeCheckboxLabel}
-          onChange={handleInfiniteModeChanged}
-        />
-      </Setting>
+      <div className={styles.settings}>
+        <Setting
+          header={INTL_MESSAGES.amountRangeHeader}
+          description={INTL_MESSAGES.amountRangeDescription}
+        >
+          <ChooserControl
+            currentValue={currentRange}
+            onChoiceClicked={handleCurrentRangeChanged}
+            choices={AMOUNT_RANGE_CHOICES}
+          />
+        </Setting>
+        <Setting
+          header={INTL_MESSAGES.infiniteModeHeader}
+          description={INTL_MESSAGES.infiniteModeDescription}
+        >
+          <Checkbox
+            checked={currentInfiniteMode}
+            label={INTL_MESSAGES.infiniteModeCheckboxLabel}
+            onChange={handleInfiniteModeChanged}
+          />
+        </Setting>
+        <Setting
+          header={INTL_MESSAGES.failOnUncommonHeader}
+          description={INTL_MESSAGES.failOnUncommonDescription}
+        >
+          <Checkbox
+            checked={failOnUncommonReadings}
+            label={INTL_MESSAGES.failOnUncommonCheckboxLabel}
+            onChange={handleFailOnUncommonChanged}
+          />
+        </Setting>
+      </div>
     </div>
   );
 }

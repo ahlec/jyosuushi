@@ -16,6 +16,7 @@ export enum AmountRange {
 export interface Settings {
   amountRange: AmountRange;
   infiniteMode: boolean;
+  failOnUncommonReadings: boolean;
 }
 
 export interface Scorecard {
@@ -73,7 +74,12 @@ export type UserAnswer = ConstrainUserAnswer<
     }
   | {
       input: string | null;
-      judgment: "correct" | "incorrect" | "ignored" | "skipped";
+      judgment: "incorrect" | "ignored";
+      readingFrequency: CounterFrequency | null;
+    }
+  | {
+      input: string | null;
+      judgment: "correct" | "skipped";
     }
 >;
 

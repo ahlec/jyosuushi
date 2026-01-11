@@ -219,7 +219,7 @@ export interface Question {
   amount: number;
   itemId: string;
   possibleAmounts: ReadonlyArray<number>;
-  validAnswers: ReadonlyArray<Answer>;
+  allReadings: ReadonlyArray<Answer>;
 }
 
 export interface CounterCollection {

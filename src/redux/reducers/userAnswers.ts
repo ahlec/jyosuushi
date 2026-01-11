@@ -13,14 +13,16 @@ export default function userAnswersReducer(
     case "submit-correct-answer":
       return [
         ...state,
-        {
-          input: action.providedAnswer,
-          judgment:
-            action.readingFrequency === CounterFrequency.Common
-              ? "correct"
-              : "correct-but-uncommon",
-          readingFrequency: action.readingFrequency,
-        },
+        action.readingFrequency === CounterFrequency.Common
+          ? {
+              input: action.providedAnswer,
+              judgment: "correct",
+            }
+          : {
+              input: action.providedAnswer,
+              judgment: "correct-but-uncommon",
+              readingFrequency: action.readingFrequency,
+            },
       ];
     case "submit-incorrect-answer":
       return [
@@ -28,17 +30,26 @@ export default function userAnswersReducer(
         {
           input: action.providedAnswer,
           judgment: "incorrect",
+          readingFrequency: action.readingFrequency,
         },
       ];
     case "ignore-last-answer": {
-      if (!state.length) {
+      const next = [...state];
+      const last = next[next.length - 1];
+      if (!last) {
+        // Empty. Shouldn't happen, but protect
         return state;
       }
 
-      const next = [...state];
+      if (last.judgment !== "incorrect") {
+        // Shouldn't happen, but let's be defensive
+        return state;
+      }
+
       next[next.length - 1] = {
-        input: next[next.length - 1].input,
+        input: last.input,
         judgment: "ignored",
+        readingFrequency: last.readingFrequency,
       };
       return next;
     }

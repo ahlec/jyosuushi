@@ -13,7 +13,9 @@
     width: 50%;
   }
 
-  .setting {
-    margin-bottom: 25px;
+  .settings {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
   }
 }

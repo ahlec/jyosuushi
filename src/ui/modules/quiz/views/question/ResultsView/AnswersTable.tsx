@@ -44,7 +44,7 @@ function AnswersTable({
   // Determine the rows that should appear in the table
   const rows = useMemo((): readonly AnswersTableRowData[] => {
     const answersByCounterId = groupBy(
-      currentQuestion.validAnswers,
+      currentQuestion.allReadings,
       (answer) => answer.counterId,
     );
 

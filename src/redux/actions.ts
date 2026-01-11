@@ -26,6 +26,20 @@ export function setInfiniteMode(infiniteMode: boolean): ActionSetInfiniteMode {
   };
 }
 
+export interface ActionSetFailOnUncommonReadings {
+  type: "set-fail-on-uncommon-readings";
+  failOnUncommonReadings: boolean;
+}
+
+export function setFailOnUncommonReadings(
+  failOnUncommonReadings: boolean,
+): ActionSetFailOnUncommonReadings {
+  return {
+    failOnUncommonReadings,
+    type: "set-fail-on-uncommon-readings",
+  };
+}
+
 export interface ActionStartQuiz {
   type: "start-quiz";
   amountRange: AmountRange;
@@ -77,15 +91,18 @@ export interface ActionSubmitIncorrectAnswer {
   type: "submit-incorrect-answer";
   providedAnswer: string;
   possibleCounters: ReadonlyArray<string>;
+  readingFrequency: CounterFrequency | null;
 }
 
 export function submitIncorrectAnswer(
   providedAnswer: string,
   possibleCounters: ReadonlyArray<string>,
+  readingFrequency: CounterFrequency | null,
 ): ActionSubmitIncorrectAnswer {
   return {
     possibleCounters,
     providedAnswer,
+    readingFrequency,
     type: "submit-incorrect-answer",
   };
 }
@@ -164,4 +181,5 @@ export type ReduxAction =
   | ActionRestartQuiz
   | ActionStartQuiz
   | ActionSetInfiniteMode
-  | ActionSetAmountRange;
+  | ActionSetAmountRange
+  | ActionSetFailOnUncommonReadings;

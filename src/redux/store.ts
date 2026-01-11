@@ -25,6 +25,7 @@ import userAnswersReducer from "./reducers/userAnswers";
 
 import migrateV0 from "./migration/v0";
 import migrateV1 from "./migration/v1";
+import migrateV2 from "./migration/v2";
 
 export type Store = ReduxStore<State, Action>;
 export type Dispatch = ReduxDispatch<Action>;
@@ -55,9 +56,10 @@ export function createRedux(): Redux {
         migrate: createMigrate({
           0: migrateV0,
           1: migrateV1,
+          2: migrateV2,
         }),
         storage,
-        version: 1,
+        version: 2,
       },
       reducers,
     ),

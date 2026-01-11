@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 
 import StandardButton from "@jyosuushi/ui/components/StandardButton";
 
-import { Answer, Question } from "@jyosuushi/interfaces";
+import { Answer, CounterFrequency, Question } from "@jyosuushi/interfaces";
 import { HIRAGANA } from "@jyosuushi/japanese/kana";
 import { State } from "@jyosuushi/redux";
 import {
@@ -28,16 +28,17 @@ interface ProvidedProps {
   buttonsClassName: string;
   currentQuestion: Question;
   enabled: boolean;
-  onAnswerSubmitted?: (usersCorrectAnswer: Answer | null) => void;
   posthog: PostHog;
 }
 
 interface ReduxProps {
+  failOnUncommonReadings: boolean;
   numQuestionsAsked: number;
 }
 
 function mapStateToProps(state: State): ReduxProps {
   return {
+    failOnUncommonReadings: state.settings.failOnUncommonReadings,
     numQuestionsAsked: state.user.numQuestionsAsked,
   };
 }
@@ -155,39 +156,39 @@ class AnswerInput extends React.PureComponent<ComponentProps, ComponentState> {
   };
 
   private submit(): void {
-    const { currentQuestion, dispatch, onAnswerSubmitted } = this.props;
+    const { currentQuestion, dispatch } = this.props;
     const { value } = this.state;
 
     if (!value || !value.validValue) {
       return;
     }
 
-    const correct = this.getCorrectAnswer(value.validValue);
-    if (onAnswerSubmitted) {
-      onAnswerSubmitted(correct);
-    }
+    const answerWithKanaReading = currentQuestion.allReadings.find(
+      (reading): boolean => reading.kana === value.validValue,
+    );
 
-    if (correct) {
-      dispatch(submitCorrectAnswer(value.validValue, correct.frequency));
+    if (answerWithKanaReading && this.isCorrectAnswer(answerWithKanaReading)) {
+      dispatch(
+        submitCorrectAnswer(value.validValue, answerWithKanaReading.frequency),
+      );
     } else {
       dispatch(
         submitIncorrectAnswer(
           value.validValue,
-          uniq(currentQuestion.validAnswers.map(getCounterId)),
+          uniq(currentQuestion.allReadings.map(getCounterId)),
+          answerWithKanaReading?.frequency ?? null,
         ),
       );
     }
   }
 
-  private getCorrectAnswer(value: string): Answer | null {
-    const { currentQuestion } = this.props;
-    for (const answer of currentQuestion.validAnswers) {
-      if (answer.kana === value) {
-        return answer;
-      }
+  private isCorrectAnswer(answer: Answer): boolean {
+    const { failOnUncommonReadings } = this.props;
+    if (failOnUncommonReadings) {
+      return answer.frequency === CounterFrequency.Common;
     }
 
-    return null;
+    return true;
   }
 
   private onSkipClicked = (): void => {

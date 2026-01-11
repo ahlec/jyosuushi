@@ -205,6 +205,15 @@
     },
     "translation": ""
   },
+  "quiz-page.results.failedUncommonBecauseOfSettings": {
+    "original": {
+      "defaultMessage": "Your answer was correct, BUT it used an uncommon reading for that counter, and your quiz settings consider uncommon readings as incorrect. You can change this from the settings page.",
+      "filenames": [
+        "src/ui/modules/quiz/views/question/ResultsView/index.tsx"
+      ]
+    },
+    "translation": ""
+  },
   "quiz-page.results.header.correct": {
     "original": {
       "defaultMessage": "Correct!",
@@ -865,6 +874,33 @@
   "settings.quiz.amountRange.header": {
     "original": {
       "defaultMessage": "Amounts Range",
+      "filenames": [
+        "src/ui/main-screen/settings/SettingsPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "settings.quiz.failOnUncommonReadings.checkboxLabel": {
+    "original": {
+      "defaultMessage": "Fail uncommon answers",
+      "filenames": [
+        "src/ui/main-screen/settings/SettingsPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "settings.quiz.failOnUncommonReadings.description": {
+    "original": {
+      "defaultMessage": "When using an uncommon reading for a counter during a quiz, this will always be called out. Additionally, you can choose whether to fail these answers.",
+      "filenames": [
+        "src/ui/main-screen/settings/SettingsPage.tsx"
+      ]
+    },
+    "translation": ""
+  },
+  "settings.quiz.failOnUncommonReadings.header": {
+    "original": {
+      "defaultMessage": "Fail on Uncommon Readings",
       "filenames": [
         "src/ui/main-screen/settings/SettingsPage.tsx"
       ]

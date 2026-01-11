@@ -49,6 +49,11 @@ const INTL_MESSAGES = defineMessages({
     defaultMessage: "Next Question",
     id: "quiz-page.results.buttonNextQuestion",
   },
+  failedUncommonBecauseOfSettings: {
+    defaultMessage:
+      "Your answer was correct, BUT it used an uncommon reading for that counter, and your quiz settings consider uncommon readings as incorrect. You can change this from the settings page.",
+    id: "quiz-page.results.failedUncommonBecauseOfSettings",
+  },
   headerCorrect: {
     defaultMessage: "Correct!",
     id: "quiz-page.results.header.correct",
@@ -96,21 +101,49 @@ const HEADERS: {
   skipped: INTL_MESSAGES.headerSkipped,
 };
 
-const READING_FREQUENCY_CALLOUTS: Record<
-  CounterFrequency,
-  MessageDescriptor | null
-> = {
-  [CounterFrequency.Common]: null,
-  [CounterFrequency.Uncommon]: INTL_MESSAGES.uncommonCalloutUncommon,
-  [CounterFrequency.Archaic]: INTL_MESSAGES.uncommonCalloutArchaic,
-};
+function getFrequencyCallout(
+  usersAnswer: UserAnswer,
+): MessageDescriptor | null {
+  switch (usersAnswer.judgment) {
+    case "correct-but-uncommon": {
+      switch (usersAnswer.readingFrequency) {
+        case CounterFrequency.Common: {
+          return null;
+        }
+        case CounterFrequency.Uncommon: {
+          return INTL_MESSAGES.uncommonCalloutUncommon;
+        }
+        case CounterFrequency.Archaic: {
+          return INTL_MESSAGES.uncommonCalloutArchaic;
+        }
+        default: {
+          // Type errors here should be fixed by defining the appropriate message.
+          // For this result type, we ALWAYS want to show a message
+          return usersAnswer;
+        }
+      }
+    }
+    case "incorrect":
+    case "ignored": {
+      if (
+        !usersAnswer.readingFrequency ||
+        usersAnswer.readingFrequency === CounterFrequency.Common
+      ) {
+        return null;
+      }
+
+      return INTL_MESSAGES.failedUncommonBecauseOfSettings;
+    }
+    default: {
+      return null;
+    }
+  }
+}
 
 class ResultsView extends React.PureComponent<ComponentProps> {
   public render(): React.ReactNode {
     const { className, currentQuestion, usersAnswer } = this.props;
-    const frequencyCallout =
-      usersAnswer.judgment === "correct-but-uncommon" &&
-      READING_FREQUENCY_CALLOUTS[usersAnswer.readingFrequency];
+    const frequencyCallout = getFrequencyCallout(usersAnswer);
     return (
       <div className={classnames(styles.resultsView, className)}>
         <div className={styles.results}>
@@ -170,7 +203,7 @@ class ResultsView extends React.PureComponent<ComponentProps> {
   private onIgnoreClicked = (): void => {
     const { currentQuestion, dispatch, posthog, usersAnswer } = this.props;
     const counters = uniq(
-      currentQuestion.validAnswers.map(({ counterId }: Answer) => counterId),
+      currentQuestion.allReadings.map(({ counterId }: Answer) => counterId),
     );
 
     posthog.capture("answer-ignored", {
