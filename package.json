@@ -100,7 +100,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
-    "lodash": "^4.17.21",
+    "lodash": "^4.17.23",
     "memoize-one": "^5.1.1",
     "posthog-js": "^1.310.1",
     "react": "^19.2.3",
